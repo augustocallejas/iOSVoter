@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SupervoteViewController : UIViewController {
-
+@interface SupervoteViewController : UIViewController <UITextFieldDelegate> {
+	UITextField *FirstZIPField;
+	UITextField *SecondZIPField;
+	UIButton *joinButton;
+	//UITabBarController *mainAppController;
 }
+
+@property (nonatomic, retain) IBOutlet UITextField *FirstZIPField;
+@property (nonatomic, retain) IBOutlet UITextField *SecondZIPField;
+@property (nonatomic, retain) IBOutlet UIButton	*joinButton;
+//@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
 
 @end
 

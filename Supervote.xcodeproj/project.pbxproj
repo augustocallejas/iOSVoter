@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
+		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
+		14789F2713EBBB9E0016044C /* ElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ElectionsController.m */; };
+		14789F2813EBBB9E0016044C /* ElectionsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F2613EBBB9E0016044C /* ElectionsController.xib */; };
+		14789F3113EBBBF20016044C /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2F13EBBBF20016044C /* SettingsController.m */; };
+		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
+		14789F3913EBBC9B0016044C /* MainApp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3813EBBC9B0016044C /* MainApp.xib */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -18,6 +25,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
+		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
+		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
+		14789F2413EBBB9E0016044C /* ElectionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ElectionsController.h; path = ../ElectionsController.h; sourceTree = "<group>"; };
+		14789F2513EBBB9E0016044C /* ElectionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ElectionsController.m; path = ../ElectionsController.m; sourceTree = "<group>"; };
+		14789F2613EBBB9E0016044C /* ElectionsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElectionsController.xib; sourceTree = "<group>"; };
+		14789F2E13EBBBF20016044C /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = ../SettingsController.h; sourceTree = "<group>"; };
+		14789F2F13EBBBF20016044C /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = ../SettingsController.m; sourceTree = "<group>"; };
+		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
+		14789F3813EBBC9B0016044C /* MainApp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainApp.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +67,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				14789F2413EBBB9E0016044C /* ElectionsController.h */,
+				14789F2513EBBB9E0016044C /* ElectionsController.m */,
+				14789F1513EBBB220016044C /* FeedController.h */,
+				14789F1613EBBB220016044C /* FeedController.m */,
+				14789F2E13EBBBF20016044C /* SettingsController.h */,
+				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */,
 				1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -90,8 +113,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
+				14789F2613EBBB9E0016044C /* ElectionsController.xib */,
+				14789F1713EBBB220016044C /* FeedController.xib */,
+				14789F3813EBBC9B0016044C /* MainApp.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
+				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 			);
 			name = Resources;
@@ -132,6 +159,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Supervote, LLC";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Supervote" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -158,6 +188,10 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				2899E5220DE3E06400AC0155 /* SupervoteViewController.xib in Resources */,
+				14789F1913EBBB220016044C /* FeedController.xib in Resources */,
+				14789F2813EBBB9E0016044C /* ElectionsController.xib in Resources */,
+				14789F3213EBBBF20016044C /* SettingsController.xib in Resources */,
+				14789F3913EBBC9B0016044C /* MainApp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +205,9 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* SupervoteViewController.m in Sources */,
+				14789F1813EBBB220016044C /* FeedController.m in Sources */,
+				14789F2713EBBB9E0016044C /* ElectionsController.m in Sources */,
+				14789F3113EBBBF20016044C /* SettingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

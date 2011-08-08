@@ -10,7 +10,10 @@
 
 @implementation SupervoteViewController
 
-
+@synthesize FirstZIPField;
+@synthesize SecondZIPField;
+@synthesize joinButton;
+//@synthesize mainAppController;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -58,8 +61,37 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
+{  
+    BOOL validCharactersInRange = YES;  
+	
+    if (![string isEqualToString:@""])  
+    {
+        NSUInteger testLength = textField.text.length + string.length + range.length;
+		NSUInteger max = FirstZIPField == textField ? 5 : 4;
+        validCharactersInRange = (testLength > max) ? NO : YES; //change the 1 to your textfield's upper limit
+		
+		if (FirstZIPField == textField && !validCharactersInRange && range.location == 5 && range.length == 0)
+		{
+			[SecondZIPField becomeFirstResponder];
+			SecondZIPField.text = [string retain];
+		}
+    }  
+	
+    return validCharactersInRange;  
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
+}
+
 
 - (void)dealloc {
+	[FirstZIPField dealloc];
+	[SecondZIPField dealloc];
+	[joinButton dealloc];
+	//[mainAppController dealloc];
     [super dealloc];
 }
 

@@ -13,6 +13,7 @@
 
 @synthesize window;
 @synthesize viewController;
+@synthesize mainAppController;
 
 
 #pragma mark -
@@ -75,11 +76,32 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
+	[mainAppController release];
+    mainAppController = nil;
+}
+
+
+#pragma mark -
+#pragma mark Custom actions
+
+- (IBAction)doJoinButtonSendZip {
+	//NSLog(@"Send Zip!");
+	if (mainAppController == nil)
+	{
+		[[NSBundle mainBundle] loadNibNamed:@"MainApp" owner:self options:nil];
+		// TODO: not sure if this is the proper way to switch from one controller to another.
+		// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller
+		self.window.rootViewController = [self mainAppController];
+	}
 }
 
 
 - (void)dealloc {
     [viewController release];
+	if (mainAppController != nil)
+	{
+		[mainAppController release];
+	}
     [window release];
     [super dealloc];
 }

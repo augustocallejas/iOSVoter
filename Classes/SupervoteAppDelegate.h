@@ -13,10 +13,14 @@
 @interface SupervoteAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     SupervoteViewController *viewController;
+	UITabBarController *mainAppController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet SupervoteViewController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
+
+- (IBAction)doJoinButtonSendZip;
 
 @end
 
