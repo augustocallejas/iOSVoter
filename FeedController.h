@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FeedController : UIViewController {
+@interface FeedController : UITableViewController {
 
 }
 
