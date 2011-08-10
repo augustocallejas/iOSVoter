@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ElectionDetailController :	UIViewController {
+@interface ElectionDetailController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 	NSString *electionTitle;
 }
 

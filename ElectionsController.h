@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ElectionsController : UITableViewController <UITableViewDelegate> {
+@interface ElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 
 }
 
