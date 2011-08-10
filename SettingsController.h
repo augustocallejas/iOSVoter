@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SettingsController : UIViewController {
+@interface SettingsController : UITableViewController {
 
 }
 
