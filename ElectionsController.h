@@ -6,11 +6,13 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 
 @interface ElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
-
+	
+@private
+	NSManagedObjectContext *managedObjectContext;
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @end

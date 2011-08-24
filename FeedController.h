@@ -6,8 +6,6 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 
 @interface FeedController : UITableViewController {
 
