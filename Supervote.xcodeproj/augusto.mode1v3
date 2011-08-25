@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>15</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -310,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ElectionsController.h</string>
+								<string>SupervoteAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ElectionsController.h</string>
+										<string>SupervoteAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1423B1EC1404F168006F8DBF</string>
+										<string>1423B2341406177C006F8DBF</string>
 										<key>history</key>
 										<array>
 											<string>14789F3D13EBBD2B0016044C</string>
@@ -338,20 +336,20 @@
 											<string>14A877AE13F24037006B9D73</string>
 											<string>14A8786F13F26225006B9D73</string>
 											<string>1423B0C41404BAF4006F8DBF</string>
-											<string>1423B0F31404D409006F8DBF</string>
 											<string>1423B0F41404D409006F8DBF</string>
 											<string>1423B1721404E96C006F8DBF</string>
-											<string>1423B1A91404EEA2006F8DBF</string>
 											<string>1423B1E21404F168006F8DBF</string>
 											<string>1423B1E31404F168006F8DBF</string>
-											<string>1423B1E41404F168006F8DBF</string>
-											<string>1423B1E51404F168006F8DBF</string>
 											<string>1423B1E61404F168006F8DBF</string>
 											<string>1423B1E71404F168006F8DBF</string>
 											<string>1423B1E81404F168006F8DBF</string>
 											<string>1423B1E91404F168006F8DBF</string>
 											<string>1423B1EA1404F168006F8DBF</string>
-											<string>1423B1EB1404F168006F8DBF</string>
+											<string>1423B21F1404F36E006F8DBF</string>
+											<string>1423B2201404F36E006F8DBF</string>
+											<string>1423B22C1404F4C7006F8DBF</string>
+											<string>1423B2321406177C006F8DBF</string>
+											<string>1423B2331406177C006F8DBF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -373,6 +371,8 @@
 							<string>564pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -549,12 +549,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1423B1ED1404F168006F8DBF</string>
+		<string>14A8782513F24FCA006B9D73</string>
 		<string>1423B0CA1404BAF4006F8DBF</string>
 		<string>1423B0B41401A391006F8DBF</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>14789DDB13E8FD560016044C</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -939,7 +939,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
@@ -1020,12 +1020,12 @@
 								<dict>
 									<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
 									<array>
-										<real>477</real>
-										<real>56.66162109375</real>
+										<real>495</real>
+										<real>56</real>
 										<real>63</real>
 										<real>60</real>
 										<real>63</real>
-										<real>139.556640625</real>
+										<real>139</real>
 									</array>
 									<key>PBXCVSModuleTreeModuleColumnsKey</key>
 									<array>
@@ -1070,7 +1070,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>14A8782513F24FCA006B9D73</string>
-				<string>14A8782613F24FCA006B9D73</string>
+				<string>1423B2021404F209006F8DBF</string>
 				<string>1C78EAB2065D492600B07095</string>
 				<string>1CD052920623707200166675</string>
 			</array>

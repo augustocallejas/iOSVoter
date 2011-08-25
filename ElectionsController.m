@@ -20,6 +20,8 @@
 {
 	if (section == 0)
 	{
+		//NSManagedObjectModel *model = [[managedObjectContext persistentStoreCoordinator] managedObjectModel];
+		//[[model entitiesByName] objectForKey:@"Election"];
 		return 2;
 	}
 	
