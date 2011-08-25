@@ -21,7 +21,7 @@
 {
 	if (section == 0)
 	{
-		return 2;
+		return 3;
 	}
 	
 	return 0;
@@ -50,13 +50,18 @@
 			NSUInteger index = [indexPath indexAtPosition:1];
 			if (index == 0)
 			{
-				text = @"Proposition 8";
-				detailText = @"";
+				text = @"President and Vice President";
+				detailText = @"John F. Kerry & John Edwards";
 			}
 			else if (index == 1)
 			{
-				text = @"Proposition 9";
+				text = @"Secretary of State";
 				detailText = @"";
+			}
+			else if (index == 2)
+			{
+				text = @"State Treasurer";
+				detailText = @"Randall Edwards";
 			}
 		}
 	}

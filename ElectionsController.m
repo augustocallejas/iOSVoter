@@ -137,6 +137,8 @@
 //			// Handle the error
 //		}
 		
+		// adding core data: http://wiresareobsolete.com/wordpress/2009/12/adding-core-data-existing-iphone-projects/
+		// http://developer.apple.com/library/ios/#documentation/DataManagement/Conceptual/CoreDataSnippets/Introduction/Introduction.html
 		// fetch data in the context
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Election" inManagedObjectContext:managedObjectContext];
