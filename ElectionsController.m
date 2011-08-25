@@ -6,12 +6,14 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
+#import "Election.h"
 #import "ElectionsController.h"
 #import "ElectionDetailController.h"
 
 @implementation ElectionsController
 
 @synthesize managedObjectContext;
+@synthesize elections;
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
@@ -20,9 +22,10 @@
 {
 	if (section == 0)
 	{
-		//NSManagedObjectModel *model = [[managedObjectContext persistentStoreCoordinator] managedObjectModel];
-		//[[model entitiesByName] objectForKey:@"Election"];
-		return 2;
+		if (self.elections != nil)
+		{
+			return [self.elections count];
+		}
 	}
 	
 	return 0;
@@ -48,17 +51,10 @@
 	{
 		if ([indexPath indexAtPosition:0] == 0)
 		{
-			NSUInteger index = [indexPath indexAtPosition:1];
-			if (index == 0)
-			{
-				text = @"2012 Presidential Election";
-				detailText = @"November 6th, 2012";
-			}
-			else if (index == 1)
-			{
-				text = @"2016 Presidential Election";
-				detailText = @"";
-			}
+			NSManagedObject *object = (NSManagedObject *)[self.elections objectAtIndex:indexPath.row];
+			
+			text = [object valueForKey:@"title"];
+			detailText =  [(NSDate *)[object valueForKey:@"date"] description];
 		}
 	}
 	
@@ -91,20 +87,9 @@
 			// TODO: unnecessarily creating a new controller on each selection!
 			ElectionDetailController *controller = [[ElectionDetailController alloc] initWithNibName:@"ElectionDetail" bundle:[NSBundle mainBundle]];
 			
-			NSString *electionTitle = @"No title!";
-			/* Index of Election */
-			NSUInteger index = [indexPath indexAtPosition:1];
-			if (index == 0)
-			{
-				electionTitle = @"2012 Election";
-			}
-			else if (index == 1)
-			{
-				electionTitle = @"2016 Election";
-			}
-			
-			controller.title = electionTitle;
-			controller.electionTitle = electionTitle;
+			Election *election = (Election *) [self.elections objectAtIndex:indexPath.row];
+			controller.title = election.title;
+			controller.electionTitle = election.title;
 			
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
@@ -133,8 +118,43 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//[[UIApplication sharedApplication] man
-	//self.managedObjectContext = [(SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+	if (self.elections == nil)
+	{
+		NSError *error;
+		
+//		// insert data in the context
+//		Election *election1 = (Election*) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:managedObjectContext];
+//		election1.title = @"2012 Presidential Election";
+//		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//		dateFormatter.dateFormat = @"dd-MM-yy";
+//		election1.date = [dateFormatter dateFromString:@"06-11-12"];//[NSDate dateWithString:@"2012-11-06 00:00:00 -0700"];
+//		[dateFormatter release];
+//		
+//		NSError *error = nil;
+//		if (![managedObjectContext save:&error]) {
+//			NSLog(@"  DetailedError: %@", [error userInfo]);
+//			NSLog(@"no!");
+//			// Handle the error
+//		}
+		
+		// fetch data in the context
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Election" inManagedObjectContext:managedObjectContext];
+		[fetchRequest setEntity:entity];
+		
+		//NSError *error = nil;
+		// TODO: how do i know this is autoreleased?
+		// http://stackoverflow.com/questions/1396967/iphone-core-data-executefetchrequest-memory-issue
+		NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+		if (fetchedObjects == nil) {
+			// Handle the error
+			NSLog(@"no!");
+		}
+		
+		self.elections = fetchedObjects;
+		
+		[fetchRequest release];
+	}
 }
 
 /*
@@ -161,6 +181,7 @@
 
 - (void)dealloc {
 	[managedObjectContext release];
+	[elections release];
     [super dealloc];
 }
 

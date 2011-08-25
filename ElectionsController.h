@@ -11,8 +11,10 @@
 	
 @private
 	NSManagedObjectContext *managedObjectContext;
+	NSArray *elections;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSArray *elections;
 
 @end
