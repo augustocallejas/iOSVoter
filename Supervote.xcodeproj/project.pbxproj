@@ -12,6 +12,7 @@
 		1423B0C01404B951006F8DBF /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BF1404B951006F8DBF /* Election.m */; };
 		1423B32914075237006F8DBF /* ChooseCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* ChooseCandidate.xib */; };
 		1423B32D1407527E006F8DBF /* ChooseCandidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */; };
+		1423B3F814078B96006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B3F714078B96006F8DBF /* Candidate.m */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ElectionsController.m */; };
@@ -41,6 +42,8 @@
 		1423B32814075237006F8DBF /* ChooseCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCandidate.xib; sourceTree = "<group>"; };
 		1423B32B1407527E006F8DBF /* ChooseCandidateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCandidateController.h; sourceTree = "<group>"; };
 		1423B32C1407527E006F8DBF /* ChooseCandidateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCandidateController.m; sourceTree = "<group>"; };
+		1423B3F614078B96006F8DBF /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
+		1423B3F714078B96006F8DBF /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -90,6 +93,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1423B3F614078B96006F8DBF /* Candidate.h */,
+				1423B3F714078B96006F8DBF /* Candidate.m */,
 				1423B0BE1404B951006F8DBF /* Election.h */,
 				1423B0BF1404B951006F8DBF /* Election.m */,
 				14789F2413EBBB9E0016044C /* ElectionsController.h */,
@@ -252,6 +257,7 @@
 				1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */,
 				1423B0C01404B951006F8DBF /* Election.m in Sources */,
 				1423B32D1407527E006F8DBF /* ChooseCandidateController.m in Sources */,
+				1423B3F814078B96006F8DBF /* Candidate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

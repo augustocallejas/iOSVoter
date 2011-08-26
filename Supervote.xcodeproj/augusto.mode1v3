@@ -197,7 +197,48 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>1423B40114078C21006F8DBF</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>Supervote.xcdatamodel</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>1423B40214078C21006F8DBF</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>Supervote.xcdatamodel</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>1423B40E14078C94006F8DBF</string>
+						<key>history</key>
+						<array>
+							<string>1423B3F514078A90006F8DBF</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {982, 758}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>15 74 982 799 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -274,7 +315,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -310,14 +350,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ElectionDetailController.m</string>
+								<string>Candidate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +363,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ElectionDetailController.m</string>
+										<string>Candidate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1423B3EF140789DC006F8DBF</string>
+										<string>1423B40D14078C94006F8DBF</string>
 										<key>history</key>
 										<array>
 											<string>14789F3D13EBBD2B0016044C</string>
@@ -338,10 +376,7 @@
 											<string>14A877AE13F24037006B9D73</string>
 											<string>14A8786F13F26225006B9D73</string>
 											<string>1423B1E31404F168006F8DBF</string>
-											<string>1423B22C1404F4C7006F8DBF</string>
-											<string>1423B24814062025006F8DBF</string>
 											<string>1423B26314062208006F8DBF</string>
-											<string>1423B31314063327006F8DBF</string>
 											<string>1423B350140762D9006F8DBF</string>
 											<string>1423B351140762D9006F8DBF</string>
 											<string>1423B352140762D9006F8DBF</string>
@@ -351,10 +386,15 @@
 											<string>1423B39F140777F5006F8DBF</string>
 											<string>1423B3A1140777F5006F8DBF</string>
 											<string>1423B3E3140789B9006F8DBF</string>
-											<string>1423B3E5140789B9006F8DBF</string>
 											<string>1423B3ED140789DC006F8DBF</string>
 											<string>1423B3EE140789DC006F8DBF</string>
-											<string>1423B3E4140789B9006F8DBF</string>
+											<string>1423B3F914078C21006F8DBF</string>
+											<string>1423B3FA14078C21006F8DBF</string>
+											<string>1423B3FB14078C21006F8DBF</string>
+											<string>1423B3FC14078C21006F8DBF</string>
+											<string>1423B40B14078C94006F8DBF</string>
+											<string>1423B40C14078C94006F8DBF</string>
+											<string>1423B3FE14078C21006F8DBF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -376,6 +416,8 @@
 							<string>564pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -552,7 +594,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1423B3F0140789DC006F8DBF</string>
 		<string>1423B3E9140789B9006F8DBF</string>
 		<string>1423B28D140625C6006F8DBF</string>
 		<string>14A8782513F24FCA006B9D73</string>
@@ -561,6 +602,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>14789DDB13E8FD560016044C</string>
+		<string>1423B40114078C21006F8DBF</string>
 		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
