@@ -7,7 +7,7 @@
 //
 
 #import "ElectionDetailController.h"
-#import "ElectionItemController.h"
+#import "ChooseCandidateController.h"
 
 
 @implementation ElectionDetailController
@@ -21,7 +21,7 @@
 {
 	if (section == 0)
 	{
-		return 3;
+		return 4;
 	}
 	
 	return 0;
@@ -63,6 +63,11 @@
 				text = @"State Treasurer";
 				detailText = @"Randall Edwards";
 			}
+			else if (index == 3)
+			{
+				text = @"Proposition 19";
+				detailText = @"Regulate, Control & Tax Cannabis Act";
+			}
 		}
 	}
 	
@@ -93,8 +98,8 @@
 		if ([indexPath indexAtPosition:0] == 0)
 		{
 			// TODO: unnecessarily creating a new controller on each selection!
-			ElectionItemController *controller = [[ElectionItemController alloc] initWithNibName:@"ElectionItem" bundle:[NSBundle mainBundle]];
-			
+			ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
+			controller.selectedRow = -1;
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
 			controller = nil;			
