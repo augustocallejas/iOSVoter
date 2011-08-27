@@ -3,9 +3,10 @@
 //  Supervote
 //
 //  Created by augusto callejas on 8/9/11.
-//  Copyright 2011 Supervote, LLC. All rights reserved.
+//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "Ballot.h"
 #import "Election.h"
 
 
@@ -13,10 +14,12 @@
 
 @private
 	Election *election;
+	Ballot *ballot;
 	NSArray *sortedPositions;
 }
-- (void)createSortedPositions;
+- (void)createSortedPositionsAndBallot;
 
 @property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) Ballot *ballot;
 
 @end

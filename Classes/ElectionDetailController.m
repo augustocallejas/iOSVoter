@@ -1,4 +1,4 @@
-    //
+//
 //  ElectionDetailController.m
 //  Supervote
 //
@@ -6,6 +6,7 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "Ballot.h"
 #import "ChooseCandidateController.h"
 #import "ElectionDetailController.h"
 #import "Position.h"
@@ -13,8 +14,9 @@
 @implementation ElectionDetailController
 
 @synthesize election;
+@synthesize ballot;
 
-- (void)createSortedPositions
+- (void)createSortedPositionsAndBallot
 {
 	/* TODO: should the sorting occur here? */
 	if (sortedPositions == nil)
@@ -23,6 +25,41 @@
 		sortedPositions = [[[election.positions allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]] retain];
 		[sortDescriptor release];
 	}
+	
+	// Custom initialization.
+	NSManagedObjectContext *managedObjectContext = [election managedObjectContext];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:managedObjectContext];
+	[fetchRequest setEntity:entity];
+	
+	NSError *error = nil;
+	NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if (fetchedObjects == nil) {
+		// Handle the error
+		NSLog(@"no!");
+	}
+	else
+	{
+		if ([fetchedObjects count] == 0)
+		{
+			// create a ballot for this election
+			ballot = (Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:managedObjectContext];
+			ballot.forElection = election;
+			
+			if (![managedObjectContext save:&error]) {
+				NSLog(@"  DetailedError: %@", [error userInfo]);
+				NSLog(@"no!");
+				// Handle the error
+			}
+		}
+		else
+		{
+			self.ballot = (Ballot *) [fetchedObjects objectAtIndex:0];
+		}
+		
+	}
+	
+	[fetchRequest release];
 }
 
 #pragma mark -
@@ -105,16 +142,14 @@
 	}
 }
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
+//// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//
+//    }
+//    return self;
+//}
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.

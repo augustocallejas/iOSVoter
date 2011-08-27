@@ -92,7 +92,7 @@
 			Election *election = (Election *) [self.elections objectAtIndex:indexPath.row];
 			controller.election = election;
 			controller.title = election.title;
-			[controller createSortedPositions];
+			[controller createSortedPositionsAndBallot];
 			
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
@@ -125,8 +125,8 @@
 	{
 		NSError *error;
 		
-//		// insert data in the context
-//		
+		// insert data in the context
+		
 //		// Create an election
 //		Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:managedObjectContext];
 //		election1.title = @"2008 General Election";
