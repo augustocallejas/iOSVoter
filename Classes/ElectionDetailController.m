@@ -3,25 +3,41 @@
 //  Supervote
 //
 //  Created by augusto callejas on 8/9/11.
-//  Copyright 2011 Supervote, LLC. All rights reserved.
+//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "ElectionDetailController.h"
 #import "ChooseCandidateController.h"
-
+#import "ElectionDetailController.h"
+#import "Position.h"
 
 @implementation ElectionDetailController
 
-@synthesize electionTitle;
+@synthesize election;
+
+- (void)createSortedPositions
+{
+	/* TODO: should the sorting occur here? */
+	if (sortedPositions == nil)
+	{
+		NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+		sortedPositions = [[[election.positions allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]] retain];
+		[sortDescriptor release];
+	}
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return [election.positions count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0)
+	if (section < [election.positions count])
 	{
-		return 4;
+		return 1;
 	}
 	
 	return 0;
@@ -29,9 +45,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if (section == 0)
+	if (section < [election.positions count])
 	{
-		return @"Details";
+		Position *position = [sortedPositions objectAtIndex:section];
+		return position.level;
 	}
 	
 	return nil;
@@ -43,32 +60,13 @@
 	NSString *text = @"Title";
 	NSString *detailText = @"detail text";
 	
-	if ([indexPath length] == 2)
+	if (indexPath.section < [election.positions count] && indexPath.row == 0)
 	{
-		if ([indexPath indexAtPosition:0] == 0)
-		{
-			NSUInteger index = [indexPath indexAtPosition:1];
-			if (index == 0)
-			{
-				text = @"President and Vice President";
-				detailText = @"John F. Kerry & John Edwards";
-			}
-			else if (index == 1)
-			{
-				text = @"Secretary of State";
-				detailText = @"";
-			}
-			else if (index == 2)
-			{
-				text = @"State Treasurer";
-				detailText = @"Randall Edwards";
-			}
-			else if (index == 3)
-			{
-				text = @"Proposition 19";
-				detailText = @"Regulate, Control & Tax Cannabis Act";
-			}
-		}
+		Position *position = (Position *) [sortedPositions objectAtIndex:indexPath.section];
+		
+		/* TODO: correct to retain? */
+		text = [[position.title retain] autorelease];
+		detailText = @"Undecided";
 	}
 	
 	cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
@@ -92,18 +90,18 @@
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ([indexPath length] == 2)
+	/* Only one section */
+	if (indexPath.section < [election.positions count] && indexPath.row == 0)
 	{
-		/* Only one section */
-		if ([indexPath indexAtPosition:0] == 0)
-		{
-			// TODO: unnecessarily creating a new controller on each selection!
-			ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
-			controller.selectedRow = -1;
-			[[self navigationController] pushViewController:controller animated:YES];
-			[controller release];
-			controller = nil;			
-		}
+		Position *position = [sortedPositions objectAtIndex:indexPath.section];
+		
+		// TODO: unnecessarily creating a new controller on each selection!
+		ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
+		controller.selectedRow = -1;
+		controller.position = position;
+		controller.title = position.level;
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];		
 	}
 }
 
@@ -155,7 +153,8 @@
 
 - (void)dealloc {
     [super dealloc];
-	[electionTitle release];
+	[election release];
+	[sortedPositions release];
 }
 
 

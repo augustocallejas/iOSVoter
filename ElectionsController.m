@@ -6,9 +6,11 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
+#import "Candidate.h"
 #import "Election.h"
 #import "ElectionsController.h"
 #import "ElectionDetailController.h"
+#import "Position.h"
 
 @implementation ElectionsController
 
@@ -88,8 +90,9 @@
 			ElectionDetailController *controller = [[ElectionDetailController alloc] initWithNibName:@"ElectionDetail" bundle:[NSBundle mainBundle]];
 			
 			Election *election = (Election *) [self.elections objectAtIndex:indexPath.row];
+			controller.election = election;
 			controller.title = election.title;
-			controller.electionTitle = election.title;
+			[controller createSortedPositions];
 			
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
@@ -123,14 +126,55 @@
 		NSError *error;
 		
 //		// insert data in the context
-//		Election *election1 = (Election*) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:managedObjectContext];
-//		election1.title = @"2012 Presidential Election";
+//		
+//		// Create an election
+//		Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:managedObjectContext];
+//		election1.title = @"2008 General Election";
 //		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 //		dateFormatter.dateFormat = @"dd-MM-yy";
-//		election1.date = [dateFormatter dateFromString:@"06-11-12"];//[NSDate dateWithString:@"2012-11-06 00:00:00 -0700"];
+//		election1.date = [dateFormatter dateFromString:@"04-11-08"];
 //		[dateFormatter release];
 //		
-//		NSError *error = nil;
+//		Position *position1 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:managedObjectContext];
+//		position1.level = @"President of the United States";
+//		position1.title = @"President and Vice President";
+//		position1.displayOrder = [NSNumber numberWithInt:0];
+//		[election1 addPositionsObject:position1];
+//		
+//		Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
+//		candidate1.name = @"Barack Obama";
+//		candidate1.party = @"Democratic";
+//		candidate1.displayOrder = [NSNumber numberWithInt:0];
+//		candidate1.occupation = nil;
+//		[position1 addCandidatesObject:candidate1];
+//		
+//		Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
+//		candidate2.name = @"John McCain";
+//		candidate2.party = @"Republican";
+//		candidate2.displayOrder = [NSNumber numberWithInt:1];
+//		candidate2.occupation = nil;
+//		[position1 addCandidatesObject:candidate2];
+//		
+//		Position *position2 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:managedObjectContext];
+//		position2.level = @"United States Representative";
+//		position2.title = @"9th Congressional District";
+//		position2.displayOrder = [NSNumber numberWithInt:0];
+//		[election1 addPositionsObject:position2];
+//		
+//		Candidate *candidate3 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
+//		candidate3.name = @"Barbara Lee";
+//		candidate3.party = @"Democratic";
+//		candidate3.displayOrder = [NSNumber numberWithInt:0];
+//		candidate3.occupation = nil;
+//		[position2 addCandidatesObject:candidate3];
+//		
+//		Candidate *candidate4 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
+//		candidate4.name = @"Charles Hargrave";
+//		candidate4.party = @"Republican";
+//		candidate4.displayOrder = [NSNumber numberWithInt:1];
+//		candidate4.occupation = nil;
+//		[position2 addCandidatesObject:candidate4];
+//		
 //		if (![managedObjectContext save:&error]) {
 //			NSLog(@"  DetailedError: %@", [error userInfo]);
 //			NSLog(@"no!");

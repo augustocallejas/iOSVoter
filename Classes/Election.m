@@ -1,17 +1,19 @@
-//
-//  Candidate.m
+// 
+//  Election.m
 //  Supervote
 //
 //  Created by augusto callejas on 8/26/11.
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "Candidate.h"
+#import "Election.h"
 
+#import "Position.h"
 
-@implementation Candidate
+@implementation Election 
 
-@dynamic name;
-@dynamic occupation;
+@dynamic date;
+@dynamic title;
+@dynamic positions;
 
 @end

@@ -6,15 +6,18 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Position.h"
 
 
 @interface ChooseCandidateController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 
 @private
+	Position *position;
+	NSArray *sortedCandidates;
 	NSInteger selectedRow;
 }
 
 @property NSInteger selectedRow;
+@property (nonatomic, retain) Position *position;
 
 @end

@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
-		1423B0C01404B951006F8DBF /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BF1404B951006F8DBF /* Election.m */; };
 		1423B32914075237006F8DBF /* ChooseCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* ChooseCandidate.xib */; };
 		1423B32D1407527E006F8DBF /* ChooseCandidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */; };
-		1423B3F814078B96006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B3F714078B96006F8DBF /* Candidate.m */; };
+		1423B43F14082BE0006F8DBF /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B43E14082BE0006F8DBF /* Position.m */; };
+		1423B44814082CB8006F8DBF /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44714082CB8006F8DBF /* Election.m */; };
+		1423B44B14082CE3006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44A14082CE3006F8DBF /* Candidate.m */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ElectionsController.m */; };
@@ -37,13 +38,15 @@
 /* Begin PBXFileReference section */
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
-		1423B0BE1404B951006F8DBF /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Election.h; path = ../Election.h; sourceTree = "<group>"; };
-		1423B0BF1404B951006F8DBF /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Election.m; path = ../Election.m; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* ChooseCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCandidate.xib; sourceTree = "<group>"; };
 		1423B32B1407527E006F8DBF /* ChooseCandidateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCandidateController.h; sourceTree = "<group>"; };
 		1423B32C1407527E006F8DBF /* ChooseCandidateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCandidateController.m; sourceTree = "<group>"; };
-		1423B3F614078B96006F8DBF /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candidate.h; sourceTree = "<group>"; };
-		1423B3F714078B96006F8DBF /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candidate.m; sourceTree = "<group>"; };
+		1423B43D14082BE0006F8DBF /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		1423B43E14082BE0006F8DBF /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		1423B44614082CB8006F8DBF /* Election.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Election.h; sourceTree = "<group>"; };
+		1423B44714082CB8006F8DBF /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
+		1423B44914082CE3006F8DBF /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Candidate.h; path = ../Candidate.h; sourceTree = "<group>"; };
+		1423B44A14082CE3006F8DBF /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Candidate.m; path = ../Candidate.m; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -93,28 +96,46 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1423B3F614078B96006F8DBF /* Candidate.h */,
-				1423B3F714078B96006F8DBF /* Candidate.m */,
-				1423B0BE1404B951006F8DBF /* Election.h */,
-				1423B0BF1404B951006F8DBF /* Election.m */,
-				14789F2413EBBB9E0016044C /* ElectionsController.h */,
-				14789F2513EBBB9E0016044C /* ElectionsController.m */,
+				1423B41014081697006F8DBF /* Controllers */,
+				1423B40F14081680006F8DBF /* Managed Objects */,
+				1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1423B40F14081680006F8DBF /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1423B44914082CE3006F8DBF /* Candidate.h */,
+				1423B44A14082CE3006F8DBF /* Candidate.m */,
+				1423B44614082CB8006F8DBF /* Election.h */,
+				1423B44714082CB8006F8DBF /* Election.m */,
+				1423B43D14082BE0006F8DBF /* Position.h */,
+				1423B43E14082BE0006F8DBF /* Position.m */,
+			);
+			name = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		1423B41014081697006F8DBF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1423B32B1407527E006F8DBF /* ChooseCandidateController.h */,
+				1423B32C1407527E006F8DBF /* ChooseCandidateController.m */,
 				14A8779A13F23DD0006B9D73 /* ElectionDetailController.h */,
 				14A8779B13F23DD0006B9D73 /* ElectionDetailController.m */,
 				14A8786A13F2621B006B9D73 /* ElectionItemController.h */,
 				14A8786B13F2621B006B9D73 /* ElectionItemController.m */,
+				14789F2413EBBB9E0016044C /* ElectionsController.h */,
+				14789F2513EBBB9E0016044C /* ElectionsController.m */,
 				14789F1513EBBB220016044C /* FeedController.h */,
 				14789F1613EBBB220016044C /* FeedController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
-				1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */,
-				1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */,
-				1423B32B1407527E006F8DBF /* ChooseCandidateController.h */,
-				1423B32C1407527E006F8DBF /* ChooseCandidateController.m */,
 			);
-			path = Classes;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -255,9 +276,10 @@
 				14A8779C13F23DD0006B9D73 /* ElectionDetailController.m in Sources */,
 				14A8786C13F2621B006B9D73 /* ElectionItemController.m in Sources */,
 				1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */,
-				1423B0C01404B951006F8DBF /* Election.m in Sources */,
 				1423B32D1407527E006F8DBF /* ChooseCandidateController.m in Sources */,
-				1423B3F814078B96006F8DBF /* Candidate.m in Sources */,
+				1423B43F14082BE0006F8DBF /* Position.m in Sources */,
+				1423B44814082CB8006F8DBF /* Election.m in Sources */,
+				1423B44B14082CE3006F8DBF /* Candidate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

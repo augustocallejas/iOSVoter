@@ -6,13 +6,17 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Election.h"
 
 
 @interface ElectionDetailController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
-	NSString *electionTitle;
-}
 
-@property (nonatomic, retain) NSString *electionTitle;
+@private
+	Election *election;
+	NSArray *sortedPositions;
+}
+- (void)createSortedPositions;
+
+@property (nonatomic, retain) Election *election;
 
 @end

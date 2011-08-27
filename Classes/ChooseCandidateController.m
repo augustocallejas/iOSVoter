@@ -6,11 +6,13 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "Candidate.h"
 #import "ChooseCandidateController.h"
 
 
 @implementation ChooseCandidateController
 
+@synthesize position;
 @synthesize selectedRow;
 
 #pragma mark -
@@ -81,7 +83,7 @@
 {
 	if (section == 0)
 	{
-		return @"President";
+		return position.title;
 	}
 	
 	return nil;
@@ -89,13 +91,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+	if (section == 0)
+	{
+      return [position.candidates count];
+	}
+	
+	
+	return 0;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+	NSString *text = @"Title";
+	NSString *detailText = @"detail text";
+	
+	if (indexPath.section == 0)
+	{
+		NSLog(@"%d candidates", [position.candidates count]);
+		/* TODO: should the sorting occur here? */
+		if (sortedCandidates == nil)
+		{
+			NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+			sortedCandidates = [[position.candidates allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+			[sortDescriptor release];
+		}
+		
+		Candidate *candidate = (Candidate *) [sortedCandidates objectAtIndex:indexPath.row];
+		
+		/* TODO: correct to retain and autorelease? */
+		text = [[candidate.name retain] autorelease];
+		detailText = [[candidate.party retain] autorelease];
+	}
+	
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -104,21 +132,8 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    // Configure the cell...
-	if (indexPath.row == 0)
-	{
-		cell.textLabel.text = @"Cynthia McKinney / Rosa Clemente";
-		cell.detailTextLabel.text = @"Green";
-	}
-	else if (indexPath.row == 1)
-	{
-		cell.textLabel.text = @"Alan Keyes / Wiley S. Drake, Sr.";
-		cell.detailTextLabel.text = @"American Independent";
-	}
-	else
-	{
-		cell.textLabel.text = @"Undecided";
-	}
+	cell.textLabel.text = text;
+	cell.detailTextLabel.text = detailText;
     
     return cell;
 }
@@ -219,6 +234,7 @@
 
 - (void)dealloc {
     [super dealloc];
+	[position release];
 }
 
 
