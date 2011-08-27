@@ -26,7 +26,7 @@
 					chosenTableWidths = (
 						103.000000,
 						22.000000,
-						91.080078,
+						92.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -36,8 +36,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {637, 218}}",
-							"{{642, 0}, {334, 218}}",
+							"{{0, 0}, {641, 220}}",
+							"{{646, 0}, {336, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -46,8 +46,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {976, 220}}",
-							"{{0, 225}, {976, 322}}",
+							"{{0, 0}, {982, 220}}",
+							"{{0, 225}, {982, 517}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -56,8 +56,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {241, 218}}",
-							"{{246, 0}, {391, 218}}",
+							"{{0, 0}, {242, 218}}",
+							"{{247, 0}, {392, 218}}",
 						);
 					};
 				};
@@ -146,7 +146,7 @@
 					chosenTableWidthsPT = (
 						128.000000,
 						108.110840,
-						96.570801,
+						129.570801,
 					);
 					chosenTableWidthsRT = (
 						128.000000,
@@ -154,7 +154,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-157, 0}, {961, 307}}";
+				"xdesign model diagram view visible rect key" = "{{-160, -35}, {967, 502}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
@@ -599,6 +599,26 @@
 		vrLen = 1470;
 		vrLoc = 4245;
 	};
+	1439964B1408D6BD007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */;
+		name = "SupervoteAppDelegate.m: 131";
+		rLen = 0;
+		rLoc = 4908;
+		rType = 0;
+		vrLen = 1380;
+		vrLoc = 0;
+	};
+	1439965A1408DB0F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */;
+		name = "SupervoteAppDelegate.m: 131";
+		rLen = 0;
+		rLoc = 4908;
+		rType = 0;
+		vrLen = 1380;
+		vrLoc = 0;
+	};
 	14789DCC13E8FD500016044C /* Supervote */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -722,9 +742,9 @@
 	};
 	1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1328, 2899}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1965, 2938}}";
 			sepNavSelRange = "{4908, 0}";
-			sepNavVisRange = "{4245, 1470}";
+			sepNavVisRange = "{0, 1380}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -885,6 +905,8 @@
 			143996311408D67E007269A3 /* PBXTextBookmark */ = 143996311408D67E007269A3 /* PBXTextBookmark */;
 			143996321408D67E007269A3 /* PBXTextBookmark */ = 143996321408D67E007269A3 /* PBXTextBookmark */;
 			143996331408D67E007269A3 /* PBXTextBookmark */ = 143996331408D67E007269A3 /* PBXTextBookmark */;
+			1439964B1408D6BD007269A3 /* PBXTextBookmark */ = 1439964B1408D6BD007269A3 /* PBXTextBookmark */;
+			1439965A1408DB0F007269A3 /* PBXTextBookmark */ = 1439965A1408DB0F007269A3 /* PBXTextBookmark */;
 			14A877AE13F24037006B9D73 = 14A877AE13F24037006B9D73 /* PBXBookmark */;
 		};
 		sourceControlManager = 14789DDD13E8FD560016044C /* Source Control */;
