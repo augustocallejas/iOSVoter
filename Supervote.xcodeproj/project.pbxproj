@@ -14,6 +14,8 @@
 		1423B43F14082BE0006F8DBF /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B43E14082BE0006F8DBF /* Position.m */; };
 		1423B44814082CB8006F8DBF /* Election.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44714082CB8006F8DBF /* Election.m */; };
 		1423B44B14082CE3006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44A14082CE3006F8DBF /* Candidate.m */; };
+		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
+		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ElectionsController.m */; };
@@ -47,6 +49,10 @@
 		1423B44714082CB8006F8DBF /* Election.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Election.m; sourceTree = "<group>"; };
 		1423B44914082CE3006F8DBF /* Candidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Candidate.h; path = ../Candidate.h; sourceTree = "<group>"; };
 		1423B44A14082CE3006F8DBF /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Candidate.m; path = ../Candidate.m; sourceTree = "<group>"; };
+		1423B64014087FE5006F8DBF /* BallotVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotVote.h; sourceTree = "<group>"; };
+		1423B64114087FE5006F8DBF /* BallotVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotVote.m; sourceTree = "<group>"; };
+		1423B64214087FE5006F8DBF /* Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ballot.h; sourceTree = "<group>"; };
+		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -107,6 +113,10 @@
 		1423B40F14081680006F8DBF /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1423B64214087FE5006F8DBF /* Ballot.h */,
+				1423B64314087FE5006F8DBF /* Ballot.m */,
+				1423B64014087FE5006F8DBF /* BallotVote.h */,
+				1423B64114087FE5006F8DBF /* BallotVote.m */,
 				1423B44914082CE3006F8DBF /* Candidate.h */,
 				1423B44A14082CE3006F8DBF /* Candidate.m */,
 				1423B44614082CB8006F8DBF /* Election.h */,
@@ -280,6 +290,8 @@
 				1423B43F14082BE0006F8DBF /* Position.m in Sources */,
 				1423B44814082CB8006F8DBF /* Election.m in Sources */,
 				1423B44B14082CE3006F8DBF /* Candidate.m in Sources */,
+				1423B64414087FE5006F8DBF /* BallotVote.m in Sources */,
+				1423B64514087FE5006F8DBF /* Ballot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

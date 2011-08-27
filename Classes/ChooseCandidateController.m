@@ -108,7 +108,6 @@
 	
 	if (indexPath.section == 0)
 	{
-		NSLog(@"%d candidates", [position.candidates count]);
 		/* TODO: should the sorting occur here? */
 		if (sortedCandidates == nil)
 		{

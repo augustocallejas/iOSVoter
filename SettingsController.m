@@ -18,7 +18,7 @@
 {
 	if (section == 0)
 	{
-		return 2;
+		return 0;
 	}
 	
 	return 0;
@@ -35,47 +35,47 @@
 	return nil;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	UITableViewCell *cell;
-	
-	NSString *text = @"Title";
-	NSString *detailText = @"detail text";
-	
-	if ([indexPath length] == 2)
-	{
-		if ([indexPath indexAtPosition:0] == 0)
-		{
-			NSUInteger index = [indexPath indexAtPosition:1];
-			if (index == 0)
-			{
-				text = @"2012 Presidential Election";
-				detailText = @"November 6th, 2012";
-			}
-			else if (index == 1)
-			{
-				text = @"2016 Presidential Election";
-				detailText = @"";
-			}
-		}
-	}
-	
-	cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
-	
-	if (cell == nil)
-	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
-	}
-	
-	cell.textLabel.text = text;
-	cell.detailTextLabel.text = detailText;
-	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	cell.imageView.image = icon;
-	
-	return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	UITableViewCell *cell;
+//	
+//	NSString *text = @"Title";
+//	NSString *detailText = @"detail text";
+//	
+//	if ([indexPath length] == 2)
+//	{
+//		if ([indexPath indexAtPosition:0] == 0)
+//		{
+//			NSUInteger index = [indexPath indexAtPosition:1];
+//			if (index == 0)
+//			{
+//				text = @"2012 Presidential Election";
+//				detailText = @"November 6th, 2012";
+//			}
+//			else if (index == 1)
+//			{
+//				text = @"2016 Presidential Election";
+//				detailText = @"";
+//			}
+//		}
+//	}
+//	
+//	cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
+//	
+//	if (cell == nil)
+//	{
+//		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
+//	}
+//	
+//	cell.textLabel.text = text;
+//	cell.detailTextLabel.text = detailText;
+//	
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+//	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+//	cell.imageView.image = icon;
+//	
+//	return cell;
+//}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
