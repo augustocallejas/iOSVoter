@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "ElectionsController.h"
+#import "ListElectionsController.h"
 #import "FeedController.h"
 #import "SettingsController.h"
 #import "SupervoteAppDelegate.h"
@@ -88,7 +88,7 @@
 		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		
 		
-		ElectionsController *elections = [[[ElectionsController alloc] initWithNibName:@"ElectionsController" bundle:[NSBundle mainBundle]] autorelease];
+		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ElectionsController" bundle:[NSBundle mainBundle]] autorelease];
 		elections.title = @"Elections";
 		elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		elections.managedObjectContext = self.managedObjectContext;

@@ -1,5 +1,5 @@
 //
-//  ElectionsController.h
+//  ListElectionsController.h
 //  Supervote
 //
 //  Created by augusto callejas on 8/4/11.
@@ -7,7 +7,7 @@
 //
 
 
-@interface ElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface ListElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 	
 @private
 	NSManagedObjectContext *managedObjectContext;

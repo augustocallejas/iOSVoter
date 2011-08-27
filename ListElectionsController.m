@@ -1,5 +1,5 @@
 //
-//  ElectionsController.m
+//  ListElectionsController.m
 //  Supervote
 //
 //  Created by augusto callejas on 8/4/11.
@@ -9,10 +9,10 @@
 #import "Candidate.h"
 #import "DisplayElectionController.h"
 #import "Election.h"
-#import "ElectionsController.h"
+#import "ListElectionsController.h"
 #import "Position.h"
 
-@implementation ElectionsController
+@implementation ListElectionsController
 
 @synthesize managedObjectContext;
 @synthesize elections;
