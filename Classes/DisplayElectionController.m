@@ -1,5 +1,5 @@
 //
-//  ElectionDetailController.m
+//  DisplayElectionController.m
 //  Supervote
 //
 //  Created by augusto callejas on 8/9/11.
@@ -8,10 +8,10 @@
 
 #import "Ballot.h"
 #import "ChooseCandidateController.h"
-#import "ElectionDetailController.h"
+#import "DisplayElectionController.h"
 #import "Position.h"
 
-@implementation ElectionDetailController
+@implementation DisplayElectionController
 
 @synthesize election;
 @synthesize ballot;

@@ -1,5 +1,5 @@
 //
-//  ElectionDetailController.h
+//  DisplayElectionController.h
 //  Supervote
 //
 //  Created by augusto callejas on 8/9/11.
@@ -10,7 +10,7 @@
 #import "Election.h"
 
 
-@interface ElectionDetailController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface DisplayElectionController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 
 @private
 	Election *election;

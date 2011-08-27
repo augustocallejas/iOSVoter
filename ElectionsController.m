@@ -7,9 +7,9 @@
 //
 
 #import "Candidate.h"
+#import "DisplayElectionController.h"
 #import "Election.h"
 #import "ElectionsController.h"
-#import "ElectionDetailController.h"
 #import "Position.h"
 
 @implementation ElectionsController
@@ -87,7 +87,7 @@
 		if ([indexPath indexAtPosition:0] == 0)
 		{
 			// TODO: unnecessarily creating a new controller on each selection!
-			ElectionDetailController *controller = [[ElectionDetailController alloc] initWithNibName:@"ElectionDetail" bundle:[NSBundle mainBundle]];
+			DisplayElectionController *controller = [[DisplayElectionController alloc] initWithNibName:@"DisplayElection" bundle:[NSBundle mainBundle]];
 			
 			Election *election = (Election *) [self.elections objectAtIndex:indexPath.row];
 			controller.election = election;
