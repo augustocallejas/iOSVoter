@@ -20,6 +20,5 @@
 - (void)createSortedPositionsAndBallot;
 
 @property (nonatomic, retain) Election *election;
-@property (nonatomic, retain) Ballot *ballot;
 
 @end

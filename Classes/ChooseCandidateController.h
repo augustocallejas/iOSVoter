@@ -6,18 +6,24 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "Ballot.h"
+#import "BallotVote.h"
 #import "Position.h"
 
 
 @interface ChooseCandidateController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
 
 @private
+	Ballot *ballot;
 	Position *position;
+	BallotVote *vote;
 	NSArray *sortedCandidates;
 	NSInteger selectedRow;
 }
+- (void)loadBallotVote;
 
 @property NSInteger selectedRow;
+@property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
 
 @end

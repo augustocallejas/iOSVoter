@@ -14,7 +14,6 @@
 @implementation DisplayElectionController
 
 @synthesize election;
-@synthesize ballot;
 
 - (void)createSortedPositionsAndBallot
 {
@@ -34,7 +33,8 @@
 	
 	NSError *error = nil;
 	NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if (fetchedObjects == nil) {
+	if (fetchedObjects == nil)
+	{
 		// Handle the error
 		NSLog(@"no!");
 	}
@@ -43,10 +43,11 @@
 		if ([fetchedObjects count] == 0)
 		{
 			// create a ballot for this election
-			ballot = (Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:managedObjectContext];
+			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:managedObjectContext] retain];
 			ballot.forElection = election;
 			
-			if (![managedObjectContext save:&error]) {
+			if (![managedObjectContext save:&error])
+			{
 				NSLog(@"  DetailedError: %@", [error userInfo]);
 				NSLog(@"no!");
 				// Handle the error
@@ -54,7 +55,7 @@
 		}
 		else
 		{
-			self.ballot = (Ballot *) [fetchedObjects objectAtIndex:0];
+			ballot = [(Ballot *) [fetchedObjects objectAtIndex:0] retain];
 		}
 		
 	}
@@ -92,33 +93,30 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
-	
-	NSString *text = @"Title";
-	NSString *detailText = @"detail text";
-	
-	if (indexPath.section < [election.positions count] && indexPath.row == 0)
-	{
-		Position *position = (Position *) [sortedPositions objectAtIndex:indexPath.section];
-		
-		/* TODO: correct to retain? */
-		text = [[position.title retain] autorelease];
-		detailText = @"Undecided";
-	}
-	
-	cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
 	
 	if (cell == nil)
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
 	}
 	
-	cell.textLabel.text = text;
-	cell.detailTextLabel.text = detailText;
+	if (indexPath.section < [election.positions count] && indexPath.row == 0)
+	{
+		Position *position = (Position *) [sortedPositions objectAtIndex:indexPath.section];
+		
+		cell.textLabel.text = position.title;
+		
+		/* TODO: is there a BallotVote for this Ballot & Position? */
+		cell.detailTextLabel.text = @"Undecided";
+	}
+	else
+	{
+		cell.textLabel.text = @"No text";
+		cell.detailTextLabel.text = @"No detail text";
+	}
 	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	cell.imageView.image = icon;
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"];
+	cell.imageView.image = [UIImage imageWithContentsOfFile:path];
 	
 	return cell;
 }
@@ -135,8 +133,10 @@
 		// TODO: unnecessarily creating a new controller on each selection!
 		ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
 		controller.selectedRow = -1;
+		controller.ballot = ballot;
 		controller.position = position;
 		controller.title = position.level;
+		[controller loadBallotVote];
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];		
 	}
@@ -189,7 +189,14 @@
 - (void)dealloc {
     [super dealloc];
 	[election release];
-	[sortedPositions release];
+	if (ballot != nil)
+	{
+		[ballot release];
+	}
+	if (sortedPositions != nil)
+	{
+		[sortedPositions release];
+	}
 }
 
 

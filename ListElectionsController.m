@@ -158,7 +158,7 @@
 //		Position *position2 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:managedObjectContext];
 //		position2.level = @"United States Representative";
 //		position2.title = @"9th Congressional District";
-//		position2.displayOrder = [NSNumber numberWithInt:0];
+//		position2.displayOrder = [NSNumber numberWithInt:1];
 //		[election1 addPositionsObject:position2];
 //		
 //		Candidate *candidate3 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];

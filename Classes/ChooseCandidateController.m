@@ -12,8 +12,53 @@
 
 @implementation ChooseCandidateController
 
+@synthesize ballot;
 @synthesize position;
 @synthesize selectedRow;
+
+
+- (void)loadBallotVote
+{
+	/* TODO: should the sorting occur here? */
+	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+	sortedCandidates = [[[position.candidates allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]] retain];
+	[sortDescriptor release];
+	
+	/* query for a ballot vote, if any */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:[ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
+	if (array != nil)
+	{
+		NSUInteger count = [array count];
+		NSLog(@"ballot vote %d", count);
+		if (count == 0)
+		{
+			
+		}
+		else if (count == 1)
+		{
+			vote = [(BallotVote *) [array objectAtIndex:0] retain];
+			selectedRow = [vote.forCandidate.displayOrder integerValue];
+		}
+		else
+		{
+			NSLog(@"NOOO");
+		}
+	}
+	else
+	{
+		NSLog(@"no!");
+	}
+	
+	[request release];
+}
 
 #pragma mark -
 #pragma mark Initialization
@@ -105,22 +150,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *text = @"Title";
 	NSString *detailText = @"detail text";
+	BOOL selected = NO;
 	
 	if (indexPath.section == 0)
 	{
-		/* TODO: should the sorting occur here? */
-		if (sortedCandidates == nil)
-		{
-			NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
-			sortedCandidates = [[position.candidates allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-			[sortDescriptor release];
-		}
-		
 		Candidate *candidate = (Candidate *) [sortedCandidates objectAtIndex:indexPath.row];
 		
 		/* TODO: correct to retain and autorelease? */
 		text = [[candidate.name retain] autorelease];
 		detailText = [[candidate.party retain] autorelease];
+		
+		if (vote != nil && vote.forCandidate == candidate)
+		{
+			selected = YES;
+		}
 	}
 	
     static NSString *CellIdentifier = @"Cell";
@@ -133,7 +176,11 @@
     
 	cell.textLabel.text = text;
 	cell.detailTextLabel.text = detailText;
-    
+	if (selected)
+	{
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	
     return cell;
 }
 
@@ -186,23 +233,42 @@
 	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
 	
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
-    //NSInteger catIndex = [taskCategories indexOfObject:self.currentCategory];
     if (selectedRow != -1 && selectedRow == indexPath.row) {
+		/* selected the same candidate, so do nothing */
         return;
     }
-    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
+    NSIndexPath *oldIndexPath = selectedRow == -1 ? nil : [NSIndexPath indexPathForRow:selectedRow inSection:0];
 	
-    UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-    if (newCell.accessoryType == UITableViewCellAccessoryNone) {
-        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //self.currentCategory = [taskCategories objectAtIndex:indexPath.row];
-		selectedRow = indexPath.row;
-    }
+	NSManagedObjectContext *context = [ballot managedObjectContext];
 	
-    UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-    if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        oldCell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    UITableViewCell *newCandidate = [tableView cellForRowAtIndexPath:indexPath];
+	newCandidate.accessoryType = UITableViewCellAccessoryCheckmark;
+	selectedRow = indexPath.row;
+	if (vote == nil)
+	{
+		vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:context] retain];
+		vote.forBallot = ballot;
+		vote.forPosition = position;
+		vote.forCandidate = [sortedCandidates objectAtIndex:selectedRow];
+	}
+	else {
+		vote.forCandidate = [sortedCandidates objectAtIndex:selectedRow];
+	}
+	
+	if (oldIndexPath != nil)
+	{
+		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+		//if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
+			oldCell.accessoryType = UITableViewCellAccessoryNone;
+		//}
+	}
+	
+	NSError *error;
+	if (![context save:&error]) {
+		NSLog(@"  DetailedError: %@", [error userInfo]);
+		NSLog(@"no!");
+		// Handle the error
+	}
 	
     // Navigation logic may go here. Create and push another view controller.
     /*
@@ -233,7 +299,16 @@
 
 - (void)dealloc {
     [super dealloc];
+	[ballot release];
 	[position release];
+	if (vote != nil)
+	{
+		[vote release];
+	}
+	if (sortedCandidates != nil)
+	{
+		[sortedCandidates release];
+	}
 }
 
 
