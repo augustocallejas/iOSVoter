@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -274,6 +272,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>10</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,12 +309,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DisplayElectionController.m</string>
+								<string>ListElectionsController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,17 +324,15 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DisplayElectionController.m</string>
+										<string>ListElectionsController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1439972C1409D144007269A3</string>
+										<string>14399791140A1CF4007269A3</string>
 										<key>history</key>
 										<array>
 											<string>14A877AE13F24037006B9D73</string>
 											<string>1423B353140762D9006F8DBF</string>
-											<string>1423B48714083958006F8DBF</string>
-											<string>1423B496140846BE006F8DBF</string>
 											<string>1423B59D140867FC006F8DBF</string>
 											<string>1423B59E140867FC006F8DBF</string>
 											<string>1423B5A1140867FC006F8DBF</string>
@@ -343,19 +344,22 @@
 											<string>1423B67114088828006F8DBF</string>
 											<string>1423B6D91408D5CE006F8DBF</string>
 											<string>1423B6DA1408D5CE006F8DBF</string>
-											<string>1423B6E21408D5F3006F8DBF</string>
 											<string>1439962F1408D67E007269A3</string>
 											<string>14399678140979C5007269A3</string>
-											<string>1439969314097D83007269A3</string>
-											<string>1439969414097D83007269A3</string>
 											<string>1439969514097D83007269A3</string>
 											<string>143996E31409C913007269A3</string>
 											<string>143997101409CF36007269A3</string>
-											<string>143997111409CF36007269A3</string>
 											<string>143997201409D0E4007269A3</string>
-											<string>143997211409D0E4007269A3</string>
-											<string>143997221409D0E4007269A3</string>
-											<string>143997231409D0E4007269A3</string>
+											<string>143997421409ED04007269A3</string>
+											<string>143997441409ED04007269A3</string>
+											<string>14399747140A1029007269A3</string>
+											<string>14399753140A1281007269A3</string>
+											<string>1439977C140A184D007269A3</string>
+											<string>14399788140A1CBE007269A3</string>
+											<string>14399789140A1CBE007269A3</string>
+											<string>1439978A140A1CBE007269A3</string>
+											<string>1439978B140A1CBE007269A3</string>
+											<string>14399790140A1CF4007269A3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -555,10 +559,10 @@
 	<array>
 		<string>14399685140979D2007269A3</string>
 		<string>14399680140979C5007269A3</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1423B3E9140789B9006F8DBF</string>
 		<string>14789DDB13E8FD560016044C</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -943,7 +947,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
