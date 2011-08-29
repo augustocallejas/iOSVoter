@@ -298,7 +298,6 @@
 
 
 - (void)dealloc {
-    [super dealloc];
 	[ballot release];
 	[position release];
 	if (vote != nil)
@@ -309,6 +308,7 @@
 	{
 		[sortedCandidates release];
 	}
+	[super dealloc];
 }
 
 

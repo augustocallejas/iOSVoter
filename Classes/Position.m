@@ -2,8 +2,8 @@
 //  Position.m
 //  Supervote
 //
-//  Created by augusto callejas on 8/26/11.
-//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
+//  Created by augusto callejas on 8/28/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "Position.h"
@@ -13,9 +13,10 @@
 
 @implementation Position 
 
-@dynamic displayOrder;
+@dynamic levelOrder;
 @dynamic title;
 @dynamic level;
+@dynamic titleOrder;
 @dynamic candidates;
 @dynamic election;
 

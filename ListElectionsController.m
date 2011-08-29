@@ -33,13 +33,12 @@
 	
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
-	
     [fetchRequest setFetchBatchSize:20];
 	
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
 																								  managedObjectContext:_managedObjectContext
 																								  sectionNameKeyPath:nil 
-																								  cacheName:@"Root"];
+																								  cacheName:@"ListElectionsController"];
     self.fetchedResultsController = theFetchedResultsController;
 	self.fetchedResultsController.delegate = self;
 	
@@ -162,7 +161,8 @@
 	Election *election = (Election *) [_fetchedResultsController objectAtIndexPath:indexPath];
 	controller.election = election;
 	controller.title = election.title;
-	[controller createSortedPositionsAndBallot];
+	controller.managedObjectContext = _managedObjectContext;
+	//[controller createSortedPositionsAndBallot];
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];
@@ -189,61 +189,158 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-//	if (self.elections == nil)
 //	{
 //		NSError *error;
 //		
 //		// insert data in the context
 //		
 //		// Create an election
-//		Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:managedObjectContext];
+//		Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_managedObjectContext];
 //		election1.title = @"2008 General Election";
 //		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 //		dateFormatter.dateFormat = @"dd-MM-yy";
 //		election1.date = [dateFormatter dateFromString:@"04-11-08"];
 //		[dateFormatter release];
 //		
-//		Position *position1 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:managedObjectContext];
+//		Position *position1 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
 //		position1.level = @"President of the United States";
+//		position1.levelOrder = [NSNumber numberWithInt:0];
 //		position1.title = @"President and Vice President";
-//		position1.displayOrder = [NSNumber numberWithInt:0];
+//		position1.titleOrder = [NSNumber numberWithInt:0];
 //		[election1 addPositionsObject:position1];
 //		
-//		Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
-//		candidate1.name = @"Barack Obama";
-//		candidate1.party = @"Democratic";
-//		candidate1.displayOrder = [NSNumber numberWithInt:0];
-//		candidate1.occupation = nil;
-//		[position1 addCandidatesObject:candidate1];
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"Barack Obama";
+//			candidate1.party = @"Democratic";
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = nil;
+//			[position1 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"John McCain";
+//			candidate2.party = @"Republican";
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = nil;
+//			[position1 addCandidatesObject:candidate2];
+//		}
 //		
-//		Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
-//		candidate2.name = @"John McCain";
-//		candidate2.party = @"Republican";
-//		candidate2.displayOrder = [NSNumber numberWithInt:1];
-//		candidate2.occupation = nil;
-//		[position1 addCandidatesObject:candidate2];
-//		
-//		Position *position2 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:managedObjectContext];
+//		Position *position2 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
 //		position2.level = @"United States Representative";
+//		position2.levelOrder = [NSNumber numberWithInt:1];
 //		position2.title = @"9th Congressional District";
-//		position2.displayOrder = [NSNumber numberWithInt:1];
+//		position2.titleOrder = [NSNumber numberWithInt:0];
 //		[election1 addPositionsObject:position2];
 //		
-//		Candidate *candidate3 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
-//		candidate3.name = @"Barbara Lee";
-//		candidate3.party = @"Democratic";
-//		candidate3.displayOrder = [NSNumber numberWithInt:0];
-//		candidate3.occupation = nil;
-//		[position2 addCandidatesObject:candidate3];
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"Barbara Lee";
+//			candidate1.party = @"Democratic";
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = nil;
+//			[position2 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"Charles Hargrave";
+//			candidate2.party = @"Republican";
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = nil;
+//			[position2 addCandidatesObject:candidate2];
+//		}
 //		
-//		Candidate *candidate4 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:managedObjectContext];
-//		candidate4.name = @"Charles Hargrave";
-//		candidate4.party = @"Republican";
-//		candidate4.displayOrder = [NSNumber numberWithInt:1];
-//		candidate4.occupation = nil;
-//		[position2 addCandidatesObject:candidate4];
+//		Position *position3 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
+//		position3.level = @"District";
+//		position3.levelOrder = [NSNumber numberWithInt:2];
+//		position3.title = @"AC Transit District Director, At Large";
+//		position3.titleOrder = [NSNumber numberWithInt:0];
+//		[election1 addPositionsObject:position3];
 //		
-//		if (![managedObjectContext save:&error]) {
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"Joyce Roy";
+//			candidate1.party = nil;
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = @"Retired Architect";
+//			[position3 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"H.E. Christian (Chris) Peeples";
+//			candidate2.party = nil;
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = @"AC Transit At Large Director";
+//			[position3 addCandidatesObject:candidate2];
+//		}
+//		
+//		Position *position4 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
+//		position4.level = @"District";
+//		position4.levelOrder = [NSNumber numberWithInt:2];
+//		position4.title = @"AC Transit District Director, Ward 2";
+//		position4.titleOrder = [NSNumber numberWithInt:1];
+//		[election1 addPositionsObject:position4];
+//		
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"James Muhammad";
+//			candidate1.party = nil;
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = @"Paralegal";
+//			[position4 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"Greg Harper";
+//			candidate2.party = nil;
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = @"Incumbent";
+//			[position4 addCandidatesObject:candidate2];
+//		}
+//		
+//		Position *position5 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
+//		position5.level = @"District";
+//		position5.levelOrder = [NSNumber numberWithInt:2];
+//		position5.title = @"Bart Director, District 7";
+//		position5.titleOrder = [NSNumber numberWithInt:2];
+//		[election1 addPositionsObject:position5];
+//		
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"Marshall Walker III";
+//			candidate1.party = nil;
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = @"Retired Urban Planner";
+//			[position5 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"Lynette Sweet";
+//			candidate2.party = nil;
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = @"BART Director-District 7";
+//			[position5 addCandidatesObject:candidate2];
+//		}
+//
+//		Position *position6 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_managedObjectContext];
+//		position6.level = @"District";
+//		position6.levelOrder = [NSNumber numberWithInt:2];
+//		position6.title = @"East Bay Regional Park District Director, Ward 1";
+//		position6.titleOrder = [NSNumber numberWithInt:3];
+//		[election1 addPositionsObject:position6];
+//		
+//		{
+//			Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate1.name = @"Norman La Force";
+//			candidate1.party = nil;
+//			candidate1.displayOrder = [NSNumber numberWithInt:0];
+//			candidate1.occupation = @"Lawyer/Law Professor";
+//			[position6 addCandidatesObject:candidate1];
+//			
+//			Candidate *candidate2 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_managedObjectContext];
+//			candidate2.name = @"Whitney Dotson";
+//			candidate2.party = nil;
+//			candidate2.displayOrder = [NSNumber numberWithInt:1];
+//			candidate2.occupation = @"Regional Park Committeeperson";
+//			[position6 addCandidatesObject:candidate2];
+//		}
+//		
+//		if (![_managedObjectContext save:&error]) {
 //			NSLog(@"  DetailedError: %@", [error userInfo]);
 //			NSLog(@"no!");
 //			// Handle the error

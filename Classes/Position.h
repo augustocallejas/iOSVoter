@@ -2,8 +2,8 @@
 //  Position.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/26/11.
-//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
+//  Created by augusto callejas on 8/28/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -15,9 +15,10 @@
 {
 }
 
-@property (nonatomic, retain) NSNumber * displayOrder;
+@property (nonatomic, retain) NSNumber * levelOrder;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * level;
+@property (nonatomic, retain) NSNumber * titleOrder;
 @property (nonatomic, retain) NSSet* candidates;
 @property (nonatomic, retain) Election * election;
 

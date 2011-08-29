@@ -10,15 +10,19 @@
 #import "Election.h"
 
 
-@interface DisplayElectionController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface DisplayElectionController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
 	Election *election;
 	Ballot *ballot;
-	NSArray *sortedPositions;
+	NSManagedObjectContext *_managedObjectContext;
+	NSFetchedResultsController *_fetchedResultsController;
 }
-- (void)createSortedPositionsAndBallot;
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end
