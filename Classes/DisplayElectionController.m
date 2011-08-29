@@ -7,6 +7,8 @@
 //
 
 #import "Ballot.h"
+#import "BallotVote.h"
+#import "Candidate.h"
 #import "ChooseCandidateController.h"
 #import "DisplayElectionController.h"
 #import "Position.h"
@@ -46,53 +48,6 @@
 	return _fetchedResultsController;
 }
 
-//- (void)createSortedPositionsAndBallot
-//{
-//	/* TODO: should the sorting occur here? */
-//	if (sortedPositions == nil)
-//	{
-//		NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
-//		sortedPositions = [[[election.positions allObjects] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]] retain];
-//		[sortDescriptor release];
-//	}
-//	
-//	// Custom initialization.
-//	NSManagedObjectContext *managedObjectContext = [election managedObjectContext];
-//	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:managedObjectContext];
-//	[fetchRequest setEntity:entity];
-//	
-//	NSError *error = nil;
-//	NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//	if (fetchedObjects == nil)
-//	{
-//		// Handle the error
-//		NSLog(@"no!");
-//	}
-//	else
-//	{
-//		if ([fetchedObjects count] == 0)
-//		{
-//			// create a ballot for this election
-//			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:managedObjectContext] retain];
-//			ballot.forElection = election;
-//			
-//			if (![managedObjectContext save:&error])
-//			{
-//				NSLog(@"  DetailedError: %@", [error userInfo]);
-//				NSLog(@"no!");
-//				// Handle the error
-//			}
-//		}
-//		else
-//		{
-//			ballot = [(Ballot *) [fetchedObjects objectAtIndex:0] retain];
-//		}
-//		
-//	}
-//	
-//	[fetchRequest release];
-//}
 
 #pragma mark -
 #pragma mark NSFetchedResultsControllerDelegate methods
@@ -170,21 +125,80 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[[_fetchedResultsController sections] objectAtIndex:section] name];
-	//return @"section";
-//	if (section < [election.positions count])
-//	{
-//		Position *position = [sortedPositions objectAtIndex:section];
-//		return position.level;
-//	}
-//	
-//	return nil;
+	NSString *levelOrder = [[[_fetchedResultsController sections] objectAtIndex:section] name];
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Position" inManagedObjectContext:_managedObjectContext]];
+	[fetchRequest setFetchLimit:1];
+	
+	NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
+	[fetchRequest setPredicate:predicate];
+	
+	NSString *headerTitle = @"Unknown";
+	NSError *error = nil;
+	NSArray *fetchResults = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if ([fetchResults count] > 0) {
+		Position *position =  (Position *)[fetchResults objectAtIndex:0];
+		//headerView.titleLabel.text = position.level;
+		headerTitle = [[position.level retain] autorelease];
+	} else {
+		/* TODO: print error? */
+	}
+	
+	[numberFormatter release];
+	[fetchRequest release];
+
+	return headerTitle;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Position *position = (Position *) [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = position.title;
-    cell.detailTextLabel.text = @"Undecided";
+	
+	/* query for a ballot vote, if any */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:2];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:_managedObjectContext];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [_managedObjectContext executeFetchRequest:request error:&error];
+	if (array != nil)
+	{
+		NSUInteger count = [array count];
+		if (count == 0)
+		{
+			cell.detailTextLabel.text = @"<Not selected>";
+		}
+		else if (count == 1)
+		{
+			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
+			if (candidate != nil) {
+				cell.detailTextLabel.text = candidate.name;
+			}
+			else {
+				cell.detailTextLabel.text = @"Undecided";
+			}
+		}
+		else
+		{
+			NSLog(@"Should have only one vote!");
+		}
+	}
+	else
+	{
+		/* TODO: Handle the error */
+		NSLog(@"  DetailedError: %@", [error userInfo]);
+	}
+	
+	[request release];
+	
 }
 
 
@@ -244,41 +258,45 @@
 	
 	NSError *error;
 	if (![[self fetchedResultsController] performFetch:&error]) {
-		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		/* TODO: Handle the error */
+		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
 	
-	NSManagedObjectContext *managedObjectContext = [election managedObjectContext];
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:_managedObjectContext];
 	[fetchRequest setEntity:entity];
+	[fetchRequest setFetchLimit:2];
 	
-	NSArray *fetchedObjects = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forElection == %@", election];
+	[fetchRequest setPredicate:predicate];
+	
+	NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if (fetchedObjects == nil)
 	{
-		// Handle the error
-		NSLog(@"no!");
+		/* TODO: Handle the error */
+		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
 	else
 	{
 		if ([fetchedObjects count] == 0)
 		{
 			// create a ballot for this election
-			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:managedObjectContext] retain];
+			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:_managedObjectContext] retain];
 			ballot.forElection = election;
 			
-			if (![managedObjectContext save:&error])
+			if (![_managedObjectContext save:&error])
 			{
+				/* TODO: Handle the error */
 				NSLog(@"  DetailedError: %@", [error userInfo]);
-				NSLog(@"no!");
-				// Handle the error
 			}
 		}
-		else
+		else if ([fetchedObjects count] == 1)
 		{
 			ballot = [(Ballot *) [fetchedObjects objectAtIndex:0] retain];
 		}
-		
+		else {
+			NSLog(@"Too many ballots?");
+		}
 	}
 	
 	[fetchRequest release];

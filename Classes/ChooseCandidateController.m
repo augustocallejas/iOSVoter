@@ -26,6 +26,7 @@
 	
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:2];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:[ballot managedObjectContext]];
 	[request setEntity:entity];
 	
@@ -37,7 +38,6 @@
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
-		NSLog(@"ballot vote %d", count);
 		if (count == 0)
 		{
 			
