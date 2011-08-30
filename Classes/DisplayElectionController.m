@@ -130,13 +130,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Position *position = (Position *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	
+		
 	// TODO: unnecessarily creating a new controller on each selection!
 	ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
 	controller.selectedRow = -1;
 	controller.ballot = ballot;
 	controller.position = position;
 	controller.title = position.level;
+	controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+	//[tableView cellForRowAtIndexPath:indexPath];
 	[controller loadBallotVote];
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];
@@ -228,7 +230,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
 	[election release];

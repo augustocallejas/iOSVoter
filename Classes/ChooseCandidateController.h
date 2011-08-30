@@ -17,6 +17,7 @@
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
+	UITableViewCell *selectedCell;
 	NSArray *sortedCandidates;
 	NSInteger selectedRow;
 }
@@ -25,5 +26,6 @@
 @property NSInteger selectedRow;
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
+@property (nonatomic, retain) UITableViewCell *selectedCell;
 
 @end

@@ -15,6 +15,7 @@
 @synthesize ballot;
 @synthesize position;
 @synthesize selectedRow;
+@synthesize selectedCell;
 
 
 - (void)loadBallotVote
@@ -258,9 +259,7 @@
 	if (oldIndexPath != nil)
 	{
 		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-		//if (oldCell.accessoryType == UITableViewCellAccessoryCheckmark) {
-			oldCell.accessoryType = UITableViewCellAccessoryNone;
-		//}
+		oldCell.accessoryType = UITableViewCellAccessoryNone;
 	}
 	
 	NSError *error;
@@ -270,14 +269,8 @@
 		// Handle the error
 	}
 	
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+	// update the detailed text, because otherwise it stays the same.
+	self.selectedCell.detailTextLabel.text = vote.forCandidate.name;
 }
 
 
@@ -298,8 +291,9 @@
 
 
 - (void)dealloc {
-	[ballot release];
-	[position release];
+	self.ballot = nil;
+	self.position = nil;
+	self.selectedCell = nil;
 	if (vote != nil)
 	{
 		[vote release];
