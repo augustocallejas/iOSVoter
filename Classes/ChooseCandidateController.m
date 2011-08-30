@@ -207,7 +207,7 @@
 	
 	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
 	
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (selectedRow != -1 && selectedRow == indexPath.row) {
 		/* selected the same candidate, so do nothing */
         return;
