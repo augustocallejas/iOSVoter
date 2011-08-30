@@ -158,6 +158,7 @@
     Position *position = (Position *) [_fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = position.title;
 	
+	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:2];

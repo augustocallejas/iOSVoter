@@ -6,17 +6,10 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "FetchedResultsBasedTableViewController.h"
 
-@interface ListElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
-	
-@private
-	NSManagedObjectContext *_managedObjectContext;
-	NSFetchedResultsController *_fetchedResultsController;
+@interface ListElectionsController : FetchedResultsBasedTableViewController {
+
 }
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end

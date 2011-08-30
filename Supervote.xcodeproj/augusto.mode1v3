@@ -267,20 +267,21 @@
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>1423B41014081697006F8DBF</string>
 								<string>1423B40F14081680006F8DBF</string>
+								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>10</integer>
 									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {259, 760}}</string>
+							<string>{{0, 9}, {259, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DisplayElectionController.m</string>
+								<string>FetchedResultsBasedTableViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DisplayElectionController.m</string>
+										<string>FetchedResultsBasedTableViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>143999DC140B7580007269A3</string>
+										<string>14399A4C140C8CB6007269A3</string>
 										<key>history</key>
 										<array>
 											<string>14A877AE13F24037006B9D73</string>
@@ -341,27 +342,31 @@
 											<string>1423B6D91408D5CE006F8DBF</string>
 											<string>14399678140979C5007269A3</string>
 											<string>143997421409ED04007269A3</string>
-											<string>1439977C140A184D007269A3</string>
 											<string>143997C8140A2E96007269A3</string>
 											<string>14399914140B513E007269A3</string>
 											<string>14399956140B6046007269A3</string>
 											<string>14399958140B6046007269A3</string>
 											<string>1439995C140B6194007269A3</string>
-											<string>14399983140B69C3007269A3</string>
 											<string>143999A0140B6EAF007269A3</string>
 											<string>143999A2140B6EAF007269A3</string>
 											<string>143999A4140B6EAF007269A3</string>
-											<string>143999A5140B6EAF007269A3</string>
 											<string>143999C2140B7433007269A3</string>
-											<string>143999C3140B7433007269A3</string>
 											<string>143999C4140B7433007269A3</string>
 											<string>143999C5140B7433007269A3</string>
 											<string>143999C6140B7433007269A3</string>
 											<string>143999C7140B7433007269A3</string>
 											<string>143999C8140B7433007269A3</string>
-											<string>143999C9140B7433007269A3</string>
-											<string>143999D1140B74B4007269A3</string>
-											<string>143999D2140B74B4007269A3</string>
+											<string>14399A06140C8854007269A3</string>
+											<string>14399A07140C8854007269A3</string>
+											<string>14399A08140C8854007269A3</string>
+											<string>14399A09140C8854007269A3</string>
+											<string>14399A0B140C8854007269A3</string>
+											<string>14399A2F140C89A4007269A3</string>
+											<string>14399A39140C89F4007269A3</string>
+											<string>14399A48140C8CB6007269A3</string>
+											<string>14399A49140C8CB6007269A3</string>
+											<string>14399A4A140C8CB6007269A3</string>
+											<string>14399A4B140C8CB6007269A3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -559,12 +564,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14399A4D140C8CB6007269A3</string>
 		<string>14399685140979D2007269A3</string>
 		<string>14399680140979C5007269A3</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1423B3E9140789B9006F8DBF</string>
 		<string>14789DDB13E8FD560016044C</string>
+		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 59 1364 819 0 0 1440 878 </string>
@@ -588,7 +595,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DisplayElectionController.m</string>
+								<string>FetchedResultsBasedTableViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

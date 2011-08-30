@@ -16,6 +16,7 @@
 		1423B44B14082CE3006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44A14082CE3006F8DBF /* Candidate.m */; };
 		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
 		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
+		143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -51,6 +52,8 @@
 		1423B64114087FE5006F8DBF /* BallotVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotVote.m; sourceTree = "<group>"; };
 		1423B64214087FE5006F8DBF /* Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ballot.h; sourceTree = "<group>"; };
 		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
+		143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsBasedTableViewController.h; sourceTree = "<group>"; };
+		143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsBasedTableViewController.m; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */,
 				14789F1513EBBB220016044C /* FeedController.h */,
 				14789F1613EBBB220016044C /* FeedController.m */,
+				143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */,
+				143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */,
 				14789F2413EBBB9E0016044C /* ListElectionsController.h */,
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
@@ -282,6 +287,7 @@
 				1423B44B14082CE3006F8DBF /* Candidate.m in Sources */,
 				1423B64414087FE5006F8DBF /* BallotVote.m in Sources */,
 				1423B64514087FE5006F8DBF /* Ballot.m in Sources */,
+				143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
