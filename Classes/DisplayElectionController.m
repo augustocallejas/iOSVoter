@@ -16,160 +16,48 @@
 @implementation DisplayElectionController
 
 @synthesize election;
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize fetchedResultsController = _fetchedResultsController;
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-	
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Position" inManagedObjectContext:_managedObjectContext];
-    [fetchRequest setEntity:entity];
-	
-    NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"levelOrder" ascending:YES];
+#pragma mark -
+#pragma mark FetchedResultsBasedTableViewController implementation methods
+
+- (NSString *)getEntityName{
+	return @"Position";
+}
+
+- (NSString *)getSectionNameKeyPath{
+	return @"levelOrder";
+}
+
+- (NSString *)getCacheName{
+	return @"DisplayElectionController";
+}
+
+- (NSArray *)allocSortDescriptors{
+	NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"levelOrder" ascending:YES];
 	NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@"titleOrder" ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sort1, sort2, nil]];
-    [fetchRequest setFetchBatchSize:20];
-	
-    NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
-																								  managedObjectContext:_managedObjectContext
-																								  sectionNameKeyPath:@"levelOrder"
-																								  cacheName:@"DisplayElectionController"];
-    self.fetchedResultsController = theFetchedResultsController;
-    _fetchedResultsController.delegate = self;
-	
-    [sort1 release];
-	[sort2 release];
-    [fetchRequest release];
-    [theFetchedResultsController release];
-	
-	return _fetchedResultsController;
+    return [NSArray arrayWithObjects:sort1, sort2, nil];
 }
 
-
-#pragma mark -
-#pragma mark NSFetchedResultsControllerDelegate methods
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [self.tableView beginUpdates];
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-	
-    UITableView *tableView = self.tableView;
-	
-    switch(type) {
-			
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-			
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-			
-        case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
-            break;
-			
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            // Reloading the section inserts a new row and ensures that titles are updated appropriately.
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:newIndexPath.section] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
-	
-    switch(type) {
-			
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-			
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
-            break;
-    }
-}
-
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.tableView endUpdates];
-}
-
-
-#pragma mark -
-#pragma mark UITableViewDataSource methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[_fetchedResultsController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	NSLog(@"number of rows in section %d", section);
-	NSLog(@"%d", [[_fetchedResultsController sections] count]);
-	id <NSFetchedResultsSectionInfo> sectionInfo = 
-	[[_fetchedResultsController sections] objectAtIndex:section];
-	NSLog(@"%d", [sectionInfo numberOfObjects]);
-    return [sectionInfo numberOfObjects];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	NSString *levelOrder = [[[_fetchedResultsController sections] objectAtIndex:section] name];
-	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Position" inManagedObjectContext:_managedObjectContext]];
-	[fetchRequest setFetchLimit:1];
-	
-	NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
-	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
-	[fetchRequest setPredicate:predicate];
-	
-	NSString *headerTitle = @"Unknown";
-	NSError *error = nil;
-	NSArray *fetchResults = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if ([fetchResults count] > 0) {
-		Position *position =  (Position *)[fetchResults objectAtIndex:0];
-		//headerView.titleLabel.text = position.level;
-		headerTitle = [[position.level retain] autorelease];
-	} else {
-		/* TODO: print error? */
-	}
-	
-	[numberFormatter release];
-	[fetchRequest release];
-
-	return headerTitle;
+- (NSString *)getCellIdentifier{
+	return @"DisplayElectionController";
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Position *position = (Position *) [_fetchedResultsController objectAtIndexPath:indexPath];
+    Position *position = (Position *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = position.title;
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:2];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:_managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext];
 	[request setEntity:entity];
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
 	[request setPredicate:predicate];
 	
 	NSError *error = nil;
-	NSArray *array = [_managedObjectContext executeFetchRequest:request error:&error];
+	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
@@ -199,32 +87,49 @@
 	}
 	
 	[request release];
-	
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"default";
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSString *levelOrder = [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 	
-    UITableViewCell *cell = 
-	[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] 
-				 initWithStyle:UITableViewCellStyleSubtitle 
-				 reuseIdentifier:CellIdentifier] autorelease];
-    }
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Position" inManagedObjectContext:self.managedObjectContext]];
+	[fetchRequest setFetchLimit:1];
 	
-    // Set up the cell...
-    [self configureCell:cell atIndexPath:indexPath];
+	NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
+	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
 	
-    return cell;
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
+	[fetchRequest setPredicate:predicate];
+	
+	NSString *headerTitle = @"Unknown";
+	NSError *error = nil;
+	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	if ([fetchResults count] > 0) {
+		Position *position =  (Position *)[fetchResults objectAtIndex:0];
+		//headerView.titleLabel.text = position.level;
+		headerTitle = [[position.level retain] autorelease];
+	} else {
+		/* TODO: print error? */
+	}
+	
+	[numberFormatter release];
+	[fetchRequest release];
+
+	return headerTitle;
 }
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Position *position = (Position *) [_fetchedResultsController objectAtIndexPath:indexPath];
+	Position *position = (Position *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	// TODO: unnecessarily creating a new controller on each selection!
 	ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
@@ -257,21 +162,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	NSError *error;
-	if (![[self fetchedResultsController] performFetch:&error]) {
-		/* TODO: Handle the error */
-		NSLog(@"  DetailedError: %@", [error userInfo]);
-	}
-	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:_managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
 	[fetchRequest setFetchLimit:2];
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forElection == %@", election];
 	[fetchRequest setPredicate:predicate];
 	
-	NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	NSError *error;
+	NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if (fetchedObjects == nil)
 	{
 		/* TODO: Handle the error */
@@ -282,10 +182,10 @@
 		if ([fetchedObjects count] == 0)
 		{
 			// create a ballot for this election
-			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:_managedObjectContext] retain];
+			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:self.managedObjectContext] retain];
 			ballot.forElection = election;
 			
-			if (![_managedObjectContext save:&error])
+			if (![self.managedObjectContext save:&error])
 			{
 				/* TODO: Handle the error */
 				NSLog(@"  DetailedError: %@", [error userInfo]);
@@ -321,7 +221,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-	self.fetchedResultsController = nil;
 	if (ballot != nil)
 	{
 		[ballot release];
@@ -337,9 +236,6 @@
 	{
 		[ballot release];
 	}
-	self.managedObjectContext = nil;
-	self.fetchedResultsController.delegate = nil;
-	self.fetchedResultsController = nil;
     [super dealloc];
 }
 
