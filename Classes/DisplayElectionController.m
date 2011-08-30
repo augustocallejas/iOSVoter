@@ -38,6 +38,10 @@
     return [NSArray arrayWithObjects:sort1, sort2, nil];
 }
 
+- (NSPredicate *)getPredicate{
+	return nil;
+}
+
 - (NSString *)getCellIdentifier{
 	return @"DisplayElectionController";
 }
@@ -136,10 +140,10 @@
 	controller.selectedRow = -1;
 	controller.ballot = ballot;
 	controller.position = position;
+	controller.managedObjectContext = self.managedObjectContext;
 	controller.title = position.level;
 	controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-	//[tableView cellForRowAtIndexPath:indexPath];
-	[controller loadBallotVote];
+
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];
 }

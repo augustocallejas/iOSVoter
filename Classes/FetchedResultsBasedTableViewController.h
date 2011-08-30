@@ -18,6 +18,7 @@
 - (NSArray *)allocSortDescriptors;
 - (NSString *)getSectionNameKeyPath;
 - (NSString *)getCacheName;
+- (NSPredicate *)getPredicate;
 - (NSString *)getCellIdentifier;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 

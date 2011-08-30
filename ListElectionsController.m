@@ -35,6 +35,10 @@
 	return [NSArray arrayWithObject:sort];
 }
 
+- (NSPredicate *)getPredicate{
+	return nil;
+}
+
 - (NSString *)getCellIdentifier{
 	return @"ListElectionsController";
 }

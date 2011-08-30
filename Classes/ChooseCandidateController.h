@@ -8,24 +8,23 @@
 
 #import "Ballot.h"
 #import "BallotVote.h"
+#import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
 
 
-@interface ChooseCandidateController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface ChooseCandidateController : FetchedResultsBasedTableViewController {
 
 @private
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
 	UITableViewCell *selectedCell;
-	NSArray *sortedCandidates;
 	NSInteger selectedRow;
 }
-- (void)loadBallotVote;
 
-@property NSInteger selectedRow;
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) UITableViewCell *selectedCell;
+@property NSInteger selectedRow;
 
 @end

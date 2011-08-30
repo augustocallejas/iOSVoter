@@ -55,6 +55,12 @@
 								 userInfo:nil];
 }
 
+- (NSPredicate *)getPredicate{
+	@throw [NSException exceptionWithName:NSInternalInconsistencyException
+								   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+								 userInfo:nil];
+}
+
 - (NSString *)getCellIdentifier{
 	@throw [NSException exceptionWithName:NSInternalInconsistencyException
 								   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
@@ -89,6 +95,12 @@
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	/* TODO: make abstract method? */
     [fetchRequest setFetchBatchSize:20];
+	
+	NSPredicate *predicate = [self getPredicate];
+	if (predicate != nil)
+	{
+		[fetchRequest setPredicate:predicate];
+	}
 	
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
 																								  managedObjectContext:_managedObjectContext
