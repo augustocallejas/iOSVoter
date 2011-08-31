@@ -16,6 +16,8 @@
 @implementation DisplayElectionController
 
 @synthesize election;
+@synthesize ballot = _ballot;
+@synthesize parentNavController;
 
 #pragma mark -
 #pragma mark FetchedResultsBasedTableViewController implementation methods
@@ -39,7 +41,7 @@
 }
 
 - (NSPredicate *)getPredicate{
-	return [NSPredicate predicateWithFormat:@"election == %@", election];
+	return [NSPredicate predicateWithFormat:@"forElection == %@", election];
 }
 
 - (NSString *)getCellIdentifier{
@@ -57,7 +59,7 @@
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext];
 	[request setEntity:entity];
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", self.ballot, position];
 	[request setPredicate:predicate];
 	
 	NSError *error = nil;
@@ -138,13 +140,13 @@
 	// TODO: unnecessarily creating a new controller on each selection!
 	ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
 	controller.selectedRow = -1;
-	controller.ballot = ballot;
+	controller.ballot = self.ballot;
 	controller.position = position;
 	controller.managedObjectContext = self.managedObjectContext;
 	controller.title = position.level;
 	controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-
-	[[self navigationController] pushViewController:controller animated:YES];
+	
+	[parentNavController pushViewController:controller animated:YES];
 	[controller release];
 }
 
@@ -164,50 +166,12 @@
 */
 
 
+/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Ballot" inManagedObjectContext:self.managedObjectContext];
-	[fetchRequest setEntity:entity];
-	[fetchRequest setFetchLimit:2];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forElection == %@", election];
-	[fetchRequest setPredicate:predicate];
-	
-	NSError *error;
-	NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-	if (fetchedObjects == nil)
-	{
-		/* TODO: Handle the error */
-		NSLog(@"  DetailedError: %@", [error userInfo]);
-	}
-	else
-	{
-		if ([fetchedObjects count] == 0)
-		{
-			// create a ballot for this election
-			ballot = [(Ballot *) [NSEntityDescription insertNewObjectForEntityForName:@"Ballot" inManagedObjectContext:self.managedObjectContext] retain];
-			ballot.forElection = election;
-			
-			if (![self.managedObjectContext save:&error])
-			{
-				/* TODO: Handle the error */
-				NSLog(@"  DetailedError: %@", [error userInfo]);
-			}
-		}
-		else if ([fetchedObjects count] == 1)
-		{
-			ballot = [(Ballot *) [fetchedObjects objectAtIndex:0] retain];
-		}
-		else {
-			NSLog(@"Too many ballots?");
-		}
-	}
-	
-	[fetchRequest release];
 }
+*/
 
 
 /*
@@ -225,22 +189,18 @@
     // Release any cached data, images, etc. that aren't in use.
 }
 
+/*
 - (void)viewDidUnload {
     [super viewDidUnload];
-	if (ballot != nil)
-	{
-		[ballot release];
-	}
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+ */
 
 - (void)dealloc {
-	[election release];
-	if (ballot != nil)
-	{
-		[ballot release];
-	}
+	self.election = nil;
+	self.ballot = nil;
+	self.parentNavController = nil;
     [super dealloc];
 }
 

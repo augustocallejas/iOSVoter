@@ -2,7 +2,7 @@
 //  Position.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/28/11.
+//  Created by augusto callejas on 8/31/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSString * level;
 @property (nonatomic, retain) NSNumber * titleOrder;
 @property (nonatomic, retain) NSSet* candidates;
-@property (nonatomic, retain) Election * election;
+@property (nonatomic, retain) Election * forElection;
 
 @end
 

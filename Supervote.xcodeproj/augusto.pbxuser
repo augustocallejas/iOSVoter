@@ -5,7 +5,7 @@
 			"Xdesign Model Editor Bookmark Key" = {
 				UIContextForDetailArea = {
 					_indexOfSelectedPane = 0;
-					_indexOfSelectedView = 1;
+					_indexOfSelectedView = 0;
 				};
 				UIContextForEntityArea = {
 					_indexOfSelectedView = 0;
@@ -26,7 +26,7 @@
 					chosenTableWidths = (
 						103.000000,
 						10.000000,
-						129.080078,
+						75.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -36,8 +36,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {707, 220}}",
-							"{{712, 0}, {369, 220}}",
+							"{{0, 0}, {562, 218}}",
+							"{{567, 0}, {294, 218}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -46,8 +46,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {1081, 220}}",
-							"{{0, 225}, {1081, 350}}",
+							"{{0, 0}, {861, 220}}",
+							"{{0, 225}, {861, 175}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -56,8 +56,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {267, 218}}",
-							"{{272, 0}, {433, 218}}",
+							"{{0, 0}, {213, 218}}",
+							"{{218, 0}, {344, 218}}",
 						);
 					};
 				};
@@ -146,7 +146,7 @@
 					chosenTableWidthsPT = (
 						128.000000,
 						108.110840,
-						170.570801,
+						96.570801,
 					);
 					chosenTableWidthsRT = (
 						128.000000,
@@ -154,23 +154,23 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-209, 0}, {1066, 335}}";
+				"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 160}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
 	1423B32B1407527E006F8DBF /* ChooseCandidateController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 659}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
 			sepNavSelRange = "{679, 0}";
 			sepNavVisRange = "{0, 685}";
 		};
 	};
 	1423B32C1407527E006F8DBF /* ChooseCandidateController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 3341}}";
-			sepNavSelRange = "{842, 71}";
-			sepNavVisRange = "{229, 1034}";
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 3679}}";
+			sepNavSelRange = "{2731, 0}";
+			sepNavVisRange = "{0, 1176}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -196,9 +196,9 @@
 	};
 	1423B43D14082BE0006F8DBF /* Position.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {917, 522}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
 			sepNavSelRange = "{519, 0}";
-			sepNavVisRange = "{0, 756}";
+			sepNavVisRange = "{0, 802}";
 		};
 	};
 	1423B43E14082BE0006F8DBF /* Position.m */ = {
@@ -415,7 +415,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ElectionsController.h: 18";
 		rLen = 1;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 466;
 		vrLoc = 0;
@@ -464,8 +464,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ElectionsController.m: 90";
-		rLen = 15;
-		rLoc = 1837;
+		rLen = 0;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 1389;
@@ -615,7 +615,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 23";
 		rLen = 0;
-		rLoc = 439;
+		rLoc = 607;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 0;
@@ -625,7 +625,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4404;
+		rLoc = 4480;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -675,7 +675,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4404;
+		rLoc = 4480;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 4656;
@@ -715,7 +715,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 171";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1807;
 		vrLoc = 3048;
@@ -908,7 +908,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 20";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 0;
@@ -918,7 +918,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 19";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -1161,7 +1161,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 39";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 930;
@@ -1171,7 +1171,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 171";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 6026;
@@ -1211,7 +1211,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 39";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 930;
@@ -1221,7 +1221,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4608;
+		rLoc = 4677;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 3349;
@@ -1230,8 +1230,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 155";
-		rLen = 1257;
-		rLoc = 5305;
+		rLen = 20;
+		rLoc = 5377;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 4751;
@@ -1493,8 +1493,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 155";
-		rLen = 1257;
-		rLoc = 5305;
+		rLen = 20;
+		rLoc = 5377;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 3364;
@@ -1624,7 +1624,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 2104;
@@ -1634,7 +1634,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 171";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 2595;
@@ -1644,7 +1644,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 161";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 2212;
 		vrLoc = 3302;
@@ -1654,7 +1654,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 130";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 3026;
@@ -1664,7 +1664,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 2104;
@@ -1674,7 +1674,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 2147;
@@ -1694,7 +1694,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 129";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 1401;
@@ -1704,7 +1704,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 22";
 		rLen = 0;
-		rLoc = 439;
+		rLoc = 607;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 0;
@@ -1714,7 +1714,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 190";
 		rLen = 0;
-		rLoc = 7378;
+		rLoc = 6182;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 4647;
@@ -1724,7 +1724,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 1261;
@@ -1916,7 +1916,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 1261;
@@ -1926,7 +1926,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 1261;
@@ -1936,7 +1936,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5208;
+		rLoc = 5280;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 4021;
@@ -1946,7 +1946,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5165;
+		rLoc = 5234;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1956,7 +1956,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5165;
+		rLoc = 5234;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1966,7 +1966,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5165;
+		rLoc = 5234;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1976,7 +1976,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 97";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 2158;
@@ -1996,7 +1996,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5088;
+		rLoc = 5157;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2006,7 +2006,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5088;
+		rLoc = 5157;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2041,7 +2041,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5088;
+		rLoc = 5157;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2051,7 +2051,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5167;
+		rLoc = 5236;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -2061,7 +2061,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5167;
+		rLoc = 5236;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -2071,7 +2071,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 17";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 795;
 		vrLoc = 0;
@@ -2131,7 +2131,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 17";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 797;
 		vrLoc = 0;
@@ -2141,7 +2141,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 18";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 0;
@@ -2151,7 +2151,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 229";
 		rLen = 0;
-		rLoc = 11596;
+		rLoc = 12402;
 		rType = 0;
 		vrLen = 944;
 		vrLoc = 7005;
@@ -2161,7 +2161,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 229";
 		rLen = 0;
-		rLoc = 11596;
+		rLoc = 12402;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 0;
@@ -2171,7 +2171,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 224";
 		rLen = 0;
-		rLoc = 11483;
+		rLoc = 12289;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 7050;
@@ -2191,7 +2191,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 21";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1649;
 		vrLoc = 3830;
@@ -2201,7 +2201,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 37";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 234;
@@ -2211,7 +2211,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 219";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 6792;
@@ -2221,7 +2221,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 65";
 		rLen = 0;
-		rLoc = 1414;
+		rLoc = 1480;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 1238;
@@ -2231,7 +2231,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 78";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 2161;
@@ -2241,7 +2241,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 84";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 2161;
@@ -2261,7 +2261,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 104";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 2189;
@@ -2271,7 +2271,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 51";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 1288;
@@ -2281,7 +2281,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 18";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 739;
 		vrLoc = 0;
@@ -2291,7 +2291,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 135";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 4329;
@@ -2301,7 +2301,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 135";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 4329;
@@ -2311,7 +2311,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 323";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 910;
 		vrLoc = 12062;
@@ -2321,7 +2321,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 197";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1832;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 6056;
@@ -2331,7 +2331,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 203";
 		rLen = 0;
-		rLoc = 2139;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 6358;
@@ -2341,7 +2341,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 125";
 		rLen = 91;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 3829;
@@ -2361,7 +2361,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 19";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 665;
 		vrLoc = 0;
@@ -2371,7 +2371,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 0;
-		rLoc = 1414;
+		rLoc = 1480;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 0;
@@ -2381,7 +2381,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 36";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 234;
@@ -2441,7 +2441,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 22";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1481;
 		vrLoc = 9978;
@@ -2451,7 +2451,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 257";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 9647;
@@ -2461,7 +2461,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 257";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 9647;
@@ -2664,7 +2664,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 197";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2115;
 		vrLoc = 7307;
@@ -2674,7 +2674,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 231";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 8326;
@@ -2684,7 +2684,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 250";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 8723;
@@ -2694,7 +2694,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 267";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2032;
 		vrLoc = 9580;
@@ -2704,7 +2704,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 267";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2181;
 		vrLoc = 9300;
@@ -2714,7 +2714,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 256";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2167;
 		vrLoc = 9300;
@@ -2724,7 +2724,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 256";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2204;
 		vrLoc = 9300;
@@ -2734,7 +2734,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 261";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2215;
 		vrLoc = 9300;
@@ -2744,7 +2744,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 261";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2203;
 		vrLoc = 9300;
@@ -2754,7 +2754,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 266";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2225;
 		vrLoc = 9300;
@@ -2774,7 +2774,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 192";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6859;
@@ -2784,7 +2784,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 245";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2094;
 		vrLoc = 9665;
@@ -2794,7 +2794,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 242";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2078;
 		vrLoc = 9304;
@@ -2804,7 +2804,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 272";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 10069;
@@ -2814,7 +2814,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 261";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1953;
 		vrLoc = 9617;
@@ -3010,7 +3010,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 262";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1943;
 		vrLoc = 9617;
@@ -3020,7 +3020,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 268";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1925;
 		vrLoc = 9696;
@@ -3030,7 +3030,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 271";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1943;
 		vrLoc = 9696;
@@ -3040,7 +3040,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 282";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1998;
 		vrLoc = 11061;
@@ -3050,7 +3050,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 284";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2003;
 		vrLoc = 11061;
@@ -3060,7 +3060,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 287";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1995;
 		vrLoc = 11061;
@@ -3070,7 +3070,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 291";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1976;
 		vrLoc = 11061;
@@ -3080,7 +3080,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 294";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1707;
 		vrLoc = 11653;
@@ -3090,7 +3090,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 319";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1694;
 		vrLoc = 12582;
@@ -3100,7 +3100,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 307";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1698;
 		vrLoc = 12582;
@@ -3110,7 +3110,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 307";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 12582;
@@ -3120,7 +3120,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 314";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 12582;
@@ -3130,7 +3130,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 317";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 12582;
@@ -3140,7 +3140,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 341";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1871;
 		vrLoc = 13015;
@@ -3150,7 +3150,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 330";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 12943;
@@ -3160,7 +3160,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 337";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1899;
 		vrLoc = 12943;
@@ -3170,7 +3170,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 333";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 12943;
@@ -3180,7 +3180,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 340";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1658;
 		vrLoc = 13369;
@@ -3200,7 +3200,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 158";
 		rLen = 91;
-		rLoc = 1673;
+		rLoc = 1739;
 		rType = 0;
 		vrLen = 1328;
 		vrLoc = 5534;
@@ -3210,7 +3210,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5167;
+		rLoc = 5236;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 3;
@@ -3220,7 +3220,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 19";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -3230,7 +3230,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 27";
 		rLen = 0;
-		rLoc = 440;
+		rLoc = 608;
 		rType = 0;
 		vrLen = 790;
 		vrLoc = 0;
@@ -3240,7 +3240,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 27";
 		rLen = 0;
-		rLoc = 440;
+		rLoc = 608;
 		rType = 0;
 		vrLen = 790;
 		vrLoc = 0;
@@ -3250,7 +3250,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 19";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -3445,7 +3445,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 18";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 433;
 		rType = 0;
 		vrLen = 792;
 		vrLoc = 0;
@@ -3455,7 +3455,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 17";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 0;
@@ -3465,7 +3465,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5167;
+		rLoc = 5236;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 3;
@@ -3475,7 +3475,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 16";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 3;
@@ -3485,7 +3485,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 382";
 		rLen = 0;
-		rLoc = 11596;
+		rLoc = 12402;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 14897;
@@ -3495,7 +3495,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 16";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 3;
@@ -3505,7 +3505,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 196";
 		rLen = 0;
-		rLoc = 7325;
+		rLoc = 6129;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 4861;
@@ -3515,7 +3515,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 185";
 		rLen = 0;
-		rLoc = 7149;
+		rLoc = 5941;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 4861;
@@ -3525,7 +3525,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 19";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -3535,7 +3535,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 17";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 0;
@@ -3710,7 +3710,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 20";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 0;
@@ -3720,7 +3720,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 0;
@@ -3895,7 +3895,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 0;
@@ -3905,7 +3905,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1536;
 		vrLoc = 348;
@@ -3915,7 +3915,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 33";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 348;
@@ -3925,7 +3925,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 35";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1672;
 		vrLoc = 959;
@@ -3935,7 +3935,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 43";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1618;
 		vrLoc = 473;
@@ -3945,7 +3945,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 473;
@@ -3955,7 +3955,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 350";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 13967;
@@ -3965,7 +3965,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 473;
@@ -3975,7 +3975,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 200";
 		rLen = 0;
-		rLoc = 6550;
+		rLoc = 5382;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 5994;
@@ -3985,7 +3985,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 105";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 2998;
@@ -3995,7 +3995,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 106";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 2998;
@@ -4005,7 +4005,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 3895;
@@ -4015,7 +4015,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 3688;
@@ -4025,7 +4025,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -4035,7 +4035,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 23";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 0;
@@ -4045,7 +4045,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 3688;
@@ -4055,7 +4055,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 150";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 4254;
@@ -4065,7 +4065,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 3895;
@@ -4075,7 +4075,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 53";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1811;
 		vrLoc = 303;
@@ -4085,7 +4085,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 4163;
@@ -4095,7 +4095,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 152";
 		rLen = 0;
-		rLoc = 2586;
+		rLoc = 2657;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 2698;
@@ -4105,7 +4105,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -4115,7 +4115,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -4135,7 +4135,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 35";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 857;
@@ -4145,7 +4145,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 50";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 857;
@@ -4155,7 +4155,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 53";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1770;
 		vrLoc = 343;
@@ -4165,7 +4165,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 164";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 5695;
@@ -4186,7 +4186,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 209;
+		rLoc = 173;
 		rType = 1;
 	};
 	14399831140B2C1E007269A3 /* PBXTextBookmark */ = {
@@ -4194,7 +4194,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 321";
 		rLen = 0;
-		rLoc = 6551;
+		rLoc = 5383;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 10453;
@@ -4204,7 +4204,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 164";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 2038;
 		vrLoc = 8336;
@@ -4214,7 +4214,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -4224,7 +4224,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 284";
 		rLen = 0;
-		rLoc = 5310;
+		rLoc = 5382;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 11156;
@@ -4234,7 +4234,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 344";
 		rLen = 0;
-		rLoc = 7146;
+		rLoc = 5941;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 11202;
@@ -4244,7 +4244,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 95;
@@ -4254,7 +4254,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 164";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 8336;
@@ -4264,7 +4264,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 164";
 		rLen = 0;
-		rLoc = 2206;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 5737;
@@ -4274,7 +4274,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 164";
 		rLen = 0;
-		rLoc = 2206;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 5737;
@@ -4284,7 +4284,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 95;
@@ -4294,7 +4294,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1546;
 		vrLoc = 162;
@@ -4304,7 +4304,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 740;
 		vrLoc = 11276;
@@ -4314,7 +4314,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 277";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1806;
 		vrLoc = 7174;
@@ -4324,7 +4324,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 191";
 		rLen = 0;
-		rLoc = 2995;
+		rLoc = 3638;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 13668;
@@ -4334,7 +4334,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -4344,7 +4344,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 165";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 5529;
@@ -4353,8 +4353,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 166";
-		rLen = 2;
-		rLoc = 2255;
+		rLen = 0;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 2188;
 		vrLoc = 12877;
@@ -4363,8 +4363,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 166";
-		rLen = 2;
-		rLoc = 2255;
+		rLen = 0;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1570;
 		vrLoc = 14159;
@@ -4373,8 +4373,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 166";
-		rLen = 2;
-		rLoc = 2255;
+		rLen = 0;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 1630;
 		vrLoc = 7003;
@@ -4394,7 +4394,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 165";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 472;
@@ -4404,7 +4404,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 326;
@@ -4414,7 +4414,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 331";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 7171;
@@ -4434,7 +4434,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 1444;
@@ -4444,7 +4444,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1542;
 		vrLoc = 348;
@@ -4454,7 +4454,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 472;
@@ -4464,7 +4464,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 25";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1697;
 		vrLoc = 472;
@@ -4474,7 +4474,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 473;
@@ -4484,7 +4484,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 576;
@@ -4494,7 +4494,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 38";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1595;
 		vrLoc = 624;
@@ -4504,7 +4504,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 692;
@@ -4514,7 +4514,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 38";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 820;
@@ -4524,7 +4524,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 282;
@@ -4534,7 +4534,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1592;
 		vrLoc = 0;
@@ -4544,7 +4544,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 95;
@@ -4554,7 +4554,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 331";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2030;
 		vrLoc = 13041;
@@ -4564,7 +4564,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 95;
@@ -4574,7 +4574,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 165;
@@ -4584,7 +4584,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 165;
@@ -4594,7 +4594,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 28";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 166;
@@ -4604,7 +4604,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 223;
@@ -4614,7 +4614,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1536;
 		vrLoc = 223;
@@ -4624,7 +4624,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 193";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1655;
 		vrLoc = 7152;
@@ -4634,7 +4634,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 277";
 		rLen = 0;
-		rLoc = 2996;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 13770;
@@ -4643,8 +4643,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 192";
-		rLen = 7921;
-		rLoc = 2996;
+		rLen = 0;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1555;
 		vrLoc = 7074;
@@ -4653,8 +4653,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 192";
-		rLen = 7921;
-		rLoc = 2996;
+		rLen = 0;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 2052;
 		vrLoc = 8869;
@@ -4664,7 +4664,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 185;
@@ -4674,7 +4674,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 240";
 		rLen = 0;
-		rLoc = 4003;
+		rLoc = 4074;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 7599;
@@ -4684,7 +4684,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 242";
 		rLen = 0;
-		rLoc = 4208;
+		rLoc = 4279;
 		rType = 0;
 		vrLen = 1631;
 		vrLoc = 7599;
@@ -4694,7 +4694,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 185;
@@ -4704,7 +4704,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1563;
 		vrLoc = 185;
@@ -4714,7 +4714,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1572;
 		vrLoc = 185;
@@ -4724,7 +4724,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 161";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 5313;
@@ -4734,7 +4734,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 239";
 		rLen = 0;
-		rLoc = 5310;
+		rLoc = 5382;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 8490;
@@ -4744,7 +4744,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 239";
 		rLen = 0;
-		rLoc = 5310;
+		rLoc = 5382;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 8490;
@@ -4754,7 +4754,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4764,7 +4764,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4774,7 +4774,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4784,7 +4784,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1587;
 		vrLoc = 0;
@@ -4794,7 +4794,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 0;
@@ -4804,7 +4804,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1494;
 		vrLoc = 3843;
@@ -4814,7 +4814,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 5123;
@@ -4824,7 +4824,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 170";
 		rLen = 0;
-		rLoc = 2647;
+		rLoc = 2718;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 5523;
@@ -4834,7 +4834,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1581;
 		vrLoc = 35;
@@ -4844,7 +4844,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 168";
 		rLen = 1203;
-		rLoc = 2647;
+		rLoc = 2718;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 5724;
@@ -4854,7 +4854,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -4874,7 +4874,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 468;
@@ -4894,7 +4894,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 166";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1616;
 		vrLoc = 0;
@@ -4904,7 +4904,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1596;
 		vrLoc = 0;
@@ -4914,7 +4914,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1604;
 		vrLoc = 0;
@@ -4924,7 +4924,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 0;
@@ -4934,7 +4934,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1606;
 		vrLoc = 0;
@@ -4944,7 +4944,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1832;
 		vrLoc = 513;
@@ -4954,7 +4954,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 1673;
@@ -4964,7 +4964,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -4974,7 +4974,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -4984,7 +4984,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -4994,7 +4994,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1612;
 		vrLoc = 0;
@@ -5004,7 +5004,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 169";
 		rLen = 0;
-		rLoc = 3826;
+		rLoc = 3897;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 5505;
@@ -5014,7 +5014,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5024,7 +5024,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -5034,7 +5034,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1832;
 		vrLoc = 513;
@@ -5054,7 +5054,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -5064,7 +5064,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 2680;
@@ -5074,7 +5074,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 5157;
@@ -5084,7 +5084,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -5094,7 +5094,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5104,7 +5104,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -5114,7 +5114,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 0;
@@ -5124,7 +5124,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 10058;
@@ -5154,7 +5154,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 15238;
@@ -5204,7 +5204,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5214,7 +5214,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 2656;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 0;
@@ -5224,7 +5224,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 117";
 		rLen = 158;
-		rLoc = 1455;
+		rLoc = 1521;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 15230;
@@ -5234,7 +5234,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 41";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1925;
 		vrLoc = 402;
@@ -5254,7 +5254,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 41";
 		rLen = 0;
-		rLoc = 435;
+		rLoc = 501;
 		rType = 0;
 		vrLen = 1806;
 		vrLoc = 0;
@@ -5264,7 +5264,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -5274,7 +5274,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 128";
 		rLen = 0;
-		rLoc = 2841;
+		rLoc = 2912;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4233;
@@ -5284,7 +5284,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 134";
 		rLen = 0;
-		rLoc = 3268;
+		rLoc = 3339;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 4624;
@@ -5294,7 +5294,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 19;
-		rLoc = 3479;
+		rLoc = 3550;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 4624;
@@ -5304,7 +5304,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 3458;
+		rLoc = 3529;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 4782;
@@ -5314,7 +5314,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -5324,7 +5324,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 126";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 4985;
@@ -5334,7 +5334,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 151";
 		rLen = 0;
-		rLoc = 3848;
+		rLoc = 3919;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 5566;
@@ -5344,7 +5344,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 143";
 		rLen = 0;
-		rLoc = 3729;
+		rLoc = 3800;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 5016;
@@ -5354,7 +5354,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 17";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 676;
 		vrLoc = 0;
@@ -5364,7 +5364,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 126";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 4985;
@@ -5384,7 +5384,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 143";
 		rLen = 0;
-		rLoc = 3729;
+		rLoc = 3800;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 5016;
@@ -5394,7 +5394,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 128";
 		rLen = 14;
-		rLoc = 2841;
+		rLoc = 2912;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 4736;
@@ -5404,7 +5404,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 130";
 		rLen = 0;
-		rLoc = 3059;
+		rLoc = 3130;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 4736;
@@ -5414,7 +5414,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 126";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1813;
 		vrLoc = 245;
@@ -5474,7 +5474,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 21";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 808;
 		vrLoc = 0;
@@ -5484,7 +5484,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 214";
 		rLen = 19;
-		rLoc = 5264;
+		rLoc = 5336;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 8280;
@@ -5494,7 +5494,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 218";
 		rLen = 0;
-		rLoc = 5310;
+		rLoc = 5382;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 8052;
@@ -5739,7 +5739,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 182";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 6128;
@@ -5749,7 +5749,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 180";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6150;
@@ -5759,7 +5759,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 353";
 		rLen = 0;
-		rLoc = 10921;
+		rLoc = 3664;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 15218;
@@ -5769,7 +5769,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 177";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 6289;
@@ -5779,7 +5779,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 197";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 6386;
@@ -5789,7 +5789,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6289;
@@ -5799,7 +5799,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 6328;
@@ -5809,7 +5809,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 303";
 		rLen = 0;
-		rLoc = 6551;
+		rLoc = 5383;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 9224;
@@ -5819,23 +5819,23 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3850;
+		rLoc = 3921;
 		rType = 0;
 		vrLen = 1664;
 		vrLoc = 0;
 	};
 	143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 659}}";
-			sepNavSelRange = "{614, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 651}}";
+			sepNavSelRange = "{733, 76}";
 			sepNavVisRange = "{0, 899}";
 		};
 	};
 	143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 4407}}";
-			sepNavSelRange = "{10188, 91}";
-			sepNavVisRange = "{9690, 1088}";
+			sepNavIntBoundsRect = "{{0, 0}, {1517, 4342}}";
+			sepNavSelRange = "{11269, 84}";
+			sepNavVisRange = "{10134, 1251}";
 		};
 	};
 	14399A06140C8854007269A3 /* PBXTextBookmark */ = {
@@ -5883,7 +5883,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 112";
 		rLen = 0;
-		rLoc = 2646;
+		rLoc = 2717;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 3684;
@@ -5893,7 +5893,7 @@
 		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
 		name = "ListElectionsController.h: 13";
 		rLen = 0;
-		rLoc = 296;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 303;
 		vrLoc = 0;
@@ -5923,7 +5923,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 16";
 		rLen = 0;
-		rLoc = 434;
+		rLoc = 500;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 245;
@@ -5933,7 +5933,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 38";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 976;
 		vrLoc = 345;
@@ -5953,7 +5953,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 38";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 774;
@@ -5963,7 +5963,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 38";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 775;
@@ -5973,7 +5973,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 38";
 		rLen = 0;
-		rLoc = 1355;
+		rLoc = 1421;
 		rType = 0;
 		vrLen = 1461;
 		vrLoc = 775;
@@ -6023,7 +6023,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 52";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1680;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 644;
@@ -6033,7 +6033,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 41";
 		rLen = 1;
-		rLoc = 1414;
+		rLoc = 1480;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 644;
@@ -6043,7 +6043,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 304";
 		rLen = 0;
-		rLoc = 6551;
+		rLoc = 5383;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 9330;
@@ -6087,7 +6087,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 41";
 		rLen = 1;
-		rLoc = 1414;
+		rLoc = 1480;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 281;
@@ -6117,7 +6117,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 47";
 		rLen = 1;
-		rLoc = 1596;
+		rLoc = 1662;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 773;
@@ -6172,7 +6172,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 82";
 		rLen = 52;
-		rLoc = 2381;
+		rLoc = 3024;
 		rType = 0;
 		vrLen = 723;
 		vrLoc = 10785;
@@ -6202,7 +6202,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 221";
 		rLen = 0;
-		rLoc = 3851;
+		rLoc = 3922;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 7319;
@@ -6222,7 +6222,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 39";
 		rLen = 0;
-		rLoc = 887;
+		rLoc = 953;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 345;
@@ -6327,7 +6327,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 18";
 		rLen = 1008;
-		rLoc = 345;
+		rLoc = 411;
 		rType = 0;
 		vrLen = 1065;
 		vrLoc = 302;
@@ -6337,7 +6337,7 @@
 		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
 		name = "DisplayElectionController.h: 20";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 446;
 		vrLoc = 0;
@@ -6347,7 +6347,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 223";
 		rLen = 0;
-		rLoc = 7104;
+		rLoc = 5941;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -6357,7 +6357,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 60";
 		rLen = 0;
-		rLoc = 1958;
+		rLoc = 2029;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 955;
@@ -6367,7 +6367,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 140";
 		rLen = 0;
-		rLoc = 4576;
+		rLoc = 4653;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 3723;
@@ -6377,7 +6377,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 23;
-		rLoc = 3953;
+		rLoc = 4024;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 3664;
@@ -6387,7 +6387,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4101;
+		rLoc = 4172;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 3744;
@@ -6397,7 +6397,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4101;
+		rLoc = 4172;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 3744;
@@ -6447,7 +6447,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4101;
+		rLoc = 4172;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 3744;
@@ -6457,7 +6457,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4101;
+		rLoc = 4172;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 3744;
@@ -6467,7 +6467,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 4101;
+		rLoc = 4172;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 3744;
@@ -6477,7 +6477,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 91;
-		rLoc = 3910;
+		rLoc = 3981;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 3722;
@@ -6617,7 +6617,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 130";
 		rLen = 0;
-		rLoc = 3909;
+		rLoc = 3980;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 3667;
@@ -6627,7 +6627,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 237";
 		rLen = 0;
-		rLoc = 7239;
+		rLoc = 6035;
 		rType = 0;
 		vrLen = 571;
 		vrLoc = 6796;
@@ -6637,7 +6637,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 238";
 		rLen = 0;
-		rLoc = 7239;
+		rLoc = 6035;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 6890;
@@ -6657,7 +6657,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 232";
 		rLen = 0;
-		rLoc = 7239;
+		rLoc = 6035;
 		rType = 0;
 		vrLen = 508;
 		vrLoc = 6758;
@@ -6766,8 +6766,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 20";
-		rLen = 2191;
-		rLoc = 394;
+		rLen = 2199;
+		rLoc = 457;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 0;
@@ -6797,7 +6797,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 58";
 		rLen = 62;
-		rLoc = 1549;
+		rLoc = 1615;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 644;
@@ -6807,7 +6807,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 132";
 		rLen = 96;
-		rLoc = 4004;
+		rLoc = 4075;
 		rType = 0;
 		vrLen = 1689;
 		vrLoc = 3455;
@@ -7029,7 +7029,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 132";
 		rLen = 96;
-		rLoc = 4004;
+		rLoc = 4075;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 0;
@@ -7272,7 +7272,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 91;
-		rLoc = 3910;
+		rLoc = 3981;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 3030;
@@ -7282,7 +7282,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 0;
-		rLoc = 4441;
+		rLoc = 4517;
 		rType = 0;
 		vrLen = 1921;
 		vrLoc = 3030;
@@ -7292,7 +7292,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 0;
-		rLoc = 4441;
+		rLoc = 4517;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 0;
@@ -7591,7 +7591,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 42";
 		rLen = 0;
-		rLoc = 1056;
+		rLoc = 1122;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 35;
@@ -7782,8 +7782,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 41";
-		rLen = 103;
-		rLoc = 955;
+		rLen = 106;
+		rLoc = 1018;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 35;
@@ -7803,7 +7803,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 40";
 		rLen = 0;
-		rLoc = 819;
+		rLoc = 885;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 186;
@@ -7871,8 +7871,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 41";
-		rLen = 103;
-		rLoc = 955;
+		rLen = 106;
+		rLoc = 1018;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 230;
@@ -7882,7 +7882,7 @@
 		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
 		name = "ListElectionsController.m: 40";
 		rLen = 0;
-		rLoc = 819;
+		rLoc = 885;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 186;
@@ -8215,7 +8215,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 42";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 1103;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 208;
@@ -8225,10 +8225,3668 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 42";
 		rLen = 0;
-		rLoc = 1054;
+		rLoc = 1120;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 306;
+	};
+	14399B87140DF65C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */;
+		name = "FetchedResultsBasedTableViewController.m: 105";
+		rLen = 0;
+		rLoc = 3794;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 3238;
+	};
+	14399B88140DF65C007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "BallotVote.forPosition -- relationship does not have an inverse ";
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	14399B89140DF65C007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					74.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {562, 220}}",
+						"{{567, 0}, {294, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {861, 220}}",
+						"{{0, 225}, {861, 152}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {212, 220}}",
+						"{{217, 0}, {345, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 137}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399B8A140DF65E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 23";
+		rLen = 1;
+		rLoc = 576;
+		rType = 0;
+		vrLen = 1674;
+		vrLoc = 800;
+	};
+	14399B8B140DF65E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 74";
+		rLen = 91;
+		rLoc = 1739;
+		rType = 0;
+		vrLen = 1265;
+		vrLoc = 0;
+	};
+	14399B8C140DF65E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */;
+		name = "FetchedResultsBasedTableViewController.m: 161";
+		rLen = 0;
+		rLoc = 5337;
+		rType = 0;
+		vrLen = 2189;
+		vrLoc = 4933;
+	};
+	14399B8D140DF65E007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "BallotVote.forPosition -- relationship does not have an inverse ";
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	14399B8E140DF65E007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 452}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -3}, {1066, 437}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x203140e00>{name=Ballot, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMRelationship: 0x200cdbe40>{name=forElection, type=(null)}",
+			);
+		};
+	};
+	14399B90140DF769007269A3 /* DisplayCombinedElection.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = DisplayCombinedElection.h;
+		path = /Users/augusto/projects/supervote/Supervote/Classes/DisplayCombinedElection.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 660}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 256}";
+		};
+	};
+	14399B91140DF769007269A3 /* DisplayCombinedElection.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = DisplayCombinedElection.m;
+		path = /Users/augusto/projects/supervote/Supervote/Classes/DisplayCombinedElection.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 858}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{205, 1348}";
+		};
+	};
+	14399B9A140DF7B8007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 452}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -3}, {1066, 437}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x203140e00>{name=Ballot, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMRelationship: 0x200cdbe40>{name=forElection, type=(null)}",
+			);
+		};
+	};
+	14399B9B140DF7B8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		name = "ChooseCandidateController.h: 29";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 0;
+	};
+	14399B9C140DF7B8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B90140DF769007269A3 /* DisplayCombinedElection.h */;
+		name = "DisplayCombinedElection.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 256;
+		vrLoc = 0;
+	};
+	14399B9D140DF7B8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B91140DF769007269A3 /* DisplayCombinedElection.m */;
+		name = "DisplayCombinedElection.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1348;
+		vrLoc = 205;
+	};
+	14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 676}}";
+			sepNavSelRange = "{482, 0}";
+			sepNavVisRange = "{0, 806}";
+		};
+	};
+	14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 2132}}";
+			sepNavSelRange = "{4059, 0}";
+			sepNavVisRange = "{2533, 1949}";
+		};
+	};
+	14399BA4140DF815007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		name = "ChooseCandidateController.h: 29";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 0;
+	};
+	14399BA5140DF815007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 276;
+		vrLoc = 0;
+	};
+	14399BA6140DF815007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 276;
+		vrLoc = 0;
+	};
+	14399BB8140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
+		name = "DisplayElectionController.h: 21";
+		rLen = 171;
+		rLoc = 437;
+		rType = 0;
+		vrLen = 446;
+		vrLoc = 0;
+	};
+	14399BB9140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */;
+		name = "FetchedResultsBasedTableViewController.h: 25";
+		rLen = 76;
+		rLoc = 733;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 0;
+	};
+	14399BBA140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */;
+		name = "FetchedResultsBasedTableViewController.m: 326";
+		rLen = 84;
+		rLoc = 11269;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 10134;
+	};
+	14399BBB140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 23";
+		rLen = 0;
+		rLoc = 799;
+		rType = 0;
+		vrLen = 627;
+		vrLoc = 0;
+	};
+	14399BBC140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 238";
+		rLen = 0;
+		rLoc = 6054;
+		rType = 0;
+		vrLen = 1465;
+		vrLoc = 3;
+	};
+	14399BBD140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 83";
+		rLen = 0;
+		rLoc = 2297;
+		rType = 0;
+		vrLen = 1971;
+		vrLoc = 1501;
+	};
+	14399BBE140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 86";
+		rLen = 0;
+		rLoc = 5060;
+		rType = 0;
+		vrLen = 1685;
+		vrLoc = 958;
+	};
+	14399BBF140DFB9E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 86";
+		rLen = 0;
+		rLoc = 5060;
+		rType = 0;
+		vrLen = 1569;
+		vrLoc = 1074;
+	};
+	14399BC6140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 86";
+		rLen = 0;
+		rLoc = 5060;
+		rType = 0;
+		vrLen = 1569;
+		vrLoc = 1074;
+	};
+	14399BC7140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
+		name = "ListElectionsController.h: 11";
+		rLen = 38;
+		rLoc = 253;
+		rType = 0;
+		vrLen = 303;
+		vrLoc = 0;
+	};
+	14399BC8140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 83";
+		rLen = 0;
+		rLoc = 2297;
+		rType = 0;
+		vrLen = 1228;
+		vrLoc = 0;
+	};
+	14399BC9140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */;
+		name = "SupervoteViewController.m: 15";
+		rLen = 10;
+		rLoc = 301;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 1241;
+	};
+	14399BCA140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */;
+		name = "SupervoteAppDelegate.h: 9";
+		rLen = 0;
+		rLoc = 153;
+		rType = 0;
+		vrLen = 1347;
+		vrLoc = 0;
+	};
+	14399BCB140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */;
+		name = "SupervoteAppDelegate.m: 131";
+		rLen = 0;
+		rLoc = 4908;
+		rType = 0;
+		vrLen = 2156;
+		vrLoc = 2502;
+	};
+	14399BCC140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 148";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1604;
+		vrLoc = 3628;
+	};
+	14399BCD140DFD5C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 148";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1555;
+		vrLoc = 3677;
+	};
+	14399BCF140DFD6D007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 148";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1555;
+		vrLoc = 3677;
+	};
+	14399BD0140DFD6D007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		rLen = 0;
+		rLoc = 116;
+		rType = 1;
+	};
+	14399BD1140DFD6D007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 49";
+		rLen = 0;
+		rLoc = 3418;
+		rType = 0;
+		vrLen = 1569;
+		vrLoc = 1074;
+	};
+	14399BD4140E01F1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 148";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1554;
+		vrLoc = 3677;
+	};
+	14399BD5140E01F1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */;
+		name = "SupervoteAppDelegate.m: 131";
+		rLen = 0;
+		rLoc = 4908;
+		rType = 0;
+		vrLen = 2154;
+		vrLoc = 2504;
+	};
+	14399BD6140E01F1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 84";
+		rLen = 75;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 1311;
+	};
+	14399BD7140E01F1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 49";
+		rLen = 0;
+		rLoc = 3418;
+		rType = 0;
+		vrLen = 1569;
+		vrLoc = 1074;
+	};
+	14399BD8140E01F1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 51";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1709;
+		vrLoc = 845;
+	};
+	14399BDB140E02CE007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					74.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {562, 220}}",
+						"{{567, 0}, {294, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {861, 220}}",
+						"{{0, 225}, {861, 175}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {212, 220}}",
+						"{{217, 0}, {345, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 160}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399BDC140E02CE007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Object cannot be set - either readonly property or no setter found";
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 116;
+		rType = 1;
+	};
+	14399BDD140E02CE007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 50";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 1194;
+	};
+	14399BE0140E02D8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
+		name = "DisplayElectionController.h: 19";
+		rLen = 19;
+		rLoc = 413;
+		rType = 0;
+		vrLen = 567;
+		vrLoc = 0;
+	};
+	14399BE1140E02D8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 147";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1567;
+		vrLoc = 5402;
+	};
+	14399BE2140E02D8007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Object cannot be set - either readonly property or no setter found";
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 116;
+		rType = 1;
+	};
+	14399BE3140E02D8007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 49";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1527;
+		vrLoc = 933;
+	};
+	14399BE8140E034E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 147";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1567;
+		vrLoc = 5402;
+	};
+	14399BE9140E034E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 84";
+		rLen = 75;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 1829;
+		vrLoc = 1228;
+	};
+	14399BEA140E034E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 49";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1616;
+		vrLoc = 933;
+	};
+	14399BEB140E034E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 50";
+		rLen = 0;
+		rLoc = 3554;
+		rType = 0;
+		vrLen = 1552;
+		vrLoc = 952;
+	};
+	14399BEF140E0989007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		name = "ChooseCandidateController.m: 120";
+		rLen = 347;
+		rLoc = 2734;
+		rType = 0;
+		vrLen = 918;
+		vrLoc = 2676;
+	};
+	14399BF0140E0989007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 50";
+		rLen = 0;
+		rLoc = 3554;
+		rType = 0;
+		vrLen = 1545;
+		vrLoc = 1125;
+	};
+	14399BF1140E0989007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 56";
+		rLen = 0;
+		rLoc = 1686;
+		rType = 0;
+		vrLen = 1293;
+		vrLoc = 286;
+	};
+	14399BF4140E0F4B007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 73";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1050;
+		vrLoc = 1075;
+	};
+	14399BF5140E0F68007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 56";
+		rLen = 0;
+		rLoc = 1686;
+		rType = 0;
+		vrLen = 1386;
+		vrLoc = 286;
+	};
+	14399BF6140E0F68007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 218}}",
+						"{{712, 0}, {369, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 475}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -14}, {1066, 460}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x2047dd780>{name=MeasureVote, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMRelationship: 0x204e90880>{name=forMeasure, type=(null)}",
+			);
+		};
+	};
+	14399BF7140E0F68007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 147";
+		rLen = 0;
+		rLoc = 4652;
+		rType = 0;
+		vrLen = 1477;
+		vrLoc = 5529;
+	};
+	14399BF8140E0F68007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 136";
+		rLen = 91;
+		rLoc = 3981;
+		rType = 0;
+		vrLen = 1608;
+		vrLoc = 1164;
+	};
+	14399C05140E168C007269A3 /* MeasureVote.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 407}";
+		};
+	};
+	14399C06140E168C007269A3 /* MeasureVote.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 283}";
+		};
+	};
+	14399C09140E168C007269A3 /* Measure.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 609}";
+		};
+	};
+	14399C0A140E168C007269A3 /* Measure.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 342}";
+		};
+	};
+	14399C18140E16BE007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 73";
+		rLen = 0;
+		rLoc = 3556;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 1075;
+	};
+	14399C19140E16BE007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Ballot.forElection -- relationship does not have an inverse ";
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	14399C1A140E16BE007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					75.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {562, 218}}",
+						"{{567, 0}, {294, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {861, 220}}",
+						"{{0, 225}, {861, 175}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {213, 218}}",
+						"{{218, 0}, {344, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 160}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C23140E16C6007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		name = "ChooseCandidateController.h: 29";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 0;
+	};
+	14399C24140E16C6007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		name = "ChooseCandidateController.m: 117";
+		rLen = 0;
+		rLoc = 2731;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 0;
+	};
+	14399C25140E16C6007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 84";
+		rLen = 75;
+		rLoc = 2299;
+		rType = 0;
+		vrLen = 2747;
+		vrLoc = 6133;
+	};
+	14399C26140E16C6007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 43";
+		rLen = 0;
+		rLoc = 1096;
+		rType = 0;
+		vrLen = 1480;
+		vrLoc = 5601;
+	};
+	14399C27140E16C6007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C05140E168C007269A3 /* MeasureVote.h */;
+		name = "MeasureVote.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 407;
+		vrLoc = 0;
+	};
+	14399C28140E16C6007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					130.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {268, 220}}",
+						"{{273, 0}, {434, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					171.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x200be5b80>{name=Election, package=}",
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C29140E16C6007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					130.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {268, 220}}",
+						"{{273, 0}, {434, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					171.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C35140E1753007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					130.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {268, 220}}",
+						"{{273, 0}, {434, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					171.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x200be5b80>{name=Election, package=}",
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C36140E1753007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C09140E168C007269A3 /* Measure.h */;
+		name = "Measure.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 561;
+		vrLoc = 0;
+	};
+	14399C37140E1753007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C0A140E168C007269A3 /* Measure.m */;
+		name = "Measure.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 0;
+	};
+	14399C38140E1753007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C0A140E168C007269A3 /* Measure.m */;
+		name = "Measure.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 0;
+	};
+	14399C49140E181E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C0A140E168C007269A3 /* Measure.m */;
+		name = "Measure.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 0;
+	};
+	14399C4A140E181E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 270";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2145;
+		vrLoc = 9462;
+	};
+	14399C4C140E18F9007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x200be5b80>{name=Election, package=}",
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C4D140E18F9007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 43";
+		rLen = 0;
+		rLoc = 1096;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 5693;
+	};
+	14399C4E140E18F9007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 250";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2148;
+		vrLoc = 9462;
+	};
+	14399C4F140E18F9007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 272";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2048;
+		vrLoc = 9783;
+	};
+	14399C50140E196C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C0A140E168C007269A3 /* Measure.m */;
+		name = "Measure.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 0;
+	};
+	14399C51140E196C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 274";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2167;
+		vrLoc = 9783;
+	};
+	14399C52140E196C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 276";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2218;
+		vrLoc = 9783;
+	};
+	14399C5D140E1A4F007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 220}}",
+						"{{272, 0}, {433, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x200be5b80>{name=Election, package=}",
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C5E140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C0A140E168C007269A3 /* Measure.m */;
+		name = "Measure.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 342;
+		vrLoc = 0;
+	};
+	14399C5F140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2E13EBBBF20016044C /* SettingsController.h */;
+		name = "SettingsController.h: 7";
+		rLen = 0;
+		rLoc = 146;
+		rType = 0;
+		vrLen = 214;
+		vrLoc = 0;
+	};
+	14399C60140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */;
+		name = "SupervoteViewController.h: 9";
+		rLen = 0;
+		rLoc = 156;
+		rType = 0;
+		vrLen = 645;
+		vrLoc = 0;
+	};
+	14399C61140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 43";
+		rLen = 0;
+		rLoc = 1096;
+		rType = 0;
+		vrLen = 1389;
+		vrLoc = 5693;
+	};
+	14399C62140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
+		name = "DisplayElectionController.h: 19";
+		rLen = 19;
+		rLoc = 413;
+		rType = 0;
+		vrLen = 567;
+		vrLoc = 0;
+	};
+	14399C63140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		name = "ChooseCandidateController.m: 117";
+		rLen = 0;
+		rLoc = 2731;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 0;
+	};
+	14399C64140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		name = "ChooseCandidateController.h: 29";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 0;
+	};
+	14399C65140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 23";
+		rLen = 0;
+		rLoc = 799;
+		rType = 0;
+		vrLen = 627;
+		vrLoc = 0;
+	};
+	14399C66140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */;
+		name = "SupervoteAppDelegate.h: 35";
+		rLen = 41;
+		rLoc = 1265;
+		rType = 0;
+		vrLen = 1347;
+		vrLoc = 0;
+	};
+	14399C67140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2413EBBB9E0016044C /* ListElectionsController.h */;
+		name = "ListElectionsController.h: 15";
+		rLen = 24;
+		rLoc = 298;
+		rType = 0;
+		vrLen = 328;
+		vrLoc = 0;
+	};
+	14399C68140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 277";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2278;
+		vrLoc = 9810;
+	};
+	14399C69140E1A4F007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 120";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 1912;
+		vrLoc = 3020;
+	};
+	14399C6F140E1AF1007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 218}}",
+						"{{712, 0}, {369, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x200be5b80>{name=Election, package=}",
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C70140E1AF1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 120";
+		rLen = 0;
+		rLoc = 3664;
+		rType = 0;
+		vrLen = 2104;
+		vrLoc = 3024;
+	};
+	14399C71140E1AF1007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 278";
+		rLen = 0;
+		rLoc = 11443;
+		rType = 0;
+		vrLen = 1922;
+		vrLoc = 10306;
+	};
+	14399C72140E1B07007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 278";
+		rLen = 0;
+		rLoc = 11441;
+		rType = 0;
+		vrLen = 1954;
+		vrLoc = 10306;
+	};
+	14399C75140E1C77007269A3 /* ListMeasuresController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 611}";
+			sepNavWindowFrame = "{{507, 32}, {941, 371}}";
+		};
+	};
+	14399C76140E1C77007269A3 /* ListMeasuresController.m */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{5083, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5134, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5184, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5960}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {950, 2756}}";
+			sepNavSelRange = "{1768, 0}";
+			sepNavVisRange = "{1479, 984}";
+			sepNavWindowFrame = "{{493, 4}, {947, 738}}";
+		};
+	};
+	14399C90140E2499007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					75.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {562, 218}}",
+						"{{567, 0}, {294, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {861, 220}}",
+						"{{0, 225}, {861, 175}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {213, 218}}",
+						"{{218, 0}, {344, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 160}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399C91140E2499007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'error' undeclared (first use in this function)";
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 82;
+		rType = 1;
+	};
+	14399C92140E2499007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 78";
+		rLen = 0;
+		rLoc = 2431;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 1662;
+	};
+	14399C97140E24A7007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 78";
+		rLen = 0;
+		rLoc = 2431;
+		rType = 0;
+		vrLen = 1099;
+		vrLoc = 1665;
+	};
+	14399C98140E24A7007269A3 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'ballot' undeclared (first use in this function)";
+		fRef = 14399C76140E1C77007269A3 /* ListMeasuresController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 59;
+		rType = 1;
+	};
+	14399C99140E24A7007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C76140E1C77007269A3 /* ListMeasuresController.m */;
+		name = "ListMeasuresController.m: 60";
+		rLen = 0;
+		rLoc = 1768;
+		rType = 0;
+		vrLen = 1058;
+		vrLoc = 1373;
+	};
+	14399CB0140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 281";
+		rLen = 0;
+		rLoc = 11582;
+		rType = 0;
+		vrLen = 1839;
+		vrLoc = 10503;
+	};
+	14399CB1140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		name = "ChooseCandidateController.m: 117";
+		rLen = 0;
+		rLoc = 2731;
+		rType = 0;
+		vrLen = 1176;
+		vrLoc = 0;
+	};
+	14399CB2140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		name = "ChooseCandidateController.h: 29";
+		rLen = 0;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 685;
+		vrLoc = 0;
+	};
+	14399CB3140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */;
+		name = "FetchedResultsBasedTableViewController.m: 326";
+		rLen = 84;
+		rLoc = 11269;
+		rType = 0;
+		vrLen = 1251;
+		vrLoc = 10134;
+	};
+	14399CB4140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */;
+		name = "FetchedResultsBasedTableViewController.h: 25";
+		rLen = 76;
+		rLoc = 733;
+		rType = 0;
+		vrLen = 899;
+		vrLoc = 0;
+	};
+	14399CB5140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B43D14082BE0006F8DBF /* Position.h */;
+		name = "Position.h: 23";
+		rLen = 0;
+		rLoc = 519;
+		rType = 0;
+		vrLen = 802;
+		vrLoc = 0;
+	};
+	14399CB6140E26C3007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					130.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 218}}",
+						"{{712, 0}, {369, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 466}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {268, 218}}",
+						"{{273, 0}, {434, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					171.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, -10}, {1066, 451}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399CB7140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C09140E168C007269A3 /* Measure.h */;
+		name = "Measure.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 609;
+		vrLoc = 0;
+	};
+	14399CB8140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C06140E168C007269A3 /* MeasureVote.m */;
+		name = "MeasureVote.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 283;
+		vrLoc = 0;
+	};
+	14399CB9140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C05140E168C007269A3 /* MeasureVote.h */;
+		name = "MeasureVote.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 407;
+		vrLoc = 0;
+	};
+	14399CBA140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */;
+		name = "DisplayElectionController.h: 18";
+		rLen = 0;
+		rLoc = 380;
+		rType = 0;
+		vrLen = 614;
+		vrLoc = 0;
+	};
+	14399CBB140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C75140E1C77007269A3 /* ListMeasuresController.h */;
+		name = "ListMeasuresController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 611;
+		vrLoc = 0;
+	};
+	14399CBC140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C76140E1C77007269A3 /* ListMeasuresController.m */;
+		name = "ListMeasuresController.m: 60";
+		rLen = 0;
+		rLoc = 1872;
+		rType = 0;
+		vrLen = 1631;
+		vrLoc = 4204;
+	};
+	14399CBD140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 21";
+		rLen = 0;
+		rLoc = 482;
+		rType = 0;
+		vrLen = 806;
+		vrLoc = 0;
+	};
+	14399CBE140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 118";
+		rLen = 0;
+		rLoc = 3608;
+		rType = 0;
+		vrLen = 1853;
+		vrLoc = 3071;
+	};
+	14399CBF140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 143";
+		rLen = 0;
+		rLoc = 4447;
+		rType = 0;
+		vrLen = 1807;
+		vrLoc = 732;
+	};
+	14399CC0140E26C3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 143";
+		rLen = 0;
+		rLoc = 4447;
+		rType = 0;
+		vrLen = 1783;
+		vrLoc = 3898;
+	};
+	14399CC6140E26FA007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399C76140E1C77007269A3 /* ListMeasuresController.m */;
+		name = "ListMeasuresController.m: 60";
+		rLen = 0;
+		rLoc = 1768;
+		rType = 0;
+		vrLen = 984;
+		vrLoc = 1479;
+	};
+	14399CC7140E26FC007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 143";
+		rLen = 0;
+		rLoc = 4447;
+		rType = 0;
+		vrLen = 1783;
+		vrLoc = 3898;
+	};
+	14399CCD140E2777007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 143";
+		rLen = 0;
+		rLoc = 4447;
+		rType = 0;
+		vrLen = 1783;
+		vrLoc = 3898;
+	};
+	14399CCE140E2777007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 120";
+		rLen = 0;
+		rLoc = 3642;
+		rType = 0;
+		vrLen = 2064;
+		vrLoc = 3240;
+	};
+	14399CCF140E2777007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 118";
+		rLen = 0;
+		rLoc = 3608;
+		rType = 0;
+		vrLen = 1832;
+		vrLoc = 3071;
+	};
+	14399CD0140E2777007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1825;
+		vrLoc = 3064;
+	};
+	14399CD6140E282A007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1825;
+		vrLoc = 3064;
+	};
+	14399CD7140E282A007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1827;
+		vrLoc = 3064;
+	};
+	14399CD9140E284D007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1823;
+		vrLoc = 1807;
+	};
+	14399CDF140E2ABD007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */;
+		name = "DisplayCombinedElectionController.h: 21";
+		rLen = 0;
+		rLoc = 482;
+		rType = 0;
+		vrLen = 806;
+		vrLoc = 0;
+	};
+	14399CE0140E2ABD007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1585;
+		vrLoc = 1515;
+	};
+	14399CE1140E2ABD007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1887;
+		vrLoc = 2533;
+	};
+	14399CE5140E2AD5007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1870;
+		vrLoc = 2533;
+	};
+	14399CE9140E2B0C007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1882;
+		vrLoc = 2533;
+	};
+	14399CF1140E2D31007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1898;
+		vrLoc = 2533;
+	};
+	14399CF5140E2D99007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1959;
+		vrLoc = 2533;
+	};
+	14399CFB140E2F47007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 129";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1872;
+		vrLoc = 2533;
+	};
+	14399CFF140E2F63007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1874;
+		vrLoc = 2533;
+	};
+	14399D01140E2F7E007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4154;
+		rType = 0;
+		vrLen = 1965;
+		vrLoc = 2533;
+	};
+	14399D06140E31FC007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 118";
+		rLen = 0;
+		rLoc = 3606;
+		rType = 0;
+		vrLen = 1973;
+		vrLoc = 2533;
+	};
+	14399D0A140E3210007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 128";
+		rLen = 0;
+		rLoc = 4117;
+		rType = 0;
+		vrLen = 1973;
+		vrLoc = 2533;
+	};
+	14399D10140E339B007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */;
+		name = "DisplayCombinedElectionController.m: 129";
+		rLen = 0;
+		rLoc = 4059;
+		rType = 0;
+		vrLen = 1949;
+		vrLoc = 2533;
 	};
 	14789DCC13E8FD500016044C /* Supervote */ = {
 		isa = PBXExecutable;
@@ -8297,23 +11955,23 @@
 	};
 	14789F2413EBBB9E0016044C /* ListElectionsController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 522}}";
-			sepNavSelRange = "{253, 38}";
-			sepNavVisRange = "{0, 303}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{298, 24}";
+			sepNavVisRange = "{0, 328}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
 	14789F2513EBBB9E0016044C /* ListElectionsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 4186}}";
-			sepNavSelRange = "{819, 0}";
-			sepNavVisRange = "{186, 1079}";
+			sepNavIntBoundsRect = "{{0, 0}, {1188, 4407}}";
+			sepNavSelRange = "{3642, 0}";
+			sepNavVisRange = "{3240, 2064}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
 	14789F2E13EBBBF20016044C /* SettingsController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 522}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
 			sepNavSelRange = "{146, 0}";
 			sepNavVisRange = "{0, 214}";
 		};
@@ -8327,16 +11985,16 @@
 	};
 	14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 684}}";
-			sepNavSelRange = "{298, 38}";
-			sepNavVisRange = "{0, 446}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{380, 0}";
+			sepNavVisRange = "{0, 614}";
 		};
 	};
 	14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 3250}}";
-			sepNavSelRange = "{1054, 0}";
-			sepNavVisRange = "{306, 1162}";
+			sepNavIntBoundsRect = "{{0, 0}, {1153, 2613}}";
+			sepNavSelRange = "{4447, 0}";
+			sepNavVisRange = "{3898, 1783}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -8346,16 +12004,16 @@
 	};
 	1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 532}}";
-			sepNavSelRange = "{153, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
+			sepNavSelRange = "{1265, 41}";
 			sepNavVisRange = "{0, 1347}";
 		};
 	};
 	1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2343, 2834}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1965, 2938}}";
 			sepNavSelRange = "{4908, 0}";
-			sepNavVisRange = "{7392, 1186}";
+			sepNavVisRange = "{2504, 2154}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -8367,7 +12025,7 @@
 	};
 	28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {917, 507}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 651}}";
 			sepNavSelRange = "{156, 0}";
 			sepNavVisRange = "{0, 645}";
 		};
@@ -8376,7 +12034,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1022, 1287}}";
 			sepNavSelRange = "{301, 10}";
-			sepNavVisRange = "{0, 949}";
+			sepNavVisRange = "{1241, 1292}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -9043,6 +12701,149 @@
 			14399B75140DD1A3007269A3 /* XDModelBookmark */ = 14399B75140DD1A3007269A3 /* XDModelBookmark */;
 			14399B76140DD1A3007269A3 /* PBXTextBookmark */ = 14399B76140DD1A3007269A3 /* PBXTextBookmark */;
 			14399B77140DD1A3007269A3 /* PBXTextBookmark */ = 14399B77140DD1A3007269A3 /* PBXTextBookmark */;
+			14399B87140DF65C007269A3 /* PBXTextBookmark */ = 14399B87140DF65C007269A3 /* PBXTextBookmark */;
+			14399B88140DF65C007269A3 /* XCBuildMessageTextBookmark */ = 14399B88140DF65C007269A3 /* XCBuildMessageTextBookmark */;
+			14399B89140DF65C007269A3 /* XDModelBookmark */ = 14399B89140DF65C007269A3 /* XDModelBookmark */;
+			14399B8A140DF65E007269A3 /* PBXTextBookmark */ = 14399B8A140DF65E007269A3 /* PBXTextBookmark */;
+			14399B8B140DF65E007269A3 /* PBXTextBookmark */ = 14399B8B140DF65E007269A3 /* PBXTextBookmark */;
+			14399B8C140DF65E007269A3 /* PBXTextBookmark */ = 14399B8C140DF65E007269A3 /* PBXTextBookmark */;
+			14399B8D140DF65E007269A3 /* XCBuildMessageTextBookmark */ = 14399B8D140DF65E007269A3 /* XCBuildMessageTextBookmark */;
+			14399B8E140DF65E007269A3 /* XDModelBookmark */ = 14399B8E140DF65E007269A3 /* XDModelBookmark */;
+			14399B9A140DF7B8007269A3 /* XDModelBookmark */ = 14399B9A140DF7B8007269A3 /* XDModelBookmark */;
+			14399B9B140DF7B8007269A3 /* PBXTextBookmark */ = 14399B9B140DF7B8007269A3 /* PBXTextBookmark */;
+			14399B9C140DF7B8007269A3 /* PBXTextBookmark */ = 14399B9C140DF7B8007269A3 /* PBXTextBookmark */;
+			14399B9D140DF7B8007269A3 /* PBXTextBookmark */ = 14399B9D140DF7B8007269A3 /* PBXTextBookmark */;
+			14399BA4140DF815007269A3 /* PBXTextBookmark */ = 14399BA4140DF815007269A3 /* PBXTextBookmark */;
+			14399BA5140DF815007269A3 /* PBXTextBookmark */ = 14399BA5140DF815007269A3 /* PBXTextBookmark */;
+			14399BA6140DF815007269A3 /* PBXTextBookmark */ = 14399BA6140DF815007269A3 /* PBXTextBookmark */;
+			14399BB8140DFB9E007269A3 /* PBXTextBookmark */ = 14399BB8140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BB9140DFB9E007269A3 /* PBXTextBookmark */ = 14399BB9140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBA140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBA140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBB140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBB140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBC140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBC140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBD140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBD140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBE140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBE140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BBF140DFB9E007269A3 /* PBXTextBookmark */ = 14399BBF140DFB9E007269A3 /* PBXTextBookmark */;
+			14399BC6140DFD5C007269A3 /* PBXTextBookmark */ = 14399BC6140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BC7140DFD5C007269A3 /* PBXTextBookmark */ = 14399BC7140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BC8140DFD5C007269A3 /* PBXTextBookmark */ = 14399BC8140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BC9140DFD5C007269A3 /* PBXTextBookmark */ = 14399BC9140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BCA140DFD5C007269A3 /* PBXTextBookmark */ = 14399BCA140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BCB140DFD5C007269A3 /* PBXTextBookmark */ = 14399BCB140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BCC140DFD5C007269A3 /* PBXTextBookmark */ = 14399BCC140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BCD140DFD5C007269A3 /* PBXTextBookmark */ = 14399BCD140DFD5C007269A3 /* PBXTextBookmark */;
+			14399BCF140DFD6D007269A3 /* PBXTextBookmark */ = 14399BCF140DFD6D007269A3 /* PBXTextBookmark */;
+			14399BD0140DFD6D007269A3 /* PBXTextBookmark */ = 14399BD0140DFD6D007269A3 /* PBXTextBookmark */;
+			14399BD1140DFD6D007269A3 /* PBXTextBookmark */ = 14399BD1140DFD6D007269A3 /* PBXTextBookmark */;
+			14399BD4140E01F1007269A3 /* PBXTextBookmark */ = 14399BD4140E01F1007269A3 /* PBXTextBookmark */;
+			14399BD5140E01F1007269A3 /* PBXTextBookmark */ = 14399BD5140E01F1007269A3 /* PBXTextBookmark */;
+			14399BD6140E01F1007269A3 /* PBXTextBookmark */ = 14399BD6140E01F1007269A3 /* PBXTextBookmark */;
+			14399BD7140E01F1007269A3 /* PBXTextBookmark */ = 14399BD7140E01F1007269A3 /* PBXTextBookmark */;
+			14399BD8140E01F1007269A3 /* PBXTextBookmark */ = 14399BD8140E01F1007269A3 /* PBXTextBookmark */;
+			14399BDB140E02CE007269A3 /* XDModelBookmark */ = 14399BDB140E02CE007269A3 /* XDModelBookmark */;
+			14399BDC140E02CE007269A3 /* XCBuildMessageTextBookmark */ = 14399BDC140E02CE007269A3 /* XCBuildMessageTextBookmark */;
+			14399BDD140E02CE007269A3 /* PBXTextBookmark */ = 14399BDD140E02CE007269A3 /* PBXTextBookmark */;
+			14399BE0140E02D8007269A3 /* PBXTextBookmark */ = 14399BE0140E02D8007269A3 /* PBXTextBookmark */;
+			14399BE1140E02D8007269A3 /* PBXTextBookmark */ = 14399BE1140E02D8007269A3 /* PBXTextBookmark */;
+			14399BE2140E02D8007269A3 /* XCBuildMessageTextBookmark */ = 14399BE2140E02D8007269A3 /* XCBuildMessageTextBookmark */;
+			14399BE3140E02D8007269A3 /* PBXTextBookmark */ = 14399BE3140E02D8007269A3 /* PBXTextBookmark */;
+			14399BE8140E034E007269A3 /* PBXTextBookmark */ = 14399BE8140E034E007269A3 /* PBXTextBookmark */;
+			14399BE9140E034E007269A3 /* PBXTextBookmark */ = 14399BE9140E034E007269A3 /* PBXTextBookmark */;
+			14399BEA140E034E007269A3 /* PBXTextBookmark */ = 14399BEA140E034E007269A3 /* PBXTextBookmark */;
+			14399BEB140E034E007269A3 /* PBXTextBookmark */ = 14399BEB140E034E007269A3 /* PBXTextBookmark */;
+			14399BEF140E0989007269A3 /* PBXTextBookmark */ = 14399BEF140E0989007269A3 /* PBXTextBookmark */;
+			14399BF0140E0989007269A3 /* PBXTextBookmark */ = 14399BF0140E0989007269A3 /* PBXTextBookmark */;
+			14399BF1140E0989007269A3 /* PBXTextBookmark */ = 14399BF1140E0989007269A3 /* PBXTextBookmark */;
+			14399BF4140E0F4B007269A3 /* PBXTextBookmark */ = 14399BF4140E0F4B007269A3 /* PBXTextBookmark */;
+			14399BF5140E0F68007269A3 /* PBXTextBookmark */ = 14399BF5140E0F68007269A3 /* PBXTextBookmark */;
+			14399BF6140E0F68007269A3 /* XDModelBookmark */ = 14399BF6140E0F68007269A3 /* XDModelBookmark */;
+			14399BF7140E0F68007269A3 /* PBXTextBookmark */ = 14399BF7140E0F68007269A3 /* PBXTextBookmark */;
+			14399BF8140E0F68007269A3 /* PBXTextBookmark */ = 14399BF8140E0F68007269A3 /* PBXTextBookmark */;
+			14399C18140E16BE007269A3 /* PBXTextBookmark */ = 14399C18140E16BE007269A3 /* PBXTextBookmark */;
+			14399C19140E16BE007269A3 /* XCBuildMessageTextBookmark */ = 14399C19140E16BE007269A3 /* XCBuildMessageTextBookmark */;
+			14399C1A140E16BE007269A3 /* XDModelBookmark */ = 14399C1A140E16BE007269A3 /* XDModelBookmark */;
+			14399C23140E16C6007269A3 /* PBXTextBookmark */ = 14399C23140E16C6007269A3 /* PBXTextBookmark */;
+			14399C24140E16C6007269A3 /* PBXTextBookmark */ = 14399C24140E16C6007269A3 /* PBXTextBookmark */;
+			14399C25140E16C6007269A3 /* PBXTextBookmark */ = 14399C25140E16C6007269A3 /* PBXTextBookmark */;
+			14399C26140E16C6007269A3 /* PBXTextBookmark */ = 14399C26140E16C6007269A3 /* PBXTextBookmark */;
+			14399C27140E16C6007269A3 /* PBXTextBookmark */ = 14399C27140E16C6007269A3 /* PBXTextBookmark */;
+			14399C28140E16C6007269A3 /* XDModelBookmark */ = 14399C28140E16C6007269A3 /* XDModelBookmark */;
+			14399C29140E16C6007269A3 /* XDModelBookmark */ = 14399C29140E16C6007269A3 /* XDModelBookmark */;
+			14399C35140E1753007269A3 /* XDModelBookmark */ = 14399C35140E1753007269A3 /* XDModelBookmark */;
+			14399C36140E1753007269A3 /* PBXTextBookmark */ = 14399C36140E1753007269A3 /* PBXTextBookmark */;
+			14399C37140E1753007269A3 /* PBXTextBookmark */ = 14399C37140E1753007269A3 /* PBXTextBookmark */;
+			14399C38140E1753007269A3 /* PBXTextBookmark */ = 14399C38140E1753007269A3 /* PBXTextBookmark */;
+			14399C49140E181E007269A3 /* PBXTextBookmark */ = 14399C49140E181E007269A3 /* PBXTextBookmark */;
+			14399C4A140E181E007269A3 /* PBXTextBookmark */ = 14399C4A140E181E007269A3 /* PBXTextBookmark */;
+			14399C4C140E18F9007269A3 /* XDModelBookmark */ = 14399C4C140E18F9007269A3 /* XDModelBookmark */;
+			14399C4D140E18F9007269A3 /* PBXTextBookmark */ = 14399C4D140E18F9007269A3 /* PBXTextBookmark */;
+			14399C4E140E18F9007269A3 /* PBXTextBookmark */ = 14399C4E140E18F9007269A3 /* PBXTextBookmark */;
+			14399C4F140E18F9007269A3 /* PBXTextBookmark */ = 14399C4F140E18F9007269A3 /* PBXTextBookmark */;
+			14399C50140E196C007269A3 /* PBXTextBookmark */ = 14399C50140E196C007269A3 /* PBXTextBookmark */;
+			14399C51140E196C007269A3 /* PBXTextBookmark */ = 14399C51140E196C007269A3 /* PBXTextBookmark */;
+			14399C52140E196C007269A3 /* PBXTextBookmark */ = 14399C52140E196C007269A3 /* PBXTextBookmark */;
+			14399C5D140E1A4F007269A3 /* XDModelBookmark */ = 14399C5D140E1A4F007269A3 /* XDModelBookmark */;
+			14399C5E140E1A4F007269A3 /* PBXTextBookmark */ = 14399C5E140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C5F140E1A4F007269A3 /* PBXTextBookmark */ = 14399C5F140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C60140E1A4F007269A3 /* PBXTextBookmark */ = 14399C60140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C61140E1A4F007269A3 /* PBXTextBookmark */ = 14399C61140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C62140E1A4F007269A3 /* PBXTextBookmark */ = 14399C62140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C63140E1A4F007269A3 /* PBXTextBookmark */ = 14399C63140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C64140E1A4F007269A3 /* PBXTextBookmark */ = 14399C64140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C65140E1A4F007269A3 /* PBXTextBookmark */ = 14399C65140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C66140E1A4F007269A3 /* PBXTextBookmark */ = 14399C66140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C67140E1A4F007269A3 /* PBXTextBookmark */ = 14399C67140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C68140E1A4F007269A3 /* PBXTextBookmark */ = 14399C68140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C69140E1A4F007269A3 /* PBXTextBookmark */ = 14399C69140E1A4F007269A3 /* PBXTextBookmark */;
+			14399C6F140E1AF1007269A3 /* XDModelBookmark */ = 14399C6F140E1AF1007269A3 /* XDModelBookmark */;
+			14399C70140E1AF1007269A3 /* PBXTextBookmark */ = 14399C70140E1AF1007269A3 /* PBXTextBookmark */;
+			14399C71140E1AF1007269A3 /* PBXTextBookmark */ = 14399C71140E1AF1007269A3 /* PBXTextBookmark */;
+			14399C72140E1B07007269A3 /* PBXTextBookmark */ = 14399C72140E1B07007269A3 /* PBXTextBookmark */;
+			14399C90140E2499007269A3 /* XDModelBookmark */ = 14399C90140E2499007269A3 /* XDModelBookmark */;
+			14399C91140E2499007269A3 /* XCBuildMessageTextBookmark */ = 14399C91140E2499007269A3 /* XCBuildMessageTextBookmark */;
+			14399C92140E2499007269A3 /* PBXTextBookmark */ = 14399C92140E2499007269A3 /* PBXTextBookmark */;
+			14399C97140E24A7007269A3 /* PBXTextBookmark */ = 14399C97140E24A7007269A3 /* PBXTextBookmark */;
+			14399C98140E24A7007269A3 /* XCBuildMessageTextBookmark */ = 14399C98140E24A7007269A3 /* XCBuildMessageTextBookmark */;
+			14399C99140E24A7007269A3 /* PBXTextBookmark */ = 14399C99140E24A7007269A3 /* PBXTextBookmark */;
+			14399CB0140E26C3007269A3 /* PBXTextBookmark */ = 14399CB0140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB1140E26C3007269A3 /* PBXTextBookmark */ = 14399CB1140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB2140E26C3007269A3 /* PBXTextBookmark */ = 14399CB2140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB3140E26C3007269A3 /* PBXTextBookmark */ = 14399CB3140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB4140E26C3007269A3 /* PBXTextBookmark */ = 14399CB4140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB5140E26C3007269A3 /* PBXTextBookmark */ = 14399CB5140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB6140E26C3007269A3 /* XDModelBookmark */ = 14399CB6140E26C3007269A3 /* XDModelBookmark */;
+			14399CB7140E26C3007269A3 /* PBXTextBookmark */ = 14399CB7140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB8140E26C3007269A3 /* PBXTextBookmark */ = 14399CB8140E26C3007269A3 /* PBXTextBookmark */;
+			14399CB9140E26C3007269A3 /* PBXTextBookmark */ = 14399CB9140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBA140E26C3007269A3 /* PBXTextBookmark */ = 14399CBA140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBB140E26C3007269A3 /* PBXTextBookmark */ = 14399CBB140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBC140E26C3007269A3 /* PBXTextBookmark */ = 14399CBC140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBD140E26C3007269A3 /* PBXTextBookmark */ = 14399CBD140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBE140E26C3007269A3 /* PBXTextBookmark */ = 14399CBE140E26C3007269A3 /* PBXTextBookmark */;
+			14399CBF140E26C3007269A3 /* PBXTextBookmark */ = 14399CBF140E26C3007269A3 /* PBXTextBookmark */;
+			14399CC0140E26C3007269A3 /* PBXTextBookmark */ = 14399CC0140E26C3007269A3 /* PBXTextBookmark */;
+			14399CC6140E26FA007269A3 /* PBXTextBookmark */ = 14399CC6140E26FA007269A3 /* PBXTextBookmark */;
+			14399CC7140E26FC007269A3 /* PBXTextBookmark */ = 14399CC7140E26FC007269A3 /* PBXTextBookmark */;
+			14399CCD140E2777007269A3 /* PBXTextBookmark */ = 14399CCD140E2777007269A3 /* PBXTextBookmark */;
+			14399CCE140E2777007269A3 /* PBXTextBookmark */ = 14399CCE140E2777007269A3 /* PBXTextBookmark */;
+			14399CCF140E2777007269A3 /* PBXTextBookmark */ = 14399CCF140E2777007269A3 /* PBXTextBookmark */;
+			14399CD0140E2777007269A3 /* PBXTextBookmark */ = 14399CD0140E2777007269A3 /* PBXTextBookmark */;
+			14399CD6140E282A007269A3 /* PBXTextBookmark */ = 14399CD6140E282A007269A3 /* PBXTextBookmark */;
+			14399CD7140E282A007269A3 /* PBXTextBookmark */ = 14399CD7140E282A007269A3 /* PBXTextBookmark */;
+			14399CD9140E284D007269A3 /* PBXTextBookmark */ = 14399CD9140E284D007269A3 /* PBXTextBookmark */;
+			14399CDF140E2ABD007269A3 /* PBXTextBookmark */ = 14399CDF140E2ABD007269A3 /* PBXTextBookmark */;
+			14399CE0140E2ABD007269A3 /* PBXTextBookmark */ = 14399CE0140E2ABD007269A3 /* PBXTextBookmark */;
+			14399CE1140E2ABD007269A3 /* PBXTextBookmark */ = 14399CE1140E2ABD007269A3 /* PBXTextBookmark */;
+			14399CE5140E2AD5007269A3 /* PBXTextBookmark */ = 14399CE5140E2AD5007269A3 /* PBXTextBookmark */;
+			14399CE9140E2B0C007269A3 /* PBXTextBookmark */ = 14399CE9140E2B0C007269A3 /* PBXTextBookmark */;
+			14399CF1140E2D31007269A3 /* PBXTextBookmark */ = 14399CF1140E2D31007269A3 /* PBXTextBookmark */;
+			14399CF5140E2D99007269A3 /* PBXTextBookmark */ = 14399CF5140E2D99007269A3 /* PBXTextBookmark */;
+			14399CFB140E2F47007269A3 /* PBXTextBookmark */ = 14399CFB140E2F47007269A3 /* PBXTextBookmark */;
+			14399CFF140E2F63007269A3 /* PBXTextBookmark */ = 14399CFF140E2F63007269A3 /* PBXTextBookmark */;
+			14399D01140E2F7E007269A3 /* PBXTextBookmark */ = 14399D01140E2F7E007269A3 /* PBXTextBookmark */;
+			14399D06140E31FC007269A3 /* PBXTextBookmark */ = 14399D06140E31FC007269A3 /* PBXTextBookmark */;
+			14399D0A140E3210007269A3 /* PBXTextBookmark */ = 14399D0A140E3210007269A3 /* PBXTextBookmark */;
+			14399D10140E339B007269A3 /* PBXTextBookmark */ = 14399D10140E339B007269A3 /* PBXTextBookmark */;
 			14A877AE13F24037006B9D73 = 14A877AE13F24037006B9D73 /* PBXBookmark */;
 		};
 		sourceControlManager = 14789DDD13E8FD560016044C /* Source Control */;

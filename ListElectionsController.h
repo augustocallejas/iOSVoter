@@ -12,4 +12,6 @@
 
 }
 
+- (void)insertTestData;
+
 @end

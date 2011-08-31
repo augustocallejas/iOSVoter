@@ -15,9 +15,12 @@
 
 @private
 	Election *election;
-	Ballot *ballot;
+	Ballot *_ballot;
+	UINavigationController* parentNavController;
 }
 
 @property (nonatomic, retain) Election *election;
+@property (nonatomic, retain) Ballot *ballot;
+@property (nonatomic, retain) UINavigationController *parentNavController;
 
 @end

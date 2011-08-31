@@ -17,6 +17,12 @@
 		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
 		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
 		143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */; };
+		14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */; };
+		14399BA0140DF80A007269A3 /* DisplayCombinedElectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */; };
+		14399C10140E168C007269A3 /* MeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C06140E168C007269A3 /* MeasureVote.m */; };
+		14399C12140E168C007269A3 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C0A140E168C007269A3 /* Measure.m */; };
+		14399C78140E1C77007269A3 /* ListMeasuresController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C76140E1C77007269A3 /* ListMeasuresController.m */; };
+		14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399C77140E1C77007269A3 /* ListMeasures.xib */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -54,6 +60,16 @@
 		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
 		143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsBasedTableViewController.h; sourceTree = "<group>"; };
 		143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsBasedTableViewController.m; sourceTree = "<group>"; };
+		14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayCombinedElection.xib; sourceTree = "<group>"; };
+		14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayCombinedElectionController.h; sourceTree = "<group>"; };
+		14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayCombinedElectionController.m; sourceTree = "<group>"; };
+		14399C05140E168C007269A3 /* MeasureVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureVote.h; sourceTree = "<group>"; };
+		14399C06140E168C007269A3 /* MeasureVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureVote.m; sourceTree = "<group>"; };
+		14399C09140E168C007269A3 /* Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
+		14399C0A140E168C007269A3 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
+		14399C75140E1C77007269A3 /* ListMeasuresController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListMeasuresController.h; sourceTree = "<group>"; };
+		14399C76140E1C77007269A3 /* ListMeasuresController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListMeasuresController.m; sourceTree = "<group>"; };
+		14399C77140E1C77007269A3 /* ListMeasures.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListMeasures.xib; path = Classes/ListMeasures.xib; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -119,6 +135,10 @@
 				1423B44A14082CE3006F8DBF /* Candidate.m */,
 				1423B44614082CB8006F8DBF /* Election.h */,
 				1423B44714082CB8006F8DBF /* Election.m */,
+				14399C09140E168C007269A3 /* Measure.h */,
+				14399C0A140E168C007269A3 /* Measure.m */,
+				14399C05140E168C007269A3 /* MeasureVote.h */,
+				14399C06140E168C007269A3 /* MeasureVote.m */,
 				1423B43D14082BE0006F8DBF /* Position.h */,
 				1423B43E14082BE0006F8DBF /* Position.m */,
 			);
@@ -130,6 +150,8 @@
 			children = (
 				1423B32B1407527E006F8DBF /* ChooseCandidateController.h */,
 				1423B32C1407527E006F8DBF /* ChooseCandidateController.m */,
+				14399B9E140DF80A007269A3 /* DisplayCombinedElectionController.h */,
+				14399B9F140DF80A007269A3 /* DisplayCombinedElectionController.m */,
 				14A8779A13F23DD0006B9D73 /* DisplayElectionController.h */,
 				14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */,
 				14789F1513EBBB220016044C /* FeedController.h */,
@@ -138,6 +160,8 @@
 				143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */,
 				14789F2413EBBB9E0016044C /* ListElectionsController.h */,
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
+				14399C75140E1C77007269A3 /* ListMeasuresController.h */,
+				14399C76140E1C77007269A3 /* ListMeasuresController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -179,9 +203,11 @@
 			isa = PBXGroup;
 			children = (
 				1423B32814075237006F8DBF /* ChooseCandidate.xib */,
+				14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */,
 				14A8779713F23DB2006B9D73 /* DisplayElection.xib */,
 				14789F1713EBBB220016044C /* FeedController.xib */,
 				14789F2613EBBB9E0016044C /* ListElections.xib */,
+				14399C77140E1C77007269A3 /* ListMeasures.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
@@ -263,6 +289,8 @@
 				14A8763A13F0F499006B9D73 /* users.png in Resources */,
 				14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */,
 				1423B32914075237006F8DBF /* ChooseCandidate.xib in Resources */,
+				14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */,
+				14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +316,10 @@
 				1423B64414087FE5006F8DBF /* BallotVote.m in Sources */,
 				1423B64514087FE5006F8DBF /* Ballot.m in Sources */,
 				143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */,
+				14399BA0140DF80A007269A3 /* DisplayCombinedElectionController.m in Sources */,
+				14399C10140E168C007269A3 /* MeasureVote.m in Sources */,
+				14399C12140E168C007269A3 /* Measure.m in Sources */,
+				14399C78140E1C77007269A3 /* ListMeasuresController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
