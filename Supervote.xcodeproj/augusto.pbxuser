@@ -26,7 +26,7 @@
 					chosenTableWidths = (
 						103.000000,
 						10.000000,
-						75.080078,
+						129.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -36,8 +36,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {562, 218}}",
-							"{{567, 0}, {294, 218}}",
+							"{{0, 0}, {707, 220}}",
+							"{{712, 0}, {369, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -46,8 +46,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {861, 220}}",
-							"{{0, 225}, {861, 175}}",
+							"{{0, 0}, {1081, 220}}",
+							"{{0, 225}, {1081, 350}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -56,8 +56,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {213, 218}}",
-							"{{218, 0}, {344, 218}}",
+							"{{0, 0}, {267, 218}}",
+							"{{272, 0}, {433, 218}}",
 						);
 					};
 				};
@@ -146,7 +146,7 @@
 					chosenTableWidthsPT = (
 						128.000000,
 						108.110840,
-						96.570801,
+						170.570801,
 					);
 					chosenTableWidthsRT = (
 						128.000000,
@@ -154,7 +154,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-99, 0}, {846, 160}}";
+				"xdesign model diagram view visible rect key" = "{{-209, 0}, {1066, 335}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
@@ -168,9 +168,9 @@
 	};
 	1423B32C1407527E006F8DBF /* ChooseCandidateController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 3367}}";
-			sepNavSelRange = "{5381, 0}";
-			sepNavVisRange = "{4682, 1439}";
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 3341}}";
+			sepNavSelRange = "{842, 71}";
+			sepNavVisRange = "{229, 1034}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -625,7 +625,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4346;
+		rLoc = 4404;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -675,7 +675,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4346;
+		rLoc = 4404;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 4656;
@@ -918,7 +918,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 19";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -1161,7 +1161,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 39";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 930;
@@ -1211,7 +1211,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 39";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 930;
@@ -1221,7 +1221,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 4550;
+		rLoc = 4608;
 		rType = 0;
 		vrLen = 1308;
 		vrLoc = 3349;
@@ -1231,7 +1231,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 155";
 		rLen = 1257;
-		rLoc = 5247;
+		rLoc = 5305;
 		rType = 0;
 		vrLen = 810;
 		vrLoc = 4751;
@@ -1494,7 +1494,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 155";
 		rLen = 1257;
-		rLoc = 5247;
+		rLoc = 5305;
 		rType = 0;
 		vrLen = 1434;
 		vrLoc = 3364;
@@ -1624,7 +1624,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 2104;
@@ -1664,7 +1664,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 2104;
@@ -1674,7 +1674,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 70";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 987;
 		vrLoc = 2147;
@@ -1714,7 +1714,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 190";
 		rLen = 0;
-		rLoc = 7320;
+		rLoc = 7378;
 		rType = 0;
 		vrLen = 928;
 		vrLoc = 4647;
@@ -1724,7 +1724,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 1261;
@@ -1916,7 +1916,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 1261;
@@ -1926,7 +1926,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 58";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 1261;
@@ -1936,7 +1936,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5150;
+		rLoc = 5208;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 4021;
@@ -1946,7 +1946,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5107;
+		rLoc = 5165;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1956,7 +1956,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5107;
+		rLoc = 5165;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1966,7 +1966,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 156";
 		rLen = 0;
-		rLoc = 5107;
+		rLoc = 5165;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 4128;
@@ -1976,7 +1976,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 97";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 2158;
@@ -1996,7 +1996,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5030;
+		rLoc = 5088;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2006,7 +2006,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5030;
+		rLoc = 5088;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2041,7 +2041,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 154";
 		rLen = 0;
-		rLoc = 5030;
+		rLoc = 5088;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 4085;
@@ -2051,7 +2051,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5109;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -2061,7 +2061,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5109;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -3210,7 +3210,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5109;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 3;
@@ -3465,7 +3465,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 1;
-		rLoc = 5109;
+		rLoc = 5167;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 3;
@@ -3475,7 +3475,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 16";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 3;
@@ -3495,7 +3495,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 16";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 3;
@@ -3505,7 +3505,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 196";
 		rLen = 0;
-		rLoc = 7267;
+		rLoc = 7325;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 4861;
@@ -3515,7 +3515,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 185";
 		rLen = 0;
-		rLoc = 7091;
+		rLoc = 7149;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 4861;
@@ -3710,7 +3710,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 20";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 0;
@@ -3720,7 +3720,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 0;
@@ -3895,7 +3895,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1432;
 		vrLoc = 0;
@@ -3905,7 +3905,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1536;
 		vrLoc = 348;
@@ -3915,7 +3915,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 33";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 348;
@@ -3935,7 +3935,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 43";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1618;
 		vrLoc = 473;
@@ -3945,7 +3945,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 473;
@@ -3965,7 +3965,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1723;
 		vrLoc = 473;
@@ -3975,7 +3975,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 200";
 		rLen = 0;
-		rLoc = 6492;
+		rLoc = 6550;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 5994;
@@ -3985,7 +3985,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 105";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 2998;
@@ -3995,7 +3995,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 106";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 2998;
@@ -4005,7 +4005,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 3895;
@@ -4015,7 +4015,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 3688;
@@ -4045,7 +4045,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1175;
 		vrLoc = 3688;
@@ -4055,7 +4055,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 150";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 4254;
@@ -4065,7 +4065,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 3895;
@@ -4085,7 +4085,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 4163;
@@ -4095,7 +4095,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 152";
 		rLen = 0;
-		rLoc = 2528;
+		rLoc = 2586;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 2698;
@@ -4135,7 +4135,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 35";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 857;
@@ -4145,7 +4145,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 50";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1669;
 		vrLoc = 857;
@@ -4194,7 +4194,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 321";
 		rLen = 0;
-		rLoc = 6493;
+		rLoc = 6551;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 10453;
@@ -4224,7 +4224,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 284";
 		rLen = 0;
-		rLoc = 5252;
+		rLoc = 5310;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 11156;
@@ -4234,7 +4234,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 344";
 		rLen = 0;
-		rLoc = 7088;
+		rLoc = 7146;
 		rType = 0;
 		vrLen = 802;
 		vrLoc = 11202;
@@ -4244,7 +4244,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 95;
@@ -4284,7 +4284,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1535;
 		vrLoc = 95;
@@ -4294,7 +4294,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1546;
 		vrLoc = 162;
@@ -4304,7 +4304,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 740;
 		vrLoc = 11276;
@@ -4344,7 +4344,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 165";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 5529;
@@ -4394,7 +4394,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 165";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1684;
 		vrLoc = 472;
@@ -4404,7 +4404,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1564;
 		vrLoc = 326;
@@ -4434,7 +4434,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 1444;
@@ -4444,7 +4444,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1542;
 		vrLoc = 348;
@@ -4454,7 +4454,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 472;
@@ -4464,7 +4464,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 25";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1697;
 		vrLoc = 472;
@@ -4474,7 +4474,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 473;
@@ -4484,7 +4484,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1633;
 		vrLoc = 576;
@@ -4494,7 +4494,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 38";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1595;
 		vrLoc = 624;
@@ -4504,7 +4504,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 692;
@@ -4514,7 +4514,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 38";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1699;
 		vrLoc = 820;
@@ -4524,7 +4524,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 282;
@@ -4534,7 +4534,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1592;
 		vrLoc = 0;
@@ -4544,7 +4544,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 95;
@@ -4564,7 +4564,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 95;
@@ -4574,7 +4574,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 165;
@@ -4584,7 +4584,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 165;
@@ -4594,7 +4594,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 28";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 166;
@@ -4604,7 +4604,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1533;
 		vrLoc = 223;
@@ -4614,7 +4614,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1536;
 		vrLoc = 223;
@@ -4664,7 +4664,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 185;
@@ -4674,7 +4674,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 240";
 		rLen = 0;
-		rLoc = 3945;
+		rLoc = 4003;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 7599;
@@ -4684,7 +4684,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 242";
 		rLen = 0;
-		rLoc = 4150;
+		rLoc = 4208;
 		rType = 0;
 		vrLen = 1631;
 		vrLoc = 7599;
@@ -4694,7 +4694,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 185;
@@ -4704,7 +4704,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1563;
 		vrLoc = 185;
@@ -4714,7 +4714,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1572;
 		vrLoc = 185;
@@ -4724,7 +4724,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 161";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1190;
 		vrLoc = 5313;
@@ -4734,7 +4734,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 239";
 		rLen = 0;
-		rLoc = 5252;
+		rLoc = 5310;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 8490;
@@ -4744,7 +4744,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 239";
 		rLen = 0;
-		rLoc = 5252;
+		rLoc = 5310;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 8490;
@@ -4754,7 +4754,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4764,7 +4764,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4774,7 +4774,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 164";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4887;
@@ -4784,7 +4784,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1587;
 		vrLoc = 0;
@@ -4794,7 +4794,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 0;
@@ -4814,7 +4814,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 5123;
@@ -4824,7 +4824,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 170";
 		rLen = 0;
-		rLoc = 2589;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 5523;
@@ -4834,7 +4834,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1581;
 		vrLoc = 35;
@@ -4844,7 +4844,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 168";
 		rLen = 1203;
-		rLoc = 2589;
+		rLoc = 2647;
 		rType = 0;
 		vrLen = 1233;
 		vrLoc = 5724;
@@ -4894,7 +4894,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 166";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1616;
 		vrLoc = 0;
@@ -4904,7 +4904,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1596;
 		vrLoc = 0;
@@ -4914,7 +4914,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 31";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1604;
 		vrLoc = 0;
@@ -4924,7 +4924,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1609;
 		vrLoc = 0;
@@ -4934,7 +4934,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1606;
 		vrLoc = 0;
@@ -4954,7 +4954,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1386;
 		vrLoc = 1673;
@@ -4964,7 +4964,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -4974,7 +4974,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -4984,7 +4984,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1584;
 		vrLoc = 0;
@@ -4994,7 +4994,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 29";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1612;
 		vrLoc = 0;
@@ -5004,7 +5004,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 169";
 		rLen = 0;
-		rLoc = 3768;
+		rLoc = 3826;
 		rType = 0;
 		vrLen = 1292;
 		vrLoc = 5505;
@@ -5014,7 +5014,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5064,7 +5064,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 2680;
@@ -5074,7 +5074,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 158";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 5157;
@@ -5084,7 +5084,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -5094,7 +5094,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5104,7 +5104,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 0;
@@ -5114,7 +5114,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 0;
@@ -5124,7 +5124,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 36";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 10058;
@@ -5204,7 +5204,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 26";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 0;
@@ -5214,7 +5214,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 37";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2585;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 0;
@@ -5274,7 +5274,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 128";
 		rLen = 0;
-		rLoc = 2783;
+		rLoc = 2841;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4233;
@@ -5284,7 +5284,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 134";
 		rLen = 0;
-		rLoc = 3210;
+		rLoc = 3268;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 4624;
@@ -5294,7 +5294,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 19;
-		rLoc = 3421;
+		rLoc = 3479;
 		rType = 0;
 		vrLen = 1449;
 		vrLoc = 4624;
@@ -5304,7 +5304,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 138";
 		rLen = 0;
-		rLoc = 3400;
+		rLoc = 3458;
 		rType = 0;
 		vrLen = 1474;
 		vrLoc = 4782;
@@ -5334,7 +5334,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 151";
 		rLen = 0;
-		rLoc = 3790;
+		rLoc = 3848;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 5566;
@@ -5344,7 +5344,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 143";
 		rLen = 0;
-		rLoc = 3671;
+		rLoc = 3729;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 5016;
@@ -5384,7 +5384,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 143";
 		rLen = 0;
-		rLoc = 3671;
+		rLoc = 3729;
 		rType = 0;
 		vrLen = 1583;
 		vrLoc = 5016;
@@ -5394,7 +5394,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 128";
 		rLen = 14;
-		rLoc = 2783;
+		rLoc = 2841;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 4736;
@@ -5404,7 +5404,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 130";
 		rLen = 0;
-		rLoc = 3001;
+		rLoc = 3059;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 4736;
@@ -5484,7 +5484,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 214";
 		rLen = 19;
-		rLoc = 5206;
+		rLoc = 5264;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 8280;
@@ -5494,7 +5494,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 218";
 		rLen = 0;
-		rLoc = 5252;
+		rLoc = 5310;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 8052;
@@ -5739,7 +5739,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 182";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1089;
 		vrLoc = 6128;
@@ -5749,7 +5749,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 180";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6150;
@@ -5769,7 +5769,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 177";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 6289;
@@ -5779,7 +5779,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 197";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 6386;
@@ -5789,7 +5789,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6289;
@@ -5799,7 +5799,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 6328;
@@ -5809,7 +5809,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 303";
 		rLen = 0;
-		rLoc = 6493;
+		rLoc = 6551;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 9224;
@@ -5819,7 +5819,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 191";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 3850;
 		rType = 0;
 		vrLen = 1664;
 		vrLoc = 0;
@@ -5883,7 +5883,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 112";
 		rLen = 0;
-		rLoc = 2588;
+		rLoc = 2646;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 3684;
@@ -6043,7 +6043,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 304";
 		rLen = 0;
-		rLoc = 6493;
+		rLoc = 6551;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 9330;
@@ -6202,7 +6202,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 221";
 		rLen = 0;
-		rLoc = 3793;
+		rLoc = 3851;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 7319;
@@ -6347,7 +6347,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 223";
 		rLen = 0;
-		rLoc = 7046;
+		rLoc = 7104;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -6357,7 +6357,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 60";
 		rLen = 0;
-		rLoc = 1900;
+		rLoc = 1958;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 955;
@@ -6367,7 +6367,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 140";
 		rLen = 0;
-		rLoc = 4518;
+		rLoc = 4576;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 3723;
@@ -6377,7 +6377,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 23;
-		rLoc = 3895;
+		rLoc = 3953;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 3664;
@@ -6387,7 +6387,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4043;
+		rLoc = 4101;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 3744;
@@ -6397,7 +6397,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4043;
+		rLoc = 4101;
 		rType = 0;
 		vrLen = 1269;
 		vrLoc = 3744;
@@ -6447,7 +6447,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4043;
+		rLoc = 4101;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 3744;
@@ -6457,7 +6457,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 135";
 		rLen = 0;
-		rLoc = 4043;
+		rLoc = 4101;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 3744;
@@ -6467,7 +6467,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 133";
 		rLen = 0;
-		rLoc = 4043;
+		rLoc = 4101;
 		rType = 0;
 		vrLen = 1219;
 		vrLoc = 3744;
@@ -6477,7 +6477,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 91;
-		rLoc = 3852;
+		rLoc = 3910;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 3722;
@@ -6617,7 +6617,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 130";
 		rLen = 0;
-		rLoc = 3851;
+		rLoc = 3909;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 3667;
@@ -6627,7 +6627,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 237";
 		rLen = 0;
-		rLoc = 7181;
+		rLoc = 7239;
 		rType = 0;
 		vrLen = 571;
 		vrLoc = 6796;
@@ -6637,7 +6637,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 238";
 		rLen = 0;
-		rLoc = 7181;
+		rLoc = 7239;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 6890;
@@ -6657,7 +6657,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 232";
 		rLen = 0;
-		rLoc = 7181;
+		rLoc = 7239;
 		rType = 0;
 		vrLen = 508;
 		vrLoc = 6758;
@@ -6766,7 +6766,7 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 20";
-		rLen = 2133;
+		rLen = 2191;
 		rLoc = 394;
 		rType = 0;
 		vrLen = 1619;
@@ -6807,7 +6807,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 132";
 		rLen = 96;
-		rLoc = 3946;
+		rLoc = 4004;
 		rType = 0;
 		vrLen = 1689;
 		vrLoc = 3455;
@@ -7029,7 +7029,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 132";
 		rLen = 96;
-		rLoc = 3946;
+		rLoc = 4004;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 0;
@@ -7272,7 +7272,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 131";
 		rLen = 91;
-		rLoc = 3852;
+		rLoc = 3910;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 3030;
@@ -7282,7 +7282,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 0;
-		rLoc = 4383;
+		rLoc = 4441;
 		rType = 0;
 		vrLen = 1921;
 		vrLoc = 3030;
@@ -7292,7 +7292,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 139";
 		rLen = 0;
-		rLoc = 4383;
+		rLoc = 4441;
 		rType = 0;
 		vrLen = 1619;
 		vrLoc = 0;
@@ -7591,7 +7591,7 @@
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 42";
 		rLen = 0;
-		rLoc = 998;
+		rLoc = 1056;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 35;
@@ -7782,7 +7782,7 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 41";
-		rLen = 45;
+		rLen = 103;
 		rLoc = 955;
 		rType = 0;
 		vrLen = 1375;
@@ -7871,7 +7871,7 @@
 		isa = PBXTextBookmark;
 		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
 		name = "DisplayElectionController.m: 41";
-		rLen = 45;
+		rLen = 103;
 		rLoc = 955;
 		rType = 0;
 		vrLen = 1180;
@@ -8037,6 +8037,199 @@
 		vrLen = 1439;
 		vrLoc = 4682;
 	};
+	14399B74140DD1A3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		name = "ChooseCandidateController.m: 42";
+		rLen = 71;
+		rLoc = 842;
+		rType = 0;
+		vrLen = 1034;
+		vrLoc = 229;
+	};
+	14399B75140DD1A3007269A3 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					10.000000,
+					129.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {707, 220}}",
+						"{{712, 0}, {369, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1081, 220}}",
+						"{{0, 225}, {1081, 350}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 218}}",
+						"{{272, 0}, {433, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					170.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-209, 0}, {1066, 335}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14399B76140DD1A3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 42";
+		rLen = 0;
+		rLoc = 1037;
+		rType = 0;
+		vrLen = 1154;
+		vrLoc = 208;
+	};
+	14399B77140DD1A3007269A3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */;
+		name = "DisplayElectionController.m: 42";
+		rLen = 0;
+		rLoc = 1054;
+		rType = 0;
+		vrLen = 1162;
+		vrLoc = 306;
+	};
 	14789DCC13E8FD500016044C /* Supervote */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -8141,9 +8334,9 @@
 	};
 	14A8779B13F23DD0006B9D73 /* DisplayElectionController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1022, 3237}}";
-			sepNavSelRange = "{955, 45}";
-			sepNavVisRange = "{230, 1180}";
+			sepNavIntBoundsRect = "{{0, 0}, {1022, 3250}}";
+			sepNavSelRange = "{1054, 0}";
+			sepNavVisRange = "{306, 1162}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -8846,6 +9039,10 @@
 			14399B68140CDA2F007269A3 /* PBXTextBookmark */ = 14399B68140CDA2F007269A3 /* PBXTextBookmark */;
 			14399B69140CDA2F007269A3 /* PBXTextBookmark */ = 14399B69140CDA2F007269A3 /* PBXTextBookmark */;
 			14399B6A140CDA2F007269A3 /* PBXTextBookmark */ = 14399B6A140CDA2F007269A3 /* PBXTextBookmark */;
+			14399B74140DD1A3007269A3 /* PBXTextBookmark */ = 14399B74140DD1A3007269A3 /* PBXTextBookmark */;
+			14399B75140DD1A3007269A3 /* XDModelBookmark */ = 14399B75140DD1A3007269A3 /* XDModelBookmark */;
+			14399B76140DD1A3007269A3 /* PBXTextBookmark */ = 14399B76140DD1A3007269A3 /* PBXTextBookmark */;
+			14399B77140DD1A3007269A3 /* PBXTextBookmark */ = 14399B77140DD1A3007269A3 /* PBXTextBookmark */;
 			14A877AE13F24037006B9D73 = 14A877AE13F24037006B9D73 /* PBXBookmark */;
 		};
 		sourceControlManager = 14789DDD13E8FD560016044C /* Source Control */;

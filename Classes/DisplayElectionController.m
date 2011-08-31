@@ -39,7 +39,7 @@
 }
 
 - (NSPredicate *)getPredicate{
-	return nil;
+	return [NSPredicate predicateWithFormat:@"election == %@", election];
 }
 
 - (NSString *)getCellIdentifier{
