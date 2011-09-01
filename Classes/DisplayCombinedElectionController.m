@@ -115,7 +115,10 @@
 	self.controller1.managedObjectContext = self.managedObjectContext;
 	self.controller1.parentNavController = [self navigationController];
 	
-	[self.view addSubview:self.controller1.tableView];
+	self.controller1.view.frame = CGRectZero;
+	//self.controller1.view.frame = CGRectMake(0,0,320,230);
+	[self.view addSubview:self.controller1.view];
+
 	[topController release];
 	
 	/* second controller */
@@ -124,9 +127,11 @@
 	self.controller2.election = self.election;
 	self.controller2.managedObjectContext = self.managedObjectContext;
 	self.controller2.parentNavController = [self navigationController];
-	
+		
 	// TODO: make 2nd view show up!!!
-//	[self.view insertSubview:self.controller2.tableView aboveSubview:self.controller1.tableView];
+	self.controller2.view.frame = CGRectZero;
+	//CGRectMake(0,self.controller1.view.frame.size.height,320,230);
+	[self.view addSubview:self.controller2.view];
 	[bottomController release];
 }
 

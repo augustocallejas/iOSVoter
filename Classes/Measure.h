@@ -2,7 +2,7 @@
 //  Measure.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
+//  Created by augusto callejas on 9/1/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSString * level;
 @property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSNumber * displayOrder;
-@property (nonatomic, retain) NSString * description;
+@property (nonatomic, retain) NSString * longDescription;
 @property (nonatomic, retain) Election * forElection;
 
 @end

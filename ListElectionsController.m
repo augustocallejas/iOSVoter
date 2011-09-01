@@ -6,11 +6,13 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "ListElectionsController.h"
+
 #import "Candidate.h"
-#import "DisplayCombinedElectionController.h"
+#import "DisplayBallotController.h"
+//#import "DisplayCombinedElectionController.h"
 #import "DisplayElectionController.h"
 #import "Election.h"
-#import "ListElectionsController.h"
 #import "Measure.h"
 #import "Position.h"
 
@@ -75,7 +77,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// TODO: unnecessarily creating a new controller on each selection!
-	DisplayCombinedElectionController *controller = [[DisplayCombinedElectionController alloc] initWithNibName:@"DisplayCombinedElection" bundle:[NSBundle mainBundle]];
+	DisplayBallotController *controller = [[DisplayBallotController alloc] initWithNibName:@"DisplayBallot" bundle:[NSBundle mainBundle]];
 	
 	Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	controller.election = election;
@@ -117,7 +119,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//[self insertTestData];
+	[self insertTestData];
 }
 
 - (void)insertTestData{
@@ -274,7 +276,7 @@
 	Measure *measure1 = (Measure *) [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:self.managedObjectContext];
 	measure1.identifier = @"1A";
 	measure1.title = @"Safe, Reliable High-Speed Passenger Train Bond Act";
-	measure1.description = @"To provide Californians a safe...";
+	measure1.longDescription = @"To provide Californians a safe...";
 	measure1.level = @"Measures submitted to the voters";
 	measure1.levelOrder = [NSNumber numberWithInt:0];
 	measure1.displayOrder = [NSNumber numberWithInt:0];
