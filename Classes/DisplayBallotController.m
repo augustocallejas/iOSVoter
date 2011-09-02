@@ -9,6 +9,7 @@
 #import "DisplayBallotController.h"
 
 #import "BallotVote.h"
+#import "ChooseCandidateController.h"
 #import "Candidate.h"
 #import "Measure.h"
 #import "MeasureVote.h"
@@ -448,7 +449,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
 	// Configure the cell...
@@ -462,14 +463,25 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+	
+	if (indexPath.section < [self.fetchedResultsController1.sections count]) {
+		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
+		
+		// TODO: unnecessarily creating a new controller on each selection!
+		ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
+		controller.selectedRow = -1;
+		controller.ballot = self.ballot;
+		controller.position = position;
+		controller.managedObjectContext = self.managedObjectContext;
+		controller.title = position.level;
+		controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+		
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else {
+		
+	}
 }
 
 
