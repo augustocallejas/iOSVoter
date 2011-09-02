@@ -23,6 +23,8 @@
 		14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399C77140E1C77007269A3 /* ListMeasures.xib */; };
 		14399DDD140F7612007269A3 /* DisplayBallotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */; };
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
+		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
+		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -68,6 +70,9 @@
 		14399DDB140F7612007269A3 /* DisplayBallotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBallotController.h; sourceTree = "<group>"; };
 		14399DDC140F7612007269A3 /* DisplayBallotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBallotController.m; sourceTree = "<group>"; };
 		14399E20140F7FAC007269A3 /* DisplayBallot.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayBallot.xib; sourceTree = "<group>"; };
+		14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteMeasureController.h; sourceTree = "<group>"; };
+		14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteMeasureController.m; sourceTree = "<group>"; };
+		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -158,6 +163,8 @@
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */,
+				14399EF0141073FD007269A3 /* VoteMeasureController.h */,
+				14399EF1141073FD007269A3 /* VoteMeasureController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
 				14A8763913F0F499006B9D73 /* users.png */,
+				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -285,6 +293,7 @@
 				14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */,
 				14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */,
 				14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */,
+				14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +321,7 @@
 				14399C10140E168C007269A3 /* MeasureVote.m in Sources */,
 				14399C12140E168C007269A3 /* Measure.m in Sources */,
 				14399DDD140F7612007269A3 /* DisplayBallotController.m in Sources */,
+				14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

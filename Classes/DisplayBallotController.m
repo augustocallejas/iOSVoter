@@ -14,6 +14,7 @@
 #import "Measure.h"
 #import "MeasureVote.h"
 #import "Position.h"
+#import "VoteMeasureController.h"
 
 @implementation DisplayBallotController
 
@@ -480,7 +481,18 @@
 		[controller release];
 	}
 	else {
+		NSIndexPath *correctIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section-[self.fetchedResultsController1.sections count])];
+		Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:correctIndexPath];
 		
+		// TODO: unnecessarily creating a new controller on each selection!
+		VoteMeasureController *controller = [[VoteMeasureController alloc] initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
+		controller.ballot = self.ballot;
+		controller.measure = measure;
+		controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+		controller.title = [NSString stringWithFormat:@"Measure %@", measure.identifier];
+		
+		[self.navigationController pushViewController:controller animated:YES];
+		[controller release];
 	}
 }
 

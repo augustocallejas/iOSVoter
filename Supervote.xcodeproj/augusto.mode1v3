@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -276,6 +274,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>18</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -299,7 +300,7 @@
 							<real>259</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>0 59 878 819 0 0 1440 878 </string>
+						<string>1 59 1440 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -310,12 +311,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DisplayBallotController.h</string>
+								<string>VoteMeasureController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DisplayBallotController.h</string>
+										<string>VoteMeasureController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14399EEF141072DF007269A3</string>
+										<string>14399F5A141096C2007269A3</string>
 										<key>history</key>
 										<array>
 											<string>14A877AE13F24037006B9D73</string>
@@ -352,7 +355,6 @@
 											<string>14399B1B140CD51B007269A3</string>
 											<string>14399B21140CD684007269A3</string>
 											<string>14399B23140CD684007269A3</string>
-											<string>14399BC9140DFD5C007269A3</string>
 											<string>14399BD5140E01F1007269A3</string>
 											<string>14399C5F140E1A4F007269A3</string>
 											<string>14399C60140E1A4F007269A3</string>
@@ -360,17 +362,20 @@
 											<string>14399CB5140E26C3007269A3</string>
 											<string>14399CB8140E26C3007269A3</string>
 											<string>14399CB9140E26C3007269A3</string>
-											<string>14399E2F140F8017007269A3</string>
 											<string>14399E42140F803A007269A3</string>
 											<string>14399E44140F803A007269A3</string>
-											<string>14399E8B140F84FE007269A3</string>
 											<string>14399E98140F851F007269A3</string>
-											<string>14399EB914106FEB007269A3</string>
-											<string>14399EBB14106FEB007269A3</string>
 											<string>14399EC114107022007269A3</string>
-											<string>14399EC914107152007269A3</string>
-											<string>14399EDC141072A9007269A3</string>
-											<string>14399EB614106FEB007269A3</string>
+											<string>14399F0514107E73007269A3</string>
+											<string>14399F0714107E73007269A3</string>
+											<string>14399F0A14107E73007269A3</string>
+											<string>14399F3014108081007269A3</string>
+											<string>14399F3114108081007269A3</string>
+											<string>14399F3914108FE0007269A3</string>
+											<string>14399F4E14109572007269A3</string>
+											<string>14399F54141096BA007269A3</string>
+											<string>14399F55141096BA007269A3</string>
+											<string>14399F56141096BA007269A3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -382,9 +387,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {597, 543}}</string>
+								<string>{{0, 0}, {1159, 543}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 878 819 0 0 1440 878 </string>
+								<string>1 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -402,9 +407,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 548}, {597, 230}}</string>
+								<string>{{0, 548}, {1159, 230}}</string>
 								<key>RubberWindowFrame</key>
-								<string>0 59 878 819 0 0 1440 878 </string>
+								<string>1 59 1440 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -413,7 +418,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>597pt</string>
+					<string>1159pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -568,6 +573,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14399F5B141096C2007269A3</string>
 		<string>14399685140979D2007269A3</string>
 		<string>14399680140979C5007269A3</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -577,7 +583,7 @@
 		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 59 878 819 0 0 1440 878 </string>
+	<string>1 59 1440 819 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
