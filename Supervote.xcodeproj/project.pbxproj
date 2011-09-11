@@ -33,6 +33,9 @@
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
 		14A8763A13F0F499006B9D73 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A8763913F0F499006B9D73 /* users.png */; };
 		14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A8779713F23DB2006B9D73 /* DisplayElection.xib */; };
+		14AC666B141D581F00F29A71 /* FriendBallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6666141D581F00F29A71 /* FriendBallotVote.m */; };
+		14AC666C141D581F00F29A71 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6668141D581F00F29A71 /* Friend.m */; };
+		14AC666D141D581F00F29A71 /* FriendMeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC666A141D581F00F29A71 /* FriendMeasureVote.m */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -84,6 +87,12 @@
 		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		14A8763913F0F499006B9D73 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		14A8779713F23DB2006B9D73 /* DisplayElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayElection.xib; sourceTree = "<group>"; };
+		14AC6665141D581F00F29A71 /* FriendBallotVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBallotVote.h; sourceTree = "<group>"; };
+		14AC6666141D581F00F29A71 /* FriendBallotVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendBallotVote.m; sourceTree = "<group>"; };
+		14AC6667141D581F00F29A71 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		14AC6668141D581F00F29A71 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		14AC6669141D581F00F29A71 /* FriendMeasureVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMeasureVote.h; sourceTree = "<group>"; };
+		14AC666A141D581F00F29A71 /* FriendMeasureVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMeasureVote.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +145,12 @@
 				1423B44A14082CE3006F8DBF /* Candidate.m */,
 				1423B44614082CB8006F8DBF /* Election.h */,
 				1423B44714082CB8006F8DBF /* Election.m */,
+				14AC6667141D581F00F29A71 /* Friend.h */,
+				14AC6668141D581F00F29A71 /* Friend.m */,
+				14AC6665141D581F00F29A71 /* FriendBallotVote.h */,
+				14AC6666141D581F00F29A71 /* FriendBallotVote.m */,
+				14AC6669141D581F00F29A71 /* FriendMeasureVote.h */,
+				14AC666A141D581F00F29A71 /* FriendMeasureVote.m */,
 				14399C09140E168C007269A3 /* Measure.h */,
 				14399C0A140E168C007269A3 /* Measure.m */,
 				14399C05140E168C007269A3 /* MeasureVote.h */,
@@ -322,6 +337,9 @@
 				14399C12140E168C007269A3 /* Measure.m in Sources */,
 				14399DDD140F7612007269A3 /* DisplayBallotController.m in Sources */,
 				14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */,
+				14AC666B141D581F00F29A71 /* FriendBallotVote.m in Sources */,
+				14AC666C141D581F00F29A71 /* Friend.m in Sources */,
+				14AC666D141D581F00F29A71 /* FriendMeasureVote.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

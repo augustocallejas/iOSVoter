@@ -56,6 +56,39 @@
 	{
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}
+	
+	/* query for friends' votes on this candidate */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	//[request setFetchLimit:2];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
+	if (array != nil)
+	{
+		NSUInteger count = [array count];
+		NSLog(@"%d friend(s) for %@", count, candidate.name);
+//		if (count == 0)
+//		{
+//		}
+//		else if (count == 1)
+//		{
+//			vote = [(BallotVote *) [array objectAtIndex:0] retain];
+//			selectedRow = [vote.forCandidate.displayOrder integerValue];
+//		}
+//		else
+//		{
+//			NSLog(@"NOOO");
+//		}
+	}
+	else
+	{
+		NSLog(@"no!");
+	}
 }
 
 
@@ -76,7 +109,6 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];

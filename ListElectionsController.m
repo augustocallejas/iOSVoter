@@ -11,6 +11,8 @@
 #import "Candidate.h"
 #import "DisplayBallotController.h"
 #import "Election.h"
+#import "Friend.h"
+#import "FriendBallotVote.h"
 #import "Measure.h"
 #import "Position.h"
 
@@ -154,6 +156,15 @@
 		candidate2.displayOrder = [NSNumber numberWithInt:1];
 		candidate2.occupation = nil;
 		[position1 addCandidatesObject:candidate2];
+		
+		Friend *friend = (Friend *) [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.managedObjectContext];
+		friend.name = @"Jenny Bernier";
+		
+		FriendBallotVote *vote = (FriendBallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:self.managedObjectContext];
+		vote.forCandidate = candidate1;
+		vote.forPosition = position1;
+		vote.author = friend;
+
 	}
 	
 	Position *position2 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:self.managedObjectContext];
