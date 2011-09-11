@@ -8,6 +8,9 @@
 
 #import "VoteMeasureController.h"
 
+#import "Friend.h"
+#import "FriendMeasureVote.h"
+
 
 @implementation VoteMeasureController
 
@@ -141,6 +144,51 @@
 	if (selected)
 	{
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	
+	/* query for friends' votes on this measure */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	//[request setFetchLimit:2];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSNumber* currVote = nil;
+	if (indexPath.row == 0) {
+		currVote = [NSNumber numberWithBool:YES];
+	}
+	else if (indexPath.row == 1) {
+		currVote = [NSNumber numberWithBool:NO];
+	}
+	else if (indexPath.row == 2) {
+		currVote = nil;
+	}
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", self.measure, currVote];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [[self.ballot managedObjectContext] executeFetchRequest:request error:&error];
+	if (array != nil)
+	{
+		NSUInteger count = [array count];
+		NSInteger index = 0;
+		for (index = 0; index < count; index++)
+		{
+			FriendMeasureVote *vote = (FriendMeasureVote *) [array objectAtIndex:index];
+			if (vote.vote == nil) {
+				NSLog(@"%@ votes UNDECIDED", vote.author.name, vote.vote);
+			}
+			else if ([vote.vote boolValue] == YES) {
+				NSLog(@"%@ votes YES", vote.author.name, vote.vote);
+			}
+			else {
+				NSLog(@"%@ votes NO", vote.author.name, vote.vote);
+
+			}
+		}
+	}
+	else
+	{
+		NSLog(@"no!");
 	}
 	
     return cell;

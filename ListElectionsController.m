@@ -13,6 +13,7 @@
 #import "Election.h"
 #import "Friend.h"
 #import "FriendBallotVote.h"
+#import "FriendMeasureVote.h"
 #import "Measure.h"
 #import "Position.h"
 
@@ -126,6 +127,8 @@
 	NSError *error;
 	
 	// insert data in the context
+	Friend *friend = (Friend *) [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.managedObjectContext];
+	friend.name = @"Jenny Bernier";
 	
 	// Create an election
 	Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:self.managedObjectContext];
@@ -156,9 +159,6 @@
 		candidate2.displayOrder = [NSNumber numberWithInt:1];
 		candidate2.occupation = nil;
 		[position1 addCandidatesObject:candidate2];
-		
-		Friend *friend = (Friend *) [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.managedObjectContext];
-		friend.name = @"Jenny Bernier";
 		
 		FriendBallotVote *vote = (FriendBallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:self.managedObjectContext];
 		vote.forCandidate = candidate1;
@@ -290,6 +290,11 @@
 	measure1.levelOrder = [NSNumber numberWithInt:0];
 	measure1.displayOrder = [NSNumber numberWithInt:0];
 	measure1.forElection = election1;
+	
+	FriendMeasureVote *fmv1 = (FriendMeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:self.managedObjectContext];
+	fmv1.forMeasure = measure1;
+	fmv1.vote = [NSNumber numberWithBool:YES];
+	fmv1.author = friend;
 	
 	if (![self.managedObjectContext save:&error]) {
 		NSLog(@"  DetailedError: %@", [error userInfo]);
