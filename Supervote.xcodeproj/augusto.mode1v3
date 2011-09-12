@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -268,12 +266,16 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>1423B41014081697006F8DBF</string>
+								<string>1462F3DD141DA475007E31C1</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>6</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,12 +310,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteMeasureController.m</string>
+								<string>DisplayBallotController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,14 +325,13 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>VoteMeasureController.m</string>
+										<string>DisplayBallotController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>1462F393141D6F41007E31C1</string>
+										<string>1462F471141DB3B2007E31C1</string>
 										<key>history</key>
 										<array>
-											<string>14A877AE13F24037006B9D73</string>
 											<string>1423B64D140883BB006F8DBF</string>
 											<string>1423B6D91408D5CE006F8DBF</string>
 											<string>143997C8140A2E96007269A3</string>
@@ -339,29 +342,32 @@
 											<string>14399BD5140E01F1007269A3</string>
 											<string>14399C60140E1A4F007269A3</string>
 											<string>14399C66140E1A4F007269A3</string>
-											<string>14399CB5140E26C3007269A3</string>
 											<string>14399CB8140E26C3007269A3</string>
 											<string>14399CB9140E26C3007269A3</string>
-											<string>14399F0514107E73007269A3</string>
-											<string>14399F0714107E73007269A3</string>
 											<string>14399F0A14107E73007269A3</string>
-											<string>14399F54141096BA007269A3</string>
 											<string>14AC6699141D5C1E00F29A71</string>
 											<string>14AC669A141D5C1E00F29A71</string>
 											<string>14AC669B141D5C1E00F29A71</string>
 											<string>14AC669C141D5C1E00F29A71</string>
 											<string>14AC669D141D5C1E00F29A71</string>
-											<string>14AC66EC141D633D00F29A71</string>
-											<string>14AC66EF141D633D00F29A71</string>
 											<string>14AC66F0141D633D00F29A71</string>
 											<string>1462F325141D674A007E31C1</string>
 											<string>1462F326141D674A007E31C1</string>
 											<string>1462F329141D674A007E31C1</string>
-											<string>1462F343141D6AC9007E31C1</string>
 											<string>1462F361141D6CA5007E31C1</string>
 											<string>1462F38A141D6F16007E31C1</string>
-											<string>1462F391141D6F41007E31C1</string>
-											<string>1462F392141D6F41007E31C1</string>
+											<string>1462F3B8141D986A007E31C1</string>
+											<string>1462F3B9141D986A007E31C1</string>
+											<string>1462F3E6141DA4C5007E31C1</string>
+											<string>1462F3EA141DA555007E31C1</string>
+											<string>1462F3F4141DA58E007E31C1</string>
+											<string>1462F3FC141DA5DE007E31C1</string>
+											<string>1462F417141DAE1F007E31C1</string>
+											<string>1462F43C141DAEC0007E31C1</string>
+											<string>1462F446141DAF09007E31C1</string>
+											<string>1462F46F141DB3B2007E31C1</string>
+											<string>1462F470141DB3B2007E31C1</string>
+											<string>1462F46A141DB382007E31C1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -588,7 +594,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteMeasureController.m</string>
+								<string>Supervote.xcdatamodel</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

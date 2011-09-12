@@ -10,6 +10,7 @@
 #import "BallotVote.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
+#import "PositionViewCell.h"
 
 
 @interface ChooseCandidateController : FetchedResultsBasedTableViewController {
@@ -18,13 +19,13 @@
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
-	UITableViewCell *selectedCell;
+	PositionViewCell *selectedCell;
 	NSInteger selectedRow;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
-@property (nonatomic, retain) UITableViewCell *selectedCell;
+@property (nonatomic, retain) PositionViewCell *selectedCell;
 @property NSInteger selectedRow;
 
 @end

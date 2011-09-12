@@ -14,6 +14,7 @@
 #import "Measure.h"
 #import "MeasureVote.h"
 #import "Position.h"
+#import "PositionViewCell.h"
 #import "VoteMeasureController.h"
 
 @implementation DisplayBallotController
@@ -104,16 +105,21 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section < [self.fetchedResultsController1.sections count]) {
-		[self configureCellAsPosition:cell atIndexPath:indexPath];
+		[self configureCellAsPosition:(PositionViewCell *) cell atIndexPath:indexPath];
 	}
 	else {
 		[self configureCellAsMeasure:cell atIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section-[self.fetchedResultsController1.sections count])]];
 	}
 }
 
-- (void)configureCellAsPosition:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCellAsPosition:(PositionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
-    cell.textLabel.text = position.title;
+	cell.positionTitle.text = position.title;
+//    cell.textLabel.text = position.title;
+	
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	cell.imageView.image = icon;
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
@@ -132,16 +138,19 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.detailTextLabel.text = @"<Not selected>";
+			//cell.detailTextLabel.text = @"<Not selected>";
+			cell.candidateName.text = @"<Not selected>";
 		}
 		else if (count == 1)
 		{
 			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
-				cell.detailTextLabel.text = candidate.name;
+				//cell.detailTextLabel.text = candidate.name;
+				cell.candidateName.text = candidate.name;
 			}
 			else {
-				cell.detailTextLabel.text = @"Undecided";
+				//cell.detailTextLabel.text = @"Undecided";
+				cell.candidateName.text = @"Undecided";
 			}
 		}
 		else
@@ -274,6 +283,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	self.tableView.rowHeight = 88;
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.
@@ -446,15 +456,35 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *positionID = @"PositionViewCell";
     static NSString *CellIdentifier = @"DisplayBallotController";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-	// Configure the cell...
-	[self configureCell:cell atIndexPath:indexPath];
+    UITableViewCell *cell = nil;
+	
+	if ([indexPath section] < [self.fetchedResultsController1.sections count]) {
+		cell = [tableView dequeueReusableCellWithIdentifier:positionID];
+		if (cell == nil) {
+			
+			NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"PositionViewCell" owner:nil options:nil];
+			
+			for (id nibObject in nibObjects) {
+				if ([nibObject isKindOfClass:[PositionViewCell class]]) {
+					cell = (PositionViewCell *)nibObject;
+					break;
+				}
+			}
+		}
+		
+		[self configureCellAsPosition:(PositionViewCell *) cell atIndexPath:indexPath];
+	}
+	else {
+		cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+		if (cell == nil) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		}
+		
+		// Configure the cell...
+		[self configureCell:cell atIndexPath:indexPath];
+	}
     
     return cell;
 }
@@ -475,7 +505,7 @@
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;
 		controller.title = position.level;
-		controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+		controller.selectedCell = (PositionViewCell *) [tableView cellForRowAtIndexPath:indexPath];
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];

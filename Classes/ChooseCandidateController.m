@@ -273,7 +273,7 @@
 	}
 	
 	// update the detailed text, because otherwise it stays the same.
-	self.selectedCell.detailTextLabel.text = vote.forCandidate.name;
+	self.selectedCell.candidateName.text = vote.forCandidate.name;
 }
 
 

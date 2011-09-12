@@ -8,6 +8,7 @@
 
 #import "Ballot.h"
 #import "Election.h"
+#import "PositionViewCell.h"
 
 
 @interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
@@ -23,7 +24,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForPositionHeaderInSection:(NSInteger)section;
 - (NSString *)tableView:(UITableView *)tableView titleForMeasureHeaderInSection:(NSInteger)section;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-- (void)configureCellAsPosition:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)configureCellAsPosition:(PositionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCellAsMeasure:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, retain) Election *election;
