@@ -14,6 +14,12 @@
 @synthesize positionTitle = _positionTitle;
 @synthesize candidateName = _candidateName;
 @synthesize candidateIcon = _candidateIcon;
+@synthesize friendIcon1 = _friendIcon1;
+@synthesize friendIcon2 = _friendIcon2;
+@synthesize friendIcon3 = _friendIcon3;
+@synthesize friendIcon4 = _friendIcon4;
+@synthesize friendIcon5 = _friendIcon5;
+@synthesize friendIcon6 = _friendIcon6;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     

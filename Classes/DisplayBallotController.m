@@ -115,11 +115,23 @@
 - (void)configureCellAsPosition:(PositionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.positionTitle.text = position.title;
-//    cell.textLabel.text = position.title;
 	
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
 	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	cell.imageView.image = icon;
+	
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+	UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+	cell.candidateIcon.image = candidateIcon;
+	
+	cell.friendIcon1.image = icon;
+	cell.friendIcon2.image = icon;
+	cell.friendIcon3.image = icon;
+	cell.friendIcon4.image = icon;
+	cell.friendIcon5.image = icon;
+	cell.friendIcon6.image = icon;
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
@@ -138,18 +150,15 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			//cell.detailTextLabel.text = @"<Not selected>";
 			cell.candidateName.text = @"<Not selected>";
 		}
 		else if (count == 1)
 		{
 			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
-				//cell.detailTextLabel.text = candidate.name;
 				cell.candidateName.text = candidate.name;
 			}
 			else {
-				//cell.detailTextLabel.text = @"Undecided";
 				cell.candidateName.text = @"Undecided";
 			}
 		}
