@@ -40,6 +40,37 @@
 }
 */
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+	self = [super initWithNibName:nibName bundle:nibBundle];
+	singleUserView = YES;
+	if (self) {
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
+		control.segmentedControlStyle = UISegmentedControlStyleBar;
+		control.selectedSegmentIndex = 0;
+		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+		self.navigationItem.titleView = control;
+		[control release];
+	}
+	
+	return self;
+}
+
+- (void)segmentAction:(id)sender
+{
+	UISegmentedControl* segCtl = sender;
+	// the segmented control was clicked, handle it here 
+	//NSLog(@"segment clicked %d", [segCtl selectedSegmentIndex]);
+	if ([segCtl selectedSegmentIndex] == 0) {
+		singleUserView = YES;
+	}
+	else {
+		singleUserView = NO;
+	}
+	
+	[self.tableView reloadData];
+}
+
+
 - (NSFetchedResultsController *)fetchedResultsController1 {
     if (_fetchedResultsController1 != nil) {
         return _fetchedResultsController1;
@@ -126,12 +157,23 @@
 	UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
 	cell.candidateIcon.image = candidateIcon;
 	
-	cell.friendIcon1.image = icon;
-	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
-	cell.friendIcon4.image = icon;
-	cell.friendIcon5.image = icon;
-	cell.friendIcon6.image = icon;
+	if (singleUserView == NO) {
+		cell.friendIcon1.image = icon;
+		cell.friendIcon2.image = icon;
+		cell.friendIcon3.image = icon;
+		cell.friendIcon4.image = icon;
+		cell.friendIcon5.image = icon;
+		cell.friendIcon6.image = icon;
+	}
+	else {
+		cell.friendIcon1.image = nil;
+		cell.friendIcon2.image = nil;
+		cell.friendIcon3.image = nil;
+		cell.friendIcon4.image = nil;
+		cell.friendIcon5.image = nil;
+		cell.friendIcon6.image = nil;
+	}
+
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
@@ -293,6 +335,7 @@
     [super viewDidLoad];
 
 	self.tableView.rowHeight = 88;
+
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.

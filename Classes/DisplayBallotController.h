@@ -14,6 +14,7 @@
 @interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
+	BOOL singleUserView;
 	Election *_election;
 	Ballot *_ballot;
 	NSManagedObjectContext *_managedObjectContext;
@@ -21,6 +22,7 @@
 	NSFetchedResultsController *_fetchedResultsController2;
 }
 
+- (void)segmentAction:(id)sender;
 - (NSString *)tableView:(UITableView *)tableView titleForPositionHeaderInSection:(NSInteger)section;
 - (NSString *)tableView:(UITableView *)tableView titleForMeasureHeaderInSection:(NSInteger)section;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
