@@ -67,9 +67,16 @@
 		singleUserView = NO;
 	}
 	
-	[self.tableView reloadData];
+	//reloadRowsAtIndexPath
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+	//[self.tableView reloadRowsAtIndexPaths:[self.tableView visibleCells] withRowAnimation:UITableViewRowAnimationNone];
+	//[self.tableView reloadData];
 }
 
+- (void)animationStopped:(id)sender {
+	NSLog(@"animation");
+}
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
     if (_fetchedResultsController1 != nil) {
@@ -144,35 +151,35 @@
 }
 
 - (void)configureCellAsPosition:(PositionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.positionTitle.text = position.title;
 	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	
-	
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
-	UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
-	cell.candidateIcon.image = candidateIcon;
-	
-	if (singleUserView == NO) {
+//	if (singleUserView) {
+//		cell.friendIcon1.image = nil;
+//		cell.friendIcon2.image = nil;
+//		cell.friendIcon3.image = nil;
+//		cell.friendIcon4.image = nil;
+//		cell.friendIcon5.image = nil;
+//		cell.friendIcon6.image = nil;
+//	}
+	//else {
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+		UIImage *icon = [UIImage imageWithContentsOfFile:path];
+		
+//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//		NSString *documentsDirectory = [paths objectAtIndex:0];
+//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+		
+		//cell.candidateIcon.image = candidateIcon;
 		cell.friendIcon1.image = icon;
 		cell.friendIcon2.image = icon;
 		cell.friendIcon3.image = icon;
 		cell.friendIcon4.image = icon;
 		cell.friendIcon5.image = icon;
 		cell.friendIcon6.image = icon;
-	}
-	else {
-		cell.friendIcon1.image = nil;
-		cell.friendIcon2.image = nil;
-		cell.friendIcon3.image = nil;
-		cell.friendIcon4.image = nil;
-		cell.friendIcon5.image = nil;
-		cell.friendIcon6.image = nil;
-	}
+	//}
 
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
@@ -578,6 +585,16 @@
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If our cell is selected, return double height
+    //if([self cellIsSelected:indexPath]) {
+	if (singleUserView == NO) {
+        return 88;
+    }
+	
+    // Cell isn't selected so return single height
+	return 44;
+}
 
 #pragma mark -
 #pragma mark Memory management
