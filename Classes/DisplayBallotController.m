@@ -155,31 +155,21 @@
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.positionTitle.text = position.title;
 	
-//	if (singleUserView) {
-//		cell.friendIcon1.image = nil;
-//		cell.friendIcon2.image = nil;
-//		cell.friendIcon3.image = nil;
-//		cell.friendIcon4.image = nil;
-//		cell.friendIcon5.image = nil;
-//		cell.friendIcon6.image = nil;
-//	}
-	//else {
-		NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-		UIImage *icon = [UIImage imageWithContentsOfFile:path];
-		
-//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//		NSString *documentsDirectory = [paths objectAtIndex:0];
-//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
-//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
-		
-		//cell.candidateIcon.image = candidateIcon;
-		cell.friendIcon1.image = icon;
-		cell.friendIcon2.image = icon;
-		cell.friendIcon3.image = icon;
-		cell.friendIcon4.image = icon;
-		cell.friendIcon5.image = icon;
-		cell.friendIcon6.image = icon;
-	//}
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	
+	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	//		NSString *documentsDirectory = [paths objectAtIndex:0];
+	//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+	
+	//cell.candidateIcon.image = candidateIcon;
+	cell.friendIcon1.image = icon;
+	cell.friendIcon2.image = icon;
+	cell.friendIcon3.image = icon;
+	cell.friendIcon4.image = icon;
+	cell.friendIcon5.image = icon;
+	cell.friendIcon6.image = icon;
 
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
