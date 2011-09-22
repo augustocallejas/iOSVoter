@@ -7,8 +7,12 @@
 //
 
 
-@interface SettingsController : UITableViewController {
+@interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate> {
 
+@private
+	Facebook* _facebook;
 }
+
+@property(nonatomic, retain) Facebook* facebook;
 
 @end

@@ -3,7 +3,7 @@
 //  Supervote
 //
 //  Created by augusto callejas on 8/2/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
 
@@ -18,6 +18,7 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
+	Facebook* _facebook;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,6 +32,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (nonatomic, retain) Facebook* facebook;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (IBAction)doJoinButtonSendZip;

@@ -3,7 +3,7 @@
 //  Supervote
 //
 //  Created by augusto callejas on 8/2/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Canary Falls LLC. All rights reserved.
 //
 
 #import "ListElectionsController.h"
@@ -17,6 +17,15 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize mainAppController;
+@synthesize facebook = _facebook;
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+	if (_facebook != nil) {
+		return [_facebook handleOpenURL:url];
+	}
+	
+	return NO;
+}
 
 
 #pragma mark -
@@ -98,6 +107,7 @@
 		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
 		settings.title = @"Settings";
 		settings.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+		self.facebook = settings.facebook;
 		
 		self.mainAppController.viewControllers = [[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease];
 		
@@ -204,6 +214,7 @@
 }
 
 - (void)dealloc {
+	self.facebook = nil;
 	[managedObjectContext_ release];
 	[managedObjectModel_ release];
 	[persistentStoreCoordinator_ release];

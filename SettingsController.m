@@ -8,8 +8,102 @@
 
 #import "SettingsController.h"
 
+// Your Facebook APP Id must be set before running this example
+// See http://www.facebook.com/developers/createapp.php
+// Also, your application must bind to the fb[app_id]:// URL
+// scheme (substitute [app_id] for your real Facebook app id).
+static NSString* kAppId = @"259602660736072";
 
 @implementation SettingsController
+
+@synthesize facebook = _facebook;
+
+#pragma mark -
+#pragma mark SettingsController methods
+
+- (void) login {
+	  [_facebook authorize:nil];
+}
+
+
+#pragma mark -
+#pragma mark FBSessionDelegate methods
+
+/**
+ * Called when the user successfully logged in.
+ */
+- (void)fbDidLogin {
+	NSLog(@"Did log in");
+	
+	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
+}
+
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled {
+	NSLog(@"Did not log in");
+}
+
+/**
+ * Called when the user logged out.
+ */
+- (void)fbDidLogout {
+	NSLog(@"Logged out");
+}
+
+
+#pragma mark -
+#pragma mark FBRequestDelegate methods
+
+/**
+ * Called just before the request is sent to the server.
+ */
+- (void)requestLoading:(FBRequest *)request {
+	NSLog(@"FB: request loading");
+}
+
+/**
+ * Called when the server responds and begins to send back data.
+ */
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+	NSLog(@"FB: request did receive response");
+}
+
+/**
+ * Called when an error prevents the request from completing successfully.
+ */
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+	NSLog(@"FB: request did fail with error");
+}
+
+/**
+ * Called when a request returns and its response has been parsed into
+ * an object.
+ *
+ * The resulting object may be a dictionary, an array, a string, or a number,
+ * depending on thee format of the API response.
+ */
+- (void)request:(FBRequest *)request didLoad:(id)result {
+	NSLog(@"Got response %@", result);
+}
+
+/**
+ * Called when a request returns a response.
+ *
+ * The result object is the raw response from the server of type NSData
+ */
+- (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data {
+}
+
+#pragma mark -
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self login];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
@@ -18,7 +112,7 @@
 {
 	if (section == 0)
 	{
-		return 0;
+		return 1;
 	}
 	
 	return 0;
@@ -35,58 +129,36 @@
 	return nil;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	UITableViewCell *cell;
-//	
-//	NSString *text = @"Title";
-//	NSString *detailText = @"detail text";
-//	
-//	if ([indexPath length] == 2)
-//	{
-//		if ([indexPath indexAtPosition:0] == 0)
-//		{
-//			NSUInteger index = [indexPath indexAtPosition:1];
-//			if (index == 0)
-//			{
-//				text = @"2012 Presidential Election";
-//				detailText = @"November 6th, 2012";
-//			}
-//			else if (index == 1)
-//			{
-//				text = @"2016 Presidential Election";
-//				detailText = @"";
-//			}
-//		}
-//	}
-//	
-//	cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
-//	
-//	if (cell == nil)
-//	{
-//		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
-//	}
-//	
-//	cell.textLabel.text = text;
-//	cell.detailTextLabel.text = detailText;
-//	
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-//	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-//	cell.imageView.image = icon;
-//	
-//	return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
+	
+	if (cell == nil)
+	{
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
+	}
+	
+	cell.textLabel.text = @"Facebook";
+	
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	cell.imageView.image = icon;
+	
+	return cell;
+}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization.
+		//		_permissions =  [[NSArray arrayWithObjects:
+		//						  @"read_stream", @"publish_stream", @"offline_access",nil] retain];
+		_facebook = [[Facebook alloc] initWithAppId:kAppId
+										andDelegate:self];
     }
     return self;
 }
-*/
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -118,6 +190,7 @@
 
 
 - (void)dealloc {
+	self.facebook = nil;
     [super dealloc];
 }
 
