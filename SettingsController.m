@@ -75,6 +75,7 @@ static NSString* kAppId = @"259602660736072";
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
 	NSLog(@"FB: request did fail with error");
+	NSLog(@"error %@", error);
 }
 
 /**
@@ -85,7 +86,37 @@ static NSString* kAppId = @"259602660736072";
  * depending on thee format of the API response.
  */
 - (void)request:(FBRequest *)request didLoad:(id)result {
-	NSLog(@"Got response %@", result);
+	//NSLog(@"requestDidLoad %@", [request url]);
+	
+	if ([[request url] hasSuffix:@"me/friends"])
+	{
+		if ([result isKindOfClass:[NSDictionary class]]) {
+			NSDictionary *dict = (NSDictionary *)result;
+			
+			BOOL queryForImage = YES;
+			
+			id object = [dict objectForKey:@"data"];
+			if (object != nil && [object isKindOfClass:[NSArray class]]) {
+				NSArray *friendList = (NSArray *)object;
+				for (id friend in friendList) {
+					NSDictionary *friendInfo = (NSDictionary *)friend;
+					NSString *friendId = (NSString *)[friendInfo objectForKey:@"id"];
+					NSString *friendName = (NSString *)[friendInfo objectForKey:@"name"];
+										
+					if (queryForImage) {
+						queryForImage = NO;
+						//NSLog(@"saving %@", friendName);
+						[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId]  andDelegate:self];
+					}
+					
+					//NSLog(@"%d -> %@", [friendId intValue], friendName);
+				}
+			}
+		}
+	}
+	else {
+		//NSLog(@"result %@", result);
+	}
 }
 
 /**
@@ -94,6 +125,26 @@ static NSString* kAppId = @"259602660736072";
  * The result object is the raw response from the server of type NSData
  */
 - (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data {
+	if ([[request url] hasSuffix:@"/picture"]) {
+		NSUInteger lastForwardSlash = [[request url] length] - 8;
+		NSRange range = [[request url] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]
+													   options:NSBackwardsSearch
+														 range:NSMakeRange(0, lastForwardSlash)];
+		NSString *friendId = [[request url] substringWithRange:NSMakeRange(range.location+1, lastForwardSlash-range.location-1)];
+		//NSLog(@"[%@]", friendId);
+
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *documentsDirectory = [paths objectAtIndex:0];
+		/* TODO: create facebook directory beforehand */
+		NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendId];
+		
+		if ([data writeToFile:filePath atomically:YES]) {
+			NSLog(@"saved!");
+		}
+		else {
+			NSLog(@"not saved!");
+		}
+	}
 }
 
 #pragma mark -
