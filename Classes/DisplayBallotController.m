@@ -155,8 +155,18 @@
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.positionTitle.text = position.title;
 	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	/* TODO: obviously hardcoded ... */
+	NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
+	
 	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	
+	if (icon == nil) {
+		path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+		icon = [UIImage imageWithContentsOfFile:path];
+	}
 	
 	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	//		NSString *documentsDirectory = [paths objectAtIndex:0];

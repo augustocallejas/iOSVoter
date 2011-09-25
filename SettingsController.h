@@ -8,11 +8,13 @@
 
 
 @interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate> {
-
+	BOOL _loggedIn;
 @private
-	Facebook* _facebook;
+	Facebook *_facebook;
+	NSString *_documentsPath;
 }
 
-@property(nonatomic, retain) Facebook* facebook;
+@property(nonatomic, retain) Facebook *facebook;
+@property(nonatomic, retain) NSString *documentsPath;
 
 @end

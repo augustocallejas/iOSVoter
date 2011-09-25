@@ -17,12 +17,13 @@ static NSString* kAppId = @"259602660736072";
 @implementation SettingsController
 
 @synthesize facebook = _facebook;
+@synthesize documentsPath = _documentsPath;
 
 #pragma mark -
 #pragma mark SettingsController methods
 
 - (void) login {
-	  [_facebook authorize:nil];
+	[_facebook authorize:nil];
 }
 
 
@@ -33,8 +34,16 @@ static NSString* kAppId = @"259602660736072";
  * Called when the user successfully logged in.
  */
 - (void)fbDidLogin {
-	NSLog(@"Did log in");
+	_loggedIn = YES;
 	
+	NSLog(@"Facebook login successful, session expiration date %@", [_facebook expirationDate]);
+	/* TODO: save access token */
+//	NSLog(@"%@", [_facebook accessToken]);
+	
+	/* reload table cell so that it refreshes its view */
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+	
+	/* download the friend graph */
 	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
 }
 
@@ -42,6 +51,7 @@ static NSString* kAppId = @"259602660736072";
  * Called when the user dismissed the dialog without logging in.
  */
 - (void)fbDidNotLogin:(BOOL)cancelled {
+	//_loggedIn = NO;
 	NSLog(@"Did not log in");
 }
 
@@ -49,7 +59,10 @@ static NSString* kAppId = @"259602660736072";
  * Called when the user logged out.
  */
 - (void)fbDidLogout {
-	NSLog(@"Logged out");
+	_loggedIn = NO;
+	NSLog(@"Logged out of Facebook");
+	
+	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -93,8 +106,6 @@ static NSString* kAppId = @"259602660736072";
 		if ([result isKindOfClass:[NSDictionary class]]) {
 			NSDictionary *dict = (NSDictionary *)result;
 			
-			BOOL queryForImage = YES;
-			
 			id object = [dict objectForKey:@"data"];
 			if (object != nil && [object isKindOfClass:[NSArray class]]) {
 				NSArray *friendList = (NSArray *)object;
@@ -102,14 +113,21 @@ static NSString* kAppId = @"259602660736072";
 					NSDictionary *friendInfo = (NSDictionary *)friend;
 					NSString *friendId = (NSString *)[friendInfo objectForKey:@"id"];
 					NSString *friendName = (NSString *)[friendInfo objectForKey:@"name"];
-										
-					if (queryForImage) {
-						queryForImage = NO;
-						//NSLog(@"saving %@", friendName);
-						[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId]  andDelegate:self];
-					}
 					
-					//NSLog(@"%d -> %@", [friendId intValue], friendName);
+					/* TODO: persist the list of friends, including name and if the profile photo was downloaded successfully */
+					/* also compare the list we get from facebook and compare to our list, in case there are new friends or existing friends were removed */
+					
+					/* check if the friend's profile photo has already been downloaded */
+					NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
+					
+					if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+						/* TODO: how can we check if the profile photo has changed? */
+						NSLog(@"Profile photo for '%@' already exists, not re-downloading", friendName);
+					}
+					else {
+						NSLog(@"Downloading profile photo for '%@' to file '%@.gif'", friendName, friendId);
+						[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+					}
 				}
 			}
 		}
@@ -131,15 +149,13 @@ static NSString* kAppId = @"259602660736072";
 													   options:NSBackwardsSearch
 														 range:NSMakeRange(0, lastForwardSlash)];
 		NSString *friendId = [[request url] substringWithRange:NSMakeRange(range.location+1, lastForwardSlash-range.location-1)];
-		//NSLog(@"[%@]", friendId);
 
-		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		NSString *documentsDirectory = [paths objectAtIndex:0];
 		/* TODO: create facebook directory beforehand */
-		NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendId];
+		NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
 		
 		if ([data writeToFile:filePath atomically:YES]) {
 			NSLog(@"saved!");
+			/* TODO: marked as saved in core data */
 		}
 		else {
 			NSLog(@"not saved!");
@@ -151,8 +167,15 @@ static NSString* kAppId = @"259602660736072";
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self login];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (_loggedIn) {
+			[_facebook logout:self];
+		}
+		else {
+			[self login];
+		}
+	}
 }
 
 
@@ -161,8 +184,8 @@ static NSString* kAppId = @"259602660736072";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0)
-	{
+	/* Facebook */
+	if (section == 0) {
 		return 1;
 	}
 	
@@ -174,7 +197,7 @@ static NSString* kAppId = @"259602660736072";
 {
 	if (section == 0)
 	{
-		return @"Settings";
+		return @"Facebook Settings";
 	}
 	
 	return nil;
@@ -186,14 +209,36 @@ static NSString* kAppId = @"259602660736072";
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"default"] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"default"] autorelease];
+		cell.textLabel.textAlignment = UITextAlignmentCenter;
 	}
+
+	if (_loggedIn) {
+		cell.textLabel.text = @"Log out of Facebook";
+	}
+	else {
+		cell.textLabel.text = @"Log into Facebook";
+	}
+
+//	cell.textLabel.text = @"Facebook";
+//	if (_loggedIn) {
+//		cell.detailTextLabel.text = @"Logged in";
+//	}
+//	else {
+//		cell.detailTextLabel.text = @"Logged out";
+//	}
+
+		
+	if ([_facebook isSessionValid]) {
+	}
+	else {
+		//
+	}
+
 	
-	cell.textLabel.text = @"Facebook";
-	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	cell.imageView.image = icon;
+	//NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+	//UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	//cell.imageView.image = icon;
 	
 	return cell;
 }
@@ -207,6 +252,8 @@ static NSString* kAppId = @"259602660736072";
 		//						  @"read_stream", @"publish_stream", @"offline_access",nil] retain];
 		_facebook = [[Facebook alloc] initWithAppId:kAppId
 										andDelegate:self];
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		_documentsPath = [[paths objectAtIndex:0] retain];
     }
     return self;
 }
@@ -242,6 +289,7 @@ static NSString* kAppId = @"259602660736072";
 
 - (void)dealloc {
 	self.facebook = nil;
+	self.documentsPath = nil;
     [super dealloc];
 }
 
