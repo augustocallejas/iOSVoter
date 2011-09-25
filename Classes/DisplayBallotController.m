@@ -42,11 +42,13 @@
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
 	self = [super initWithNibName:nibName bundle:nibBundle];
-	singleUserView = YES;
+	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
 		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
-		control.selectedSegmentIndex = 0;
+		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 		self.navigationItem.titleView = control;
 		[control release];
@@ -60,12 +62,18 @@
 	UISegmentedControl* segCtl = sender;
 	// the segmented control was clicked, handle it here 
 	//NSLog(@"segment clicked %d", [segCtl selectedSegmentIndex]);
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	if ([segCtl selectedSegmentIndex] == 0) {
-		singleUserView = YES;
+		socialBallotView = NO;
 	}
 	else {
-		singleUserView = NO;
+		socialBallotView = YES;
 	}
+	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
+	if (![prefs synchronize]) {
+		NSLog(@"Did not synchronize correctly");
+	}
+
 	
 	//reloadRowsAtIndexPath
 	[self.tableView beginUpdates];
@@ -588,7 +596,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If our cell is selected, return double height
     //if([self cellIsSelected:indexPath]) {
-	if (singleUserView == NO) {
+	if (socialBallotView == YES) {
         return 88;
     }
 	

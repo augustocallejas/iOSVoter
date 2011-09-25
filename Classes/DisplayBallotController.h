@@ -14,7 +14,7 @@
 @interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
-	BOOL singleUserView;
+	BOOL socialBallotView;
 	Election *_election;
 	Ballot *_ballot;
 	NSManagedObjectContext *_managedObjectContext;

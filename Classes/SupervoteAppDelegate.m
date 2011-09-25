@@ -34,6 +34,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
+	NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+										  [NSNumber numberWithBool:NO], @"SocialBallotMode",
+										  nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
 
 	// Set the view controller as the window's root view controller and display.
     self.window.rootViewController = self.viewController;
