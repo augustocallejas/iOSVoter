@@ -109,6 +109,7 @@
 //		[electionNavigation setNavigationBarHidden:YES];
 
 		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
+		settings.managedObjectContext = self.managedObjectContext;
 		settings.title = @"Settings";
 		settings.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		self.facebook = settings.facebook;

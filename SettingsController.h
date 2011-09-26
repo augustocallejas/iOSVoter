@@ -10,10 +10,12 @@
 @interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate> {
 	BOOL _loggedIn;
 @private
+	NSManagedObjectContext *_managedObjectContext;
 	Facebook *_facebook;
 	NSString *_documentsPath;
 }
 
+@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic, retain) Facebook *facebook;
 @property(nonatomic, retain) NSString *documentsPath;
 

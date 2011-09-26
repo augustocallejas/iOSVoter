@@ -38,6 +38,7 @@
 		1474ECAD142330A6004D35AD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474ECA0142330A6004D35AD /* Facebook.m */; };
 		1474ECAE142330A6004D35AD /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474ECA2142330A6004D35AD /* FBLoginDialog.m */; };
 		1474ECAF142330A6004D35AD /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474ECA4142330A6004D35AD /* FBDialog.m */; };
+		1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474EF57142FC8CB004D35AD /* FacebookFriend.m */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -115,6 +116,8 @@
 		1474ECA2142330A6004D35AD /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginDialog.m; path = "../facebook-ios-sdk/src/FBLoginDialog.m"; sourceTree = SOURCE_ROOT; };
 		1474ECA3142330A6004D35AD /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBDialog.h; path = "../facebook-ios-sdk/src/FBDialog.h"; sourceTree = SOURCE_ROOT; };
 		1474ECA4142330A6004D35AD /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBDialog.m; path = "../facebook-ios-sdk/src/FBDialog.m"; sourceTree = SOURCE_ROOT; };
+		1474EF56142FC8CB004D35AD /* FacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriend.h; sourceTree = "<group>"; };
+		1474EF57142FC8CB004D35AD /* FacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriend.m; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				1423B44A14082CE3006F8DBF /* Candidate.m */,
 				1423B44614082CB8006F8DBF /* Election.h */,
 				1423B44714082CB8006F8DBF /* Election.m */,
+				1474EF56142FC8CB004D35AD /* FacebookFriend.h */,
+				1474EF57142FC8CB004D35AD /* FacebookFriend.m */,
 				14AC6667141D581F00F29A71 /* Friend.h */,
 				14AC6668141D581F00F29A71 /* Friend.m */,
 				14AC6665141D581F00F29A71 /* FriendBallotVote.h */,
@@ -443,6 +448,7 @@
 				1474ECAD142330A6004D35AD /* Facebook.m in Sources */,
 				1474ECAE142330A6004D35AD /* FBLoginDialog.m in Sources */,
 				1474ECAF142330A6004D35AD /* FBDialog.m in Sources */,
+				1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

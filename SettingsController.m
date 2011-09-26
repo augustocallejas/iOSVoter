@@ -8,6 +8,8 @@
 
 #import "SettingsController.h"
 
+#import "FacebookFriend.h"
+
 // Your Facebook APP Id must be set before running this example
 // See http://www.facebook.com/developers/createapp.php
 // Also, your application must bind to the fb[app_id]:// URL
@@ -16,6 +18,7 @@ static NSString* kAppId = @"259602660736072";
 
 @implementation SettingsController
 
+@synthesize managedObjectContext = _managedObjectContext;
 @synthesize facebook = _facebook;
 @synthesize documentsPath = _documentsPath;
 
@@ -73,14 +76,14 @@ static NSString* kAppId = @"259602660736072";
  * Called just before the request is sent to the server.
  */
 - (void)requestLoading:(FBRequest *)request {
-	NSLog(@"FB: request loading");
+	//NSLog(@"FB: request loading");
 }
 
 /**
  * Called when the server responds and begins to send back data.
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-	NSLog(@"FB: request did receive response");
+	//NSLog(@"FB: request did receive response");
 }
 
 /**
@@ -109,26 +112,106 @@ static NSString* kAppId = @"259602660736072";
 			id object = [dict objectForKey:@"data"];
 			if (object != nil && [object isKindOfClass:[NSArray class]]) {
 				NSArray *friendList = (NSArray *)object;
+				
+				/* query for each user */
+				NSFetchRequest *request = [[NSFetchRequest alloc] init];
+				[request setFetchLimit:1];
+				NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_managedObjectContext];
+				[request setEntity:entity];			
+				NSError *error = nil;
+				
 				for (id friend in friendList) {
 					NSDictionary *friendInfo = (NSDictionary *)friend;
 					NSString *friendId = (NSString *)[friendInfo objectForKey:@"id"];
 					NSString *friendName = (NSString *)[friendInfo objectForKey:@"name"];
 					
-					/* TODO: persist the list of friends, including name and if the profile photo was downloaded successfully */
-					/* also compare the list we get from facebook and compare to our list, in case there are new friends or existing friends were removed */
+					/* TODO: check if any friends have been deleted? */
 					
 					/* check if the friend's profile photo has already been downloaded */
-					NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
-					
+					NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];					
 					if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-						/* TODO: how can we check if the profile photo has changed? */
-						NSLog(@"Profile photo for '%@' already exists, not re-downloading", friendName);
+						/* the file exists, but perhaps it was partially downloaded?
+						query for the FacebookFriend instance */
+						
+						NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+						[request setPredicate:predicate];
+						
+						NSArray *array = [_managedObjectContext executeFetchRequest:request error:&error];
+						if (array != nil) {
+							NSUInteger count = [array count];
+							if (count == 0) {
+								NSLog(@"Facebook friend's profile photo downloaded, but not in database: '%@'", friendId);
+								/* insert new facebook friend??? */
+								/* create an object */
+								FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																											  inManagedObjectContext:_managedObjectContext] retain];
+								newFriend.friendId = friendId;
+								newFriend.name = friendName;
+								newFriend.photoDownloaded = nil;
+								
+								if (![_managedObjectContext save:&error]) {
+									NSLog(@"Failed to save managed object context: %@", [error userInfo]);
+								}
+								else {
+									//[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+								}
+
+							}
+							else if (count == 1) {
+								FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+								if (friend.photoDownloaded == nil) {
+									/* profile photo downloaded, but not marked complete, redownload */
+									NSLog(@"Redownloading photo for '%@' since no photoDownloaded date exists", friend.name);
+									[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];									
+								}
+								else {
+									/* TODO: how do i check if the photo is out of date? */
+									/* TODO: how can we check if the profile photo has changed? */
+									NSLog(@"Profile photo for '%@' already exists, not re-downloading", friendName);
+								}
+							}
+						}
+						else {
+							NSLog(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error userInfo]);
+						}
 					}
 					else {
-						NSLog(@"Downloading profile photo for '%@' to file '%@.gif'", friendName, friendId);
-						[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+						/* the facebook friend's profile photo is not downloaded */
+						NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+						[request setPredicate:predicate];
+						
+						NSArray *array = [_managedObjectContext executeFetchRequest:request error:&error];
+						if (array != nil) {
+							NSUInteger count = [array count];
+							if (count == 0) {
+								NSLog(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
+								/* create an object */
+								FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																											  inManagedObjectContext:_managedObjectContext] retain];
+								newFriend.friendId = friendId;
+								newFriend.name = friendName;
+								newFriend.photoDownloaded = nil;
+								
+								if (![_managedObjectContext save:&error]) {
+									NSLog(@"Failed to save managed object context: %@", [error userInfo]);
+									// Handle the error
+								}
+							}
+							else if (count == 1) {
+								FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+								NSLog(@"Profile photo for '%@' is missing, will redownload", friend.name);
+							}
+							
+							NSLog(@"Downloading profile photo for '%@' to file '%@.gif'", friendName, friendId);
+							[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+						}
+						else {
+							NSLog(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error userInfo]);
+						}
 					}
 				}
+				
+				[request release];
 			}
 		}
 	}
@@ -154,11 +237,44 @@ static NSString* kAppId = @"259602660736072";
 		NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
 		
 		if ([data writeToFile:filePath atomically:YES]) {
-			NSLog(@"saved!");
-			/* TODO: marked as saved in core data */
+			NSLog(@"Successfully downloaded Facebook friend's profile photo: '%@'", friendId);
+
+			/* update the photoDownloaded attribute in FacebookFriend object */
+			NSFetchRequest *request = [[NSFetchRequest alloc] init];
+			[request setFetchLimit:1];
+			
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_managedObjectContext];
+			[request setEntity:entity];		
+
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+			[request setPredicate:predicate];
+			NSError *error = nil;
+			
+			NSArray *array = [_managedObjectContext executeFetchRequest:request error:&error];
+			if (array != nil) {
+				NSUInteger count = [array count];
+				if (count == 1) {
+					FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+					friend.photoDownloaded = [NSDate date];
+					
+					if (![_managedObjectContext save:&error]) {
+						NSLog(@"Failed to save managed object context: %@", [error userInfo]);
+					}
+					else {
+						//NSLog(@"Saved with date: %@", friend.photoDownloaded);
+					}
+				}
+				else if (count == 0) {
+					NSLog(@"Missing FacebookFriend instance (friendId=%@) despite downloading photo", friendId);
+				}
+			}
+			else {
+				NSLog(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error userInfo]);
+			}
 		}
 		else {
-			NSLog(@"not saved!");
+			/* TODO: does writeToFile set an error flag? */
+			NSLog(@"Failed to save Facebook friend's profile photo: %@", friendId);
 		}
 	}
 }
@@ -288,6 +404,7 @@ static NSString* kAppId = @"259602660736072";
 
 
 - (void)dealloc {
+	self.managedObjectContext = nil;
 	self.facebook = nil;
 	self.documentsPath = nil;
     [super dealloc];
