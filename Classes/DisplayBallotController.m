@@ -348,8 +348,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"viewDidLoad");
-	self.tableView.rowHeight = 88;
 
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
