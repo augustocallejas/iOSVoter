@@ -106,6 +106,44 @@
 }
 */
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+	self = [super initWithNibName:nibName bundle:nibBundle];
+	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
+	if (self) {
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
+		control.segmentedControlStyle = UISegmentedControlStyleBar;
+		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
+		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+		self.navigationItem.titleView = control;
+		[control release];
+	}
+	
+	return self;
+}
+
+- (void)segmentAction:(id)sender
+{
+	UISegmentedControl* segCtl = sender;
+	// the segmented control was clicked, handle it here 
+	//NSLog(@"segment clicked %d", [segCtl selectedSegmentIndex]);
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	if ([segCtl selectedSegmentIndex] == 0) {
+		socialBallotView = NO;
+	}
+	else {
+		socialBallotView = YES;
+	}
+	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
+	if (![prefs synchronize]) {
+		NSLog(@"Did not synchronize correctly");
+	}
+	
+//	[self.tableView beginUpdates];
+//	[self.tableView endUpdates];
+}
+
 
 #pragma mark -
 #pragma mark View lifecycle

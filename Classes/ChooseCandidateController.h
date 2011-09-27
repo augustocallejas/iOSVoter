@@ -16,6 +16,7 @@
 @interface ChooseCandidateController : FetchedResultsBasedTableViewController {
 
 @private
+	BOOL socialBallotView;
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;

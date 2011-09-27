@@ -46,12 +46,12 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
-		control.segmentedControlStyle = UISegmentedControlStyleBar;
-		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
-		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-		self.navigationItem.titleView = control;
-		[control release];
+		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
+		segControl.segmentedControlStyle = UISegmentedControlStyleBar;
+		segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
+		[segControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+		self.navigationItem.titleView = segControl;
+		//[control release];
 	}
 	
 	return self;
@@ -348,7 +348,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	NSLog(@"viewDidLoad");
 	self.tableView.rowHeight = 88;
 
 	NSError *error;
@@ -404,13 +404,23 @@
 /*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	NSLog(@"ViewWillApear");
+	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+//	[self.tableView reloadData];
 }
 */
-/*
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	/* reload the table view since the social ballot mode may have been changed in the choose candidate controller */
+	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
+	segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
-*/
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -628,6 +638,9 @@
 
 
 - (void)dealloc {
+	if (segControl != nil) {
+		[segControl release];
+	}
 	self.election = nil;
 	self.ballot = nil;
 	self.fetchedResultsController1.delegate = nil;
