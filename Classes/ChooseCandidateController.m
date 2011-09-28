@@ -8,7 +8,7 @@
 
 #import "Candidate.h"
 #import "ChooseCandidateController.h"
-
+#import "CandidateViewCell.h"
 
 @implementation ChooseCandidateController
 
@@ -46,16 +46,31 @@
 	return @"ChooseCandidateController";
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
-	cell.textLabel.text = candidate.name;
-	cell.detailTextLabel.text = candidate.party;
+	cell.candidateName.text = candidate.name;
+	cell.partyName.text = candidate.party;
 	
-	if (vote != nil && vote.forCandidate == candidate)
-	{
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	}
+	UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]];
+	cell.topFriendIcon.image = icon;
+	cell.topEndorsement.text = @"\"I endorse this candidate all the way to the White House!\"";
+	
+	cell.friendIcon1.image = icon;
+	cell.friendIcon2.image = icon;
+	cell.friendIcon3.image = icon;
+	cell.friendIcon4.image = icon;
+	cell.friendIcon5.image = icon;
+	cell.friendIcon6.image = icon;
+	
+	
+	//cell.textLabel.text = candidate.name;
+	//cell.detailTextLabel.text = candidate.party;
+	
+	//if (vote != nil && vote.forCandidate == candidate)
+	//{
+	//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	//}
 	
 	/* query for friends' votes on this candidate */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -112,6 +127,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
+		//self.tableView.rowHeight = 176;
 		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
 		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
@@ -140,8 +156,8 @@
 		NSLog(@"Did not synchronize correctly");
 	}
 	
-//	[self.tableView beginUpdates];
-//	[self.tableView endUpdates];
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
 
 
@@ -272,6 +288,17 @@
 #pragma mark -
 #pragma mark Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // If our cell is selected, return double height
+    //if([self cellIsSelected:indexPath]) {
+	if (socialBallotView == YES) {
+        return 176;
+    }
+	
+    // Cell isn't selected so return single height
+	return 44;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
@@ -312,6 +339,26 @@
 	
 	// update the detailed text, because otherwise it stays the same.
 	self.selectedCell.candidateName.text = vote.forCandidate.name;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"CandidateViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+		
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CandidateViewCell" owner:nil options:nil];
+		
+		for (id nibObject in nibObjects) {
+			if ([nibObject isKindOfClass:[CandidateViewCell class]]) {
+				cell = (CandidateViewCell *)nibObject;
+				break;
+			}
+		}
+	}
+	
+	[self configureCell:(CandidateViewCell *) cell atIndexPath:indexPath];
+	
+    return cell;
 }
 
 

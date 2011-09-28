@@ -74,12 +74,8 @@
 		NSLog(@"Did not synchronize correctly");
 	}
 
-	
-	//reloadRowsAtIndexPath
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
-	//[self.tableView reloadRowsAtIndexPaths:[self.tableView visibleCells] withRowAnimation:UITableViewRowAnimationNone];
-	//[self.tableView reloadData];
 }
 
 - (void)animationStopped:(id)sender {
@@ -348,7 +344,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.
