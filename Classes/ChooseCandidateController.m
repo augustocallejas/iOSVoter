@@ -17,6 +17,17 @@
 @synthesize selectedRow;
 @synthesize selectedCell;
 
+#pragma mark -
+#pragma mark Custom button actions
+
+- (IBAction)voteOnCandidate:(id)sender{
+	NSLog(@"candidate %d", ((UIButton*)sender).tag);
+}
+
+- (IBAction)viewAllEndorsements:(id)sender{
+	NSLog(@"viewAllEndorsements %d", ((UIButton*)sender).tag);
+}
+
 
 #pragma mark -
 #pragma mark FetchedResultsBasedTableViewController implementation methods
@@ -134,6 +145,9 @@
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 		self.navigationItem.titleView = control;
 		[control release];
+//		self.tableView.allowsSelection = NO;
+//		[self.tableView setAllowsSelection:NO];
+//		[self.tableView allowsSelection:NO];
 	}
 	
 	return self;
@@ -166,6 +180,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.tableView.allowsSelection = NO;
 	
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -343,10 +358,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CandidateViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
 		
-		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CandidateViewCell" owner:nil options:nil];
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CandidateViewCell" owner:self options:nil];
 		
 		for (id nibObject in nibObjects) {
 			if ([nibObject isKindOfClass:[CandidateViewCell class]]) {
@@ -356,7 +371,10 @@
 		}
 	}
 	
-	[self configureCell:(CandidateViewCell *) cell atIndexPath:indexPath];
+	cell.voteCandidate.tag = indexPath.row;
+	cell.viewAllEndorsements.tag = indexPath.row;
+	
+	[self configureCell:cell atIndexPath:indexPath];
 	
     return cell;
 }

@@ -29,4 +29,7 @@
 @property (nonatomic, retain) PositionViewCell *selectedCell;
 @property NSInteger selectedRow;
 
+- (IBAction)voteOnCandidate:(id)sender;
+- (IBAction)viewAllEndorsements:(id)sender;
+
 @end

@@ -24,6 +24,7 @@
 	IBOutlet UIImageView *_friendIcon5;
 	IBOutlet UIImageView *_friendIcon6;	
 	IBOutlet UIButton *_viewAllEndorsements;
+	IBOutlet UIButton *_voteCandidate;
 }
 
 @property (nonatomic, retain) UILabel *candidateName;
@@ -39,5 +40,6 @@
 @property (nonatomic, retain) UIImageView *friendIcon5;
 @property (nonatomic, retain) UIImageView *friendIcon6;
 @property (nonatomic, retain) UIButton *viewAllEndorsements;
+@property (nonatomic, retain) UIButton *voteCandidate;
 
 @end
