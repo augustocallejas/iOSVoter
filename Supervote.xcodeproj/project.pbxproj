@@ -52,6 +52,9 @@
 		14AC666B141D581F00F29A71 /* FriendBallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6666141D581F00F29A71 /* FriendBallotVote.m */; };
 		14AC666C141D581F00F29A71 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6668141D581F00F29A71 /* Friend.m */; };
 		14AC666D141D581F00F29A71 /* FriendMeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC666A141D581F00F29A71 /* FriendMeasureVote.m */; };
+		14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E748F914343821002E2F82 /* EndorsementViewCell.xib */; };
+		14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E749021434388B002E2F82 /* EndorsementViewCell.m */; };
+		14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7491714343C99002E2F82 /* ListEndorsementsController.m */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -140,6 +143,11 @@
 		14AC6668141D581F00F29A71 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		14AC6669141D581F00F29A71 /* FriendMeasureVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMeasureVote.h; sourceTree = "<group>"; };
 		14AC666A141D581F00F29A71 /* FriendMeasureVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMeasureVote.m; sourceTree = "<group>"; };
+		14E748F914343821002E2F82 /* EndorsementViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndorsementViewCell.xib; sourceTree = "<group>"; };
+		14E749011434388B002E2F82 /* EndorsementViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementViewCell.h; sourceTree = "<group>"; };
+		14E749021434388B002E2F82 /* EndorsementViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementViewCell.m; sourceTree = "<group>"; };
+		14E7491614343C99002E2F82 /* ListEndorsementsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEndorsementsController.h; sourceTree = "<group>"; };
+		14E7491714343C99002E2F82 /* ListEndorsementsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEndorsementsController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -224,6 +232,8 @@
 				143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */,
 				14789F2413EBBB9E0016044C /* ListElectionsController.h */,
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
+				14E7491614343C99002E2F82 /* ListEndorsementsController.h */,
+				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -239,6 +249,8 @@
 			children = (
 				1474F0631432DCFD004D35AD /* CandidateViewCell.h */,
 				1474F0641432DCFD004D35AD /* CandidateViewCell.m */,
+				14E749011434388B002E2F82 /* EndorsementViewCell.h */,
+				14E749021434388B002E2F82 /* EndorsementViewCell.m */,
 				1462F3DA141DA394007E31C1 /* PositionViewCell.h */,
 				1462F3DB141DA394007E31C1 /* PositionViewCell.m */,
 			);
@@ -322,6 +334,7 @@
 				14399E20140F7FAC007269A3 /* DisplayBallot.xib */,
 				14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */,
 				14A8779713F23DB2006B9D73 /* DisplayElection.xib */,
+				14E748F914343821002E2F82 /* EndorsementViewCell.xib */,
 				14789F1713EBBB220016044C /* FeedController.xib */,
 				14789F2613EBBB9E0016044C /* ListElections.xib */,
 				14399C77140E1C77007269A3 /* ListMeasures.xib */,
@@ -415,6 +428,7 @@
 				1462F3F8141DA5D5007E31C1 /* PositionViewCell.xib in Resources */,
 				1474ECA5142330A6004D35AD /* FBDialog.bundle in Resources */,
 				1474F05B1432C48C004D35AD /* CandidateViewCell.xib in Resources */,
+				14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +473,8 @@
 				1474ECAF142330A6004D35AD /* FBDialog.m in Sources */,
 				1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */,
 				1474F0651432DCFD004D35AD /* CandidateViewCell.m in Sources */,
+				14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */,
+				14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

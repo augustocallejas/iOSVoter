@@ -6,9 +6,11 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "Candidate.h"
 #import "ChooseCandidateController.h"
+
+#import "Candidate.h"
 #import "CandidateViewCell.h"
+#import "ListEndorsementsController.h"
 
 @implementation ChooseCandidateController
 
@@ -22,10 +24,22 @@
 
 - (IBAction)voteOnCandidate:(id)sender{
 	NSLog(@"candidate %d", ((UIButton*)sender).tag);
+	
+	//[self presentModalViewController:controller animated:YES];
 }
 
 - (IBAction)viewAllEndorsements:(id)sender{
-	NSLog(@"viewAllEndorsements %d", ((UIButton*)sender).tag);
+	UIButton *button = (UIButton *)sender;
+	
+	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
+	controller.position = self.position;
+	controller.candidate = candidate;
+	controller.title = @"Endorsements";
+	controller.managedObjectContext = self.managedObjectContext;
+	
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
 }
 
 
@@ -357,11 +371,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CandidateViewCell";
-    CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *identifier = @"CandidateViewCell";
+    CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {
 		
-		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CandidateViewCell" owner:self options:nil];
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
 		
 		for (id nibObject in nibObjects) {
 			if ([nibObject isKindOfClass:[CandidateViewCell class]]) {
