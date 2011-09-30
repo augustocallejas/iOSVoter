@@ -145,6 +145,7 @@
 			}
 		}
 		
+		// http://www.cimgf.com/2009/09/23/uitableviewcell-dynamic-height/
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
 		cell.endorsementStatement = label;
 		[label setLineBreakMode:UILineBreakModeWordWrap];
