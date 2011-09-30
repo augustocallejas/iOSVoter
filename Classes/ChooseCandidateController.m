@@ -112,6 +112,7 @@
 	{
 		NSUInteger count = [array count];
 		NSLog(@"%d friend(s) for %@", count, candidate.name);
+		cell.endorsementCount.text = [NSString stringWithFormat:@"%d", count];
 //		if (count == 0)
 //		{
 //		}
