@@ -8,8 +8,15 @@
 
 #import "ListEndorsementsController.h"
 
+#import "Friend.h"
 #import "EndorsementViewCell.h"
 #import "FriendBallotVote.h"
+
+#define FONT_SIZE 14.0f
+#define LABEL_X_POSITION 69.0f
+#define LABEL_Y_POSITION 10.0f
+#define LABEL_CONTENT_WIDTH 251.0f
+#define LABEL_CONTENT_MARGIN 10.0f
 
 @implementation ListEndorsementsController
 
@@ -43,7 +50,8 @@
 
 - (NSString *)getCacheName{
 	/* TODO: cache name must be different for each candidate? this may be a general issue across my controllers */
-	return nil;//return @"ListEndorsementsController";
+	return nil;
+	//return @"ListEndorsementsController";
 }
 
 - (NSArray *)allocSortDescriptors{
@@ -64,10 +72,19 @@
 	FriendBallotVote *friendVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
-	endorsementCell.endorsementStatement.text = friendVote.statement;
+	endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendVote.author.name, friendVote.statement];
 	
 	UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]];
 	endorsementCell.endorserIcon.image = icon;
+	
+	/* set the size and position of the endorsement label */
+	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
+	CGSize size = [endorsementCell.endorsementStatement.text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]
+														constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+	[endorsementCell.endorsementStatement setFrame:CGRectMake(LABEL_X_POSITION,
+															  LABEL_Y_POSITION,
+															  LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2),
+															  MAX(size.height, 44.0f))];
 }
 
 
@@ -76,7 +93,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.tableView.rowHeight = 60;
+	self.tableView.userInteractionEnabled = NO;
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -114,36 +131,44 @@
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    return <#number of sections#>;
-//}
-//
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    // Return the number of rows in the section.
-//    return <#number of rows in section#>;
-//}
-
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"EndorsementViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    EndorsementViewCell *cell = (EndorsementViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {
 		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
 		
 		for (id nibObject in nibObjects) {
 			if ([nibObject isKindOfClass:[UITableViewCell class]]) {
-				cell = (UITableViewCell *)nibObject;
+				cell = (EndorsementViewCell *)nibObject;
 				break;
 			}
 		}
+		
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+		cell.endorsementStatement = label;
+		[label setLineBreakMode:UILineBreakModeWordWrap];
+		[label setMinimumFontSize:FONT_SIZE];
+		[label setNumberOfLines:0];
+		[label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+		[cell addSubview:label];
+		[label release];
 	}
 	
 	[self configureCell:cell atIndexPath:indexPath];
 	
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	FriendBallotVote *friendVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	NSString *text = friendVote.statement;
+	
+	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
+	CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+	CGFloat height = MAX(size.height, 44.0f);
+	
+	return height + (LABEL_CONTENT_MARGIN * 2);
 }
 
 

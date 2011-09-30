@@ -33,6 +33,7 @@
 
 
 - (void)dealloc {
+	self.endorsementStatement = nil;
     [super dealloc];
 }
 

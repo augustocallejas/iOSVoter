@@ -10,7 +10,7 @@
 @interface EndorsementViewCell : UITableViewCell {
 @private
 	IBOutlet UIImageView *_endorserIcon;
-	IBOutlet UILabel *_endorsementStatement;	
+	UILabel *_endorsementStatement;	
 }
 
 @property (nonatomic, retain) UIImageView *endorserIcon;
