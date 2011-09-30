@@ -181,16 +181,15 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				14E74AE0143591BE002E2F82 /* App Delegate */,
 				1423B41014081697006F8DBF /* Controllers */,
-				1423B40F14081680006F8DBF /* Managed Objects */,
+				1423B40F14081680006F8DBF /* Models */,
 				1462F3DD141DA475007E31C1 /* Views */,
-				1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */,
-				1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		1423B40F14081680006F8DBF /* Managed Objects */ = {
+		1423B40F14081680006F8DBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1423B64214087FE5006F8DBF /* Ballot.h */,
@@ -216,7 +215,7 @@
 				1423B43D14082BE0006F8DBF /* Position.h */,
 				1423B43E14082BE0006F8DBF /* Position.m */,
 			);
-			name = "Managed Objects";
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1423B41014081697006F8DBF /* Controllers */ = {
@@ -296,6 +295,36 @@
 			path = "../facebook-ios-sdk/src/JSON";
 			sourceTree = SOURCE_ROOT;
 		};
+		14E74AD91435914E002E2F82 /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				1474F05A1432C48C004D35AD /* CandidateViewCell.xib */,
+				1423B32814075237006F8DBF /* ChooseCandidate.xib */,
+				14399E20140F7FAC007269A3 /* DisplayBallot.xib */,
+				14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */,
+				14A8779713F23DB2006B9D73 /* DisplayElection.xib */,
+				14E748F914343821002E2F82 /* EndorsementViewCell.xib */,
+				14789F1713EBBB220016044C /* FeedController.xib */,
+				14789F2613EBBB9E0016044C /* ListElections.xib */,
+				14399C77140E1C77007269A3 /* ListMeasures.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				1462F3F7141DA5D5007E31C1 /* PositionViewCell.xib */,
+				14789F3013EBBBF20016044C /* SettingsController.xib */,
+				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
+				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
+		14E74AE0143591BE002E2F82 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,23 +358,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1474F05A1432C48C004D35AD /* CandidateViewCell.xib */,
-				1423B32814075237006F8DBF /* ChooseCandidate.xib */,
-				14399E20140F7FAC007269A3 /* DisplayBallot.xib */,
-				14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */,
-				14A8779713F23DB2006B9D73 /* DisplayElection.xib */,
-				14E748F914343821002E2F82 /* EndorsementViewCell.xib */,
-				14789F1713EBBB220016044C /* FeedController.xib */,
-				14789F2613EBBB9E0016044C /* ListElections.xib */,
-				14399C77140E1C77007269A3 /* ListMeasures.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				1462F3F7141DA5D5007E31C1 /* PositionViewCell.xib */,
-				14789F3013EBBBF20016044C /* SettingsController.xib */,
+				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
-				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
 				14A8763913F0F499006B9D73 /* users.png */,
-				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
