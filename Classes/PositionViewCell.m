@@ -13,7 +13,6 @@
 
 @synthesize positionTitle = _positionTitle;
 @synthesize candidateName = _candidateName;
-@synthesize candidateIcon = _candidateIcon;
 @synthesize friendIcon1 = _friendIcon1;
 @synthesize friendIcon2 = _friendIcon2;
 @synthesize friendIcon3 = _friendIcon3;

@@ -149,11 +149,23 @@
 			count++;
 		}
 		cell.endorsementCount.text = [NSString stringWithFormat:@"%d", count];
+		[cell.viewAllEndorsements setTitle:[NSString stringWithFormat:@"View all %d endorsement(s)", count] forState:UIControlStateNormal];
 	}
 	else
 	{
 		NSLog(@"no!");
 	}
+	
+	if (vote != nil && vote.forCandidate == candidate) {
+		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"checked" ofType:@"png"]];
+		cell.voteStatus.image = icon;
+
+	}
+	else {
+		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"unchecked" ofType:@"png"]];
+		cell.voteStatus.image = icon;
+	}
+
 }
 
 

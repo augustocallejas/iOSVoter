@@ -47,18 +47,10 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="476849013">
-								<reference key="NSNextResponder" ref="885568943"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{12, 24}, {40, 50}}</string>
-								<reference key="NSSuperview" ref="885568943"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
 							<object class="IBUILabel" id="461614841">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 2}, {280, 21}}</string>
+								<string key="NSFrame">{{12, 2}, {260, 21}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -80,13 +72,12 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 							<object class="IBUILabel" id="67365589">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{56, 20}, {240, 21}}</string>
+								<string key="NSFrame">{{12, 20}, {260, 21}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -110,7 +101,7 @@
 							<object class="IBUIImageView" id="1002931374">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{56, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{12, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,7 +109,7 @@
 							<object class="IBUIImageView" id="221154535">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{92, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{48, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -126,7 +117,7 @@
 							<object class="IBUIImageView" id="162574123">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{128, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{84, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -134,7 +125,7 @@
 							<object class="IBUIImageView" id="109250132">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{164, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{120, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -142,7 +133,7 @@
 							<object class="IBUIImageView" id="459303692">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{198, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{154, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -150,7 +141,7 @@
 							<object class="IBUIImageView" id="151015273">
 								<reference key="NSNextResponder" ref="885568943"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{234, 45}, {32, 32}}</string>
+								<string key="NSFrame">{{190, 45}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="885568943"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -186,14 +177,6 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_candidateIcon</string>
-						<reference key="source" ref="892759986"/>
-						<reference key="destination" ref="476849013"/>
-					</object>
-					<int key="connectionID">6</int>
-				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_positionTitle</string>
@@ -292,14 +275,8 @@
 							<reference ref="109250132"/>
 							<reference ref="459303692"/>
 							<reference ref="151015273"/>
-							<reference ref="476849013"/>
 						</object>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="476849013"/>
-						<reference key="parent" ref="892759986"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -363,8 +340,6 @@
 					<string>3.CustomClassName</string>
 					<string>3.IBEditorWindowLastContentRect</string>
 					<string>3.IBPluginDependency</string>
-					<string>4.IBPluginDependency</string>
-					<string>4.IBViewBoundsToFrameTransform</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBViewBoundsToFrameTransform</string>
 					<string>8.IBPluginDependency</string>
@@ -398,12 +373,8 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABCcAAAwpAAAA</bytes>
 					</object>
 					<string>PositionViewCell</string>
-					<string>{{371, 583}, {320, 88}}</string>
+					<string>{{520, 461}, {320, 88}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBgAAAwpAAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCcAAAwfgAAA</bytes>

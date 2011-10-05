@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="33"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -50,7 +50,7 @@
 							<object class="IBUILabel" id="869314297">
 								<reference key="NSNextResponder" ref="108645557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 2}, {188, 21}}</string>
+								<string key="NSFrame">{{12, 2}, {188, 21}}</string>
 								<reference key="NSSuperview" ref="108645557"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -78,7 +78,7 @@
 							<object class="IBUILabel" id="195143710">
 								<reference key="NSNextResponder" ref="108645557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{56, 20}, {152, 21}}</string>
+								<string key="NSFrame">{{12, 20}, {188, 21}}</string>
 								<reference key="NSSuperview" ref="108645557"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -172,13 +172,12 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="453235625">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
+									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">View All Endorsements</string>
 								<reference key="IBUIHighlightedTitleColor" ref="496611968"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -243,7 +242,11 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="453235625"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">15</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">Vote</string>
 								<reference key="IBUIHighlightedTitleColor" ref="496611968"/>
@@ -252,6 +255,14 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="681965449"/>
+							</object>
+							<object class="IBUIImageView" id="388599949">
+								<reference key="NSNextResponder" ref="108645557"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{209, 11}, {22, 22}}</string>
+								<reference key="NSSuperview" ref="108645557"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 176}</string>
@@ -413,6 +424,14 @@
 					</object>
 					<int key="connectionID">57</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_voteStatus</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="388599949"/>
+					</object>
+					<int key="connectionID">59</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -453,6 +472,7 @@
 							<reference ref="496870571"/>
 							<reference ref="1048836902"/>
 							<reference ref="628971051"/>
+							<reference ref="388599949"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -526,6 +546,11 @@
 						<reference key="object" ref="628971051"/>
 						<reference key="parent" ref="928037324"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">58</int>
+						<reference key="object" ref="388599949"/>
+						<reference key="parent" ref="928037324"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -565,6 +590,8 @@
 					<string>51.IBViewBoundsToFrameTransform</string>
 					<string>53.IBPluginDependency</string>
 					<string>53.IBViewBoundsToFrameTransform</string>
+					<string>58.IBPluginDependency</string>
+					<string>58.IBViewBoundsToFrameTransform</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -611,7 +638,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABDAAAAwycAAA</bytes>
 					</object>
 					<string>CandidateViewCell</string>
-					<string>{{368, 370}, {320, 176}}</string>
+					<string>{{368, 309}, {320, 176}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -628,6 +655,10 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDfgAAwfAAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCkgAAwcgAAA</bytes>
 					</object>
 				</object>
 			</object>
@@ -647,7 +678,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">57</int>
+			<int key="maxID">59</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -673,6 +704,7 @@
 							<string>_topFriendIcon</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
+							<string>_voteStatus</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -690,6 +722,7 @@
 							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -710,6 +743,7 @@
 							<string>_topFriendIcon</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
+							<string>_voteStatus</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -768,6 +802,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_voteCandidate</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_voteStatus</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 						</object>
 					</object>

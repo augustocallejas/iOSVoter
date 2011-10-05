@@ -12,7 +12,6 @@
 @interface PositionViewCell : UITableViewCell {
 	IBOutlet UILabel *_positionTitle;
 	IBOutlet UILabel *_candidateName;
-	IBOutlet UIImageView *_candidateIcon;
 	IBOutlet UIImageView *_friendIcon1;
 	IBOutlet UIImageView *_friendIcon2;
 	IBOutlet UIImageView *_friendIcon3;
@@ -23,7 +22,6 @@
 
 @property (nonatomic, retain) UILabel *positionTitle;
 @property (nonatomic, retain) UILabel *candidateName;
-@property (nonatomic, retain) UIImageView *candidateIcon;
 @property (nonatomic, retain) UIImageView *friendIcon1;
 @property (nonatomic, retain) UIImageView *friendIcon2;
 @property (nonatomic, retain) UIImageView *friendIcon3;

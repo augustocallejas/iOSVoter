@@ -25,6 +25,7 @@
 @synthesize friendIcon6 = _friendIcon6;
 @synthesize viewAllEndorsements = _viewAllEndorsements;
 @synthesize	voteCandidate = _voteCandidate;
+@synthesize voteStatus = _voteStatus;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
