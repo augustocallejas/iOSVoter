@@ -10,6 +10,7 @@
 
 #import "Candidate.h"
 #import "CandidateViewCell.h"
+#import "CreateEndorsementViewController.h"
 #import "ListEndorsementsController.h"
 
 @implementation ChooseCandidateController
@@ -22,10 +23,52 @@
 #pragma mark -
 #pragma mark Custom button actions
 
-- (IBAction)voteOnCandidate:(id)sender{
-	NSLog(@"candidate %d", ((UIButton*)sender).tag);
+- (void)voteOnCandidate:(id)sender{
+	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton*)sender).tag inSection:0]];
+
+	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
+	controller.delegate = self;
+	controller.candidate = candidate;
 	
-	//[self presentModalViewController:controller animated:YES];
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate withOptionalStatement:(NSString *)statement {
+	if (withVote) {
+		if (vote == nil) {
+			vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
+			vote.forBallot = ballot;
+			vote.forPosition = position;
+			vote.forCandidate = candidate;
+		}
+		else {
+			vote.forCandidate = candidate;
+		}
+		
+		/* TODO: doesn't indicate your current choice */
+		
+		NSError *error;
+		if (![self.managedObjectContext save:&error]) {
+			NSLog(@"  DetailedError: %@", [error userInfo]);
+			// Handle the error
+		}
+		
+		// update the detailed text, because otherwise it stays the same.
+		self.selectedCell.candidateName.text = vote.forCandidate.name;
+		
+		/* TODO: does this reload all cells, or only visible ones? */
+		[self.tableView reloadData];
+	}
+	else {
+		NSLog(@"User canceled their vote selection");
+	}
+	
+	NSLog(@"Statement: [%@]", statement);
+
+    // Dismiss the modal view controller
+    [self dismissModalViewControllerAnimated:YES];
+	
 }
 
 - (IBAction)viewAllEndorsements:(id)sender{
@@ -87,16 +130,7 @@
 	cell.friendIcon4.image = icon;
 	cell.friendIcon5.image = icon;
 	cell.friendIcon6.image = icon;
-	
-	
-	//cell.textLabel.text = candidate.name;
-	//cell.detailTextLabel.text = candidate.party;
-	
-	//if (vote != nil && vote.forCandidate == candidate)
-	//{
-	//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	//}
-	
+
 	/* query for friends' votes on this candidate */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	//[request setFetchLimit:2];
@@ -111,20 +145,10 @@
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
-		NSLog(@"%d friend(s) for %@", count, candidate.name);
+		if (vote != nil && vote.forCandidate == candidate) {
+			count++;
+		}
 		cell.endorsementCount.text = [NSString stringWithFormat:@"%d", count];
-//		if (count == 0)
-//		{
-//		}
-//		else if (count == 1)
-//		{
-//			vote = [(BallotVote *) [array objectAtIndex:0] retain];
-//			selectedRow = [vote.forCandidate.displayOrder integerValue];
-//		}
-//		else
-//		{
-//			NSLog(@"NOOO");
-//		}
 	}
 	else
 	{
@@ -330,48 +354,49 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	
-	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (selectedRow != -1 && selectedRow == indexPath.row) {
-		/* selected the same candidate, so do nothing */
-        return;
-    }
-    NSIndexPath *oldIndexPath = selectedRow == -1 ? nil : [NSIndexPath indexPathForRow:selectedRow inSection:0];
-		
-    UITableViewCell *newCandidate = [tableView cellForRowAtIndexPath:indexPath];
-	newCandidate.accessoryType = UITableViewCellAccessoryCheckmark;
-	selectedRow = indexPath.row;
-	if (vote == nil) {
-		vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
-		vote.forBallot = ballot;
-		vote.forPosition = position;
-		vote.forCandidate = candidate;
-	}
-	else {
-		vote.forCandidate = candidate;
-	}
-	
-	if (oldIndexPath != nil)
-	{
-		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-		oldCell.accessoryType = UITableViewCellAccessoryNone;
-	}
-	
-	NSError *error;
-	if (![self.managedObjectContext save:&error]) {
-		NSLog(@"  DetailedError: %@", [error userInfo]);
-		NSLog(@"no!");
-		// Handle the error
-	}
-	
-	// update the detailed text, because otherwise it stays the same.
-	self.selectedCell.candidateName.text = vote.forCandidate.name;
+//	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+//	
+//	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
+//	
+//	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if (selectedRow != -1 && selectedRow == indexPath.row) {
+//		/* selected the same candidate, so do nothing */
+//        return;
+//    }
+//    NSIndexPath *oldIndexPath = selectedRow == -1 ? nil : [NSIndexPath indexPathForRow:selectedRow inSection:0];
+//		
+//    UITableViewCell *newCandidate = [tableView cellForRowAtIndexPath:indexPath];
+//	newCandidate.accessoryType = UITableViewCellAccessoryCheckmark;
+//	selectedRow = indexPath.row;
+//	if (vote == nil) {
+//		vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
+//		vote.forBallot = ballot;
+//		vote.forPosition = position;
+//		vote.forCandidate = candidate;
+//	}
+//	else {
+//		vote.forCandidate = candidate;
+//	}
+//	
+//	if (oldIndexPath != nil)
+//	{
+//		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
+//		oldCell.accessoryType = UITableViewCellAccessoryNone;
+//	}
+//	
+//	NSError *error;
+//	if (![self.managedObjectContext save:&error]) {
+//		NSLog(@"  DetailedError: %@", [error userInfo]);
+//		NSLog(@"no!");
+//		// Handle the error
+//	}
+//	
+//	// update the detailed text, because otherwise it stays the same.
+//	self.selectedCell.candidateName.text = vote.forCandidate.name;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"cellForRow %d", indexPath.row);
     static NSString *identifier = @"CandidateViewCell";
     CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {

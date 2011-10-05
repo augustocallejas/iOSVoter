@@ -8,12 +8,13 @@
 
 #import "Ballot.h"
 #import "BallotVote.h"
+#import "CreateEndorsementViewController.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
 #import "PositionViewCell.h"
 
 
-@interface ChooseCandidateController : FetchedResultsBasedTableViewController {
+@interface ChooseCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate> {
 
 @private
 	BOOL socialBallotView;
