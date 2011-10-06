@@ -64,10 +64,10 @@
 
 // Overriding the section name creation
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0)
-	{
-		return @"Elections";
-	}
+//	if (section == 0)
+//	{
+//		return @"Elections";
+//	}
 	
 	return nil;
 }
