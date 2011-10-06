@@ -46,7 +46,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
+		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
 		segControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[segControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];

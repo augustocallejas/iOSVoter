@@ -8,6 +8,8 @@
 
 #import "ChooseCandidateController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "Candidate.h"
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
@@ -125,11 +127,9 @@
 	cell.topEndorsement.text = @"\"I endorse this candidate all the way to the White House!\"";
 	
 	cell.friendIcon1.image = icon;
+	cell.friendEndorsement1.text = @"\"I endorse this candidate all the way to the White House!\"";
 	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
-	cell.friendIcon4.image = icon;
-	cell.friendIcon5.image = icon;
-	cell.friendIcon6.image = icon;
+	cell.friendEndorsement2.text = @"\"I endorse this candidate all the way to the White House!\"";
 
 	/* query for friends' votes on this candidate */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -145,11 +145,18 @@
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
-		if (vote != nil && vote.forCandidate == candidate) {
-			count++;
-		}
-		cell.endorsementCount.text = [NSString stringWithFormat:@"%d", count];
-		[cell.viewAllEndorsements setTitle:[NSString stringWithFormat:@"View all %d endorsement(s)", count] forState:UIControlStateNormal];
+//		if (vote != nil && vote.forCandidate == candidate) {
+//			count++;
+//		}
+		NSUInteger orgCount = 0;
+		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
+		
+		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15]]; 
+		[cell.viewAllEndorsements setFrame:CGRectMake(7,45,stringsize.width+10, stringsize.height)];
+		
+		//cell.viewAllEndorsements.layer.borderColor = [UIColor grayColor].CGColor;
+		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
 	}
 	else
 	{
@@ -190,7 +197,7 @@
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
 		//self.tableView.rowHeight = 176;
-		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Friends", nil]];
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
 		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
