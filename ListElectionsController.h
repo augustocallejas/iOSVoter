@@ -10,6 +10,8 @@
 
 @interface ListElectionsController : FetchedResultsBasedTableViewController {
 
+@private
+	NSDateFormatter *dateFormatter;
 }
 
 - (void)insertTestData;

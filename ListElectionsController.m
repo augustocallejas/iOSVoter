@@ -51,7 +51,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = election.title;
-    cell.detailTextLabel.text = [election.date description];
+    cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 	
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
 	UIImage *icon = [UIImage imageWithContentsOfFile:path];
@@ -106,16 +106,16 @@
 #pragma mark UIViewController methods
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization.
-		NSLog(@"%p", self);
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     }
     return self;
 }
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -133,10 +133,10 @@
 	// Create an election
 	Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:self.managedObjectContext];
 	election1.title = @"2008 General Election";
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"dd-MM-yy";
-	election1.date = [dateFormatter dateFromString:@"04-11-08"];
-	[dateFormatter release];
+	NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+	dateFormatter1.dateFormat = @"dd-MM-yy";
+	election1.date = [dateFormatter1 dateFromString:@"04-11-08"];
+	[dateFormatter1 release];
 	
 	Position *position1 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:self.managedObjectContext];
 	position1.level = @"President of the United States";
@@ -332,6 +332,7 @@
 
 
 - (void)dealloc {
+	[dateFormatter release];
     [super dealloc];
 }
 
