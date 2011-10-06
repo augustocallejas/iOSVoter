@@ -49,6 +49,7 @@
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
 		14A6F2F4143C24BD00EBF65D /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F2F2143C24BD00EBF65D /* checked.png */; };
 		14A6F2F5143C24BD00EBF65D /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F2F3143C24BD00EBF65D /* unchecked.png */; };
+		14A6F44D143D932200EBF65D /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F44C143D932200EBF65D /* advanced.png */; };
 		14A8763A13F0F499006B9D73 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A8763913F0F499006B9D73 /* users.png */; };
 		14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A8779713F23DB2006B9D73 /* DisplayElection.xib */; };
 		14AC666B141D581F00F29A71 /* FriendBallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6666141D581F00F29A71 /* FriendBallotVote.m */; };
@@ -141,6 +142,7 @@
 		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		14A6F2F2143C24BD00EBF65D /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
 		14A6F2F3143C24BD00EBF65D /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
+		14A6F44C143D932200EBF65D /* advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advanced.png; sourceTree = "<group>"; };
 		14A8763913F0F499006B9D73 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		14A8779713F23DB2006B9D73 /* DisplayElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayElection.xib; sourceTree = "<group>"; };
 		14AC6665141D581F00F29A71 /* FriendBallotVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBallotVote.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				14A6F44C143D932200EBF65D /* advanced.png */,
 				14A6F2F2143C24BD00EBF65D /* checked.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
@@ -462,6 +465,7 @@
 				14E74AFE14359521002E2F82 /* CreateEndorsementViewController.xib in Resources */,
 				14A6F2F4143C24BD00EBF65D /* checked.png in Resources */,
 				14A6F2F5143C24BD00EBF65D /* unchecked.png in Resources */,
+				14A6F44D143D932200EBF65D /* advanced.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

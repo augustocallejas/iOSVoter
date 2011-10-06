@@ -111,7 +111,7 @@
 		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
 		settings.managedObjectContext = self.managedObjectContext;
 		settings.title = @"Settings";
-		settings.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+		settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
 		self.facebook = settings.facebook;
 		
 		self.mainAppController.viewControllers = [[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease];
