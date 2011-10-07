@@ -8,13 +8,13 @@
 
 #import "DisplayBallotController.h"
 
+#import "BallotItemViewCell.h"
 #import "BallotVote.h"
 #import "ChooseCandidateController.h"
 #import "Candidate.h"
 #import "Measure.h"
 #import "MeasureVote.h"
 #import "Position.h"
-#import "BallotItemViewCell.h"
 #import "VoteMeasureController.h"
 
 @implementation DisplayBallotController
@@ -185,7 +185,6 @@
 	cell.friendIcon5.image = icon;
 	cell.friendIcon6.image = icon;
 
-	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -198,15 +197,12 @@
 	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
-	if (array != nil)
-	{
+	if (array != nil) {
 		NSUInteger count = [array count];
-		if (count == 0)
-		{
+		if (count == 0) {
 			cell.candidateName.text = @"<Not selected>";
 		}
-		else if (count == 1)
-		{
+		else if (count == 1) {
 			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
 				cell.candidateName.text = candidate.name;
@@ -215,13 +211,11 @@
 				cell.candidateName.text = @"Undecided";
 			}
 		}
-		else
-		{
+		else {
 			NSLog(@"Should have only one vote!");
 		}
 	}
-	else
-	{
+	else {
 		/* TODO: Handle the error */
 		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
@@ -229,9 +223,9 @@
 	[request release];
 }
 
-- (void)configureCellAsMeasure:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:indexPath];
-    cell.textLabel.text = measure.title;
+	cell.positionTitle.text = measure.title;
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a measure vote, if any */
@@ -250,21 +244,21 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.detailTextLabel.text = @"<Not selected>";
+			cell.candidateName.text = @"<Not selected>";
 		}
 		else if (count == 1)
 		{
 			NSNumber *vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
 			if (vote != nil) {
 				if ([vote boolValue]) {
-					cell.detailTextLabel.text = @"YES";
+					cell.candidateName.text = @"YES";
 				}
 				else {
-					cell.detailTextLabel.text = @"NO";
+					cell.candidateName.text = @"NO";
 				}
 			}
 			else {
-				cell.detailTextLabel.text = @"Undecided";
+				cell.candidateName.text = @"Undecided";
 			}
 		}
 		else
@@ -277,6 +271,32 @@
 		/* TODO: Handle the error */
 		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
+	
+	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	/* TODO: obviously hardcoded ... */
+	NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
+	
+	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	
+	if (icon == nil) {
+		path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+		icon = [UIImage imageWithContentsOfFile:path];
+	}
+	
+	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	//		NSString *documentsDirectory = [paths objectAtIndex:0];
+	//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+	
+	//cell.candidateIcon.image = candidateIcon;
+	cell.friendIcon1.image = icon;
+	cell.friendIcon2.image = icon;
+	cell.friendIcon3.image = icon;
+	cell.friendIcon4.image = icon;
+	cell.friendIcon5.image = icon;
+	cell.friendIcon6.image = icon;
 	
 	[request release];
 }
@@ -527,36 +547,22 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *positionID = @"PositionViewCell";
-    static NSString *CellIdentifier = @"DisplayBallotController";
-    UITableViewCell *cell = nil;
+	static NSString *ballotItemIdentifier = @"BallotItemViewCell";
 	
-	if ([indexPath section] < [self.fetchedResultsController1.sections count]) {
-		cell = [tableView dequeueReusableCellWithIdentifier:positionID];
-		if (cell == nil) {
-			
-			NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"PositionViewCell" owner:nil options:nil];
-			
-			for (id nibObject in nibObjects) {
-				if ([nibObject isKindOfClass:[BallotItemViewCell class]]) {
-					cell = (BallotItemViewCell *)nibObject;
-					break;
-				}
+	BallotItemViewCell *cell = (BallotItemViewCell *)[tableView dequeueReusableCellWithIdentifier:ballotItemIdentifier];
+	if (cell == nil) {
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:ballotItemIdentifier owner:nil options:nil];
+		
+		for (id nibObject in nibObjects) {
+			if ([nibObject isKindOfClass:[BallotItemViewCell class]]) {
+				cell = (BallotItemViewCell *)nibObject;
+				break;
 			}
 		}
-		
-		[self configureCellAsPosition:(BallotItemViewCell *) cell atIndexPath:indexPath];
 	}
-	else {
-		cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		}
-		
-		// Configure the cell...
-		[self configureCell:cell atIndexPath:indexPath];
-	}
-    
+	
+	[self configureCell:cell atIndexPath:indexPath];
+
     return cell;
 }
 
@@ -598,13 +604,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // If our cell is selected, return double height
-    //if([self cellIsSelected:indexPath]) {
 	if (socialBallotView == YES) {
         return 88;
     }
 	
-    // Cell isn't selected so return single height
 	return 44;
 }
 
