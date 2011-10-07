@@ -122,7 +122,7 @@
 	cell.candidateName.text = candidate.name;
 	cell.partyName.text = candidate.party;
 	
-	UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]];
+	UIImage *icon = [UIImage imageNamed:@"users.png"];
 	cell.topFriendIcon.image = icon;
 	cell.topEndorsement.text = @"\"I endorse this candidate all the way to the White House!\"";
 	
@@ -145,6 +145,7 @@
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
+		/* don't count users vote */
 //		if (vote != nil && vote.forCandidate == candidate) {
 //			count++;
 //		}
@@ -152,7 +153,7 @@
 		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
 		
-		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15]]; 
+		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
 		[cell.viewAllEndorsements setFrame:CGRectMake(7,45,stringsize.width+10, stringsize.height)];
 		
 		//cell.viewAllEndorsements.layer.borderColor = [UIColor grayColor].CGColor;
@@ -214,8 +215,6 @@
 - (void)segmentAction:(id)sender
 {
 	UISegmentedControl* segCtl = sender;
-	// the segmented control was clicked, handle it here 
-	//NSLog(@"segment clicked %d", [segCtl selectedSegmentIndex]);
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	if ([segCtl selectedSegmentIndex] == 0) {
 		socialBallotView = NO;
@@ -362,57 +361,13 @@
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // If our cell is selected, return double height
-    //if([self cellIsSelected:indexPath]) {
 	if (socialBallotView == YES) {
         return 176;
     }
 	
-    // Cell isn't selected so return single height
 	return 44;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-//	
-//	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
-//	
-//	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    if (selectedRow != -1 && selectedRow == indexPath.row) {
-//		/* selected the same candidate, so do nothing */
-//        return;
-//    }
-//    NSIndexPath *oldIndexPath = selectedRow == -1 ? nil : [NSIndexPath indexPathForRow:selectedRow inSection:0];
-//		
-//    UITableViewCell *newCandidate = [tableView cellForRowAtIndexPath:indexPath];
-//	newCandidate.accessoryType = UITableViewCellAccessoryCheckmark;
-//	selectedRow = indexPath.row;
-//	if (vote == nil) {
-//		vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
-//		vote.forBallot = ballot;
-//		vote.forPosition = position;
-//		vote.forCandidate = candidate;
-//	}
-//	else {
-//		vote.forCandidate = candidate;
-//	}
-//	
-//	if (oldIndexPath != nil)
-//	{
-//		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-//		oldCell.accessoryType = UITableViewCellAccessoryNone;
-//	}
-//	
-//	NSError *error;
-//	if (![self.managedObjectContext save:&error]) {
-//		NSLog(@"  DetailedError: %@", [error userInfo]);
-//		NSLog(@"no!");
-//		// Handle the error
-//	}
-//	
-//	// update the detailed text, because otherwise it stays the same.
-//	self.selectedCell.candidateName.text = vote.forCandidate.name;
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"cellForRow %d", indexPath.row);
@@ -451,7 +406,6 @@
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	if (vote != nil)
 	{
 		[vote release];

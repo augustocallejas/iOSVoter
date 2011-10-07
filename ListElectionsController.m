@@ -53,8 +53,7 @@
     cell.textLabel.text = election.title;
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
+	UIImage *icon = [UIImage imageNamed:@"users.png"];
 	cell.imageView.image = icon;
 }
 

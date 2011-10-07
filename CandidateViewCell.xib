@@ -58,9 +58,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="558103395">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">17</double>
+									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor" id="294483541">
@@ -97,6 +97,7 @@
 								</object>
 								<reference key="IBUIHighlightedColor" ref="496611968"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 							<object class="IBUIImageView" id="741069804">
@@ -144,11 +145,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="356128090">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="558103395"/>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwIDAAA</bytes>
@@ -213,7 +210,11 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="356128090"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">15</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">Vote</string>
 								<reference key="IBUIHighlightedTitleColor" ref="496611968"/>
@@ -618,7 +619,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>_candidateIcon</string>
 							<string>_candidateName</string>
-							<string>_endorsementCount</string>
 							<string>_friendEndorsement1</string>
 							<string>_friendEndorsement2</string>
 							<string>_friendIcon1</string>
@@ -633,7 +633,6 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -653,7 +652,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>_candidateIcon</string>
 							<string>_candidateName</string>
-							<string>_endorsementCount</string>
 							<string>_friendEndorsement1</string>
 							<string>_friendEndorsement2</string>
 							<string>_friendIcon1</string>
@@ -673,10 +671,6 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_candidateName</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_endorsementCount</string>
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">

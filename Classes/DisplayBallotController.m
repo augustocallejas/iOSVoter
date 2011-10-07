@@ -168,8 +168,7 @@
 	UIImage *icon = [UIImage imageWithContentsOfFile:path];
 	
 	if (icon == nil) {
-		path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-		icon = [UIImage imageWithContentsOfFile:path];
+		icon = [UIImage imageNamed:@"users.png"];
 	}
 	
 	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -281,8 +280,7 @@
 	UIImage *icon = [UIImage imageWithContentsOfFile:path];
 	
 	if (icon == nil) {
-		path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-		icon = [UIImage imageWithContentsOfFile:path];
+		icon = [UIImage imageNamed:@"users.png"];
 	}
 	
 	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
