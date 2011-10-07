@@ -57,7 +57,7 @@
 		}
 		
 		// update the detailed text, because otherwise it stays the same.
-		self.selectedCell.candidateName.text = vote.forCandidate.name;
+		self.selectedCell.minorTitle.text = vote.forCandidate.name;
 		
 		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];

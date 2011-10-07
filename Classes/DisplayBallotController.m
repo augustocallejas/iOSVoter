@@ -157,7 +157,7 @@
 - (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
-	cell.positionTitle.text = position.title;
+	cell.majorTitle.text = position.title;
 	
 	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -199,15 +199,15 @@
 	if (array != nil) {
 		NSUInteger count = [array count];
 		if (count == 0) {
-			cell.candidateName.text = @"<Not selected>";
+			cell.minorTitle.text = @"<Not selected>";
 		}
 		else if (count == 1) {
 			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
-				cell.candidateName.text = candidate.name;
+				cell.minorTitle.text = candidate.name;
 			}
 			else {
-				cell.candidateName.text = @"Undecided";
+				cell.minorTitle.text = @"Undecided";
 			}
 		}
 		else {
@@ -224,7 +224,7 @@
 
 - (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:indexPath];
-	cell.positionTitle.text = measure.title;
+	cell.majorTitle.text = measure.title;
 	
 	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
 	/* query for a measure vote, if any */
@@ -243,21 +243,21 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.candidateName.text = @"<Not selected>";
+			cell.minorTitle.text = @"<Not selected>";
 		}
 		else if (count == 1)
 		{
 			NSNumber *vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
 			if (vote != nil) {
 				if ([vote boolValue]) {
-					cell.candidateName.text = @"YES";
+					cell.minorTitle.text = @"YES";
 				}
 				else {
-					cell.candidateName.text = @"NO";
+					cell.minorTitle.text = @"NO";
 				}
 			}
 			else {
-				cell.candidateName.text = @"Undecided";
+				cell.minorTitle.text = @"Undecided";
 			}
 		}
 		else

@@ -11,8 +11,8 @@
 
 @implementation BallotItemViewCell
 
-@synthesize positionTitle = _positionTitle;
-@synthesize candidateName = _candidateName;
+@synthesize majorTitle = _majorTitle;
+@synthesize minorTitle = _minorTitle;
 @synthesize friendIcon1 = _friendIcon1;
 @synthesize friendIcon2 = _friendIcon2;
 @synthesize friendIcon3 = _friendIcon3;
