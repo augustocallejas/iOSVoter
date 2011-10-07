@@ -6,10 +6,10 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "PositionViewCell.h"
+#import "BallotItemViewCell.h"
 
 
-@implementation PositionViewCell
+@implementation BallotItemViewCell
 
 @synthesize positionTitle = _positionTitle;
 @synthesize candidateName = _candidateName;

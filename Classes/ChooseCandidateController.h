@@ -11,7 +11,7 @@
 #import "CreateEndorsementViewController.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
-#import "PositionViewCell.h"
+#import "BallotItemViewCell.h"
 
 
 @interface ChooseCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate> {
@@ -21,13 +21,13 @@
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
-	PositionViewCell *selectedCell;
+	BallotItemViewCell *selectedCell;
 	NSInteger selectedRow;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
-@property (nonatomic, retain) PositionViewCell *selectedCell;
+@property (nonatomic, retain) BallotItemViewCell *selectedCell;
 @property NSInteger selectedRow;
 
 - (IBAction)voteOnCandidate:(id)sender;

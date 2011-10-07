@@ -14,7 +14,7 @@
 #import "Measure.h"
 #import "MeasureVote.h"
 #import "Position.h"
-#import "PositionViewCell.h"
+#import "BallotItemViewCell.h"
 #import "VoteMeasureController.h"
 
 @implementation DisplayBallotController
@@ -147,14 +147,14 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section < [self.fetchedResultsController1.sections count]) {
-		[self configureCellAsPosition:(PositionViewCell *) cell atIndexPath:indexPath];
+		[self configureCellAsPosition:(BallotItemViewCell *) cell atIndexPath:indexPath];
 	}
 	else {
 		[self configureCellAsMeasure:cell atIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section-[self.fetchedResultsController1.sections count])]];
 	}
 }
 
-- (void)configureCellAsPosition:(PositionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.positionTitle.text = position.title;
@@ -538,14 +538,14 @@
 			NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"PositionViewCell" owner:nil options:nil];
 			
 			for (id nibObject in nibObjects) {
-				if ([nibObject isKindOfClass:[PositionViewCell class]]) {
-					cell = (PositionViewCell *)nibObject;
+				if ([nibObject isKindOfClass:[BallotItemViewCell class]]) {
+					cell = (BallotItemViewCell *)nibObject;
 					break;
 				}
 			}
 		}
 		
-		[self configureCellAsPosition:(PositionViewCell *) cell atIndexPath:indexPath];
+		[self configureCellAsPosition:(BallotItemViewCell *) cell atIndexPath:indexPath];
 	}
 	else {
 		cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -576,7 +576,7 @@
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;
 		controller.title = position.level;
-		controller.selectedCell = (PositionViewCell *) [tableView cellForRowAtIndexPath:indexPath];
+		controller.selectedCell = (BallotItemViewCell *) [tableView cellForRowAtIndexPath:indexPath];
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];

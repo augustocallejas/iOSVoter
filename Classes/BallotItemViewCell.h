@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PositionViewCell : UITableViewCell {
+@interface BallotItemViewCell : UITableViewCell {
 	IBOutlet UILabel *_positionTitle;
 	IBOutlet UILabel *_candidateName;
 	IBOutlet UIImageView *_friendIcon1;
