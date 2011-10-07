@@ -81,7 +81,7 @@
 	
 	Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	controller.election = election;
-	controller.title = election.title;
+	controller.title = @"Ballot";//election.title;
 	controller.managedObjectContext = self.managedObjectContext;
 	
 	[[self navigationController] pushViewController:controller animated:YES];
