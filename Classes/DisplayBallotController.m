@@ -593,7 +593,7 @@
 		VoteMeasureController *controller = [[VoteMeasureController alloc] initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
 		controller.ballot = self.ballot;
 		controller.measure = measure;
-		controller.selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+		controller.selectedCell = (BallotItemViewCell *)[tableView cellForRowAtIndexPath:indexPath];
 		controller.title = [NSString stringWithFormat:@"Measure %@", measure.identifier];
 		
 		[self.navigationController pushViewController:controller animated:YES];

@@ -14,6 +14,8 @@
 
 @synthesize candidate = _candidate;
 @synthesize measure = _measure;
+@synthesize measureVote = _measureVote;
+@synthesize statement = _statement;
 @synthesize delegate;
 @synthesize navItem = _navItem;
 @synthesize textView = _textView;
@@ -23,7 +25,7 @@
 // Done button clicked
 - (IBAction)dismissView:(id)sender {
     // Call the delegate to dismiss the modal view
-    [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate withOptionalStatement:_textView.text];
+    [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text];
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -45,6 +47,9 @@
 	}
 	else if (_measure != nil) {
 		self.navItem.title = _measure.title;
+	}
+	if (_statement != nil) {
+		_textView.text = _statement;
 	}
 
 //	self.textView.layer.backgroundColor = [UIColor blueColor].CGColor;
@@ -79,6 +84,7 @@
 - (void)dealloc {
 	self.candidate = nil;
 	self.measure = nil;
+	self.statement = nil;
 	self.navItem = nil;
     [super dealloc];
 }

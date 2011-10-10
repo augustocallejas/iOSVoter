@@ -7,22 +7,27 @@
 //
 
 #import "Ballot.h"
+#import "BallotItemViewCell.h"
+#import "CreateEndorsementViewController.h"
 #import "Measure.h"
 #import "MeasureVote.h"
 
 
-@interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate> {
 
 @private
+	BOOL socialBallotView;
 	Ballot *_ballot;
 	Measure *_measure;
 	MeasureVote *_vote;
-	UITableViewCell *_selectedCell;
+	BallotItemViewCell *_selectedCell;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Measure *measure;
 @property (nonatomic, retain) MeasureVote *vote;
-@property (nonatomic, retain) UITableViewCell *selectedCell;
+@property (nonatomic, retain) BallotItemViewCell *selectedCell;
+
+- (IBAction)voteOnMeasure:(id)sender;
 
 @end

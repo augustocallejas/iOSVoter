@@ -10,7 +10,7 @@
 
 #import "Friend.h"
 #import "FriendMeasureVote.h"
-
+#import "MeasureViewCell.h"
 
 @implementation VoteMeasureController
 
@@ -19,16 +19,48 @@
 @synthesize vote = _vote;
 @synthesize selectedCell = _selectedCell;
 
+//static NSNumber *YES_VOTE = [NSNumber numberWithBool:YES];
+//static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
+//static NSNumber *UNDECIDED_VOTE = nil;
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
     if (self) {
         // Custom initialization.
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
+		control.segmentedControlStyle = UISegmentedControlStyleBar;
+		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
+		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+		self.navigationItem.titleView = control;
+		[control release];
+		//		self.tableView.allowsSelection = NO;
+		//		[self.tableView setAllowsSelection:NO];
+		//		[self.tableView allowsSelection:NO];
     }
     return self;
 }
-*/
+
+- (void)segmentAction:(id)sender {
+	UISegmentedControl* segCtl = sender;
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	if ([segCtl selectedSegmentIndex] == 0) {
+		socialBallotView = NO;
+	}
+	else {
+		socialBallotView = YES;
+	}
+	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
+	if (![prefs synchronize]) {
+		NSLog(@"Did not synchronize correctly");
+	}
+	
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+}
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -86,6 +118,83 @@
 */
 
 #pragma mark -
+#pragma mark Custom button actions
+
+- (void)voteOnMeasure:(id)sender{
+	NSNumber *voteSelected = nil;
+	UIButton *button = (UIButton *)sender;
+	if (button.tag == 0) {
+		/* YES */
+		voteSelected = [NSNumber numberWithBool:YES];
+	}
+	else if (button.tag == 1) {
+		/* NO */
+		voteSelected = [NSNumber numberWithBool:NO];
+	}
+	else if (button.tag == 2) {
+		/* Undecided */
+		voteSelected = nil;
+	}
+	//Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton*)sender).tag inSection:0]];
+	
+	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
+	controller.delegate = self;
+	controller.measure = _measure;
+	controller.measureVote = voteSelected;
+	if (_vote != nil && _vote.vote == voteSelected) {
+		/* TODO: pass in statement when its in the data model */
+		controller.statement = nil;
+	}
+	
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement {
+	if (withVote) {
+		if (_vote == nil) {			
+			self.vote = (MeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"MeasureVote" inManagedObjectContext:[_ballot managedObjectContext]];
+			_vote.forBallot = _ballot;
+			_vote.forMeasure = _measure;
+		}
+		NSLog(@"Vote: %@", measureVote);
+		_vote.vote = measureVote;
+		_vote.statement = statement;
+		
+		/* TODO: doesn't indicate your current choice */
+		
+		NSError *error;
+		if (![[self.ballot managedObjectContext] save:&error]) {
+			NSLog(@"  DetailedError: %@", [error userInfo]);
+			// Handle the error
+		}
+		
+		// update the detailed text, because otherwise it stays the same.
+		/* TODO: make a method in the parent controller that sets this properly, instead of rewriting the logic here */
+		if (measureVote == nil) {
+			self.selectedCell.minorTitle.text = @"Undecided";
+		}
+		else if ([measureVote boolValue]) {
+			self.selectedCell.minorTitle.text = @"YES";
+		}
+		else {
+			self.selectedCell.minorTitle.text = @"NO";
+		}
+		
+		/* TODO: does this reload all cells, or only visible ones? */
+		[self.tableView reloadData];
+	}
+	else {
+		NSLog(@"User canceled their vote selection");
+	}
+	
+	NSLog(@"Statement: [%@]", statement);
+	
+    // Dismiss the modal view controller
+    [self dismissModalViewControllerAnimated:YES];	
+}
+
+#pragma mark -
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -108,47 +217,67 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	NSString *CellIdentifier = @"VoteMeasureController";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
+	static NSString *identifier = @"MeasureViewCell";
+    MeasureViewCell *cell = (MeasureViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+	if (cell == nil) {
+		
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+		
+		for (id nibObject in nibObjects) {
+			if ([nibObject isKindOfClass:[MeasureViewCell class]]) {
+				cell = (MeasureViewCell *)nibObject;
+				break;
+			}
+		}
+	}
+	
+//	NSString *CellIdentifier = @"VoteMeasureController";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+//    }
 	
 	BOOL selected = NO;
     
     // Configure the cell...
 	if (indexPath.row == 0) {
-		cell.textLabel.text = @"YES";
+		cell.measureName.text = @"YES";
 		if (_vote != nil && _vote.vote != nil && [_vote.vote boolValue] == YES)
 		{
 			selected = YES;
 		}
 	}
 	else if (indexPath.row == 1) {
-		cell.textLabel.text = @"NO";
+		cell.measureName.text = @"NO";
 		if (_vote != nil && _vote.vote != nil && [_vote.vote boolValue] == NO)
 		{
 			selected = YES;
 		}
 	}
 	else if (indexPath.row == 2) {
-		cell.textLabel.text = @"Undecided";
+		cell.measureName.text = @"Undecided";
 		if (_vote != nil && _vote.vote == nil)
 		{
 			selected = YES;
 		}
 	}
 	
-	if (selected)
-	{
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	cell.voteMeasure.tag = indexPath.row;
+	
+	if (selected) {
+		/* TODO: replace with the path based approach to loading an image */
+		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"checked" ofType:@"png"]];
+		cell.voteStatus.image = icon;
+	}
+	else {
+		/* TODO: replace with the path based approach to loading an image */
+		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"unchecked" ofType:@"png"]];
+		cell.voteStatus.image = icon;
 	}
 	
 	/* query for friends' votes on this measure */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	//[request setFetchLimit:2];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
 	[request setEntity:entity];
 	
@@ -170,21 +299,12 @@
 	if (array != nil)
 	{
 		NSUInteger count = [array count];
-		NSInteger index = 0;
-		for (index = 0; index < count; index++)
-		{
-			FriendMeasureVote *vote = (FriendMeasureVote *) [array objectAtIndex:index];
-			if (vote.vote == nil) {
-				NSLog(@"%@ votes UNDECIDED", vote.author.name, vote.vote);
-			}
-			else if ([vote.vote boolValue] == YES) {
-				NSLog(@"%@ votes YES", vote.author.name, vote.vote);
-			}
-			else {
-				NSLog(@"%@ votes NO", vote.author.name, vote.vote);
-
-			}
-		}
+		NSUInteger orgCount = 0;
+		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
+		
+		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
+		[cell.viewAllEndorsements setFrame:CGRectMake(7,45,stringsize.width+10, stringsize.height)];
 	}
 	else
 	{
@@ -196,6 +316,14 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (socialBallotView == YES) {
+        return 176;
+    }
+	
+	return 44;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// 0 = YES 1 = NO 2 = UNDECIDED
@@ -210,6 +338,7 @@
 			(_vote.vote != nil && [_vote.vote boolValue] == YES && selected == 0) ||
 			(_vote.vote != nil && [_vote.vote boolValue] == NO && selected == 1))
 		{
+			/* TODO: statement may have changed??? */
 			return;
 		}
 	}

@@ -2,7 +2,7 @@
 //  BallotVote.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
+//  Created by augusto callejas on 10/9/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,8 +16,9 @@
 {
 }
 
-@property (nonatomic, retain) Ballot * forBallot;
+@property (nonatomic, retain) NSString * statement;
 @property (nonatomic, retain) Position * forPosition;
+@property (nonatomic, retain) Ballot * forBallot;
 @property (nonatomic, retain) Candidate * forCandidate;
 
 @end

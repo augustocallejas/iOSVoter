@@ -26,30 +26,30 @@
 #pragma mark Custom button actions
 
 - (void)voteOnCandidate:(id)sender{
-	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton*)sender).tag inSection:0]];
+	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
 
 	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
 	controller.delegate = self;
 	controller.candidate = candidate;
+	if (vote != nil && vote.forCandidate == candidate) {
+		controller.statement = vote.statement;
+	}
 	
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate withOptionalStatement:(NSString *)statement {
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement {
 	if (withVote) {
 		if (vote == nil) {
 			vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
 			vote.forBallot = ballot;
 			vote.forPosition = position;
-			vote.forCandidate = candidate;
 		}
-		else {
-			vote.forCandidate = candidate;
-		}
+		vote.forCandidate = candidate;
+		vote.statement = statement;
 		
 		/* TODO: doesn't indicate your current choice */
-		
 		NSError *error;
 		if (![self.managedObjectContext save:&error]) {
 			NSLog(@"  DetailedError: %@", [error userInfo]);
@@ -197,7 +197,6 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		//self.tableView.rowHeight = 176;
 		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
 		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
@@ -212,8 +211,7 @@
 	return self;
 }
 
-- (void)segmentAction:(id)sender
-{
+- (void)segmentAction:(id)sender {
 	UISegmentedControl* segCtl = sender;
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	if ([segCtl selectedSegmentIndex] == 0) {
