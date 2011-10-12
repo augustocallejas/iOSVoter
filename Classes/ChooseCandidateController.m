@@ -13,6 +13,7 @@
 #import "Candidate.h"
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
+#import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
 
 @implementation ChooseCandidateController
@@ -121,29 +122,63 @@
 	cell.candidateName.text = candidate.name;
 	cell.partyName.text = candidate.party;
 	
-	UIImage *icon = [UIImage imageNamed:@"users.png"];
-	cell.topFriendIcon.image = icon;
-	cell.topEndorsement.text = @"\"I endorse this candidate all the way to the White House!\"";
-	
-	cell.friendIcon1.image = icon;
-	cell.friendEndorsement1.text = @"\"I endorse this candidate all the way to the White House!\"";
-	cell.friendIcon2.image = icon;
-	cell.friendEndorsement2.text = @"\"I endorse this candidate all the way to the White House!\"";
-
-	/* query for friends' votes on this candidate */
+	/* fill out the top endorsements, sorted by descending date */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	//[request setFetchLimit:2];
+	[request setFetchLimit:3];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
 	[request setEntity:entity];
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
 	[request setPredicate:predicate];
 	
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+	[request setSortDescriptors:[NSArray arrayWithObject:sort]];
+	
 	NSError *error = nil;
 	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
-	if (array != nil)
-	{
+	if (error == nil) {
 		NSUInteger count = [array count];
+		
+		FriendBallotVote *friendVote;
+		if (count > 0) {
+			friendVote = (FriendBallotVote *) [array objectAtIndex:0];
+			cell.topEndorsement.text = friendVote.statement;
+			
+			if (count > 1) {
+				friendVote = (FriendBallotVote *) [array objectAtIndex:1];
+				cell.friendEndorsement1.text = friendVote.statement;
+				
+				if (count > 2) {
+					friendVote = (FriendBallotVote *) [array objectAtIndex:2];
+					cell.friendEndorsement2.text = friendVote.statement;
+				}
+			}
+		}
+	}
+	else {
+		/* TODO: log error */
+		NSLog(@"No");
+	}
+	
+	[sort release];
+
+	UIImage *icon = [UIImage imageNamed:@"users.png"];
+	cell.topFriendIcon.image = icon;
+	cell.friendIcon1.image = icon;
+	cell.friendIcon2.image = icon;
+
+	/* query for friends' votes on this candidate */
+	entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
+	[request setPredicate:predicate];
+	
+	[request setSortDescriptors:[NSArray arrayWithObjects:nil]];
+	
+	NSUInteger count = [[ballot managedObjectContext] countForFetchRequest:request error:&error];
+	if (error == nil)
+	{
 		/* don't count users vote */
 //		if (vote != nil && vote.forCandidate == candidate) {
 //			count++;
@@ -160,6 +195,7 @@
 	}
 	else
 	{
+		/* TODO: log the error */
 		NSLog(@"no!");
 	}
 	
@@ -172,7 +208,8 @@
 		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
 	}
-
+	
+	[request release];
 }
 
 

@@ -402,6 +402,8 @@
 			NSLog(@"Too many ballots?");
 		}
 	}
+	
+	[fetchRequest release];
 }
 
 /*

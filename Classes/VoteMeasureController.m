@@ -1,4 +1,4 @@
-    //
+//
 //  VoteMeasureController.m
 //  Supervote
 //
@@ -329,6 +329,17 @@
 	{
 		NSLog(@"no!");
 	}
+
+	/* TODO: this code is stand in for now... */
+	UIImage *icon = [UIImage imageNamed:@"users.png"];	
+	cell.friendIcon1.image = icon;
+	cell.friendEndorsement1.text = @"\"I endorse this measure!\"";
+	cell.friendIcon2.image = icon;
+	cell.friendEndorsement2.text = @"\"I endorse this measure!\"";
+	cell.friendIcon3.image = icon;
+	cell.friendEndorsement3.text = @"\"I endorse this measure!\"";
+	
+	[request release];
 	
     return cell;
 }
