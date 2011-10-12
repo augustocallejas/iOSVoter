@@ -144,8 +144,7 @@
 	controller.measure = _measure;
 	controller.measureVote = voteSelected;
 	if (_vote != nil && _vote.vote == voteSelected) {
-		/* TODO: pass in statement when its in the data model */
-		controller.statement = nil;
+		controller.statement = _vote.statement;
 	}
 	
 	[self presentModalViewController:controller animated:YES];
