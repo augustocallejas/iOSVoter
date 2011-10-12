@@ -95,7 +95,6 @@
 		else if (count == 1)
 		{
 			self.vote = (MeasureVote *) [array objectAtIndex:0];
-			//selectedRow = [vote.forCandidate.displayOrder integerValue];
 		}
 		else
 		{
