@@ -162,8 +162,6 @@
 		_vote.vote = measureVote;
 		_vote.statement = statement;
 		
-		/* TODO: doesn't indicate your current choice */
-		
 		NSError *error;
 		if (![[self.ballot managedObjectContext] save:&error]) {
 			NSLog(@"  DetailedError: %@", [error userInfo]);
