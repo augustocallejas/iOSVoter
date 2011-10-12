@@ -62,8 +62,7 @@
 }
 
 - (NSArray *)allocSortDescriptors{
-	/* TODO: replace with a sort on a date field i haven't added yet */
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"statement" ascending:YES];
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
     return [NSArray arrayWithObject:sort];
 }
 
@@ -72,7 +71,6 @@
 		return [NSPredicate predicateWithFormat:@"forPosition == %@ and forCandidate == %@", _position, _candidate];
 	}
 	
-	/* TODO: correct? */
 	return [NSPredicate predicateWithFormat:@"forMeasure == %@ and vote == %@", _measure, _vote];
 }
 

@@ -2,7 +2,7 @@
 //  FriendMeasureVote.h
 //  Supervote
 //
-//  Created by augusto callejas on 9/11/11.
+//  Created by augusto callejas on 10/11/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 {
 }
 
+@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * vote;
 @property (nonatomic, retain) NSString * statement;
 @property (nonatomic, retain) Friend * author;

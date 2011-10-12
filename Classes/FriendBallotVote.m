@@ -2,8 +2,8 @@
 //  FriendBallotVote.m
 //  Supervote
 //
-//  Created by augusto callejas on 9/29/11.
-//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
+//  Created by augusto callejas on 10/11/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "FriendBallotVote.h"
@@ -14,6 +14,7 @@
 
 @implementation FriendBallotVote 
 
+@dynamic date;
 @dynamic statement;
 @dynamic author;
 @dynamic forPosition;
