@@ -2,12 +2,13 @@
 //  Friend.h
 //  Supervote
 //
-//  Created by augusto callejas on 9/11/11.
+//  Created by augusto callejas on 10/11/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
+@class FacebookFriend;
 @class FriendBallotVote;
 @class FriendMeasureVote;
 
@@ -16,22 +17,23 @@
 }
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSSet* votes;
+@property (nonatomic, retain) FacebookFriend * facebook;
 @property (nonatomic, retain) NSSet* measures;
+@property (nonatomic, retain) NSSet* votes;
 
 @end
 
 
 @interface Friend (CoreDataGeneratedAccessors)
-- (void)addVotesObject:(FriendBallotVote *)value;
-- (void)removeVotesObject:(FriendBallotVote *)value;
-- (void)addVotes:(NSSet *)value;
-- (void)removeVotes:(NSSet *)value;
-
 - (void)addMeasuresObject:(FriendMeasureVote *)value;
 - (void)removeMeasuresObject:(FriendMeasureVote *)value;
 - (void)addMeasures:(NSSet *)value;
 - (void)removeMeasures:(NSSet *)value;
+
+- (void)addVotesObject:(FriendBallotVote *)value;
+- (void)removeVotesObject:(FriendBallotVote *)value;
+- (void)addVotes:(NSSet *)value;
+- (void)removeVotes:(NSSet *)value;
 
 @end
 

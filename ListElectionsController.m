@@ -11,6 +11,7 @@
 #import "Candidate.h"
 #import "DisplayBallotController.h"
 #import "Election.h"
+#import "FacebookFriend.h"
 #import "Friend.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
@@ -119,7 +120,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//[self insertTestData];
+//	[self insertTestData];
 }
 
 - (void)insertTestData{
@@ -128,6 +129,12 @@
 	// insert data in the context
 	Friend *friend = (Friend *) [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.managedObjectContext];
 	friend.name = @"Jenny Bernier";
+	
+	FacebookFriend *ff = (FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend" inManagedObjectContext:self.managedObjectContext];
+	ff.photoDownloaded = [NSDate date];
+	ff.friendId = @"1109284012";
+	ff.name = @"Jenny Bernier";
+	friend.facebook = ff;
 	
 	// Create an election
 	Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:self.managedObjectContext];
