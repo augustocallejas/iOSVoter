@@ -137,14 +137,17 @@
 		/* Undecided */
 		voteSelected = nil;
 	}
-	//Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton*)sender).tag inSection:0]];
 	
 	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
 	controller.delegate = self;
 	controller.measure = _measure;
 	controller.measureVote = voteSelected;
-	if (_vote != nil && _vote.vote == voteSelected) {
-		controller.statement = _vote.statement;
+	if (_vote != nil) {
+		if ((_vote.vote == nil && voteSelected == nil) ||
+			(_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))
+		{
+			controller.statement = _vote.statement;
+		}
 	}
 	
 	[self presentModalViewController:controller animated:YES];
@@ -158,7 +161,8 @@
 			_vote.forBallot = _ballot;
 			_vote.forMeasure = _measure;
 		}
-		NSLog(@"Vote: %@", measureVote);
+//		NSLog(@"Vote: %@", measureVote);
+		NSLog(@"Saving vote: %@, %@", measureVote, statement);
 		_vote.vote = measureVote;
 		_vote.statement = statement;
 		
@@ -177,8 +181,6 @@
 	else {
 		NSLog(@"User canceled their vote selection");
 	}
-	
-	NSLog(@"Statement: [%@]", statement);
 	
     // Dismiss the modal view controller
     [self dismissModalViewControllerAnimated:YES];	
@@ -314,10 +316,8 @@
 	[request setPredicate:predicate];
 	
 	NSError *error = nil;
-	NSArray *array = [[self.ballot managedObjectContext] executeFetchRequest:request error:&error];
-	if (array != nil)
-	{
-		NSUInteger count = [array count];
+	NSUInteger count = [[self.ballot managedObjectContext] countForFetchRequest:request error:&error];
+	if (error == nil) {
 		NSUInteger orgCount = 0;
 		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
@@ -325,19 +325,44 @@
 		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
 		[cell.viewAllEndorsements setFrame:CGRectMake(7,45,stringsize.width+10, stringsize.height)];
 	}
-	else
-	{
-		NSLog(@"no!");
+	else {
+		/* TODO: log error */
+		NSLog(@"No");
+	}
+	
+	/* fill in the top endorsements */
+	[request setFetchLimit:3];
+	
+	NSArray *array = [[self.ballot managedObjectContext] executeFetchRequest:request error:&error];
+	if (error == nil) {
+		FriendMeasureVote *friendVote;
+		NSUInteger count = [array count];
+		
+		if (count > 0) {
+			friendVote = (FriendMeasureVote *) [array objectAtIndex:0];
+			cell.friendEndorsement1.text = friendVote.statement;
+
+			if (count > 1) {
+				friendVote = (FriendMeasureVote *) [array objectAtIndex:1];
+				cell.friendEndorsement2.text = friendVote.statement;
+
+				if (count > 2) {
+					friendVote = (FriendMeasureVote *) [array objectAtIndex:2];
+					cell.friendEndorsement3.text = friendVote.statement;
+				}
+			}
+		}
+	}
+	else {
+		/* TODO: log error */
+		NSLog(@"No");
 	}
 
 	/* TODO: this code is stand in for now... */
 	UIImage *icon = [UIImage imageNamed:@"users.png"];	
 	cell.friendIcon1.image = icon;
-	cell.friendEndorsement1.text = @"\"I endorse this measure!\"";
 	cell.friendIcon2.image = icon;
-	cell.friendEndorsement2.text = @"\"I endorse this measure!\"";
 	cell.friendIcon3.image = icon;
-	cell.friendEndorsement3.text = @"\"I endorse this measure!\"";
 	
 	[request release];
 	
