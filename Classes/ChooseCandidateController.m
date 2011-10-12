@@ -13,6 +13,8 @@
 #import "Candidate.h"
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
+#import "FacebookFriend.h"
+#import "Friend.h"
 #import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
 
@@ -134,6 +136,8 @@
 	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
 	[request setSortDescriptors:[NSArray arrayWithObject:sort]];
 	
+	UIImage *icon = [UIImage imageNamed:@"users.png"];
+	
 	NSError *error = nil;
 	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
 	if (error == nil) {
@@ -143,6 +147,20 @@
 		if (count > 0) {
 			friendVote = (FriendBallotVote *) [array objectAtIndex:0];
 			cell.topEndorsement.text = friendVote.statement;
+			
+			if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {				
+				/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+				NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+				NSString *documentsDirectory = [paths objectAtIndex:0];
+				NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
+				UIImage *fbIcon = [UIImage imageWithContentsOfFile:path];
+				
+				cell.topFriendIcon.image = fbIcon;
+
+			}
+			else {
+				cell.topFriendIcon.image = icon;
+			}
 			
 			if (count > 1) {
 				friendVote = (FriendBallotVote *) [array objectAtIndex:1];
@@ -162,8 +180,6 @@
 	
 	[sort release];
 
-	UIImage *icon = [UIImage imageNamed:@"users.png"];
-	cell.topFriendIcon.image = icon;
 	cell.friendIcon1.image = icon;
 	cell.friendIcon2.image = icon;
 
