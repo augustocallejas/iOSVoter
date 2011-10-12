@@ -31,4 +31,6 @@
 @property (nonatomic, retain) UIButton *voteMeasure;
 @property (nonatomic, retain) UIImageView *voteStatus;
 
++ (NSString *)voteToString:(NSNumber *)vote;
+
 @end

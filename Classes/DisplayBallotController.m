@@ -13,6 +13,7 @@
 #import "ChooseCandidateController.h"
 #import "Candidate.h"
 #import "Measure.h"
+#import "MeasureViewCell.h"
 #import "MeasureVote.h"
 #import "Position.h"
 #import "VoteMeasureController.h"
@@ -248,17 +249,7 @@
 		else if (count == 1)
 		{
 			NSNumber *vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
-			if (vote != nil) {
-				if ([vote boolValue]) {
-					cell.minorTitle.text = @"YES";
-				}
-				else {
-					cell.minorTitle.text = @"NO";
-				}
-			}
-			else {
-				cell.minorTitle.text = @"Undecided";
-			}
+			cell.minorTitle.text = [MeasureViewCell voteToString:vote];
 		}
 		else
 		{

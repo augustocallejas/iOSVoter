@@ -22,6 +22,17 @@
 @synthesize	voteMeasure = _voteMeasure;
 @synthesize voteStatus = _voteStatus;
 
++ (NSString *)voteToString:(NSNumber *)vote {
+	if (vote == nil) {
+		return @"Undecided";
+	}
+	else if ([vote boolValue]) {
+		return @"YES";
+	}
+	
+	return @"NO";
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

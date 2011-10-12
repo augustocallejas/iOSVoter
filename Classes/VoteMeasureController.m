@@ -171,16 +171,7 @@
 		}
 		
 		// update the detailed text, because otherwise it stays the same.
-		/* TODO: make a method in the parent controller that sets this properly, instead of rewriting the logic here */
-		if (measureVote == nil) {
-			self.selectedCell.minorTitle.text = @"Undecided";
-		}
-		else if ([measureVote boolValue]) {
-			self.selectedCell.minorTitle.text = @"YES";
-		}
-		else {
-			self.selectedCell.minorTitle.text = @"NO";
-		}
+		self.selectedCell.minorTitle.text = [MeasureViewCell voteToString:measureVote];
 		
 		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];
