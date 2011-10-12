@@ -11,6 +11,7 @@
 #import "Friend.h"
 #import "EndorsementViewCell.h"
 #import "FriendBallotVote.h"
+#import "FriendMeasureVote.h"
 
 #define FONT_SIZE 14.0f
 #define LABEL_X_POSITION 69.0f
@@ -22,6 +23,8 @@
 
 @synthesize position = _position;
 @synthesize candidate = _candidate;
+@synthesize measure = _measure;
+@synthesize vote = _vote;
 
 #pragma mark -
 #pragma mark Initialization
@@ -41,7 +44,11 @@
 #pragma mark FetchedResultsBasedTableViewController implementation methods
 
 - (NSString *)getEntityName{
-	return @"FriendBallotVote";
+	if (_position != nil) {
+		return @"FriendBallotVote";
+	}
+	
+	return @"FriendMeasureVote";
 }
 
 - (NSString *)getSectionNameKeyPath{
@@ -61,7 +68,12 @@
 }
 
 - (NSPredicate *)getPredicate{
-	return [NSPredicate predicateWithFormat:@"forPosition == %@ and forCandidate == %@", _position, _candidate];
+	if (_position != nil) {
+		return [NSPredicate predicateWithFormat:@"forPosition == %@ and forCandidate == %@", _position, _candidate];
+	}
+	
+	/* TODO: correct? */
+	return [NSPredicate predicateWithFormat:@"forMeasure == %@ and vote == %@", _measure, _vote];
 }
 
 - (NSString *)getCellIdentifier{
@@ -69,12 +81,24 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	FriendBallotVote *friendVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	FriendBallotVote *friendBallotVote = nil;
+	FriendMeasureVote *friendMeasureVote = nil;
+	if (_position != nil) {
+		friendBallotVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
+	else {
+		friendMeasureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
 	
 	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
-	endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendVote.author.name, friendVote.statement];
+	if (friendBallotVote != nil) {
+		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendBallotVote.author.name, friendBallotVote.statement];
+	}
+	else {
+		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendMeasureVote.author.name, friendMeasureVote.statement];
+	}
 	
-	UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]];
+	UIImage *icon = [UIImage imageNamed:@"users.png"];
 	endorsementCell.endorserIcon.image = icon;
 	
 	/* set the size and position of the endorsement label */
@@ -162,8 +186,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	FriendBallotVote *friendVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	NSString *text = friendVote.statement;
+	FriendBallotVote *friendBallotVote = nil;
+	FriendMeasureVote *friendMeasureVote = nil;
+	if (_position != nil) {
+		friendBallotVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
+	else {
+		friendMeasureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
+
+	NSString *text = friendBallotVote != nil ? friendBallotVote.statement : friendMeasureVote.statement;
 	
 	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
 	CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
@@ -247,6 +279,8 @@
 - (void)dealloc {
 	self.position = nil;
 	self.candidate = nil;
+	self.measure = nil;
+	self.vote = nil;
     [super dealloc];
 }
 

@@ -10,6 +10,7 @@
 
 #import "Friend.h"
 #import "FriendMeasureVote.h"
+#import "ListEndorsementsController.h"
 #import "MeasureViewCell.h"
 
 @implementation VoteMeasureController
@@ -72,6 +73,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.tableView.allowsSelection = NO;
 	
 	/* query for a measure vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -194,6 +196,36 @@
     [self dismissModalViewControllerAnimated:YES];	
 }
 
+- (IBAction)viewAllEndorsements:(id)sender{	
+	NSNumber *voteSelected = nil;
+	UIButton *button = (UIButton *)sender;
+	if (button.tag == 0) {
+		/* YES */
+		voteSelected = [NSNumber numberWithBool:YES];
+	}
+	else if (button.tag == 1) {
+		/* NO */
+		voteSelected = [NSNumber numberWithBool:NO];
+	}
+	else if (button.tag == 2) {
+		/* Undecided */
+		voteSelected = nil;
+	}
+	
+	NSLog(@"Vote selected to view %@", voteSelected);
+	
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
+	//controller.position = self.position;
+	//controller.candidate = candidate;
+	controller.measure = _measure;
+	controller.vote = voteSelected;
+	controller.title = @"Endorsements";
+	controller.managedObjectContext = [_ballot managedObjectContext];
+	
+	[self.navigationController pushViewController:controller animated:YES];
+	[controller release];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
@@ -264,15 +296,14 @@
 	}
 	
 	cell.voteMeasure.tag = indexPath.row;
+	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	if (selected) {
-		/* TODO: replace with the path based approach to loading an image */
-		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"checked" ofType:@"png"]];
+		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
 	}
 	else {
-		/* TODO: replace with the path based approach to loading an image */
-		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"unchecked" ofType:@"png"]];
+		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
 	}
 	

@@ -165,12 +165,12 @@
 	}
 	
 	if (vote != nil && vote.forCandidate == candidate) {
-		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"checked" ofType:@"png"]];
+		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
 
 	}
 	else {
-		UIImage *icon = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"unchecked" ofType:@"png"]];
+		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
 	}
 

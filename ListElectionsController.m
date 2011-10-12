@@ -295,6 +295,7 @@
 	fmv1.forMeasure = measure1;
 	fmv1.vote = [NSNumber numberWithBool:YES];
 	fmv1.author = friend;
+	fmv1.statement = @"I love this measure";
 	
 	if (![self.managedObjectContext save:&error]) {
 		NSLog(@"  DetailedError: %@", [error userInfo]);

@@ -29,5 +29,6 @@
 @property (nonatomic, retain) BallotItemViewCell *selectedCell;
 
 - (IBAction)voteOnMeasure:(id)sender;
+- (IBAction)viewAllEndorsements:(id)sender;
 
 @end
