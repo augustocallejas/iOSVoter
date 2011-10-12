@@ -49,7 +49,6 @@
 		vote.forCandidate = candidate;
 		vote.statement = statement;
 		
-		/* TODO: doesn't indicate your current choice */
 		NSError *error;
 		if (![self.managedObjectContext save:&error]) {
 			NSLog(@"  DetailedError: %@", [error userInfo]);
