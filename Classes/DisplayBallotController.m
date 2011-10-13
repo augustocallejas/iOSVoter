@@ -47,7 +47,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
+		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
 		segControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[segControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
@@ -572,7 +572,8 @@
 		controller.ballot = self.ballot;
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;
-		controller.title = position.level;
+		//controller.title = position.level;
+		controller.title = @"Candidates";
 		controller.selectedCell = (BallotItemViewCell *) [tableView cellForRowAtIndexPath:indexPath];
 		
 		[self.navigationController pushViewController:controller animated:YES];
@@ -587,7 +588,7 @@
 		controller.ballot = self.ballot;
 		controller.measure = measure;
 		controller.selectedCell = (BallotItemViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-		controller.title = [NSString stringWithFormat:@"Measure %@", measure.identifier];
+		controller.title = @"Measure";//[NSString stringWithFormat:@"Measure %@", measure.identifier];
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];

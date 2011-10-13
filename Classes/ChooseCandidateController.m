@@ -122,7 +122,14 @@
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
-	cell.partyName.text = candidate.party;
+	if (candidate.party != nil) {
+		cell.partyName.text = candidate.party;
+	}
+	else if (candidate.occupation != nil) {
+		cell.partyName.text = candidate.occupation;
+		
+	}
+
 	
 	/* fill out the top endorsements, sorted by descending date */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -137,7 +144,8 @@
 	[request setSortDescriptors:[NSArray arrayWithObject:sort]];
 	
 	UIImage *icon = [UIImage imageNamed:@"users.png"];
-	
+	cell.friendIcon1.image = icon;
+
 	NSError *error = nil;
 	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
 	if (error == nil) {
@@ -146,7 +154,7 @@
 		FriendBallotVote *friendVote;
 		if (count > 0) {
 			friendVote = (FriendBallotVote *) [array objectAtIndex:0];
-			cell.topEndorsement.text = friendVote.statement;
+			cell.friendEndorsement1.text = friendVote.statement;
 			
 			if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {				
 				/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
@@ -155,20 +163,19 @@
 				NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
 				UIImage *fbIcon = [UIImage imageWithContentsOfFile:path];
 				
-				cell.topFriendIcon.image = fbIcon;
-
+				cell.friendIcon1.image = fbIcon;
 			}
 			else {
-				cell.topFriendIcon.image = icon;
+				cell.friendIcon1.image = icon;
 			}
 			
 			if (count > 1) {
 				friendVote = (FriendBallotVote *) [array objectAtIndex:1];
-				cell.friendEndorsement1.text = friendVote.statement;
+				cell.friendEndorsement2.text = friendVote.statement;
 				
 				if (count > 2) {
 					friendVote = (FriendBallotVote *) [array objectAtIndex:2];
-					cell.friendEndorsement2.text = friendVote.statement;
+					cell.friendEndorsement3.text = friendVote.statement;
 				}
 			}
 		}
@@ -180,8 +187,8 @@
 	
 	[sort release];
 
-	cell.friendIcon1.image = icon;
 	cell.friendIcon2.image = icon;
+	cell.friendIcon3.image = icon;
 
 	/* query for friends' votes on this candidate */
 	entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
@@ -200,7 +207,9 @@
 //			count++;
 //		}
 		NSUInteger orgCount = 0;
-		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
 		
 		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
@@ -249,7 +258,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
 		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
@@ -415,7 +424,7 @@
         return 176;
     }
 	
-	return 44;
+	return 66;
 }
 
 

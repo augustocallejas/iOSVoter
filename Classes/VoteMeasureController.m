@@ -32,7 +32,7 @@
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
     if (self) {
         // Custom initialization.
-		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Social", nil]];
+		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
 		control.segmentedControlStyle = UISegmentedControlStyleBar;
 		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];

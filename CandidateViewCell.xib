@@ -296,43 +296,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_friendIcon1</string>
-						<reference key="source" ref="928037324"/>
-						<reference key="destination" ref="98081712"/>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_friendIcon2</string>
-						<reference key="source" ref="928037324"/>
-						<reference key="destination" ref="637741241"/>
-					</object>
-					<int key="connectionID">42</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_partyName</string>
 						<reference key="source" ref="928037324"/>
 						<reference key="destination" ref="195143710"/>
 					</object>
 					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_topEndorsement</string>
-						<reference key="source" ref="928037324"/>
-						<reference key="destination" ref="758463293"/>
-					</object>
-					<int key="connectionID">48</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_topFriendIcon</string>
-						<reference key="source" ref="928037324"/>
-						<reference key="destination" ref="456900051"/>
-					</object>
-					<int key="connectionID">49</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -380,17 +348,49 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_friendEndorsement1</string>
 						<reference key="source" ref="928037324"/>
-						<reference key="destination" ref="484534491"/>
+						<reference key="destination" ref="758463293"/>
 					</object>
-					<int key="connectionID">62</int>
+					<int key="connectionID">64</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_friendEndorsement2</string>
 						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="484534491"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_friendEndorsement3</string>
+						<reference key="source" ref="928037324"/>
 						<reference key="destination" ref="959745749"/>
 					</object>
-					<int key="connectionID">63</int>
+					<int key="connectionID">66</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_friendIcon1</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="456900051"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_friendIcon2</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="98081712"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_friendIcon3</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="637741241"/>
+					</object>
+					<int key="connectionID">73</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -602,7 +602,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -618,11 +618,11 @@
 							<string>_candidateName</string>
 							<string>_friendEndorsement1</string>
 							<string>_friendEndorsement2</string>
+							<string>_friendEndorsement3</string>
 							<string>_friendIcon1</string>
 							<string>_friendIcon2</string>
+							<string>_friendIcon3</string>
 							<string>_partyName</string>
-							<string>_topEndorsement</string>
-							<string>_topFriendIcon</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
 							<string>_voteStatus</string>
@@ -633,11 +633,11 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
@@ -651,11 +651,11 @@
 							<string>_candidateName</string>
 							<string>_friendEndorsement1</string>
 							<string>_friendEndorsement2</string>
+							<string>_friendEndorsement3</string>
 							<string>_friendIcon1</string>
 							<string>_friendIcon2</string>
+							<string>_friendIcon3</string>
 							<string>_partyName</string>
-							<string>_topEndorsement</string>
-							<string>_topFriendIcon</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
 							<string>_voteStatus</string>
@@ -679,6 +679,10 @@
 								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">_friendEndorsement3</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">_friendIcon1</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
@@ -687,16 +691,12 @@
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">_friendIcon3</string>
+								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">_partyName</string>
 								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_topEndorsement</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">_topFriendIcon</string>
-								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_viewAllEndorsements</string>
