@@ -284,6 +284,7 @@
 		}
 	}
 	
+	cell.editEndorsement.tag = indexPath.row;
 	cell.voteMeasure.tag = indexPath.row;
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
@@ -293,6 +294,7 @@
 		cell.voteStatus.image = icon;
 	}
 	else {
+		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
 		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
 	}

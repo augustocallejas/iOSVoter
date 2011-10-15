@@ -1,5 +1,5 @@
 //
-//  ChooseCandidateController.h
+//  VoteCandidateController.h
 //  Supervote
 //
 //  Created by augusto callejas on 8/25/11.
@@ -14,7 +14,7 @@
 #import "BallotItemViewCell.h"
 
 
-@interface ChooseCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate> {
+@interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate> {
 
 @private
 	BOOL socialBallotView;

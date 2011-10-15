@@ -10,12 +10,12 @@
 
 #import "BallotItemViewCell.h"
 #import "BallotVote.h"
-#import "ChooseCandidateController.h"
 #import "Candidate.h"
 #import "Measure.h"
 #import "MeasureViewCell.h"
 #import "MeasureVote.h"
 #import "Position.h"
+#import "VoteCandidateController.h"
 #import "VoteMeasureController.h"
 
 @implementation DisplayBallotController
@@ -185,7 +185,7 @@
 	cell.friendIcon5.image = icon;
 	cell.friendIcon6.image = icon;
 
-	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
+	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:2];
@@ -227,7 +227,7 @@
     Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:indexPath];
 	cell.majorTitle.text = measure.title;
 	
-	/* TODO: break this functionality out into a method that ChooseCandidate can use, or save references? */
+	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a measure vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:2];
@@ -567,7 +567,7 @@
 		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 		
 		// TODO: unnecessarily creating a new controller on each selection!
-		ChooseCandidateController *controller = [[ChooseCandidateController alloc] initWithNibName:@"ChooseCandidate" bundle:[NSBundle mainBundle]];
+		VoteCandidateController *controller = [[VoteCandidateController alloc] initWithNibName:@"VoteCandidate" bundle:[NSBundle mainBundle]];
 		controller.selectedRow = -1;
 		controller.ballot = self.ballot;
 		controller.position = position;

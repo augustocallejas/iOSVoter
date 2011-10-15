@@ -1,12 +1,12 @@
 //
-//  ChooseCandidateController.m
+//  VoteCandidateController.m
 //  Supervote
 //
 //  Created by augusto callejas on 8/25/11.
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "ChooseCandidateController.h"
+#import "VoteCandidateController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,7 +18,7 @@
 #import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
 
-@implementation ChooseCandidateController
+@implementation VoteCandidateController
 
 @synthesize ballot;
 @synthesize position;
@@ -102,7 +102,7 @@
 }
 
 - (NSString *)getCacheName{
-	return @"ChooseCandidateController";
+	return @"VoteCandidateController";
 }
 
 - (NSArray *)allocSortDescriptors{
@@ -115,7 +115,7 @@
 }
 
 - (NSString *)getCellIdentifier{
-	return @"ChooseCandidateController";
+	return @"VoteCandidateController";
 }
 
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
@@ -479,6 +479,7 @@
 		}
 	}
 	
+	cell.editEndorsement.tag = indexPath.row;
 	cell.voteCandidate.tag = indexPath.row;
 	cell.viewAllEndorsements.tag = indexPath.row;
 	

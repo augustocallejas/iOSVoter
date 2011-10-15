@@ -2,10 +2,10 @@
 {
 	141B4A061441668A00E522BD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 3105;
+		rLoc = 3099;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 2550;
@@ -36,7 +36,7 @@
 					chosenTableWidths = (
 						103.000000,
 						54.000000,
-						119.080078,
+						118.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -46,8 +46,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {624, 218}}",
-							"{{629, 0}, {324, 218}}",
+							"{{0, 0}, {624, 220}}",
+							"{{629, 0}, {324, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -57,7 +57,7 @@
 						isCollapsed = yes;
 						sizes = (
 							"{{0, 0}, {953, 220}}",
-							"{{0, 225}, {953, 488}}",
+							"{{0, 225}, {953, 258}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -66,8 +66,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {301, 218}}",
-							"{{306, 0}, {318, 218}}",
+							"{{0, 0}, {300, 220}}",
+							"{{305, 0}, {317, 220}}",
 						);
 					};
 				};
@@ -164,23 +164,23 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-145, 0}, {938, 473}}";
+				"xdesign model diagram view visible rect key" = "{{-145, 207}, {938, 243}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
-	1423B32B1407527E006F8DBF /* ChooseCandidateController.h */ = {
+	1423B32B1407527E006F8DBF /* VoteCandidateController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {894, 554}}";
-			sepNavSelRange = "{855, 44}";
-			sepNavVisRange = "{0, 905}";
+			sepNavIntBoundsRect = "{{0, 0}, {894, 481}}";
+			sepNavSelRange = "{11, 0}";
+			sepNavVisRange = "{0, 901}";
 		};
 	};
-	1423B32C1407527E006F8DBF /* ChooseCandidateController.m */ = {
+	1423B32C1407527E006F8DBF /* VoteCandidateController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 6591}}";
-			sepNavSelRange = "{7662, 85}";
-			sepNavVisRange = "{7325, 983}";
+			sepNavIntBoundsRect = "{{0, 0}, {1216, 6578}}";
+			sepNavSelRange = "{7840, 69}";
+			sepNavVisRange = "{7058, 1125}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -345,9 +345,9 @@
 	};
 	14399DDC140F7612007269A3 /* DisplayBallotController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1251, 8281}}";
-			sepNavSelRange = "{1483, 0}";
-			sepNavVisRange = "{7155, 1304}";
+			sepNavIntBoundsRect = "{{0, 0}, {1146, 8541}}";
+			sepNavSelRange = "{20838, 0}";
+			sepNavVisRange = "{19645, 1335}";
 			sepNavWindowFrame = "{{15, 13}, {1262, 860}}";
 		};
 	};
@@ -360,9 +360,9 @@
 	};
 	14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 6344}}";
-			sepNavSelRange = "{10300, 0}";
-			sepNavVisRange = "{9900, 1110}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 6474}}";
+			sepNavSelRange = "{8928, 0}";
+			sepNavVisRange = "{8497, 1042}";
 			sepNavWindowFrame = "{{84, 72}, {947, 738}}";
 		};
 	};
@@ -711,10 +711,10 @@
 	};
 	14A6F36A143C371200EBF65D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 33";
 		rLen = 40;
-		rLoc = 815;
+		rLoc = 811;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 0;
@@ -925,17 +925,17 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 260";
 		rLen = 0;
-		rLoc = 9548;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 9084;
 	};
 	14A6F577143EF13500EBF65D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 3105;
+		rLoc = 3099;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 2550;
@@ -1148,10 +1148,10 @@
 	};
 	14EF321F144212AA00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 3105;
+		rLoc = 3099;
 		rType = 0;
 		vrLen = 1351;
 		vrLoc = 2550;
@@ -1376,10 +1376,10 @@
 	};
 	14EF324514421EE300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1119;
+		rLoc = 1113;
 		rType = 0;
 		vrLen = 1751;
 		vrLoc = 337;
@@ -1435,30 +1435,30 @@
 	};
 	14EF325414421F9800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1119;
+		rLoc = 1113;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 337;
 	};
 	14EF325514421F9800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 35";
 		rLen = 0;
-		rLoc = 1160;
+		rLoc = 1154;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 337;
 	};
 	14EF325914421FD200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1117;
+		rLoc = 1111;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 337;
@@ -1492,17 +1492,17 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 651";
 		rLen = 0;
-		rLoc = 23275;
+		rLoc = 23263;
 		rType = 0;
 		vrLen = 2162;
 		vrLoc = 20764;
 	};
 	14EF3286144231F600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 20";
 		rLen = 24;
-		rLoc = 478;
+		rLoc = 474;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -1529,10 +1529,10 @@
 	};
 	14EF3289144231F600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 201";
 		rLen = 123;
-		rLoc = 8445;
+		rLoc = 8435;
 		rType = 0;
 		vrLen = 1644;
 		vrLoc = 8988;
@@ -1739,10 +1739,10 @@
 	};
 	14EF32AE144238D900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 171";
 		rLen = 403;
-		rLoc = 7518;
+		rLoc = 7508;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 4567;
@@ -1752,7 +1752,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 196";
 		rLen = 0;
-		rLoc = 9017;
+		rLoc = 9129;
 		rType = 0;
 		vrLen = 1388;
 		vrLoc = 6014;
@@ -1769,10 +1769,10 @@
 	};
 	14EF32B41442395900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 365";
 		rLen = 1243;
-		rLoc = 12878;
+		rLoc = 12868;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 10242;
@@ -1792,7 +1792,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 255";
 		rLen = 23;
-		rLoc = 11396;
+		rLoc = 11508;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 7170;
@@ -1802,17 +1802,17 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 247";
 		rLen = 0;
-		rLoc = 11249;
+		rLoc = 11361;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 7170;
 	};
 	14EF32BD14423A4400557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 158";
 		rLen = 252;
-		rLoc = 7069;
+		rLoc = 7059;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 4567;
@@ -1822,7 +1822,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 230";
 		rLen = 0;
-		rLoc = 9991;
+		rLoc = 10103;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 6257;
@@ -1832,7 +1832,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 233";
 		rLen = 0;
-		rLoc = 10246;
+		rLoc = 10358;
 		rType = 0;
 		vrLen = 1502;
 		vrLoc = 6257;
@@ -1842,7 +1842,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 233";
 		rLen = 0;
-		rLoc = 10246;
+		rLoc = 10358;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 6257;
@@ -2014,10 +2014,10 @@
 	};
 	14EF32FC14424F4600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 11";
 		rLen = 44;
-		rLoc = 209;
+		rLoc = 207;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -2054,10 +2054,10 @@
 	};
 	14EF330014424F4600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 52";
 		rLen = 0;
-		rLoc = 1735;
+		rLoc = 1729;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 514;
@@ -2104,20 +2104,20 @@
 	};
 	14EF330A14424FD800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 52";
 		rLen = 0;
-		rLoc = 1735;
+		rLoc = 1729;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 205;
 	};
 	14EF330B14424FD800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 33";
 		rLen = 40;
-		rLoc = 815;
+		rLoc = 811;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -2174,10 +2174,10 @@
 	};
 	14EF3318144250DB00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 386";
 		rLen = 40;
-		rLoc = 14723;
+		rLoc = 14756;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 10924;
@@ -2207,27 +2207,27 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 249";
 		rLen = 0;
-		rLoc = 9417;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1489;
 		vrLoc = 8329;
 	};
 	14EF331D1442523300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 386";
 		rLen = 40;
-		rLoc = 14723;
+		rLoc = 14756;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 10891;
 	};
 	14EF331E1442523300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 24";
 		rLen = 18;
-		rLoc = 560;
+		rLoc = 556;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -2286,7 +2286,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 596";
 		rLen = 0;
-		rLoc = 21868;
+		rLoc = 21856;
 		rType = 0;
 		vrLen = 1458;
 		vrLoc = 21177;
@@ -2323,10 +2323,10 @@
 	};
 	14EF334A1445325F00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 238";
 		rLen = 38;
-		rLoc = 9693;
+		rLoc = 9683;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 7199;
@@ -2353,20 +2353,20 @@
 	};
 	14EF335014453BAD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 76";
 		rLen = 647;
-		rLoc = 2314;
+		rLoc = 2308;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 1729;
 	};
 	14EF335114453BAD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 34";
 		rLen = 44;
-		rLoc = 855;
+		rLoc = 851;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -2591,7 +2591,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 596";
 		rLen = 0;
-		rLoc = 21868;
+		rLoc = 21856;
 		rType = 0;
 		vrLen = 1458;
 		vrLoc = 21177;
@@ -2667,10 +2667,10 @@
 	};
 	14EF337814453D5200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 385";
-		rLen = 89;
-		rLoc = 14721;
+		rLen = 132;
+		rLoc = 14711;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 10696;
@@ -2690,7 +2690,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 299";
 		rLen = 0;
-		rLoc = 8614;
+		rLoc = 8657;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 8689;
@@ -2700,7 +2700,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 9327;
+		rLoc = 9439;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 8961;
@@ -2757,10 +2757,10 @@
 	};
 	14EF338D14453FF900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 125";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6091;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 3242;
@@ -2800,7 +2800,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 249";
 		rLen = 0;
-		rLoc = 9417;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 8673;
@@ -2870,37 +2870,37 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 308";
 		rLen = 0;
-		rLoc = 8856;
+		rLoc = 8968;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 8965;
 	};
 	14EF339E144542F100557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 125";
 		rLen = 0;
-		rLoc = 6101;
+		rLoc = 6091;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 3207;
 	};
 	14EF339F144542F100557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 7814;
+		rLoc = 7804;
 		rType = 0;
 		vrLen = 1489;
 		vrLoc = 4921;
 	};
 	14EF33A31445434B00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 7814;
+		rLoc = 7804;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 4882;
@@ -2910,7 +2910,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 302";
 		rLen = 0;
-		rLoc = 8719;
+		rLoc = 8762;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 8965;
@@ -3427,8 +3427,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 250";
-		rLen = 8;
-		rLoc = 9421;
+		rLen = 0;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 8771;
@@ -3495,10 +3495,10 @@
 	};
 	14EF33E214454AD600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32B1407527E006F8DBF /* ChooseCandidateController.h */;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
 		name = "ChooseCandidateController.h: 34";
 		rLen = 44;
-		rLoc = 855;
+		rLoc = 851;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -3628,7 +3628,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 16";
 		rLen = 0;
-		rLoc = 362;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1108;
 		vrLoc = 0;
@@ -3638,7 +3638,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 255";
 		rLen = 0;
-		rLoc = 9548;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 8701;
@@ -3648,7 +3648,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 252";
 		rLen = 0;
-		rLoc = 9548;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1441;
 		vrLoc = 8799;
@@ -3695,20 +3695,20 @@
 	};
 	14EF33FE14454BE200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 7814;
+		rLoc = 7804;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 4863;
 	};
 	14EF33FF14454BE200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 48";
 		rLen = 1;
-		rLoc = 1668;
+		rLoc = 1662;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 565;
@@ -3718,7 +3718,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 245";
 		rLen = 0;
-		rLoc = 9332;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1501;
 		vrLoc = 8741;
@@ -3745,10 +3745,10 @@
 	};
 	14EF340A14454D3600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 124";
 		rLen = 64;
-		rLoc = 6101;
+		rLoc = 6091;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 3287;
@@ -3768,7 +3768,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 334";
 		rLen = 0;
-		rLoc = 11151;
+		rLoc = 11263;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 9571;
@@ -3778,7 +3778,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 334";
 		rLen = 0;
-		rLoc = 11151;
+		rLoc = 11263;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 10596;
@@ -3797,38 +3797,38 @@
 		isa = PBXTextBookmark;
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 274";
-		rLen = 9;
-		rLoc = 10226;
+		rLen = 0;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1391;
 		vrLoc = 9547;
 	};
 	14EF34171445544D00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 124";
 		rLen = 64;
-		rLoc = 6101;
+		rLoc = 6091;
 		rType = 0;
 		vrLen = 1691;
 		vrLoc = 3287;
 	};
 	14EF34181445544D00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 143";
 		rLen = 16;
-		rLoc = 6581;
+		rLoc = 6571;
 		rType = 0;
 		vrLen = 1851;
 		vrLoc = 3698;
 	};
 	14EF3423144554B100557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 143";
 		rLen = 0;
-		rLoc = 6600;
+		rLoc = 6590;
 		rType = 0;
 		vrLen = 1588;
 		vrLoc = 4225;
@@ -3855,20 +3855,20 @@
 	};
 	14EF34271445561400557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 137";
 		rLen = 0;
-		rLoc = 6215;
+		rLoc = 6205;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 3437;
 	};
 	14EF34281445561400557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 137";
 		rLen = 0;
-		rLoc = 4862;
+		rLoc = 4852;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 3698;
@@ -3885,30 +3885,30 @@
 	};
 	14EF34321445579500557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 180";
 		rLen = 0;
-		rLoc = 6580;
+		rLoc = 6570;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 3772;
 	};
 	14EF34331445579500557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 185";
 		rLen = 7;
-		rLoc = 6546;
+		rLoc = 6536;
 		rType = 0;
 		vrLen = 1862;
 		vrLoc = 5109;
 	};
 	14EF343A144557E400557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 179";
 		rLen = 0;
-		rLoc = 6364;
+		rLoc = 6354;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 5149;
@@ -3927,8 +3927,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 512";
-		rLen = 8;
-		rLoc = 18897;
+		rLen = 0;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1476;
 		vrLoc = 18031;
@@ -3975,10 +3975,10 @@
 	};
 	14EF34441445593F00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 212";
 		rLen = 20;
-		rLoc = 7924;
+		rLoc = 7914;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 5849;
@@ -3998,17 +3998,17 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11053;
+		rLoc = 11165;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 9567;
 	};
 	14EF344F14455A9300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 165";
 		rLen = 63;
-		rLoc = 6101;
+		rLoc = 6091;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 4472;
@@ -4018,7 +4018,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11053;
+		rLoc = 11165;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 9532;
@@ -4028,7 +4028,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 338";
 		rLen = 0;
-		rLoc = 10570;
+		rLoc = 10682;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 9282;
@@ -4038,7 +4038,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 367";
 		rLen = 0;
-		rLoc = 11249;
+		rLoc = 11361;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 10040;
@@ -4347,20 +4347,20 @@
 	};
 	14EF348B1445663E00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 5053;
+		rLoc = 5043;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 3936;
 	};
 	14EF348C1445663E00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 5148;
+		rLoc = 5138;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 3878;
@@ -4533,48 +4533,48 @@
 		isa = PBXTextBookmark;
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 265";
-		rLen = 268;
-		rLoc = 9708;
+		rLen = 0;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 9260;
 	};
 	14EF348F14456A1900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 152";
 		rLen = 0;
-		rLoc = 5664;
+		rLoc = 5654;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 4105;
 	};
 	14EF349014456A1900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 161";
 		rLen = 0;
-		rLoc = 5719;
+		rLoc = 5709;
 		rType = 0;
 		vrLen = 1579;
 		vrLoc = 4298;
 	};
 	14EF349714456A7800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 4944;
+		rLoc = 4934;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 4495;
 	};
 	14EF349D14456B3900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 4944;
+		rLoc = 4934;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 4664;
@@ -4865,20 +4865,20 @@
 	};
 	14EF34BB144572D200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 4944;
+		rLoc = 4934;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 4182;
 	};
 	14EF34BC144572D200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 141";
 		rLen = 1;
-		rLoc = 4727;
+		rLoc = 4717;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 4151;
@@ -4895,30 +4895,30 @@
 	};
 	14EF34CA14467A4300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 141";
 		rLen = 1;
-		rLoc = 4727;
+		rLoc = 4717;
 		rType = 0;
 		vrLen = 1724;
 		vrLoc = 4151;
 	};
 	14EF34CB14467A4300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 418";
 		rLen = 0;
-		rLoc = 14118;
+		rLoc = 14108;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 11840;
 	};
 	14EF34CF14467A8900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 7065;
+		rLoc = 7055;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
@@ -4935,10 +4935,10 @@
 	};
 	14EF34D214467D4000557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 7065;
+		rLoc = 7055;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
@@ -5120,60 +5120,60 @@
 	};
 	14EF34D7144680CB00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 7065;
+		rLoc = 7055;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
 	};
 	14EF34D8144680CB00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 129";
 		rLen = 0;
-		rLoc = 3979;
+		rLoc = 3969;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 3586;
 	};
 	14EF34DA144682B600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 166";
 		rLen = 0;
-		rLoc = 5669;
+		rLoc = 5659;
 		rType = 0;
 		vrLen = 1567;
 		vrLoc = 4436;
 	};
 	14EF34DD144682EE00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 4689;
+		rLoc = 4679;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 3980;
 	};
 	14EF34E11446855700557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 14118;
+		rLoc = 14108;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
 	};
 	14EF34E51446875E00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 14118;
+		rLoc = 14108;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
@@ -5182,8 +5182,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 265";
-		rLen = 268;
-		rLoc = 9708;
+		rLen = 0;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 9260;
@@ -5193,7 +5193,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 576";
 		rLen = 0;
-		rLoc = 21129;
+		rLoc = 21117;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 20269;
@@ -5203,7 +5203,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 591";
 		rLen = 0;
-		rLoc = 21995;
+		rLoc = 21983;
 		rType = 0;
 		vrLen = 1980;
 		vrLoc = 20355;
@@ -5213,17 +5213,17 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 591";
 		rLen = 0;
-		rLoc = 21995;
+		rLoc = 21983;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 21301;
 	};
 	14EF34F2144697EF00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 14118;
+		rLoc = 14108;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
@@ -5405,10 +5405,10 @@
 	};
 	14EF34F81446A80B00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 8704;
+		rLoc = 8694;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 7525;
@@ -5448,7 +5448,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 591";
 		rLen = 0;
-		rLoc = 21995;
+		rLoc = 21983;
 		rType = 0;
 		vrLen = 2165;
 		vrLoc = 20747;
@@ -5458,7 +5458,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 50";
 		rLen = 0;
-		rLoc = 1483;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 363;
@@ -5468,17 +5468,17 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 50";
 		rLen = 0;
-		rLoc = 1483;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1878;
 		vrLoc = 442;
 	};
 	14EF35041446AA0A00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 8704;
+		rLoc = 8694;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 7579;
@@ -5555,20 +5555,20 @@
 	};
 	14EF350F1446AD5600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 8704;
+		rLoc = 8694;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 7634;
 	};
 	14EF35101446AD5600557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 4689;
+		rLoc = 4679;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 4436;
@@ -5595,10 +5595,10 @@
 	};
 	14EF351F1446AD9000557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 4689;
+		rLoc = 4679;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 4436;
@@ -5618,7 +5618,7 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 50";
 		rLen = 0;
-		rLoc = 1483;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 787;
@@ -5645,130 +5645,130 @@
 	};
 	14EF35361446B2F900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 4689;
+		rLoc = 4679;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 4560;
 	};
 	14EF35371446B2F900557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 229";
 		rLen = 0;
-		rLoc = 7746;
+		rLoc = 7736;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 6584;
 	};
 	14EF353D1446B37C00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 225";
 		rLen = 0;
-		rLoc = 7517;
+		rLoc = 7507;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 6582;
 	};
 	14EF353F1446B39300557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 224";
 		rLen = 0;
-		rLoc = 7517;
+		rLoc = 7507;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 6582;
 	};
 	14EF35441446B43E00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 229";
 		rLen = 0;
-		rLoc = 7746;
+		rLoc = 7736;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 6835;
 	};
 	14EF354A1446B76000557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 14099;
+		rLoc = 14089;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 12577;
 	};
 	14EF354E1446B7CD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 14099;
+		rLoc = 14089;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 12651;
 	};
 	14EF35521446B7EF00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 14099;
+		rLoc = 14089;
 		rType = 0;
 		vrLen = 950;
 		vrLoc = 12808;
 	};
 	14EF35561446B80D00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 14099;
+		rLoc = 14089;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 12808;
 	};
 	14EF355C1446B9FD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 444";
 		rLen = 0;
-		rLoc = 14099;
+		rLoc = 14089;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 12739;
 	};
 	14EF35631446BAA800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 422";
 		rLen = 0;
-		rLoc = 13006;
+		rLoc = 12996;
 		rType = 0;
 		vrLen = 800;
 		vrLoc = 13261;
 	};
 	14EF35691446BADC00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 453";
 		rLen = 0;
-		rLoc = 14030;
+		rLoc = 14020;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 13105;
 	};
 	14EF35711446BB6800557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 453";
 		rLen = 0;
-		rLoc = 14049;
+		rLoc = 14039;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 13108;
@@ -5778,37 +5778,37 @@
 		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
 		name = "DisplayBallotController.m: 50";
 		rLen = 0;
-		rLoc = 1483;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 1304;
 		vrLoc = 7155;
 	};
 	14EF35791446BBAD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 434";
 		rLen = 0;
-		rLoc = 13651;
+		rLoc = 13641;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 13108;
 	};
 	14EF357A1446BBAD00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 434";
 		rLen = 0;
-		rLoc = 13663;
+		rLoc = 13653;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 13108;
 	};
 	14EF357C1446BCA200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 425";
 		rLen = 0;
-		rLoc = 13146;
+		rLoc = 13136;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 12842;
@@ -5825,20 +5825,20 @@
 	};
 	14EF357E1446C1E200557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 425";
 		rLen = 0;
-		rLoc = 13146;
+		rLoc = 13136;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 12842;
 	};
 	14EF3584144929DB00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 421";
 		rLen = 94;
-		rLoc = 12878;
+		rLoc = 12868;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 12842;
@@ -5858,7 +5858,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 11530;
+		rLoc = 11642;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 10827;
@@ -5868,7 +5868,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 11530;
+		rLoc = 11642;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 10827;
@@ -5878,7 +5878,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 376";
 		rLen = 0;
-		rLoc = 11487;
+		rLoc = 11599;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 10812;
@@ -5888,7 +5888,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 9987;
+		rLoc = 10099;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 8874;
@@ -5898,7 +5898,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 9987;
+		rLoc = 10099;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 6922;
@@ -5908,7 +5908,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 325";
 		rLen = 0;
-		rLoc = 10203;
+		rLoc = 10315;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 9243;
@@ -5918,7 +5918,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 325";
 		rLen = 0;
-		rLoc = 10203;
+		rLoc = 10315;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 9321;
@@ -5928,7 +5928,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 322";
 		rLen = 0;
-		rLoc = 9961;
+		rLoc = 10073;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 9211;
@@ -5938,17 +5938,17 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 379";
 		rLen = 0;
-		rLoc = 11530;
+		rLoc = 11642;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 11066;
 	};
 	14EF35B514492D4100557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 421";
 		rLen = 94;
-		rLoc = 12878;
+		rLoc = 12868;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 12842;
@@ -5958,7 +5958,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 379";
 		rLen = 0;
-		rLoc = 11530;
+		rLoc = 11642;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 11130;
@@ -5968,7 +5968,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 382";
 		rLen = 0;
-		rLoc = 11549;
+		rLoc = 11661;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -5978,7 +5978,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 11487;
+		rLoc = 11599;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -5988,7 +5988,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 11487;
+		rLoc = 11599;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -6065,10 +6065,10 @@
 	};
 	14EF35CD14492EFF00557A80 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 1423B32C1407527E006F8DBF /* ChooseCandidateController.m */;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 227";
 		rLen = 85;
-		rLoc = 7662;
+		rLoc = 7652;
 		rType = 0;
 		vrLen = 983;
 		vrLoc = 7325;
@@ -6078,7 +6078,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 11487;
+		rLoc = 11599;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -6088,7 +6088,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 291";
 		rLen = 0;
-		rLoc = 8718;
+		rLoc = 8761;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 8281;
@@ -6098,7 +6098,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 327";
 		rLen = 0;
-		rLoc = 10205;
+		rLoc = 10317;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 9727;
@@ -6108,10 +6108,667 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 10300;
+		rLoc = 10412;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 9900;
+	};
+	14EF35EA1449336900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 332";
+		rLen = 0;
+		rLoc = 10412;
+		rType = 0;
+		vrLen = 1332;
+		vrLoc = 0;
+	};
+	14EF35EB1449336900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
+		name = "VoteCandidateController.h: 2";
+		rLen = 0;
+		rLoc = 11;
+		rType = 0;
+		vrLen = 901;
+		vrLoc = 0;
+	};
+	14EF35EC1449336900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 118";
+		rLen = 0;
+		rLoc = 3552;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 3103;
+	};
+	14EF35ED1449336900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 13";
+		rLen = 0;
+		rLoc = 254;
+		rType = 0;
+		vrLen = 1027;
+		vrLoc = 0;
+	};
+	14EF35EE1449336900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 570";
+		rLen = 0;
+		rLoc = 20838;
+		rType = 0;
+		vrLen = 856;
+		vrLoc = 22407;
+	};
+	14EF35F4144933C900557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 570";
+		rLen = 0;
+		rLoc = 20838;
+		rType = 0;
+		vrLen = 1291;
+		vrLoc = 19689;
+	};
+	14EF35F9144933DA00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 144";
+		rLen = 0;
+		rLoc = 4285;
+		rType = 0;
+		vrLen = 1577;
+		vrLoc = 4012;
+	};
+	14EF35FA144933DA00557A80 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Friend.facebook -- relationship does not have an inverse ";
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	14EF35FB144933DA00557A80 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					54.000000,
+					150.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {687, 218}}",
+						"{{692, 0}, {357, 218}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1049, 220}}",
+						"{{0, 225}, {1049, 303}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {332, 218}}",
+						"{{337, 0}, {350, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					NO,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-193, 185}, {1034, 288}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14EF35FE144933DB00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 570";
+		rLen = 0;
+		rLoc = 20838;
+		rType = 0;
+		vrLen = 1335;
+		vrLoc = 19645;
+	};
+	14EF35FF144933DB00557A80 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Friend.facebook -- relationship does not have an inverse ";
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	14EF3600144933DB00557A80 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					54.000000,
+					118.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {624, 220}}",
+						"{{629, 0}, {324, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {953, 220}}",
+						"{{0, 225}, {953, 258}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {300, 220}}",
+						"{{305, 0}, {317, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					NO,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-145, 207}, {938, 243}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14EF3606144934A800557A80 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					54.000000,
+					118.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {624, 220}}",
+						"{{629, 0}, {324, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {953, 220}}",
+						"{{0, 225}, {953, 258}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {300, 220}}",
+						"{{305, 0}, {317, 220}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					NO,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-145, 207}, {938, 243}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14EF3607144934A800557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 482";
+		rLen = 0;
+		rLoc = 14755;
+		rType = 0;
+		vrLen = 887;
+		vrLoc = 14447;
+	};
+	14EF360B1449354000557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 482";
+		rLen = 0;
+		rLoc = 14755;
+		rType = 0;
+		vrLen = 887;
+		vrLoc = 14447;
+	};
+	14EF360C1449354000557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 332";
+		rLen = 0;
+		rLoc = 10412;
+		rType = 0;
+		vrLen = 1329;
+		vrLoc = 3;
+	};
+	14EF360D1449354000557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 286";
+		rLen = 0;
+		rLoc = 8571;
+		rType = 0;
+		vrLen = 1033;
+		vrLoc = 8216;
+	};
+	14EF36111449358B00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 233";
+		rLen = 69;
+		rLoc = 7840;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 7058;
+	};
+	14EF36121449358B00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 287";
+		rLen = 0;
+		rLoc = 8571;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 8216;
+	};
+	14EF36131449358B00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 297";
+		rLen = 0;
+		rLoc = 8928;
+		rType = 0;
+		vrLen = 1042;
+		vrLoc = 8497;
 	};
 	1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {
 		uiCtxt = {
@@ -6664,6 +7321,26 @@
 			14EF35CF14492EFF00557A80 /* PBXTextBookmark */ = 14EF35CF14492EFF00557A80 /* PBXTextBookmark */;
 			14EF35D314492F9300557A80 /* PBXTextBookmark */ = 14EF35D314492F9300557A80 /* PBXTextBookmark */;
 			14EF35D714492FCA00557A80 /* PBXTextBookmark */ = 14EF35D714492FCA00557A80 /* PBXTextBookmark */;
+			14EF35EA1449336900557A80 /* PBXTextBookmark */ = 14EF35EA1449336900557A80 /* PBXTextBookmark */;
+			14EF35EB1449336900557A80 /* PBXTextBookmark */ = 14EF35EB1449336900557A80 /* PBXTextBookmark */;
+			14EF35EC1449336900557A80 /* PBXTextBookmark */ = 14EF35EC1449336900557A80 /* PBXTextBookmark */;
+			14EF35ED1449336900557A80 /* PBXTextBookmark */ = 14EF35ED1449336900557A80 /* PBXTextBookmark */;
+			14EF35EE1449336900557A80 /* PBXTextBookmark */ = 14EF35EE1449336900557A80 /* PBXTextBookmark */;
+			14EF35F4144933C900557A80 /* PBXTextBookmark */ = 14EF35F4144933C900557A80 /* PBXTextBookmark */;
+			14EF35F9144933DA00557A80 /* PBXTextBookmark */ = 14EF35F9144933DA00557A80 /* PBXTextBookmark */;
+			14EF35FA144933DA00557A80 /* XCBuildMessageTextBookmark */ = 14EF35FA144933DA00557A80 /* XCBuildMessageTextBookmark */;
+			14EF35FB144933DA00557A80 /* XDModelBookmark */ = 14EF35FB144933DA00557A80 /* XDModelBookmark */;
+			14EF35FE144933DB00557A80 /* PBXTextBookmark */ = 14EF35FE144933DB00557A80 /* PBXTextBookmark */;
+			14EF35FF144933DB00557A80 /* XCBuildMessageTextBookmark */ = 14EF35FF144933DB00557A80 /* XCBuildMessageTextBookmark */;
+			14EF3600144933DB00557A80 /* XDModelBookmark */ = 14EF3600144933DB00557A80 /* XDModelBookmark */;
+			14EF3606144934A800557A80 /* XDModelBookmark */ = 14EF3606144934A800557A80 /* XDModelBookmark */;
+			14EF3607144934A800557A80 /* PBXTextBookmark */ = 14EF3607144934A800557A80 /* PBXTextBookmark */;
+			14EF360B1449354000557A80 /* PBXTextBookmark */ = 14EF360B1449354000557A80 /* PBXTextBookmark */;
+			14EF360C1449354000557A80 /* PBXTextBookmark */ = 14EF360C1449354000557A80 /* PBXTextBookmark */;
+			14EF360D1449354000557A80 /* PBXTextBookmark */ = 14EF360D1449354000557A80 /* PBXTextBookmark */;
+			14EF36111449358B00557A80 /* PBXTextBookmark */ = 14EF36111449358B00557A80 /* PBXTextBookmark */;
+			14EF36121449358B00557A80 /* PBXTextBookmark */ = 14EF36121449358B00557A80 /* PBXTextBookmark */;
+			14EF36131449358B00557A80 /* PBXTextBookmark */ = 14EF36131449358B00557A80 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 14789DDD13E8FD560016044C /* Source Control */;
 		userBuildSettings = {
