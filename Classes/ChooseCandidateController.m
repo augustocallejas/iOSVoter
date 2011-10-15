@@ -127,9 +127,7 @@
 	}
 	else if (candidate.occupation != nil) {
 		cell.partyName.text = candidate.occupation;
-		
 	}
-
 	
 	/* fill out the top endorsements, sorted by descending date */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -200,13 +198,12 @@
 	[request setSortDescriptors:[NSArray arrayWithObjects:nil]];
 	
 	NSUInteger count = [[ballot managedObjectContext] countForFetchRequest:request error:&error];
-	if (error == nil)
-	{
+	if (error == nil) {
 		/* don't count users vote */
 //		if (vote != nil && vote.forCandidate == candidate) {
 //			count++;
 //		}
-		NSUInteger orgCount = 0;
+//		NSUInteger orgCount = 0;
 //		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
 		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
 
@@ -218,20 +215,22 @@
 		//cell.viewAllEndorsements.layer.borderColor = [UIColor grayColor].CGColor;
 		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
 	}
-	else
-	{
+	else {
 		/* TODO: log the error */
 		NSLog(@"no!");
 	}
-	
+
 	if (vote != nil && vote.forCandidate == candidate) {
 		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
-
+		
+		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 	}
 	else {
 		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
+		
+		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
 	}
 	
 	[request release];
@@ -421,7 +420,43 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (socialBallotView == YES) {
-        return 176;
+		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+		
+		/* TODO: consider caching this? */
+		/* fill out the top endorsements, sorted by descending date */
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		[request setFetchLimit:3];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
+		[request setEntity:entity];
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
+		[request setPredicate:predicate];
+		
+		NSError *error = nil;
+		CGFloat height = 66;
+		NSUInteger count = [[ballot managedObjectContext] countForFetchRequest:request error:&error];
+		if (error == nil) {
+			if (count == 0) {
+				height = 66;
+			}
+			else if (count == 1) {
+				height = 103;
+			}
+			else if (count == 2) {
+				height = 137;
+			}
+			else {
+				height = 176;
+			}
+		}
+		else {
+			/* TODO: log error */
+			NSLog(@"%@", [error userInfo]);
+		}
+		
+		[request release];
+		
+		return height;
     }
 	
 	return 66;

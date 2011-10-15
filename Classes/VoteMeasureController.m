@@ -288,6 +288,7 @@
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	if (selected) {
+		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
 	}
@@ -317,12 +318,13 @@
 	NSError *error = nil;
 	NSUInteger count = [[self.ballot managedObjectContext] countForFetchRequest:request error:&error];
 	if (error == nil) {
-		NSUInteger orgCount = 0;
-		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+//		NSUInteger orgCount = 0;
+//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
 		
 		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
-		[cell.viewAllEndorsements setFrame:CGRectMake(7,45,stringsize.width+10, stringsize.height)];
+		[cell.viewAllEndorsements setFrame:CGRectMake(12, 45, stringsize.width+10, stringsize.height)];
 	}
 	else {
 		/* TODO: log error */
@@ -374,9 +376,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (socialBallotView == YES) {
         return 176;
+		//return 103;
+		//return 158;
     }
 	
-	return 44;
+	return 66;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

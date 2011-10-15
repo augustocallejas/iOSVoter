@@ -21,6 +21,7 @@
 @synthesize friendIcon3 = _friendIcon3;
 @synthesize friendEndorsement3 = _friendEndorsement3;
 @synthesize viewAllEndorsements = _viewAllEndorsements;
+@synthesize editEndorsement = _editEndorsement;
 @synthesize	voteCandidate = _voteCandidate;
 @synthesize voteStatus = _voteStatus;
 
