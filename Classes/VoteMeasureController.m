@@ -148,8 +148,8 @@
 			(_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))
 		{
 			controller.statement = _vote.statement;
+			controller.viewableByFriends = [_vote.viewableByFriends boolValue];
 		}
-		controller.viewableByFriends = [_vote.viewableByFriends boolValue];
 	}
 	
 	[self presentModalViewController:controller animated:YES];

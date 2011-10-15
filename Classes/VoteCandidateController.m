@@ -38,8 +38,6 @@
 	controller.viewableByFriends = YES;
 	if (vote != nil && vote.forCandidate == candidate) {
 		controller.statement = vote.statement;
-	}
-	if (vote != nil) {
 		controller.viewableByFriends = [vote.viewableByFriends boolValue];
 	}
 	
