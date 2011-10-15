@@ -266,7 +266,6 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>1423B41014081697006F8DBF</string>
-								<string>1462F3DD141DA475007E31C1</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>14E74AD91435914E002E2F82</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -274,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
+									<integer>22</integer>
 									<integer>4</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -318,7 +317,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ListElectionsController.m</string>
+								<string>VoteCandidateController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ListElectionsController.m</string>
+										<string>VoteCandidateController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14EF37221449515000557A80</string>
+										<string>14EF37651449606800557A80</string>
 										<key>history</key>
 										<array>
 											<string>1423B64D140883BB006F8DBF</string>
@@ -376,19 +375,19 @@
 											<string>14EF36311449404900557A80</string>
 											<string>14EF36321449404900557A80</string>
 											<string>14EF36A114494AFC00557A80</string>
-											<string>14EF36BB14494BE400557A80</string>
-											<string>14EF36DD14494CC700557A80</string>
 											<string>14EF36DE14494CC700557A80</string>
 											<string>14EF36E614494DA000557A80</string>
-											<string>14EF36F114494EAD00557A80</string>
-											<string>14EF37041449500700557A80</string>
-											<string>14EF37061449500700557A80</string>
 											<string>14EF37071449500700557A80</string>
-											<string>14EF37081449500700557A80</string>
-											<string>14EF37091449500700557A80</string>
-											<string>14EF370B1449508900557A80</string>
-											<string>14EF370C1449508900557A80</string>
-											<string>14EF370D1449508900557A80</string>
+											<string>14EF373E144959EF00557A80</string>
+											<string>14EF373F144959EF00557A80</string>
+											<string>14EF3740144959EF00557A80</string>
+											<string>14EF3741144959EF00557A80</string>
+											<string>14EF3742144959EF00557A80</string>
+											<string>14EF3744144959EF00557A80</string>
+											<string>14EF37611449606800557A80</string>
+											<string>14EF37621449606800557A80</string>
+											<string>14EF37631449606800557A80</string>
+											<string>14EF37641449606800557A80</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -400,14 +399,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {955, 722}}</string>
+								<string>{{0, 0}, {955, 610}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 79 1223 799 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>722pt</string>
+							<string>610pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -420,14 +419,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 727}, {955, 31}}</string>
+								<string>{{0, 615}, {955, 143}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 79 1223 799 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>31pt</string>
+							<string>143pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -586,6 +585,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14EF37661449606800557A80</string>
 		<string>1423B3E9140789B9006F8DBF</string>
 		<string>14EF324A14421EE300557A80</string>
 		<string>14EF324B14421EE300557A80</string>

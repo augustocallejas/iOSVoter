@@ -143,12 +143,14 @@
 	controller.measureVote = voteSelected;
 	/* default value is viewable by friends */
 	controller.viewableByFriends = YES;
+	controller.isEditOfExisting = NO;
 	if (_vote != nil) {
 		if ((_vote.vote == nil && voteSelected == nil) ||
 			(_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))
 		{
 			controller.statement = _vote.statement;
 			controller.viewableByFriends = [_vote.viewableByFriends boolValue];
+			controller.isEditOfExisting = YES;
 		}
 	}
 	

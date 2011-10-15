@@ -36,9 +36,11 @@
 	controller.candidate = candidate;
 	/* default value is viewable by friends */
 	controller.viewableByFriends = YES;
+	controller.isEditOfExisting = NO;
 	if (vote != nil && vote.forCandidate == candidate) {
 		controller.statement = vote.statement;
 		controller.viewableByFriends = [vote.viewableByFriends boolValue];
+		controller.isEditOfExisting = YES;
 	}
 	
 	[self presentModalViewController:controller animated:YES];

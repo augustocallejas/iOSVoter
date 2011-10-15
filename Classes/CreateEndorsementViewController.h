@@ -23,6 +23,7 @@
 	NSNumber *_measureVote;
 	NSString *_statement;
 	BOOL _viewableByFriends;
+	BOOL _isEditOfExisting;
 	IBOutlet UINavigationItem *_navItem;
 	IBOutlet UILabel *_endorsementTitle;
 	IBOutlet UITextView *_textView;
@@ -38,6 +39,7 @@
 @property (nonatomic, assign) NSNumber *measureVote;
 @property (nonatomic, retain) NSString *statement;
 @property (nonatomic, assign) BOOL viewableByFriends;
+@property (nonatomic, assign) BOOL isEditOfExisting;
 @property (nonatomic, retain) UINavigationItem *navItem;
 @property (nonatomic, retain) UILabel *endorsementTitle;
 @property (nonatomic, retain) UITextView *textView;

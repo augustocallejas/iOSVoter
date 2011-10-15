@@ -17,6 +17,7 @@
 @synthesize measureVote = _measureVote;
 @synthesize statement = _statement;
 @synthesize viewableByFriends = _viewableByFriends;
+@synthesize isEditOfExisting = _isEditOfExisting;
 @synthesize delegate;
 @synthesize navItem = _navItem;
 @synthesize endorsementTitle = _endorsementTitle;
@@ -56,6 +57,9 @@
 	}
 	if (_statement != nil) {
 		_textView.text = _statement;
+	}
+	if (_isEditOfExisting) {
+		_voteButton.title = @"Save";
 	}
 
 	[_viewableByFriendsSwitch setOn:_viewableByFriends];
