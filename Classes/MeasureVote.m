@@ -2,7 +2,7 @@
 //  MeasureVote.m
 //  Supervote
 //
-//  Created by augusto callejas on 10/9/11.
+//  Created by augusto callejas on 10/14/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @dynamic statement;
 @dynamic vote;
+@dynamic viewableByFriends;
 @dynamic forBallot;
 @dynamic forMeasure;
 

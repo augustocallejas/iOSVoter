@@ -11,7 +11,7 @@
 
 @protocol ModalViewControllerDelegate <NSObject>
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement;
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable;
 
 @end
 
@@ -22,8 +22,12 @@
 	Measure *_measure;
 	NSNumber *_measureVote;
 	NSString *_statement;
+	BOOL _viewableByFriends;
 	IBOutlet UINavigationItem *_navItem;
+	IBOutlet UILabel *_endorsementTitle;
 	IBOutlet UITextView *_textView;
+	IBOutlet UITableViewCell *_viewableByFriendsCell;
+	IBOutlet UISwitch *_viewableByFriendsSwitch;
 	IBOutlet UIBarButtonItem* _voteButton;
 	IBOutlet UIBarButtonItem* _cancelButton;
 }
@@ -33,8 +37,12 @@
 @property (nonatomic, retain) Measure *measure;
 @property (nonatomic, assign) NSNumber *measureVote;
 @property (nonatomic, retain) NSString *statement;
+@property (nonatomic, assign) BOOL viewableByFriends;
 @property (nonatomic, retain) UINavigationItem *navItem;
+@property (nonatomic, retain) UILabel *endorsementTitle;
 @property (nonatomic, retain) UITextView *textView;
+@property (nonatomic, retain) UITableViewCell *viewableByFriendsCell;
+@property (nonatomic, retain) UISwitch *viewableByFriendsSwitch;
 @property (nonatomic, retain) UIBarButtonItem* voteButton;
 @property (nonatomic, retain) UIBarButtonItem* cancelButton;
 

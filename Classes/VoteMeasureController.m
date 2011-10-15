@@ -141,29 +141,33 @@
 	controller.delegate = self;
 	controller.measure = _measure;
 	controller.measureVote = voteSelected;
+	/* default value is viewable by friends */
+	controller.viewableByFriends = YES;
 	if (_vote != nil) {
 		if ((_vote.vote == nil && voteSelected == nil) ||
 			(_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))
 		{
 			controller.statement = _vote.statement;
 		}
+		controller.viewableByFriends = [_vote.viewableByFriends boolValue];
 	}
 	
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement {
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
 	if (withVote) {
 		if (_vote == nil) {			
 			self.vote = (MeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"MeasureVote" inManagedObjectContext:[_ballot managedObjectContext]];
 			_vote.forBallot = _ballot;
 			_vote.forMeasure = _measure;
 		}
-//		NSLog(@"Vote: %@", measureVote);
-		NSLog(@"Saving vote: %@, %@", measureVote, statement);
+
+		NSLog(@"Saving vote: %@, %@ %d", measureVote, statement, viewable);
 		_vote.vote = measureVote;
 		_vote.statement = statement;
+		_vote.viewableByFriends = [NSNumber numberWithBool:viewable];
 		
 		NSError *error;
 		if (![[self.ballot managedObjectContext] save:&error]) {
@@ -289,11 +293,13 @@
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	if (selected) {
+		cell.editEndorsement.enabled = YES;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
 	}
 	else {
+		cell.editEndorsement.enabled = NO;
 		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
 		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;

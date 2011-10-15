@@ -16,16 +16,20 @@
 @synthesize measure = _measure;
 @synthesize measureVote = _measureVote;
 @synthesize statement = _statement;
+@synthesize viewableByFriends = _viewableByFriends;
 @synthesize delegate;
 @synthesize navItem = _navItem;
+@synthesize endorsementTitle = _endorsementTitle;
 @synthesize textView = _textView;
+@synthesize viewableByFriendsCell = _viewableByFriendsCell;
+@synthesize viewableByFriendsSwitch = _viewableByFriendsSwitch;
 @synthesize voteButton = _voteButton;
 @synthesize cancelButton = _cancelButton;
 
 // Done button clicked
 - (IBAction)dismissView:(id)sender {
     // Call the delegate to dismiss the modal view
-    [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text];
+    [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on];
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -43,15 +47,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	if (_candidate != nil) {
-		self.navItem.title = _candidate.name;
+		//self.navItem.title = _candidate.name;
+		self.endorsementTitle.text = _candidate.name;
 	}
 	else if (_measure != nil) {
-		self.navItem.title = _measure.title;
+		//self.navItem.title = _measure.title;
+		self.endorsementTitle.text = _measure.title;
 	}
 	if (_statement != nil) {
 		_textView.text = _statement;
 	}
 
+	[_viewableByFriendsSwitch setOn:_viewableByFriends];
+	_viewableByFriendsCell.layer.cornerRadius = 10.0f;
+	_viewableByFriendsCell.layer.borderColor = [UIColor grayColor].CGColor;
+	_viewableByFriendsCell.layer.borderWidth = 1.0f;
+	
 //	self.textView.layer.backgroundColor = [UIColor blueColor].CGColor;
 	self.textView.layer.cornerRadius = 10.0f;
 	self.textView.layer.borderColor = [UIColor grayColor].CGColor;

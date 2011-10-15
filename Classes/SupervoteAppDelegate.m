@@ -101,7 +101,7 @@
 		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		
 		
-		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ElectionsController" bundle:[NSBundle mainBundle]] autorelease];
+		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
 		elections.title = @"Elections";
 		elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		elections.managedObjectContext = self.managedObjectContext;

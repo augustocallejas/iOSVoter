@@ -34,15 +34,20 @@
 	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
 	controller.delegate = self;
 	controller.candidate = candidate;
+	/* default value is viewable by friends */
+	controller.viewableByFriends = YES;
 	if (vote != nil && vote.forCandidate == candidate) {
 		controller.statement = vote.statement;
+	}
+	if (vote != nil) {
+		controller.viewableByFriends = [vote.viewableByFriends boolValue];
 	}
 	
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement {
+- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
 	if (withVote) {
 		if (vote == nil) {
 			vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
@@ -51,6 +56,7 @@
 		}
 		vote.forCandidate = candidate;
 		vote.statement = statement;
+		vote.viewableByFriends = [NSNumber numberWithBool:viewable];
 		
 		NSError *error;
 		if (![self.managedObjectContext save:&error]) {
@@ -224,12 +230,14 @@
 		UIImage *icon = [UIImage imageNamed:@"checked.png"];
 		cell.voteStatus.image = icon;
 		
+		cell.editEndorsement.enabled = YES;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 	}
 	else {
 		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
 		cell.voteStatus.image = icon;
 		
+		cell.editEndorsement.enabled = NO;
 		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
 	}
 	

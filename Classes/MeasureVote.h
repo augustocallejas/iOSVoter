@@ -2,7 +2,7 @@
 //  MeasureVote.h
 //  Supervote
 //
-//  Created by augusto callejas on 10/9/11.
+//  Created by augusto callejas on 10/14/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 
 @property (nonatomic, retain) NSString * statement;
 @property (nonatomic, retain) NSNumber * vote;
+@property (nonatomic, retain) NSNumber * viewableByFriends;
 @property (nonatomic, retain) Ballot * forBallot;
 @property (nonatomic, retain) Measure * forMeasure;
 
