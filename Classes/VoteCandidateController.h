@@ -14,7 +14,7 @@
 #import "BallotItemViewCell.h"
 
 
-@interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate> {
+@interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate, UIActionSheetDelegate> {
 
 @private
 	BOOL socialBallotView;
@@ -32,5 +32,5 @@
 
 - (IBAction)voteOnCandidate:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
-
+- (void)presentCreateEndorsementViewController:(Candidate *)candidate;
 @end

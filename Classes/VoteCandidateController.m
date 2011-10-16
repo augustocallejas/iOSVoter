@@ -26,17 +26,43 @@
 @synthesize selectedCell;
 
 #pragma mark -
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {
+		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+		[self presentCreateEndorsementViewController:candidate];
+	}
+	else if (buttonIndex == actionSheet.cancelButtonIndex) {
+		/* do nothing */
+	}
+}
+
+#pragma mark -
 #pragma mark Custom button actions
 
 - (void)voteOnCandidate:(id)sender{
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
+	
+	if (vote != nil && vote.forCandidate != candidate) {
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to change your vote?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		actionSheet.tag = ((UIButton *)sender).tag;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
+		return;
+	}
 
+	[self presentCreateEndorsementViewController:candidate];
+}
+
+- (void)presentCreateEndorsementViewController:(Candidate *)candidate{
 	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
 	controller.delegate = self;
 	controller.candidate = candidate;
 	/* default value is viewable by friends */
 	controller.viewableByFriends = YES;
 	controller.isEditOfExisting = NO;
+	
 	if (vote != nil && vote.forCandidate == candidate) {
 		controller.statement = vote.statement;
 		controller.viewableByFriends = [vote.viewableByFriends boolValue];
@@ -125,6 +151,7 @@
 }
 
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	//NSLog(@"Configure %d", indexPath.row);
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
@@ -227,18 +254,32 @@
 	}
 
 	if (vote != nil && vote.forCandidate == candidate) {
-		UIImage *icon = [UIImage imageNamed:@"checked.png"];
-		cell.voteStatus.image = icon;
+		/* display the vote status image */
+		cell.voteStatus.hidden = NO;
 		
+		/* hide and disable the "vote" button */
+		cell.voteCandidate.enabled = NO;
+		cell.voteCandidate.hidden = YES;
+
+		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 	}
 	else {
-		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
-		cell.voteStatus.image = icon;
+		/* hide the vote status image */
+	    cell.voteStatus.hidden = YES;
 		
+		/* display the "vote" button and enable it */
+		[[cell.voteCandidate layer] setCornerRadius:8.0f];
+		[[cell.voteCandidate layer] setMasksToBounds:YES];
+		[[cell.voteCandidate layer] setBorderWidth:1.0f];
+//		[cell.voteCandidate setBackgroundColor:[UIColor colorWithRed:0.5f green:0.5f blue:0.8f alpha:1.0f]];
+		cell.voteCandidate.enabled = YES;
+		cell.voteCandidate.hidden = NO;
+		
+		/* disable the "edit endorsement" button */
 		cell.editEndorsement.enabled = NO;
-		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
+		cell.editEndorsement.hidden = YES;
 	}
 	
 	[request release];

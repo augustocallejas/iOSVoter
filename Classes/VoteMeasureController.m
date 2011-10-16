@@ -8,6 +8,8 @@
 
 #import "VoteMeasureController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "Friend.h"
 #import "FriendMeasureVote.h"
 #import "ListEndorsementsController.h"
@@ -295,16 +297,32 @@
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	if (selected) {
+		/* display the vote status image */
+		cell.voteStatus.hidden = NO;
+
+		/* hide and disable the "vote" button */
+		cell.voteMeasure.enabled = NO;
+		cell.voteMeasure.hidden = YES;		
+		
+		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
-		UIImage *icon = [UIImage imageNamed:@"checked.png"];
-		cell.voteStatus.image = icon;
 	}
 	else {
+		/* hide the vote status image */
+		cell.voteStatus.hidden = YES;
+		
+		/* display the "vote" button and enable it */
+		[[cell.voteMeasure layer] setCornerRadius:8.0f];
+		[[cell.voteMeasure layer] setMasksToBounds:YES];
+		[[cell.voteMeasure layer] setBorderWidth:1.0f];
+		cell.voteMeasure.enabled = YES;
+		cell.voteMeasure.hidden = NO;
+		
+		/* disable the "edit endorsement" button */
+
 		cell.editEndorsement.enabled = NO;
-		[cell.editEndorsement setTitle:@"" forState:UIControlStateNormal];
-		UIImage *icon = [UIImage imageNamed:@"unchecked.png"];
-		cell.voteStatus.image = icon;
+		cell.editEndorsement.hidden = YES;
 	}
 	
 	/* query for friends' votes on this measure */

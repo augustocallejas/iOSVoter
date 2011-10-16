@@ -47,6 +47,35 @@
 						<int key="NSvFlags">256</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIButton" id="840030426">
+								<reference key="NSNextResponder" ref="396375417"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{237, 8}, {51, 29}}</string>
+								<reference key="NSSuperview" ref="396375417"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40IDAuNiAxAA</bytes>
+								</object>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">15</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<string key="IBUINormalTitle">Vote</string>
+								<object class="NSColor" key="IBUIHighlightedTitleColor" id="349010589">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+								</object>
+								<reference key="IBUINormalTitleColor" ref="349010589"/>
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="788575473">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
+							</object>
 							<object class="IBUILabel" id="650201799">
 								<reference key="NSNextResponder" ref="396375417"/>
 								<int key="NSvFlags">292</int>
@@ -67,10 +96,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MCAwIDAAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUIHighlightedColor" id="349010589">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="IBUIHighlightedColor" ref="349010589"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
@@ -78,35 +104,13 @@
 							<object class="IBUIImageView" id="786264917">
 								<reference key="NSNextResponder" ref="396375417"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{209, 12}, {22, 22}}</string>
+								<string key="NSFrame">{{251, 12}, {22, 22}}</string>
 								<reference key="NSSuperview" ref="396375417"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIButton" id="840030426">
-								<reference key="NSNextResponder" ref="396375417"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{237, 8}, {51, 29}}</string>
-								<reference key="NSSuperview" ref="396375417"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">Vote</string>
-								<reference key="IBUIHighlightedTitleColor" ref="349010589"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="788575473">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">checked.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="40570901">
@@ -404,7 +408,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="650201799"/>
-							<reference ref="786264917"/>
 							<reference ref="840030426"/>
 							<reference ref="40570901"/>
 							<reference ref="828731509"/>
@@ -414,6 +417,7 @@
 							<reference ref="414057283"/>
 							<reference ref="353638514"/>
 							<reference ref="531475974"/>
+							<reference ref="786264917"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -535,7 +539,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwx8AAA</bytes>
 					</object>
 					<string>MeasureViewCell</string>
-					<string>{{430, 512}, {320, 176}}</string>
+					<string>{{804, 92}, {320, 176}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -543,11 +547,11 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCkgAAwcgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDUQAAwgAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDfgAAwfAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDbQAAwgwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -973,6 +977,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">Supervote.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">checked.png</string>
+			<string key="NS.object.0">{22, 22}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">141</string>
 	</data>
 </archive>
