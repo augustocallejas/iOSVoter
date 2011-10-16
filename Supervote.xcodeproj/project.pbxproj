@@ -48,7 +48,6 @@
 		14789F3113EBBBF20016044C /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2F13EBBBF20016044C /* SettingsController.m */; };
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
 		14A6F2F4143C24BD00EBF65D /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F2F2143C24BD00EBF65D /* checked.png */; };
-		14A6F2F5143C24BD00EBF65D /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F2F3143C24BD00EBF65D /* unchecked.png */; };
 		14A6F44D143D932200EBF65D /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F44C143D932200EBF65D /* advanced.png */; };
 		14A8763A13F0F499006B9D73 /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A8763913F0F499006B9D73 /* users.png */; };
 		14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A8779713F23DB2006B9D73 /* DisplayElection.xib */; };
@@ -144,7 +143,6 @@
 		14789F2F13EBBBF20016044C /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = ../SettingsController.m; sourceTree = "<group>"; };
 		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
 		14A6F2F2143C24BD00EBF65D /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
-		14A6F2F3143C24BD00EBF65D /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
 		14A6F44C143D932200EBF65D /* advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advanced.png; sourceTree = "<group>"; };
 		14A8763913F0F499006B9D73 /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
 		14A8779713F23DB2006B9D73 /* DisplayElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayElection.xib; sourceTree = "<group>"; };
@@ -388,7 +386,6 @@
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
-				14A6F2F3143C24BD00EBF65D /* unchecked.png */,
 				14A8763913F0F499006B9D73 /* users.png */,
 			);
 			name = Resources;
@@ -475,7 +472,6 @@
 				14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */,
 				14E74AFE14359521002E2F82 /* CreateEndorsementViewController.xib in Resources */,
 				14A6F2F4143C24BD00EBF65D /* checked.png in Resources */,
-				14A6F2F5143C24BD00EBF65D /* unchecked.png in Resources */,
 				14A6F44D143D932200EBF65D /* advanced.png in Resources */,
 				14EF3280144231D900557A80 /* MeasureViewCell.xib in Resources */,
 				14EF3782144997A100557A80 /* lock.png in Resources */,

@@ -5,7 +5,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 4470;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 2550;
@@ -15,7 +15,7 @@
 			"Xdesign Model Editor Bookmark Key" = {
 				UIContextForDetailArea = {
 					_indexOfSelectedPane = 0;
-					_indexOfSelectedView = 0;
+					_indexOfSelectedView = 1;
 				};
 				UIContextForEntityArea = {
 					_indexOfSelectedView = 0;
@@ -36,7 +36,7 @@
 					chosenTableWidths = (
 						103.000000,
 						54.000000,
-						118.080078,
+						149.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -46,8 +46,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {624, 218}}",
-							"{{629, 0}, {324, 218}}",
+							"{{0, 0}, {687, 220}}",
+							"{{692, 0}, {357, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -56,8 +56,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {953, 220}}",
-							"{{0, 225}, {953, 125}}",
+							"{{0, 0}, {1049, 220}}",
+							"{{0, 225}, {1049, 280}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -66,8 +66,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {300, 218}}",
-							"{{305, 0}, {317, 218}}",
+							"{{0, 0}, {331, 218}}",
+							"{{336, 0}, {349, 218}}",
 						);
 					};
 				};
@@ -164,23 +164,23 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-145, 196}, {938, 110}}";
+				"xdesign model diagram view visible rect key" = "{{-193, 340}, {1034, 265}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
 	1423B32B1407527E006F8DBF /* VoteCandidateController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 642}}";
-			sepNavSelRange = "{978, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {922, 503}}";
+			sepNavSelRange = "{462, 21}";
 			sepNavVisRange = "{0, 994}";
 		};
 	};
 	1423B32C1407527E006F8DBF /* VoteCandidateController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1517, 7033}}";
-			sepNavSelRange = "{4948, 84}";
-			sepNavVisRange = "{8236, 1995}";
+			sepNavIntBoundsRect = "{{0, 0}, {1517, 7371}}";
+			sepNavSelRange = "{163, 0}";
+			sepNavVisRange = "{0, 1087}";
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
 	};
@@ -353,16 +353,16 @@
 	};
 	14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {936, 640}}";
-			sepNavSelRange = "{857, 0}";
-			sepNavVisRange = "{0, 863}";
+			sepNavIntBoundsRect = "{{0, 0}, {1097, 503}}";
+			sepNavSelRange = "{180, 0}";
+			sepNavVisRange = "{0, 958}";
 		};
 	};
 	14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 6669}}";
-			sepNavSelRange = "{9081, 0}";
-			sepNavVisRange = "{8866, 1492}";
+			sepNavIntBoundsRect = "{{0, 0}, {1517, 7358}}";
+			sepNavSelRange = "{161, 0}";
+			sepNavVisRange = "{0, 1056}";
 			sepNavWindowFrame = "{{84, 72}, {947, 738}}";
 		};
 	};
@@ -514,7 +514,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 45";
 		rLen = 58;
-		rLoc = 2540;
+		rLoc = 3405;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 741;
@@ -698,6 +698,13 @@
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 896;
+	};
+	14A6F2F3143C24BD00EBF65D /* unchecked.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = unchecked.png;
+		path = /Users/augusto/projects/supervote/Supervote/unchecked.png;
+		sourceTree = "<absolute>";
 	};
 	14A6F33E143C313A00EBF65D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -935,7 +942,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 4470;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 2550;
@@ -1141,7 +1148,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 26";
 		rLen = 0;
-		rLoc = 760;
+		rLoc = 783;
 		rType = 0;
 		vrLen = 646;
 		vrLoc = 0;
@@ -1151,7 +1158,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 95";
 		rLen = 0;
-		rLoc = 4470;
+		rLoc = 4471;
 		rType = 0;
 		vrLen = 1351;
 		vrLoc = 2550;
@@ -1379,7 +1386,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1751;
 		vrLoc = 337;
@@ -1438,7 +1445,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 337;
@@ -1448,7 +1455,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 35";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1730;
 		vrLoc = 337;
@@ -1458,7 +1465,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 34";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 337;
@@ -1512,7 +1519,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 17";
 		rLen = 0;
-		rLoc = 468;
+		rLoc = 491;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 0;
@@ -1522,7 +1529,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 27";
 		rLen = 0;
-		rLoc = 1122;
+		rLoc = 1987;
 		rType = 0;
 		vrLen = 1743;
 		vrLoc = 201;
@@ -1532,7 +1539,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 201";
 		rLen = 123;
-		rLoc = 10443;
+		rLoc = 10444;
 		rType = 0;
 		vrLen = 1644;
 		vrLoc = 8988;
@@ -1742,7 +1749,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 171";
 		rLen = 998;
-		rLoc = 8921;
+		rLoc = 8922;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 4567;
@@ -1752,7 +1759,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 196";
 		rLen = 0;
-		rLoc = 9948;
+		rLoc = 12280;
 		rType = 0;
 		vrLen = 1388;
 		vrLoc = 6014;
@@ -1762,7 +1769,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 148";
 		rLen = 0;
-		rLoc = 7964;
+		rLoc = 10261;
 		rType = 0;
 		vrLen = 1360;
 		vrLoc = 3694;
@@ -1772,7 +1779,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 365";
 		rLen = 1243;
-		rLoc = 14876;
+		rLoc = 14877;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 10242;
@@ -1782,7 +1789,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 43";
 		rLen = 0;
-		rLoc = 1786;
+		rLoc = 2651;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 1133;
@@ -1792,7 +1799,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 255";
 		rLen = 23;
-		rLoc = 12327;
+		rLoc = 14659;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 7170;
@@ -1802,7 +1809,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 247";
 		rLen = 0;
-		rLoc = 12180;
+		rLoc = 14512;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 7170;
@@ -1812,7 +1819,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 158";
 		rLen = 252;
-		rLoc = 8472;
+		rLoc = 8473;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 4567;
@@ -1822,7 +1829,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 230";
 		rLen = 0;
-		rLoc = 10922;
+		rLoc = 13254;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 6257;
@@ -1832,7 +1839,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 233";
 		rLen = 0;
-		rLoc = 11177;
+		rLoc = 13509;
 		rType = 0;
 		vrLen = 1502;
 		vrLoc = 6257;
@@ -1842,7 +1849,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 233";
 		rLen = 0;
-		rLoc = 11177;
+		rLoc = 13509;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 6257;
@@ -2057,7 +2064,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 52";
 		rLen = 0;
-		rLoc = 3100;
+		rLoc = 3101;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 514;
@@ -2067,7 +2074,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 161";
 		rLen = 0;
-		rLoc = 5515;
+		rLoc = 7812;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 3881;
@@ -2107,7 +2114,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 52";
 		rLen = 0;
-		rLoc = 3100;
+		rLoc = 3101;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 205;
@@ -2127,7 +2134,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 161";
 		rLen = 0;
-		rLoc = 5515;
+		rLoc = 7812;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 3277;
@@ -2147,7 +2154,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 30";
 		rLen = 0;
-		rLoc = 800;
+		rLoc = 823;
 		rType = 0;
 		vrLen = 782;
 		vrLoc = 0;
@@ -2167,7 +2174,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 160";
 		rLen = 0;
-		rLoc = 5322;
+		rLoc = 7619;
 		rType = 0;
 		vrLen = 1753;
 		vrLoc = 4000;
@@ -2177,7 +2184,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 386";
 		rLen = 40;
-		rLoc = 16764;
+		rLoc = 16765;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 10924;
@@ -2187,7 +2194,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 160";
 		rLen = 0;
-		rLoc = 5322;
+		rLoc = 7619;
 		rType = 0;
 		vrLen = 1647;
 		vrLoc = 3477;
@@ -2197,7 +2204,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 225";
 		rLen = 0;
-		rLoc = 8010;
+		rLoc = 10307;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 6470;
@@ -2217,7 +2224,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 386";
 		rLen = 40;
-		rLoc = 16764;
+		rLoc = 16765;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 10891;
@@ -2247,7 +2254,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 175";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 4573;
@@ -2257,7 +2264,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 173";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1524;
 		vrLoc = 4573;
@@ -2296,7 +2303,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 181";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1539;
 		vrLoc = 4573;
@@ -2326,7 +2333,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 238";
 		rLen = 38;
-		rLoc = 11691;
+		rLoc = 11692;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 7199;
@@ -2336,7 +2343,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 181";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 4332;
@@ -2346,7 +2353,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 75";
 		rLen = 0;
-		rLoc = 2497;
+		rLoc = 3362;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 1889;
@@ -2356,7 +2363,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 76";
 		rLen = 647;
-		rLoc = 3679;
+		rLoc = 3680;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 1729;
@@ -2376,7 +2383,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -2386,7 +2393,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 210";
 		rLen = 0;
-		rLoc = 6999;
+		rLoc = 9296;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 5953;
@@ -2602,7 +2609,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 0;
-		rLoc = 212;
+		rLoc = 276;
 		rType = 1;
 	};
 	14EF335E14453BD600557A80 /* PBXTextBookmark */ = {
@@ -2610,7 +2617,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 201";
 		rLen = 0;
-		rLoc = 6505;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 5950;
@@ -2630,7 +2637,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -2640,7 +2647,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 221";
 		rLen = 0;
-		rLoc = 6898;
+		rLoc = 9195;
 		rType = 0;
 		vrLen = 1275;
 		vrLoc = 6393;
@@ -2650,7 +2657,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 221";
 		rLen = 0;
-		rLoc = 6898;
+		rLoc = 9195;
 		rType = 0;
 		vrLen = 1238;
 		vrLoc = 6053;
@@ -2660,7 +2667,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 215";
 		rLen = 0;
-		rLoc = 6503;
+		rLoc = 8800;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 6053;
@@ -2670,7 +2677,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 385";
 		rLen = 132;
-		rLoc = 16719;
+		rLoc = 16720;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 10696;
@@ -2680,7 +2687,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 251";
 		rLen = 102;
-		rLoc = 7466;
+		rLoc = 9763;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 7104;
@@ -2690,7 +2697,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 299";
 		rLen = 0;
-		rLoc = 8994;
+		rLoc = 11291;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 8689;
@@ -2700,7 +2707,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 10258;
+		rLoc = 12590;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 8961;
@@ -2760,7 +2767,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 125";
 		rLen = 0;
-		rLoc = 7504;
+		rLoc = 7505;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 3242;
@@ -2870,7 +2877,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 308";
 		rLen = 0;
-		rLoc = 9836;
+		rLoc = 12168;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 8965;
@@ -2880,7 +2887,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 125";
 		rLen = 0;
-		rLoc = 7504;
+		rLoc = 7505;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 3207;
@@ -2890,7 +2897,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 9374;
+		rLoc = 9375;
 		rType = 0;
 		vrLen = 1489;
 		vrLoc = 4921;
@@ -2900,7 +2907,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 9374;
+		rLoc = 9375;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 4882;
@@ -2910,7 +2917,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 302";
 		rLen = 0;
-		rLoc = 9365;
+		rLoc = 11698;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 8965;
@@ -3378,7 +3385,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -3388,7 +3395,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 148";
 		rLen = 0;
-		rLoc = 4640;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1493;
 		vrLoc = 3669;
@@ -3398,7 +3405,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 148";
 		rLen = 0;
-		rLoc = 4770;
+		rLoc = 5456;
 		rType = 0;
 		vrLen = 1789;
 		vrLoc = 4055;
@@ -3408,7 +3415,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 147";
 		rLen = 0;
-		rLoc = 4614;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1785;
 		vrLoc = 4055;
@@ -3418,7 +3425,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 147";
 		rLen = 0;
-		rLoc = 4614;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1785;
 		vrLoc = 4055;
@@ -3578,7 +3585,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -3598,7 +3605,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 175";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 4898;
@@ -3608,7 +3615,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 179";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 4694;
@@ -3618,7 +3625,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 173";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1694;
 		vrLoc = 0;
@@ -3658,7 +3665,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 173";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1694;
 		vrLoc = 0;
@@ -3668,7 +3675,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 173";
 		rLen = 0;
-		rLoc = 5745;
+		rLoc = 8042;
 		rType = 0;
 		vrLen = 1393;
 		vrLoc = 4561;
@@ -3678,7 +3685,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 1;
-		rLoc = 5677;
+		rLoc = 7974;
 		rType = 0;
 		vrLen = 1494;
 		vrLoc = 4470;
@@ -3688,7 +3695,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 1;
-		rLoc = 5677;
+		rLoc = 7974;
 		rType = 0;
 		vrLen = 1494;
 		vrLoc = 4470;
@@ -3698,7 +3705,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 173";
 		rLen = 0;
-		rLoc = 9374;
+		rLoc = 9375;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 4863;
@@ -3708,7 +3715,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 48";
 		rLen = 1;
-		rLoc = 2970;
+		rLoc = 2971;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 565;
@@ -3748,7 +3755,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 124";
 		rLen = 64;
-		rLoc = 7504;
+		rLoc = 7505;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 3287;
@@ -3758,7 +3765,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 1;
-		rLoc = 5677;
+		rLoc = 7974;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 4510;
@@ -3768,7 +3775,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 334";
 		rLen = 0;
-		rLoc = 12082;
+		rLoc = 14414;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 9571;
@@ -3778,7 +3785,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 334";
 		rLen = 0;
-		rLoc = 12082;
+		rLoc = 14414;
 		rType = 0;
 		vrLen = 1249;
 		vrLoc = 10596;
@@ -3808,7 +3815,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 124";
 		rLen = 64;
-		rLoc = 7504;
+		rLoc = 7505;
 		rType = 0;
 		vrLen = 1691;
 		vrLoc = 3287;
@@ -3818,7 +3825,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 143";
 		rLen = 16;
-		rLoc = 7984;
+		rLoc = 7985;
 		rType = 0;
 		vrLen = 1851;
 		vrLoc = 3698;
@@ -3828,7 +3835,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 143";
 		rLen = 0;
-		rLoc = 8003;
+		rLoc = 8004;
 		rType = 0;
 		vrLen = 1588;
 		vrLoc = 4225;
@@ -3838,7 +3845,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -3848,7 +3855,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 110";
 		rLen = 16;
-		rLoc = 3322;
+		rLoc = 4187;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 2284;
@@ -3858,7 +3865,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 137";
 		rLen = 0;
-		rLoc = 7618;
+		rLoc = 7619;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 3437;
@@ -3868,7 +3875,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 137";
 		rLen = 0;
-		rLoc = 6265;
+		rLoc = 6266;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 3698;
@@ -3888,7 +3895,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 180";
 		rLen = 0;
-		rLoc = 7983;
+		rLoc = 7984;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 3772;
@@ -3898,7 +3905,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 185";
 		rLen = 7;
-		rLoc = 7949;
+		rLoc = 7950;
 		rType = 0;
 		vrLen = 1862;
 		vrLoc = 5109;
@@ -3908,7 +3915,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 179";
 		rLen = 0;
-		rLoc = 7767;
+		rLoc = 7768;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 5149;
@@ -3978,7 +3985,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 212";
 		rLen = 20;
-		rLoc = 9922;
+		rLoc = 9923;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 5849;
@@ -3988,7 +3995,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 88";
 		rLen = 8;
-		rLoc = 3039;
+		rLoc = 3904;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 2256;
@@ -3998,7 +4005,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11984;
+		rLoc = 14316;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 9567;
@@ -4008,7 +4015,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 165";
 		rLen = 63;
-		rLoc = 7504;
+		rLoc = 7505;
 		rType = 0;
 		vrLen = 1411;
 		vrLoc = 4472;
@@ -4018,7 +4025,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11984;
+		rLoc = 14316;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 9532;
@@ -4028,7 +4035,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 338";
 		rLen = 0;
-		rLoc = 11501;
+		rLoc = 13833;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 9282;
@@ -4038,7 +4045,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 367";
 		rLen = 0;
-		rLoc = 12180;
+		rLoc = 14512;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 10040;
@@ -4048,7 +4055,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 161";
 		rLen = 0;
-		rLoc = 5322;
+		rLoc = 7619;
 		rType = 0;
 		vrLen = 1460;
 		vrLoc = 4405;
@@ -4058,7 +4065,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 147";
 		rLen = 0;
-		rLoc = 4614;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 3686;
@@ -4068,7 +4075,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 3686;
@@ -4078,7 +4085,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 3686;
@@ -4088,8 +4095,8 @@
 		comments = "Invalid operands to binary == (have 'struct NSNumber' and 'struct NSNumber')";
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 151;
+		rLen = 0;
+		rLoc = 172;
 		rType = 1;
 	};
 	14EF347014455EC000557A80 /* PBXTextBookmark */ = {
@@ -4097,7 +4104,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 146";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1532;
 		vrLoc = 3756;
@@ -4107,8 +4114,8 @@
 		comments = "Invalid operands to binary == (have 'struct NSNumber' and 'struct NSNumber')";
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
-		rLen = 1;
-		rLoc = 151;
+		rLen = 0;
+		rLoc = 172;
 		rType = 1;
 	};
 	14EF347614455EED00557A80 /* PBXTextBookmark */ = {
@@ -4116,7 +4123,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 146";
 		rLen = 0;
-		rLoc = 4453;
+		rLoc = 4931;
 		rType = 0;
 		vrLen = 1614;
 		vrLoc = 3670;
@@ -4126,7 +4133,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4263;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 3670;
@@ -4136,7 +4143,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 146";
 		rLen = 1;
-		rLoc = 4505;
+		rLoc = 4979;
 		rType = 0;
 		vrLen = 1498;
 		vrLoc = 3686;
@@ -4146,7 +4153,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -4156,7 +4163,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 165";
 		rLen = 0;
-		rLoc = 5406;
+		rLoc = 7703;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 4803;
@@ -4166,7 +4173,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 169";
 		rLen = 20;
-		rLoc = 5558;
+		rLoc = 7855;
 		rType = 0;
 		vrLen = 1306;
 		vrLoc = 4803;
@@ -4176,7 +4183,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 174";
 		rLen = 9;
-		rLoc = 5717;
+		rLoc = 8014;
 		rType = 0;
 		vrLen = 1348;
 		vrLoc = 4761;
@@ -4350,7 +4357,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6456;
+		rLoc = 6457;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 3936;
@@ -4360,7 +4367,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6551;
+		rLoc = 6552;
 		rType = 0;
 		vrLen = 1495;
 		vrLoc = 3878;
@@ -4544,7 +4551,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 152";
 		rLen = 0;
-		rLoc = 7067;
+		rLoc = 7068;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 4105;
@@ -4554,7 +4561,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 161";
 		rLen = 0;
-		rLoc = 7122;
+		rLoc = 7123;
 		rType = 0;
 		vrLen = 1579;
 		vrLoc = 4298;
@@ -4564,7 +4571,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 6347;
+		rLoc = 6348;
 		rType = 0;
 		vrLen = 1451;
 		vrLoc = 4495;
@@ -4574,7 +4581,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 6347;
+		rLoc = 6348;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 4664;
@@ -4838,7 +4845,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 3985;
@@ -4868,7 +4875,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 148";
 		rLen = 0;
-		rLoc = 6347;
+		rLoc = 6348;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 4182;
@@ -4878,7 +4885,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 141";
 		rLen = 1;
-		rLoc = 6130;
+		rLoc = 6131;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 4151;
@@ -4898,7 +4905,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 141";
 		rLen = 1;
-		rLoc = 6130;
+		rLoc = 6131;
 		rType = 0;
 		vrLen = 1724;
 		vrLoc = 4151;
@@ -4908,7 +4915,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 418";
 		rLen = 0;
-		rLoc = 16116;
+		rLoc = 16117;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 11840;
@@ -4918,7 +4925,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 8468;
+		rLoc = 8469;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
@@ -4928,7 +4935,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1504;
 		vrLoc = 3985;
@@ -4938,7 +4945,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 8468;
+		rLoc = 8469;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
@@ -5123,7 +5130,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 204";
 		rLen = 0;
-		rLoc = 8468;
+		rLoc = 8469;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 6011;
@@ -5133,7 +5140,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 129";
 		rLen = 0;
-		rLoc = 5382;
+		rLoc = 5383;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 3586;
@@ -5143,7 +5150,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 166";
 		rLen = 0;
-		rLoc = 7072;
+		rLoc = 7073;
 		rType = 0;
 		vrLen = 1567;
 		vrLoc = 4436;
@@ -5153,7 +5160,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 3980;
@@ -5163,7 +5170,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 16116;
+		rLoc = 16117;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
@@ -5173,7 +5180,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 16116;
+		rLoc = 16117;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
@@ -5223,7 +5230,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 16116;
+		rLoc = 16117;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 12095;
@@ -5408,7 +5415,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 10702;
+		rLoc = 10703;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 7525;
@@ -5418,7 +5425,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -5428,7 +5435,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 35";
 		rLen = 0;
-		rLoc = 1295;
+		rLoc = 2160;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 0;
@@ -5438,7 +5445,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 35";
 		rLen = 0;
-		rLoc = 1295;
+		rLoc = 2160;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 0;
@@ -5478,7 +5485,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 10702;
+		rLoc = 10703;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 7579;
@@ -5558,7 +5565,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 261";
 		rLen = 0;
-		rLoc = 10702;
+		rLoc = 10703;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 7634;
@@ -5568,7 +5575,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 4436;
@@ -5578,7 +5585,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1571;
 		vrLoc = 3987;
@@ -5588,7 +5595,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1571;
 		vrLoc = 3987;
@@ -5598,7 +5605,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 4436;
@@ -5608,7 +5615,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 35";
 		rLen = 0;
-		rLoc = 1295;
+		rLoc = 2160;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 352;
@@ -5648,7 +5655,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 147";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6093;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 4560;
@@ -5658,7 +5665,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 229";
 		rLen = 0;
-		rLoc = 9328;
+		rLoc = 9329;
 		rType = 0;
 		vrLen = 1294;
 		vrLoc = 6584;
@@ -5668,7 +5675,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 225";
 		rLen = 0;
-		rLoc = 8920;
+		rLoc = 8921;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 6582;
@@ -5678,7 +5685,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 224";
 		rLen = 0;
-		rLoc = 8920;
+		rLoc = 8921;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 6582;
@@ -5688,7 +5695,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 229";
 		rLen = 0;
-		rLoc = 9328;
+		rLoc = 9329;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 6835;
@@ -5698,7 +5705,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 16097;
+		rLoc = 16098;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 12577;
@@ -5708,7 +5715,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 16097;
+		rLoc = 16098;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 12651;
@@ -5718,7 +5725,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 426";
 		rLen = 0;
-		rLoc = 16097;
+		rLoc = 16098;
 		rType = 0;
 		vrLen = 950;
 		vrLoc = 12808;
@@ -5728,7 +5735,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 427";
 		rLen = 0;
-		rLoc = 16097;
+		rLoc = 16098;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 12808;
@@ -5738,7 +5745,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 444";
 		rLen = 0;
-		rLoc = 16097;
+		rLoc = 16098;
 		rType = 0;
 		vrLen = 1136;
 		vrLoc = 12739;
@@ -5748,7 +5755,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 422";
 		rLen = 0;
-		rLoc = 15004;
+		rLoc = 15005;
 		rType = 0;
 		vrLen = 800;
 		vrLoc = 13261;
@@ -5758,7 +5765,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 453";
 		rLen = 0;
-		rLoc = 16028;
+		rLoc = 16029;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 13105;
@@ -5768,7 +5775,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 453";
 		rLen = 0;
-		rLoc = 16047;
+		rLoc = 16048;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 13108;
@@ -5788,7 +5795,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 434";
 		rLen = 0;
-		rLoc = 15649;
+		rLoc = 15650;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 13108;
@@ -5798,7 +5805,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 434";
 		rLen = 0;
-		rLoc = 15661;
+		rLoc = 15662;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 13108;
@@ -5808,7 +5815,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 425";
 		rLen = 0;
-		rLoc = 15144;
+		rLoc = 15145;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 12842;
@@ -5818,7 +5825,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1571;
 		vrLoc = 3987;
@@ -5828,7 +5835,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 425";
 		rLen = 0;
-		rLoc = 15144;
+		rLoc = 15145;
 		rType = 0;
 		vrLen = 1236;
 		vrLoc = 12842;
@@ -5838,7 +5845,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 421";
 		rLen = 94;
-		rLoc = 14876;
+		rLoc = 14877;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 12842;
@@ -5848,7 +5855,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 35";
 		rLen = 0;
-		rLoc = 1295;
+		rLoc = 2160;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 383;
@@ -5858,7 +5865,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 12461;
+		rLoc = 14793;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 10827;
@@ -5868,7 +5875,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 12461;
+		rLoc = 14793;
 		rType = 0;
 		vrLen = 966;
 		vrLoc = 10827;
@@ -5878,7 +5885,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 376";
 		rLen = 0;
-		rLoc = 12418;
+		rLoc = 14750;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 10812;
@@ -5888,7 +5895,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 10918;
+		rLoc = 13250;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 8874;
@@ -5898,7 +5905,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 321";
 		rLen = 0;
-		rLoc = 10918;
+		rLoc = 13250;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 6922;
@@ -5908,7 +5915,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 325";
 		rLen = 0;
-		rLoc = 11134;
+		rLoc = 13466;
 		rType = 0;
 		vrLen = 1273;
 		vrLoc = 9243;
@@ -5918,7 +5925,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 325";
 		rLen = 0;
-		rLoc = 11134;
+		rLoc = 13466;
 		rType = 0;
 		vrLen = 1336;
 		vrLoc = 9321;
@@ -5928,7 +5935,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 322";
 		rLen = 0;
-		rLoc = 10892;
+		rLoc = 13224;
 		rType = 0;
 		vrLen = 1343;
 		vrLoc = 9211;
@@ -5938,7 +5945,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 379";
 		rLen = 0;
-		rLoc = 12461;
+		rLoc = 14793;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 11066;
@@ -5948,7 +5955,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 421";
 		rLen = 94;
-		rLoc = 14876;
+		rLoc = 14877;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 12842;
@@ -5958,7 +5965,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 379";
 		rLen = 0;
-		rLoc = 12461;
+		rLoc = 14793;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 11130;
@@ -5968,7 +5975,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 382";
 		rLen = 0;
-		rLoc = 12480;
+		rLoc = 14812;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -5978,7 +5985,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 12418;
+		rLoc = 14750;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -5988,7 +5995,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 12418;
+		rLoc = 14750;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -6068,7 +6075,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "ChooseCandidateController.m: 227";
 		rLen = 85;
-		rLoc = 9244;
+		rLoc = 9245;
 		rType = 0;
 		vrLen = 983;
 		vrLoc = 7325;
@@ -6078,7 +6085,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 377";
 		rLen = 0;
-		rLoc = 12418;
+		rLoc = 14750;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 11130;
@@ -6088,7 +6095,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 291";
 		rLen = 0;
-		rLoc = 9365;
+		rLoc = 11698;
 		rType = 0;
 		vrLen = 1015;
 		vrLoc = 8281;
@@ -6098,7 +6105,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 327";
 		rLen = 0;
-		rLoc = 11136;
+		rLoc = 13468;
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 9727;
@@ -6108,7 +6115,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11231;
+		rLoc = 13563;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 9900;
@@ -6118,7 +6125,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11231;
+		rLoc = 13563;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 0;
@@ -6138,7 +6145,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 118";
 		rLen = 0;
-		rLoc = 4923;
+		rLoc = 4924;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 3103;
@@ -6178,7 +6185,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
 		rLen = 0;
-		rLoc = 4436;
+		rLoc = 4914;
 		rType = 0;
 		vrLen = 1577;
 		vrLoc = 4012;
@@ -6705,7 +6712,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 482";
 		rLen = 0;
-		rLoc = 16763;
+		rLoc = 16764;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 14447;
@@ -6715,7 +6722,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 482";
 		rLen = 0;
-		rLoc = 16763;
+		rLoc = 16764;
 		rType = 0;
 		vrLen = 887;
 		vrLoc = 14447;
@@ -6725,7 +6732,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 332";
 		rLen = 0;
-		rLoc = 11231;
+		rLoc = 13563;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 3;
@@ -6735,7 +6742,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 286";
 		rLen = 0;
-		rLoc = 8908;
+		rLoc = 11205;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 8216;
@@ -6745,7 +6752,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 233";
 		rLen = 0;
-		rLoc = 9917;
+		rLoc = 9918;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 7058;
@@ -6755,7 +6762,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 287";
 		rLen = 0;
-		rLoc = 8908;
+		rLoc = 11205;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 8216;
@@ -6765,7 +6772,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 297";
 		rLen = 0;
-		rLoc = 9836;
+		rLoc = 12168;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 8497;
@@ -6775,7 +6782,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 290";
 		rLen = 0;
-		rLoc = 8996;
+		rLoc = 11293;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 8497;
@@ -7024,7 +7031,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 85";
 		rLen = 16;
-		rLoc = 4129;
+		rLoc = 4130;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 2252;
@@ -7124,7 +7131,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 290";
 		rLen = 0;
-		rLoc = 8996;
+		rLoc = 11293;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 8497;
@@ -7134,7 +7141,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 298";
 		rLen = 0;
-		rLoc = 9836;
+		rLoc = 12168;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 8501;
@@ -7144,7 +7151,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 300";
 		rLen = 0;
-		rLoc = 9836;
+		rLoc = 12168;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 8501;
@@ -7154,7 +7161,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 85";
 		rLen = 16;
-		rLoc = 4129;
+		rLoc = 4130;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 2252;
@@ -7164,7 +7171,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 234";
 		rLen = 0;
-		rLoc = 9916;
+		rLoc = 9917;
 		rType = 0;
 		vrLen = 955;
 		vrLoc = 7393;
@@ -7174,7 +7181,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 234";
 		rLen = 0;
-		rLoc = 9916;
+		rLoc = 9917;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 7393;
@@ -7204,7 +7211,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 3723;
@@ -7214,7 +7221,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1312;
 		vrLoc = 3763;
@@ -7224,7 +7231,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 3799;
@@ -7234,7 +7241,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 3799;
@@ -7244,7 +7251,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 150";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 3787;
@@ -7254,7 +7261,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 3787;
@@ -7433,7 +7440,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 3723;
@@ -7443,7 +7450,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -7453,7 +7460,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 234";
 		rLen = 0;
-		rLoc = 9916;
+		rLoc = 9917;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 7059;
@@ -7513,7 +7520,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1910;
 		vrLoc = 3723;
@@ -7523,7 +7530,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 152";
 		rLen = 0;
-		rLoc = 4773;
+		rLoc = 5531;
 		rType = 0;
 		vrLen = 1936;
 		vrLoc = 3723;
@@ -7533,7 +7540,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 54";
 		rLen = 0;
-		rLoc = 3097;
+		rLoc = 3098;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 379;
@@ -7553,7 +7560,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -7573,7 +7580,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 145";
 		rLen = 0;
-		rLoc = 4435;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1992;
 		vrLoc = 3799;
@@ -7583,7 +7590,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 152";
 		rLen = 0;
-		rLoc = 4770;
+		rLoc = 5456;
 		rType = 0;
 		vrLen = 1980;
 		vrLoc = 3799;
@@ -7593,7 +7600,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 152";
 		rLen = 0;
-		rLoc = 4770;
+		rLoc = 5456;
 		rType = 0;
 		vrLen = 1980;
 		vrLoc = 3799;
@@ -7634,7 +7641,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 173;
+		rLoc = 237;
 		rType = 1;
 	};
 	14EF36BA14494BE100557A80 /* PBXTextBookmark */ = {
@@ -7642,7 +7649,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 0;
-		rLoc = 5514;
+		rLoc = 7811;
 		rType = 0;
 		vrLen = 1708;
 		vrLoc = 4014;
@@ -7673,7 +7680,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 147;
+		rLoc = 170;
 		rType = 1;
 	};
 	14EF36BE14494BE400557A80 /* PBXTextBookmark */ = {
@@ -7681,7 +7688,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 145";
 		rLen = 0;
-		rLoc = 4364;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 2018;
 		vrLoc = 3799;
@@ -7691,7 +7698,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 145";
 		rLen = 0;
-		rLoc = 4364;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 2018;
 		vrLoc = 3799;
@@ -7711,7 +7718,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 0;
-		rLoc = 5514;
+		rLoc = 7811;
 		rType = 0;
 		vrLen = 1708;
 		vrLoc = 4014;
@@ -7741,7 +7748,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 170";
 		rLen = 0;
-		rLoc = 5514;
+		rLoc = 7811;
 		rType = 0;
 		vrLen = 1708;
 		vrLoc = 4014;
@@ -8228,7 +8235,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 167";
 		rLen = 0;
-		rLoc = 5355;
+		rLoc = 7652;
 		rType = 0;
 		vrLen = 1939;
 		vrLoc = 3940;
@@ -8278,7 +8285,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 167";
 		rLen = 0;
-		rLoc = 5355;
+		rLoc = 7652;
 		rType = 0;
 		vrLen = 1944;
 		vrLoc = 3937;
@@ -8485,8 +8492,8 @@
 		isa = PBXTextBookmark;
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 144";
-		rLen = 44;
-		rLoc = 4320;
+		rLen = 0;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1932;
 		vrLoc = 3607;
@@ -8496,7 +8503,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 3097;
+		rLoc = 3098;
 		rType = 0;
 		vrLen = 1993;
 		vrLoc = 582;
@@ -8933,7 +8940,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 3097;
+		rLoc = 3098;
 		rType = 0;
 		vrLen = 1023;
 		vrLoc = 1420;
@@ -8973,7 +8980,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 124";
 		rLen = 6;
-		rLoc = 3719;
+		rLoc = 4584;
 		rType = 0;
 		vrLen = 1899;
 		vrLoc = 3310;
@@ -8983,7 +8990,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 124";
 		rLen = 6;
-		rLoc = 3719;
+		rLoc = 4584;
 		rType = 0;
 		vrLen = 1899;
 		vrLoc = 3310;
@@ -8993,7 +9000,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 3607;
@@ -9003,7 +9010,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 151";
 		rLen = 0;
-		rLoc = 4765;
+		rLoc = 5089;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 3607;
@@ -9013,7 +9020,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 3097;
+		rLoc = 3098;
 		rType = 0;
 		vrLen = 1851;
 		vrLoc = 1105;
@@ -9023,7 +9030,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 42";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1909;
 		vrLoc = 509;
@@ -9043,7 +9050,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 146";
 		rLen = 0;
-		rLoc = 4435;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 3763;
@@ -9063,7 +9070,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 43";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1712;
 		vrLoc = 488;
@@ -9073,7 +9080,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 39";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1806;
 		vrLoc = 633;
@@ -9083,7 +9090,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 146";
 		rLen = 0;
-		rLoc = 4435;
+		rLoc = 4913;
 		rType = 0;
 		vrLen = 1654;
 		vrLoc = 3763;
@@ -9287,7 +9294,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 232";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1340;
 		vrLoc = 7379;
@@ -9297,7 +9304,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 232";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 7379;
@@ -9307,7 +9314,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 231";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1315;
 		vrLoc = 7379;
@@ -9317,7 +9324,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 233";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1369;
 		vrLoc = 7379;
@@ -9327,7 +9334,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 238";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 7379;
@@ -9337,7 +9344,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 239";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1576;
 		vrLoc = 7379;
@@ -9347,7 +9354,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 251";
 		rLen = 0;
-		rLoc = 9720;
+		rLoc = 9721;
 		rType = 0;
 		vrLen = 1577;
 		vrLoc = 7379;
@@ -9357,7 +9364,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 253";
 		rLen = 0;
-		rLoc = 9793;
+		rLoc = 9794;
 		rType = 0;
 		vrLen = 1398;
 		vrLoc = 7633;
@@ -9367,7 +9374,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 237";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 7769;
@@ -9377,7 +9384,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 241";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1761;
 		vrLoc = 7109;
@@ -9387,7 +9394,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 231";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1527;
 		vrLoc = 7828;
@@ -9397,7 +9404,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 240";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1527;
 		vrLoc = 7828;
@@ -9407,7 +9414,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 247";
 		rLen = 0;
-		rLoc = 9374;
+		rLoc = 9375;
 		rType = 0;
 		vrLen = 1571;
 		vrLoc = 7828;
@@ -9417,7 +9424,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 240";
 		rLen = 0;
-		rLoc = 9160;
+		rLoc = 9161;
 		rType = 0;
 		vrLen = 1581;
 		vrLoc = 7828;
@@ -9427,7 +9434,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 256";
 		rLen = 0;
-		rLoc = 9793;
+		rLoc = 9794;
 		rType = 0;
 		vrLen = 1525;
 		vrLoc = 7828;
@@ -9437,7 +9444,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 128";
 		rLen = 0;
-		rLoc = 5076;
+		rLoc = 5077;
 		rType = 0;
 		vrLen = 1679;
 		vrLoc = 3826;
@@ -9447,7 +9454,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 259";
 		rLen = 0;
-		rLoc = 9793;
+		rLoc = 9794;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 7820;
@@ -9457,7 +9464,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 238";
 		rLen = 0;
-		rLoc = 9043;
+		rLoc = 9044;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 7865;
@@ -9467,7 +9474,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 257";
 		rLen = 262;
-		rLoc = 9461;
+		rLoc = 9462;
 		rType = 0;
 		vrLen = 1407;
 		vrLoc = 7865;
@@ -9477,7 +9484,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 260";
 		rLen = 0;
-		rLoc = 9671;
+		rLoc = 9672;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 7980;
@@ -9487,7 +9494,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 47";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 997;
@@ -9527,7 +9534,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 47";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 997;
@@ -9557,7 +9564,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 56";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2065;
 		vrLoc = 556;
@@ -9567,7 +9574,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 57";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2025;
 		vrLoc = 556;
@@ -9577,7 +9584,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 55";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2073;
 		vrLoc = 556;
@@ -9587,7 +9594,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 55";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2046;
 		vrLoc = 556;
@@ -9657,7 +9664,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 1823;
 		vrLoc = 289;
@@ -9830,7 +9837,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2058;
 		vrLoc = 843;
@@ -9840,7 +9847,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 74";
 		rLen = 0;
-		rLoc = 2515;
+		rLoc = 2516;
 		rType = 0;
 		vrLen = 2087;
 		vrLoc = 928;
@@ -9850,7 +9857,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 54";
 		rLen = 0;
-		rLoc = 1800;
+		rLoc = 1801;
 		rType = 0;
 		vrLen = 2175;
 		vrLoc = 925;
@@ -9860,7 +9867,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 60";
 		rLen = 0;
-		rLoc = 1875;
+		rLoc = 1876;
 		rType = 0;
 		vrLen = 2370;
 		vrLoc = 795;
@@ -9880,7 +9887,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 59";
 		rLen = 69;
-		rLoc = 1804;
+		rLoc = 1805;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 488;
@@ -9910,7 +9917,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 59";
 		rLen = 0;
-		rLoc = 1875;
+		rLoc = 1876;
 		rType = 0;
 		vrLen = 2325;
 		vrLoc = 642;
@@ -9920,7 +9927,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 154";
 		rLen = 0;
-		rLoc = 5038;
+		rLoc = 5039;
 		rType = 0;
 		vrLen = 1406;
 		vrLoc = 4302;
@@ -9940,7 +9947,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 154";
 		rLen = 0;
-		rLoc = 5038;
+		rLoc = 5039;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 4229;
@@ -9950,7 +9957,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9687;
+		rLoc = 9688;
 		rType = 0;
 		vrLen = 1631;
 		vrLoc = 9066;
@@ -9960,7 +9967,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9698;
+		rLoc = 9699;
 		rType = 0;
 		vrLen = 1538;
 		vrLoc = 9176;
@@ -9970,7 +9977,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9698;
+		rLoc = 9699;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 9176;
@@ -9980,7 +9987,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9687;
+		rLoc = 9688;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 9329;
@@ -9990,7 +9997,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9698;
+		rLoc = 9699;
 		rType = 0;
 		vrLen = 1521;
 		vrLoc = 9332;
@@ -10000,7 +10007,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9698;
+		rLoc = 9699;
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 9402;
@@ -10010,7 +10017,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9687;
+		rLoc = 9688;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 9476;
@@ -10020,7 +10027,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9708;
+		rLoc = 9709;
 		rType = 0;
 		vrLen = 1623;
 		vrLoc = 9561;
@@ -10030,7 +10037,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9687;
+		rLoc = 9688;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 9594;
@@ -10040,7 +10047,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 286";
 		rLen = 0;
-		rLoc = 9698;
+		rLoc = 9699;
 		rType = 0;
 		vrLen = 1790;
 		vrLoc = 9622;
@@ -10050,7 +10057,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 256";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 8130;
@@ -10060,7 +10067,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 263";
 		rLen = 0;
-		rLoc = 9166;
+		rLoc = 9167;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 8380;
@@ -10070,7 +10077,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 257";
 		rLen = 0;
-		rLoc = 9012;
+		rLoc = 9013;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 8380;
@@ -10080,7 +10087,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 282";
 		rLen = 0;
-		rLoc = 9916;
+		rLoc = 9917;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 8472;
@@ -10090,7 +10097,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 283";
 		rLen = 0;
-		rLoc = 9917;
+		rLoc = 9918;
 		rType = 0;
 		vrLen = 1842;
 		vrLoc = 7882;
@@ -10100,7 +10107,7 @@
 		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
 		name = "VoteMeasureController.h: 33";
 		rLen = 0;
-		rLoc = 857;
+		rLoc = 952;
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
@@ -10110,7 +10117,7 @@
 		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
 		name = "VoteCandidateController.m: 257";
 		rLen = 353;
-		rLoc = 8975;
+		rLoc = 8976;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 8725;
@@ -10120,7 +10127,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 319";
 		rLen = 0;
-		rLoc = 9836;
+		rLoc = 12168;
 		rType = 0;
 		vrLen = 1484;
 		vrLoc = 8679;
@@ -10130,7 +10137,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 305";
 		rLen = 0;
-		rLoc = 9242;
+		rLoc = 11539;
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 8686;
@@ -10150,7 +10157,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 305";
 		rLen = 0;
-		rLoc = 9242;
+		rLoc = 11539;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 8686;
@@ -10170,7 +10177,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 313";
 		rLen = 0;
-		rLoc = 9442;
+		rLoc = 11775;
 		rType = 0;
 		vrLen = 1520;
 		vrLoc = 8995;
@@ -10180,7 +10187,7 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 313";
 		rLen = 0;
-		rLoc = 9442;
+		rLoc = 11775;
 		rType = 0;
 		vrLen = 1520;
 		vrLoc = 8995;
@@ -10190,10 +10197,253 @@
 		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 301";
 		rLen = 0;
-		rLoc = 9081;
+		rLoc = 11378;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 8866;
+	};
+	14EF388F144AA39400557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF0141073FD007269A3 /* VoteMeasureController.h */;
+		name = "VoteMeasureController.h: 33";
+		rLen = 0;
+		rLoc = 952;
+		rType = 0;
+		vrLen = 958;
+		vrLoc = 0;
+	};
+	14EF3890144AA39400557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
+		name = "VoteCandidateController.h: 17";
+		rLen = 21;
+		rLoc = 462;
+		rType = 0;
+		vrLen = 994;
+		vrLoc = 0;
+	};
+	14EF3891144AA39400557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32C1407527E006F8DBF /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 58";
+		rLen = 713;
+		rLoc = 1805;
+		rType = 0;
+		vrLen = 1970;
+		vrLoc = 1002;
+	};
+	14EF3892144AA39400557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 42";
+		rLen = 0;
+		rLoc = 1142;
+		rType = 0;
+		vrLen = 1118;
+		vrLoc = 3624;
+	};
+	14EF3893144AA39400557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 49";
+		rLen = 0;
+		rLoc = 1413;
+		rType = 0;
+		vrLen = 1540;
+		vrLoc = 251;
+	};
+	14EF3897144AA3CA00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 373";
+		rLen = 0;
+		rLoc = 11613;
+		rType = 0;
+		vrLen = 1441;
+		vrLoc = 11018;
+	};
+	14EF3899144AA3ED00557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 387";
+		rLen = 0;
+		rLoc = 12094;
+		rType = 0;
+		vrLen = 1467;
+		vrLoc = 11018;
+	};
+	14EF389A144AA4BB00557A80 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					54.000000,
+					149.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {687, 220}}",
+						"{{692, 0}, {357, 220}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1049, 220}}",
+						"{{0, 225}, {1049, 280}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {331, 218}}",
+						"{{336, 0}, {349, 218}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					NO,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					128.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-193, 340}, {1034, 265}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	14EF389B144AA4C500557A80 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 387";
+		rLen = 0;
+		rLoc = 12094;
+		rType = 0;
+		vrLen = 1467;
+		vrLoc = 11018;
 	};
 	1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {
 		uiCtxt = {
@@ -10990,6 +11240,15 @@
 			14EF3879144A9CCE00557A80 /* PBXTextBookmark */ = 14EF3879144A9CCE00557A80 /* PBXTextBookmark */;
 			14EF387E144A9CF500557A80 /* PBXTextBookmark */ = 14EF387E144A9CF500557A80 /* PBXTextBookmark */;
 			14EF387F144A9CF500557A80 /* PBXTextBookmark */ = 14EF387F144A9CF500557A80 /* PBXTextBookmark */;
+			14EF388F144AA39400557A80 /* PBXTextBookmark */ = 14EF388F144AA39400557A80 /* PBXTextBookmark */;
+			14EF3890144AA39400557A80 /* PBXTextBookmark */ = 14EF3890144AA39400557A80 /* PBXTextBookmark */;
+			14EF3891144AA39400557A80 /* PBXTextBookmark */ = 14EF3891144AA39400557A80 /* PBXTextBookmark */;
+			14EF3892144AA39400557A80 /* PBXTextBookmark */ = 14EF3892144AA39400557A80 /* PBXTextBookmark */;
+			14EF3893144AA39400557A80 /* PBXTextBookmark */ = 14EF3893144AA39400557A80 /* PBXTextBookmark */;
+			14EF3897144AA3CA00557A80 /* PBXTextBookmark */ = 14EF3897144AA3CA00557A80 /* PBXTextBookmark */;
+			14EF3899144AA3ED00557A80 /* PBXTextBookmark */ = 14EF3899144AA3ED00557A80 /* PBXTextBookmark */;
+			14EF389A144AA4BB00557A80 /* XDModelBookmark */ = 14EF389A144AA4BB00557A80 /* XDModelBookmark */;
+			14EF389B144AA4C500557A80 /* PBXTextBookmark */ = 14EF389B144AA4C500557A80 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 14789DDD13E8FD560016044C /* Source Control */;
 		userBuildSettings = {
