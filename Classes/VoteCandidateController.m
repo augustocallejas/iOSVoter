@@ -49,10 +49,10 @@
 		actionSheet.tag = ((UIButton *)sender).tag;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
 		[actionSheet release];
-		return;
 	}
-
-	[self presentCreateEndorsementViewController:candidate];
+	else {
+		[self presentCreateEndorsementViewController:candidate];
+	}
 }
 
 - (void)presentCreateEndorsementViewController:(Candidate *)candidate{
