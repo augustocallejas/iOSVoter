@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -270,12 +268,13 @@
 								<string>1423B41014081697006F8DBF</string>
 								<string>1462F3DD141DA475007E31C1</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>14E74AD91435914E002E2F82</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>24</integer>
+									<integer>6</integer>
 									<integer>4</integer>
 									<integer>2</integer>
 									<integer>0</integer>
@@ -312,12 +311,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteMeasureController.m</string>
+								<string>CreateEndorsementViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>VoteMeasureController.m</string>
+										<string>CreateEndorsementViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14EF38F7144AB0AA00557A80</string>
+										<string>14EF3942144B70C500557A80</string>
 										<key>history</key>
 										<array>
 											<string>1423B64D140883BB006F8DBF</string>
@@ -374,20 +375,20 @@
 											<string>14EF37761449945400557A80</string>
 											<string>14EF37771449945400557A80</string>
 											<string>14EF37781449945400557A80</string>
-											<string>14EF378E144A4DB000557A80</string>
-											<string>14EF3793144A4F4200557A80</string>
-											<string>14EF38A7144AA9FF00557A80</string>
 											<string>14EF38B9144AAD4200557A80</string>
 											<string>14EF38BA144AAD4200557A80</string>
 											<string>14EF38C2144AADB600557A80</string>
 											<string>14EF38CC144AAE7000557A80</string>
 											<string>14EF38CD144AAE7000557A80</string>
-											<string>14EF38CE144AAE7000557A80</string>
-											<string>14EF38D3144AAEF400557A80</string>
 											<string>14EF38E8144AB04100557A80</string>
-											<string>14EF38E9144AB04100557A80</string>
-											<string>14EF38F5144AB0AA00557A80</string>
-											<string>14EF38F6144AB0AA00557A80</string>
+											<string>14EF3908144B6A1300557A80</string>
+											<string>14EF3909144B6A1300557A80</string>
+											<string>14EF390A144B6A1300557A80</string>
+											<string>14EF390B144B6A1300557A80</string>
+											<string>14EF390C144B6A1300557A80</string>
+											<string>14EF390D144B6A1300557A80</string>
+											<string>14EF3927144B6F9100557A80</string>
+											<string>14EF3937144B704D00557A80</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -585,12 +586,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14EF3943144B70C500557A80</string>
 		<string>1423B3E9140789B9006F8DBF</string>
 		<string>14EF324A14421EE300557A80</string>
 		<string>14EF324B14421EE300557A80</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>14789DDB13E8FD560016044C</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>14789DDB13E8FD560016044C</string>
 		<string>/Users/augusto/projects/supervote/Supervote/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -615,7 +617,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Supervote.xcdatamodel</string>
+								<string>CreateEndorsementViewController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -686,7 +688,7 @@
 			<key>WindowToolGUID</key>
 			<string>14789DDB13E8FD560016044C</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

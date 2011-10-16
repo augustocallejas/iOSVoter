@@ -23,6 +23,7 @@
 @synthesize endorsementTitle = _endorsementTitle;
 @synthesize textView = _textView;
 @synthesize viewableByFriendsCell = _viewableByFriendsCell;
+@synthesize privacyLock = _privacyLock;
 @synthesize viewableByFriendsSwitch = _viewableByFriendsSwitch;
 @synthesize voteButton = _voteButton;
 @synthesize cancelButton = _cancelButton;
@@ -31,6 +32,11 @@
 - (IBAction)dismissView:(id)sender {
     // Call the delegate to dismiss the modal view
     [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on];
+}
+
+- (IBAction)switchedPrivacy:(id)sender {
+	UISwitch *switchControl = (UISwitch*) sender;
+	[_privacyLock setHidden:switchControl.on];
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -63,6 +69,8 @@
 	}
 
 	[_viewableByFriendsSwitch setOn:_viewableByFriends];
+	[_privacyLock setHidden:_viewableByFriends];
+
 	_viewableByFriendsCell.layer.cornerRadius = 10.0f;
 	_viewableByFriendsCell.layer.borderColor = [UIColor grayColor].CGColor;
 	_viewableByFriendsCell.layer.borderWidth = 1.0f;
