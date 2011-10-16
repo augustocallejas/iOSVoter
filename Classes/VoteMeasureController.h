@@ -13,7 +13,7 @@
 #import "MeasureVote.h"
 
 
-@interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate> {
+@interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate, UIActionSheetDelegate> {
 
 @private
 	BOOL socialBallotView;
@@ -30,5 +30,5 @@
 
 - (IBAction)voteOnMeasure:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
-
+- (void)presentCreateEndorsementViewController:(NSNumber *)voteSelected;
 @end

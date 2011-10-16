@@ -26,6 +26,36 @@
 //static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
 //static NSNumber *UNDECIDED_VOTE = nil;
 
+#pragma mark -
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {
+		NSNumber *voteSelected = nil;
+		if (actionSheet.tag == 0) {
+			/* YES */
+			voteSelected = [NSNumber numberWithBool:YES];
+		}
+		else if (actionSheet.tag == 1) {
+			/* NO */
+			voteSelected = [NSNumber numberWithBool:NO];
+		}
+		else if (actionSheet.tag == 2) {
+			/* Undecided */
+			voteSelected = nil;
+		}
+		
+//		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+		[self presentCreateEndorsementViewController:voteSelected];
+	}
+	else if (buttonIndex == actionSheet.cancelButtonIndex) {
+		/* do nothing */
+	}
+}
+
+#pragma mark -
+#pragma mark Initialization
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -139,6 +169,22 @@
 		voteSelected = nil;
 	}
 	
+	if (_vote != nil && !((_vote.vote == nil && voteSelected == nil) ||
+						  (_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))) {
+		/* choosing a different vote */
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to change your vote?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		actionSheet.tag = button.tag;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
+	}
+	else {
+		[self presentCreateEndorsementViewController:voteSelected];
+	}
+
+
+}
+
+- (void)presentCreateEndorsementViewController:(NSNumber *)voteSelected{
 	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
 	controller.delegate = self;
 	controller.measure = _measure;
@@ -147,17 +193,35 @@
 	controller.viewableByFriends = YES;
 	controller.isEditOfExisting = NO;
 	if (_vote != nil) {
+		/* there is an existing vote */
 		if ((_vote.vote == nil && voteSelected == nil) ||
 			(_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))
 		{
+			/* editing the same one */
 			controller.statement = _vote.statement;
 			controller.viewableByFriends = [_vote.viewableByFriends boolValue];
 			controller.isEditOfExisting = YES;
-		}
+		}		
 	}
-	
+
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
+	
+//	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
+//	controller.delegate = self;
+//	controller.candidate = candidate;
+//	/* default value is viewable by friends */
+//	controller.viewableByFriends = YES;
+//	controller.isEditOfExisting = NO;
+//	
+//	if (vote != nil && vote.forCandidate == candidate) {
+//		controller.statement = vote.statement;
+//		controller.viewableByFriends = [vote.viewableByFriends boolValue];
+//		controller.isEditOfExisting = YES;
+//	}
+//	
+//	[self presentModalViewController:controller animated:YES];
+//	[controller release];
 }
 
 - (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
@@ -306,6 +370,7 @@
 		
 		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
+		cell.editEndorsement.hidden = NO;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 	}
 	else {
@@ -320,7 +385,6 @@
 		cell.voteMeasure.hidden = NO;
 		
 		/* disable the "edit endorsement" button */
-
 		cell.editEndorsement.enabled = NO;
 		cell.editEndorsement.hidden = YES;
 	}
