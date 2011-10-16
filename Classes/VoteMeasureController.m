@@ -366,7 +366,10 @@
 
 		/* hide and disable the "vote" button */
 		cell.voteMeasure.enabled = NO;
-		cell.voteMeasure.hidden = YES;		
+		cell.voteMeasure.hidden = YES;
+		
+		/* display privacy level */
+		cell.votePrivate.hidden = [_vote.viewableByFriends boolValue];
 		
 		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
@@ -383,6 +386,9 @@
 		[[cell.voteMeasure layer] setBorderWidth:1.0f];
 		cell.voteMeasure.enabled = YES;
 		cell.voteMeasure.hidden = NO;
+		
+		/* display privacy level */
+		cell.votePrivate.hidden = YES;
 		
 		/* disable the "edit endorsement" button */
 		cell.editEndorsement.enabled = NO;

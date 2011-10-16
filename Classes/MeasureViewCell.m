@@ -22,6 +22,7 @@
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteMeasure = _voteMeasure;
 @synthesize voteStatus = _voteStatus;
+@synthesize votePrivate = _votePrivate;
 
 + (NSString *)voteToString:(NSNumber *)vote {
 	if (vote == nil) {

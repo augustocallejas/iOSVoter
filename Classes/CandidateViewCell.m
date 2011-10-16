@@ -24,6 +24,7 @@
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteCandidate = _voteCandidate;
 @synthesize voteStatus = _voteStatus;
+@synthesize votePrivate = _votePrivate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     

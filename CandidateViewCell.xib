@@ -233,6 +233,18 @@
 									<string key="NSResourceName">check-64.png</string>
 								</object>
 							</object>
+							<object class="IBUIImageView" id="1069431118">
+								<reference key="NSNextResponder" ref="108645557"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{200, 6}, {32, 32}}</string>
+								<reference key="NSSuperview" ref="108645557"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">lock.png</string>
+								</object>
+							</object>
 							<object class="IBUILabel" id="959745749">
 								<reference key="NSNextResponder" ref="108645557"/>
 								<int key="NSvFlags">292</int>
@@ -431,6 +443,14 @@
 					</object>
 					<int key="connectionID">77</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">_votePrivate</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="1069431118"/>
+					</object>
+					<int key="connectionID">79</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -470,6 +490,7 @@
 							<reference ref="959745749"/>
 							<reference ref="809288636"/>
 							<reference ref="388599949"/>
+							<reference ref="1069431118"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -538,6 +559,11 @@
 						<reference key="object" ref="809288636"/>
 						<reference key="parent" ref="928037324"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">78</int>
+						<reference key="object" ref="1069431118"/>
+						<reference key="parent" ref="928037324"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -575,6 +601,8 @@
 					<string>61.IBViewBoundsToFrameTransform</string>
 					<string>74.IBPluginDependency</string>
 					<string>74.IBViewBoundsToFrameTransform</string>
+					<string>78.IBPluginDependency</string>
+					<string>78.IBViewBoundsToFrameTransform</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -635,6 +663,10 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUMfAABCNAAAA</bytes>
 					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDfAAAwiQAAA</bytes>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -653,7 +685,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">79</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -677,6 +709,7 @@
 							<string>_partyName</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
+							<string>_votePrivate</string>
 							<string>_voteStatus</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -693,6 +726,7 @@
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UIImageView</string>
 						</object>
 					</object>
@@ -712,6 +746,7 @@
 							<string>_partyName</string>
 							<string>_viewAllEndorsements</string>
 							<string>_voteCandidate</string>
+							<string>_votePrivate</string>
 							<string>_voteStatus</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -763,6 +798,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">_voteCandidate</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_votePrivate</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_voteStatus</string>
@@ -1082,8 +1121,17 @@
 		<string key="IBDocument.LastKnownRelativeProjectPath">Supervote.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">check-64.png</string>
-			<string key="NS.object.0">{32, 32}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>check-64.png</string>
+				<string>lock.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{32, 32}</string>
+				<string>{32, 32}</string>
+			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">141</string>
 	</data>

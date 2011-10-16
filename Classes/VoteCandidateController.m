@@ -260,9 +260,13 @@
 		/* hide and disable the "vote" button */
 		cell.voteCandidate.enabled = NO;
 		cell.voteCandidate.hidden = YES;
+		
+		/* display privacy level */
+		cell.votePrivate.hidden = [vote.viewableByFriends boolValue];
 
 		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
+		cell.editEndorsement.hidden = NO;
 		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
 	}
 	else {
@@ -276,6 +280,9 @@
 //		[cell.voteCandidate setBackgroundColor:[UIColor colorWithRed:0.5f green:0.5f blue:0.8f alpha:1.0f]];
 		cell.voteCandidate.enabled = YES;
 		cell.voteCandidate.hidden = NO;
+		
+		/* display privacy level */
+		cell.votePrivate.hidden = YES;
 		
 		/* disable the "edit endorsement" button */
 		cell.editEndorsement.enabled = NO;

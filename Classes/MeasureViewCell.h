@@ -19,6 +19,7 @@
 	IBOutlet UIButton *_editEndorsement;
 	IBOutlet UIButton *_voteMeasure;
 	IBOutlet UIImageView *_voteStatus;
+	IBOutlet UIImageView *_votePrivate;
 }
 
 @property (nonatomic, retain) UILabel *measureName;
@@ -32,6 +33,7 @@
 @property (nonatomic, retain) UIButton *editEndorsement;
 @property (nonatomic, retain) UIButton *voteMeasure;
 @property (nonatomic, retain) UIImageView *voteStatus;
+@property (nonatomic, retain) UIImageView *votePrivate;
 
 + (NSString *)voteToString:(NSNumber *)vote;
 

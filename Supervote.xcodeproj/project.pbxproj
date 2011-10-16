@@ -60,8 +60,8 @@
 		14E74AFE14359521002E2F82 /* CreateEndorsementViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E74AFC14359521002E2F82 /* CreateEndorsementViewController.xib */; };
 		14EF327E1442318800557A80 /* MeasureViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EF327D1442318800557A80 /* MeasureViewCell.m */; };
 		14EF3280144231D900557A80 /* MeasureViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EF327F144231D900557A80 /* MeasureViewCell.xib */; };
-		14EF3782144997A100557A80 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF3781144997A100557A80 /* lock.png */; };
 		14EF38A4144AA9F100557A80 /* check-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF38A3144AA9F100557A80 /* check-64.png */; };
+		14EF38B6144AAD3C00557A80 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF38B5144AAD3C00557A80 /* lock.png */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -162,8 +162,8 @@
 		14EF327C1442318800557A80 /* MeasureViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasureViewCell.h; sourceTree = "<group>"; };
 		14EF327D1442318800557A80 /* MeasureViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureViewCell.m; sourceTree = "<group>"; };
 		14EF327F144231D900557A80 /* MeasureViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeasureViewCell.xib; sourceTree = "<group>"; };
-		14EF3781144997A100557A80 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		14EF38A3144AA9F100557A80 /* check-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-64.png"; sourceTree = "<group>"; };
+		14EF38B5144AAD3C00557A80 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 			children = (
 				14A6F44C143D932200EBF65D /* advanced.png */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
-				14EF3781144997A100557A80 /* lock.png */,
+				14EF38B5144AAD3C00557A80 /* lock.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
@@ -473,8 +473,8 @@
 				14E74AFE14359521002E2F82 /* CreateEndorsementViewController.xib in Resources */,
 				14A6F44D143D932200EBF65D /* advanced.png in Resources */,
 				14EF3280144231D900557A80 /* MeasureViewCell.xib in Resources */,
-				14EF3782144997A100557A80 /* lock.png in Resources */,
 				14EF38A4144AA9F100557A80 /* check-64.png in Resources */,
+				14EF38B6144AAD3C00557A80 /* lock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
