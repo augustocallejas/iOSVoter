@@ -29,7 +29,8 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCellAsMeasure:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
+- (IBAction)viewAllEndorsements:(id)sender;
+	
 @property (nonatomic, retain) Election *election;
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

@@ -26,6 +26,30 @@
 @synthesize fetchedResultsController1 = _fetchedResultsController1;
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
 
+- (IBAction)viewAllEndorsements:(id)sender{
+	UIButton *button = (UIButton *)sender;
+	
+	/* TODO: big problem, doesn't handle measure votes! */
+	NSInteger section = button.tag >> 10;
+	NSInteger row = button.tag - (section << 10);
+	
+	Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+	
+	NSUInteger count = 0;
+	NSError *error;
+	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:self.ballot forPosition:position withError:&error andCount:&count];
+	
+	if (ballotVote != nil) {
+		[VoteCandidateController displayEndorsements:ballotVote.forCandidate forPosition:position onNavigationController:self.navigationController];
+		[ballotVote release];
+	}
+	else if (error != nil) {
+		NSLog(@"Error: %@", error);
+	}
+	else {
+//		NSLog("");
+	}	
+}
 
 #pragma mark -
 #pragma mark Initialization
@@ -183,7 +207,9 @@
 	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
-
+	cell.friendCount.enabled = NO;
+	cell.friendCount.tag = (indexPath.section << 10) + indexPath.row;
+	
 	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -208,6 +234,7 @@
 				
 				NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
 				if (string != nil) {
+					cell.friendCount.enabled = YES;
 					[cell.friendCount setTitle:string forState:UIControlStateNormal];
 				}
 			}
@@ -254,6 +281,11 @@
 		{
 			NSNumber *vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
 			cell.minorTitle.text = [MeasureViewCell voteToString:vote];
+			
+			NSString *string = [VoteMeasureController getTextForEndorsementButton:measure onVote:vote];
+			if (string != nil) {
+				[cell.friendCount setTitle:string forState:UIControlStateNormal];
+			}
 		}
 		else
 		{
@@ -545,7 +577,7 @@
 	
 	BallotItemViewCell *cell = (BallotItemViewCell *)[tableView dequeueReusableCellWithIdentifier:ballotItemIdentifier];
 	if (cell == nil) {
-		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:ballotItemIdentifier owner:nil options:nil];
+		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:ballotItemIdentifier owner:self options:nil];
 		
 		for (id nibObject in nibObjects) {
 			if ([nibObject isKindOfClass:[BallotItemViewCell class]]) {
@@ -571,7 +603,6 @@
 		
 		// TODO: unnecessarily creating a new controller on each selection!
 		VoteCandidateController *controller = [[VoteCandidateController alloc] initWithNibName:@"VoteCandidate" bundle:[NSBundle mainBundle]];
-		controller.selectedRow = -1;
 		controller.ballot = self.ballot;
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;

@@ -31,4 +31,5 @@
 - (IBAction)voteOnMeasure:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
 - (void)presentCreateEndorsementViewController:(NSNumber *)voteSelected;
++ (NSString *)getTextForEndorsementButton:(Measure *)aMeasure onVote:(NSNumber *)aVote;
 @end

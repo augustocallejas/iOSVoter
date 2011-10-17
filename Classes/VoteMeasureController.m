@@ -245,6 +245,10 @@
 		
 		// update the detailed text, because otherwise it stays the same.
 		self.selectedCell.minorTitle.text = [MeasureViewCell voteToString:measureVote];
+		NSString *string = [VoteMeasureController getTextForEndorsementButton:_measure onVote:_vote.vote];
+		if (string != nil) {
+			[_selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
+		}
 		
 		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];
@@ -395,11 +399,6 @@
 		cell.editEndorsement.hidden = YES;
 	}
 	
-	/* query for friends' votes on this measure */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
-	[request setEntity:entity];
-	
 	NSNumber* currVote = nil;
 	if (indexPath.row == 0) {
 		currVote = [NSNumber numberWithBool:YES];
@@ -410,24 +409,38 @@
 	else if (indexPath.row == 2) {
 		currVote = nil;
 	}
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", self.measure, currVote];
-	[request setPredicate:predicate];
 	
-	NSError *error = nil;
-	NSUInteger count = [[self.ballot managedObjectContext] countForFetchRequest:request error:&error];
-	if (error == nil) {
-//		NSUInteger orgCount = 0;
-//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
-		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+	NSString *string = [VoteMeasureController getTextForEndorsementButton:self.measure onVote:currVote];
+	if (string != nil) {
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
 		
 		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
 		[cell.viewAllEndorsements setFrame:CGRectMake(12, 45, stringsize.width+10, stringsize.height)];
 	}
-	else {
-		/* TODO: log error */
-		NSLog(@"No");
-	}
+	
+	/* query for friends' votes on this measure */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", self.measure, currVote];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+//	NSUInteger count = [[self.ballot managedObjectContext] countForFetchRequest:request error:&error];
+//	if (error == nil) {
+////		NSUInteger orgCount = 0;
+////		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+//		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+//		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
+//		
+//		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
+//		[cell.viewAllEndorsements setFrame:CGRectMake(12, 45, stringsize.width+10, stringsize.height)];
+//	}
+//	else {
+//		/* TODO: log error */
+//		NSLog(@"No");
+//	}
 	
 	/* fill in the top endorsements */
 	[request setFetchLimit:3];
@@ -468,6 +481,32 @@
     return cell;
 }
 
++ (NSString *)getTextForEndorsementButton:(Measure *)aMeasure onVote:(NSNumber *)aVote {
+	/* query for friends' votes on this measure */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[aMeasure managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", aMeasure, aVote];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSUInteger count = [[aMeasure managedObjectContext] countForFetchRequest:request error:&error];
+	[request release];
+	if (error == nil) {
+		//		NSUInteger orgCount = 0;
+		//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
+		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+		return string;
+	}
+	else {
+		/* TODO: log error */
+		NSLog(@"No");
+	}
+	
+	return nil;
+}
+
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
@@ -479,82 +518,6 @@
     }
 	
 	return 66;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// 0 = YES 1 = NO 2 = UNDECIDED
-	NSUInteger selected = indexPath.row;
-	
-	// http://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-	if (_vote != nil) {
-		if ((_vote.vote == nil && selected == 2) ||
-			(_vote.vote != nil && [_vote.vote boolValue] == YES && selected == 0) ||
-			(_vote.vote != nil && [_vote.vote boolValue] == NO && selected == 1))
-		{
-			/* TODO: statement may have changed??? */
-			return;
-		}
-	}
-	
-    NSIndexPath *oldIndexPath;
-	if (_vote == nil) {
-		oldIndexPath = nil;
-	}
-	else if (_vote.vote == nil) {
-		oldIndexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-	}
-	else if ([_vote.vote boolValue]) {
-		oldIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-	}
-	else {
-		oldIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-	}
-
-			 
-    UITableViewCell *newCandidate = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:selected inSection:0]];
-	newCandidate.accessoryType = UITableViewCellAccessoryCheckmark;
-	if (_vote == nil) {
-		self.vote = (MeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"MeasureVote" inManagedObjectContext:[_ballot managedObjectContext]];
-		_vote.forBallot = _ballot;
-		_vote.forMeasure = _measure;
-	}
-	
-	if (selected == 0) {
-		_vote.vote = [NSNumber numberWithBool:YES];
-	}
-	else if (selected == 1) {
-		_vote.vote = [NSNumber numberWithBool:NO];
-	}
-	else if (selected == 2) {
-		_vote.vote = nil;
-	}
-	
-	if (oldIndexPath != nil)
-	{
-		UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:oldIndexPath];
-		oldCell.accessoryType = UITableViewCellAccessoryNone;
-	}
-	
-	NSError *error;
-	if (![[_ballot managedObjectContext] save:&error]) {
-		NSLog(@"  DetailedError: %@", [error userInfo]);
-		NSLog(@"no!");
-		// Handle the error
-	}
-	
-	// update the detailed text, because otherwise it stays the same.
-	if (_vote.vote == nil) {
-		_selectedCell.detailTextLabel.text = @"Undecided";
-	}
-	else if ([_vote.vote boolValue] == YES) {
-		_selectedCell.detailTextLabel.text = @"YES";
-	}
-	else {
-		_selectedCell.detailTextLabel.text = @"NO";
-	}
 }
 
 - (void)didReceiveMemoryWarning {

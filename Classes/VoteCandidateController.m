@@ -21,7 +21,6 @@
 
 @synthesize ballot;
 @synthesize position;
-@synthesize selectedRow;
 @synthesize selectedCell;
 
 #pragma mark -
@@ -94,6 +93,7 @@
 		NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
 		if (string != nil) {
 			[self.selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
+			self.selectedCell.friendCount.enabled = YES;
 		}
 		
 		/* TODO: does this reload all cells, or only visible ones? */
@@ -114,13 +114,17 @@
 	UIButton *button = (UIButton *)sender;
 	
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
-	controller.position = self.position;
+	[VoteCandidateController displayEndorsements:candidate forPosition:self.position onNavigationController:self.navigationController];
+}
+
++ (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController {
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];
+	controller.position = position;
 	controller.candidate = candidate;
 	controller.title = @"Endorsements";
-	controller.managedObjectContext = self.managedObjectContext;
+	controller.managedObjectContext = [candidate managedObjectContext];
 	
-	[self.navigationController pushViewController:controller animated:YES];
+	[navController pushViewController:controller animated:YES];
 	[controller release];
 }
 
@@ -366,6 +370,56 @@
 	self.tableView.allowsSelection = NO;
 	
 	/* query for a ballot vote, if any */
+	NSError *error = nil;
+	NSUInteger count = 0;
+	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:ballot forPosition:position withError:&error andCount:&count];
+	
+	if (ballotVote != nil) {
+		vote = ballotVote;
+	}
+	else if (error != nil) {
+		NSLog(@"Error: %@", [error userInfo]);
+	}
+	else {
+//		NSLog(@"Unexpected count: %@", count);
+	}
+
+	
+//	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//	[request setFetchLimit:2];
+//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:[ballot managedObjectContext]];
+//	[request setEntity:entity];
+//	
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
+//	[request setPredicate:predicate];
+//	
+//	NSError *error = nil;
+//	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
+//	if (array != nil)
+//	{
+//		NSUInteger count = [array count];
+//		if (count == 0)
+//		{
+//		}
+//		else if (count == 1)
+//		{
+//			vote = [(BallotVote *) [array objectAtIndex:0] retain];
+//		}
+//		else
+//		{
+//			NSLog(@"NOOO");
+//		}
+//	}
+//	else
+//	{
+//		NSLog(@"no!");
+//	}
+	
+//	[request release];
+}
+
++ (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count{
+	/* query for a ballot vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:2];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:[ballot managedObjectContext]];
@@ -374,30 +428,26 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
 	[request setPredicate:predicate];
 	
-	NSError *error = nil;
-	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
+	BallotVote *ballotVote = nil;
+	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:error];
 	if (array != nil)
 	{
-		NSUInteger count = [array count];
-		if (count == 0)
+		*count = [array count];
+		if (*count == 0)
 		{
 		}
-		else if (count == 1)
+		else if (*count == 1)
 		{
-			vote = [(BallotVote *) [array objectAtIndex:0] retain];
-			selectedRow = [vote.forCandidate.displayOrder integerValue];
+			ballotVote = [(BallotVote *) [array objectAtIndex:0] retain];
 		}
 		else
 		{
-			NSLog(@"NOOO");
 		}
-	}
-	else
-	{
-		NSLog(@"no!");
 	}
 	
 	[request release];
+	
+	return ballotVote;
 }
 
 

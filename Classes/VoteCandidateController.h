@@ -23,17 +23,17 @@
 	Position *position;
 	BallotVote *vote;
 	BallotItemViewCell *selectedCell;
-	NSInteger selectedRow;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) BallotItemViewCell *selectedCell;
-@property NSInteger selectedRow;
 
 + (NSString *)getTextForEndorsementButton:(Position *)position onCandidate:(Candidate *)candidate;
++ (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count;
 
 - (IBAction)voteOnCandidate:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
 - (void)presentCreateEndorsementViewController:(Candidate *)candidate;
++ (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController;
 @end
