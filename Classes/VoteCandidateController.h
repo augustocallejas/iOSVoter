@@ -8,6 +8,7 @@
 
 #import "Ballot.h"
 #import "BallotVote.h"
+#import "Candidate.h"
 #import "CreateEndorsementViewController.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
@@ -29,6 +30,8 @@
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) BallotItemViewCell *selectedCell;
 @property NSInteger selectedRow;
+
++ (NSString *)getTextForEndorsementButton:(Position *)position onCandidate:(Candidate *)candidate;
 
 - (IBAction)voteOnCandidate:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;

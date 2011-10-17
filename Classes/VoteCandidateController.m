@@ -10,7 +10,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "Candidate.h"
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
 #import "FacebookFriend.h"
@@ -92,6 +91,10 @@
 		
 		// update the detailed text, because otherwise it stays the same.
 		self.selectedCell.minorTitle.text = vote.forCandidate.name;
+		NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
+		if (string != nil) {
+			[self.selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
+		}
 		
 		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];
@@ -220,26 +223,9 @@
 
 	cell.friendIcon2.image = icon;
 	cell.friendIcon3.image = icon;
-
-	/* query for friends' votes on this candidate */
-	entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
-	[request setEntity:entity];
 	
-	predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
-	[request setPredicate:predicate];
-	
-	[request setSortDescriptors:[NSArray arrayWithObjects:nil]];
-	
-	NSUInteger count = [[ballot managedObjectContext] countForFetchRequest:request error:&error];
-	if (error == nil) {
-		/* don't count users vote */
-//		if (vote != nil && vote.forCandidate == candidate) {
-//			count++;
-//		}
-//		NSUInteger orgCount = 0;
-//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
-		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
-
+	NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
+	if (string != nil) {
 		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
 		
 		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
@@ -247,10 +233,6 @@
 		
 		//cell.viewAllEndorsements.layer.borderColor = [UIColor grayColor].CGColor;
 		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
-	}
-	else {
-		/* TODO: log the error */
-		NSLog(@"no!");
 	}
 
 	if (vote != nil && vote.forCandidate == candidate) {
@@ -292,6 +274,36 @@
 	[request release];
 }
 
++ (NSString *)getTextForEndorsementButton:(Position *)aPosition onCandidate:(Candidate *)aCandidate {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	/* query for friends' votes on this candidate */
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[aPosition managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", aPosition, aCandidate];
+	[request setPredicate:predicate];
+	
+	[request setSortDescriptors:[NSArray arrayWithObjects:nil]];
+	
+	NSError *error = nil;
+	NSUInteger count = [[aPosition managedObjectContext] countForFetchRequest:request error:&error];
+	[request release];
+	if (error == nil) {
+		return [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+	}
+	else {
+		NSLog(@"NO");
+	}
+	
+	/* don't count users vote */
+	//		if (vote != nil && vote.forCandidate == candidate) {
+	//			count++;
+	//		}
+	//		NSUInteger orgCount = 0;
+	//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];	
+	return nil;
+}
 
 #pragma mark -
 #pragma mark Initialization

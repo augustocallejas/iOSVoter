@@ -17,7 +17,7 @@
 	IBOutlet UIButton *_friendButton3;
 	IBOutlet UIButton *_friendButton4;
 	IBOutlet UIButton *_friendButton5;
-	IBOutlet UIButton *_friendButton6;
+	IBOutlet UIButton *_friendCount;
 }
 
 @property (nonatomic, retain) UILabel *majorTitle;
@@ -27,6 +27,6 @@
 @property (nonatomic, retain) UIButton *friendButton3;
 @property (nonatomic, retain) UIButton *friendButton4;
 @property (nonatomic, retain) UIButton *friendButton5;
-@property (nonatomic, retain) UIButton *friendButton6;
+@property (nonatomic, retain) UIButton *friendCount;
 
 @end

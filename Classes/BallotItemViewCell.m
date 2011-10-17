@@ -18,7 +18,7 @@
 @synthesize friendButton3 = _friendButton3;
 @synthesize friendButton4 = _friendButton4;
 @synthesize friendButton5 = _friendButton5;
-@synthesize friendButton6 = _friendButton6;
+@synthesize friendCount = _friendCount;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     

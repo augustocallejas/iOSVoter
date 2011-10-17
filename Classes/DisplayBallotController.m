@@ -183,7 +183,6 @@
 	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton6 setImage:icon forState:UIControlStateNormal];
 
 	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
@@ -194,7 +193,7 @@
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", self.ballot, position];
 	[request setPredicate:predicate];
-	
+		
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (array != nil) {
@@ -206,6 +205,11 @@
 			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
 				cell.minorTitle.text = candidate.name;
+				
+				NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
+				if (string != nil) {
+					[cell.friendCount setTitle:string forState:UIControlStateNormal];
+				}
 			}
 			else {
 				cell.minorTitle.text = @"Undecided";
@@ -219,7 +223,7 @@
 		/* TODO: Handle the error */
 		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
-	
+		
 	[request release];
 }
 
@@ -285,7 +289,6 @@
 	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton6 setImage:icon forState:UIControlStateNormal];
 	
 	[request release];
 }
