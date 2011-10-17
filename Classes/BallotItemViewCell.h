@@ -12,21 +12,21 @@
 @interface BallotItemViewCell : UITableViewCell {
 	IBOutlet UILabel *_majorTitle;
 	IBOutlet UILabel *_minorTitle;
-	IBOutlet UIImageView *_friendIcon1;
-	IBOutlet UIImageView *_friendIcon2;
-	IBOutlet UIImageView *_friendIcon3;
-	IBOutlet UIImageView *_friendIcon4;
-	IBOutlet UIImageView *_friendIcon5;
-	IBOutlet UIImageView *_friendIcon6;
+	IBOutlet UIButton *_friendButton1;
+	IBOutlet UIButton *_friendButton2;
+	IBOutlet UIButton *_friendButton3;
+	IBOutlet UIButton *_friendButton4;
+	IBOutlet UIButton *_friendButton5;
+	IBOutlet UIButton *_friendButton6;
 }
 
 @property (nonatomic, retain) UILabel *majorTitle;
 @property (nonatomic, retain) UILabel *minorTitle;
-@property (nonatomic, retain) UIImageView *friendIcon1;
-@property (nonatomic, retain) UIImageView *friendIcon2;
-@property (nonatomic, retain) UIImageView *friendIcon3;
-@property (nonatomic, retain) UIImageView *friendIcon4;
-@property (nonatomic, retain) UIImageView *friendIcon5;
-@property (nonatomic, retain) UIImageView *friendIcon6;
+@property (nonatomic, retain) UIButton *friendButton1;
+@property (nonatomic, retain) UIButton *friendButton2;
+@property (nonatomic, retain) UIButton *friendButton3;
+@property (nonatomic, retain) UIButton *friendButton4;
+@property (nonatomic, retain) UIButton *friendButton5;
+@property (nonatomic, retain) UIButton *friendButton6;
 
 @end

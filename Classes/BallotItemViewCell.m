@@ -13,12 +13,12 @@
 
 @synthesize majorTitle = _majorTitle;
 @synthesize minorTitle = _minorTitle;
-@synthesize friendIcon1 = _friendIcon1;
-@synthesize friendIcon2 = _friendIcon2;
-@synthesize friendIcon3 = _friendIcon3;
-@synthesize friendIcon4 = _friendIcon4;
-@synthesize friendIcon5 = _friendIcon5;
-@synthesize friendIcon6 = _friendIcon6;
+@synthesize friendButton1 = _friendButton1;
+@synthesize friendButton2 = _friendButton2;
+@synthesize friendButton3 = _friendButton3;
+@synthesize friendButton4 = _friendButton4;
+@synthesize friendButton5 = _friendButton5;
+@synthesize friendButton6 = _friendButton6;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     

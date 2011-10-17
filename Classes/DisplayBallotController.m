@@ -178,12 +178,12 @@
 	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
 	
 	//cell.candidateIcon.image = candidateIcon;
-	cell.friendIcon1.image = icon;
-	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
-	cell.friendIcon4.image = icon;
-	cell.friendIcon5.image = icon;
-	cell.friendIcon6.image = icon;
+	[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton6 setImage:icon forState:UIControlStateNormal];
 
 	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a ballot vote, if any */
@@ -280,12 +280,12 @@
 	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
 	
 	//cell.candidateIcon.image = candidateIcon;
-	cell.friendIcon1.image = icon;
-	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
-	cell.friendIcon4.image = icon;
-	cell.friendIcon5.image = icon;
-	cell.friendIcon6.image = icon;
+	[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+	[cell.friendButton6 setImage:icon forState:UIControlStateNormal];
 	
 	[request release];
 }

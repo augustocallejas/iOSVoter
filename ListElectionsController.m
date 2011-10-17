@@ -50,6 +50,7 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = election.title;
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
