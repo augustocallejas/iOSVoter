@@ -383,39 +383,6 @@
 	else {
 //		NSLog(@"Unexpected count: %@", count);
 	}
-
-	
-//	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//	[request setFetchLimit:2];
-//	NSEntityDescription *entity = [NSEntityDescription entityForName:@"BallotVote" inManagedObjectContext:[ballot managedObjectContext]];
-//	[request setEntity:entity];
-//	
-//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", ballot, position];
-//	[request setPredicate:predicate];
-//	
-//	NSError *error = nil;
-//	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
-//	if (array != nil)
-//	{
-//		NSUInteger count = [array count];
-//		if (count == 0)
-//		{
-//		}
-//		else if (count == 1)
-//		{
-//			vote = [(BallotVote *) [array objectAtIndex:0] retain];
-//		}
-//		else
-//		{
-//			NSLog(@"NOOO");
-//		}
-//	}
-//	else
-//	{
-//		NSLog(@"no!");
-//	}
-	
-//	[request release];
 }
 
 + (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count{

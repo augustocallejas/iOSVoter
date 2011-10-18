@@ -29,26 +29,45 @@
 - (IBAction)viewAllEndorsements:(id)sender{
 	UIButton *button = (UIButton *)sender;
 	
-	/* TODO: big problem, doesn't handle measure votes! */
 	NSInteger section = button.tag >> 10;
 	NSInteger row = button.tag - (section << 10);
+	/NSLog(@"Section %d row %d", section, row);
 	
-	Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
-	
-	NSUInteger count = 0;
-	NSError *error;
-	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:self.ballot forPosition:position withError:&error andCount:&count];
-	
-	if (ballotVote != nil) {
-		[VoteCandidateController displayEndorsements:ballotVote.forCandidate forPosition:position onNavigationController:self.navigationController];
-		[ballotVote release];
-	}
-	else if (error != nil) {
-		NSLog(@"Error: %@", error);
+	if (section < [self.fetchedResultsController1.sections count]) {	
+		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+		
+		NSUInteger count = 0;
+		NSError *error;
+		BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:self.ballot forPosition:position withError:&error andCount:&count];
+		
+		if (ballotVote != nil) {
+			[VoteCandidateController displayEndorsements:ballotVote.forCandidate forPosition:position onNavigationController:self.navigationController];
+		}
+		else if (error != nil) {
+			NSLog(@"Error: %@", [error userInfo]);
+		}
+		else {
+			//		NSLog(@"");
+		}
 	}
 	else {
-//		NSLog("");
-	}	
+		section -= [self.fetchedResultsController1.sections count];
+		NSUInteger count = 0;
+		NSError *error;
+		Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+
+		MeasureVote *measureVote = [VoteMeasureController getMeasureVoteForBallot:self.ballot forMeasure:measure withError:&error andCount:&count];
+		
+		if (measureVote != nil) {
+			[VoteMeasureController displayEndorsements:measureVote.vote forMeasure:measure onNavigationController:self.navigationController];
+		}
+		else if (error != nil) {
+			NSLog(@"Error: %@", [error userInfo]);
+		}
+		else {
+			//      NSLog(@"");
+		}
+	}
 }
 
 #pragma mark -
@@ -321,6 +340,7 @@
 	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+	cell.friendCount.tag = (([self.fetchedResultsController1.sections count] + indexPath.section) << 10) + indexPath.row;
 	
 	[request release];
 }

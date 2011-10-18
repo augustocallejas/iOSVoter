@@ -32,4 +32,7 @@
 - (IBAction)viewAllEndorsements:(id)sender;
 - (void)presentCreateEndorsementViewController:(NSNumber *)voteSelected;
 + (NSString *)getTextForEndorsementButton:(Measure *)aMeasure onVote:(NSNumber *)aVote;
++ (void)displayEndorsements:(NSNumber *)aVote forMeasure:(Measure *)aMeasure onNavigationController:(UINavigationController *)navController;
++ (MeasureVote *)getMeasureVoteForBallot:(Ballot *)ballot forMeasure:(Measure *)measure withError:(NSError **)error andCount:(NSUInteger *)count;
+
 @end

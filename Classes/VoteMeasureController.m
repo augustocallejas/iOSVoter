@@ -116,17 +116,58 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", self.ballot, self.measure];
 	[request setPredicate:predicate];
 	
+//	/* query for a ballot vote, if any */
+//	NSError *error = nil;
+//	NSUInteger count = 0;
+//	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:ballot forPosition:position withError:&error andCount:&count];
+//	
+//	if (ballotVote != nil) {
+//		vote = ballotVote;
+//	}
+//	else if (error != nil) {
+//		NSLog(@"Error: %@", [error userInfo]);
+//	}
+//	else {
+//		//		NSLog(@"Unexpected count: %@", count);
+//	}
+	
+
 	NSError *error = nil;
-	NSArray *array = [[self.ballot managedObjectContext] executeFetchRequest:request error:&error];
+	NSUInteger count = 0;
+	MeasureVote *measureVote = [VoteMeasureController getMeasureVoteForBallot:self.ballot forMeasure:self.measure withError:&error andCount:&count];
+	if (measureVote != nil) {
+		self.vote = measureVote;
+	}
+	else if (error != nil) {
+		NSLog(@"Error: %@", [error userInfo]);
+	}
+	else {
+		//
+	}
+}
+
++ (MeasureVote *)getMeasureVoteForBallot:(Ballot *)ballot forMeasure:(Measure *)measure withError:(NSError **)error andCount:(NSUInteger *)count{
+	/* query for a measure vote, if any */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:2];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"MeasureVote" inManagedObjectContext:[ballot managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", ballot, measure];
+	[request setPredicate:predicate];
+	
+	//NSError *error = nil;
+	MeasureVote *measureVote;
+	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:error];
 	if (array != nil)
 	{
-		NSUInteger count = [array count];
-		if (count == 0)
+		*count = [array count];
+		if (*count == 0)
 		{
 		}
-		else if (count == 1)
+		else if (*count == 1)
 		{
-			self.vote = (MeasureVote *) [array objectAtIndex:0];
+			measureVote = (MeasureVote *) [array objectAtIndex:0];
 		}
 		else
 		{
@@ -139,6 +180,8 @@
 	}
 	
 	[request release];
+	
+	return measureVote;
 }
 
 
@@ -278,18 +321,31 @@
 	}
 	
 	NSLog(@"Vote selected to view %@", voteSelected);
-	
-	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
-	//controller.position = self.position;
-	//controller.candidate = candidate;
-	controller.measure = _measure;
-	controller.vote = voteSelected;
+
+	[VoteMeasureController displayEndorsements:voteSelected forMeasure:_measure onNavigationController:self.navigationController];
+//	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
+//	//controller.position = self.position;
+//	//controller.candidate = candidate;
+//	controller.measure = _measure;
+//	controller.vote = voteSelected;
+//	controller.title = @"Endorsements";
+//	controller.managedObjectContext = [_ballot managedObjectContext];
+//	
+//	[self.navigationController pushViewController:controller animated:YES];
+//	[controller release];
+}
+
++ (void)displayEndorsements:(NSNumber *)aVote forMeasure:(Measure *)aMeasure onNavigationController:(UINavigationController *)navController {
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];
+	controller.measure = aMeasure;
+	controller.vote = aVote;
 	controller.title = @"Endorsements";
-	controller.managedObjectContext = [_ballot managedObjectContext];
+	controller.managedObjectContext = [aMeasure managedObjectContext];
 	
-	[self.navigationController pushViewController:controller animated:YES];
+	[navController pushViewController:controller animated:YES];
 	[controller release];
 }
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
