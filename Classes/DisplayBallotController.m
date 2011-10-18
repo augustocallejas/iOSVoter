@@ -31,7 +31,7 @@
 	
 	NSInteger section = button.tag >> 10;
 	NSInteger row = button.tag - (section << 10);
-	/NSLog(@"Section %d row %d", section, row);
+	//NSLog(@"Section %d row %d", section, row);
 	
 	if (section < [self.fetchedResultsController1.sections count]) {	
 		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
