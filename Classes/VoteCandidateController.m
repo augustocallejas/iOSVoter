@@ -156,6 +156,26 @@
 	return @"VoteCandidateController";
 }
 
++ (NSArray *)getMostRecentFriendEndorsements:(NSInteger)count forPosition:(Position *)position forCandidate:(Candidate *)candidate withError:(NSError **)error {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:count];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[position managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
+	[request setPredicate:predicate];
+	
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+	[request setSortDescriptors:[NSArray arrayWithObject:sort]];
+	
+	NSArray *array = [[position managedObjectContext] executeFetchRequest:request error:error];
+	[sort release];
+	[request release];
+	
+	return array;
+}
+
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	//NSLog(@"Configure %d", indexPath.row);
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -168,23 +188,11 @@
 		cell.partyName.text = candidate.occupation;
 	}
 	
-	/* fill out the top endorsements, sorted by descending date */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setFetchLimit:3];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
-	[request setEntity:entity];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
-	[request setPredicate:predicate];
-	
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-	[request setSortDescriptors:[NSArray arrayWithObject:sort]];
-	
 	UIImage *icon = [UIImage imageNamed:@"users.png"];
 	cell.friendIcon1.image = icon;
 
 	NSError *error = nil;
-	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:&error];
+	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:3 forPosition:position forCandidate:candidate withError:&error];
 	if (error == nil) {
 		NSUInteger count = [array count];
 		
@@ -221,8 +229,6 @@
 		NSLog(@"Error: %@", [error userInfo]);
 	}
 	
-	[sort release];
-
 	cell.friendIcon2.image = icon;
 	cell.friendIcon3.image = icon;
 	
@@ -272,8 +278,6 @@
 		cell.editEndorsement.enabled = NO;
 		cell.editEndorsement.hidden = YES;
 	}
-	
-	[request release];
 }
 
 + (NSString *)getTextForEndorsementButton:(Position *)aPosition onCandidate:(Candidate *)aCandidate {
