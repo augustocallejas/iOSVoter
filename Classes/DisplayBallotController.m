@@ -208,30 +208,7 @@
 	//NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.majorTitle.text = position.title;
-	
-	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	/* TODO: obviously hardcoded ... */
-	NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
-	
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	
-	if (icon == nil) {
-		icon = [UIImage imageNamed:@"users.png"];
-	}
-	
-	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	//		NSString *documentsDirectory = [paths objectAtIndex:0];
-	//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
-	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
-	
-	//cell.candidateIcon.image = candidateIcon;
-	[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+
 	cell.friendCount.enabled = NO;
 	cell.friendCount.tag = (indexPath.section << 10) + indexPath.row;
 	
@@ -244,7 +221,8 @@
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forPosition == %@", self.ballot, position];
 	[request setPredicate:predicate];
-		
+
+	Candidate* candidate = nil;
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (array != nil) {
@@ -253,7 +231,7 @@
 			cell.minorTitle.text = @"<Not selected>";
 		}
 		else if (count == 1) {
-			Candidate *candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
+			candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
 			if (candidate != nil) {
 				cell.minorTitle.text = candidate.name;
 				
@@ -277,6 +255,55 @@
 	}
 		
 	[request release];
+	
+	// if candidate found, then load the endorsements from friends
+	if (candidate != nil) {
+		error = nil;
+		NSArray *friendVotes = [VoteCandidateController getMostRecentFriendEndorsements:5 forPosition:position forCandidate:candidate withError:&error];
+		
+		if (error == nil) {
+			NSUInteger totalCount = [friendVotes count];
+			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			NSString *documentsDirectory = [paths objectAtIndex:0];
+			/* TODO: obviously hardcoded ... */
+			NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
+			
+			UIImage *icon = [UIImage imageWithContentsOfFile:path];
+			
+			if (icon == nil) {
+				icon = [UIImage imageNamed:@"users.png"];
+			}
+			
+			//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			//		NSString *documentsDirectory = [paths objectAtIndex:0];
+			//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+			//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+			
+			//cell.candidateIcon.image = candidateIcon;
+			
+			/* TODO: just want to display the number of endorsements so far with the number of icons */
+			if (totalCount > 0) {
+				[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
+				if (totalCount > 1) {
+					[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
+					if (totalCount > 2) {	
+						[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
+						if (totalCount > 3) {
+							[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
+							if (totalCount > 4) {
+								[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+							}
+						}
+					}
+				}
+			}
+		}
+		else {
+			NSLog(@"Error: %@", [error userInfo]);
+		}
+
+	}
 }
 
 - (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
