@@ -8,9 +8,13 @@
 
 #import "DisplayBallotController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "BallotItemViewCell.h"
 #import "BallotVote.h"
 #import "Candidate.h"
+#import "FacebookFriend.h"
+#import "Friend.h"
 #import "Measure.h"
 #import "MeasureViewCell.h"
 #import "MeasureVote.h"
@@ -256,6 +260,18 @@
 		
 	[request release];
 	
+	/* add small black border to all friend icons */
+	cell.friendButton1.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton1.layer.borderWidth = 1.0f;
+	cell.friendButton2.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton2.layer.borderWidth = 1.0f;
+	cell.friendButton3.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton3.layer.borderWidth = 1.0f;
+	cell.friendButton4.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton4.layer.borderWidth = 1.0f;
+	cell.friendButton5.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton5.layer.borderWidth = 1.0f;
+	
 	// if candidate found, then load the endorsements from friends
 	if (candidate != nil) {
 		error = nil;
@@ -266,14 +282,8 @@
 			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			NSString *documentsDirectory = [paths objectAtIndex:0];
-			/* TODO: obviously hardcoded ... */
-			NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
 			
-			UIImage *icon = [UIImage imageWithContentsOfFile:path];
-			
-			if (icon == nil) {
-				icon = [UIImage imageNamed:@"users.png"];
-			}
+			UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
 			
 			//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			//		NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -282,16 +292,22 @@
 			
 			//cell.candidateIcon.image = candidateIcon;
 			
-			/* TODO: just want to display the number of endorsements so far with the number of icons */
-			if (totalCount > 0) {
+			/* display the facebook profile photo of the most recent endorsements */
+			UIImage *icon;
+			if (totalCount > 0) {	
+				icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:0] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 				[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
 				if (totalCount > 1) {
+					icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:1] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 					[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
 					if (totalCount > 2) {	
+						icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:2] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 						[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 						if (totalCount > 3) {
+							icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:3] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 							[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 							if (totalCount > 4) {
+								icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:4] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 								[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
 							}
 						}
@@ -304,6 +320,20 @@
 		}
 
 	}
+}
+
+- (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
+	UIImage *icon = nil;
+	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
+		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
+		icon = [UIImage imageWithContentsOfFile:path];
+	}
+	
+	if (icon == nil) {
+		icon = defaultIcon;
+	}
+	
+	return icon;
 }
 
 - (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {

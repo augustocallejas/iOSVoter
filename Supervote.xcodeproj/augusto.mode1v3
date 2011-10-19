@@ -252,7 +252,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>291</real>
+								<real>290</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -274,14 +274,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>22</integer>
+									<integer>8</integer>
 									<integer>4</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {291, 760}}</string>
+							<string>{{0, 0}, {290, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -293,11 +293,11 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {308, 778}}</string>
+						<string>{{0, 0}, {307, 778}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>291</real>
+							<real>290</real>
 						</array>
 						<key>RubberWindowFrame</key>
 						<string>0 59 1203 819 0 0 1440 878 </string>
@@ -305,7 +305,7 @@
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>308pt</string>
+					<string>307pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteCandidateController.m</string>
+								<string>DisplayBallotController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>VoteCandidateController.m</string>
+										<string>DisplayBallotController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14E4E423144E8E43005B7E1A</string>
+										<string>14E4E459144E9B07005B7E1A</string>
 										<key>history</key>
 										<array>
 											<string>1423B64D140883BB006F8DBF</string>
@@ -376,7 +376,6 @@
 											<string>14E4E3F2144E7B9C005B7E1A</string>
 											<string>14E4E3F3144E7B9C005B7E1A</string>
 											<string>14E4E3F4144E7B9C005B7E1A</string>
-											<string>14E4E3F5144E7B9C005B7E1A</string>
 											<string>14E4E3F6144E7B9C005B7E1A</string>
 											<string>14E4E3F7144E7B9C005B7E1A</string>
 											<string>14E4E3F8144E7B9C005B7E1A</string>
@@ -384,11 +383,12 @@
 											<string>14E4E3FA144E7B9C005B7E1A</string>
 											<string>14E4E3FB144E7B9C005B7E1A</string>
 											<string>14E4E3FE144E7B9C005B7E1A</string>
-											<string>14E4E410144E8D3F005B7E1A</string>
-											<string>14E4E411144E8D3F005B7E1A</string>
-											<string>14E4E412144E8D3F005B7E1A</string>
 											<string>14E4E413144E8D3F005B7E1A</string>
-											<string>14E4E414144E8D3F005B7E1A</string>
+											<string>14E4E442144E97A1005B7E1A</string>
+											<string>14E4E449144E9960005B7E1A</string>
+											<string>14E4E44A144E9960005B7E1A</string>
+											<string>14E4E457144E9B07005B7E1A</string>
+											<string>14E4E458144E9B07005B7E1A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -400,7 +400,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {890, 712}}</string>
+								<string>{{0, 0}, {891, 712}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1203 819 0 0 1440 878 </string>
 							</dict>
@@ -420,7 +420,7 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 717}, {890, 61}}</string>
+								<string>{{0, 717}, {891, 61}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1203 819 0 0 1440 878 </string>
 							</dict>
@@ -431,7 +431,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>890pt</string>
+					<string>891pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -586,6 +586,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14E4E45A144E9B07005B7E1A</string>
 		<string>14E4E3E5144E6DD0005B7E1A</string>
 		<string>14E4E3C8144D4FDF005B7E1A</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -610,12 +611,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>DisplayBallotController.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
