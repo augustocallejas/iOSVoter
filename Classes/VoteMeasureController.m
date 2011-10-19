@@ -31,6 +31,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == actionSheet.destructiveButtonIndex) {
+		/* yes, they want to change their vote */
 		NSNumber *voteSelected = nil;
 		if (actionSheet.tag == 0) {
 			/* YES */
@@ -45,7 +46,6 @@
 			voteSelected = nil;
 		}
 		
-//		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
 		[self presentCreateEndorsementViewController:voteSelected];
 	}
 	else if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -70,12 +70,12 @@
 		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 		self.navigationItem.titleView = control;
 		[control release];
-		//		self.tableView.allowsSelection = NO;
-		//		[self.tableView setAllowsSelection:NO];
-		//		[self.tableView allowsSelection:NO];
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark UISegmentedControl action
 
 - (void)segmentAction:(id)sender {
 	UISegmentedControl* segCtl = sender;
@@ -116,22 +116,7 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", self.ballot, self.measure];
 	[request setPredicate:predicate];
 	
-//	/* query for a ballot vote, if any */
-//	NSError *error = nil;
-//	NSUInteger count = 0;
-//	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:ballot forPosition:position withError:&error andCount:&count];
-//	
-//	if (ballotVote != nil) {
-//		vote = ballotVote;
-//	}
-//	else if (error != nil) {
-//		NSLog(@"Error: %@", [error userInfo]);
-//	}
-//	else {
-//		//		NSLog(@"Unexpected count: %@", count);
-//	}
-	
-
+	/* get the vote for this measure */
 	NSError *error = nil;
 	NSUInteger count = 0;
 	MeasureVote *measureVote = [VoteMeasureController getMeasureVoteForBallot:self.ballot forMeasure:self.measure withError:&error andCount:&count];
@@ -142,7 +127,6 @@
 		NSLog(@"Error: %@", [error userInfo]);
 	}
 	else {
-		//
 	}
 }
 
@@ -156,7 +140,6 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", ballot, measure];
 	[request setPredicate:predicate];
 	
-	//NSError *error = nil;
 	MeasureVote *measureVote;
 	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:error];
 	if (array != nil)
@@ -194,7 +177,7 @@
 */
 
 #pragma mark -
-#pragma mark Custom button actions
+#pragma mark UIButton actions
 
 - (void)voteOnMeasure:(id)sender{
 	NSNumber *voteSelected = nil;
@@ -249,22 +232,6 @@
 
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
-	
-//	CreateEndorsementViewController *controller = [[CreateEndorsementViewController alloc] initWithNibName:@"CreateEndorsementViewController" bundle:[NSBundle mainBundle]];
-//	controller.delegate = self;
-//	controller.candidate = candidate;
-//	/* default value is viewable by friends */
-//	controller.viewableByFriends = YES;
-//	controller.isEditOfExisting = NO;
-//	
-//	if (vote != nil && vote.forCandidate == candidate) {
-//		controller.statement = vote.statement;
-//		controller.viewableByFriends = [vote.viewableByFriends boolValue];
-//		controller.isEditOfExisting = YES;
-//	}
-//	
-//	[self presentModalViewController:controller animated:YES];
-//	[controller release];
 }
 
 - (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
@@ -293,7 +260,6 @@
 			[_selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
 		}
 		
-		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];
 	}
 	else {
@@ -323,16 +289,6 @@
 	NSLog(@"Vote selected to view %@", voteSelected);
 
 	[VoteMeasureController displayEndorsements:voteSelected forMeasure:_measure onNavigationController:self.navigationController];
-//	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];//initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
-//	//controller.position = self.position;
-//	//controller.candidate = candidate;
-//	controller.measure = _measure;
-//	controller.vote = voteSelected;
-//	controller.title = @"Endorsements";
-//	controller.managedObjectContext = [_ballot managedObjectContext];
-//	
-//	[self.navigationController pushViewController:controller animated:YES];
-//	[controller release];
 }
 
 + (void)displayEndorsements:(NSNumber *)aVote forMeasure:(Measure *)aMeasure onNavigationController:(UINavigationController *)navController {
@@ -383,13 +339,6 @@
 			}
 		}
 	}
-	
-//	NSString *CellIdentifier = @"VoteMeasureController";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-//    }
 	
 	BOOL selected = NO;
     
@@ -483,20 +432,6 @@
 	[request setPredicate:predicate];
 	
 	NSError *error = nil;
-//	NSUInteger count = [[self.ballot managedObjectContext] countForFetchRequest:request error:&error];
-//	if (error == nil) {
-////		NSUInteger orgCount = 0;
-////		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
-//		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
-//		[cell.viewAllEndorsements setTitle:string forState:UIControlStateNormal];
-//		
-//		CGSize stringsize = [string sizeWithFont:[UIFont boldSystemFontOfSize:14]]; 
-//		[cell.viewAllEndorsements setFrame:CGRectMake(12, 45, stringsize.width+10, stringsize.height)];
-//	}
-//	else {
-//		/* TODO: log error */
-//		NSLog(@"No");
-//	}
 	
 	/* fill in the top endorsements */
 	[request setFetchLimit:3];
@@ -522,8 +457,7 @@
 		}
 	}
 	else {
-		/* TODO: log error */
-		NSLog(@"No");
+		NSLog(@"Error: %@", [error userInfo]);
 	}
 
 	/* TODO: this code is stand in for now... */
@@ -556,8 +490,7 @@
 		return string;
 	}
 	else {
-		/* TODO: log error */
-		NSLog(@"No");
+		NSLog(@"Error: %@", [error userInfo]);
 	}
 	
 	return nil;

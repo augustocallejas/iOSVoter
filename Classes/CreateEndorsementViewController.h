@@ -9,6 +9,10 @@
 #import "Candidate.h"
 #import "Measure.h"
 
+/*
+ * Protocol that is implemented by VoteCandidateController and VoteMeasureController.
+ * This allows them to save a vote on a candidate or measure with an optional endorsement statement.
+ */
 @protocol ModalViewControllerDelegate <NSObject>
 
 - (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable;

@@ -22,7 +22,7 @@
 
 
 #pragma mark -
-#pragma mark FetchedResultsBasedTableViewController implementation methods
+#pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSString *)getEntityName{
 	return @"Election";
@@ -78,7 +78,6 @@
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// TODO: unnecessarily creating a new controller on each selection!
 	DisplayBallotController *controller = [[DisplayBallotController alloc] initWithNibName:@"DisplayBallot" bundle:[NSBundle mainBundle]];
 	
 	Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -88,18 +87,6 @@
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];
-	
-	//	// TODO: unnecessarily creating a new controller on each selection!
-	//	DisplayElectionController *controller = [[DisplayElectionController alloc] initWithNibName:@"DisplayElection" bundle:[NSBundle mainBundle]];
-	//	
-	//	Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	//	controller.election = election;
-	//	controller.title = election.title;
-	//	controller.managedObjectContext = self.managedObjectContext;
-	//	//[controller createSortedPositionsAndBallot];
-	//	
-	//	[[self navigationController] pushViewController:controller animated:YES];
-	//	[controller release];
 }
 
 

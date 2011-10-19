@@ -96,14 +96,13 @@
 			self.selectedCell.friendCount.enabled = YES;
 		}
 		
-		/* TODO: does this reload all cells, or only visible ones? */
 		[self.tableView reloadData];
 	}
 	else {
 		NSLog(@"User canceled their vote selection");
 	}
 	
-	NSLog(@"Statement: [%@]", statement);
+//	NSLog(@"Statement: [%@]", statement);
 
     // Dismiss the modal view controller
     [self dismissModalViewControllerAnimated:YES];
@@ -130,7 +129,7 @@
 
 
 #pragma mark -
-#pragma mark FetchedResultsBasedTableViewController implementation methods
+#pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSString *)getEntityName{
 	return @"Candidate";
@@ -219,8 +218,7 @@
 		}
 	}
 	else {
-		/* TODO: log error */
-		NSLog(@"No");
+		NSLog(@"Error: %@", [error userInfo]);
 	}
 	
 	[sort release];

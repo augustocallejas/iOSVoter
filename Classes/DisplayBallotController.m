@@ -26,6 +26,9 @@
 @synthesize fetchedResultsController1 = _fetchedResultsController1;
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
 
+#pragma mark -
+#pragma mark UIButton custom actions
+
 - (IBAction)viewAllEndorsements:(id)sender{
 	UIButton *button = (UIButton *)sender;
 	
@@ -101,11 +104,12 @@
 	return self;
 }
 
-- (void)segmentAction:(id)sender
-{
+#pragma mark -
+#pragma mark UISegmentedControl action
+
+- (void)segmentAction:(id)sender {
 	UISegmentedControl* segCtl = sender;
-	// the segmented control was clicked, handle it here 
-	//NSLog(@"segment clicked %d", [segCtl selectedSegmentIndex]);
+
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	if ([segCtl selectedSegmentIndex] == 0) {
 		socialBallotView = NO;
@@ -123,10 +127,11 @@
 }
 
 - (void)animationStopped:(id)sender {
-	NSLog(@"animation");
+	//NSLog(@"animation");
 }
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
+	/* singleton pattern, lazy instantiation */
     if (_fetchedResultsController1 != nil) {
         return _fetchedResultsController1;
     }
@@ -158,6 +163,7 @@
 }
 
 - (NSFetchedResultsController *)fetchedResultsController2 {
+	/* singleton pattern, lazy instantiation */
     if (_fetchedResultsController2 != nil) {
         return _fetchedResultsController2;
     }
@@ -199,7 +205,7 @@
 }
 
 - (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
+	//NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.majorTitle.text = position.title;
 	
@@ -432,7 +438,6 @@
 	NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if (fetchedObjects == nil)
 	{
-		/* TODO: Handle the error */
 		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
 	else
@@ -445,7 +450,6 @@
 			
 			if (![self.managedObjectContext save:&error])
 			{
-				/* TODO: Handle the error */
 				NSLog(@"  DetailedError: %@", [error userInfo]);
 			}
 		}
@@ -537,8 +541,8 @@
 		Position *position =  (Position *)[fetchResults objectAtIndex:0];
 		//headerView.titleLabel.text = position.level;
 		headerTitle = [[position.level retain] autorelease];
-	} else {
-		/* TODO: print error? */
+	} else if (error != nil) {
+		NSLog(@"Error: %@", [error userInfo]);
 	}
 	
 	[numberFormatter release];
@@ -568,8 +572,8 @@
 	if ([fetchResults count] > 0) {
 		Measure *measure =  (Measure *)[fetchResults objectAtIndex:0];
 		headerTitle = [[measure.level retain] autorelease];
-	} else {
-		/* TODO: print error? */
+	} else if (error != nil) {
+		NSLog(@"Error: %@", [error userInfo]);
 	}
 	
 	[numberFormatter release];
@@ -614,14 +618,13 @@
 
 
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	if (indexPath.section < [self.fetchedResultsController1.sections count]) {
 		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 		
-		// TODO: unnecessarily creating a new controller on each selection!
 		VoteCandidateController *controller = [[VoteCandidateController alloc] initWithNibName:@"VoteCandidate" bundle:[NSBundle mainBundle]];
 		controller.ballot = self.ballot;
 		controller.position = position;
@@ -637,12 +640,12 @@
 		NSIndexPath *correctIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section-[self.fetchedResultsController1.sections count])];
 		Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:correctIndexPath];
 		
-		// TODO: unnecessarily creating a new controller on each selection!
 		VoteMeasureController *controller = [[VoteMeasureController alloc] initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
 		controller.ballot = self.ballot;
 		controller.measure = measure;
 		controller.selectedCell = (BallotItemViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-		controller.title = @"Measure";//[NSString stringWithFormat:@"Measure %@", measure.identifier];
+		controller.title = @"Measure";
+		//[NSString stringWithFormat:@"Measure %@", measure.identifier];
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];

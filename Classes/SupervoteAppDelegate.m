@@ -106,7 +106,6 @@
 		elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		elections.managedObjectContext = self.managedObjectContext;
 		UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
-//		[electionNavigation setNavigationBarHidden:YES];
 
 		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
 		settings.managedObjectContext = self.managedObjectContext;

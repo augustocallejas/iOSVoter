@@ -93,7 +93,7 @@
 	
 	NSArray *sortDescriptors = [self allocSortDescriptors];
 	[fetchRequest setSortDescriptors:sortDescriptors];
-	/* TODO: make abstract method? */
+	/* TODO: make this an abstract method so you can specify the batch size */
     [fetchRequest setFetchBatchSize:20];
 	
 	NSPredicate *predicate = [self getPredicate];
