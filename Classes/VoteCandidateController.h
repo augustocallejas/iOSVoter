@@ -22,12 +22,10 @@
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
-	BallotItemViewCell *selectedCell;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
-@property (nonatomic, retain) BallotItemViewCell *selectedCell;
 
 + (NSString *)getTextForEndorsementButton:(Position *)position onCandidate:(Candidate *)candidate;
 + (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count;

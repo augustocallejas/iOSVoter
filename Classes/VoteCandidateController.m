@@ -12,6 +12,7 @@
 
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
+#import "DisplayBallotController.h"
 #import "FacebookFriend.h"
 #import "Friend.h"
 #import "FriendBallotVote.h"
@@ -21,7 +22,6 @@
 
 @synthesize ballot;
 @synthesize position;
-@synthesize selectedCell;
 
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
@@ -86,14 +86,6 @@
 		if (![self.managedObjectContext save:&error]) {
 			NSLog(@"  DetailedError: %@", [error userInfo]);
 			// Handle the error
-		}
-		
-		// update the detailed text, because otherwise it stays the same.
-		self.selectedCell.minorTitle.text = vote.forCandidate.name;
-		NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
-		if (string != nil) {
-			[self.selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
-			self.selectedCell.friendCount.enabled = YES;
 		}
 		
 		[self.tableView reloadData];
@@ -187,10 +179,14 @@
 	else if (candidate.occupation != nil) {
 		cell.partyName.text = candidate.occupation;
 	}
-	
-	UIImage *icon = [UIImage imageNamed:@"users.png"];
-	cell.friendIcon1.image = icon;
 
+	/* TODO: this is repeated in other places of the code */
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	
+	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+
+	UIImage *icon = nil;
 	NSError *error = nil;
 	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:3 forPosition:position forCandidate:candidate withError:&error];
 	if (error == nil) {
@@ -200,26 +196,19 @@
 		if (count > 0) {
 			friendVote = (FriendBallotVote *) [array objectAtIndex:0];
 			cell.friendEndorsement1.text = friendVote.statement;
-			
-			if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {				
-				/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
-				NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-				NSString *documentsDirectory = [paths objectAtIndex:0];
-				NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
-				UIImage *fbIcon = [UIImage imageWithContentsOfFile:path];
-				
-				cell.friendIcon1.image = fbIcon;
-			}
-			else {
-				cell.friendIcon1.image = icon;
-			}
+			icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+			cell.friendIcon1.image = icon;
 			
 			if (count > 1) {
 				friendVote = (FriendBallotVote *) [array objectAtIndex:1];
+				icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+				cell.friendIcon2.image = icon;
 				cell.friendEndorsement2.text = friendVote.statement;
 				
 				if (count > 2) {
 					friendVote = (FriendBallotVote *) [array objectAtIndex:2];
+					icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+					cell.friendIcon3.image = icon;
 					cell.friendEndorsement3.text = friendVote.statement;
 				}
 			}
@@ -228,9 +217,6 @@
 	else {
 		NSLog(@"Error: %@", [error userInfo]);
 	}
-	
-	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
 	
 	NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
 	if (string != nil) {
@@ -599,7 +585,6 @@
 - (void)dealloc {
 	self.ballot = nil;
 	self.position = nil;
-	self.selectedCell = nil;
 	if (vote != nil)
 	{
 		[vote release];

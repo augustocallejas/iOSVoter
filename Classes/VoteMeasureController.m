@@ -10,6 +10,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "DisplayBallotController.h"
 #import "Friend.h"
 #import "FriendMeasureVote.h"
 #import "ListEndorsementsController.h"
@@ -20,7 +21,6 @@
 @synthesize ballot = _ballot;
 @synthesize measure = _measure;
 @synthesize vote = _vote;
-@synthesize selectedCell = _selectedCell;
 
 //static NSNumber *YES_VOTE = [NSNumber numberWithBool:YES];
 //static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
@@ -253,13 +253,6 @@
 			// Handle the error
 		}
 		
-		// update the detailed text, because otherwise it stays the same.
-		self.selectedCell.minorTitle.text = [MeasureViewCell voteToString:measureVote];
-		NSString *string = [VoteMeasureController getTextForEndorsementButton:_measure onVote:_vote.vote];
-		if (string != nil) {
-			[_selectedCell.friendCount setTitle:string forState:UIControlStateNormal];
-		}
-		
 		[self.tableView reloadData];
 	}
 	else {
@@ -423,35 +416,42 @@
 		[cell.viewAllEndorsements setFrame:CGRectMake(12, 45, stringsize.width+10, stringsize.height)];
 	}
 	
-	/* query for friends' votes on this measure */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
-	[request setEntity:entity];
+	cell.friendIcon1.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon1.layer.borderWidth = 1.0f;
+	cell.friendIcon2.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon2.layer.borderWidth = 1.0f;
+	cell.friendIcon3.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon3.layer.borderWidth = 1.0f;
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", self.measure, currVote];
-	[request setPredicate:predicate];
+	/* TODO: this is repeated in other places of the code */
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
+	/* TODO: this code is stand in for now... */
+	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+	
+	UIImage *icon = nil;
 	NSError *error = nil;
-	
-	/* fill in the top endorsements */
-	[request setFetchLimit:3];
-	
-	NSArray *array = [[self.ballot managedObjectContext] executeFetchRequest:request error:&error];
+	NSArray *array = [VoteMeasureController getMostRecentFriendEndorsements:3 forMeasure:self.measure withVote:currVote withError:&error];
 	if (error == nil) {
 		FriendMeasureVote *friendVote;
 		NSUInteger count = [array count];
 		
 		if (count > 0) {
 			friendVote = (FriendMeasureVote *) [array objectAtIndex:0];
+			icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 			cell.friendEndorsement1.text = friendVote.statement;
-
+			cell.friendIcon1.image = icon;
 			if (count > 1) {
 				friendVote = (FriendMeasureVote *) [array objectAtIndex:1];
+				icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 				cell.friendEndorsement2.text = friendVote.statement;
-
+				cell.friendIcon2.image = icon;
 				if (count > 2) {
 					friendVote = (FriendMeasureVote *) [array objectAtIndex:2];
+					icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 					cell.friendEndorsement3.text = friendVote.statement;
+					cell.friendIcon3.image = icon;
 				}
 			}
 		}
@@ -459,17 +459,30 @@
 	else {
 		NSLog(@"Error: %@", [error userInfo]);
 	}
-
-	/* TODO: this code is stand in for now... */
-	UIImage *icon = [UIImage imageNamed:@"users.png"];	
-	cell.friendIcon1.image = icon;
-	cell.friendIcon2.image = icon;
-	cell.friendIcon3.image = icon;
-	
-	[request release];
 	
     return cell;
 }
+
++ (NSArray *)getMostRecentFriendEndorsements:(NSInteger)count forMeasure:(Measure *)measure withVote:(NSNumber *)vote withError:(NSError **)error {
+	/* query for friends' votes on this measure */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[measure managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && vote == %@", measure, vote];
+	[request setPredicate:predicate];
+
+	/* TODO: sort by descending date */
+	
+	/* fill in the top endorsements */
+	[request setFetchLimit:3];
+	
+	NSArray *array = [[measure managedObjectContext] executeFetchRequest:request error:error];
+	[request release];
+	
+	return array;
+}
+
 
 + (NSString *)getTextForEndorsementButton:(Measure *)aMeasure onVote:(NSNumber *)aVote {
 	/* query for friends' votes on this measure */
@@ -527,7 +540,6 @@
 	self.ballot = nil;
 	self.measure = nil;
 	self.vote = nil;
-	self.selectedCell = nil;
     [super dealloc];
 }
 

@@ -20,13 +20,11 @@
 	Ballot *_ballot;
 	Measure *_measure;
 	MeasureVote *_vote;
-	BallotItemViewCell *_selectedCell;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Measure *measure;
 @property (nonatomic, retain) MeasureVote *vote;
-@property (nonatomic, retain) BallotItemViewCell *selectedCell;
 
 - (IBAction)voteOnMeasure:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
@@ -34,5 +32,6 @@
 + (NSString *)getTextForEndorsementButton:(Measure *)aMeasure onVote:(NSNumber *)aVote;
 + (void)displayEndorsements:(NSNumber *)aVote forMeasure:(Measure *)aMeasure onNavigationController:(UINavigationController *)navController;
 + (MeasureVote *)getMeasureVoteForBallot:(Ballot *)ballot forMeasure:(Measure *)measure withError:(NSError **)error andCount:(NSUInteger *)count;
++ (NSArray *)getMostRecentFriendEndorsements:(NSInteger)count forMeasure:(Measure *)measure withVote:(NSNumber *)vote withError:(NSError **)error;
 
 @end

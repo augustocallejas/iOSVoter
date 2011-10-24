@@ -10,11 +10,12 @@
 #import "Election.h"
 #import "BallotItemViewCell.h"
 #import "FriendBallotVote.h"
-
+#import "FriendMeasureVote.h"
 
 @interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
+	BOOL viewDidLoadCalled;
 	UISegmentedControl* segControl;
 	BOOL socialBallotView;
 	Election *_election;
@@ -31,7 +32,8 @@
 - (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCellAsMeasure:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (IBAction)viewAllEndorsements:(id)sender;
-- (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon;
++ (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon;
++ (UIImage *) loadImageForAuthorOfMeasureVote:(FriendMeasureVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon;
 	
 @property (nonatomic, retain) Election *election;
 @property (nonatomic, retain) Ballot *ballot;

@@ -97,6 +97,7 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
+		viewDidLoadCalled = NO;
 		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
 		segControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
@@ -261,15 +262,15 @@
 	[request release];
 	
 	/* add small black border to all friend icons */
-	cell.friendButton1.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton1.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendButton1.layer.borderWidth = 1.0f;
-	cell.friendButton2.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton2.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendButton2.layer.borderWidth = 1.0f;
-	cell.friendButton3.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton3.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendButton3.layer.borderWidth = 1.0f;
-	cell.friendButton4.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton4.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendButton4.layer.borderWidth = 1.0f;
-	cell.friendButton5.layer.borderColor = [UIColor blackColor].CGColor;
+	cell.friendButton5.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendButton5.layer.borderWidth = 1.0f;
 	
 	// if candidate found, then load the endorsements from friends
@@ -295,19 +296,19 @@
 			/* display the facebook profile photo of the most recent endorsements */
 			UIImage *icon;
 			if (totalCount > 0) {	
-				icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:0] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+				icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:0] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 				[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
 				if (totalCount > 1) {
-					icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:1] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+					icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:1] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 					[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
 					if (totalCount > 2) {	
-						icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:2] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+						icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:2] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 						[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
 						if (totalCount > 3) {
-							icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:3] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+							icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:3] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 							[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
 							if (totalCount > 4) {
-								icon = [self loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:4] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+								icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:4] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 								[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
 							}
 						}
@@ -322,7 +323,21 @@
 	}
 }
 
-- (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
++ (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
+	UIImage *icon = nil;
+	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
+		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
+		icon = [UIImage imageWithContentsOfFile:path];
+	}
+	
+	if (icon == nil) {
+		icon = defaultIcon;
+	}
+	
+	return icon;
+}
+
++ (UIImage *) loadImageForAuthorOfMeasureVote:(FriendMeasureVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
 	UIImage *icon = nil;
 	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
 		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
@@ -350,6 +365,9 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", self.ballot, measure];
 	[request setPredicate:predicate];
 	
+	BOOL foundVote = NO;
+	NSNumber *vote = nil;
+	
 	NSError *error = nil;
 	NSArray *array = [self.managedObjectContext executeFetchRequest:request error:&error];
 	if (array != nil)
@@ -361,7 +379,8 @@
 		}
 		else if (count == 1)
 		{
-			NSNumber *vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
+			foundVote = YES;
+			vote = ((MeasureVote *) [array objectAtIndex:0]).vote;
 			cell.minorTitle.text = [MeasureViewCell voteToString:vote];
 			
 			NSString *string = [VoteMeasureController getTextForEndorsementButton:measure onVote:vote];
@@ -380,29 +399,62 @@
 		NSLog(@"  DetailedError: %@", [error userInfo]);
 	}
 	
-	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	/* TODO: obviously hardcoded ... */
-	NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, @"117429"];
+	/* add small black border to all friend icons */
+	cell.friendButton1.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendButton1.layer.borderWidth = 1.0f;
+	cell.friendButton2.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendButton2.layer.borderWidth = 1.0f;
+	cell.friendButton3.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendButton3.layer.borderWidth = 1.0f;
+	cell.friendButton4.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendButton4.layer.borderWidth = 1.0f;
+	cell.friendButton5.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendButton5.layer.borderWidth = 1.0f;
 	
-	UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	
-	if (icon == nil) {
-		icon = [UIImage imageNamed:@"users.png"];
+	if (foundVote) {
+		error = nil;		
+		NSArray *friendVotes = [VoteMeasureController getMostRecentFriendEndorsements:5 forMeasure:measure withVote:vote withError:&error];
+		if (error == nil) {
+			//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			//		NSString *documentsDirectory = [paths objectAtIndex:0];
+			//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
+			//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
+			//cell.candidateIcon.image = candidateIcon;
+			NSUInteger totalCount = [friendVotes count];
+			NSLog(@"count %d", totalCount);
+			
+			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+			NSString *documentsDirectory = [paths objectAtIndex:0];	
+			UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+			
+			UIImage *icon;
+			if (totalCount > 0) {
+				icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:[friendVotes objectAtIndex:0] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+				[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
+				if (totalCount > 1) {
+					icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:[friendVotes objectAtIndex:1] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+					[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
+					if (totalCount > 2) {
+						icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:[friendVotes objectAtIndex:2] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+						[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
+						if (totalCount > 3) {
+							icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:[friendVotes objectAtIndex:3] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+							[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
+							if (totalCount > 4) {
+								icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:[friendVotes objectAtIndex:4] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+								[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+							}
+						}
+					}
+				}
+			}
+		}
+		else {
+			NSLog(@"Error: %@", [error userInfo]);
+		}
 	}
-	
-	//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	//		NSString *documentsDirectory = [paths objectAtIndex:0];
-	//		NSString *pathToCandidateIcon = [NSString stringWithFormat:@"%@/images/A000014.jpg", documentsDirectory];
-	//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
-	
-	//cell.candidateIcon.image = candidateIcon;
-	[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
-	[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+
 	cell.friendCount.tag = (([self.fetchedResultsController1.sections count] + indexPath.section) << 10) + indexPath.row;
 	
 	[request release];
@@ -471,6 +523,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"DisplayBallotController: viewDidLoad");
+	viewDidLoadCalled = YES;
 	
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
@@ -540,6 +594,14 @@
 	segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
+	if (!viewDidLoadCalled) {
+		NSLog(@"DisplayBallotController: reloading data in viewDidAppear");
+		[self.tableView reloadData];
+	}
+	else {
+		viewDidLoadCalled = NO;
+	}
+
 }
 
 /*
@@ -688,7 +750,6 @@
 		controller.managedObjectContext = self.managedObjectContext;
 		//controller.title = position.level;
 		controller.title = @"Candidates";
-		controller.selectedCell = (BallotItemViewCell *) [tableView cellForRowAtIndexPath:indexPath];
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];
@@ -700,7 +761,6 @@
 		VoteMeasureController *controller = [[VoteMeasureController alloc] initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
 		controller.ballot = self.ballot;
 		controller.measure = measure;
-		controller.selectedCell = (BallotItemViewCell *)[tableView cellForRowAtIndexPath:indexPath];
 		controller.title = @"Measure";
 		//[NSString stringWithFormat:@"Measure %@", measure.identifier];
 		
