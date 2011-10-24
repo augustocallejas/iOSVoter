@@ -589,11 +589,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	/* reload the table view since the social ballot mode may have been changed in the choose candidate controller */
-	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
-	segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
-	[self.tableView beginUpdates];
-	[self.tableView endUpdates];
+	
 	if (!viewDidLoadCalled) {
 		NSLog(@"DisplayBallotController: reloading data in viewDidAppear");
 		[self.tableView reloadData];
@@ -601,7 +597,12 @@
 	else {
 		viewDidLoadCalled = NO;
 	}
-
+	
+	/* reload the table view since the social ballot mode may have been changed in the choose candidate controller */
+	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
+	segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
 
 /*
