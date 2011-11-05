@@ -179,6 +179,14 @@
 	else if (candidate.occupation != nil) {
 		cell.partyName.text = candidate.occupation;
 	}
+	
+	/* add small black border to all friend icons */
+	cell.friendIcon1.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon1.layer.borderWidth = 1.0f;
+	cell.friendIcon2.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon2.layer.borderWidth = 1.0f;
+	cell.friendIcon3.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon3.layer.borderWidth = 1.0f;
 
 	/* TODO: this is repeated in other places of the code */
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
