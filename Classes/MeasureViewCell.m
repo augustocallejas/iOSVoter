@@ -13,11 +13,12 @@
 
 @synthesize measureName = _measureName;
 @synthesize friendIcon1 = _friendIcon1;
-@synthesize friendEndorsement1 = _friendEndorsement1;
 @synthesize friendIcon2 = _friendIcon2;
-@synthesize friendEndorsement2 = _friendEndorsement2;
 @synthesize friendIcon3 = _friendIcon3;
-@synthesize friendEndorsement3 = _friendEndorsement3;
+@synthesize friendIcon4 = _friendIcon4;
+@synthesize friendIcon5 = _friendIcon5;
+@synthesize friendIcon6 = _friendIcon6;
+@synthesize friendIcon7 = _friendIcon7;
 @synthesize viewAllEndorsements = _viewAllEndorsements;
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteMeasure = _voteMeasure;

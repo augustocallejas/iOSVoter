@@ -15,6 +15,7 @@
 #import "FriendMeasureVote.h"
 #import "ListEndorsementsController.h"
 #import "MeasureViewCell.h"
+#import "ViewEndorsementController.h"
 
 @implementation VoteMeasureController
 
@@ -25,6 +26,20 @@
 //static NSNumber *YES_VOTE = [NSNumber numberWithBool:YES];
 //static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
 //static NSNumber *UNDECIDED_VOTE = nil;
+
+#pragma mark -
+#pragma mark UIButton custom actions
+
+- (IBAction)viewSingleEndorsement:(id)sender{
+	EndorsementButton *button = (EndorsementButton *)sender;
+	
+	if (button.measureVote != nil) {
+		ViewEndorsementController *controller = [[ViewEndorsementController alloc] initWithNibName:@"ViewEndorsementController" bundle:[NSBundle mainBundle]];
+		controller.measureVote = button.measureVote;
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
 
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
@@ -422,6 +437,14 @@
 	cell.friendIcon2.layer.borderWidth = 1.0f;
 	cell.friendIcon3.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendIcon3.layer.borderWidth = 1.0f;
+	cell.friendIcon4.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon4.layer.borderWidth = 1.0f;
+	cell.friendIcon5.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon5.layer.borderWidth = 1.0f;
+	cell.friendIcon6.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon6.layer.borderWidth = 1.0f;
+	cell.friendIcon7.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon7.layer.borderWidth = 1.0f;
 	
 	/* TODO: this is repeated in other places of the code */
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -432,26 +455,49 @@
 	
 	UIImage *icon = nil;
 	NSError *error = nil;
-	NSArray *array = [VoteMeasureController getMostRecentFriendEndorsements:3 forMeasure:self.measure withVote:currVote withError:&error];
+	NSArray *array = [VoteMeasureController getMostRecentFriendEndorsements:7 forMeasure:self.measure withVote:currVote withError:&error];
 	if (error == nil) {
 		FriendMeasureVote *friendVote;
-		NSUInteger count = [array count];
-		
+		NSUInteger count = [array count];		
 		if (count > 0) {
 			friendVote = (FriendMeasureVote *) [array objectAtIndex:0];
 			icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-			cell.friendEndorsement1.text = friendVote.statement;
-			cell.friendIcon1.image = icon;
+			[cell.friendIcon1 setImage:icon forState:UIControlStateNormal];
+			cell.friendIcon1.measureVote = friendVote;
 			if (count > 1) {
 				friendVote = (FriendMeasureVote *) [array objectAtIndex:1];
 				icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-				cell.friendEndorsement2.text = friendVote.statement;
-				cell.friendIcon2.image = icon;
+				[cell.friendIcon2 setImage:icon forState:UIControlStateNormal];
+				cell.friendIcon2.measureVote = friendVote;
 				if (count > 2) {
 					friendVote = (FriendMeasureVote *) [array objectAtIndex:2];
 					icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-					cell.friendEndorsement3.text = friendVote.statement;
-					cell.friendIcon3.image = icon;
+					[cell.friendIcon3 setImage:icon forState:UIControlStateNormal];
+					cell.friendIcon3.measureVote = friendVote;
+					if (count > 3) {
+						friendVote = (FriendMeasureVote *) [array objectAtIndex:3];
+						icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+						[cell.friendIcon4 setImage:icon forState:UIControlStateNormal];
+						cell.friendIcon4.measureVote = friendVote;
+						if (count > 4) {
+							friendVote = (FriendMeasureVote *) [array objectAtIndex:4];
+							icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+							[cell.friendIcon5 setImage:icon forState:UIControlStateNormal];
+							cell.friendIcon5.measureVote = friendVote;
+							if (count > 5) {
+								friendVote = (FriendMeasureVote *) [array objectAtIndex:5];
+								icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+								[cell.friendIcon6 setImage:icon forState:UIControlStateNormal];
+								cell.friendIcon6.measureVote = friendVote;
+								if (count > 6) {
+									friendVote = (FriendMeasureVote *) [array objectAtIndex:6];
+									icon = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+									[cell.friendIcon7 setImage:icon forState:UIControlStateNormal];
+									cell.friendIcon7.measureVote = friendVote;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -514,9 +560,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (socialBallotView == YES) {
-        return 176;
-		//return 103;
-		//return 158;
+        return 110;
     }
 	
 	return 66;

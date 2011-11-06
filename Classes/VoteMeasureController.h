@@ -26,6 +26,7 @@
 @property (nonatomic, retain) Measure *measure;
 @property (nonatomic, retain) MeasureVote *vote;
 
+- (IBAction)viewSingleEndorsement:(id)sender;
 - (IBAction)voteOnMeasure:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
 - (void)presentCreateEndorsementViewController:(NSNumber *)voteSelected;
