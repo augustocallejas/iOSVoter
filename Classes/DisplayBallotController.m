@@ -13,12 +13,14 @@
 #import "BallotItemViewCell.h"
 #import "BallotVote.h"
 #import "Candidate.h"
+#import "EndorsementButton.h"
 #import "FacebookFriend.h"
 #import "Friend.h"
 #import "Measure.h"
 #import "MeasureViewCell.h"
 #import "MeasureVote.h"
 #import "Position.h"
+#import "ViewEndorsementController.h"
 #import "VoteCandidateController.h"
 #import "VoteMeasureController.h"
 
@@ -32,6 +34,18 @@
 
 #pragma mark -
 #pragma mark UIButton custom actions
+
+- (IBAction)viewSingleEndorsement:(id)sender{
+	EndorsementButton *button = (EndorsementButton *)sender;
+	NSLog(@"View single endorsement for vote %@", button.ballotVote);
+	
+	if (button.ballotVote != nil) {
+		ViewEndorsementController *controller = [[ViewEndorsementController alloc] initWithNibName:@"ViewEndorsementController" bundle:[NSBundle mainBundle]];
+		
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
 
 - (IBAction)viewAllEndorsements:(id)sender{
 	UIButton *button = (UIButton *)sender;
@@ -295,21 +309,32 @@
 			
 			/* display the facebook profile photo of the most recent endorsements */
 			UIImage *icon;
-			if (totalCount > 0) {	
-				icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:0] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+			if (totalCount > 0) {
+				FriendBallotVote *ballotVote = nil;
+				ballotVote = (FriendBallotVote *) [friendVotes objectAtIndex:0];
+				icon = [DisplayBallotController loadImageForAuthorOfBallotVote:ballotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 				[cell.friendButton1 setImage:icon forState:UIControlStateNormal];
+				cell.friendButton1.ballotVote = ballotVote;
 				if (totalCount > 1) {
-					icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:1] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+					ballotVote = (FriendBallotVote *) [friendVotes objectAtIndex:1];
+					icon = [DisplayBallotController loadImageForAuthorOfBallotVote:ballotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 					[cell.friendButton2 setImage:icon forState:UIControlStateNormal];
-					if (totalCount > 2) {	
-						icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:2] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+					cell.friendButton2.ballotVote = ballotVote;
+					if (totalCount > 2) {
+						ballotVote = (FriendBallotVote *) [friendVotes objectAtIndex:2];
+						icon = [DisplayBallotController loadImageForAuthorOfBallotVote:ballotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 						[cell.friendButton3 setImage:icon forState:UIControlStateNormal];
+						cell.friendButton3.ballotVote = ballotVote;
 						if (totalCount > 3) {
-							icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:3] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+							ballotVote = (FriendBallotVote *) [friendVotes objectAtIndex:3];
+							icon = [DisplayBallotController loadImageForAuthorOfBallotVote:ballotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 							[cell.friendButton4 setImage:icon forState:UIControlStateNormal];
+							cell.friendButton4.ballotVote = ballotVote;
 							if (totalCount > 4) {
-								icon = [DisplayBallotController loadImageForAuthorOfBallotVote:[friendVotes objectAtIndex:4] inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+								ballotVote = (FriendBallotVote *) [friendVotes objectAtIndex:4];
+								icon = [DisplayBallotController loadImageForAuthorOfBallotVote:ballotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 								[cell.friendButton5 setImage:icon forState:UIControlStateNormal];
+								cell.friendButton5.ballotVote = ballotVote;
 							}
 						}
 					}

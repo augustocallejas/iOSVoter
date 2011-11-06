@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1409050014660B5200B7B693 /* ViewEndorsementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140904FE14660B5200B7B693 /* ViewEndorsementController.m */; };
+		1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140904FF14660B5200B7B693 /* ViewEndorsementController.xib */; };
+		1409052E1466FDF600B7B693 /* EndorsementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409052D1466FDF600B7B693 /* EndorsementButton.m */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -73,6 +76,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140904FD14660B5200B7B693 /* ViewEndorsementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEndorsementController.h; sourceTree = "<group>"; };
+		140904FE14660B5200B7B693 /* ViewEndorsementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEndorsementController.m; sourceTree = "<group>"; };
+		140904FF14660B5200B7B693 /* ViewEndorsementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewEndorsementController.xib; path = Classes/ViewEndorsementController.xib; sourceTree = "<group>"; };
+		1409052C1466FDF600B7B693 /* EndorsementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementButton.h; sourceTree = "<group>"; };
+		1409052D1466FDF600B7B693 /* EndorsementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementButton.m; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -257,6 +265,8 @@
 				1423B32C1407527E006F8DBF /* VoteCandidateController.m */,
 				14399EF0141073FD007269A3 /* VoteMeasureController.h */,
 				14399EF1141073FD007269A3 /* VoteMeasureController.m */,
+				140904FD14660B5200B7B693 /* ViewEndorsementController.h */,
+				140904FE14660B5200B7B693 /* ViewEndorsementController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +278,8 @@
 				1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */,
 				1474F0631432DCFD004D35AD /* CandidateViewCell.h */,
 				1474F0641432DCFD004D35AD /* CandidateViewCell.m */,
+				1409052C1466FDF600B7B693 /* EndorsementButton.h */,
+				1409052D1466FDF600B7B693 /* EndorsementButton.m */,
 				14E749011434388B002E2F82 /* EndorsementViewCell.h */,
 				14E749021434388B002E2F82 /* EndorsementViewCell.m */,
 				14EF327C1442318800557A80 /* MeasureViewCell.h */,
@@ -332,6 +344,7 @@
 				14EF327F144231D900557A80 /* MeasureViewCell.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
+				140904FF14660B5200B7B693 /* ViewEndorsementController.xib */,
 				1423B32814075237006F8DBF /* VoteCandidate.xib */,
 				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
 			);
@@ -475,6 +488,7 @@
 				14EF3280144231D900557A80 /* MeasureViewCell.xib in Resources */,
 				14EF38A4144AA9F100557A80 /* check-64.png in Resources */,
 				14EF38B6144AAD3C00557A80 /* lock.png in Resources */,
+				1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +537,8 @@
 				14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */,
 				14E74AFD14359521002E2F82 /* CreateEndorsementViewController.m in Sources */,
 				14EF327E1442318800557A80 /* MeasureViewCell.m in Sources */,
+				1409050014660B5200B7B693 /* ViewEndorsementController.m in Sources */,
+				1409052E1466FDF600B7B693 /* EndorsementButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
