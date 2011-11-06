@@ -8,8 +8,15 @@
 
 #import "ViewEndorsementController.h"
 
+#import "Candidate.h"
+#import "Friend.h"
 
 @implementation ViewEndorsementController
+
+@synthesize ballotVote = _ballotVote;
+@synthesize friendLabel = _friendLabel;
+@synthesize endorsementStatement = _endorsementStatement;
+@synthesize candidateName = _candidateName;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -22,12 +29,18 @@
 }
 */
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"author %@", _ballotVote.author);
+	_friendLabel.text = _ballotVote.author.name;
+	_candidateName.text = _ballotVote.forCandidate.name;
+	if (_ballotVote.statement == nil) {
+	}
+	else {
+		_endorsementStatement.text = _ballotVote.statement;
+	}
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -52,6 +65,7 @@
 
 
 - (void)dealloc {
+	self.ballotVote = nil;
     [super dealloc];
 }
 

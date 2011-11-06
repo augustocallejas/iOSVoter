@@ -18,7 +18,7 @@
 	IBOutlet EndorsementButton *_friendButton3;
 	IBOutlet EndorsementButton *_friendButton4;
 	IBOutlet EndorsementButton *_friendButton5;
-	IBOutlet EndorsementButton *_friendCount;
+	IBOutlet UIButton *_friendCount;
 }
 
 @property (nonatomic, retain) UILabel *majorTitle;
@@ -28,6 +28,6 @@
 @property (nonatomic, retain) EndorsementButton *friendButton3;
 @property (nonatomic, retain) EndorsementButton *friendButton4;
 @property (nonatomic, retain) EndorsementButton *friendButton5;
-@property (nonatomic, retain) EndorsementButton *friendCount;
+@property (nonatomic, retain) UIButton *friendCount;
 
 @end

@@ -37,11 +37,10 @@
 
 - (IBAction)viewSingleEndorsement:(id)sender{
 	EndorsementButton *button = (EndorsementButton *)sender;
-	NSLog(@"View single endorsement for vote %@", button.ballotVote);
 	
 	if (button.ballotVote != nil) {
 		ViewEndorsementController *controller = [[ViewEndorsementController alloc] initWithNibName:@"ViewEndorsementController" bundle:[NSBundle mainBundle]];
-		
+		controller.ballotVote = button.ballotVote;
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}

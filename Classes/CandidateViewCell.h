@@ -8,18 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+#import "EndorsementButton.h"
 
 @interface CandidateViewCell : UITableViewCell {
 @private	
 	IBOutlet UILabel *_candidateName;
 	IBOutlet UILabel *_partyName;
 	IBOutlet UIImageView *_candidateIcon;
-	IBOutlet UIImageView *_friendIcon1;
-	IBOutlet UILabel *_friendEndorsement1;
-	IBOutlet UIImageView *_friendIcon2;
-	IBOutlet UILabel *_friendEndorsement2;
-	IBOutlet UIImageView *_friendIcon3;
-	IBOutlet UILabel *_friendEndorsement3;
+	IBOutlet EndorsementButton *_friendIcon1;
+	IBOutlet EndorsementButton *_friendIcon2;
+	IBOutlet EndorsementButton *_friendIcon3;
+	IBOutlet EndorsementButton *_friendIcon4;
+	IBOutlet EndorsementButton *_friendIcon5;
+	IBOutlet EndorsementButton *_friendIcon6;
+	IBOutlet EndorsementButton *_friendIcon7;
 	IBOutlet UIButton *_viewAllEndorsements;
 	IBOutlet UIButton *_editEndorsement;
 	IBOutlet UIButton *_voteCandidate;
@@ -30,12 +32,13 @@
 @property (nonatomic, retain) UILabel *candidateName;
 @property (nonatomic, retain) UILabel *partyName;
 @property (nonatomic, retain) UIImageView *candidateIcon;
-@property (nonatomic, retain) UIImageView *friendIcon1;
-@property (nonatomic, retain) UILabel *friendEndorsement1;
-@property (nonatomic, retain) UIImageView *friendIcon2;
-@property (nonatomic, retain) UILabel *friendEndorsement2;
-@property (nonatomic, retain) UIImageView *friendIcon3;
-@property (nonatomic, retain) UILabel *friendEndorsement3;
+@property (nonatomic, retain) EndorsementButton *friendIcon1;
+@property (nonatomic, retain) EndorsementButton *friendIcon2;
+@property (nonatomic, retain) EndorsementButton *friendIcon3;
+@property (nonatomic, retain) EndorsementButton *friendIcon4;
+@property (nonatomic, retain) EndorsementButton *friendIcon5;
+@property (nonatomic, retain) EndorsementButton *friendIcon6;
+@property (nonatomic, retain) EndorsementButton *friendIcon7;
 @property (nonatomic, retain) UIButton *viewAllEndorsements;
 @property (nonatomic, retain) UIButton *editEndorsement;
 @property (nonatomic, retain) UIButton *voteCandidate;

@@ -13,10 +13,12 @@
 #import "CandidateViewCell.h"
 #import "CreateEndorsementViewController.h"
 #import "DisplayBallotController.h"
+#import "EndorsementButton.h"
 #import "FacebookFriend.h"
 #import "Friend.h"
 #import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
+#import "ViewEndorsementController.h"
 
 @implementation VoteCandidateController
 
@@ -37,7 +39,18 @@
 }
 
 #pragma mark -
-#pragma mark Custom button actions
+#pragma mark UIButton custom actions
+
+- (IBAction)viewSingleEndorsement:(id)sender{
+	EndorsementButton *button = (EndorsementButton *)sender;
+	
+	if (button.ballotVote != nil) {
+		ViewEndorsementController *controller = [[ViewEndorsementController alloc] initWithNibName:@"ViewEndorsementController" bundle:[NSBundle mainBundle]];
+		controller.ballotVote = button.ballotVote;
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
 
 - (void)voteOnCandidate:(id)sender{
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
@@ -187,6 +200,14 @@
 	cell.friendIcon2.layer.borderWidth = 1.0f;
 	cell.friendIcon3.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendIcon3.layer.borderWidth = 1.0f;
+	cell.friendIcon4.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon4.layer.borderWidth = 1.0f;
+	cell.friendIcon5.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon5.layer.borderWidth = 1.0f;
+	cell.friendIcon6.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon6.layer.borderWidth = 1.0f;
+	cell.friendIcon7.layer.borderColor = [UIColor grayColor].CGColor;
+	cell.friendIcon7.layer.borderWidth = 1.0f;
 
 	/* TODO: this is repeated in other places of the code */
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -196,28 +217,57 @@
 
 	UIImage *icon = nil;
 	NSError *error = nil;
-	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:3 forPosition:position forCandidate:candidate withError:&error];
+	/* TODO: query for 7 */
+	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:7 forPosition:position forCandidate:candidate withError:&error];
 	if (error == nil) {
 		NSUInteger count = [array count];
 		
 		FriendBallotVote *friendVote;
 		if (count > 0) {
 			friendVote = (FriendBallotVote *) [array objectAtIndex:0];
-			cell.friendEndorsement1.text = friendVote.statement;
 			icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-			cell.friendIcon1.image = icon;
+			[cell.friendIcon1 setImage:icon forState:UIControlStateNormal];
+			cell.friendIcon1.ballotVote = friendVote;
 			
 			if (count > 1) {
 				friendVote = (FriendBallotVote *) [array objectAtIndex:1];
 				icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-				cell.friendIcon2.image = icon;
-				cell.friendEndorsement2.text = friendVote.statement;
-				
+				[cell.friendIcon2 setImage:icon forState:UIControlStateNormal];
+				cell.friendIcon2.ballotVote = friendVote;
+
 				if (count > 2) {
 					friendVote = (FriendBallotVote *) [array objectAtIndex:2];
 					icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
-					cell.friendIcon3.image = icon;
-					cell.friendEndorsement3.text = friendVote.statement;
+					[cell.friendIcon3 setImage:icon forState:UIControlStateNormal];
+					cell.friendIcon3.ballotVote = friendVote;
+					
+					if (count > 3) {
+						friendVote = (FriendBallotVote *) [array objectAtIndex:3];
+						icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+						[cell.friendIcon4 setImage:icon forState:UIControlStateNormal];
+						cell.friendIcon4.ballotVote = friendVote;
+						
+						if (count > 4) {
+							friendVote = (FriendBallotVote *) [array objectAtIndex:4];
+							icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+							[cell.friendIcon5 setImage:icon forState:UIControlStateNormal];
+							cell.friendIcon5.ballotVote = friendVote;
+
+							if (count > 5) {
+								friendVote = (FriendBallotVote *) [array objectAtIndex:5];
+								icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+								[cell.friendIcon6 setImage:icon forState:UIControlStateNormal];
+								cell.friendIcon6.ballotVote = friendVote;
+								
+								if (count > 6) {
+									friendVote = (FriendBallotVote *) [array objectAtIndex:6];
+									icon = [DisplayBallotController loadImageForAuthorOfBallotVote:friendVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
+									[cell.friendIcon7 setImage:icon forState:UIControlStateNormal];
+									cell.friendIcon7.ballotVote = friendVote;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -501,43 +551,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (socialBallotView == YES) {
-		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-		
-		/* TODO: consider caching this? */
-		/* fill out the top endorsements, sorted by descending date */
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setFetchLimit:3];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[ballot managedObjectContext]];
-		[request setEntity:entity];
-		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && forCandidate == %@", position, candidate];
-		[request setPredicate:predicate];
-		
-		NSError *error = nil;
-		CGFloat height = 66;
-		NSUInteger count = [[ballot managedObjectContext] countForFetchRequest:request error:&error];
-		if (error == nil) {
-			if (count == 0) {
-				height = 66;
-			}
-			else if (count == 1) {
-				height = 103;
-			}
-			else if (count == 2) {
-				height = 137;
-			}
-			else {
-				height = 176;
-			}
-		}
-		else {
-			/* TODO: log error */
-			NSLog(@"%@", [error userInfo]);
-		}
-		
-		[request release];
-		
-		return height;
+		/* TODO: tweak height for best result */
+		return 110;
     }
 	
 	return 66;
