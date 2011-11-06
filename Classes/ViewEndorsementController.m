@@ -10,6 +10,7 @@
 
 #import "Candidate.h"
 #import "Friend.h"
+#import "Measure.h"
 
 @implementation ViewEndorsementController
 
@@ -45,18 +46,23 @@
 	}
 	else if (_measureVote != nil) {
 		_friendLabel.text = _measureVote.author.name;
+		
+		NSString *choice = nil;
 		if (_measureVote.vote == nil) {
 			/* undecided */
-			_candidateName.text = @"Undecided";
+			choice = @"Undecided";
 		}
 		else if ([_measureVote.vote boolValue]) {
 			/* yes */
-			_candidateName.text = @"Yes";
+			choice = @"Yes";
 		}
 		else {
 			/* no */
-			_candidateName.text = @"No";
+			choice = @"No";
 		}
+		
+		_candidateName.text = [NSString stringWithFormat:@"%@ on %@", choice, _measureVote.forMeasure.identifier];
+		
 		if (_measureVote.statement == nil) {
 		}
 		else {
