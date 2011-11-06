@@ -7,13 +7,16 @@
 //
 
 #import "FriendBallotVote.h"
+#import "FriendMeasureVote.h"
 
 @interface EndorsementButton : UIButton {
 
 @private
-	FriendBallotVote* _ballotVote;
+	FriendBallotVote *_ballotVote;
+	FriendMeasureVote *_measureVote;
 }
 
 @property (nonatomic, retain) FriendBallotVote *ballotVote;
+@property (nonatomic, retain) FriendMeasureVote *measureVote;
 
 @end

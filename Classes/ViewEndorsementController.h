@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 
 #import "FriendBallotVote.h"
+#import "FriendMeasureVote.h"
 
 @interface ViewEndorsementController : UIViewController {
 
 @private
 	FriendBallotVote *_ballotVote;
+	FriendMeasureVote *_measureVote;
 	UILabel *_friendLabel;
 	UITextView *_endorsementStatement;
 	UILabel *_candidateName;
 }
 
 @property (nonatomic, retain) FriendBallotVote *ballotVote;
+@property (nonatomic, retain) FriendMeasureVote *measureVote;
 @property (nonatomic, retain) IBOutlet UILabel *friendLabel;
 @property (nonatomic, retain) IBOutlet UITextView *endorsementStatement;
 @property (nonatomic, retain) IBOutlet UILabel *candidateName;

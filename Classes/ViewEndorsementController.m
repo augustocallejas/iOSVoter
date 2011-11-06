@@ -14,6 +14,7 @@
 @implementation ViewEndorsementController
 
 @synthesize ballotVote = _ballotVote;
+@synthesize measureVote = _measureVote;
 @synthesize friendLabel = _friendLabel;
 @synthesize endorsementStatement = _endorsementStatement;
 @synthesize candidateName = _candidateName;
@@ -32,13 +33,35 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"author %@", _ballotVote.author);
-	_friendLabel.text = _ballotVote.author.name;
-	_candidateName.text = _ballotVote.forCandidate.name;
-	if (_ballotVote.statement == nil) {
+	if (_ballotVote != nil)
+	{
+		_friendLabel.text = _ballotVote.author.name;
+		_candidateName.text = _ballotVote.forCandidate.name;
+		if (_ballotVote.statement == nil) {
+		}
+		else {
+			_endorsementStatement.text = _ballotVote.statement;
+		}
 	}
-	else {
-		_endorsementStatement.text = _ballotVote.statement;
+	else if (_measureVote != nil) {
+		_friendLabel.text = _measureVote.author.name;
+		if (_measureVote.vote == nil) {
+			/* undecided */
+			_candidateName.text = @"Undecided";
+		}
+		else if ([_measureVote.vote boolValue]) {
+			/* yes */
+			_candidateName.text = @"Yes";
+		}
+		else {
+			/* no */
+			_candidateName.text = @"No";
+		}
+		if (_measureVote.statement == nil) {
+		}
+		else {
+			_endorsementStatement.text = _measureVote.statement;
+		}
 	}
 }
 
@@ -66,6 +89,7 @@
 
 - (void)dealloc {
 	self.ballotVote = nil;
+	self.measureVote = nil;
     [super dealloc];
 }
 

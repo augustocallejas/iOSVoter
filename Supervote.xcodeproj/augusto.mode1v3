@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -268,19 +266,20 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>1423B41014081697006F8DBF</string>
-								<string>1462F3DD141DA475007E31C1</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>14E74AD91435914E002E2F82</string>
+								<string>1423B40F14081680006F8DBF</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>26</integer>
+									<integer>4</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {288, 760}}</string>
+							<string>{{0, 9}, {288, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -310,12 +309,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DisplayBallotController.m</string>
+								<string>ViewEndorsementController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +324,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DisplayBallotController.m</string>
+										<string>ViewEndorsementController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>140906381467241300B7B693</string>
+										<string>14090653146727F400B7B693</string>
 										<key>history</key>
 										<array>
 											<string>1423B64D140883BB006F8DBF</string>
@@ -372,24 +373,25 @@
 											<string>14DC6BCE1450154F00C1F913</string>
 											<string>146BFE431453B7800023BE71</string>
 											<string>144270821464F30A00C46FC2</string>
-											<string>1409057F146706E500B7B693</string>
 											<string>14090582146706E500B7B693</string>
 											<string>14090583146706E500B7B693</string>
 											<string>1409058A1467083B00B7B693</string>
 											<string>1409058B1467083B00B7B693</string>
 											<string>1409058C1467083B00B7B693</string>
 											<string>1409058D1467083B00B7B693</string>
-											<string>140905B014670A5900B7B693</string>
-											<string>140905C014671ACF00B7B693</string>
-											<string>140905D814671CD800B7B693</string>
 											<string>1409060214671FB700B7B693</string>
-											<string>1409060314671FB700B7B693</string>
 											<string>1409060414671FB700B7B693</string>
 											<string>1409060C1467206A00B7B693</string>
 											<string>1409060D1467206A00B7B693</string>
 											<string>14090624146721D700B7B693</string>
 											<string>140906361467241300B7B693</string>
-											<string>140906371467241300B7B693</string>
+											<string>1409063D146726F000B7B693</string>
+											<string>1409063E146726F000B7B693</string>
+											<string>1409063F146726F000B7B693</string>
+											<string>14090640146726F000B7B693</string>
+											<string>14090642146726F000B7B693</string>
+											<string>1409064D146727A800B7B693</string>
+											<string>1409064E146727A800B7B693</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -587,7 +589,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>140906351467228B00B7B693</string>
+		<string>14090654146727F400B7B693</string>
 		<string>1409050714660B9E00B7B693</string>
 		<string>140904F81465EA8500B7B693</string>
 		<string>1CD10A99069EF8BA00B06720</string>

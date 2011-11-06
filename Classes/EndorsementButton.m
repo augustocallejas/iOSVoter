@@ -11,9 +11,11 @@
 @implementation EndorsementButton
 
 @synthesize ballotVote = _ballotVote;
+@synthesize measureVote = _measureVote;
 
 - (void)dealloc {
 	self.ballotVote = nil;
+	self.measureVote = nil;
     [super dealloc];
 }
 
