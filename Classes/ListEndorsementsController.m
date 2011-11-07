@@ -8,6 +8,8 @@
 
 #import "ListEndorsementsController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "DisplayBallotController.h"
 #import "Friend.h"
 #import "EndorsementViewCell.h"
@@ -106,6 +108,10 @@
 		cell.detailTextLabel.text = friendMeasureVote.statement;
 		cell.imageView.image = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendMeasureVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 	}
+	
+	//cell.layer.masksToBounds = YES;
+	//cell.layer.cornerRadius = 5.0;
+	//cell.imageView.layer.masksToBounds = YES;
 	
 //	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
 //	if (friendBallotVote != nil) {
