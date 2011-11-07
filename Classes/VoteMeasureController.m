@@ -300,7 +300,7 @@
 }
 
 + (void)displayEndorsements:(NSNumber *)aVote forMeasure:(Measure *)aMeasure onNavigationController:(UINavigationController *)navController {
-	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] initWithStyle:UITableViewStyleGrouped];
 	controller.measure = aMeasure;
 	controller.vote = aVote;
 	controller.title = @"Endorsements";

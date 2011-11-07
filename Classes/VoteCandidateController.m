@@ -122,7 +122,7 @@
 }
 
 + (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController {
-	ListEndorsementsController *controller = [[ListEndorsementsController alloc] init];
+	ListEndorsementsController *controller = [[ListEndorsementsController alloc] initWithStyle:UITableViewStyleGrouped];
 	controller.position = position;
 	controller.candidate = candidate;
 	controller.title = @"Endorsements";
