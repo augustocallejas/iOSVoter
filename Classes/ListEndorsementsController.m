@@ -8,10 +8,12 @@
 
 #import "ListEndorsementsController.h"
 
+#import "DisplayBallotController.h"
 #import "Friend.h"
 #import "EndorsementViewCell.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
+#import "ViewEndorsementController.h"
 
 #define FONT_SIZE 14.0f
 #define LABEL_X_POSITION 69.0f
@@ -88,25 +90,42 @@
 		friendMeasureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	}
 	
-	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
+	/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	
+	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+
 	if (friendBallotVote != nil) {
-		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendBallotVote.author.name, friendBallotVote.statement];
+		cell.textLabel.text = friendBallotVote.author.name;
+		cell.detailTextLabel.text = friendBallotVote.statement;
+		cell.imageView.image = [DisplayBallotController loadImageForAuthorOfBallotVote:friendBallotVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 	}
-	else {
-		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendMeasureVote.author.name, friendMeasureVote.statement];
+	else if (friendMeasureVote != nil) {
+		cell.textLabel.text = friendMeasureVote.author.name;
+		cell.detailTextLabel.text = friendMeasureVote.statement;
+		cell.imageView.image = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendMeasureVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 	}
 	
-	UIImage *icon = [UIImage imageNamed:@"users.png"];
-	endorsementCell.endorserIcon.image = icon;
-	
-	/* set the size and position of the endorsement label */
-	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
-	CGSize size = [endorsementCell.endorsementStatement.text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]
-														constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-	[endorsementCell.endorsementStatement setFrame:CGRectMake(LABEL_X_POSITION,
-															  LABEL_Y_POSITION,
-															  LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2),
-															  MAX(size.height, 44.0f))];
+//	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
+//	if (friendBallotVote != nil) {
+//		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendBallotVote.author.name, friendBallotVote.statement];
+//	}
+//	else {
+//		endorsementCell.endorsementStatement.text = [NSString stringWithFormat:@"%@: %@", friendMeasureVote.author.name, friendMeasureVote.statement];
+//	}
+//	
+//	UIImage *icon = [UIImage imageNamed:@"users.png"];
+//	endorsementCell.endorserIcon.image = icon;
+//	
+//	/* set the size and position of the endorsement label */
+//	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
+//	CGSize size = [endorsementCell.endorsementStatement.text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE]
+//														constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+//	[endorsementCell.endorsementStatement setFrame:CGRectMake(LABEL_X_POSITION,
+//															  LABEL_Y_POSITION,
+//															  LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2),
+//															  MAX(size.height, 44.0f))];
 }
 
 
@@ -115,10 +134,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.tableView.userInteractionEnabled = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 /*
@@ -156,51 +171,57 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"EndorsementViewCell";
-    EndorsementViewCell *cell = (EndorsementViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    //EndorsementViewCell *cell = (EndorsementViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {
-		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
+//		cell.
+
 		
-		for (id nibObject in nibObjects) {
-			if ([nibObject isKindOfClass:[UITableViewCell class]]) {
-				cell = (EndorsementViewCell *)nibObject;
-				break;
-			}
-		}
+//		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
 		
-		// http://www.cimgf.com/2009/09/23/uitableviewcell-dynamic-height/
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-		cell.endorsementStatement = label;
-		[label setLineBreakMode:UILineBreakModeWordWrap];
-		[label setMinimumFontSize:FONT_SIZE];
-		[label setNumberOfLines:0];
-		[label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
-		[cell addSubview:label];
-		[label release];
+//		for (id nibObject in nibObjects) {
+//			if ([nibObject isKindOfClass:[UITableViewCell class]]) {
+//				cell = (EndorsementViewCell *)nibObject;
+//				break;
+//			}
+//		}
+		
+//		// http://www.cimgf.com/2009/09/23/uitableviewcell-dynamic-height/
+//		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+//		cell.endorsementStatement = label;
+//		[label setLineBreakMode:UILineBreakModeWordWrap];
+//		[label setMinimumFontSize:FONT_SIZE];
+//		[label setNumberOfLines:0];
+//		[label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+//		[cell addSubview:label];
+//		[label release];
 	}
 	
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	[self configureCell:cell atIndexPath:indexPath];
 	
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	FriendBallotVote *friendBallotVote = nil;
-	FriendMeasureVote *friendMeasureVote = nil;
-	if (_position != nil) {
-		friendBallotVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	}
-	else {
-		friendMeasureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
-	}
-
-	NSString *text = friendBallotVote != nil ? friendBallotVote.statement : friendMeasureVote.statement;
-	
-	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
-	CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-	CGFloat height = MAX(size.height, 44.0f);
-	
-	return height + (LABEL_CONTENT_MARGIN * 2);
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//	FriendBallotVote *friendBallotVote = nil;
+//	FriendMeasureVote *friendMeasureVote = nil;
+//	if (_position != nil) {
+//		friendBallotVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+//	}
+//	else {
+//		friendMeasureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+//	}
+//
+//	NSString *text = friendBallotVote != nil ? friendBallotVote.statement : friendMeasureVote.statement;
+//	
+//	CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH - (LABEL_CONTENT_MARGIN * 2), 20000.0f);
+//	CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+//	CGFloat height = MAX(size.height, 44.0f);
+//	
+//	return height + (LABEL_CONTENT_MARGIN * 2);
+//}
 
 
 /*
@@ -246,16 +267,25 @@
 #pragma mark -
 #pragma mark Table view delegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // Navigation logic may go here. Create and push another view controller.
-//    /*
-//    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-//     // ...
-//     // Pass the selected object to the new view controller.
-//    [self.navigationController pushViewController:detailViewController animated:YES];
-//    [detailViewController release];
-//    */
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSLog(@"selected");
+	FriendBallotVote *ballotVote = nil;
+	FriendMeasureVote *measureVote = nil;
+	if (_position != nil) {
+		ballotVote = (FriendBallotVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
+	else {
+		measureVote = (FriendMeasureVote *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	}
+	
+	if (ballotVote != nil || measureVote != nil) {
+		ViewEndorsementController *controller = [[ViewEndorsementController alloc] initWithNibName:@"ViewEndorsementController" bundle:[NSBundle mainBundle]];
+		controller.ballotVote = ballotVote;
+		controller.measureVote = measureVote;
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+}
 
 
 #pragma mark -

@@ -274,9 +274,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>24</integer>
-									<integer>4</integer>
-									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -311,14 +308,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteMeasureController.m</string>
+								<string>VoteCandidateController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +321,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>VoteMeasureController.m</string>
+										<string>VoteCandidateController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>142082A01467336800262CC1</string>
+										<string>142083A214675FAA00262CC1</string>
 										<key>history</key>
 										<array>
 											<string>1423B64D140883BB006F8DBF</string>
@@ -348,7 +343,6 @@
 											<string>14A6F45D143D990F00EBF65D</string>
 											<string>14EF328C144231F600557A80</string>
 											<string>14EF339B144542F100557A80</string>
-											<string>14EF33E114454AD600557A80</string>
 											<string>14EF33E314454AD600557A80</string>
 											<string>14EF34A814456C3C00557A80</string>
 											<string>14EF36311449404900557A80</string>
@@ -368,14 +362,8 @@
 											<string>14E4E3F6144E7B9C005B7E1A</string>
 											<string>14DC6BC91450154F00C1F913</string>
 											<string>14DC6BCA1450154F00C1F913</string>
-											<string>14DC6BCB1450154F00C1F913</string>
-											<string>14DC6BCC1450154F00C1F913</string>
-											<string>14DC6BCE1450154F00C1F913</string>
-											<string>146BFE431453B7800023BE71</string>
 											<string>144270821464F30A00C46FC2</string>
 											<string>1409058A1467083B00B7B693</string>
-											<string>1409058B1467083B00B7B693</string>
-											<string>1409058C1467083B00B7B693</string>
 											<string>1409058D1467083B00B7B693</string>
 											<string>1409060214671FB700B7B693</string>
 											<string>1409060D1467206A00B7B693</string>
@@ -384,16 +372,23 @@
 											<string>1409063F146726F000B7B693</string>
 											<string>14090640146726F000B7B693</string>
 											<string>14090642146726F000B7B693</string>
-											<string>1409064D146727A800B7B693</string>
-											<string>1409065D14672C0400B7B693</string>
 											<string>142082721467306900262CC1</string>
 											<string>142082731467306900262CC1</string>
 											<string>142082741467306900262CC1</string>
 											<string>1420827E1467309400262CC1</string>
 											<string>1420828E1467324400262CC1</string>
-											<string>1420828F1467324400262CC1</string>
-											<string>1420829E1467336800262CC1</string>
-											<string>1420829F1467336800262CC1</string>
+											<string>142082C614674CFB00262CC1</string>
+											<string>14208333146756EF00262CC1</string>
+											<string>14208335146756EF00262CC1</string>
+											<string>14208337146756EF00262CC1</string>
+											<string>142083441467577900262CC1</string>
+											<string>142083451467577900262CC1</string>
+											<string>1420834B146757EA00262CC1</string>
+											<string>142083531467582E00262CC1</string>
+											<string>142083751467596B00262CC1</string>
+											<string>1420839C14675C4F00262CC1</string>
+											<string>142083A014675FAA00262CC1</string>
+											<string>142083A114675FAA00262CC1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -405,16 +400,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {892, 773}}</string>
+								<string>{{0, 0}, {892, 570}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1202 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>773pt</string>
+							<string>570pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -425,14 +422,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 778}, {892, 0}}</string>
+								<string>{{0, 575}, {892, 203}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1202 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>0pt</string>
+							<string>203pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -591,7 +588,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>142082A11467336800262CC1</string>
 		<string>142082811467309400262CC1</string>
 		<string>1420827D1467306900262CC1</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -621,7 +617,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VoteMeasureController.m</string>
+								<string>ListEndorsementsController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
