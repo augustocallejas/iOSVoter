@@ -19,5 +19,7 @@
 @property (nonatomic, retain) IBOutlet UIButton	*joinButton;
 //@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
 
+- (IBAction)doJoinButtonSendZip;
+
 @end
 

@@ -8,6 +8,8 @@
 
 #import "SupervoteViewController.h"
 
+#import "SupervoteAppDelegate.h"
+
 @implementation SupervoteViewController
 
 @synthesize FirstZIPField;
@@ -84,6 +86,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
 	return NO;
+}
+
+- (IBAction)doJoinButtonSendZip {
+	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+	[appDelegate switchToMainApp];
 }
 
 

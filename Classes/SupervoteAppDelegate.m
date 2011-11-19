@@ -39,11 +39,15 @@
 										  nil];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
 
-	// Set the view controller as the window's root view controller and display.
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-
-    return YES;
+	SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
+	self.viewController = controller;
+	self.window.rootViewController = controller;
+//	[self.window addSubview:self.viewController.view];
+//	[self.viewController.view release];
+	[self.window makeKeyAndVisible];
+	[controller release];
+	
+	return YES;
 }
 
 
@@ -88,18 +92,19 @@
 #pragma mark -
 #pragma mark Custom actions
 
-- (IBAction)doJoinButtonSendZip {
+- (void)switchToMainApp {
 	if (mainAppController == nil)
 	{
 		//[[NSBundle mainBundle] loadNibNamed:@"MainApp" owner:self options:nil];
 
-		self.mainAppController = [[[UITabBarController alloc] init] autorelease];
+		UITabBarController *controller = [[UITabBarController alloc] init];
+		self.mainAppController = controller;
+		[controller release];
 		//self.mainAppController.delegate = self;
 		
 		FeedController *feeds = [[[FeedController alloc] initWithNibName:@"FeedController" bundle:[NSBundle mainBundle]] autorelease];
 		feeds.title = @"Feed";
 		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
-		
 		
 		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
 		elections.title = @"Elections";
@@ -222,12 +227,8 @@
 	[managedObjectContext_ release];
 	[managedObjectModel_ release];
 	[persistentStoreCoordinator_ release];
-	
-    [viewController release];
-	if (mainAppController != nil)
-	{
-		[mainAppController release];
-	}
+	self.viewController = nil;
+	self.mainAppController = nil;
     [window release];
     [super dealloc];
 }

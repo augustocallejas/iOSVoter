@@ -22,8 +22,8 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet SupervoteViewController *viewController;
-@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
+@property (nonatomic, retain) SupervoteViewController *viewController;
+@property (nonatomic, retain) UITabBarController *mainAppController;
 
 // http://www.cimgf.com/2011/01/07/passing-around-a-nsmanagedobjectcontext-on-the-iphone/
 // http://www.cimgf.com/2011/06/02/saving-json-to-core-data/
@@ -36,7 +36,7 @@
 @property (nonatomic, retain) Facebook* facebook;
 
 - (NSURL *)applicationDocumentsDirectory;
-- (IBAction)doJoinButtonSendZip;
+- (void)switchToMainApp;
 
 @end
 
