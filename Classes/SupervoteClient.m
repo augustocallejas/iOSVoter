@@ -97,6 +97,7 @@
 		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 		
 		/* does the election exist in the database already? */
+		/* TODO: this is a weak way to checking, since the date of an election can change, use a GUID instead */
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Election" inManagedObjectContext:context];
 		[fetchRequest setEntity:entity];
