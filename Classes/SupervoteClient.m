@@ -69,6 +69,12 @@
 //}
 
 - (id)getElections {
+	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
+	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
+	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
+	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
+	
+	/* TODO: this should be asynchronous */
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/elections"]];
 	NSError *error = nil;
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
