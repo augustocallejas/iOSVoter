@@ -12,6 +12,7 @@
 	UITextField *SecondZIPField;
 	UIButton *joinButton;
 	//UITabBarController *mainAppController;
+	NSMutableData *responseData;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *FirstZIPField;

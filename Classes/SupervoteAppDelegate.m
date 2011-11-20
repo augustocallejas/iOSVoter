@@ -105,6 +105,7 @@
 		FeedController *feeds = [[[FeedController alloc] initWithNibName:@"FeedController" bundle:[NSBundle mainBundle]] autorelease];
 		feeds.title = @"Feed";
 		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+		feeds.managedObjectContext = self.managedObjectContext;
 		
 		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
 		elections.title = @"Elections";

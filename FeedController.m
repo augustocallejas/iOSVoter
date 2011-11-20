@@ -11,6 +11,8 @@
 
 @implementation FeedController
 
+@synthesize managedObjectContext = _managedObjectContext;
+
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
@@ -82,12 +84,20 @@
 }
 */
 
-/*
+#pragma mark -
+#pragma mark View methods
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	client = [[SupervoteClient alloc] init];
+	
+	NSError *error;
+	NSArray *elections = [client getElections];
+	[client insertElections:elections intoManagedContext:_managedObjectContext withError:&error];
+
+	//NSLog(@"Elections: %@", [client getElections]);
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -108,10 +118,12 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[client release];
 }
 
 
 - (void)dealloc {
+	self.managedObjectContext = nil;
     [super dealloc];
 }
 

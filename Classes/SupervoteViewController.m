@@ -88,13 +88,16 @@
 	return NO;
 }
 
-- (IBAction)doJoinButtonSendZip {
+- (IBAction)doJoinButtonSendZip {	
 	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToMainApp];
 }
 
 
 - (void)dealloc {
+	if (responseData != nil) {
+		[responseData release];
+	}
 	[FirstZIPField dealloc];
 	[SecondZIPField dealloc];
 	[joinButton dealloc];
