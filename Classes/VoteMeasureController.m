@@ -155,7 +155,7 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", ballot, measure];
 	[request setPredicate:predicate];
 	
-	MeasureVote *measureVote;
+	MeasureVote *measureVote = nil;
 	NSArray *array = [[ballot managedObjectContext] executeFetchRequest:request error:error];
 	if (array != nil)
 	{
