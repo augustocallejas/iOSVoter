@@ -2,8 +2,8 @@
 //  Candidate.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/26/11.
-//  Copyright 2011 Canary Falls Software LLC. All rights reserved.
+//  Created by augusto callejas on 11/22/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) NSNumber * displayOrder;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * party;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * occupation;

@@ -2,18 +2,20 @@
 //  Election.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
+//  Created by augusto callejas on 11/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
+@class Measure;
 @class Position;
 
 @interface Election :  NSManagedObject  
 {
 }
 
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSSet* positions;
@@ -28,8 +30,8 @@
 - (void)addPositions:(NSSet *)value;
 - (void)removePositions:(NSSet *)value;
 
-- (void)addMeasuresObject:(NSManagedObject *)value;
-- (void)removeMeasuresObject:(NSManagedObject *)value;
+- (void)addMeasuresObject:(Measure *)value;
+- (void)removeMeasuresObject:(Measure *)value;
 - (void)addMeasures:(NSSet *)value;
 - (void)removeMeasures:(NSSet *)value;
 

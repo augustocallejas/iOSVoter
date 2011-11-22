@@ -98,16 +98,17 @@
 
 - (BOOL)insertElections:(NSArray *)elections intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
 	for (NSDictionary *election in elections) {
+		NSString *guid = [election objectForKey:@"guid"];
 		NSString *title = [election objectForKey:@"title"];
 		NSNumber *dateValue = [election objectForKey:@"date"];
 		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 		
 		/* does the election exist in the database already? */
-		/* TODO: this is a weak way to checking, since the date of an election can change, use a GUID instead */
+		/* TODO guid is a good way to check if the election already exists, but what about changes? */
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Election" inManagedObjectContext:context];
 		[fetchRequest setEntity:entity];
-		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"date == %@", date]];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"guid == %@", guid]];
 		
 //		NSLog(@"date %@", date);
 		NSError *error = nil;
@@ -119,6 +120,7 @@
 		}
 		
 		Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:context];
+		electionObj.guid = guid;
 		electionObj.title = title;
 		electionObj.date = date;
 		[date release];
@@ -133,6 +135,8 @@
 		NSArray *positions = [election objectForKey:@"positions"];
 		if (positions != nil) {
 			for (NSDictionary *position in positions) {
+				// guid
+				NSString *guid = [position objectForKey:@"guid"];
 				// title
 				NSString *title = [position objectForKey:@"title"];
 				// level
@@ -142,9 +146,10 @@
 				// titleOrder
 				NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
 				
-				//NSLog(@"%@ %@ %@ %@", title, level, levelOrder, titleOrder);
+				//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
 				
 				Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:context];
+				positionObj.guid = guid;
 				positionObj.level = level;
 				positionObj.levelOrder = levelOrder;
 				positionObj.title = title;
@@ -162,6 +167,7 @@
 				NSArray *candidates = [position objectForKey:@"candidates"];
 				if (candidates != nil) {
 					for (NSDictionary *candidate in candidates) {
+						NSString *guid = [candidate objectForKey:@"guid"];
 						NSString *name = [candidate objectForKey:@"name"];
 						id party = [candidate objectForKey:@"party"];
 						id occupation = [candidate objectForKey:@"occupation"];
@@ -170,6 +176,7 @@
 						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
 						
 						Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:context];
+						candidateObj.guid = guid;
 						candidateObj.name = name;
 						if (party != [NSNull null]) {
 							candidateObj.party = party;
@@ -194,6 +201,7 @@
 		NSArray *measures = [election objectForKey:@"measures"];
 		if (measures != nil) {
 			for (NSDictionary *measure in measures) {
+				NSString *guid = [measure objectForKey:@"guid"];
 				NSString *identifier = [measure objectForKey:@"identifier"];
 				NSString *title = [measure objectForKey:@"title"];
 				NSString *level = [measure objectForKey:@"level"];
@@ -201,9 +209,10 @@
 				NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
 				NSString *longDescription = [measure objectForKey:@"longDescription"];
 				
-				//NSLog(@"%@ %@ %@ %@ %@ %@", identifier, title, level, levelOrder, displayOrder, longDescription);
+				//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
 				
 				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:context];
+				measureObj.guid = guid;
 				measureObj.identifier = identifier;
 				measureObj.title = title;
 				measureObj.longDescription = longDescription;

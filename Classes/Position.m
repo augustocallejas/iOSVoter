@@ -2,7 +2,7 @@
 //  Position.m
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
+//  Created by augusto callejas on 11/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 @dynamic title;
 @dynamic level;
 @dynamic titleOrder;
+@dynamic guid;
 @dynamic candidates;
 @dynamic forElection;
 

@@ -2,7 +2,7 @@
 //  Measure.m
 //  Supervote
 //
-//  Created by augusto callejas on 9/1/11.
+//  Created by augusto callejas on 11/22/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -18,6 +18,7 @@
 @dynamic identifier;
 @dynamic displayOrder;
 @dynamic longDescription;
+@dynamic guid;
 @dynamic forElection;
 
 @end
