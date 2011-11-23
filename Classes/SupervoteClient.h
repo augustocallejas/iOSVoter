@@ -16,6 +16,12 @@
 }
 
 - (id)registerDevice;
+- (void)sendFacebookAccessToken:(NSString *)accessToken;
+- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid fromContext:(NSManagedObjectContext *)context;
+- (id)getVotesForBallot:(NSString *)guid;
+- (BOOL)insertVotes:(NSArray *)votes intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
+- (id)getFriends;
+- (BOOL)insertFriends:(NSArray *)friends intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
 - (id)getElections;
 - (BOOL)insertElections:(NSArray *)elections intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
 

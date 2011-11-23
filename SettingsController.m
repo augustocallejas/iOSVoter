@@ -48,6 +48,8 @@ static NSString* kAppId = @"259602660736072";
 	
 	/* download the friend graph */
 	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
+	
+	[client sendFacebookAccessToken:[_facebook accessToken]];
 }
 
 /**
@@ -214,6 +216,23 @@ static NSString* kAppId = @"259602660736072";
 				[request release];
 			}
 		}
+		
+		NSError *error = nil;
+		NSArray *friends = [client getFriends];
+		[client insertFriends:friends intoManagedContext:_managedObjectContext withError:&error];
+		
+		if (error != nil) {
+			NSLog(@"error: %@", [error userInfo]);
+		}
+		
+		error = nil;
+		/* TODO: not a real election guid */
+		NSArray *votes = [client getVotesForBallot:@"test"];
+		[client insertVotes:votes intoManagedContext:_managedObjectContext withError:&error];
+		
+		if (error != nil) {
+			NSLog(@"error: %@", [error userInfo]);
+		}
 	}
 	else {
 		//NSLog(@"result %@", result);
@@ -374,12 +393,11 @@ static NSString* kAppId = @"259602660736072";
     return self;
 }
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	client = [[SupervoteClient alloc] init];
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -400,6 +418,7 @@ static NSString* kAppId = @"259602660736072";
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[client release];
 }
 
 

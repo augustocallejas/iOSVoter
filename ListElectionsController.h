@@ -14,6 +14,4 @@
 	NSDateFormatter *dateFormatter;
 }
 
-- (void)insertTestData;
-
 @end

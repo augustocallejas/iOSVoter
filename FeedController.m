@@ -92,9 +92,14 @@
     [super viewDidLoad];
 	client = [[SupervoteClient alloc] init];
 	
-	NSError *error;
+	NSError *error = nil;
 	NSArray *elections = [client getElections];
 	[client insertElections:elections intoManagedContext:_managedObjectContext withError:&error];
+	
+//	error = nil;
+//	NSArray *friends = [client getFriends];
+//	[client insertFriends:friends intoManagedContext:_managedObjectContext withError:&error];
+	
 
 	//NSLog(@"Elections: %@", [client getElections]);
 }

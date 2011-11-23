@@ -10,6 +10,9 @@
 
 #import "Candidate.h"
 #import "Election.h"
+#import "Friend.h"
+#import "FriendBallotVote.h"
+#import "FriendMeasureVote.h"
 #import "Measure.h"
 #import "Position.h"
 
@@ -68,6 +71,189 @@
 //	[appDelegate switchToMainApp];
 //}
 
+- (void)sendFacebookAccessToken:(NSString *)accessToken {
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/accessToken?socialnet=fb&access_token=%@", accessToken];
+	/* TODO: this should be asynchronous */
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+	NSError *error = nil;
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+//	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+//	NSArray *elections = [parser objectWithString:json error:&error];	
+//	[json release];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
+}
+
+- (id)getVotesForBallot:(NSString *)guid{
+	/* TODO: this should be asynchronous */
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?election=%@", guid];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+	NSError *error = nil;
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+	NSArray *votes = [parser objectWithString:json error:&error];	
+	[json release];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
+	
+	return votes;
+}
+
+- (BOOL)insertVotes:(NSArray *)votes intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
+	for (NSDictionary *vote in votes) {
+		NSString *type = [vote objectForKey:@"type"];
+		
+		if ([@"FriendBallotVote" isEqualToString:type]) {
+			NSNumber *dateValue = [vote objectForKey:@"date"];
+			NSString *positionGuid = [vote objectForKey:@"position"];
+			NSString *authorGuid = [vote objectForKey:@"author"];
+			NSString *statement = [vote objectForKey:@"statement"];
+			NSString *candidateGuid = [vote objectForKey:@"candidate"];
+			
+			Position *position = [self getObject:@"Position" byGuid:positionGuid fromContext:context];
+			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid fromContext:context];
+			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid fromContext:context];
+			
+			if (position != nil && candidate != nil && friend != nil) {
+				if (candidate.position == position) {
+					
+					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+
+					FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:context];
+					voteObj.forCandidate = candidate;
+					voteObj.forPosition = position;
+					voteObj.author = friend;
+					voteObj.date = date;
+					voteObj.statement = statement;
+					
+					NSError *error = nil;
+					[context save:&error];
+					[date release];
+				}
+			}
+			else {
+				NSLog(@"Some value was nil..");
+			}
+
+		}
+		else if ([@"FriendMeasureVote" isEqualToString:type]) {
+			NSNumber *dateValue = [vote objectForKey:@"date"];
+			NSString *authorGuid = [vote objectForKey:@"author"];
+			NSString *statement = [vote objectForKey:@"statement"];
+			NSNumber *voteValue = [vote objectForKey:@"vote"];
+			NSString *measureGuid = [vote objectForKey:@"measure"];
+			
+			Measure *measure = [self getObject:@"Measure" byGuid:measureGuid fromContext:context];
+			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid fromContext:context];
+			
+			if (measure != nil && friend != nil) {
+				NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+								
+				FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:context];
+				voteObj.forMeasure = measure;
+				voteObj.vote = voteValue;
+				voteObj.author = friend;
+				voteObj.statement = statement;
+				voteObj.date = date;
+				
+				NSError *error = nil;
+				[context save:&error];
+				[date release];
+			}
+			else {
+				NSLog(@"Some value was nil..");
+			}
+		}
+		else {
+			NSLog(@"Unexpected type: %@", type);
+		}
+	}
+	
+	return YES;
+}
+
+- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid fromContext:(NSManagedObjectContext *)context {
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+	[fetchRequest setEntity:entity];
+	[fetchRequest setFetchLimit:2];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"guid == %@", guid]];
+	
+	NSError *err = nil;
+	NSArray *array = [context executeFetchRequest:fetchRequest error:&err];
+	[fetchRequest release];
+	if (err != nil || array == nil) {
+		return nil;
+	}
+	if ([array count] == 0) {
+		return nil;
+	}
+	else if ([array count] == 2) {
+		NSLog(@"Found multiple objects (%@) with the same guid (%@), returning first object", entityName, guid);
+	}
+	
+	return [array objectAtIndex:0];
+}
+
+
+- (id)getFriends {
+	/* TODO: this should be asynchronous */
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/friends"]];
+	NSError *error = nil;
+	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+	NSArray *elections = [parser objectWithString:json error:&error];	
+	[json release];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
+	
+	return elections;	
+}
+
+- (BOOL)insertFriends:(NSArray *)friends intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
+	for (NSDictionary *friend in friends) {
+		NSString *guid = [friend objectForKey:@"guid"];
+		NSString *name = [friend objectForKey:@"name"];
+		NSString *facebookId = [friend objectForKey:@"facebookFriendId"];
+		
+		/* does the friend exist in the database already? */
+		/* TODO guid is a good way to check if the friend already exists, but what about changes? */
+		Friend *friendFound = [self getObject:@"Friend" byGuid:guid fromContext:context];
+		if (friendFound != nil) {
+			NSLog(@"Friend already in database, but are there updates, like name?");
+			continue;
+		}
+		
+		Friend *friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
+		friendObj.guid = guid;
+		friendObj.name = name;
+		
+		/* query for facebook friend object */
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:context];
+		[fetchRequest setFetchLimit:1];
+		[fetchRequest setEntity:entity];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", facebookId]];
+		NSError *err = nil;
+		NSArray *array = [context executeFetchRequest:fetchRequest error:&err];
+		[fetchRequest release];
+		if (err != nil) {
+			NSLog(@"Error: %@", [err userInfo]);
+		}
+		else if (array != nil && [array count] == 1) {
+			friendObj.facebook = [array objectAtIndex:0];
+		}
+	}
+	
+	return [context save:error];
+}
+
 - (id)getElections {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
@@ -81,7 +267,6 @@
 	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 	NSArray *elections = [parser objectWithString:json error:&error];	
 	[json release];
-	
 	
 	if (error != nil) {
 		NSLog(@"error: %@", [error userInfo]);
@@ -104,18 +289,10 @@
 		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 		
 		/* does the election exist in the database already? */
-		/* TODO guid is a good way to check if the election already exists, but what about changes? */
-		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Election" inManagedObjectContext:context];
-		[fetchRequest setEntity:entity];
-		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"guid == %@", guid]];
-		
-//		NSLog(@"date %@", date);
-		NSError *error = nil;
-		NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
-		[fetchRequest release];
-		if (error != nil || (array != nil && [array count] > 0)) {
-//			NSLog(@"Skipping insert");
+		/* TODO guid is a good way to check if the election already exists, but what about changes? */		
+		Election *electionFound = [self getObject:@"Election" byGuid:guid fromContext:context];
+		if (electionFound != nil) {
+			NSLog(@"Election already in database, but are there updates, like date?");
 			continue;
 		}
 		
@@ -124,13 +301,6 @@
 		electionObj.title = title;
 		electionObj.date = date;
 		[date release];
-
-//		Election *election1 = (Election *) [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:self.managedObjectContext];
-//		election1.title = @"2008 General Election";
-//		NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
-//		dateFormatter1.dateFormat = @"dd-MM-yy";
-//		election1.date = [dateFormatter1 dateFromString:@"04-11-08"];
-//		[dateFormatter1 release];
 		
 		NSArray *positions = [election objectForKey:@"positions"];
 		if (positions != nil) {
@@ -156,13 +326,6 @@
 				positionObj.titleOrder = titleOrder;
 				[electionObj addPositionsObject:positionObj];
 				
-//				Position *position1 = (Position *) [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:self.managedObjectContext];
-//				position1.level = @"President of the United States";
-//				position1.levelOrder = [NSNumber numberWithInt:0];
-//				position1.title = @"President and Vice President";
-//				position1.titleOrder = [NSNumber numberWithInt:0];
-//				[election1 addPositionsObject:position1];
-				
 				// candidates
 				NSArray *candidates = [position objectForKey:@"candidates"];
 				if (candidates != nil) {
@@ -186,13 +349,6 @@
 							candidateObj.occupation = occupation;
 						}
 						[positionObj addCandidatesObject:candidateObj];
-
-//						Candidate *candidate1 = (Candidate *) [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:self.managedObjectContext];
-//						candidate1.name = @"Barack Obama";
-//						candidate1.party = @"Democratic";
-//						candidate1.displayOrder = [NSNumber numberWithInt:0];
-//						candidate1.occupation = nil;
-//						[position1 addCandidatesObject:candidate1];
 					}
 				}
 			}
@@ -220,19 +376,9 @@
 				measureObj.levelOrder = levelOrder;
 				measureObj.displayOrder = displayOrder;
 				[electionObj addMeasuresObject:measureObj];
-				
-//				Measure *measure1 = (Measure *) [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:self.managedObjectContext];
-//				measure1.identifier = @"1A";
-//				measure1.title = @"Safe, Reliable High-Speed Passenger Train Bond Act";
-//				measure1.longDescription = @"To provide Californians a safe...";
-//				measure1.level = @"Measures submitted to the voters";
-//				measure1.levelOrder = [NSNumber numberWithInt:0];
-//				measure1.displayOrder = [NSNumber numberWithInt:0];
-//				measure1.forElection = election1;
 			}
 		}
 	}
-	
 	
 	return [context save:error];
 }

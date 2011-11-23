@@ -6,6 +6,7 @@
 //  Copyright 2011 Supervote, LLC. All rights reserved.
 //
 
+#import "SupervoteClient.h"
 
 @interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate> {
 	BOOL _loggedIn;
@@ -13,6 +14,7 @@
 	NSManagedObjectContext *_managedObjectContext;
 	Facebook *_facebook;
 	NSString *_documentsPath;
+	SupervoteClient *client;
 }
 
 @property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
