@@ -27,9 +27,6 @@
 	if (indexPath.section == 0 && indexPath.row == 0) {
 		if (_facebookClient.loggedIn) {
 			[_facebookClient logout];
-			/* reload table cell so that it refreshes its view */
-			//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-			
 		}
 		else {
 			[_facebookClient authorize];
