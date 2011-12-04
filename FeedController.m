@@ -94,6 +94,7 @@
 	
 	NSError *error = nil;
 	NSArray *elections = [client getElections];
+	/* TODO: run in background? */
 	[client insertElections:elections intoManagedContext:_managedObjectContext withError:&error];
 	
 //	error = nil;

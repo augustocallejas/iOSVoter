@@ -6,10 +6,11 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "FacebookClient.h"
 
 @class SupervoteViewController;
 
-@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate> {
+@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate> {
     UIWindow *window;
     SupervoteViewController *viewController;
 	UITabBarController *mainAppController;
@@ -18,7 +19,7 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
-	Facebook* _facebook;
+	FacebookClient* _facebookClient;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -33,7 +34,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, retain) Facebook* facebook;
+@property (nonatomic, retain) FacebookClient* facebookClient;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)switchToMainApp;

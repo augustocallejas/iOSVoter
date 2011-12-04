@@ -7,21 +7,34 @@
 //
 
 #import "ListElectionsController.h"
+#import "FacebookClient.h"
 #import "FeedController.h"
 #import "SettingsController.h"
 #import "SupervoteAppDelegate.h"
 #import "SupervoteViewController.h"
+
 
 @implementation SupervoteAppDelegate
 
 @synthesize window;
 @synthesize viewController;
 @synthesize mainAppController;
-@synthesize facebook = _facebook;
+@synthesize facebookClient = _facebookClient;
 
+// Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	if (_facebook != nil) {
-		return [_facebook handleOpenURL:url];
+	if (_facebookClient != nil) {
+		return [_facebookClient.facebook handleOpenURL:url];
+	}
+	
+	return NO;
+}
+
+// For 4.2+ support
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+	if (_facebookClient != nil) {
+		return [_facebookClient.facebook handleOpenURL:url];
 	}
 	
 	return NO;
@@ -38,14 +51,28 @@
 										  [NSNumber numberWithBool:NO], @"SocialBallotMode",
 										  nil];
 	[[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsPath = [paths objectAtIndex:0];
 
-	SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
-	self.viewController = controller;
-	self.window.rootViewController = controller;
-//	[self.window addSubview:self.viewController.view];
-//	[self.viewController.view release];
+	_facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
+	
+	if (!_facebookClient.loggedIn) {
+		SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
+		self.viewController = controller;
+		self.window.rootViewController = controller;
+		//	[self.window addSubview:self.viewController.view];
+		//	[self.viewController.view release];
+		[controller release];
+	}
+	else {
+		[self switchToMainApp];
+	}
 	[self.window makeKeyAndVisible];
-	[controller release];
+
+	
+
+
 	
 	return YES;
 }
@@ -96,7 +123,15 @@
 	if (mainAppController == nil)
 	{
 		//[[NSBundle mainBundle] loadNibNamed:@"MainApp" owner:self options:nil];
+		if (_facebookClient.loggedIn) {
+			NSLog(@"logged in");
+			[_facebookClient updateFriends];
+		}
+		else {
+			NSLog(@"not logged in");
+		}
 
+		
 		UITabBarController *controller = [[UITabBarController alloc] init];
 		self.mainAppController = controller;
 		[controller release];
@@ -117,7 +152,7 @@
 		settings.managedObjectContext = self.managedObjectContext;
 		settings.title = @"Settings";
 		settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
-		self.facebook = settings.facebook;
+		settings.facebookClient = self.facebookClient;
 		
 		self.mainAppController.viewControllers = [[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease];
 		
@@ -224,7 +259,7 @@
 }
 
 - (void)dealloc {
-	self.facebook = nil;
+	self.facebookClient = nil;
 	[managedObjectContext_ release];
 	[managedObjectModel_ release];
 	[persistentStoreCoordinator_ release];
