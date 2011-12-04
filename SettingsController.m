@@ -19,10 +19,6 @@
 #pragma mark -
 #pragma mark SettingsController methods
 
-- (void) login {
-	[_facebookClient authorize];
-}
-
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
@@ -36,7 +32,7 @@
 			
 		}
 		else {
-			[self login];
+			[_facebookClient authorize];
 		}
 	}
 }
