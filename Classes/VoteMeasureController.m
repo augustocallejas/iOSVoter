@@ -120,6 +120,11 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
+	self.navigationItem.rightBarButtonItem = reload;
+	[reload release];
+	
 	self.tableView.allowsSelection = NO;
 	
 	/* query for a measure vote, if any */
@@ -577,6 +582,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.navigationItem.rightBarButtonItem = nil;
 }
 
 

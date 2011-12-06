@@ -12,6 +12,7 @@
 @implementation FeedController
 
 @synthesize managedObjectContext = _managedObjectContext;
+@synthesize client = _client;
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
@@ -90,12 +91,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	client = [[SupervoteClient alloc] init];
-	
-	NSError *error = nil;
-	NSArray *elections = [client getElections];
-	/* TODO: run in background? */
-	[client insertElections:elections intoManagedContext:_managedObjectContext withError:&error];
 	
 //	error = nil;
 //	NSArray *friends = [client getFriends];
@@ -124,12 +119,12 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-	[client release];
 }
 
 
 - (void)dealloc {
 	self.managedObjectContext = nil;
+	self.client = nil;
     [super dealloc];
 }
 

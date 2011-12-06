@@ -20,6 +20,7 @@
 }
 
 @property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) NSString *documentsPath;
 

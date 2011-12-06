@@ -13,6 +13,7 @@
 @implementation SettingsController
 
 @synthesize managedObjectContext = _managedObjectContext;
+@synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 @synthesize documentsPath = _documentsPath;
 
@@ -36,6 +37,8 @@
 
 - (void)fbDidLogin {
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+	
+	[_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 }
 
 - (void)fbDidLogout {
@@ -111,7 +114,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	client = [[SupervoteClient alloc] init];
+	
 	if (_facebookClient != nil) {
 		_facebookClient.delegate = self;
 	}
@@ -136,7 +139,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-	[client release];
+
 	if (_facebookClient != nil) {
 		_facebookClient.delegate = nil;
 	}
@@ -145,6 +148,7 @@
 
 - (void)dealloc {
 	self.managedObjectContext = nil;
+	self.client = nil;
 	self.facebookClient = nil;
 	self.documentsPath = nil;
     [super dealloc];

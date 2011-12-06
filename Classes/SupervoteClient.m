@@ -18,16 +18,28 @@
 
 @implementation SupervoteClient
 
--(id) init {
+- (id)initWithContext:(NSManagedObjectContext *)context {
     self = [super init];
 	if (self) {
 		parser = [[SBJSON alloc] init];
+		
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		if ([defaults objectForKey:@"DeviceID"]) {
+			deviceID = [[defaults objectForKey:@"DeviceID"] retain];
+			NSLog(@"Loaded device ID '%@'", deviceID);
+		}
+		
+		_context = [context retain];
 	}
     return self;
 }
 
+- (BOOL)isRegistered {
+	return deviceID != nil;
+}
+
 /* TODO: this method should take arguments and return some value, and also have an error argument */
-- (id)registerDevice {
+- (BOOL)registerDevice {
 //	/* TODO: release */
 //	responseData = [[NSMutableData alloc] init];
 //	//NSURL *url = [NSURL URLWithString:@"http://search.twitter.com/search.json?q=earthquake"];
@@ -37,15 +49,36 @@
 //	[request release];
 //	[connection start];
 	
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/registration?z=91104&d=1"]];
-	NSError *error;
+	CFUUIDRef theUUID = CFUUIDCreate(NULL);
+	NSString *newDeviceID = (NSString *) CFUUIDCreateString(NULL, theUUID);
+	CFRelease(theUUID);
+	
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/registration?z=91104&d=%@", newDeviceID];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+	NSError *error = nil;
 	//NSData *response = [
 	/* TODO: ignoring the response! */
-	[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-//	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-//	NSArray *elections = [parser objectWithString:json error:&error];	
+	NSURLResponse *response = nil;
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	
-	return nil;
+	BOOL registered = NO;
+	if (error != nil) {
+		NSLog(@"Error: %@", [error userInfo]);
+	}
+	else if (response != nil && [((NSHTTPURLResponse *) response) statusCode] == 200) {
+		/* save UUID */
+		deviceID = newDeviceID;
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:deviceID forKey:@"DeviceID"];
+		[defaults synchronize];
+		NSLog(@"Registered new device ID '%@'", deviceID);
+		registered = YES;
+	}
+	else {
+		NSLog(@"Error registering device");
+	}
+	
+	return YES;
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -72,7 +105,7 @@
 //}
 
 - (void)sendFacebookAccessToken:(NSString *)accessToken {
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/accessToken?socialnet=fb&access_token=%@", accessToken];
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/accessToken?d=%@&socialnet=fb&access_token=%@", deviceID, accessToken];
 	/* TODO: this should be asynchronous */
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	NSError *error = nil;
@@ -88,7 +121,7 @@
 
 - (id)getVotesForBallot:(NSString *)guid{
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?election=%@", guid];
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?d=%@&election=%@", deviceID, guid];
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	NSError *error = nil;
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
@@ -103,7 +136,7 @@
 	return votes;
 }
 
-- (BOOL)insertVotes:(NSArray *)votes intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
+- (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error{
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
@@ -114,16 +147,16 @@
 			NSString *statement = [vote objectForKey:@"statement"];
 			NSString *candidateGuid = [vote objectForKey:@"candidate"];
 			
-			Position *position = [self getObject:@"Position" byGuid:positionGuid fromContext:context];
-			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid fromContext:context];
-			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid fromContext:context];
+			Position *position = [self getObject:@"Position" byGuid:positionGuid];
+			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid];
+			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
 			if (position != nil && candidate != nil && friend != nil) {
 				if (candidate.position == position) {
 					
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 
-					FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:context];
+					FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:_context];
 					voteObj.forCandidate = candidate;
 					voteObj.forPosition = position;
 					voteObj.author = friend;
@@ -131,7 +164,7 @@
 					voteObj.statement = statement;
 					
 					NSError *error = nil;
-					[context save:&error];
+					[_context save:&error];
 					[date release];
 				}
 			}
@@ -147,13 +180,13 @@
 			NSNumber *voteValue = [vote objectForKey:@"vote"];
 			NSString *measureGuid = [vote objectForKey:@"measure"];
 			
-			Measure *measure = [self getObject:@"Measure" byGuid:measureGuid fromContext:context];
-			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid fromContext:context];
+			Measure *measure = [self getObject:@"Measure" byGuid:measureGuid];
+			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
 			if (measure != nil && friend != nil) {
 				NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 								
-				FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:context];
+				FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:_context];
 				voteObj.forMeasure = measure;
 				voteObj.vote = voteValue;
 				voteObj.author = friend;
@@ -161,7 +194,7 @@
 				voteObj.date = date;
 				
 				NSError *error = nil;
-				[context save:&error];
+				[_context save:&error];
 				[date release];
 			}
 			else {
@@ -176,15 +209,15 @@
 	return YES;
 }
 
-- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid fromContext:(NSManagedObjectContext *)context {
+- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid {
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_context];
 	[fetchRequest setEntity:entity];
 	[fetchRequest setFetchLimit:2];
 	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"guid == %@", guid]];
 	
 	NSError *err = nil;
-	NSArray *array = [context executeFetchRequest:fetchRequest error:&err];
+	NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
 	[fetchRequest release];
 	if (err != nil || array == nil) {
 		return nil;
@@ -202,7 +235,8 @@
 
 - (id)getFriends {
 	/* TODO: this should be asynchronous */
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/friends"]];
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/friends?d=%@", deviceID];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	NSError *error = nil;
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -216,7 +250,7 @@
 	return elections;	
 }
 
-- (BOOL)insertFriends:(NSArray *)friends intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
+- (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error{
 	for (NSDictionary *friend in friends) {
 		NSString *guid = [friend objectForKey:@"guid"];
 		NSString *name = [friend objectForKey:@"name"];
@@ -224,24 +258,24 @@
 		
 		/* does the friend exist in the database already? */
 		/* TODO guid is a good way to check if the friend already exists, but what about changes? */
-		Friend *friendFound = [self getObject:@"Friend" byGuid:guid fromContext:context];
+		Friend *friendFound = [self getObject:@"Friend" byGuid:guid];
 		if (friendFound != nil) {
 			NSLog(@"Friend already in database, but are there updates, like name?");
 			continue;
 		}
 		
-		Friend *friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:context];
+		Friend *friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:_context];
 		friendObj.guid = guid;
 		friendObj.name = name;
 		
 		/* query for facebook friend object */
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:context];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
 		[fetchRequest setFetchLimit:1];
 		[fetchRequest setEntity:entity];
 		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", facebookId]];
 		NSError *err = nil;
-		NSArray *array = [context executeFetchRequest:fetchRequest error:&err];
+		NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
 		[fetchRequest release];
 		if (err != nil) {
 			NSLog(@"Error: %@", [err userInfo]);
@@ -251,7 +285,7 @@
 		}
 	}
 	
-	return [context save:error];
+	return [_context save:error];
 }
 
 - (id)getElections {
@@ -261,7 +295,8 @@
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	/* TODO: this should be asynchronous */
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8080/elections"]];
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/elections?d=%@", deviceID];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	NSError *error = nil;
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
 	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -281,7 +316,7 @@
 	//	[connection start];
 }
 
-- (BOOL)insertElections:(NSArray *)elections intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error{
+- (BOOL)insertElections:(NSArray *)elections withError:(NSError **)error{
 	for (NSDictionary *election in elections) {
 		NSString *guid = [election objectForKey:@"guid"];
 		NSString *title = [election objectForKey:@"title"];
@@ -290,13 +325,13 @@
 		
 		/* does the election exist in the database already? */
 		/* TODO guid is a good way to check if the election already exists, but what about changes? */		
-		Election *electionFound = [self getObject:@"Election" byGuid:guid fromContext:context];
+		Election *electionFound = [self getObject:@"Election" byGuid:guid];
 		if (electionFound != nil) {
 			NSLog(@"Election already in database, but are there updates, like date?");
 			continue;
 		}
 		
-		Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:context];
+		Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
 		electionObj.guid = guid;
 		electionObj.title = title;
 		electionObj.date = date;
@@ -318,7 +353,7 @@
 				
 				//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
 				
-				Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:context];
+				Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
 				positionObj.guid = guid;
 				positionObj.level = level;
 				positionObj.levelOrder = levelOrder;
@@ -338,7 +373,7 @@
 						
 						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
 						
-						Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:context];
+						Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 						candidateObj.guid = guid;
 						candidateObj.name = name;
 						if (party != [NSNull null]) {
@@ -367,7 +402,7 @@
 				
 				//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
 				
-				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:context];
+				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
 				measureObj.guid = guid;
 				measureObj.identifier = identifier;
 				measureObj.title = title;
@@ -380,10 +415,14 @@
 		}
 	}
 	
-	return [context save:error];
+	return [_context save:error];
 }
 
 - (void)dealloc {
+	[_context release];
+	if (deviceID != nil) {
+		[deviceID release];
+	}
 	[parser release];
     [super dealloc];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "FacebookClient.h"
+#import "SupervoteClient.h"
 
 @class SupervoteViewController;
 
@@ -19,7 +20,8 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
-	FacebookClient* _facebookClient;
+	SupervoteClient *_supervoteClient;
+	FacebookClient *_facebookClient;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -34,7 +36,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, retain) FacebookClient* facebookClient;
+@property (nonatomic, retain) SupervoteClient *supervoteClient;
+@property (nonatomic, retain) FacebookClient *facebookClient;
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)switchToMainApp;

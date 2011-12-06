@@ -413,6 +413,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
+	self.navigationItem.rightBarButtonItem = reload;
+	[reload release];
+	
 	self.tableView.allowsSelection = NO;
 	
 	/* query for a ballot vote, if any */
@@ -597,6 +602,7 @@
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+	self.navigationItem.rightBarButtonItem = nil;
 	if (vote != nil)
 	{
 		[vote release];

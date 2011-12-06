@@ -12,9 +12,10 @@
 
 @private
 	NSManagedObjectContext *_managedObjectContext;
-	SupervoteClient *client;
+	SupervoteClient *_client;
 }
 
-@property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) SupervoteClient *client;
 
 @end

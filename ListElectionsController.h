@@ -7,11 +7,15 @@
 //
 
 #import "FetchedResultsBasedTableViewController.h"
+#import "SupervoteClient.h"
 
 @interface ListElectionsController : FetchedResultsBasedTableViewController {
 
 @private
 	NSDateFormatter *dateFormatter;
+	SupervoteClient *_client;
 }
+
+@property (nonatomic, retain) SupervoteClient *client;
 
 @end

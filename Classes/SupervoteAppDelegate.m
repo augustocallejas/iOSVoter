@@ -20,6 +20,7 @@
 @synthesize viewController;
 @synthesize mainAppController;
 @synthesize facebookClient = _facebookClient;
+@synthesize supervoteClient = _supervoteClient;
 
 // Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -55,10 +56,12 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsPath = [paths objectAtIndex:0];
 
+	_supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
 	_facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
 	
-	if (!_facebookClient.loggedIn) {
+	if (![_supervoteClient isRegistered]) {
 		SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
+		controller.client = _supervoteClient;
 		self.viewController = controller;
 		self.window.rootViewController = controller;
 		//	[self.window addSubview:self.viewController.view];
@@ -130,22 +133,23 @@
 		else {
 			NSLog(@"not logged in");
 		}
-
 		
 		UITabBarController *controller = [[UITabBarController alloc] init];
 		self.mainAppController = controller;
-		[controller release];
+
 		//self.mainAppController.delegate = self;
 		
 		FeedController *feeds = [[[FeedController alloc] initWithNibName:@"FeedController" bundle:[NSBundle mainBundle]] autorelease];
 		feeds.title = @"Feed";
 		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		feeds.managedObjectContext = self.managedObjectContext;
+		feeds.client = self.supervoteClient;
 		
 		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
 		elections.title = @"Elections";
 		elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
 		elections.managedObjectContext = self.managedObjectContext;
+		elections.client = self.supervoteClient;
 		UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
 
 		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
@@ -154,11 +158,13 @@
 		settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
 		settings.facebookClient = self.facebookClient;
 		
-		self.mainAppController.viewControllers = [[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease];
+		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
 		
 		// TODO: not sure if this is the proper way to switch from one controller to another.
 		// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller
-		self.window.rootViewController = [self mainAppController];
+		self.window.rootViewController = controller;
+		
+		[controller release];
 	}
 }
 
@@ -259,6 +265,7 @@
 }
 
 - (void)dealloc {
+	self.supervoteClient = nil;
 	self.facebookClient = nil;
 	[managedObjectContext_ release];
 	[managedObjectModel_ release];

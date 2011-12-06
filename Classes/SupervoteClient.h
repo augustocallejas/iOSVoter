@@ -12,17 +12,21 @@
 @interface SupervoteClient : NSObject {
 	
 @private
+	NSManagedObjectContext* _context;
 	SBJSON *parser;
+	NSString *deviceID;
 }
 
-- (id)registerDevice;
+- (id)initWithContext:(NSManagedObjectContext *)context;
+- (BOOL)isRegistered;
+- (BOOL)registerDevice;
 - (void)sendFacebookAccessToken:(NSString *)accessToken;
-- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid fromContext:(NSManagedObjectContext *)context;
+- (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (id)getVotesForBallot:(NSString *)guid;
-- (BOOL)insertVotes:(NSArray *)votes intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
+- (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
 - (id)getFriends;
-- (BOOL)insertFriends:(NSArray *)friends intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
+- (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
 - (id)getElections;
-- (BOOL)insertElections:(NSArray *)elections intoManagedContext:(NSManagedObjectContext *)context withError:(NSError **)error;
+- (BOOL)insertElections:(NSArray *)elections withError:(NSError **)error;
 
 @end

@@ -20,6 +20,7 @@
 
 @implementation ListElectionsController
 
+@synthesize client = _client;
 
 #pragma mark -
 #pragma mark FetchedResultsBasedTableViewController methods
@@ -108,8 +109,18 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateElections)];
+	self.navigationItem.rightBarButtonItem = reload;
+	[reload release];
 }
 
+- (void)updateElections {
+	NSError *error = nil;
+	NSArray *elections = [_client getElections];
+	/* TODO: run in background? */
+	[_client insertElections:elections withError:&error];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -128,16 +139,16 @@
 }
 */
 
-/*
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.navigationItem.rightBarButtonItem = nil;
 }
- */
 
 
 - (void)dealloc {
+	self.client = nil;
 	[dateFormatter release];
     [super dealloc];
 }

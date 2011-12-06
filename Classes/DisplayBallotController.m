@@ -32,6 +32,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize fetchedResultsController1 = _fetchedResultsController1;
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
+@synthesize client = _client;
 
 #pragma mark -
 #pragma mark UIButton custom actions
@@ -558,8 +559,25 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+
+- (void)updateBallot {
+	NSError *error = nil;
+	/* TODO: not a real election guid */
+	NSArray *votes = [_client getVotesForBallot:@"test"];
+	[_client insertVotes:votes withError:&error];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBallot)];
+	self.navigationItem.rightBarButtonItem = reload;
+	[reload release];
+	
 	NSLog(@"DisplayBallotController: viewDidLoad");
 	viewDidLoadCalled = YES;
 	
@@ -831,6 +849,7 @@
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 	[super viewDidLoad];
+	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;
@@ -848,6 +867,7 @@
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;
 	self.fetchedResultsController2 = nil;
+	self.client = nil;
     [super dealloc];
 }
 

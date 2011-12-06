@@ -16,6 +16,7 @@
 @synthesize SecondZIPField;
 @synthesize joinButton;
 //@synthesize mainAppController;
+@synthesize client = _client;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -88,13 +89,16 @@
 	return NO;
 }
 
-- (IBAction)doJoinButtonSendZip {	
-	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-	[appDelegate switchToMainApp];
+- (IBAction)doJoinButtonSendZip {
+	if ([_client registerDevice]) {
+		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+		[appDelegate switchToMainApp];
+	}
 }
 
 
 - (void)dealloc {
+	self.client = nil;
 	if (responseData != nil) {
 		[responseData release];
 	}

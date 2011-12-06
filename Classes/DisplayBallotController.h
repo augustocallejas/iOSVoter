@@ -11,6 +11,7 @@
 #import "BallotItemViewCell.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
+#import "SupervoteClient.h"
 
 @interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
@@ -23,6 +24,7 @@
 	NSManagedObjectContext *_managedObjectContext;
 	NSFetchedResultsController *_fetchedResultsController1;
 	NSFetchedResultsController *_fetchedResultsController2;
+	SupervoteClient *_client;
 }
 
 - (void)segmentAction:(id)sender;
@@ -41,5 +43,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController1;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController2;
+@property (nonatomic, retain) SupervoteClient *client;
 
 @end

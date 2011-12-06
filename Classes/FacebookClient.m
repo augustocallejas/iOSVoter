@@ -91,8 +91,6 @@ static NSString* kAppId = @"259602660736072";
 	if ([_delegate respondsToSelector:@selector(fbDidLogin)]) {
 		[_delegate fbDidLogin];
 	}
-	
-	//[client sendFacebookAccessToken:[_facebook accessToken]];
 }
 
 /**
@@ -283,14 +281,7 @@ static NSString* kAppId = @"259602660736072";
 //			NSLog(@"error: %@", [error userInfo]);
 //		}
 //		
-//		error = nil;
-//		/* TODO: not a real election guid */
-//		NSArray *votes = [client getVotesForBallot:@"test"];
-//		[client insertVotes:votes intoManagedContext:_managedObjectContext withError:&error];
-//		
-//		if (error != nil) {
-//			NSLog(@"error: %@", [error userInfo]);
-//		}
+
 	}
 	else {
 		//NSLog(@"result %@", result);
