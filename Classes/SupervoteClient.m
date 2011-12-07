@@ -119,9 +119,9 @@
 	}
 }
 
-- (id)getVotesForBallot:(NSString *)guid{
+- (id)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?d=%@&election=%@", deviceID, guid];
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?d=%@&election=%@", deviceID, electionGuid];
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	NSError *error = nil;
 	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];

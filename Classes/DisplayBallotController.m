@@ -562,8 +562,7 @@
 
 - (void)updateBallot {
 	NSError *error = nil;
-	/* TODO: not a real election guid */
-	NSArray *votes = [_client getVotesForBallot:@"test"];
+	NSArray *votes = [_client getVotesForBallot:_election.guid];
 	[_client insertVotes:votes withError:&error];
 	
 	if (error != nil) {
