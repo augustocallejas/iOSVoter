@@ -85,6 +85,7 @@
 	controller.election = election;
 	controller.title = @"Ballot";//election.title;
 	controller.managedObjectContext = self.managedObjectContext;
+	controller.client = self.client;
 	
 	[[self navigationController] pushViewController:controller animated:YES];
 	[controller release];

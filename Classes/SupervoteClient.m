@@ -137,10 +137,13 @@
 }
 
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error{
+	//NSLog(@"Inserting %d votes", [votes count]);
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
 		if ([@"FriendBallotVote" isEqualToString:type]) {
+			/* cases 1) insert 2) update 3) delete */
+			/* TODO: doesn't handle the delete case */
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *positionGuid = [vote objectForKey:@"position"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
@@ -150,22 +153,56 @@
 			Position *position = [self getObject:@"Position" byGuid:positionGuid];
 			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid];
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
-			
+
 			if (position != nil && candidate != nil && friend != nil) {
 				if (candidate.position == position) {
+					/* check if the friend ballot vote already exists */
+					NSFetchRequest *request = [[NSFetchRequest alloc] init];
+					[request setFetchLimit:1];
 					
-					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
-
-					FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:_context];
-					voteObj.forCandidate = candidate;
-					voteObj.forPosition = position;
-					voteObj.author = friend;
-					voteObj.date = date;
-					voteObj.statement = statement;
+					NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[position managedObjectContext]];
+					[request setEntity:entity];
+					
+					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && author == %@", position, friend];
+					[request setPredicate:predicate];
 					
 					NSError *error = nil;
-					[_context save:&error];
-					[date release];
+					NSArray *array = [[position managedObjectContext] executeFetchRequest:request error:&error];
+					[request release];
+					
+					if (error != nil) {
+						NSLog(@"Error while querying for existing ballot vote: %@", [error userInfo]);
+					}
+					else if ([array count] == 1) {
+						/* existing friend ballot vote, so update */
+						NSLog(@"Found existing ballot vote, updating certain attributes");
+						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+						
+						FriendBallotVote *existingVote = [array objectAtIndex:0];
+						existingVote.forCandidate = candidate;
+						existingVote.statement = statement;
+						existingVote.date = date;
+						
+						error = nil;
+						[_context save:&error];
+						[date release];
+					}
+					else {
+						/* insert new friend ballot vote */
+						NSLog(@"Inserting new friend ballot vote");
+						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+						
+						FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:_context];
+						voteObj.forCandidate = candidate;
+						voteObj.forPosition = position;
+						voteObj.author = friend;
+						voteObj.date = date;
+						voteObj.statement = statement;
+						
+						error = nil;
+						[_context save:&error];
+						[date release];
+					}
 				}
 			}
 			else {
@@ -174,6 +211,8 @@
 
 		}
 		else if ([@"FriendMeasureVote" isEqualToString:type]) {
+			/* cases 1) insert 2) update 3) delete */
+			/* TODO: doesn't handle the delete case */
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
 			NSString *statement = [vote objectForKey:@"statement"];
@@ -184,18 +223,54 @@
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
 			if (measure != nil && friend != nil) {
-				NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
-								
-				FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:_context];
-				voteObj.forMeasure = measure;
-				voteObj.vote = voteValue;
-				voteObj.author = friend;
-				voteObj.statement = statement;
-				voteObj.date = date;
+				
+				/* check if the friend measure vote already exists */
+				NSFetchRequest *request = [[NSFetchRequest alloc] init];
+				[request setFetchLimit:1];
+				
+				NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[measure managedObjectContext]];
+				[request setEntity:entity];
+				
+				NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && author == %@", measure, friend];
+				[request setPredicate:predicate];
 				
 				NSError *error = nil;
-				[_context save:&error];
-				[date release];
+				NSArray *array = [[measure managedObjectContext] executeFetchRequest:request error:&error];
+				[request release];
+				
+				if (error != nil) {
+					NSLog(@"Error while querying for existing friend measure vote: %@", [error userInfo]);
+				}
+				else if ([array count] == 1) {
+					/* existing friend measure vote, so update */
+					NSLog(@"Found existing measure vote, updating certain attributes");
+					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+					
+					FriendMeasureVote *existingVote = [array objectAtIndex:0];
+					existingVote.vote = voteValue;
+					existingVote.statement = statement;
+					existingVote.date = date;
+					
+					error = nil;
+					[_context save:&error];
+					[date release];
+				}
+				else {
+					/* insert new friend measure vote */
+					NSLog(@"Inserting new friend measure vote");
+					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+					
+					FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:_context];
+					voteObj.forMeasure = measure;
+					voteObj.vote = voteValue;
+					voteObj.author = friend;
+					voteObj.statement = statement;
+					voteObj.date = date;
+					
+					error = nil;
+					[_context save:&error];
+					[date release];
+				}
 			}
 			else {
 				NSLog(@"Some value was nil..");
