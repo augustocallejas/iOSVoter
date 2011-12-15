@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BallotVote.h"
+#import "MeasureVote.h"
 
 @interface SupervoteClient : NSObject {
 	
@@ -22,6 +24,8 @@
 - (BOOL)registerDevice;
 - (void)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
+- (void)sendBallotVote:(BallotVote *)vote;
+- (void)sendMeasureVote:(MeasureVote *)vote;
 - (id)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
 - (id)getFriends;

@@ -7,4 +7,6 @@
     #import <UIKit/UIKit.h>
 	#import <CoreData/CoreData.h>
 	#import "../facebook-ios-sdk/src/FBConnect.h"
+	#import "../asi-http-request/Classes/ASIHTTPRequest.h"
+	#import "../asi-http-request/Classes/ASIFormDataRequest.h"
 #endif

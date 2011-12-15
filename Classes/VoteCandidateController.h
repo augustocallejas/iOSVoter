@@ -13,7 +13,7 @@
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
 #import "BallotItemViewCell.h"
-
+#import "SupervoteClient.h"
 
 @interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate, UIActionSheetDelegate> {
 
@@ -22,10 +22,12 @@
 	Ballot *ballot;
 	Position *position;
 	BallotVote *vote;
+	SupervoteClient *_client;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
+@property (nonatomic, retain) SupervoteClient *client;
 
 + (NSString *)getTextForEndorsementButton:(Position *)position onCandidate:(Candidate *)candidate;
 + (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count;

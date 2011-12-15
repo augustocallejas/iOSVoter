@@ -352,6 +352,7 @@
 
 + (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
 	UIImage *icon = nil;
+	NSLog(@"photo for %@", friendVote.author.facebook.friendId);
 	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
 		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
 		icon = [UIImage imageWithContentsOfFile:path];
@@ -561,13 +562,7 @@
 
 
 - (void)updateBallot {
-	NSError *error = nil;
-	NSArray *votes = [_client getVotesForBallot:_election.guid];
-	[_client insertVotes:votes withError:&error];
-	
-	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
-	}
+
 }
 
 - (void)viewDidLoad {
@@ -800,6 +795,7 @@
 		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 		
 		VoteCandidateController *controller = [[VoteCandidateController alloc] initWithNibName:@"VoteCandidate" bundle:[NSBundle mainBundle]];
+		controller.client = _client;
 		controller.ballot = self.ballot;
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;
@@ -814,6 +810,7 @@
 		Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:correctIndexPath];
 		
 		VoteMeasureController *controller = [[VoteMeasureController alloc] initWithNibName:@"VoteMeasure" bundle:[NSBundle mainBundle]];
+		controller.client = _client;
 		controller.ballot = self.ballot;
 		controller.measure = measure;
 		controller.title = @"Measure";

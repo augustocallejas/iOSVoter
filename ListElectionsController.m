@@ -121,6 +121,23 @@
 	NSArray *elections = [_client getElections];
 	/* TODO: run in background? */
 	[_client insertElections:elections withError:&error];
+	
+	/* TODO: do this somewhere else!!!! */
+	error = nil;
+	NSArray *friends = [_client getFriends];
+	[_client insertFriends:friends withError:&error];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
+	
+	error = nil;
+	NSArray *votes = [_client getVotesForBallot:@"e1"];
+	[_client insertVotes:votes withError:&error];
+	
+	if (error != nil) {
+		NSLog(@"error: %@", [error userInfo]);
+	}
 }
 
 /*

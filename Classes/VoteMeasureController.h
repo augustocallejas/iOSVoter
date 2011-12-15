@@ -11,7 +11,7 @@
 #import "CreateEndorsementViewController.h"
 #import "Measure.h"
 #import "MeasureVote.h"
-
+#import "SupervoteClient.h"
 
 @interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate, UIActionSheetDelegate> {
 
@@ -20,11 +20,13 @@
 	Ballot *_ballot;
 	Measure *_measure;
 	MeasureVote *_vote;
+	SupervoteClient *_client;
 }
 
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Measure *measure;
 @property (nonatomic, retain) MeasureVote *vote;
+@property (nonatomic, retain) SupervoteClient *client;
 
 - (IBAction)viewSingleEndorsement:(id)sender;
 - (IBAction)voteOnMeasure:(id)sender;

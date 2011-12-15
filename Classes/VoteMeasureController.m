@@ -22,6 +22,7 @@
 @synthesize ballot = _ballot;
 @synthesize measure = _measure;
 @synthesize vote = _vote;
+@synthesize client = _client;
 
 //static NSNumber *YES_VOTE = [NSNumber numberWithBool:YES];
 //static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
@@ -272,6 +273,10 @@
 			NSLog(@"  DetailedError: %@", [error userInfo]);
 			// Handle the error
 		}
+		else {
+			[_client sendMeasureVote:_vote];
+		}
+
 		
 		[self.tableView reloadData];
 	}
@@ -587,6 +592,7 @@
 
 
 - (void)dealloc {
+	self.client = nil;
 	self.ballot = nil;
 	self.measure = nil;
 	self.vote = nil;

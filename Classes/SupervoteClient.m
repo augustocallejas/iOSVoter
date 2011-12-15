@@ -119,6 +119,44 @@
 	}
 }
 
+- (void)sendBallotVote:(BallotVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteCandidate"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:deviceID forKey:@"d"];
+	[request setPostValue:vote.forPosition.guid forKey:@"position"];
+	[request setPostValue:vote.forCandidate.guid forKey:@"candidate"];
+	[request setPostValue:vote.statement forKey:@"statement"];
+	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
+	
+	[request startSynchronous];
+	NSError *error = [request error];
+	if (error != nil) {
+		NSString *response = [request responseString];
+		NSLog(@"error: %@", response);
+	}
+}
+
+- (void)sendMeasureVote:(MeasureVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteMeasure"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request setPostValue:deviceID forKey:@"d"];
+	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
+	[request setPostValue:vote.statement forKey:@"statement"];
+	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
+	if (vote.vote != nil) {
+		[request setPostValue:vote.vote forKey:@"vote"];
+	}
+	
+	[request startSynchronous];
+	NSError *error = [request error];
+	if (error != nil) {
+		NSString *response = [request responseString];
+		NSLog(@"error: %@", response);
+	}
+}
+
 - (id)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
 	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?d=%@&election=%@", deviceID, electionGuid];
@@ -141,7 +179,7 @@
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
-		if ([@"FriendBallotVote" isEqualToString:type]) {
+		if ([@"BallotVote" isEqualToString:type]) {
 			/* cases 1) insert 2) update 3) delete */
 			/* TODO: doesn't handle the delete case */
 			NSNumber *dateValue = [vote objectForKey:@"date"];
@@ -210,7 +248,7 @@
 			}
 
 		}
-		else if ([@"FriendMeasureVote" isEqualToString:type]) {
+		else if ([@"MeasureVote" isEqualToString:type]) {
 			/* cases 1) insert 2) update 3) delete */
 			/* TODO: doesn't handle the delete case */
 			NSNumber *dateValue = [vote objectForKey:@"date"];
@@ -394,9 +432,6 @@
 - (BOOL)insertElections:(NSArray *)elections withError:(NSError **)error{
 	for (NSDictionary *election in elections) {
 		NSString *guid = [election objectForKey:@"guid"];
-		NSString *title = [election objectForKey:@"title"];
-		NSNumber *dateValue = [election objectForKey:@"date"];
-		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 		
 		/* does the election exist in the database already? */
 		/* TODO guid is a good way to check if the election already exists, but what about changes? */		
@@ -405,6 +440,10 @@
 			NSLog(@"Election already in database, but are there updates, like date?");
 			continue;
 		}
+		
+		NSString *title = [election objectForKey:@"title"];
+		NSNumber *dateValue = [election objectForKey:@"date"];
+		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 		
 		Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
 		electionObj.guid = guid;

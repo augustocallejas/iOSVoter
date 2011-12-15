@@ -271,17 +271,6 @@ static NSString* kAppId = @"259602660736072";
 				[request release];
 			}
 		}
-		
-		/* TODO: do this somewhere else!!!! */
-//		NSError *error = nil;
-//		NSArray *friends = [client getFriends];
-//		[client insertFriends:friends intoManagedContext:_managedObjectContext withError:&error];
-//		
-//		if (error != nil) {
-//			NSLog(@"error: %@", [error userInfo]);
-//		}
-//		
-
 	}
 	else {
 		//NSLog(@"result %@", result);

@@ -24,6 +24,7 @@
 
 @synthesize ballot;
 @synthesize position;
+@synthesize client = _client;
 
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
@@ -100,6 +101,10 @@
 			NSLog(@"  DetailedError: %@", [error userInfo]);
 			// Handle the error
 		}
+		else {
+			[_client sendBallotVote:vote];
+		}
+
 		
 		[self.tableView reloadData];
 	}
@@ -612,6 +617,7 @@
 
 
 - (void)dealloc {
+	self.client = nil;
 	self.ballot = nil;
 	self.position = nil;
 	if (vote != nil)
