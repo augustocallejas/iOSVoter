@@ -156,6 +156,7 @@
 		settings.managedObjectContext = self.managedObjectContext;
 		settings.title = @"Settings";
 		settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
+		settings.client = self.supervoteClient;
 		settings.facebookClient = self.facebookClient;
 		
 		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];

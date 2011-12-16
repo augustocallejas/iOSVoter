@@ -16,6 +16,8 @@
 #import "Measure.h"
 #import "Position.h"
 
+static NSString *kDeviceIDHeaderKey = @"DeviceID";
+
 @implementation SupervoteClient
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
@@ -105,15 +107,15 @@
 //}
 
 - (void)sendFacebookAccessToken:(NSString *)accessToken {
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/accessToken?d=%@&socialnet=fb&access_token=%@", deviceID, accessToken];
 	/* TODO: this should be asynchronous */
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	NSError *error = nil;
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-//	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-//	NSArray *elections = [parser objectWithString:json error:&error];	
-//	[json release];
-	
+	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/accessToken"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:@"fb" forKey:@"socialnet"];
+	[request setPostValue:accessToken forKey:@"access_token"];
+
+	[request startSynchronous];
+	NSError *error = [request error];
 	if (error != nil) {
 		NSLog(@"error: %@", [error userInfo]);
 	}
@@ -123,7 +125,7 @@
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:deviceID forKey:@"d"];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forPosition.guid forKey:@"position"];
 	[request setPostValue:vote.forCandidate.guid forKey:@"candidate"];
 	[request setPostValue:vote.statement forKey:@"statement"];
@@ -132,8 +134,7 @@
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
-		NSString *response = [request responseString];
-		NSLog(@"error: %@", response);
+		NSLog(@"error: %@", [error userInfo]);
 	}
 }
 
@@ -141,7 +142,7 @@
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:deviceID forKey:@"d"];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
 	[request setPostValue:vote.statement forKey:@"statement"];
 	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
@@ -152,26 +153,34 @@
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
-		NSString *response = [request responseString];
-		NSLog(@"error: %@", response);
+		NSLog(@"error: %@", [error userInfo]);
 	}
 }
 
 - (id)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?d=%@&election=%@", deviceID, electionGuid];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	NSError *error = nil;
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	NSArray *votes = [parser objectWithString:json error:&error];	
-	[json release];
-	
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?election=%@", electionGuid];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request startSynchronous];
+	NSError *error = [request error];
 	if (error != nil) {
 		NSLog(@"error: %@", [error userInfo]);
 	}
-	
-	return votes;
+	else {
+		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		NSArray *votes = [parser objectWithString:json error:&error];	
+		[json release];
+		
+		if (error != nil) {
+			NSLog(@"error: %@", [error userInfo]);
+			return nil;
+		}
+		
+		return votes;
+	}
+
+	return nil;
 }
 
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error{
@@ -348,19 +357,25 @@
 
 - (id)getFriends {
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/friends?d=%@", deviceID];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	NSError *error = nil;
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	NSArray *elections = [parser objectWithString:json error:&error];	
-	[json release];
-	
+	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/friends"];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
+	[request startSynchronous];
+	NSError *error = [request error];
 	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
 	}
-	
-	return elections;	
+	else {
+		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		NSArray *elections = [parser objectWithString:json error:&error];	
+		[json release];
+		
+		if (error != nil) {
+		}
+		
+		return elections;
+	}
+
+	return nil;	
 }
 
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error{
