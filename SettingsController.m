@@ -33,6 +33,11 @@
 			[_facebookClient authorize];
 		}
 	}
+	else if (indexPath.section == 1 && indexPath.row == 0) {
+		NSLog(@"Prompt: Do you really want to reset?");
+		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+	}
 }
 
 - (void)fbDidLogin {
@@ -48,10 +53,18 @@
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	/* Facebook */
 	if (section == 0) {
+		return 1;
+	}
+	/* Reset */
+	else if (section == 1) {
 		return 1;
 	}
 	
@@ -61,10 +74,13 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if (section == 0)
-	{
+	if (section == 0) {
 		return @"Facebook Settings";
 	}
+	else if (section == 1) {
+		return @"Application Settings"; 
+	}
+
 	
 	return nil;
 }
@@ -73,25 +89,22 @@
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
 	
-	if (cell == nil)
-	{
+	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"default"] autorelease];
 		cell.textLabel.textAlignment = UITextAlignmentCenter;
 	}
 
-	if (_facebookClient.loggedIn) {
-		cell.textLabel.text = @"Log out of Facebook";
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		if (_facebookClient.loggedIn) {
+			cell.textLabel.text = @"Log out of Facebook";
+		}
+		else {
+			cell.textLabel.text = @"Log into Facebook";
+		}
 	}
-	else {
-		cell.textLabel.text = @"Log into Facebook";
+	else if (indexPath.section == 1 && indexPath.row == 0) {
+		cell.textLabel.text = @"Reset Application";
 	}
-		
-//	if ([_facebook isSessionValid]) {
-//	}
-//	else {
-//		//
-//	}
-
 	
 	//NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
 	//UIImage *icon = [UIImage imageWithContentsOfFile:path];
