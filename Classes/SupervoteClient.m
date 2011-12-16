@@ -423,25 +423,26 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/elections?d=%@", deviceID];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	NSError *error = nil;
-	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-	NSString *json = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-	NSArray *elections = [parser objectWithString:json error:&error];	
-	[json release];
-	
+	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/elections"];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
+	[request startSynchronous];
+	NSError *error = [request error];
 	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
+	}
+	else {
+		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		NSArray *elections = [parser objectWithString:json error:&error];	
+		[json release];
+		
+		if (error != nil) {
+			NSLog(@"error: %@", [error userInfo]);
+		}
+		
+		return elections;
 	}
 	
-	return elections;
-	//	responseData = [[NSMutableData alloc] init];
-	//	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/elections"];
-	//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-	//	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	//	[request release];
-	//	[connection start];
+	return nil;
 }
 
 - (BOOL)insertElections:(NSArray *)elections withError:(NSError **)error{
