@@ -486,8 +486,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 					for (NSDictionary *candidate in candidates) {
 						NSString *guid = [candidate objectForKey:@"guid"];
 						NSString *name = [candidate objectForKey:@"name"];
-						id party = [candidate objectForKey:@"party"];
-						id occupation = [candidate objectForKey:@"occupation"];
+						id subtitle = [candidate objectForKey:@"subtitle"];
 						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
 						
 						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
@@ -495,13 +494,10 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 						Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 						candidateObj.guid = guid;
 						candidateObj.name = name;
-						if (party != [NSNull null]) {
-							candidateObj.party = party;
+						if (subtitle != [NSNull null]) {
+							candidateObj.subtitle = subtitle;
 						}
 						candidateObj.displayOrder = displayOrder;
-						if (occupation != [NSNull null]) {
-							candidateObj.occupation = occupation;
-						}
 						[positionObj addCandidatesObject:candidateObj];
 					}
 				}

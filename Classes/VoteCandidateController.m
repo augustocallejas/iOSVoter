@@ -191,11 +191,8 @@
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
-	if (candidate.party != nil) {
-		cell.partyName.text = candidate.party;
-	}
-	else if (candidate.occupation != nil) {
-		cell.partyName.text = candidate.occupation;
+	if (candidate.subtitle != nil) {
+		cell.partyName.text = candidate.subtitle;
 	}
 	
 	/* add small black border to all friend icons */
