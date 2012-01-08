@@ -41,62 +41,35 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 }
 
 /* TODO: this method should take arguments and return some value, and also have an error argument */
-- (BOOL)registerDevice {	
-	CFUUIDRef theUUID = CFUUIDCreate(NULL);
-	NSString *newDeviceID = (NSString *) CFUUIDCreateString(NULL, theUUID);
-	CFRelease(theUUID);
-	
+- (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setPostValue:newDeviceID forKey:@"d"];
-	[request setPostValue:@"91104" forKey:@"z"];
+	[request setPostValue:zip5or9 forKey:@"z"];
 	
 	[request startSynchronous];
 	BOOL registered = NO;
-	NSError *error = [request error];
-	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
+	*error = [request error];
+	if (*error != nil) {
+		return registered;
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* save UUID */
-		deviceID = newDeviceID;
+		deviceID = [request responseString];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:deviceID forKey:@"DeviceID"];
 		[defaults synchronize];
 		NSLog(@"Registered new device ID '%@'", deviceID);
 		registered = YES;
 	}
+	else if ([request responseStatusCode] == 400) {
+		registered = NO;
+	}
 	else {
-		NSLog(@"Error registering device");
+		NSLog(@"Unexpected status code response: %d", [request responseStatusCode]);
 	}
 	
-//	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/registration?z=91104&d=%@", newDeviceID];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-//	NSError *error = nil;
-//	//NSData *response = [
-//	/* TODO: ignoring the response! */
-//	NSURLResponse *response = nil;
-//	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//	
-//	BOOL registered = NO;
-//	if (error != nil) {
-//		NSLog(@"Error: %@", [error userInfo]);
-//	}
-//	else if (response != nil && [((NSHTTPURLResponse *) response) statusCode] == 200) {
-//		/* save UUID */
-//		deviceID = newDeviceID;
-//		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//		[defaults setObject:deviceID forKey:@"DeviceID"];
-//		[defaults synchronize];
-//		NSLog(@"Registered new device ID '%@'", deviceID);
-//		registered = YES;
-//	}
-//	else {
-//		NSLog(@"Error registering device");
-//	}
-	
-	return YES;
+	return registered;
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

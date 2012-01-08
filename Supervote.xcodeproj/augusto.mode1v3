@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -269,14 +271,13 @@
 								<string>1423B41014081697006F8DBF</string>
 								<string>14A01B1D14789E0F0029ADFE</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>14E74AD91435914E002E2F82</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>36</integer>
-									<integer>32</integer>
-									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -311,14 +312,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SupervoteClient.m</string>
+								<string>SupervoteViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SupervoteClient.m</string>
+										<string>SupervoteViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14AAA840149B116B00D59D0D</string>
+										<string>143FB12314B966E000377AF0</string>
 										<key>history</key>
 										<array>
 											<string>1474ED01142AF3C1004D35AD</string>
@@ -369,7 +368,6 @@
 											<string>142FD83D1484B0D7000D0711</string>
 											<string>142FD83E1484B0D7000D0711</string>
 											<string>14AAA3A6148C5AAD00D59D0D</string>
-											<string>14AAA3ED148C748500D59D0D</string>
 											<string>14AAA4D0148DCB8500D59D0D</string>
 											<string>14AAA4D3148DCB8500D59D0D</string>
 											<string>14AAA4E0148DCC6D00D59D0D</string>
@@ -379,28 +377,29 @@
 											<string>14AAA5EE14986B5B00D59D0D</string>
 											<string>14AAA6011499A49E00D59D0D</string>
 											<string>14AAA6111499A6CC00D59D0D</string>
-											<string>14AAA63E1499B83C00D59D0D</string>
 											<string>14AAA63F1499B83C00D59D0D</string>
 											<string>14AAA6521499B8F800D59D0D</string>
 											<string>14AAA7551499CE4A00D59D0D</string>
 											<string>14AAA7661499D38B00D59D0D</string>
-											<string>14AAA7891499D9D200D59D0D</string>
 											<string>14AAA7A8149AED5100D59D0D</string>
 											<string>14AAA7A9149AED5100D59D0D</string>
-											<string>14AAA7D1149AF4DA00D59D0D</string>
 											<string>14AAA813149B0C5A00D59D0D</string>
-											<string>14AAA814149B0C5A00D59D0D</string>
-											<string>14AAA816149B0C5A00D59D0D</string>
 											<string>14AAA817149B0C5A00D59D0D</string>
 											<string>14AAA818149B0C5A00D59D0D</string>
-											<string>14AAA82A149B0EA700D59D0D</string>
 											<string>14AAA82B149B0EA700D59D0D</string>
 											<string>14AAA82C149B0EA700D59D0D</string>
 											<string>14AAA82D149B0EA700D59D0D</string>
-											<string>14AAA836149B10DC00D59D0D</string>
-											<string>14AAA837149B10DC00D59D0D</string>
-											<string>14AAA838149B10DC00D59D0D</string>
-											<string>14AAA812149B0C5A00D59D0D</string>
+											<string>14BA193E14B9331900B7F3ED</string>
+											<string>14BA199514B9429100B7F3ED</string>
+											<string>14BA199614B9429100B7F3ED</string>
+											<string>14BA199D14B942FD00B7F3ED</string>
+											<string>14BA199E14B942FD00B7F3ED</string>
+											<string>14BA19D014B952AC00B7F3ED</string>
+											<string>14BA19E714B9531900B7F3ED</string>
+											<string>14BA1A0014B95D3300B7F3ED</string>
+											<string>14BA1A1D14B960C300B7F3ED</string>
+											<string>14BA1A2314B960FA00B7F3ED</string>
+											<string>14BA1A4114B9643300B7F3ED</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -412,14 +411,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {856, 683}}</string>
+								<string>{{0, 0}, {856, 631}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1166 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>683pt</string>
+							<string>631pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -432,14 +431,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 688}, {856, 90}}</string>
+								<string>{{0, 636}, {856, 142}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1166 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>90pt</string>
+							<string>142pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -458,9 +457,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>14AAA72A1499CB2600D59D0D</string>
+				<string>143FB12414B966E000377AF0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>14AAA72B1499CB2600D59D0D</string>
+				<string>143FB12514B966E000377AF0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -598,11 +597,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>14AAA7DF149AF52400D59D0D</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>14AAA7731499D59000D59D0D</string>
-		<string>14AAA7741499D59000D59D0D</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>14789DDB13E8FD560016044C</string>
 		<string>/Users/augusto/projects/supervote/supervote-ios/Supervote.xcodeproj</string>
@@ -629,7 +623,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SupervoteClient.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -646,8 +640,6 @@
 							<string>545pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -687,7 +679,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>14789DDB13E8FD560016044C</string>
-				<string>14AAA72C1499CB2600D59D0D</string>
+				<string>143FB12614B966E000377AF0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -809,13 +801,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>14AAA74F1499CE4600D59D0D</string>
+				<string>143FB12714B966E000377AF0</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>14AAA7501499CE4600D59D0D</string>
-				<string>14AAA7511499CE4600D59D0D</string>
-				<string>14AAA7521499CE4600D59D0D</string>
-				<string>14AAA7531499CE4600D59D0D</string>
-				<string>14AAA7541499CE4600D59D0D</string>
+				<string>143FB12814B966E000377AF0</string>
+				<string>143FB12914B966E000377AF0</string>
+				<string>143FB12A14B966E000377AF0</string>
+				<string>143FB12B14B966E000377AF0</string>
+				<string>143FB12C14B966E000377AF0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -842,12 +834,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsController.m</string>
+										<string>SupervoteViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -868,8 +862,6 @@
 							<string>429pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -905,8 +897,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>14AAA7A1149AECB200D59D0D</string>
-				<string>14AAA7A2149AECB200D59D0D</string>
+				<string>14BA193B14B9330D00B7F3ED</string>
+				<string>14BA193C14B9330D00B7F3ED</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -971,7 +963,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>14AAA7711499D4E300D59D0D</string>
+				<string>14BA193D14B9330D00B7F3ED</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

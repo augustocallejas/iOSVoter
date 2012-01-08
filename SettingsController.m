@@ -9,6 +9,7 @@
 #import "SettingsController.h"
 
 #import "FacebookFriend.h"
+#import "SupervoteAppDelegate.h"
 
 @implementation SettingsController
 
@@ -34,9 +35,26 @@
 		}
 	}
 	else if (indexPath.section == 1 && indexPath.row == 0) {
-		NSLog(@"Prompt: Do you really want to reset?");
+		/* user wants to reset the application */		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Reset"
+														message:@"Reseting the app will erase all saved data.  Are you sure?"
+													   delegate:self 
+											  cancelButtonTitle:@"No"
+											  otherButtonTitles:@"Yes", nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	// 0 = No, 1 = Yes
+	if (buttonIndex == 1) {
 		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+		
+		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+		[appDelegate deletePersistentStoreCoordinator];
+		[appDelegate switchToWelcomePage];
 	}
 }
 

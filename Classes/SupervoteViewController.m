@@ -67,7 +67,6 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
 {  
     BOOL validCharactersInRange = YES;  
-	
     if (![string isEqualToString:@""])  
     {
         NSUInteger testLength = textField.text.length + string.length + range.length;
@@ -90,9 +89,63 @@
 }
 
 - (IBAction)doJoinButtonSendZip {
-	if ([_client registerDevice]) {
-		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-		[appDelegate switchToMainApp];
+	
+	NSString *ZIP;
+	
+	if ([FirstZIPField.text length] != 5) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid ZIP Code" 
+														message:@"ZIP Code must contain 5 digits." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	else if ([SecondZIPField.text length] != 0 && [SecondZIPField.text length] != 4) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid ZIP+4 Code" 
+														message:@"ZIP+4 Code must contain 4 digits." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	else
+	{
+		if ([SecondZIPField.text length] == 0) {
+			ZIP = [NSString stringWithFormat:@"%@", FirstZIPField.text];
+		}
+		else {
+			ZIP = [NSString stringWithFormat:@"%@%@", FirstZIPField.text, SecondZIPField.text];
+		}
+		
+		NSError *error = nil;
+		if ([_client registerDevice:ZIP withError:&error]) {
+			SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+			[appDelegate switchToMainApp];
+		}
+		else {
+			//
+			if (error != nil) {
+				NSLog(@"Error: %@", [error userInfo]);
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to connect to server"
+																message:[error localizedDescription]
+															   delegate:nil 
+													  cancelButtonTitle:@"OK"
+													  otherButtonTitles:nil];
+				[alert show];
+				[alert release];
+			}
+			else {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bad ZIP Code" 
+																message:@"Invalid ZIP Code, please review and try again." 
+															   delegate:nil 
+													  cancelButtonTitle:@"OK"
+													  otherButtonTitles:nil];
+				[alert show];
+				[alert release];
+			}
+		}
 	}
 }
 
@@ -102,9 +155,9 @@
 	if (responseData != nil) {
 		[responseData release];
 	}
-	[FirstZIPField dealloc];
-	[SecondZIPField dealloc];
-	[joinButton dealloc];
+	//[FirstZIPField dealloc];
+	//[SecondZIPField dealloc];
+	//[joinButton dealloc];
 	//[mainAppController dealloc];
     [super dealloc];
 }

@@ -60,24 +60,29 @@
 	_facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
 	
 	if (![_supervoteClient isRegistered]) {
-		SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
-		controller.client = _supervoteClient;
-		self.viewController = controller;
-		self.window.rootViewController = controller;
-		//	[self.window addSubview:self.viewController.view];
-		//	[self.viewController.view release];
-		[controller release];
+		[self switchToWelcomePage];
+//		SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
+//		controller.client = _supervoteClient;
+//		self.viewController = controller;
+//		self.window.rootViewController = controller;
+//		//	[self.window addSubview:self.viewController.view];
+//		//	[self.viewController.view release];
+//		[controller release];
 	}
 	else {
 		[self switchToMainApp];
 	}
 	[self.window makeKeyAndVisible];
-
-	
-
-
 	
 	return YES;
+}
+
+- (void)switchToWelcomePage {
+	SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
+	controller.client = _supervoteClient;
+	self.viewController = controller;
+	self.window.rootViewController = controller;
+	[controller release];
 }
 
 
@@ -167,6 +172,13 @@
 		
 		[controller release];
 	}
+	else {
+		// http://blog.evandavey.com/2008/12/how-to-jump-between-tabs-using-uitabbarcontroller.html
+		mainAppController.selectedIndex = 0;
+		[mainAppController.selectedViewController viewDidAppear:YES];
+		self.window.rootViewController = mainAppController;
+	}
+
 }
 
 #pragma mark -
@@ -199,17 +211,20 @@
 	return managedObjectModel_;
 }
 
-/**
- Returns the persistent store coordinator for the application.
- If the coordinator doesn't already exist, it is created and the application's store added to it.
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    
-    if (persistentStoreCoordinator_ != nil) {
-        return persistentStoreCoordinator_;
-    }
-    
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Supervote.sqlite"];
+- (void)deletePersistentStoreCoordinator {
+	NSArray *stores = [persistentStoreCoordinator_ persistentStores];
+	
+	// http://stackoverflow.com/questions/1077810/delete-reset-all-entries-in-core-data
+	for(NSPersistentStore *store in stores) {
+		[persistentStoreCoordinator_ removePersistentStore:store error:nil];
+		[[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
+	}
+	
+	[self addDefaultPersistentStore];
+}
+
+- (void)addDefaultPersistentStore {
+	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Supervote.sqlite"];
     
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -239,7 +254,20 @@
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
-    }    
+    } 
+}
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
+    if (persistentStoreCoordinator_ != nil) {
+        return persistentStoreCoordinator_;
+    }
+    
+	[self addDefaultPersistentStore];
     
     return persistentStoreCoordinator_;
 }
@@ -270,7 +298,9 @@
 	self.facebookClient = nil;
 	[managedObjectContext_ release];
 	[managedObjectModel_ release];
-	[persistentStoreCoordinator_ release];
+	if (persistentStoreCoordinator_ != nil) {
+		[persistentStoreCoordinator_ release];
+	}
 	self.viewController = nil;
 	self.mainAppController = nil;
     [window release];

@@ -10,7 +10,7 @@
 #import "SupervoteClient.h"
 
 
-@interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate> {
+@interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, FBRequestDelegate, UIAlertViewDelegate> {
 	
 @private
 	NSManagedObjectContext *_managedObjectContext;
