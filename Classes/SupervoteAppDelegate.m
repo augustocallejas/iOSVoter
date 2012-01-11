@@ -213,21 +213,25 @@
 
 - (void)deletePersistentStoreCoordinator {
 	NSArray *stores = [persistentStoreCoordinator_ persistentStores];
-	
+	self.mainAppController = nil;
 	// http://stackoverflow.com/questions/1077810/delete-reset-all-entries-in-core-data
 	for(NSPersistentStore *store in stores) {
 		[persistentStoreCoordinator_ removePersistentStore:store error:nil];
+		//NSLog(@"removing %@", store.URL.path);
 		[[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
 	}
-	
+
 	[self addDefaultPersistentStore];
 }
 
 - (void)addDefaultPersistentStore {
+	//NSLog(@"addDefaultPersistentStore");
 	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Supervote.sqlite"];
     
     NSError *error = nil;
-    persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+	if (persistentStoreCoordinator_ == nil) {
+		persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+	}
     if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
