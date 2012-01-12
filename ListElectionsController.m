@@ -51,6 +51,8 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	cell.textLabel.minimumFontSize = 13.0;
+	cell.textLabel.adjustsFontSizeToFitWidth = YES;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = election.title;
@@ -120,7 +122,14 @@
 	NSError *error = nil;
 	NSArray *elections = [_client getElections];
 	/* TODO: run in background? */
-	[_client insertElections:elections withError:&error];
+	NSString *lastModified = nil;
+	for (NSString *electionGuid in elections) {
+		NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&lastModified];
+		if (election != nil) {
+			[_client insertElection:election withLastModified:lastModified withError:&error];
+		}
+		//[_client insertElections:elections withError:&error];
+	}
 	
 	/* TODO: do this somewhere else!!!! */
 	error = nil;

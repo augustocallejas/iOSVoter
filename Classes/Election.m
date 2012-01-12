@@ -2,8 +2,8 @@
 //  Election.m
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 1/10/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Election.h"
@@ -13,9 +13,10 @@
 
 @implementation Election 
 
-@dynamic guid;
-@dynamic title;
 @dynamic date;
+@dynamic last_modified;
+@dynamic title;
+@dynamic guid;
 @dynamic positions;
 @dynamic measures;
 

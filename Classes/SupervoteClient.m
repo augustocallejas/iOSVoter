@@ -158,6 +158,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		NSLog(@"Votes: %@", json);
 		NSArray *votes = [parser objectWithString:json error:&error];	
 		[json release];
 		
@@ -405,7 +406,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return [_context save:error];
 }
 
-- (id)getElections {
+- (NSArray *)getElections {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
@@ -434,99 +435,145 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return nil;
 }
 
-- (BOOL)insertElections:(NSArray *)elections withError:(NSError **)error{
-	for (NSDictionary *election in elections) {
-		NSString *guid = [election objectForKey:@"guid"];
+- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSString *)time withNewModifiedTime:(NSString **)newTime {
+	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
+	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
+	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
+	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
+	
+	*newTime = nil;
+	
+	/* TODO: this should be asynchronous */
+	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	if (time != nil) {
+		[request addRequestHeader:@"If-Modified-Since" value:time];
+	}
+	
+	[request startSynchronous];
+	NSError *error = [request error];
+	if (error != nil) {
+	}
+	else if ([request responseStatusCode] == 200) {
+		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		NSDictionary *election = [parser objectWithString:json error:&error];	
+		[json release];
 		
-		/* does the election exist in the database already? */
-		/* TODO guid is a good way to check if the election already exists, but what about changes? */		
-		Election *electionFound = [self getObject:@"Election" byGuid:guid];
-		if (electionFound != nil) {
-			NSLog(@"Election already in database, but are there updates, like date?");
-			continue;
+		if (error != nil) {
+			NSLog(@"error: %@", [error userInfo]);
 		}
+	
+		*newTime = [[request responseHeaders] objectForKey:@"Last-Modified"];
+		NSLog(@"Last-Modified: %@", *newTime);
 		
-		NSString *title = [election objectForKey:@"title"];
-		NSNumber *dateValue = [election objectForKey:@"date"];
-		NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
-		
-		Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
-		electionObj.guid = guid;
-		electionObj.title = title;
-		electionObj.date = date;
-		[date release];
-		
-		NSArray *positions = [election objectForKey:@"positions"];
-		if (positions != nil) {
-			for (NSDictionary *position in positions) {
-				// guid
-				NSString *guid = [position objectForKey:@"guid"];
-				// title
-				NSString *title = [position objectForKey:@"title"];
-				// level
-				NSString *level = [position objectForKey:@"level"];
-				// levelOrder
-				NSNumber *levelOrder = [position objectForKey:@"levelOrder"];
-				// titleOrder
-				NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
-				
-				//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
-				
-				Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
-				positionObj.guid = guid;
-				positionObj.level = level;
-				positionObj.levelOrder = levelOrder;
-				positionObj.title = title;
-				positionObj.titleOrder = titleOrder;
-				[electionObj addPositionsObject:positionObj];
-				
-				// candidates
-				NSArray *candidates = [position objectForKey:@"candidates"];
-				if (candidates != nil) {
-					for (NSDictionary *candidate in candidates) {
-						NSString *guid = [candidate objectForKey:@"guid"];
-						NSString *name = [candidate objectForKey:@"name"];
-						id subtitle = [candidate objectForKey:@"subtitle"];
-						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
-						
-						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
-						
-						Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
-						candidateObj.guid = guid;
-						candidateObj.name = name;
-						if (subtitle != [NSNull null]) {
-							candidateObj.subtitle = subtitle;
-						}
-						candidateObj.displayOrder = displayOrder;
-						[positionObj addCandidatesObject:candidateObj];
+		return election;
+	}
+	else if ([request responseStatusCode] == 404) {
+		/* NOT_FOUND */
+		NSLog(@"Election was deleted!");
+	}
+	else if ([request responseStatusCode] == 304) {
+		/* NOT_MODIFIED */
+		NSLog(@"Election was not modified, do nothing");
+	}
+	
+	return nil;
+}
+
+- (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSString *)time withError:(NSError **)error{
+	NSString *guid = [election objectForKey:@"guid"];
+	
+	/* does the election exist in the database already? */
+	/* TODO guid is a good way to check if the election already exists, but what about changes? */		
+	Election *electionFound = [self getObject:@"Election" byGuid:guid];
+	if (electionFound != nil) {
+		NSLog(@"Election already in database, but are there updates, like date?");
+		//continue;
+		return YES;
+	}
+	
+	NSString *title = [election objectForKey:@"title"];
+	NSNumber *dateValue = [election objectForKey:@"date"];
+	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+	
+	Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
+	electionObj.guid = guid;
+	electionObj.title = title;
+	electionObj.date = date;
+	electionObj.last_modified = time;
+	[date release];
+	
+	NSArray *positions = [election objectForKey:@"positions"];
+	if (positions != nil) {
+		for (NSDictionary *position in positions) {
+			// guid
+			NSString *guid = [position objectForKey:@"guid"];
+			// title
+			NSString *title = [position objectForKey:@"title"];
+			// level
+			NSString *level = [position objectForKey:@"level"];
+			// levelOrder
+			NSNumber *levelOrder = [position objectForKey:@"levelOrder"];
+			// titleOrder
+			NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
+			
+			//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
+			
+			Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
+			positionObj.guid = guid;
+			positionObj.level = level;
+			positionObj.levelOrder = levelOrder;
+			positionObj.title = title;
+			positionObj.titleOrder = titleOrder;
+			[electionObj addPositionsObject:positionObj];
+			
+			// candidates
+			NSArray *candidates = [position objectForKey:@"candidates"];
+			if (candidates != nil) {
+				for (NSDictionary *candidate in candidates) {
+					NSString *guid = [candidate objectForKey:@"guid"];
+					NSString *name = [candidate objectForKey:@"name"];
+					id subtitle = [candidate objectForKey:@"subtitle"];
+					NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
+					
+					//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
+					
+					Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
+					candidateObj.guid = guid;
+					candidateObj.name = name;
+					if (subtitle != [NSNull null]) {
+						candidateObj.subtitle = subtitle;
 					}
+					candidateObj.displayOrder = displayOrder;
+					[positionObj addCandidatesObject:candidateObj];
 				}
 			}
 		}
-		
-		NSArray *measures = [election objectForKey:@"measures"];
-		if (measures != nil) {
-			for (NSDictionary *measure in measures) {
-				NSString *guid = [measure objectForKey:@"guid"];
-				NSString *identifier = [measure objectForKey:@"identifier"];
-				NSString *title = [measure objectForKey:@"title"];
-				NSString *level = [measure objectForKey:@"level"];
-				NSNumber *levelOrder = [measure objectForKey:@"levelOrder"];
-				NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
-				NSString *longDescription = [measure objectForKey:@"longDescription"];
-				
-				//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
-				
-				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
-				measureObj.guid = guid;
-				measureObj.identifier = identifier;
-				measureObj.title = title;
-				measureObj.longDescription = longDescription;
-				measureObj.level = level;
-				measureObj.levelOrder = levelOrder;
-				measureObj.displayOrder = displayOrder;
-				[electionObj addMeasuresObject:measureObj];
-			}
+	}
+	
+	NSArray *measures = [election objectForKey:@"measures"];
+	if (measures != nil) {
+		for (NSDictionary *measure in measures) {
+			NSString *guid = [measure objectForKey:@"guid"];
+			NSString *identifier = [measure objectForKey:@"identifier"];
+			NSString *title = [measure objectForKey:@"title"];
+			NSString *level = [measure objectForKey:@"level"];
+			NSNumber *levelOrder = [measure objectForKey:@"levelOrder"];
+			NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
+			NSString *longDescription = [measure objectForKey:@"longDescription"];
+			
+			//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
+			
+			Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
+			measureObj.guid = guid;
+			measureObj.identifier = identifier;
+			measureObj.title = title;
+			measureObj.longDescription = longDescription;
+			measureObj.level = level;
+			measureObj.levelOrder = levelOrder;
+			measureObj.displayOrder = displayOrder;
+			[electionObj addMeasuresObject:measureObj];
 		}
 	}
 	

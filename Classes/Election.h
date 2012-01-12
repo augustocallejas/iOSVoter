@@ -2,8 +2,8 @@
 //  Election.h
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 1/10/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
@@ -15,9 +15,10 @@
 {
 }
 
-@property (nonatomic, retain) NSString * guid;
-@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSString * last_modified;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSSet* positions;
 @property (nonatomic, retain) NSSet* measures;
 
