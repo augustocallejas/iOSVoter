@@ -30,8 +30,9 @@
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
-- (NSArray *)getElections;
-- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSString *)time withNewModifiedTime:(NSString **)newTime;
-- (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSString *)time withError:(NSError **)error;
+- (NSDictionary *)getElections;
+- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime;
+- (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
+- (BOOL)updateElection:(NSDictionary *)electionDict withLastModified:(NSDate *)time withError:(NSError **)error;
 
 @end

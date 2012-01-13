@@ -16,7 +16,7 @@
 }
 
 @property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSString * last_modified;
+@property (nonatomic, retain) NSDate * lastModified;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSSet* positions;

@@ -406,7 +406,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return [_context save:error];
 }
 
-- (NSArray *)getElections {
+- (NSDictionary *)getElections {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
@@ -422,7 +422,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSArray *elections = [parser objectWithString:json error:&error];	
+		NSDictionary *elections = [parser objectWithString:json error:&error];
 		[json release];
 		
 		if (error != nil) {
@@ -435,7 +435,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return nil;
 }
 
-- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSString *)time withNewModifiedTime:(NSString **)newTime {
+- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
@@ -443,31 +443,37 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	
 	*newTime = nil;
 	
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	
 	/* TODO: this should be asynchronous */
 	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	if (time != nil) {
-		[request addRequestHeader:@"If-Modified-Since" value:time];
+		[request addRequestHeader:@"If-Modified-Since" value:[df stringFromDate:time]];
 	}
 	
 	[request startSynchronous];
+	
+	NSDictionary *election = nil;
 	NSError *error = [request error];
+	
 	if (error != nil) {
 	}
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSDictionary *election = [parser objectWithString:json error:&error];	
+		election = [parser objectWithString:json error:&error];	
 		[json release];
 		
 		if (error != nil) {
 			NSLog(@"error: %@", [error userInfo]);
 		}
-	
-		*newTime = [[request responseHeaders] objectForKey:@"Last-Modified"];
-		NSLog(@"Last-Modified: %@", *newTime);
 		
-		return election;
+		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
+		*newTime = [df dateFromString:newLastModified];
 	}
 	else if ([request responseStatusCode] == 404) {
 		/* NOT_FOUND */
@@ -478,10 +484,13 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 		NSLog(@"Election was not modified, do nothing");
 	}
 	
-	return nil;
+	[df release];
+	[locale release];
+	
+	return election;
 }
 
-- (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSString *)time withError:(NSError **)error{
+- (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *guid = [election objectForKey:@"guid"];
 	
 	/* does the election exist in the database already? */
@@ -501,7 +510,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	electionObj.guid = guid;
 	electionObj.title = title;
 	electionObj.date = date;
-	electionObj.last_modified = time;
+	electionObj.lastModified = time;
 	[date release];
 	
 	NSArray *positions = [election objectForKey:@"positions"];
@@ -576,6 +585,26 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 			[electionObj addMeasuresObject:measureObj];
 		}
 	}
+	
+	return [_context save:error];
+}
+
+- (BOOL)updateElection:(NSDictionary *)electionDict withLastModified:(NSDate *)time withError:(NSError **)error {
+	NSString *guid = [electionDict objectForKey:@"guid"];
+	
+	Election *election = [self getObject:@"Election" byGuid:guid];
+	if (election == nil) {
+		NSLog(@"No election found with guid '%@'", guid);
+		return NO;
+	}
+	
+	NSString *title = [electionDict objectForKey:@"title"];
+	NSNumber *dateValue = [electionDict objectForKey:@"date"];
+	
+	election.title = title;
+	election.date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+	election.lastModified = time;
+	
 	
 	return [_context save:error];
 }

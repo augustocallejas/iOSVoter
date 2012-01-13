@@ -118,18 +118,46 @@
 	[reload release];
 }
 
+/* TODO: run in background? */
+/* TODO: doesn't manage deleted elections or past elections */
 - (void)updateElections {
 	NSError *error = nil;
-	NSArray *elections = [_client getElections];
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	NSDictionary *elections = [_client getElections];
 	/* TODO: run in background? */
-	NSString *lastModified = nil;
 	for (NSString *electionGuid in elections) {
-		NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&lastModified];
-		if (election != nil) {
-			[_client insertElection:election withLastModified:lastModified withError:&error];
+		double timestamp = [((NSNumber *)[elections objectForKey:electionGuid]) doubleValue] / 1000.0;
+		NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:timestamp];
+		NSDate *newLastModified = nil;
+		Election *electionObj = [_client getObject:@"Election" byGuid:electionGuid];
+
+		if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
+			/* get election from server */
+			NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&newLastModified];
+
+			if (electionObj == nil) {
+				NSLog(@"Election '%@' not in database, going to fetch it", electionGuid);
+				if (election != nil) {
+					[_client insertElection:election withLastModified:newLastModified withError:&error];
+				}
+			}
+			else {
+				NSLog(@"Election '%@' needs updates (local %@ versus server %@)", electionGuid, electionObj.lastModified, lastModified);
+				
+				if (election != nil) {
+					[_client updateElection:election withLastModified:lastModified withError:&error];
+				}
+			}
 		}
-		//[_client insertElections:elections withError:&error];
+		else {
+			NSLog(@"Election '%@' up to date", electionGuid);
+		}
 	}
+	[df release];
+	[locale release];
 	
 	/* TODO: do this somewhere else!!!! */
 	error = nil;

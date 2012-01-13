@@ -14,7 +14,7 @@
 @implementation Election 
 
 @dynamic date;
-@dynamic last_modified;
+@dynamic lastModified;
 @dynamic title;
 @dynamic guid;
 @dynamic positions;
