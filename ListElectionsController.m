@@ -38,7 +38,7 @@
 }
 
 - (NSArray *)allocSortDescriptors{
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
 	return [NSArray arrayWithObject:sort];
 }
 

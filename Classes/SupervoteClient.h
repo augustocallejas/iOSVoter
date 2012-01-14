@@ -33,6 +33,6 @@
 - (NSDictionary *)getElections;
 - (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime;
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
-- (BOOL)updateElection:(NSDictionary *)electionDict withLastModified:(NSDate *)time withError:(NSError **)error;
+- (BOOL)updateElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
 
 @end

@@ -466,6 +466,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		election = [parser objectWithString:json error:&error];	
+		//NSLog(@"JSON %@", json);
 		[json release];
 		
 		if (error != nil) {
@@ -517,7 +518,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	if (positions != nil) {
 		for (NSDictionary *position in positions) {
 			// guid
-			NSString *guid = [position objectForKey:@"guid"];
+			NSString *positionGuid = [position objectForKey:@"guid"];
 			// title
 			NSString *title = [position objectForKey:@"title"];
 			// level
@@ -530,7 +531,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 			//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
 			
 			Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
-			positionObj.guid = guid;
+			positionObj.guid = positionGuid;
 			positionObj.level = level;
 			positionObj.levelOrder = levelOrder;
 			positionObj.title = title;
@@ -541,7 +542,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 			NSArray *candidates = [position objectForKey:@"candidates"];
 			if (candidates != nil) {
 				for (NSDictionary *candidate in candidates) {
-					NSString *guid = [candidate objectForKey:@"guid"];
+					NSString *candidateGuid = [candidate objectForKey:@"guid"];
 					NSString *name = [candidate objectForKey:@"name"];
 					id subtitle = [candidate objectForKey:@"subtitle"];
 					NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
@@ -549,11 +550,9 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 					//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
 					
 					Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
-					candidateObj.guid = guid;
+					candidateObj.guid = candidateGuid;
 					candidateObj.name = name;
-					if (subtitle != [NSNull null]) {
-						candidateObj.subtitle = subtitle;
-					}
+					candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
 					candidateObj.displayOrder = displayOrder;
 					[positionObj addCandidatesObject:candidateObj];
 				}
@@ -589,22 +588,133 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return [_context save:error];
 }
 
-- (BOOL)updateElection:(NSDictionary *)electionDict withLastModified:(NSDate *)time withError:(NSError **)error {
-	NSString *guid = [electionDict objectForKey:@"guid"];
+- (BOOL)updateElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
+	NSString *electionGuid = [election objectForKey:@"guid"];
 	
-	Election *election = [self getObject:@"Election" byGuid:guid];
-	if (election == nil) {
-		NSLog(@"No election found with guid '%@'", guid);
+	Election *electionObj = [self getObject:@"Election" byGuid:electionGuid];
+	if (electionObj == nil) {
+		NSLog(@"No election found with guid '%@'", electionGuid);
 		return NO;
 	}
 	
-	NSString *title = [electionDict objectForKey:@"title"];
-	NSNumber *dateValue = [electionDict objectForKey:@"date"];
+	NSString *title = [election objectForKey:@"title"];
+	NSNumber *dateValue = [election objectForKey:@"date"];
+	NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 	
-	election.title = title;
-	election.date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
-	election.lastModified = time;
+	electionObj.title = title;
+	electionObj.date = date;
+	electionObj.lastModified = time;
+	[date release];
 	
+	// positions
+	NSArray *positions = [election objectForKey:@"positions"];
+	if (positions != nil) {
+		for (NSDictionary *position in positions) {
+			// guid
+			NSString *positionGuid = [position objectForKey:@"guid"];
+			// title
+			NSString *title = [position objectForKey:@"title"];
+			// level
+			NSString *level = [position objectForKey:@"level"];
+			// levelOrder
+			NSNumber *levelOrder = [position objectForKey:@"levelOrder"];
+			// titleOrder
+			NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
+			
+			//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
+			
+			Position *positionObj = [self getObject:@"Position" byGuid:positionGuid];
+			if (positionObj == nil) {
+				NSLog(@"Adding new position '%@' to election '%@'", positionGuid, electionGuid);
+				
+				positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
+				positionObj.guid = positionGuid;
+				[electionObj addPositionsObject:positionObj];
+			}
+			
+			if (positionObj.forElection == electionObj) {
+				positionObj.level = level;
+				positionObj.levelOrder = levelOrder;
+				positionObj.title = title;
+				positionObj.titleOrder = titleOrder;
+				
+				// candidates
+				NSArray *candidates = [position objectForKey:@"candidates"];
+				if (candidates != nil) {
+					for (NSDictionary *candidate in candidates) {
+						NSString *candidateGuid = [candidate objectForKey:@"guid"];
+						NSString *name = [candidate objectForKey:@"name"];
+						id subtitle = [candidate objectForKey:@"subtitle"];
+						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
+						
+						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
+						
+						Candidate *candidateObj = [self getObject:@"Candidate" byGuid:candidateGuid];
+						if (candidateObj == nil) {
+							NSLog(@"Adding new candidate '%@' to position '%@'", candidateGuid, positionGuid);
+							
+							Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
+							candidateObj.guid = candidateGuid;
+							[positionObj addCandidatesObject:candidateObj];
+						}
+						
+						if (candidateObj.position == positionObj) {
+							candidateObj.name = name;
+							candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
+							candidateObj.displayOrder = displayOrder;
+						}
+						else {
+							NSLog(@"Candidate doesn't belong in position");
+						}
+
+					}
+				}
+			}
+			else {
+				NSLog(@"Position doesn't belong in election");
+			}
+
+		}
+	}
+	
+	// measures
+	NSArray *measures = [election objectForKey:@"measures"];
+	if (measures != nil) {
+		for (NSDictionary *measure in measures) {
+			NSString *measureGuid = [measure objectForKey:@"guid"];
+			NSString *identifier = [measure objectForKey:@"identifier"];
+			NSString *title = [measure objectForKey:@"title"];
+			NSString *level = [measure objectForKey:@"level"];
+			NSNumber *levelOrder = [measure objectForKey:@"levelOrder"];
+			NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
+			NSString *longDescription = [measure objectForKey:@"longDescription"];
+			
+			//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
+			
+			Measure *measureObj = [self getObject:@"Measure" byGuid:measureGuid];
+
+			if (measureObj == nil) {
+				NSLog(@"Adding new measure '%@' to election '%@'", measureGuid, electionGuid);
+				
+				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
+				measureObj.guid = measureGuid;
+				[electionObj addMeasuresObject:measureObj];
+			}
+			
+			if (measureObj.forElection == electionObj) {				
+				measureObj.identifier = identifier;
+				measureObj.title = title;
+				measureObj.longDescription = longDescription;
+				measureObj.level = level;
+				measureObj.levelOrder = levelOrder;
+				measureObj.displayOrder = displayOrder;
+			}
+			else {
+				NSLog(@"Measure doesn't belong in election");
+			}
+
+		}
+	}
 	
 	return [_context save:error];
 }

@@ -171,7 +171,7 @@
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
 																								  managedObjectContext:_managedObjectContext
 																									sectionNameKeyPath:@"levelOrder"
-																											 cacheName:@"DisplayBallotController-Position"];
+																											 cacheName:nil];
     self.fetchedResultsController1 = theFetchedResultsController;
 	self.fetchedResultsController1.delegate = self;
 	
@@ -203,7 +203,7 @@
     NSFetchedResultsController *theFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest 
 																								  managedObjectContext:_managedObjectContext
 																									sectionNameKeyPath:@"levelOrder"
-																											 cacheName:@"DisplayBallotController-Measure"];
+																											 cacheName:nil];
     self.fetchedResultsController2 = theFetchedResultsController;
 	self.fetchedResultsController2.delegate = self;
 	
@@ -572,7 +572,7 @@
 	self.navigationItem.rightBarButtonItem = reload;
 	[reload release];
 	
-	NSLog(@"DisplayBallotController: viewDidLoad");
+	//NSLog(@"DisplayBallotController: viewDidLoad");
 	viewDidLoadCalled = YES;
 	
 	NSError *error;
