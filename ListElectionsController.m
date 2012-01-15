@@ -34,7 +34,7 @@
 }
 
 - (NSString *)getCacheName{
-	return nil;//return @"ListElectionsController";
+	return nil;
 }
 
 - (NSArray *)allocSortDescriptors{
