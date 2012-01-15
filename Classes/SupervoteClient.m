@@ -110,7 +110,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	}
 }
 
-- (void)sendBallotVote:(BallotVote *)vote {
+- (BOOL)sendBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -121,13 +121,38 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
 	
 	[request startSynchronous];
+	
+	BOOL created = NO;
 	NSError *error = [request error];
 	if (error != nil) {
+		/* TODO: log to disk? */
 		NSLog(@"error: %@", [error userInfo]);
+		created = NO;
 	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		created = YES;
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	else {
+		/* unexpected response */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	
+	return created;
 }
 
-- (void)sendMeasureVote:(MeasureVote *)vote {
+- (BOOL)sendMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -139,11 +164,34 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 		[request setPostValue:vote.vote forKey:@"vote"];
 	}
 	
+	BOOL created = NO;
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
 		NSLog(@"error: %@", [error userInfo]);
+		created = NO;
 	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		created = YES;
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	else {
+		/* unexpected response */
+		created = NO;
+		/* TODO: log to disk */
+	}
+	
+	return YES;
 }
 
 - (id)getVotesForBallot:(NSString *)electionGuid{

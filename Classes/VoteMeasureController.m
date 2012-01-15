@@ -256,6 +256,7 @@
 }
 
 - (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
+	BOOL dismissModalView = YES;
 	if (withVote) {
 		if (_vote == nil) {			
 			self.vote = (MeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"MeasureVote" inManagedObjectContext:[_ballot managedObjectContext]];
@@ -274,18 +275,30 @@
 			// Handle the error
 		}
 		else {
-			[_client sendMeasureVote:_vote];
+			if (![_client sendMeasureVote:_vote]) {
+				dismissModalView = NO;
+			}
 		}
 
-		
 		[self.tableView reloadData];
 	}
 	else {
 		NSLog(@"User canceled their vote selection");
 	}
 	
-    // Dismiss the modal view controller
-    [self dismissModalViewControllerAnimated:YES];	
+	if (dismissModalView) {
+		// Dismiss the modal view controller
+		[self dismissModalViewControllerAnimated:YES];
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
+														message:@"Unable to save vote at the server, please try again in a few minutes." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 - (IBAction)viewAllEndorsements:(id)sender{	

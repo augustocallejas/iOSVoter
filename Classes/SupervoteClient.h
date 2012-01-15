@@ -24,8 +24,8 @@
 - (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error;
 - (void)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
-- (void)sendBallotVote:(BallotVote *)vote;
-- (void)sendMeasureVote:(MeasureVote *)vote;
+- (BOOL)sendBallotVote:(BallotVote *)vote;
+- (BOOL)sendMeasureVote:(MeasureVote *)vote;
 - (id)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
 - (id)getFriends;
