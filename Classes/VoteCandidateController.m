@@ -567,7 +567,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"cellForRow %d", indexPath.row);
+	//NSLog(@"cellForRow %d", indexPath.row);
     static NSString *identifier = @"CandidateViewCell";
     CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {
