@@ -121,10 +121,11 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
-	self.navigationItem.rightBarButtonItem = reload;
-	[reload release];
+
+	/* TODO: disabling this for now */
+//	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
+//	self.navigationItem.rightBarButtonItem = reload;
+//	[reload release];
 	
 	self.tableView.allowsSelection = NO;
 	
@@ -257,6 +258,7 @@
 
 - (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
 	BOOL dismissModalView = YES;
+	vote_status status = OK;
 	if (withVote) {
 		if (_vote == nil) {			
 			self.vote = (MeasureVote *) [NSEntityDescription insertNewObjectForEntityForName:@"MeasureVote" inManagedObjectContext:[_ballot managedObjectContext]];
@@ -264,26 +266,30 @@
 			_vote.forMeasure = _measure;
 		}
 
-		NSLog(@"Saving vote: %@, %@ %d", measureVote, statement, viewable);
 		_vote.vote = measureVote;
 		_vote.statement = statement;
 		_vote.viewableByFriends = [NSNumber numberWithBool:viewable];
 		
-		NSError *error;
-		if (![[self.ballot managedObjectContext] save:&error]) {
-			NSLog(@"  DetailedError: %@", [error userInfo]);
-			// Handle the error
+		status = [_client sendMeasureVote:_vote];
+		if (status == OK) {
+			/* store vote locally */
+			NSError *error = nil;
+			if (![[self.ballot managedObjectContext] save:&error]) {
+				/* TODO: log to disk */
+//				NSLog(@"  DetailedError: %@", [error userInfo]);
+			}
+			
+			[self.tableView reloadData];
 		}
 		else {
-			if (![_client sendMeasureVote:_vote]) {
-				dismissModalView = NO;
-			}
+			/* any other status besides OK means we didn't store the vote at the server properly */
+			dismissModalView = NO;
 		}
-
-		[self.tableView reloadData];
 	}
 	else {
-		NSLog(@"User canceled their vote selection");
+		/* user hit cancel so just dismiss the modal view */
+		//NSLog(@"User canceled their vote selection");
+		dismissModalView = YES;
 	}
 	
 	if (dismissModalView) {
@@ -291,8 +297,35 @@
 		[self dismissModalViewControllerAnimated:YES];
 	}
 	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
-														message:@"Unable to save vote at the server, please try again in a few minutes." 
+		//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
+		NSString *title = nil;
+		NSString *message = nil;
+		switch (status) {
+			case HTTP_ERROR:
+				title = @"Network Error";
+				message = @"Unable to connect to server, please verify your network connection and try again.";
+				break;
+			case SERVER_ERROR:
+				title = @"Server Error";
+				message = @"Unable to save vote at the server, please try again in a few minutes.";
+				break;
+			case BAD_REQUEST:
+				title = @"Bad Request";
+				message = @"The app sent a bad request to the server.";
+				break;
+			case ELECTION_CLOSED:
+				title = @"Election Closed";
+				message = @"This election has closed and cannot receive any new votes.";
+				break;
+			case UNEXPECTED_RESPONSE:
+			default:
+				title = @"Unexpected Response";
+				message	= @"The server returned an unexpected response.";
+				break;
+		}
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title 
+														message:message 
 													   delegate:nil 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];

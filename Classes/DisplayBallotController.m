@@ -34,6 +34,12 @@
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
 @synthesize client = _client;
 
+- (void)updateBallot {
+	/* TODO: left unimplemented for now */
+	//NSDate *newTime = nil;
+	//NSDictionary *election = [_client getElection:_election.guid withLastModified:_election.lastModified withNewModifiedTime:&newTime];
+}
+
 #pragma mark -
 #pragma mark UIButton custom actions
 
@@ -560,17 +566,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-
-- (void)updateBallot {
-
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBallot)];
-	self.navigationItem.rightBarButtonItem = reload;
-	[reload release];
+
+	/* TODO: disabling this for now */
+//	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBallot)];
+//	self.navigationItem.rightBarButtonItem = reload;
+//	[reload release];
 	
 	//NSLog(@"DisplayBallotController: viewDidLoad");
 	viewDidLoadCalled = YES;

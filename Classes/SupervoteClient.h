@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "BallotVote.h"
+#import "Election.h"
 #import "MeasureVote.h"
+
+typedef enum {
+	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
+} vote_status;
 
 @interface SupervoteClient : NSObject {
 	
@@ -24,8 +29,8 @@
 - (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error;
 - (void)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
-- (BOOL)sendBallotVote:(BallotVote *)vote;
-- (BOOL)sendMeasureVote:(MeasureVote *)vote;
+- (vote_status)sendBallotVote:(BallotVote *)vote;
+- (vote_status)sendMeasureVote:(MeasureVote *)vote;
 - (id)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
 - (id)getFriends;
@@ -33,6 +38,6 @@
 - (NSDictionary *)getElections;
 - (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime;
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
-- (BOOL)updateElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
+- (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
 
 @end

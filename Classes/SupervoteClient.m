@@ -110,11 +110,12 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	}
 }
 
-- (BOOL)sendBallotVote:(BallotVote *)vote {
+- (vote_status)sendBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
 	[request setPostValue:vote.forPosition.guid forKey:@"position"];
 	[request setPostValue:vote.forCandidate.guid forKey:@"candidate"];
 	[request setPostValue:vote.statement forKey:@"statement"];
@@ -122,41 +123,46 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	
 	[request startSynchronous];
 	
-	BOOL created = NO;
+	vote_status status = OK;
 	NSError *error = [request error];
 	if (error != nil) {
+		status = HTTP_ERROR;
 		/* TODO: log to disk? */
-		NSLog(@"error: %@", [error userInfo]);
-		created = NO;
+		//NSLog(@"error: %@", [error userInfo]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
-		created = YES;
+		status = OK;
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
-		created = NO;
+		status = SERVER_ERROR;
 		/* TODO: log to disk */
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
-		created = NO;
+		status = BAD_REQUEST;
 		/* TODO: log to disk */
+	}
+	else if ([request responseStatusCode] == 403) {
+		/* FORBIDDEN */
+		status = ELECTION_CLOSED;
 	}
 	else {
 		/* unexpected response */
-		created = NO;
+		status = UNEXPECTED_RESPONSE;
 		/* TODO: log to disk */
 	}
 	
-	return created;
+	return status;
 }
 
-- (BOOL)sendMeasureVote:(MeasureVote *)vote {
+- (vote_status)sendMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
 	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
 	[request setPostValue:vote.statement forKey:@"statement"];
 	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
@@ -164,34 +170,39 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 		[request setPostValue:vote.vote forKey:@"vote"];
 	}
 	
-	BOOL created = NO;
+	vote_status status = OK;
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
-		created = NO;
+		status = HTTP_ERROR;
+		/* TODO: log to disk */
+//		NSLog(@"error: %@", [error userInfo]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
-		created = YES;
+		status = OK;
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
-		created = NO;
+		status = SERVER_ERROR;
 		/* TODO: log to disk */
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
-		created = NO;
+		status = BAD_REQUEST;
 		/* TODO: log to disk */
+	}
+	else if ([request responseStatusCode] == 403) {
+		/* FORBIDDEN */
+		status = ELECTION_CLOSED;
 	}
 	else {
 		/* unexpected response */
-		created = NO;
+		status = UNEXPECTED_RESPONSE;
 		/* TODO: log to disk */
 	}
 	
-	return YES;
+	return status;
 }
 
 - (id)getVotesForBallot:(NSString *)electionGuid{
@@ -526,11 +537,11 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	}
 	else if ([request responseStatusCode] == 404) {
 		/* NOT_FOUND */
-		NSLog(@"Election was deleted!");
+		NSLog(@"Election '%@' does not exist", guid);
 	}
 	else if ([request responseStatusCode] == 304) {
 		/* NOT_MODIFIED */
-		NSLog(@"Election was not modified, do nothing");
+		NSLog(@"Election '%@' was not modified");
 	}
 	
 	[df release];
@@ -541,16 +552,6 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *guid = [election objectForKey:@"guid"];
-	
-	/* does the election exist in the database already? */
-	/* TODO guid is a good way to check if the election already exists, but what about changes? */		
-	Election *electionFound = [self getObject:@"Election" byGuid:guid];
-	if (electionFound != nil) {
-		NSLog(@"Election already in database, but are there updates, like date?");
-		//continue;
-		return YES;
-	}
-	
 	NSString *title = [election objectForKey:@"title"];
 	NSNumber *dateValue = [election objectForKey:@"date"];
 	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
@@ -636,15 +637,8 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return [_context save:error];
 }
 
-- (BOOL)updateElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
+- (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *electionGuid = [election objectForKey:@"guid"];
-	
-	Election *electionObj = [self getObject:@"Election" byGuid:electionGuid];
-	if (electionObj == nil) {
-		NSLog(@"No election found with guid '%@'", electionGuid);
-		return NO;
-	}
-	
 	NSString *title = [election objectForKey:@"title"];
 	NSNumber *dateValue = [election objectForKey:@"date"];
 	NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
