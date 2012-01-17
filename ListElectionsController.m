@@ -121,64 +121,88 @@
 /* TODO: run in background? */
 /* TODO: doesn't manage deleted elections or past elections */
 - (void)updateElections {
-	NSError *error = nil;
 	NSDictionary *elections = [_client getElections];
 	
-	for (NSString *electionGuid in elections) {
-		double timestamp = [((NSNumber *)[elections objectForKey:electionGuid]) doubleValue] / 1000.0;
-		NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:timestamp];
-		NSDate *newLastModified = nil;
-		Election *electionObj = [_client getObject:@"Election" byGuid:electionGuid];
-		error = nil;
-
-		if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
-			/* get election from server */
-			NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&newLastModified];
-
-			if (electionObj == nil) {
-				NSLog(@"Election '%@' not in database, going to fetch it", electionGuid);
+	if (elections == nil) {
+		/* nil means we couldn't contact the server */
+		NSString *title = @"Network Error";
+		NSString *message = @"Unable to connect to server, please verify your network connection and try again.";
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+														message:message 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	else {
+		NSError *httpError = nil;
+		for (NSString *electionGuid in elections) {
+			double timestamp = [((NSNumber *)[elections objectForKey:electionGuid]) doubleValue] / 1000.0;
+			NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:timestamp];
+			NSDate *newLastModified = nil;
+			Election *electionObj = [_client getObject:@"Election" byGuid:electionGuid];
+			httpError = nil;
+			
+			if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
+				/* get election from server */
+				NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&newLastModified withError:&httpError];
 				
-				if (election != nil) {
-					if (![_client insertElection:election withLastModified:newLastModified withError:&error]) {
-						/* . */
-						if (error != nil) {
-							NSLog(@"Error: %@", [error userInfo]);
+				if (httpError != nil) {
+					NSLog(@"Network error while fetching election: %@", [httpError userInfo]);
+				}
+				else if (electionObj == nil) {
+					NSLog(@"Election '%@' not in database, going to fetch it", electionGuid);
+					
+					if (election != nil) {
+						NSError *storeError = nil;
+						if (![_client insertElection:election withLastModified:newLastModified withError:&storeError]) {
+							if (storeError != nil) {
+								NSLog(@"Storage error while inserting election: %@", [storeError userInfo]);
+							}
+						}
+					}
+				}
+				else {
+					NSLog(@"Election '%@' needs updates (local %@ versus server %@)", electionGuid, electionObj.lastModified, lastModified);
+					
+					if (election != nil) {
+						NSError *storeError = nil;
+						if (![_client updateElection:electionObj withObject:election withLastModified:lastModified withError:&storeError]) {
+							if (storeError != nil) {
+								NSLog(@"Storage error while updating election: %@", [storeError userInfo]);
+							}
 						}
 					}
 				}
 			}
 			else {
-				NSLog(@"Election '%@' needs updates (local %@ versus server %@)", electionGuid, electionObj.lastModified, lastModified);
+				NSLog(@"Election '%@' up to date", electionGuid);
+			}
+		}
+		
+		/* TODO: do this somewhere else!!!! */
+		NSError *storeError = nil;
+		NSArray *friends = [_client getFriends];
+		if (friends != nil) {
+			[_client insertFriends:friends withError:&storeError];
+			
+			if (storeError != nil) {
+				NSLog(@"Store error while inserting friends: %@", [storeError userInfo]);
+			}
+		}
+		
+		for (NSString *electionGuid in elections) {
+			storeError = nil;
+			NSArray *votes = [_client getVotesForBallot:electionGuid];
+			if (votes != nil) {
+				[_client insertVotes:votes withError:&storeError];
 				
-				if (election != nil) {
-					if (![_client updateElection:electionObj withObject:election withLastModified:lastModified withError:&error]) {
-						if (error != nil) {
-							NSLog(@"Error: %@", [error userInfo]);
-						}
-					}
+				if (storeError != nil) {
+					NSLog(@"Store error while inserting votes: %@", [storeError userInfo]);
 				}
 			}
 		}
-		else {
-			NSLog(@"Election '%@' up to date", electionGuid);
-		}
-	}
-	
-	/* TODO: do this somewhere else!!!! */
-	error = nil;
-	NSArray *friends = [_client getFriends];
-	[_client insertFriends:friends withError:&error];
-	
-	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
-	}
-	
-	error = nil;
-	NSArray *votes = [_client getVotesForBallot:@"e1"];
-	[_client insertVotes:votes withError:&error];
-	
-	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
 	}
 }
 

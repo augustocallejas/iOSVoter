@@ -211,22 +211,25 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request startSynchronous];
-	NSError *error = [request error];
-	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
+	
+	NSError *httpError = [request error];
+	if (httpError != nil) {
+		NSLog(@"Network error while getting votes for election: %@", [httpError userInfo]);
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		NSLog(@"Votes: %@", json);
-		NSArray *votes = [parser objectWithString:json error:&error];	
+		
+		NSError *parseError = nil;
+		NSArray *votes = [parser objectWithString:json error:&parseError];	
 		[json release];
 		
-		if (error != nil) {
-			NSLog(@"error: %@", [error userInfo]);
-			return nil;
+		if (parseError != nil) {
+			NSLog(@"Parse error: %@", [parseError userInfo]);
 		}
-		
-		return votes;
+		else {
+			return votes;
+		}
 	}
 
 	return nil;
@@ -410,18 +413,21 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
 	[request startSynchronous];
-	NSError *error = [request error];
-	if (error != nil) {
+	
+	NSError *httpError = [request error];
+	if (httpError != nil) {
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSArray *elections = [parser objectWithString:json error:&error];	
+		NSError *parseError = nil;
+		NSArray *friends = [parser objectWithString:json error:&parseError];	
 		[json release];
 		
-		if (error != nil) {
+		if (parseError != nil) {
+			NSLog(@"Parse error: %@", [parseError userInfo]);
 		}
 		
-		return elections;
+		return friends;
 	}
 
 	return nil;	
@@ -478,6 +484,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
+		NSLog(@"Error sending request: %@", [error userInfo]);
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
@@ -485,7 +492,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 		[json release];
 		
 		if (error != nil) {
-			NSLog(@"error: %@", [error userInfo]);
+			NSLog(@"Error parsing JSON: %@", [error userInfo]);
 		}
 		
 		return elections;
@@ -494,13 +501,14 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return nil;
 }
 
-- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime {
+- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime withError:(NSError **)httpError {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	*newTime = nil;
+	*httpError = nil;
 	
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
@@ -518,18 +526,19 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	[request startSynchronous];
 	
 	NSDictionary *election = nil;
-	NSError *error = [request error];
+	*httpError = [request error];
 	
-	if (error != nil) {
+	if (*httpError != nil) {
 	}
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		election = [parser objectWithString:json error:&error];	
+		NSError *parseError = nil;
+		election = [parser objectWithString:json error:&parseError];	
 		//NSLog(@"JSON %@", json);
 		[json release];
 		
-		if (error != nil) {
-			NSLog(@"error: %@", [error userInfo]);
+		if (parseError != nil) {
+			NSLog(@"Parse error: %@", [parseError userInfo]);
 		}
 		
 		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];

@@ -19,7 +19,7 @@
 
 @end
 
-@interface CreateEndorsementViewController : UIViewController {
+@interface CreateEndorsementViewController : UIViewController <UITextViewDelegate> {
 	id<ModalViewControllerDelegate> delegate;
 @private
 	Candidate *_candidate;

@@ -39,6 +39,11 @@
 	[_privacyLock setHidden:switchControl.on];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string {
+    NSUInteger newLength = [_textView.text length] + [string length] - range.length;
+    return (newLength >= 500) ? NO : YES;
+}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
