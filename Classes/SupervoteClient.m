@@ -17,6 +17,7 @@
 #import "Position.h"
 
 static NSString *kDeviceIDHeaderKey = @"DeviceID";
+static NSString* kAPIUrl = @"http://localhost:8080";
 
 @implementation SupervoteClient
 
@@ -40,10 +41,14 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	return deviceID != nil;
 }
 
+- (NSURL *)createURL:(NSString *)service {
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kAPIUrl, service]];
+}
+
 /* TODO: this method should take arguments and return some value, and also have an error argument */
 - (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/registration"];
+	NSURL *url = [self createURL:@"/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:zip5or9 forKey:@"z"];
 	
@@ -97,7 +102,8 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (void)sendFacebookAccessToken:(NSString *)accessToken {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/accessToken"];
+	NSURL *url = [self createURL:@"/accessToken"];
+
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:@"fb" forKey:@"socialnet"];
@@ -112,7 +118,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (vote_status)sendBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteCandidate"];
+	NSURL *url = [self createURL:@"/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
@@ -159,7 +165,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (vote_status)sendMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/voteMeasure"];
+	NSURL *url = [self createURL:@"/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
@@ -207,8 +213,8 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (id)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/votes?election=%@", electionGuid];
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+	NSURL *url = [self createURL:[NSString stringWithFormat:@"/votes?election=%@", electionGuid]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request startSynchronous];
 	
@@ -409,7 +415,8 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 
 - (id)getFriends {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/friends"];
+	NSURL *url = [self createURL:@"/friends"];
+
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
 	[request startSynchronous];
@@ -478,7 +485,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	/* TODO: this should be asynchronous */
-	NSURL *url = [NSURL URLWithString:@"http://localhost:8080/elections"];
+	NSURL *url = [self createURL:@"/elections"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
 	[request startSynchronous];
@@ -516,8 +523,9 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 	df.locale = locale;
 	
 	/* TODO: this should be asynchronous */
-	NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:url]];
+	//NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
+	NSURL *url = [self createURL:[NSString stringWithFormat:@"/election?election=%@", guid]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	if (time != nil) {
 		[request addRequestHeader:@"If-Modified-Since" value:[df stringFromDate:time]];
