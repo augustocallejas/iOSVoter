@@ -306,7 +306,7 @@
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			NSString *documentsDirectory = [paths objectAtIndex:0];
 			
-			UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+			UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
 			
 			//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			//		NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -460,7 +460,7 @@
 			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			NSString *documentsDirectory = [paths objectAtIndex:0];	
-			UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+			UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
 			
 			UIImage *icon;
 			if (totalCount > 0) {

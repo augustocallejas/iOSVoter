@@ -96,7 +96,7 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
-	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
 
 	if (friendBallotVote != nil) {
 		cell.textLabel.text = friendBallotVote.author.name;
