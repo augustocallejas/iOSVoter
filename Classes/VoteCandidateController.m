@@ -260,14 +260,30 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
-	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
 
+	[cell.friendIcon1 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon1.ballotVote = nil;
+	[cell.friendIcon2 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon2.ballotVote = nil;
+	[cell.friendIcon3 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon3.ballotVote = nil;
+	[cell.friendIcon4 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon4.ballotVote = nil;
+	[cell.friendIcon5 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon5.ballotVote = nil;
+	[cell.friendIcon6 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon6.ballotVote = nil;
+	[cell.friendIcon7 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon7.ballotVote = nil;
+	
 	UIImage *icon = nil;
 	NSError *error = nil;
 	/* TODO: query for 7 */
 	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:7 forPosition:position forCandidate:candidate withError:&error];
 	if (error == nil) {
 		NSUInteger count = [array count];
+		NSLog(@"VoteCandidate: %@ %d", candidate.name, count);
 		
 		FriendBallotVote *friendVote;
 		if (count > 0) {

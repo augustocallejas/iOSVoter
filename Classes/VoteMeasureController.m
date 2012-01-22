@@ -502,6 +502,21 @@
 	cell.friendIcon7.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendIcon7.layer.borderWidth = 1.0f;
 	
+	[cell.friendIcon1 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon1.measureVote = nil;
+	[cell.friendIcon2 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon2.measureVote = nil;
+	[cell.friendIcon3 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon3.measureVote = nil;
+	[cell.friendIcon4 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon4.measureVote = nil;
+	[cell.friendIcon5 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon5.measureVote = nil;
+	[cell.friendIcon6 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon6.measureVote = nil;
+	[cell.friendIcon7 setImage:nil forState:UIControlStateNormal];
+	cell.friendIcon7.measureVote = nil;
+	
 	/* TODO: this is repeated in other places of the code */
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
