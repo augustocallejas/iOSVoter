@@ -545,7 +545,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	return [_context save:error];
 }
 
-- (NSDictionary *)getElections {
+- (NSDictionary *)getElections:(vote_status *)status {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
@@ -558,9 +558,14 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
-		NSLog(@"Error sending request: %@", [error userInfo]);
+//		NSLog(@"Error sending request: %@", [error userInfo]);
+		
+		*status = HTTP_ERROR;
 	}
-	else {
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		*status = OK;
+		
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		NSDictionary *elections = [parser objectWithString:json error:&error];
 		[json release];
@@ -570,6 +575,21 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		}
 		
 		return elections;
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		*status = SERVER_ERROR;
+		/* TODO: log to disk */
+	}
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		*status = BAD_REQUEST;
+		/* TODO: log to disk */
+	}
+	else {
+		/* unexpected response */
+		*status = UNEXPECTED_RESPONSE;
+		/* TODO: log to disk */
 	}
 	
 	return nil;

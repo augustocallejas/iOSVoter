@@ -121,12 +121,33 @@
 /* TODO: run in background? */
 /* TODO: doesn't manage deleted elections or past elections */
 - (void)updateElections {
-	NSDictionary *elections = [_client getElections];
+	vote_status status = OK;
+	NSDictionary *elections = [_client getElections:&status];
 	
 	if (elections == nil) {
 		/* nil means we couldn't contact the server */
-		NSString *title = @"Network Error";
-		NSString *message = @"Unable to connect to server, please verify your network connection and try again.";
+		NSString *title = nil;
+		NSString *message = nil;
+		switch (status) {
+			case HTTP_ERROR:
+				title = @"Network Error";
+				message = @"Unable to connect to server, please verify your network connection and try again.";
+				break;
+			case SERVER_ERROR:
+				title = @"Server Error";
+				message = @"Unable to retrieve elections from server, please try again in a few minutes.";
+				break;
+			case BAD_REQUEST:
+				title = @"Bad Request";
+				message = @"The app sent a bad request to the server.";
+				break;
+			case UNEXPECTED_RESPONSE:
+			default:
+				title = @"Unexpected Response";
+				message	= @"The server returned an unexpected response.";
+				break;
+		}
+		
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
 														message:message 
 													   delegate:nil 

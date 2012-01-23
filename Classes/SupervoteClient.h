@@ -35,7 +35,7 @@ typedef enum {
 - (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
-- (NSDictionary *)getElections;
+- (NSDictionary *)getElections:(vote_status *)status;
 - (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime withError:(NSError **)httpError;
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
 - (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
