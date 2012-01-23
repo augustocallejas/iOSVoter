@@ -32,7 +32,7 @@ typedef enum {
 - (vote_status)sendBallotVote:(BallotVote *)vote;
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
 - (id)getVotesForBallot:(NSString *)electionGuid;
-- (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error;
+- (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
 - (NSDictionary *)getElections;

@@ -241,14 +241,63 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	return nil;
 }
 
-- (BOOL)insertVotes:(NSArray *)votes withError:(NSError **)error{
+- (FriendBallotVote *)getVoteForPosition:(Position *)position byAuthor:(Friend *)friend {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:1];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[position managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && author == %@", position, friend];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [[position managedObjectContext] executeFetchRequest:request error:&error];
+	[request release];
+	
+	if (error != nil) {
+		NSLog(@"Error while querying for existing ballot vote: %@", [error userInfo]);
+	}
+	else if ([array count] == 1) {
+		return (FriendBallotVote *) [array objectAtIndex:0];
+	}
+	
+	return nil;
+}
+
+- (FriendMeasureVote *)getVoteForMeasure:(Measure *)measure byAuthor:(Friend *)friend {
+	/* check if the friend measure vote already exists */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:1];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[measure managedObjectContext]];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && author == %@", measure, friend];
+	[request setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *array = [[measure managedObjectContext] executeFetchRequest:request error:&error];
+	[request release];
+	
+	if (error != nil) {
+		NSLog(@"Error while querying for existing measure vote: %@", [error userInfo]);
+	}
+	else if ([array count] == 1) {
+		return (FriendMeasureVote *) [array objectAtIndex:0];
+	}
+	
+	return nil;
+}
+
+- (BOOL)insertVotes:(NSArray *)votes {
 	//NSLog(@"Inserting %d votes", [votes count]);
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
 		if ([@"BallotVote" isEqualToString:type]) {
 			/* cases 1) insert 2) update 3) delete */
-			/* TODO: doesn't handle the delete case */
+			NSNumber *viewable = [vote objectForKey:@"viewable"];
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *positionGuid = [vote objectForKey:@"position"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
@@ -258,39 +307,44 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 			Position *position = [self getObject:@"Position" byGuid:positionGuid];
 			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid];
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
-
-			if (position != nil && candidate != nil && friend != nil) {
-				if (candidate.position == position) {
+			
+			if (![viewable boolValue])
+			{
+				if (position != nil && friend != nil) {
 					/* check if the friend ballot vote already exists */
-					NSFetchRequest *request = [[NSFetchRequest alloc] init];
-					[request setFetchLimit:1];
-					
-					NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendBallotVote" inManagedObjectContext:[position managedObjectContext]];
-					[request setEntity:entity];
-					
-					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forPosition == %@ && author == %@", position, friend];
-					[request setPredicate:predicate];
-					
-					NSError *error = nil;
-					NSArray *array = [[position managedObjectContext] executeFetchRequest:request error:&error];
-					[request release];
-					
-					if (error != nil) {
-						NSLog(@"Error while querying for existing ballot vote: %@", [error userInfo]);
+					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
+					if (existingVote != nil) {
+						NSLog(@"Found existing vote, but incoming vote is not viewable, so delete");
+						[_context deleteObject:existingVote];
+						NSError *err = nil;
+						[_context save:&err];
+						if (err != nil) {
+							NSLog(@"Error: %@", [err userInfo]);
+						}
 					}
-					else if ([array count] == 1) {
+				}
+			}
+			else if (position != nil && candidate != nil && friend != nil) {
+				if (candidate.position == position) {
+					/* check if the friend ballot vote already exists */					
+					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
+					
+					if (existingVote != nil) {
 						/* existing friend ballot vote, so update */
 						NSLog(@"Found existing ballot vote, updating certain attributes");
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
-						FriendBallotVote *existingVote = [array objectAtIndex:0];
 						existingVote.forCandidate = candidate;
 						existingVote.statement = statement;
 						existingVote.date = date;
 						
-						error = nil;
-						[_context save:&error];
+						NSError *err = nil;
+						[_context save:&err];
 						[date release];
+						
+						if (err != nil) {
+							NSLog(@"Error: %@", [err userInfo]);
+						}
 					}
 					else {
 						/* insert new friend ballot vote */
@@ -304,9 +358,13 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 						voteObj.date = date;
 						voteObj.statement = statement;
 						
-						error = nil;
-						[_context save:&error];
+						NSError *err = nil;
+						[_context save:&err];
 						[date release];
+						
+						if (err != nil) {
+							NSLog(@"Error: %@", [err userInfo]);
+						}
 					}
 				}
 			}
@@ -318,6 +376,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		else if ([@"MeasureVote" isEqualToString:type]) {
 			/* cases 1) insert 2) update 3) delete */
 			/* TODO: doesn't handle the delete case */
+			NSNumber *viewable = [vote objectForKey:@"viewable"];
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
 			NSString *statement = [vote objectForKey:@"statement"];
@@ -327,38 +386,42 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 			Measure *measure = [self getObject:@"Measure" byGuid:measureGuid];
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
-			if (measure != nil && friend != nil) {
-				
-				/* check if the friend measure vote already exists */
-				NSFetchRequest *request = [[NSFetchRequest alloc] init];
-				[request setFetchLimit:1];
-				
-				NSEntityDescription *entity = [NSEntityDescription entityForName:@"FriendMeasureVote" inManagedObjectContext:[measure managedObjectContext]];
-				[request setEntity:entity];
-				
-				NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forMeasure == %@ && author == %@", measure, friend];
-				[request setPredicate:predicate];
-				
-				NSError *error = nil;
-				NSArray *array = [[measure managedObjectContext] executeFetchRequest:request error:&error];
-				[request release];
-				
-				if (error != nil) {
-					NSLog(@"Error while querying for existing friend measure vote: %@", [error userInfo]);
+			if (![viewable boolValue])
+			{
+				if (measure != nil && friend != nil) {
+					/* check if the friend measure vote already exists */
+					FriendMeasureVote *existingVote = [self getVoteForMeasure:measure byAuthor:friend];
+					if (existingVote != nil) {
+						NSLog(@"Found existing vote, but incoming vote is not viewable, so delete");
+						[_context deleteObject:existingVote];
+						NSError *err = nil;
+						[_context save:&err];
+						if (err != nil) {
+							NSLog(@"Error: %@", [err userInfo]);
+						}
+					}
 				}
-				else if ([array count] == 1) {
+			}
+			else if (measure != nil && friend != nil) {
+				/* check if the friend measure vote already exists */
+				FriendMeasureVote *existingVote = [self getVoteForMeasure:measure byAuthor:friend];
+
+				if (existingVote != nil) {
 					/* existing friend measure vote, so update */
 					NSLog(@"Found existing measure vote, updating certain attributes");
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
-					FriendMeasureVote *existingVote = [array objectAtIndex:0];
 					existingVote.vote = voteValue;
 					existingVote.statement = statement;
 					existingVote.date = date;
 					
-					error = nil;
-					[_context save:&error];
+					NSError *err = nil;
+					[_context save:&err];
 					[date release];
+					
+					if (err != nil) {
+						NSLog(@"Error: %@", [err userInfo]);
+					}
 				}
 				else {
 					/* insert new friend measure vote */
@@ -372,9 +435,13 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 					voteObj.statement = statement;
 					voteObj.date = date;
 					
-					error = nil;
-					[_context save:&error];
+					NSError *err = nil;
+					[_context save:&err];
 					[date release];
+					
+					if (err != nil) {
+						NSLog(@"Error: %@", [err userInfo]);
+					}
 				}
 			}
 			else {

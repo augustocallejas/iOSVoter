@@ -193,14 +193,9 @@
 		}
 		
 		for (NSString *electionGuid in elections) {
-			storeError = nil;
 			NSArray *votes = [_client getVotesForBallot:electionGuid];
 			if (votes != nil) {
-				[_client insertVotes:votes withError:&storeError];
-				
-				if (storeError != nil) {
-					NSLog(@"Store error while inserting votes: %@", [storeError userInfo]);
-				}
+				[_client insertVotes:votes];
 			}
 		}
 	}
