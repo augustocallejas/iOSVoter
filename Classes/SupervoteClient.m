@@ -224,7 +224,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSLog(@"Votes: %@", json);
+//		NSLog(@"Votes: %@", json);
 		
 		NSError *parseError = nil;
 		NSArray *votes = [parser objectWithString:json error:&parseError];	
@@ -314,7 +314,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 					/* check if the friend ballot vote already exists */
 					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
 					if (existingVote != nil) {
-						NSLog(@"Found existing vote, but incoming vote is not viewable, so delete");
+						NSLog(@"Found existing FriendBallotVote, but incoming vote is not viewable, so delete");
 						[_context deleteObject:existingVote];
 						NSError *err = nil;
 						[_context save:&err];
@@ -331,7 +331,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 					
 					if (existingVote != nil) {
 						/* existing friend ballot vote, so update */
-						NSLog(@"Found existing ballot vote, updating certain attributes");
+						NSLog(@"Found existing FriendBallotVote, updating certain attributes");
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
 						existingVote.forCandidate = candidate;
@@ -392,7 +392,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 					/* check if the friend measure vote already exists */
 					FriendMeasureVote *existingVote = [self getVoteForMeasure:measure byAuthor:friend];
 					if (existingVote != nil) {
-						NSLog(@"Found existing vote, but incoming vote is not viewable, so delete");
+						NSLog(@"Found existing FriendMeasureVote, but incoming vote is not viewable, so delete");
 						[_context deleteObject:existingVote];
 						NSError *err = nil;
 						[_context save:&err];
@@ -408,7 +408,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 
 				if (existingVote != nil) {
 					/* existing friend measure vote, so update */
-					NSLog(@"Found existing measure vote, updating certain attributes");
+					NSLog(@"Found existing FriendMeasureVote, updating certain attributes");
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
 					existingVote.vote = voteValue;
@@ -514,31 +514,32 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		NSString *facebookId = [friend objectForKey:@"facebookFriendId"];
 		
 		/* does the friend exist in the database already? */
-		/* TODO guid is a good way to check if the friend already exists, but what about changes? */
-		Friend *friendFound = [self getObject:@"Friend" byGuid:guid];
-		if (friendFound != nil) {
-			NSLog(@"Friend already in database, but are there updates, like name?");
-			continue;
+		Friend *friendObj = [self getObject:@"Friend" byGuid:guid];
+		if (friendObj != nil) {
+			NSLog(@"Found existing Friend, updating certain attributes");
+			friendObj.name = name;
 		}
-		
-		Friend *friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:_context];
-		friendObj.guid = guid;
-		friendObj.name = name;
-		
-		/* query for facebook friend object */
-		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
-		[fetchRequest setFetchLimit:1];
-		[fetchRequest setEntity:entity];
-		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", facebookId]];
-		NSError *err = nil;
-		NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
-		[fetchRequest release];
-		if (err != nil) {
-			NSLog(@"Error: %@", [err userInfo]);
-		}
-		else if (array != nil && [array count] == 1) {
-			friendObj.facebook = [array objectAtIndex:0];
+		else {
+			friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:_context];
+			friendObj.guid = guid;
+			friendObj.name = name;
+			
+			/* query for facebook friend object */
+			NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
+			[fetchRequest setFetchLimit:1];
+			[fetchRequest setEntity:entity];
+			[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", facebookId]];
+			
+			NSError *err = nil;
+			NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
+			[fetchRequest release];
+			if (err != nil) {
+				NSLog(@"Error: %@", [err userInfo]);
+			}
+			else if (array != nil && [array count] == 1) {
+				friendObj.facebook = [array objectAtIndex:0];
+			}
 		}
 	}
 	
@@ -799,7 +800,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 						if (candidateObj == nil) {
 							NSLog(@"Adding new candidate '%@' to position '%@'", candidateGuid, positionGuid);
 							
-							Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
+							candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 							candidateObj.guid = candidateGuid;
 							[positionObj addCandidatesObject:candidateObj];
 						}
@@ -842,7 +843,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 			if (measureObj == nil) {
 				NSLog(@"Adding new measure '%@' to election '%@'", measureGuid, electionGuid);
 				
-				Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
+				measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
 				measureObj.guid = measureGuid;
 				[electionObj addMeasuresObject:measureObj];
 			}
