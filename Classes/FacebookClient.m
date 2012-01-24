@@ -47,6 +47,12 @@ static NSString* kAppId = @"259602660736072";
 
 - (void)updateFriends {
 	NSLog(@"updateFriends");
+	NSFileManager *manager = [NSFileManager defaultManager];
+	
+	NSError *error = nil;
+	if (![manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/facebook", _documentsPath] withIntermediateDirectories:YES attributes:nil error:&error]) {
+		NSLog(@"Error while creating facebook directory: %@", [error userInfo]);
+	}
 	
 	if (![_facebook isSessionValid]) {
 		NSLog(@"session not valid");
