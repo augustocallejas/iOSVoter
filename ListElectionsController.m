@@ -167,7 +167,10 @@
 			
 			if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
 				/* get election from server */
-				NSDictionary *election = [_client getElection:electionGuid withLastModified:nil withNewModifiedTime:&newLastModified withError:&httpError];
+				NSDictionary *election = [_client getElection:electionGuid
+											 withLastModified:nil
+										  withNewModifiedTime:&newLastModified
+													withError:&httpError];
 				
 				if (httpError != nil) {
 					NSLog(@"Network error while fetching election: %@", [httpError userInfo]);
@@ -198,7 +201,7 @@
 				}
 			}
 			else {
-				NSLog(@"Election '%@' up to date", electionGuid);
+				NSLog(@"Election '%@' up to date, no updates necessary", electionGuid);
 			}
 		}
 		
