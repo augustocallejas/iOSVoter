@@ -358,7 +358,6 @@
 
 + (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
 	UIImage *icon = nil;
-	NSLog(@"photo for %@", friendVote.author.facebook.friendId);
 	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
 		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
 		icon = [UIImage imageWithContentsOfFile:path];
@@ -455,7 +454,7 @@
 			//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
 			//cell.candidateIcon.image = candidateIcon;
 			NSUInteger totalCount = [friendVotes count];
-			NSLog(@"count %d", totalCount);
+			//NSLog(@"count %d", totalCount);
 			
 			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -642,7 +641,7 @@
     [super viewDidAppear:animated];
 	
 	if (!viewDidLoadCalled) {
-		NSLog(@"DisplayBallotController: reloading data in viewDidAppear");
+		//NSLog(@"DisplayBallotController: reloading data in viewDidAppear");
 		[self.tableView reloadData];
 	}
 	else {
