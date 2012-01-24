@@ -54,6 +54,8 @@
 		
 		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 		[appDelegate deletePersistentStoreCoordinator];
+		[appDelegate deleteFacebookPhotos];
+		//appDelegate.managedObjectContext = nil;
 		[appDelegate switchToWelcomePage];
 	}
 }
@@ -62,6 +64,7 @@
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 	
 	[_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
+	[_facebookClient updateFriends];
 }
 
 - (void)fbDidLogout {

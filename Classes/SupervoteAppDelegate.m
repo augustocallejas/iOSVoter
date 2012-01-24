@@ -122,6 +122,17 @@
 #pragma mark -
 #pragma mark Custom actions
 
+- (void)deleteFacebookPhotos {
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsPath = [paths objectAtIndex:0];
+	
+	NSError *error = nil;
+	if (![manager removeItemAtPath:[NSString stringWithFormat:@"%@/facebook", documentsPath] error:&error]) {
+		NSLog(@"Error while deleting facebook directory: %@", [error userInfo]);
+	}
+}
+
 - (void)switchToMainApp {
 	if (mainAppController == nil)
 	{

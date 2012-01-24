@@ -39,6 +39,7 @@
 @property (nonatomic, retain) SupervoteClient *supervoteClient;
 @property (nonatomic, retain) FacebookClient *facebookClient;
 
+- (void)deleteFacebookPhotos;
 - (void)addDefaultPersistentStore;
 - (void)deletePersistentStoreCoordinator;
 - (void)switchToWelcomePage;
