@@ -55,6 +55,7 @@
 		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 		[appDelegate deletePersistentStoreCoordinator];
 		[appDelegate deleteFacebookPhotos];
+		[_facebookClient logout];
 		//appDelegate.managedObjectContext = nil;
 		[appDelegate switchToWelcomePage];
 	}
@@ -63,8 +64,44 @@
 - (void)fbDidLogin {
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 	
-	[_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
-	[_facebookClient updateFriends];
+	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
+	if (status == OK) {
+		[_facebookClient updateFriends];
+	}
+	else {
+		NSString *title = nil;
+		NSString *message = nil;
+		
+		switch (status) {
+			case OK:
+				break;
+			case HTTP_ERROR:
+				title = @"Network Error";
+				message = @"Unable to connect to server, please verify your network connection and try again.";
+				break;
+			case SERVER_ERROR:
+				title = @"Server Error";
+				message = @"Unable to retrieve elections from server, please try again in a few minutes.";
+				break;
+			case BAD_REQUEST:
+				title = @"Bad Request";
+				message = @"The app sent a bad request to the server.";
+				break;
+			case UNEXPECTED_RESPONSE:
+			default:
+				title = @"Unexpected Response";
+				message	= @"The server returned an unexpected response.";
+				break;
+		}
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+														message:message 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 - (void)fbDidLogout {

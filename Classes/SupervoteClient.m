@@ -100,7 +100,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 //	[appDelegate switchToMainApp];
 //}
 
-- (void)sendFacebookAccessToken:(NSString *)accessToken {
+- (vote_status)sendFacebookAccessToken:(NSString *)accessToken {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/accessToken"];
 
@@ -110,10 +110,30 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	[request setPostValue:accessToken forKey:@"access_token"];
 
 	[request startSynchronous];
+	
+	vote_status status = OK;
 	NSError *error = [request error];
 	if (error != nil) {
-		NSLog(@"error: %@", [error userInfo]);
+		status = HTTP_ERROR;
+		/* TODO: log to disk? */
+//		NSLog(@"error: %@", [error userInfo]);
 	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		status = OK;
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		status = SERVER_ERROR;
+		/* TODO: log to disk */
+	}
+	else {
+		/* unexpected response */
+		status = UNEXPECTED_RESPONSE;
+		/* TODO: log to disk */
+	}
+	
+	return status;
 }
 
 - (vote_status)sendBallotVote:(BallotVote *)vote {

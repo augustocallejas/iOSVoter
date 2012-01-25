@@ -27,7 +27,7 @@ typedef enum {
 - (id)initWithContext:(NSManagedObjectContext *)context;
 - (BOOL)isRegistered;
 - (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error;
-- (void)sendFacebookAccessToken:(NSString *)accessToken;
+- (vote_status)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (vote_status)sendBallotVote:(BallotVote *)vote;
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
