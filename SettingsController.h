@@ -24,7 +24,4 @@
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) NSString *documentsPath;
 
-- (void)fbDidLogin;
-- (void)fbDidLogout;
-
 @end

@@ -28,6 +28,7 @@
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
+		143FB75A14CC81DE00377AF0 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 143FB75914CC81DE00377AF0 /* friends.png */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
 		1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */; };
 		1474ECA5142330A6004D35AD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1474EC8D142330A6004D35AD /* FBDialog.bundle */; };
@@ -125,6 +126,7 @@
 		14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteMeasureController.h; sourceTree = "<group>"; };
 		14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteMeasureController.m; sourceTree = "<group>"; };
 		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
+		143FB75914CC81DE00377AF0 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		1462F3DA141DA394007E31C1 /* BallotItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotItemViewCell.h; sourceTree = "<group>"; };
 		1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotItemViewCell.m; sourceTree = "<group>"; };
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				143FB75914CC81DE00377AF0 /* friends.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
@@ -610,6 +613,7 @@
 				14EF38A4144AA9F100557A80 /* check-64.png in Resources */,
 				14EF38B6144AAD3C00557A80 /* lock.png in Resources */,
 				1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */,
+				143FB75A14CC81DE00377AF0 /* friends.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

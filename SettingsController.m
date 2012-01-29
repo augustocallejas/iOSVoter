@@ -61,6 +61,12 @@
 	}
 }
 
+#pragma mark -
+#pragma mark FBSessionDelegate methods
+
+/**
+ * Called when the user successfully logged in.
+ */
 - (void)fbDidLogin {
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 	
@@ -104,8 +110,35 @@
 	}
 }
 
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled {
+	NSLog(@"Facebook Login cancelled");
+}
+
+/**
+ * Called after the access token was extended. If your application has any
+ * references to the previous access token (for example, if your application
+ * stores the previous access token in persistent storage), your application
+ * should overwrite the old access token with the new one in this method.
+ * See extendAccessToken for more details.
+ */
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+}
+
 - (void)fbDidLogout {
 	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+/**
+ * Called when the current session has expired. This might happen when:
+ *  - the access token expired
+ *  - the app has been disabled
+ *  - the user revoked the app's permissions
+ *  - the user changed his or her password
+ */
+- (void)fbSessionInvalidated {
 }
 
 #pragma mark -

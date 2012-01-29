@@ -11,7 +11,7 @@
 
 @class SupervoteViewController;
 
-@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate> {
+@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     SupervoteViewController *viewController;
 	UITabBarController *mainAppController;
