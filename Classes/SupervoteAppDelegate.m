@@ -150,11 +150,22 @@
 		if ([defaults objectForKey:@"FacebookAlert"] == nil) {
 			FacebookIntegrationViewController *fbController = [[FacebookIntegrationViewController alloc] initWithNibName:@"FacebookIntegrationViewController" bundle:[NSBundle mainBundle]];
 			fbController.facebookClient = self.facebookClient;
-			[UIView transitionFromView:self.window.rootViewController.view
-								toView:fbController.view
-							  duration:0.65f
-							   options:UIViewAnimationOptionTransitionFlipFromRight
-							completion:^(BOOL finished) {self.window.rootViewController = fbController;}];
+			fbController.client = self.supervoteClient;
+			
+			if (currentView == nil) {
+				self.window.rootViewController = fbController;
+			}
+			else {
+				self.window.rootViewController = fbController;
+				/* TODO: can't get this transition to work without it being shifted up 20px */
+				/* maybe its okay though, too many transitions already? */
+//				[UIView transitionFromView:currentView
+//									toView:fbController.view
+//								  duration:0.65f
+//								   options:UIViewAnimationOptionTransitionFlipFromRight
+//								completion:^(BOOL finished) {/*self.window.rootViewController = fbController;*/}];
+//				self.window.rootViewController = fbController;
+			}
 		}
 		else {
 			UITabBarController *tabBarController = [[UITabBarController alloc] init];
@@ -183,19 +194,21 @@
 			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, nil] autorelease]];
 			//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
 			
-			if (currentView == nil) {
+			//if (currentView == nil) {
 				self.window.rootViewController = tabBarController;
-			}
-			else {
-				// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller		
-				/* http://stackoverflow.com/questions/8146253/animate-change-of-view-controllers-without-using-navigation-controller-stack-su */
-				/* http://developer.apple.com/library/ios/#documentation/uikit/reference/uiview_class/uiview/uiview.html */
-				[UIView transitionFromView:currentView
-									toView:tabBarController.view
-								  duration:0.65f
-								   options:UIViewAnimationOptionTransitionFlipFromRight
-								completion:^(BOOL finished) {self.window.rootViewController = tabBarController;}];
-			}
+			//}
+//			else {
+//				// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller		
+//				/* http://stackoverflow.com/questions/8146253/animate-change-of-view-controllers-without-using-navigation-controller-stack-su */
+//				/* http://developer.apple.com/library/ios/#documentation/uikit/reference/uiview_class/uiview/uiview.html */
+//				[UIView transitionFromView:currentView
+//									toView:tabBarController.view
+//								duration:0.65f
+//								   options:UIViewAnimationOptionTransitionFlipFromRight
+//								completion:^(BOOL finished) {self.window.rootViewController = tabBarController;}];
+//				
+//				self.window.rootViewController = tabBarController;
+//			}
 			
 			[tabBarController release];
 		}

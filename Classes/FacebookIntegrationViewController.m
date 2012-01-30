@@ -12,6 +12,7 @@
 
 @implementation FacebookIntegrationViewController
 
+@synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -60,7 +61,7 @@
 	[self markAsViewed];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-													message:@"You can setup Facebook access anytime in the Settings tab below."
+													message:@"You can set up Facebook access anytime in the Settings tab below."
 												   delegate:nil 
 										  cancelButtonTitle:nil
 										  otherButtonTitles:@"Ok", nil];
@@ -79,6 +80,15 @@
  */
 - (void)fbDidLogin {
 	[self markAsViewed];
+	
+	/* TODO: same logic as in SettingsController */
+	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
+	if (status == OK) {
+		[_facebookClient updateFriends];
+	}
+	else {
+	}
+
 	
 	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToMainApp:self.view];
@@ -147,6 +157,7 @@
 
 
 - (void)dealloc {
+	self.client = nil;
 	self.facebookClient = nil;
     [super dealloc];
 }

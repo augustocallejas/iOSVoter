@@ -7,13 +7,16 @@
 //
 
 #import "FacebookClient.h"
+#import "SupervoteClient.h"
 
 @interface FacebookIntegrationViewController : UIViewController <FBSessionDelegate> {
 
 @private
+	SupervoteClient *_client;
 	FacebookClient *_facebookClient;
 }
 
+@property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 
 - (IBAction)doYesFacebookIntegration;

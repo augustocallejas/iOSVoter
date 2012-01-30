@@ -14,12 +14,12 @@
 	Facebook* _facebook;
 	NSString* _documentsPath;
 	BOOL _loggedIn;
-	id _delegate;
+	id<FBSessionDelegate> _delegate;
 }
 
 @property (readonly) Facebook* facebook;
 @property (readonly) BOOL loggedIn;
-@property (nonatomic, retain) id delegate;
+@property (nonatomic, retain) id<FBSessionDelegate> delegate;
 
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path;
 - (void)updateFriends;

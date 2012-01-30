@@ -100,7 +100,7 @@ static NSString *kAppId = @"259602660736072";
 	/* download the friend graph */
 //	[self updateFriends];
 	
-	if ([_delegate respondsToSelector:@selector(fbDidLogin)]) {
+	if (_delegate != nil) {
 		[_delegate fbDidLogin];
 	}
 }
@@ -111,7 +111,7 @@ static NSString *kAppId = @"259602660736072";
 - (void)fbDidNotLogin:(BOOL)cancelled {
 	NSLog(@"Did not log in");
 	
-	if ([_delegate respondsToSelector:@selector(fbDidNotLogin:cancelled:)]) {
+	if (_delegate != nil) {
 		[_delegate fbDidNotLogin:cancelled];
 	}
 }
@@ -126,6 +126,10 @@ static NSString *kAppId = @"259602660736072";
 - (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
 	NSLog(@"token extended");
 	[self storeAuthData:accessToken expiresAt:expiresAt];
+	
+	if (_delegate != nil) {
+		[_delegate fbDidExtendToken:accessToken expiresAt:expiresAt];
+	}
 }
 
 /**
@@ -143,11 +147,9 @@ static NSString *kAppId = @"259602660736072";
         [defaults synchronize];
     }
 	
-	if ([_delegate respondsToSelector:@selector(fbDidLogout)]) {
+	if (_delegate != nil) {
 		[_delegate fbDidLogout];
-	}
-	
-	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+	}	
 }
 
 /**
@@ -158,6 +160,9 @@ static NSString *kAppId = @"259602660736072";
  *  - the user changed his or her password
  */
 - (void)fbSessionInvalidated {
+	if (_delegate !=nil) {
+		[_delegate fbSessionInvalidated];
+	}
 }
 
 #pragma mark -
