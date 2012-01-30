@@ -20,7 +20,24 @@
 @synthesize documentsPath = _documentsPath;
 
 #pragma mark -
-#pragma mark SettingsController methods
+#pragma mark UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {		
+		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+		
+		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+		[appDelegate deletePersistentStoreCoordinator];
+		[appDelegate deleteFacebookPhotos];
+		[_facebookClient logout];
+		//appDelegate.managedObjectContext = nil;
+		[appDelegate switchToWelcomePage];
+	}
+	else if (buttonIndex == actionSheet.cancelButtonIndex) {
+		/* do nothing */
+	}
+}
 
 #pragma mark -
 #pragma mark IBAction methods
@@ -44,14 +61,14 @@
 }
 
 - (IBAction)doResetApplication {
-	/* user wants to reset the application */		
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Reset"
-													message:@"Reseting the app will erase all saved data.  Are you sure?"
-												   delegate:self 
-										  cancelButtonTitle:@"No"
-										  otherButtonTitles:@"Yes", nil];
-	[alert show];
-	[alert release];
+	/* user wants to reset the application */
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Resetting the app will erase all saved data.  Are you sure?"
+															 delegate:self
+													cancelButtonTitle:@"Cancel"
+											   destructiveButtonTitle:@"Yes"
+													otherButtonTitles:nil];
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
 }
 
 #pragma mark -
@@ -80,21 +97,6 @@
 	else if (indexPath.section == 2 && indexPath.row == 0) {
 		NSString* launchUrl = @"http://mobile.twitter.com/supervote";
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
-	}
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	// 0 = No, 1 = Yes
-	if (buttonIndex == 1) {
-		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-		
-		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-		[appDelegate deletePersistentStoreCoordinator];
-		[appDelegate deleteFacebookPhotos];
-		[_facebookClient logout];
-		//appDelegate.managedObjectContext = nil;
-		[appDelegate switchToWelcomePage];
 	}
 }
 

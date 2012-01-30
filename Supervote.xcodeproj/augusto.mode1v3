@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -266,25 +264,25 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>1474EC8C142330A6004D35AD</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>14E74AE0143591BE002E2F82</string>
 								<string>1423B41014081697006F8DBF</string>
 								<string>14A01B1D14789E0F0029ADFE</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>14E74AD91435914E002E2F82</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>34</integer>
-									<integer>18</integer>
-									<integer>14</integer>
+									<integer>13</integer>
+									<integer>7</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 80}, {253, 760}}</string>
+							<string>{{0, 104}, {253, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -303,7 +301,7 @@
 							<real>253</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>1 58 1011 819 0 0 1440 878 </string>
+						<string>1 59 1279 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -314,12 +312,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingsController.m</string>
+								<string>FacebookIntegrationViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,11 +327,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsController.m</string>
+										<string>FacebookIntegrationViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>140D05C114D676CD00AD98E4</string>
+										<string>140D05FE14D67ABB00AD98E4</string>
 										<key>history</key>
 										<array>
 											<string>14E74AD014358204002E2F82</string>
@@ -374,14 +374,11 @@
 											<string>143FB5CF14C5499B00377AF0</string>
 											<string>143FB64E14C55F2100377AF0</string>
 											<string>143FB64F14C55F2100377AF0</string>
-											<string>143FB71814C7210B00377AF0</string>
 											<string>143FB73714CBB5BC00377AF0</string>
 											<string>143FB73814CBB5BC00377AF0</string>
 											<string>143FB78614CC853600377AF0</string>
 											<string>1499822214CCF8E6009BDF33</string>
-											<string>1499822314CCF8E6009BDF33</string>
 											<string>149983A214CE8C25009BDF33</string>
-											<string>149983A614CE8C25009BDF33</string>
 											<string>146A870A14CFBCA600FC9471</string>
 											<string>140D02D414D5B61300AD98E4</string>
 											<string>140D032914D5C03800AD98E4</string>
@@ -396,12 +393,9 @@
 											<string>140D045314D614AF00AD98E4</string>
 											<string>140D048914D6339D00AD98E4</string>
 											<string>140D04D614D6425900AD98E4</string>
-											<string>140D050714D6522B00AD98E4</string>
 											<string>140D050814D6522B00AD98E4</string>
 											<string>140D050914D6522B00AD98E4</string>
 											<string>140D050A14D6522B00AD98E4</string>
-											<string>140D050B14D6522B00AD98E4</string>
-											<string>140D056214D6722A00AD98E4</string>
 											<string>140D056314D6722A00AD98E4</string>
 											<string>140D056414D6722A00AD98E4</string>
 											<string>140D057E14D672CC00AD98E4</string>
@@ -411,12 +405,18 @@
 											<string>140D05B214D6768200AD98E4</string>
 											<string>140D05BA14D676CD00AD98E4</string>
 											<string>140D05BB14D676CD00AD98E4</string>
-											<string>140D05BC14D676CD00AD98E4</string>
 											<string>140D05BD14D676CD00AD98E4</string>
 											<string>140D05BE14D676CD00AD98E4</string>
 											<string>140D05BF14D676CD00AD98E4</string>
-											<string>140D05C014D676CD00AD98E4</string>
-											<string>140D05B014D6768200AD98E4</string>
+											<string>140D05DD14D678A000AD98E4</string>
+											<string>140D05DE14D678A000AD98E4</string>
+											<string>140D05E014D678A000AD98E4</string>
+											<string>140D05E914D679AC00AD98E4</string>
+											<string>140D05EA14D679AC00AD98E4</string>
+											<string>140D05F514D67A6700AD98E4</string>
+											<string>140D05FB14D67ABB00AD98E4</string>
+											<string>140D05FC14D67ABB00AD98E4</string>
+											<string>140D05FD14D67ABB00AD98E4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -428,14 +428,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {736, 685}}</string>
+								<string>{{0, 0}, {1004, 553}}</string>
 								<key>RubberWindowFrame</key>
-								<string>1 58 1011 819 0 0 1440 878 </string>
+								<string>1 59 1279 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>685pt</string>
+							<string>553pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -448,18 +448,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 690}, {736, 88}}</string>
+								<string>{{0, 558}, {1004, 220}}</string>
 								<key>RubberWindowFrame</key>
-								<string>1 58 1011 819 0 0 1440 878 </string>
+								<string>1 59 1279 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>88pt</string>
+							<string>220pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>736pt</string>
+					<string>1004pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -623,7 +623,7 @@
 		<string>/Users/augusto/projects/supervote/supervote-ios/Supervote.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>1 58 1011 819 0 0 1440 878 </string>
+	<string>1 59 1279 819 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -862,14 +862,14 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SupervoteAppDelegate.h</string>
+										<string>CreateEndorsementViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{0, 0}, {1167, 616}}</string>
+										<string>{{0, 0}, {1167, 531}}</string>
 										<key>RubberWindowFrame</key>
 										<string>126 4 1167 874 0 0 1440 878 </string>
 									</dict>
@@ -880,7 +880,7 @@
 								</dict>
 							</array>
 							<key>Proportion</key>
-							<string>616pt</string>
+							<string>531pt</string>
 						</dict>
 						<dict>
 							<key>BecomeActive</key>
@@ -895,14 +895,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 621}, {1167, 212}}</string>
+								<string>{{0, 536}, {1167, 297}}</string>
 								<key>RubberWindowFrame</key>
 								<string>126 4 1167 874 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
 							<key>Proportion</key>
-							<string>212pt</string>
+							<string>297pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>

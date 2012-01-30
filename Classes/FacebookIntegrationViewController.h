@@ -18,6 +18,7 @@
 
 @property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
+@property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
 
 - (IBAction)doYesFacebookIntegration;
 - (IBAction)doNoFacebookIntegration;

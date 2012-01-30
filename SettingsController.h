@@ -10,7 +10,7 @@
 #import "SupervoteClient.h"
 
 
-@interface SettingsController : UIViewController <FBSessionDelegate, UIAlertViewDelegate> {
+@interface SettingsController : UIViewController <FBSessionDelegate, UIActionSheetDelegate> {
 	
 @private
 	NSManagedObjectContext *_managedObjectContext;

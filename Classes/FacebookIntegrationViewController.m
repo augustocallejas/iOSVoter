@@ -14,6 +14,7 @@
 
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
+@synthesize facebookLoginButton;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -32,6 +33,11 @@
 	
 	if (_facebookClient != nil) {
 		_facebookClient.delegate = self;
+		
+		UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
+		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
+		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+		[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
 	}
 }
 
