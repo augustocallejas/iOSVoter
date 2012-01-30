@@ -10,12 +10,14 @@
 
 #import "FacebookFriend.h"
 
+static NSString *kFBAccessTokenKey = @"FBAccessTokenKey";
+static NSString *kFBExpirationDateKey = @"FBExpirationDateKey";
 
 // Your Facebook APP Id must be set before running this example
 // See http://www.facebook.com/developers/createapp.php
 // Also, your application must bind to the fb[app_id]:// URL
 // scheme (substitute [app_id] for your real Facebook app id).
-static NSString* kAppId = @"259602660736072";
+static NSString *kAppId = @"259602660736072";
 
 @implementation FacebookClient
 
@@ -32,17 +34,27 @@ static NSString* kAppId = @"259602660736072";
 		_loggedIn = NO;
 		_facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		if ([defaults objectForKey:@"FBAccessTokenKey"] && [defaults objectForKey:@"FBExpirationDateKey"]) {
-			_facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-			_facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+		if ([defaults objectForKey:kFBAccessTokenKey] && [defaults objectForKey:kFBExpirationDateKey]) {
+			_facebook.accessToken = [defaults objectForKey:kFBAccessTokenKey];
+			_facebook.expirationDate = [defaults objectForKey:kFBExpirationDateKey];
 			_loggedIn = YES;
+			
+			NSLog(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
+			
+			[_facebook extendAccessTokenIfNeeded];
 		}
 		
-		//_facebook = [facebook retain];
 		_context = [context retain];
 		_documentsPath = [path retain];
 	}
 	return self;
+}
+
+- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:accessToken forKey:kFBAccessTokenKey];
+	[defaults setObject:expiresAt forKey:kFBExpirationDateKey];
+	[defaults synchronize];
 }
 
 - (void)updateFriends {
@@ -83,13 +95,7 @@ static NSString* kAppId = @"259602660736072";
 	
 	NSLog(@"Facebook login successful, session expiration date %@", [_facebook expirationDate]);
 	/* save access token */
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[_facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[_facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-	
-	/* reload table cell so that it refreshes its view */
-	//[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+	[self storeAuthData:[_facebook accessToken] expiresAt:[_facebook expirationDate]];
 	
 	/* download the friend graph */
 //	[self updateFriends];
@@ -118,6 +124,8 @@ static NSString* kAppId = @"259602660736072";
  * See extendAccessToken for more details.
  */
 - (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+	NSLog(@"token extended");
+	[self storeAuthData:accessToken expiresAt:expiresAt];
 }
 
 /**

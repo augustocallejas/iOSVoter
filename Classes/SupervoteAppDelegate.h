@@ -44,7 +44,7 @@
 - (void)deletePersistentStoreCoordinator;
 - (void)switchToWelcomePage;
 - (NSURL *)applicationDocumentsDirectory;
-- (void)switchToMainApp;
+- (void)switchToMainApp:(UIView *)currentView;
 
 @end
 

@@ -6,11 +6,13 @@
 //  Copyright 2011 Canary Falls LLC. All rights reserved.
 //
 
-#import "ListElectionsController.h"
-#import "FacebookClient.h"
-#import "FeedController.h"
-#import "SettingsController.h"
 #import "SupervoteAppDelegate.h"
+
+#import "FacebookClient.h"
+#import "FacebookIntegrationViewController.h"
+#import "FeedController.h"
+#import "ListElectionsController.h"
+#import "SettingsController.h"
 #import "SupervoteViewController.h"
 
 
@@ -63,7 +65,7 @@
 		[self switchToWelcomePage];
 	}
 	else {
-		[self switchToMainApp];
+		[self switchToMainApp:nil];
 	}
 	[self.window makeKeyAndVisible];
 	
@@ -133,10 +135,9 @@
 	}
 }
 
-- (void)switchToMainApp {
+- (void)switchToMainApp:(UIView *)currentView {
 	if (mainAppController == nil)
 	{
-		//[[NSBundle mainBundle] loadNibNamed:@"MainApp" owner:self options:nil];
 		if (_facebookClient.loggedIn) {
 			NSLog(@"logged in");
 			[_facebookClient updateFriends];
@@ -145,52 +146,58 @@
 			NSLog(@"not logged in");
 		}
 		
-		UITabBarController *controller = [[UITabBarController alloc] init];
-		self.mainAppController = controller;
-
-		//self.mainAppController.delegate = self;
-		
-//		FeedController *feeds = [[[FeedController alloc] initWithNibName:@"FeedController" bundle:[NSBundle mainBundle]] autorelease];
-//		feeds.title = @"Feed";
-//		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
-//		feeds.managedObjectContext = self.managedObjectContext;
-//		feeds.client = self.supervoteClient;
-		
-		ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
-		elections.title = @"My Ballots";
-		elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
-		elections.managedObjectContext = self.managedObjectContext;
-		elections.client = self.supervoteClient;
-		UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
-
-		SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
-		settings.managedObjectContext = self.managedObjectContext;
-		settings.title = @"Settings";
-		settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
-		settings.client = self.supervoteClient;
-		settings.facebookClient = self.facebookClient;
-
-		[controller setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, nil] autorelease]];
-//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
-		
-		// TODO: not sure if this is the proper way to switch from one controller to another.
-		// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller
-		self.window.rootViewController = controller;
-		
-		[controller release];
-		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"FacebookAlert"] == nil) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-															message:@"Accessing your Facebook account will allow you to view your friends' votes on upcoming elections.  Would you like to setup Facebook access?"
-														   delegate:self 
-												  cancelButtonTitle:@"Not now"
-												  otherButtonTitles:@"Yes", nil];
-			[alert show];
-			[alert release];
+			FacebookIntegrationViewController *fbController = [[FacebookIntegrationViewController alloc] initWithNibName:@"FacebookIntegrationViewController" bundle:[NSBundle mainBundle]];
+			fbController.facebookClient = self.facebookClient;
+			[UIView transitionFromView:self.window.rootViewController.view
+								toView:fbController.view
+							  duration:0.65f
+							   options:UIViewAnimationOptionTransitionFlipFromRight
+							completion:^(BOOL finished) {self.window.rootViewController = fbController;}];
+		}
+		else {
+			UITabBarController *tabBarController = [[UITabBarController alloc] init];
+			self.mainAppController = tabBarController;
+
+			//		FeedController *feeds = [[[FeedController alloc] initWithNibName:@"FeedController" bundle:[NSBundle mainBundle]] autorelease];
+			//		feeds.title = @"Feed";
+			//		feeds.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+			//		feeds.managedObjectContext = self.managedObjectContext;
+			//		feeds.client = self.supervoteClient;
 			
-			[defaults setObject:@"1" forKey:@"FacebookAlert"];
-			[defaults synchronize];
+			ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
+			elections.title = @"My Ballots";
+			elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+			elections.managedObjectContext = self.managedObjectContext;
+			elections.client = self.supervoteClient;
+			UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
+			
+			SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
+			settings.managedObjectContext = self.managedObjectContext;
+			settings.title = @"Settings";
+			settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
+			settings.client = self.supervoteClient;
+			settings.facebookClient = self.facebookClient;
+			
+			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, nil] autorelease]];
+			//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
+			
+			if (currentView == nil) {
+				self.window.rootViewController = tabBarController;
+			}
+			else {
+				// http://stackoverflow.com/questions/5279313/is-there-a-way-to-change-views-in-ios-without-using-uinavigationcontroller		
+				/* http://stackoverflow.com/questions/8146253/animate-change-of-view-controllers-without-using-navigation-controller-stack-su */
+				/* http://developer.apple.com/library/ios/#documentation/uikit/reference/uiview_class/uiview/uiview.html */
+				[UIView transitionFromView:currentView
+									toView:tabBarController.view
+								  duration:0.65f
+								   options:UIViewAnimationOptionTransitionFlipFromRight
+								completion:^(BOOL finished) {self.window.rootViewController = tabBarController;}];
+			}
+			
+			[tabBarController release];
 		}
 	}
 	else {
@@ -200,29 +207,6 @@
 		self.window.rootViewController = mainAppController;
 	}
 
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	// 0 = Not now, 1 = Yes
-	if (buttonIndex == 0) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-														message:@"You can setup Facebook access anytime in the Settings tab below."
-													   delegate:nil 
-											  cancelButtonTitle:nil
-											  otherButtonTitles:@"Ok", nil];
-		[alert show];
-		[alert release];
-	}
-	else if (buttonIndex == 1) {
-		/* DO FACEBOOK AUTHORIZE */
-//		NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-//		[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
-//		
-//		SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-//		[appDelegate deletePersistentStoreCoordinator];
-//		//appDelegate.managedObjectContext = nil;
-//		[appDelegate switchToWelcomePage];
-	}
 }
 
 #pragma mark -

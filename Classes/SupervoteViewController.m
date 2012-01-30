@@ -88,8 +88,15 @@
 	return NO;
 }
 
+#pragma mark -
+#pragma mark IBAction methods
+
+- (IBAction)doCopyrightButton {
+	NSString* launchUrl = @"http://www.canaryfalls.com";
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+}
+
 - (IBAction)doJoinButtonSendZip {
-	
 	NSString *ZIP;
 	
 	if ([FirstZIPField.text length] != 5) {
@@ -122,7 +129,7 @@
 		NSError *error = nil;
 		if ([_client registerDevice:ZIP withError:&error]) {
 			SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-			[appDelegate switchToMainApp];
+			[appDelegate switchToMainApp:self.view];
 		}
 		else {
 			//

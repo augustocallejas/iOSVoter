@@ -10,6 +10,9 @@
 		1409050014660B5200B7B693 /* ViewEndorsementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140904FE14660B5200B7B693 /* ViewEndorsementController.m */; };
 		1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140904FF14660B5200B7B693 /* ViewEndorsementController.xib */; };
 		1409052E1466FDF600B7B693 /* EndorsementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409052D1466FDF600B7B693 /* EndorsementButton.m */; };
+		140D03AE14D6040E00AD98E4 /* FacebookIntegrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */; };
+		140D03AF14D6040E00AD98E4 /* FacebookIntegrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */; };
+		140D03BE14D6045A00AD98E4 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -97,6 +100,10 @@
 		140904FF14660B5200B7B693 /* ViewEndorsementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewEndorsementController.xib; path = Classes/ViewEndorsementController.xib; sourceTree = "<group>"; };
 		1409052C1466FDF600B7B693 /* EndorsementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementButton.h; sourceTree = "<group>"; };
 		1409052D1466FDF600B7B693 /* EndorsementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementButton.m; sourceTree = "<group>"; };
+		140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookIntegrationViewController.h; sourceTree = "<group>"; };
+		140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookIntegrationViewController.m; sourceTree = "<group>"; };
+		140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FacebookIntegrationViewController.xib; path = Classes/FacebookIntegrationViewController.xib; sourceTree = "<group>"; };
+		140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -301,6 +308,8 @@
 				14E74AFB14359521002E2F82 /* CreateEndorsementViewController.m */,
 				14399DDB140F7612007269A3 /* DisplayBallotController.h */,
 				14399DDC140F7612007269A3 /* DisplayBallotController.m */,
+				140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */,
+				140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */,
 				14789F1513EBBB220016044C /* FeedController.h */,
 				14789F1613EBBB220016044C /* FeedController.m */,
 				143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */,
@@ -313,12 +322,12 @@
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */,
+				140904FD14660B5200B7B693 /* ViewEndorsementController.h */,
+				140904FE14660B5200B7B693 /* ViewEndorsementController.m */,
 				1423B32B1407527E006F8DBF /* VoteCandidateController.h */,
 				1423B32C1407527E006F8DBF /* VoteCandidateController.m */,
 				14399EF0141073FD007269A3 /* VoteMeasureController.h */,
 				14399EF1141073FD007269A3 /* VoteMeasureController.m */,
-				140904FD14660B5200B7B693 /* ViewEndorsementController.h */,
-				140904FE14660B5200B7B693 /* ViewEndorsementController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -455,6 +464,7 @@
 				14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */,
 				14A8779713F23DB2006B9D73 /* DisplayElection.xib */,
 				14E748F914343821002E2F82 /* EndorsementViewCell.xib */,
+				140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */,
 				14789F1713EBBB220016044C /* FeedController.xib */,
 				14789F2613EBBB9E0016044C /* ListElections.xib */,
 				14399C77140E1C77007269A3 /* ListMeasures.xib */,
@@ -512,10 +522,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				143FB75914CC81DE00377AF0 /* friends.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
+				143FB75914CC81DE00377AF0 /* friends.png */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
+				140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
@@ -614,6 +625,8 @@
 				14EF38B6144AAD3C00557A80 /* lock.png in Resources */,
 				1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */,
 				143FB75A14CC81DE00377AF0 /* friends.png in Resources */,
+				140D03AF14D6040E00AD98E4 /* FacebookIntegrationViewController.xib in Resources */,
+				140D03BE14D6045A00AD98E4 /* LoginWithFacebookNormal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +688,7 @@
 				14AAA7011499CAC400D59D0D /* ASIDownloadCache.m in Sources */,
 				14AAA7021499CAC400D59D0D /* ASIDataDecompressor.m in Sources */,
 				14AAA7031499CAC400D59D0D /* ASIDataCompressor.m in Sources */,
+				140D03AE14D6040E00AD98E4 /* FacebookIntegrationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

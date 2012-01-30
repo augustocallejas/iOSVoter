@@ -44,6 +44,10 @@
 		[alert show];
 		[alert release];
 	}
+	else if (indexPath.section == 2 && indexPath.row == 0) {
+		NSString* launchUrl = @"http://mobile.twitter.com/supervote";
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+	}
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -145,7 +149,7 @@
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -156,6 +160,10 @@
 	}
 	/* Reset */
 	else if (section == 1) {
+		return 1;
+	}
+	/* Twitter Link */
+	else if (section == 2) {
 		return 1;
 	}
 	
@@ -171,7 +179,9 @@
 	else if (section == 1) {
 		return @"Application Settings"; 
 	}
-
+	else if (section == 2) {
+		return @"Social Media";
+	}
 	
 	return nil;
 }
@@ -195,6 +205,9 @@
 	}
 	else if (indexPath.section == 1 && indexPath.row == 0) {
 		cell.textLabel.text = @"Reset Application";
+	}
+	else if (indexPath.section == 2 && indexPath.row == 0) {
+		cell.textLabel.text = @"Follow us on Twitter";
 	}
 	
 	//NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
