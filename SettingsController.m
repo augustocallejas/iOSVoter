@@ -13,6 +13,7 @@
 
 @implementation SettingsController
 
+@synthesize facebookLoginButton;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
@@ -20,6 +21,38 @@
 
 #pragma mark -
 #pragma mark SettingsController methods
+
+#pragma mark -
+#pragma mark IBAction methods
+
+- (IBAction)doFacebookLogin {
+	if (_facebookClient.loggedIn) {
+		[_facebookClient logout];
+		
+		UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
+		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
+		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+		[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+	}
+	else {
+		[_facebookClient authorize];
+	}
+}
+
+- (IBAction)doEmailUs {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:support@supervote.org"]];
+}
+
+- (IBAction)doResetApplication {
+	/* user wants to reset the application */		
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Reset"
+													message:@"Reseting the app will erase all saved data.  Are you sure?"
+												   delegate:self 
+										  cancelButtonTitle:@"No"
+										  otherButtonTitles:@"Yes", nil];
+	[alert show];
+	[alert release];
+}
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
@@ -72,7 +105,10 @@
  * Called when the user successfully logged in.
  */
 - (void)fbDidLogin {
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+	UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
+	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
+	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
 	
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
@@ -132,7 +168,7 @@
 }
 
 - (void)fbDidLogout {
-	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//	[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 /**
@@ -233,6 +269,19 @@
     [super viewDidLoad];
 	
 	if (_facebookClient != nil) {
+		if (_facebookClient.loggedIn) {
+			UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
+			UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
+			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+		}
+		else {
+			UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
+			UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
+			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+		}
+
 		_facebookClient.delegate = self;
 	}
 }

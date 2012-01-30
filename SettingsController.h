@@ -10,7 +10,7 @@
 #import "SupervoteClient.h"
 
 
-@interface SettingsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, FBSessionDelegate, UIAlertViewDelegate> {
+@interface SettingsController : UIViewController <FBSessionDelegate, UIAlertViewDelegate> {
 	
 @private
 	NSManagedObjectContext *_managedObjectContext;
@@ -23,5 +23,10 @@
 @property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) NSString *documentsPath;
+@property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
+
+- (IBAction)doFacebookLogin;
+- (IBAction)doEmailUs;
+- (IBAction)doResetApplication;
 
 @end

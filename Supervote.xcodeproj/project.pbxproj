@@ -13,6 +13,10 @@
 		140D03AE14D6040E00AD98E4 /* FacebookIntegrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */; };
 		140D03AF14D6040E00AD98E4 /* FacebookIntegrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */; };
 		140D03BE14D6045A00AD98E4 /* LoginWithFacebookNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */; };
+		140D051114D65C1200AD98E4 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D051014D65C1200AD98E4 /* twitter.png */; };
+		140D051A14D6692E00AD98E4 /* LogoutNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D051814D6692E00AD98E4 /* LogoutNormal.png */; };
+		140D051B14D6692E00AD98E4 /* LogoutPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D051914D6692E00AD98E4 /* LogoutPressed.png */; };
+		140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -104,6 +108,10 @@
 		140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookIntegrationViewController.m; sourceTree = "<group>"; };
 		140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FacebookIntegrationViewController.xib; path = Classes/FacebookIntegrationViewController.xib; sourceTree = "<group>"; };
 		140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookNormal.png; sourceTree = "<group>"; };
+		140D051014D65C1200AD98E4 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		140D051814D6692E00AD98E4 /* LogoutNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutNormal.png; sourceTree = "<group>"; };
+		140D051914D6692E00AD98E4 /* LogoutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutPressed.png; sourceTree = "<group>"; };
+		140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookPressed.png; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -527,9 +535,13 @@
 				143FB75914CC81DE00377AF0 /* friends.png */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */,
+				140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */,
+				140D051814D6692E00AD98E4 /* LogoutNormal.png */,
+				140D051914D6692E00AD98E4 /* LogoutPressed.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
+				140D051014D65C1200AD98E4 /* twitter.png */,
 				14A8763913F0F499006B9D73 /* users.png */,
 			);
 			name = Resources;
@@ -627,6 +639,10 @@
 				143FB75A14CC81DE00377AF0 /* friends.png in Resources */,
 				140D03AF14D6040E00AD98E4 /* FacebookIntegrationViewController.xib in Resources */,
 				140D03BE14D6045A00AD98E4 /* LoginWithFacebookNormal.png in Resources */,
+				140D051114D65C1200AD98E4 /* twitter.png in Resources */,
+				140D051A14D6692E00AD98E4 /* LogoutNormal.png in Resources */,
+				140D051B14D6692E00AD98E4 /* LogoutPressed.png in Resources */,
+				140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
