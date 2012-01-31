@@ -118,6 +118,11 @@
 	[reload release];
 }
 
+ - (void)viewWillAppear:(BOOL)animated {
+	 [super viewWillAppear:animated];
+	 NSLog(@"ListElections: viewWillAppear:animated");
+ }
+
 /* TODO: run in background? */
 /* TODO: doesn't manage deleted elections or past elections */
 - (void)updateElections {

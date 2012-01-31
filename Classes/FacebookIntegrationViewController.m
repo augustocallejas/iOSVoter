@@ -67,7 +67,7 @@
 	[self markAsViewed];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-													message:@"You can set up Facebook access anytime in the Settings tab below."
+													message:@"You can set up Facebook access anytime in the Settings tab."
 												   delegate:nil 
 										  cancelButtonTitle:nil
 										  otherButtonTitles:@"Ok", nil];
@@ -95,7 +95,6 @@
 	else {
 	}
 
-	
 	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToMainApp:self.view];
 }

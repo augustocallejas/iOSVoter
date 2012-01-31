@@ -24,6 +24,7 @@
 //@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
 @property (nonatomic, retain) SupervoteClient *client;
 
+- (IBAction)doTermsOfService;
 - (IBAction)doCopyrightButton;
 - (IBAction)doJoinButtonSendZip;
 

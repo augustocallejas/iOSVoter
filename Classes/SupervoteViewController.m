@@ -91,8 +91,13 @@
 #pragma mark -
 #pragma mark IBAction methods
 
+- (IBAction)doTermsOfService {
+	NSString* launchUrl = @"http://supervote.org/tos";
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+}
+
 - (IBAction)doCopyrightButton {
-	NSString* launchUrl = @"http://www.canaryfalls.com";
+	NSString* launchUrl = @"http://canaryfalls.com";
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
 }
 

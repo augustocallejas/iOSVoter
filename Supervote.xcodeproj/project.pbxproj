@@ -79,6 +79,8 @@
 		14AC666B141D581F00F29A71 /* FriendBallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6666141D581F00F29A71 /* FriendBallotVote.m */; };
 		14AC666C141D581F00F29A71 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC6668141D581F00F29A71 /* Friend.m */; };
 		14AC666D141D581F00F29A71 /* FriendMeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC666A141D581F00F29A71 /* FriendMeasureVote.m */; };
+		14AD9EE314D7A40900B83A48 /* QuickTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */; };
+		14AD9EE414D7A40900B83A48 /* QuickTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */; };
 		14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E748F914343821002E2F82 /* EndorsementViewCell.xib */; };
 		14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E749021434388B002E2F82 /* EndorsementViewCell.m */; };
 		14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7491714343C99002E2F82 /* ListEndorsementsController.m */; };
@@ -221,6 +223,9 @@
 		14AC6668141D581F00F29A71 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		14AC6669141D581F00F29A71 /* FriendMeasureVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMeasureVote.h; sourceTree = "<group>"; };
 		14AC666A141D581F00F29A71 /* FriendMeasureVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMeasureVote.m; sourceTree = "<group>"; };
+		14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTutorialViewController.h; sourceTree = "<group>"; };
+		14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTutorialViewController.m; sourceTree = "<group>"; };
+		14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickTutorialViewController.xib; path = Classes/QuickTutorialViewController.xib; sourceTree = "<group>"; };
 		14E748F914343821002E2F82 /* EndorsementViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndorsementViewCell.xib; sourceTree = "<group>"; };
 		14E749011434388B002E2F82 /* EndorsementViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementViewCell.h; sourceTree = "<group>"; };
 		14E749021434388B002E2F82 /* EndorsementViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementViewCell.m; sourceTree = "<group>"; };
@@ -326,6 +331,8 @@
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
 				14E7491614343C99002E2F82 /* ListEndorsementsController.h */,
 				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
+				14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */,
+				14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -478,6 +485,7 @@
 				14399C77140E1C77007269A3 /* ListMeasures.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				14EF327F144231D900557A80 /* MeasureViewCell.xib */,
+				14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
 				140904FF14660B5200B7B693 /* ViewEndorsementController.xib */,
@@ -643,6 +651,7 @@
 				140D051A14D6692E00AD98E4 /* LogoutNormal.png in Resources */,
 				140D051B14D6692E00AD98E4 /* LogoutPressed.png in Resources */,
 				140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */,
+				14AD9EE414D7A40900B83A48 /* QuickTutorialViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +714,7 @@
 				14AAA7021499CAC400D59D0D /* ASIDataDecompressor.m in Sources */,
 				14AAA7031499CAC400D59D0D /* ASIDataCompressor.m in Sources */,
 				140D03AE14D6040E00AD98E4 /* FacebookIntegrationViewController.m in Sources */,
+				14AD9EE314D7A40900B83A48 /* QuickTutorialViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

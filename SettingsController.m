@@ -56,6 +56,10 @@
 	}
 }
 
+- (IBAction)doTwitter {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://mobile.twitter.com/supervote"]];
+}
+
 - (IBAction)doEmailUs {
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:support@supervote.org"]];
 }

@@ -12,6 +12,7 @@
 #import "FacebookIntegrationViewController.h"
 #import "FeedController.h"
 #import "ListElectionsController.h"
+#import "QuickTutorialViewController.h"
 #import "SettingsController.h"
 #import "SupervoteViewController.h"
 
@@ -166,6 +167,12 @@
 //								completion:^(BOOL finished) {/*self.window.rootViewController = fbController;*/}];
 //				self.window.rootViewController = fbController;
 			}
+		}
+		else if ([defaults objectForKey:@"ShowedTutorial"] == nil) {
+			QuickTutorialViewController *controller = [[QuickTutorialViewController alloc] initWithNibName:@"QuickTutorialViewController" bundle:[NSBundle mainBundle]];
+			
+			self.window.rootViewController = controller;
+			[controller release];
 		}
 		else {
 			UITabBarController *tabBarController = [[UITabBarController alloc] init];
