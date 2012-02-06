@@ -17,7 +17,7 @@ static NSString *kFBExpirationDateKey = @"FBExpirationDateKey";
 // See http://www.facebook.com/developers/createapp.php
 // Also, your application must bind to the fb[app_id]:// URL
 // scheme (substitute [app_id] for your real Facebook app id).
-static NSString *kAppId = @"259602660736072";
+static NSString *kAppId = @"367473609934472";
 
 @implementation FacebookClient
 

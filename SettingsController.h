@@ -17,7 +17,15 @@
 	NSString *_documentsPath;
 	SupervoteClient *_client;
 	FacebookClient *_facebookClient;
+	
+	UILabel *_facebookLabel;
+	UILabel *_accountLabel;
+	UILabel *_supportLabel;
 }
+
+@property(nonatomic, retain) IBOutlet UILabel *facebookLabel;
+@property(nonatomic, retain) IBOutlet UILabel *accountLabel;
+@property(nonatomic, retain) IBOutlet UILabel *supportLabel;
 
 @property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic, retain) SupervoteClient *client;

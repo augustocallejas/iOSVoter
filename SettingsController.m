@@ -13,6 +13,10 @@
 
 @implementation SettingsController
 
+@synthesize facebookLabel = _facebookLabel;
+@synthesize accountLabel = _accountLabel;
+@synthesize supportLabel = _supportLabel;
+
 @synthesize facebookLoginButton;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize client = _client;
@@ -273,6 +277,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
+	[_facebookLabel setFont:font];
+	[_accountLabel setFont:font];
+	[_supportLabel setFont:font];
+	
 	
 	if (_facebookClient != nil) {
 		if (_facebookClient.loggedIn) {

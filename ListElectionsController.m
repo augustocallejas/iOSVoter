@@ -113,6 +113,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
+	
+	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
+	UILabel *label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+	label.backgroundColor = [UIColor clearColor];
+	label.font = font;
+	//label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	label.textAlignment = UITextAlignmentCenter;
+	label.textColor = [UIColor whiteColor];
+	self.navigationItem.titleView = label;
+	label.text = self.title;
+	[label sizeToFit];
+	
 	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateElections)];
 	self.navigationItem.rightBarButtonItem = reload;
 	[reload release];

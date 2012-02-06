@@ -12,10 +12,12 @@
 @interface FacebookIntegrationViewController : UIViewController <FBSessionDelegate> {
 
 @private
+	UILabel *_titleLabel;
 	SupervoteClient *_client;
 	FacebookClient *_facebookClient;
 }
 
+@property(nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;

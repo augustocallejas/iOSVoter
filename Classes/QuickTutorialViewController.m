@@ -13,6 +13,7 @@
 
 @implementation QuickTutorialViewController
 
+@synthesize titleLabel = _titleLabel;
 @synthesize privacyCell1 = _privacyCell1;
 @synthesize privacyCell2 = _privacyCell2;
 
@@ -30,6 +31,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:40.0];
+	[_titleLabel setFont:font];
 	
 	_privacyCell1.layer.cornerRadius = 10.0f;
 	_privacyCell1.layer.borderColor = [UIColor grayColor].CGColor;

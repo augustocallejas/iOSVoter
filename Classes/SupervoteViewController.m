@@ -12,6 +12,8 @@
 
 @implementation SupervoteViewController
 
+@synthesize leftLabel = _leftLabel;
+@synthesize rightLabel = _rightLabel;
 @synthesize FirstZIPField;
 @synthesize SecondZIPField;
 @synthesize joinButton;
@@ -36,13 +38,14 @@
 */
 
 
-/*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:50.0];
+	[_leftLabel setFont:font];
+	[_rightLabel setFont:font];	
 }
-*/
-
 
 /*
 // Override to allow orientations other than the default portrait orientation.

@@ -9,6 +9,8 @@
 #import "SupervoteClient.h"
 
 @interface SupervoteViewController : UIViewController <UITextFieldDelegate> {
+	UILabel *_leftLabel;
+	UILabel *_rightLabel;
 	UITextField *FirstZIPField;
 	UITextField *SecondZIPField;
 	UIButton *joinButton;
@@ -18,6 +20,8 @@
 	SupervoteClient *_client;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *leftLabel;
+@property (nonatomic, retain) IBOutlet UILabel *rightLabel;
 @property (nonatomic, retain) IBOutlet UITextField *FirstZIPField;
 @property (nonatomic, retain) IBOutlet UITextField *SecondZIPField;
 @property (nonatomic, retain) IBOutlet UIButton	*joinButton;

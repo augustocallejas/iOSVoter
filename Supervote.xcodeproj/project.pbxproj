@@ -81,6 +81,7 @@
 		14AC666D141D581F00F29A71 /* FriendMeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AC666A141D581F00F29A71 /* FriendMeasureVote.m */; };
 		14AD9EE314D7A40900B83A48 /* QuickTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */; };
 		14AD9EE414D7A40900B83A48 /* QuickTutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */; };
+		14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14CBC34E14DF208C00618BB0 /* League_Gothic.otf */; };
 		14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E748F914343821002E2F82 /* EndorsementViewCell.xib */; };
 		14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E749021434388B002E2F82 /* EndorsementViewCell.m */; };
 		14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7491714343C99002E2F82 /* ListEndorsementsController.m */; };
@@ -226,6 +227,7 @@
 		14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTutorialViewController.h; sourceTree = "<group>"; };
 		14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTutorialViewController.m; sourceTree = "<group>"; };
 		14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickTutorialViewController.xib; path = Classes/QuickTutorialViewController.xib; sourceTree = "<group>"; };
+		14CBC34E14DF208C00618BB0 /* League_Gothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = League_Gothic.otf; sourceTree = "<group>"; };
 		14E748F914343821002E2F82 /* EndorsementViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndorsementViewCell.xib; sourceTree = "<group>"; };
 		14E749011434388B002E2F82 /* EndorsementViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementViewCell.h; sourceTree = "<group>"; };
 		14E749021434388B002E2F82 /* EndorsementViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementViewCell.m; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				14A6F44C143D932200EBF65D /* advanced.png */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
 				143FB75914CC81DE00377AF0 /* friends.png */,
+				14CBC34E14DF208C00618BB0 /* League_Gothic.otf */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */,
 				140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */,
@@ -652,6 +655,7 @@
 				140D051B14D6692E00AD98E4 /* LogoutPressed.png in Resources */,
 				140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */,
 				14AD9EE414D7A40900B83A48 /* QuickTutorialViewController.xib in Resources */,
+				14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

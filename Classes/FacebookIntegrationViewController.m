@@ -12,6 +12,7 @@
 
 @implementation FacebookIntegrationViewController
 
+@synthesize titleLabel = _titleLabel;
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 @synthesize facebookLoginButton;
@@ -30,6 +31,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:40.0];
+	[_titleLabel setFont:font];
 	
 	if (_facebookClient != nil) {
 		_facebookClient.delegate = self;

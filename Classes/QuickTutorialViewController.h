@@ -11,10 +11,12 @@
 @interface QuickTutorialViewController : UIViewController {
 	
 @private
+	UILabel *_titleLabel;
 	IBOutlet UITableViewCell *_privacyCell1;
 	IBOutlet UITableViewCell *_privacyCell2;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) UITableViewCell *privacyCell1;
 @property (nonatomic, retain) UITableViewCell *privacyCell2;
 
