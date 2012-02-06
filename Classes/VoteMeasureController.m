@@ -375,14 +375,14 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0)
-	{
-		return self.measure.title;
-	}
-	
-	return nil;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//	if (section == 0)
+//	{
+//		return self.measure.title;
+//	}
+//	
+//	return nil;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return 3;
@@ -628,6 +628,36 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	if (section != 0) {
+		return 0.0;
+	}
+	
+	return 32.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (section != 0) {
+		return nil;
+	}
+	
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:22.0];
+	
+	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 32.0)] autorelease];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.opaque = NO;
+	label.backgroundColor = [UIColor clearColor];
+	label.textColor = [UIColor darkGrayColor];
+	label.font = font;
+	label.adjustsFontSizeToFitWidth = YES;
+	label.minimumFontSize = 18.0;
+	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
+	label.text = self.measure.title;
+	
+	[customView addSubview:label];
+	return customView;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (socialBallotView == YES) {

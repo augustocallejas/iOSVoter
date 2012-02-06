@@ -265,7 +265,6 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
-								<string>14E74AE0143591BE002E2F82</string>
 								<string>1423B41014081697006F8DBF</string>
 								<string>14A01B1D14789E0F0029ADFE</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
@@ -275,13 +274,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>46</integer>
-									<integer>42</integer>
+									<integer>9</integer>
+									<integer>5</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 500}, {253, 749}}</string>
+							<string>{{0, 72}, {253, 749}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -311,12 +311,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingsController.m</string>
+								<string>DisplayBallotController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsController.m</string>
+										<string>DisplayBallotController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14CBC3E514DF685700618BB0</string>
+										<string>14CBC44214DF8A4B00618BB0</string>
 										<key>history</key>
 										<array>
 											<string>14E74AD014358204002E2F82</string>
@@ -351,7 +353,6 @@
 											<string>14A01A6E147864600029ADFE</string>
 											<string>1490F6C6147BFA3200352E23</string>
 											<string>14AAA57A148F4CFA00D59D0D</string>
-											<string>14AAA6111499A6CC00D59D0D</string>
 											<string>14AAA7A8149AED5100D59D0D</string>
 											<string>14AAA7A9149AED5100D59D0D</string>
 											<string>143FB1CC14B97AFD00377AF0</string>
@@ -371,7 +372,6 @@
 											<string>143FB73714CBB5BC00377AF0</string>
 											<string>143FB73814CBB5BC00377AF0</string>
 											<string>149983A214CE8C25009BDF33</string>
-											<string>146A870A14CFBCA600FC9471</string>
 											<string>140D02D414D5B61300AD98E4</string>
 											<string>140D032914D5C03800AD98E4</string>
 											<string>140D034814D5C97B00AD98E4</string>
@@ -393,17 +393,13 @@
 											<string>140D05BE14D676CD00AD98E4</string>
 											<string>140D05BF14D676CD00AD98E4</string>
 											<string>140D05DD14D678A000AD98E4</string>
-											<string>140D05EA14D679AC00AD98E4</string>
 											<string>140D060A14D67BB700AD98E4</string>
-											<string>14AD9F1014D7BDA300B83A48</string>
 											<string>14AD9F1414D7BDA300B83A48</string>
 											<string>14AD9F2014D7BFD800B83A48</string>
 											<string>14AD9F2114D7BFD800B83A48</string>
 											<string>14AD9F3814D7C79E00B83A48</string>
-											<string>14AD9F5814D8488A00B83A48</string>
 											<string>14E39F2B14D99A950043ECC9</string>
 											<string>14E39F2D14D99A950043ECC9</string>
-											<string>14E39F2F14D99A950043ECC9</string>
 											<string>14CBC35414DF22AE00618BB0</string>
 											<string>14CBC37414DF27A900618BB0</string>
 											<string>14CBC37514DF27A900618BB0</string>
@@ -413,10 +409,16 @@
 											<string>14CBC3DE14DF685700618BB0</string>
 											<string>14CBC3DF14DF685700618BB0</string>
 											<string>14CBC3E014DF685700618BB0</string>
-											<string>14CBC3E114DF685700618BB0</string>
 											<string>14CBC3E214DF685700618BB0</string>
 											<string>14CBC3E314DF685700618BB0</string>
-											<string>14CBC3E414DF685700618BB0</string>
+											<string>14CBC43A14DF8A4B00618BB0</string>
+											<string>14CBC43B14DF8A4B00618BB0</string>
+											<string>14CBC43C14DF8A4B00618BB0</string>
+											<string>14CBC43D14DF8A4B00618BB0</string>
+											<string>14CBC43E14DF8A4B00618BB0</string>
+											<string>14CBC43F14DF8A4B00618BB0</string>
+											<string>14CBC44014DF8A4B00618BB0</string>
+											<string>14CBC44114DF8A4B00618BB0</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -428,18 +430,16 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {733, 542}}</string>
+								<string>{{0, 0}, {733, 726}}</string>
 								<key>RubberWindowFrame</key>
 								<string>1 70 1008 808 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>542pt</string>
+							<string>726pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -450,14 +450,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 547}, {733, 220}}</string>
+								<string>{{0, 731}, {733, 36}}</string>
 								<key>RubberWindowFrame</key>
 								<string>1 70 1008 808 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>220pt</string>
+							<string>36pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -616,6 +616,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>14CBC44314DF8A4B00618BB0</string>
 		<string>14CBC36C14DF266C00618BB0</string>
 		<string>14CBC36D14DF266C00618BB0</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -950,6 +951,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

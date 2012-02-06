@@ -99,8 +99,8 @@
 	};
 	140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {672, 510}}";
-			sepNavSelRange = "{471, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {998, 405}}";
+			sepNavSelRange = "{327, 0}";
 			sepNavVisRange = "{0, 739}";
 		};
 	};
@@ -454,9 +454,9 @@
 	};
 	1423B32B1407527E006F8DBF /* VoteCandidateController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1125, 546}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1125, 694}}";
 			sepNavSelRange = "{753, 55}";
-			sepNavVisRange = "{0, 1494}";
+			sepNavVisRange = "{0, 1570}";
 		};
 	};
 	1423B32C1407527E006F8DBF /* VoteCandidateController.m */ = {
@@ -582,16 +582,16 @@
 	};
 	14399DDB140F7612007269A3 /* DisplayBallotController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1174, 665}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1174, 671}}";
 			sepNavSelRange = "{759, 26}";
 			sepNavVisRange = "{0, 2125}";
 		};
 	};
 	14399DDC140F7612007269A3 /* DisplayBallotController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1216, 11050}}";
-			sepNavSelRange = "{14147, 0}";
-			sepNavVisRange = "{13858, 1394}";
+			sepNavIntBoundsRect = "{{0, 0}, {1006, 11778}}";
+			sepNavSelRange = "{31266, 0}";
+			sepNavVisRange = "{30267, 1844}";
 			sepNavWindowFrame = "{{15, 13}, {1262, 860}}";
 		};
 	};
@@ -716,6 +716,11 @@
 		name = VoteCandidateController.m;
 		path = "/Users/augusto/projects/supervote/supervote-ios/Classes/VoteCandidateController.m";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1048, 10023}}";
+			sepNavSelRange = "{22377, 0}";
+			sepNavVisRange = "{20518, 1725}";
+		};
 	};
 	143FB47114C3613B00377AF0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -743,6 +748,11 @@
 		name = VoteMeasureController.m;
 		path = "/Users/augusto/projects/supervote/supervote-ios/Classes/VoteMeasureController.m";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 8541}}";
+			sepNavSelRange = "{22230, 70}";
+			sepNavVisRange = "{21035, 1563}";
+		};
 	};
 	143FB59614C542EC00377AF0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1044,9 +1054,9 @@
 	};
 	14789F2F13EBBBF20016044C /* SettingsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 4446}}";
-			sepNavSelRange = "{8530, 0}";
-			sepNavVisRange = "{0, 1350}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 4303}}";
+			sepNavSelRange = "{8372, 65}";
+			sepNavVisRange = "{6809, 1722}";
 			sepNavWindowFrame = "{{15, 4}, {1203, 874}}";
 		};
 	};
@@ -1069,9 +1079,9 @@
 	};
 	1490F81C14849DF100352E23 /* FacebookClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 5174}}";
+			sepNavIntBoundsRect = "{{0, 0}, {740, 5031}}";
 			sepNavSelRange = "{155, 0}";
-			sepNavVisRange = "{0, 1268}";
+			sepNavVisRange = "{0, 1364}";
 			sepNavWindowFrame = "{{15, 4}, {1203, 874}}";
 		};
 	};
@@ -1082,9 +1092,9 @@
 		path = "/Users/augusto/projects/supervote/supervote-ios/ListElectionsController.m";
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 3627}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 3666}}";
 			sepNavSelRange = "{3246, 65}";
-			sepNavVisRange = "{2546, 1597}";
+			sepNavVisRange = "{2508, 1631}";
 		};
 	};
 	149983A214CE8C25009BDF33 /* PBXTextBookmark */ = {
@@ -1305,7 +1315,7 @@
 		fRef = 143FB54614C530C400377AF0 /* VoteMeasureController.m */;
 		name = "VoteMeasureController.m: 511";
 		rLen = 0;
-		rLoc = 16067;
+		rLoc = 16083;
 		rType = 0;
 		vrLen = 1990;
 		vrLoc = 15749;
@@ -1828,6 +1838,106 @@
 		vrLen = 1350;
 		vrLoc = 0;
 	};
+	14CBC43914DF8A4800618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */;
+		name = "FacebookIntegrationViewController.h: 15";
+		rLen = 0;
+		rLoc = 327;
+		rType = 0;
+		vrLen = 739;
+		vrLoc = 0;
+	};
+	14CBC43A14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1490F81C14849DF100352E23 /* FacebookClient.m */;
+		name = "FacebookClient.m: 7";
+		rLen = 0;
+		rLoc = 155;
+		rType = 0;
+		vrLen = 1364;
+		vrLoc = 0;
+	};
+	14CBC43B14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 149982ED14CD2D04009BDF33 /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 116";
+		rLen = 65;
+		rLoc = 3246;
+		rType = 0;
+		vrLen = 1631;
+		vrLoc = 2508;
+	};
+	14CBC43C14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14789F2F13EBBBF20016044C /* SettingsController.m */;
+		name = "SettingsController.m: 281";
+		rLen = 65;
+		rLoc = 8372;
+		rType = 0;
+		vrLen = 1722;
+		vrLoc = 6809;
+	};
+	14CBC43D14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1423B32B1407527E006F8DBF /* VoteCandidateController.h */;
+		name = "VoteCandidateController.h: 30";
+		rLen = 55;
+		rLoc = 753;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 0;
+	};
+	14CBC43E14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143FB54614C530C400377AF0 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 653";
+		rLen = 70;
+		rLoc = 22230;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 21035;
+	};
+	14CBC43F14DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143FB46D14C35CF600377AF0 /* VoteCandidateController.m */;
+		name = "VoteCandidateController.m: 644";
+		rLen = 0;
+		rLoc = 22377;
+		rType = 0;
+		vrLen = 1725;
+		vrLoc = 20518;
+	};
+	14CBC44014DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDB140F7612007269A3 /* DisplayBallotController.h */;
+		name = "DisplayBallotController.h: 27";
+		rLen = 26;
+		rLoc = 759;
+		rType = 0;
+		vrLen = 2125;
+		vrLoc = 0;
+	};
+	14CBC44114DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 810";
+		rLen = 0;
+		rLoc = 31467;
+		rType = 0;
+		vrLen = 1882;
+		vrLoc = 30227;
+	};
+	14CBC44214DF8A4B00618BB0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 808";
+		rLen = 0;
+		rLoc = 31266;
+		rType = 0;
+		vrLen = 1844;
+		vrLoc = 30267;
+	};
 	14E39F2914D99A950043ECC9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */;
@@ -2314,6 +2424,16 @@
 			14CBC3E314DF685700618BB0 /* PBXTextBookmark */ = 14CBC3E314DF685700618BB0 /* PBXTextBookmark */;
 			14CBC3E414DF685700618BB0 /* PBXTextBookmark */ = 14CBC3E414DF685700618BB0 /* PBXTextBookmark */;
 			14CBC3E514DF685700618BB0 /* PBXTextBookmark */ = 14CBC3E514DF685700618BB0 /* PBXTextBookmark */;
+			14CBC43914DF8A4800618BB0 /* PBXTextBookmark */ = 14CBC43914DF8A4800618BB0 /* PBXTextBookmark */;
+			14CBC43A14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43A14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC43B14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43B14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC43C14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43C14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC43D14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43D14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC43E14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43E14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC43F14DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC43F14DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC44014DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC44014DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC44114DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC44114DF8A4B00618BB0 /* PBXTextBookmark */;
+			14CBC44214DF8A4B00618BB0 /* PBXTextBookmark */ = 14CBC44214DF8A4B00618BB0 /* PBXTextBookmark */;
 			14E39F2914D99A950043ECC9 = 14E39F2914D99A950043ECC9 /* PBXTextBookmark */;
 			14E39F2A14D99A950043ECC9 = 14E39F2A14D99A950043ECC9 /* PBXTextBookmark */;
 			14E39F2B14D99A950043ECC9 = 14E39F2B14D99A950043ECC9 /* PBXTextBookmark */;

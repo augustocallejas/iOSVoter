@@ -682,13 +682,13 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {	
-	if (section < [self.fetchedResultsController1.sections count]) {
-		return [self tableView:tableView titleForPositionHeaderInSection:section];
-	}
-	
-	return [self tableView:tableView titleForMeasureHeaderInSection:section-[self.fetchedResultsController1.sections count]];
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {	
+//	if (section < [self.fetchedResultsController1.sections count]) {
+//		return [self tableView:tableView titleForPositionHeaderInSection:section];
+//	}
+//	
+//	return [self tableView:tableView titleForMeasureHeaderInSection:section-[self.fetchedResultsController1.sections count]];
+//}
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForPositionHeaderInSection:(NSInteger)section{
@@ -789,6 +789,35 @@
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 32.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	/* http://www.iphonedevsdk.com/forum/iphone-sdk-development/5172-font-size-color-tableview-header.html */
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:22.0];
+
+	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 32.0)] autorelease];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.opaque = NO;
+	label.backgroundColor = [UIColor clearColor];
+	label.textColor = [UIColor darkGrayColor];
+	label.font = font;
+	label.adjustsFontSizeToFitWidth = YES;
+	label.minimumFontSize = 18.0;
+	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
+	
+	if (section < [self.fetchedResultsController1.sections count]) {
+		label.text = [self tableView:tableView titleForPositionHeaderInSection:section];
+	}
+	else {
+		label.text = [self tableView:tableView titleForMeasureHeaderInSection:section-[self.fetchedResultsController1.sections count]];	
+	}
+
+	[customView addSubview:label];
+	return customView;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
