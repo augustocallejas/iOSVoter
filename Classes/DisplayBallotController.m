@@ -235,6 +235,15 @@
 	//NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.majorTitle.text = position.title;
+	
+	/* http://www.dafont.com/u-s-101.font */
+//	cell.majorTitle.font = [UIFont fontWithName:@"U.S. 101" size:18.0];
+//	cell.majorTitle.minimumFontSize = 10.0;
+//	cell.majorTitle.adjustsFontSizeToFitWidth = YES;
+	
+//	cell.minorTitle.font = [UIFont fontWithName:@"Calibri" size:5.0];
+//	cell.minorTitle.minimumFontSize = 2.0;
+//	cell.minorTitle.adjustsFontSizeToFitWidth = YES;
 
 	cell.friendCount.enabled = NO;
 	cell.friendCount.tag = (indexPath.section << 10) + indexPath.row;
@@ -386,7 +395,7 @@
 
 - (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:indexPath];
-	cell.majorTitle.text = measure.title;
+	cell.majorTitle.text = [NSString stringWithFormat:@"%@ %@", measure.identifier, measure.title];
 	
 	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a measure vote, if any */
