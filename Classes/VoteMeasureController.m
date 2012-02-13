@@ -653,7 +653,7 @@
 	label.adjustsFontSizeToFitWidth = YES;
 	label.minimumFontSize = 18.0;
 	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
-	label.text = self.measure.title;
+	label.text = [NSString stringWithFormat:@"%@ %@", _measure.identifier, _measure.title];
 	
 	[customView addSubview:label];
 	return customView;
