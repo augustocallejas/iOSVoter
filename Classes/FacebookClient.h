@@ -23,6 +23,7 @@
 
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path;
 - (void)updateFriends;
+- (void)extendAccessTokenIfNeeded;
 - (void)authorize;
 - (void)logout;
 

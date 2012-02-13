@@ -40,7 +40,7 @@ static NSString *kAppId = @"367473609934472";
 			_loggedIn = YES;
 			
 			NSLog(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
-			
+			NSLog(@"Extending Facebook access token if needed");
 			[_facebook extendAccessTokenIfNeeded];
 		}
 		
@@ -58,7 +58,8 @@ static NSString *kAppId = @"367473609934472";
 }
 
 - (void)updateFriends {
-	NSLog(@"updateFriends");
+	NSLog(@"Updating Facebook friend list");
+	
 	NSFileManager *manager = [NSFileManager defaultManager];
 	
 	NSError *error = nil;
@@ -67,11 +68,15 @@ static NSString *kAppId = @"367473609934472";
 	}
 	
 	if (![_facebook isSessionValid]) {
-		NSLog(@"session not valid");
+		NSLog(@"Facebook session not valid, need to reauthorize");
 		[_facebook authorize:nil];
 	}
 	
 	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
+}
+
+- (void)extendAccessTokenIfNeeded {
+	[_facebook extendAccessTokenIfNeeded];
 }
 
 - (void)authorize {
@@ -124,7 +129,7 @@ static NSString *kAppId = @"367473609934472";
  * See extendAccessToken for more details.
  */
 - (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-	NSLog(@"token extended");
+	NSLog(@"Facebook access token extended with expiration date %@", expiresAt);
 	[self storeAuthData:accessToken expiresAt:expiresAt];
 	
 	if (_delegate != nil) {
@@ -186,8 +191,7 @@ static NSString *kAppId = @"367473609934472";
  * Called when an error prevents the request from completing successfully.
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-	NSLog(@"FB: request did fail with error");
-	NSLog(@"error %@", error);
+	NSLog(@"Facebook request (%@) failed with error: %@", [request url], [error userInfo]);
 }
 
 /**
