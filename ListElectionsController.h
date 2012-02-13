@@ -6,6 +6,7 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "FacebookClient.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "SupervoteClient.h"
 
@@ -14,8 +15,10 @@
 @private
 	NSDateFormatter *dateFormatter;
 	SupervoteClient *_client;
+	FacebookClient *_facebookClient;
 }
 
 @property (nonatomic, retain) SupervoteClient *client;
+@property(nonatomic, retain) FacebookClient *facebookClient;
 
 @end

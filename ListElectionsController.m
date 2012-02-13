@@ -21,6 +21,7 @@
 @implementation ListElectionsController
 
 @synthesize client = _client;
+@synthesize facebookClient = _facebookClient;
 
 #pragma mark -
 #pragma mark FetchedResultsBasedTableViewController methods
@@ -51,14 +52,17 @@
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	cell.textLabel.minimumFontSize = 13.0;
-	cell.textLabel.adjustsFontSizeToFitWidth = YES;
+	//cell.textLabel.font = [UIFont fontWithName:@"OSP-DIN" size:20.0];
+	//cell.textLabel.font = [UIFont fontWithName:@"LeagueGothic" size:20.0];
+	cell.textLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:14.0];
+//	cell.textLabel.minimumFontSize = 13.0;
+//	cell.textLabel.adjustsFontSizeToFitWidth = YES;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = election.title;
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 	
-	UIImage *icon = [UIImage imageNamed:@"users.png"];
+	UIImage *icon = [UIImage imageNamed:@"star.png"];
 	cell.imageView.image = icon;
 }
 
@@ -133,7 +137,10 @@
 
  - (void)viewWillAppear:(BOOL)animated {
 	 [super viewWillAppear:animated];
-	 NSLog(@"ListElections: viewWillAppear:animated");
+	 
+	 if ([_facebookClient loggedIn]) {
+		 [_facebookClient extendAccessTokenIfNeeded];
+	 }
  }
 
 /* TODO: run in background? */
@@ -270,6 +277,7 @@
 
 - (void)dealloc {
 	self.client = nil;
+	self.facebookClient = nil;
 	[dateFormatter release];
     [super dealloc];
 }
