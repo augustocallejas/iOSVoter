@@ -58,8 +58,8 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<object class="NSFont" key="IBUIFont" id="325268772">
-									<string key="NSName">Helvetica-Bold</string>
+								<object class="NSFont" key="IBUIFont" id="882705783">
+									<string key="NSName">Arial-BoldMT</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -86,18 +86,13 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="882705783"/>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
 								</object>
 								<reference key="IBUIHighlightedColor" ref="668226623"/>
 								<int key="IBUIBaselineAdjustment">1</int>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
 							</object>
 							<object class="IBUIButton" id="572136258">
@@ -202,7 +197,11 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">2</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="325268772"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwIDAAA</bytes>
@@ -557,11 +556,11 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
+							<string>EndorsementButton</string>
+							<string>EndorsementButton</string>
+							<string>EndorsementButton</string>
+							<string>EndorsementButton</string>
+							<string>EndorsementButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -584,23 +583,23 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendButton1</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">EndorsementButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendButton2</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">EndorsementButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendButton3</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">EndorsementButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendButton4</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">EndorsementButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendButton5</string>
-								<string key="candidateClassName">UIButton</string>
+								<string key="candidateClassName">EndorsementButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">_friendCount</string>
