@@ -139,13 +139,13 @@
 - (void)switchToMainApp:(UIView *)currentView {
 	if (mainAppController == nil)
 	{
-		if (_facebookClient.loggedIn) {
-			NSLog(@"logged in");
-			[_facebookClient updateFriends];
-		}
-		else {
-			NSLog(@"not logged in");
-		}
+//		if (_facebookClient.loggedIn) {
+//			NSLog(@"logged in");
+//			[_facebookClient updateFriends];
+//		}
+//		else {
+//			NSLog(@"not logged in");
+//		}
 		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"FacebookAlert"] == nil) {
@@ -273,7 +273,7 @@
 }
 
 - (void)addDefaultPersistentStore {
-	NSLog(@"addDefaultPersistentStore");
+//	NSLog(@"addDefaultPersistentStore");
 	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Supervote.sqlite"];
     
     NSError *error = nil;
