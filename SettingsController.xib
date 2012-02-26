@@ -99,18 +99,18 @@
 					<object class="IBUIButton" id="726916611">
 						<reference key="NSNextResponder" ref="359027785"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{79, 57}, {159, 29}}</string>
+						<string key="NSFrame">{{18, 57}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="359027785"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="482284719"/>
-						<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
+						<int key="IBUIButtonType">1</int>
 						<reference key="IBUIHighlightedTitleColor" ref="134595013"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="68439899"/>
 					</object>
@@ -400,7 +400,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SettingsController</string>
 					<string>UIResponder</string>
-					<string>{{-1, 376}, {320, 480}}</string>
+					<string>{{0, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">

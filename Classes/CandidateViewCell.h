@@ -14,7 +14,7 @@
 @private	
 	IBOutlet UILabel *_candidateName;
 	IBOutlet UILabel *_partyName;
-	IBOutlet UIImageView *_candidateIcon;
+//	IBOutlet UIImageView *_candidateIcon;
 	IBOutlet EndorsementButton *_friendIcon1;
 	IBOutlet EndorsementButton *_friendIcon2;
 	IBOutlet EndorsementButton *_friendIcon3;
@@ -31,7 +31,7 @@
 
 @property (nonatomic, retain) UILabel *candidateName;
 @property (nonatomic, retain) UILabel *partyName;
-@property (nonatomic, retain) UIImageView *candidateIcon;
+//@property (nonatomic, retain) UIImageView *candidateIcon;
 @property (nonatomic, retain) EndorsementButton *friendIcon1;
 @property (nonatomic, retain) EndorsementButton *friendIcon2;
 @property (nonatomic, retain) EndorsementButton *friendIcon3;

@@ -26,6 +26,7 @@
 		1423B44B14082CE3006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44A14082CE3006F8DBF /* Candidate.m */; };
 		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
 		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
+		142F680D14E8B7DA002D29CA /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 142F680C14E8B7DA002D29CA /* star.png */; };
 		143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */; };
 		14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */; };
 		14399C10140E168C007269A3 /* MeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C06140E168C007269A3 /* MeasureVote.m */; };
@@ -91,6 +92,8 @@
 		14EF3280144231D900557A80 /* MeasureViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EF327F144231D900557A80 /* MeasureViewCell.xib */; };
 		14EF38A4144AA9F100557A80 /* check-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF38A3144AA9F100557A80 /* check-64.png */; };
 		14EF38B6144AAD3C00557A80 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF38B5144AAD3C00557A80 /* lock.png */; };
+		14F6533F14F9C0A600A13942 /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F6533D14F9C0A600A13942 /* UIWebViewController.m */; };
+		14F6534014F9C0A600A13942 /* UIWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F6533E14F9C0A600A13942 /* UIWebViewController.xib */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -130,6 +133,7 @@
 		1423B64114087FE5006F8DBF /* BallotVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotVote.m; sourceTree = "<group>"; };
 		1423B64214087FE5006F8DBF /* Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ballot.h; sourceTree = "<group>"; };
 		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
+		142F680C14E8B7DA002D29CA /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsBasedTableViewController.h; sourceTree = "<group>"; };
 		143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsBasedTableViewController.m; sourceTree = "<group>"; };
 		14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayCombinedElection.xib; sourceTree = "<group>"; };
@@ -241,6 +245,9 @@
 		14EF327F144231D900557A80 /* MeasureViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeasureViewCell.xib; sourceTree = "<group>"; };
 		14EF38A3144AA9F100557A80 /* check-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-64.png"; sourceTree = "<group>"; };
 		14EF38B5144AAD3C00557A80 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		14F6533C14F9C0A600A13942 /* UIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWebViewController.h; path = ../UIWebViewController.h; sourceTree = "<group>"; };
+		14F6533D14F9C0A600A13942 /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWebViewController.m; path = ../UIWebViewController.m; sourceTree = "<group>"; };
+		14F6533E14F9C0A600A13942 /* UIWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIWebViewController.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -339,6 +346,8 @@
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */,
+				14F6533C14F9C0A600A13942 /* UIWebViewController.h */,
+				14F6533D14F9C0A600A13942 /* UIWebViewController.m */,
 				140904FD14660B5200B7B693 /* ViewEndorsementController.h */,
 				140904FE14660B5200B7B693 /* ViewEndorsementController.m */,
 				1423B32B1407527E006F8DBF /* VoteCandidateController.h */,
@@ -490,6 +499,7 @@
 				14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
+				14F6533E14F9C0A600A13942 /* UIWebViewController.xib */,
 				140904FF14660B5200B7B693 /* ViewEndorsementController.xib */,
 				1423B32814075237006F8DBF /* VoteCandidate.xib */,
 				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
@@ -550,6 +560,7 @@
 				140D051814D6692E00AD98E4 /* LogoutNormal.png */,
 				140D051914D6692E00AD98E4 /* LogoutPressed.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
+				142F680C14E8B7DA002D29CA /* star.png */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
@@ -656,6 +667,8 @@
 				140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */,
 				14AD9EE414D7A40900B83A48 /* QuickTutorialViewController.xib in Resources */,
 				14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */,
+				142F680D14E8B7DA002D29CA /* star.png in Resources */,
+				14F6534014F9C0A600A13942 /* UIWebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +732,7 @@
 				14AAA7031499CAC400D59D0D /* ASIDataCompressor.m in Sources */,
 				140D03AE14D6040E00AD98E4 /* FacebookIntegrationViewController.m in Sources */,
 				14AD9EE314D7A40900B83A48 /* QuickTutorialViewController.m in Sources */,
+				14F6533F14F9C0A600A13942 /* UIWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

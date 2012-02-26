@@ -8,7 +8,9 @@
 
 #import "SupervoteClient.h"
 
-@interface SupervoteViewController : UIViewController <UITextFieldDelegate> {
+#import "UIWebViewController.h"
+
+@interface SupervoteViewController : UIViewController <UITextFieldDelegate, UIWebViewControllerDelegate> {
 	UILabel *_leftLabel;
 	UILabel *_rightLabel;
 	UITextField *FirstZIPField;
@@ -29,6 +31,7 @@
 @property (nonatomic, retain) SupervoteClient *client;
 
 - (IBAction)doTermsOfService;
+- (void) didDismissModalView;
 - (IBAction)doCopyrightButton;
 - (IBAction)doJoinButtonSendZip;
 

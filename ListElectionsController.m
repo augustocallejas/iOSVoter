@@ -54,13 +54,15 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	//cell.textLabel.font = [UIFont fontWithName:@"OSP-DIN" size:20.0];
 	//cell.textLabel.font = [UIFont fontWithName:@"LeagueGothic" size:20.0];
-	cell.textLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:14.0];
+//	cell.textLabel.font = [UIFont fontWithName:@"Arial-BoldMT" size:14.0];
+	cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
 //	cell.textLabel.minimumFontSize = 13.0;
 //	cell.textLabel.adjustsFontSizeToFitWidth = YES;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     Election *election = (Election *) [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = election.title;
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
+//	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
 	
 	UIImage *icon = [UIImage imageNamed:@"star.png"];
 	cell.imageView.image = icon;
@@ -135,17 +137,28 @@
 	[reload release];
 }
 
- - (void)viewWillAppear:(BOOL)animated {
-	 [super viewWillAppear:animated];
-	 
-	 if ([_facebookClient loggedIn]) {
-		 [_facebookClient extendAccessTokenIfNeeded];
-	 }
- }
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	NSLog(@"View will appear");
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	if ([_facebookClient loggedIn]) {
+		[_facebookClient extendAccessTokenIfNeeded];
+	}
+	
+	[self updateElections:NO];
+}
+
+- (void)updateElections {
+	[self updateElections:YES];
+}
 
 /* TODO: run in background? */
 /* TODO: doesn't manage deleted elections or past elections */
-- (void)updateElections {
+- (void)updateElections:(BOOL)withAlerts {
 	vote_status status = OK;
 	NSDictionary *elections = [_client getElections:&status];
 	
@@ -173,13 +186,15 @@
 				break;
 		}
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-														message:message 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		if (withAlerts) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+															message:message 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
 	}
 	else {
 		NSError *httpError = nil;

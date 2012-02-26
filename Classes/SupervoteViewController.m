@@ -9,6 +9,7 @@
 #import "SupervoteViewController.h"
 
 #import "SupervoteAppDelegate.h"
+#import "UIWebViewController.h"
 
 @implementation SupervoteViewController
 
@@ -96,7 +97,19 @@
 
 - (IBAction)doTermsOfService {
 	NSString* launchUrl = @"http://supervote.org/tos";
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+//	NSLog(@"Display TOS");
+	
+	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
+	controller.url = launchUrl;
+	controller.delegate = self;
+	
+	//[[self navigationController] pushViewController:controller animated:YES];
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (void) didDismissModalView {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)doCopyrightButton {

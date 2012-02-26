@@ -50,10 +50,11 @@
 	if (_facebookClient.loggedIn) {
 		[_facebookClient logout];
 		
-		UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
-		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
-		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-		[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+//		UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
+//		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
+//		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+//		[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+		[[self facebookLoginButton] setTitle:@"Log into Facebook" forState:UIControlStateNormal];
 	}
 	else {
 		[_facebookClient authorize];
@@ -115,10 +116,11 @@
  * Called when the user successfully logged in.
  */
 - (void)fbDidLogin {
-	UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
-	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
-	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+//	UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
+//	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
+//	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+//	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+	[[self facebookLoginButton] setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
 	
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
@@ -286,16 +288,20 @@
 	
 	if (_facebookClient != nil) {
 		if (_facebookClient.loggedIn) {
-			UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
-			UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
-			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+//			UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
+//			UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
+//			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+//			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+			[[self facebookLoginButton] setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
+
 		}
 		else {
-			UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
-			UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
-			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+//			UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
+//			UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
+//			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
+//			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
+			[[self facebookLoginButton] setTitle:@"Log into Facebook" forState:UIControlStateNormal];
+
 		}
 
 		_facebookClient.delegate = self;

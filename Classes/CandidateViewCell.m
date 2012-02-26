@@ -13,7 +13,7 @@
 
 @synthesize candidateName = _candidateName;
 @synthesize partyName = _partyName;
-@synthesize candidateIcon = _candidateIcon;
+//@synthesize candidateIcon = _candidateIcon;
 @synthesize friendIcon1 = _friendIcon1;
 @synthesize friendIcon2 = _friendIcon2;
 @synthesize friendIcon3 = _friendIcon3;

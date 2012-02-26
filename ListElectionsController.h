@@ -19,6 +19,8 @@
 }
 
 @property (nonatomic, retain) SupervoteClient *client;
-@property(nonatomic, retain) FacebookClient *facebookClient;
+@property (nonatomic, retain) FacebookClient *facebookClient;
+
+- (void)updateElections:(BOOL)withAlerts;
 
 @end
