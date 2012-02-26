@@ -214,9 +214,9 @@
 						</object>
 						<string key="IBUINormalTitle">© 2012, Canary Falls Software LLC</string>
 						<reference key="IBUIHighlightedTitleColor" ref="260994014"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
+						<object class="NSColor" key="IBUINormalTitleColor" id="704663513">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MCAwIDEAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="32464071"/>
 					</object>
@@ -233,10 +233,7 @@
 						<int key="IBUILineBreakMode">0</int>
 						<string key="IBUINormalTitle">Terms of Service</string>
 						<reference key="IBUIHighlightedTitleColor" ref="260994014"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="704663513"/>
 						<reference key="IBUINormalTitleShadowColor" ref="32464071"/>
 					</object>
 					<object class="IBUILabel" id="787825317">
@@ -513,7 +510,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCSAAAw6EAAA</bytes>
 					</object>
-					<string>{{326, 372}, {320, 480}}</string>
+					<string>{{433, 372}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
