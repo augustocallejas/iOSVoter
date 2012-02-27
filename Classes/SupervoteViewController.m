@@ -96,7 +96,7 @@
 #pragma mark IBAction methods
 
 - (IBAction)doTermsOfService {
-	NSString* launchUrl = @"http://supervote.org/tos";
+	NSString* launchUrl = @"http://supervote.org/termsofservice.html";
 //	NSLog(@"Display TOS");
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
