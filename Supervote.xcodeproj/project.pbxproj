@@ -19,6 +19,7 @@
 		140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */; };
 		140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41D8150CA9AC004E61B5 /* 1-user.png */; };
 		140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41DA150CA9B7004E61B5 /* 2-user.png */; };
+		140F41FB150CB037004E61B5 /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 140F41FA150CB037004E61B5 /* Readme */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -121,6 +122,7 @@
 		140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookPressed.png; sourceTree = "<group>"; };
 		140F41D8150CA9AC004E61B5 /* 1-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-user.png"; sourceTree = "<group>"; };
 		140F41DA150CA9B7004E61B5 /* 2-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-user.png"; sourceTree = "<group>"; };
+		140F41FA150CB037004E61B5 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -294,6 +296,14 @@
 				14A01B1D14789E0F0029ADFE /* Web */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		140F41F9150CB000004E61B5 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				140F41FA150CB037004E61B5 /* Readme */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 		1423B40F14081680006F8DBF /* Models */ = {
@@ -536,6 +546,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				140F41F9150CB000004E61B5 /* Documents */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -673,6 +684,7 @@
 				14F6534014F9C0A600A13942 /* UIWebViewController.xib in Resources */,
 				140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */,
 				140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */,
+				140F41FB150CB037004E61B5 /* Readme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
