@@ -18,9 +18,11 @@
 	id<UIWebViewControllerDelegate> _delegate;
 @private
 	NSString *_url;
+	IBOutlet UINavigationItem *_navItem;
 	IBOutlet UIWebView *_webView;
 }
 
+@property (nonatomic, retain) UINavigationItem *navItem;
 @property (nonatomic, retain) id<UIWebViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) UIWebView *webView;

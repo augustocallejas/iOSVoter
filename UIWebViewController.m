@@ -14,6 +14,7 @@
 @synthesize delegate = _delegate;
 @synthesize url = _url;
 @synthesize webView = _webView;
+@synthesize navItem = _navItem;
 
 #pragma mark -
 #pragma mark IBAction methods
@@ -38,6 +39,10 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	if ([self title] != nil) {
+		[[self navItem] setTitle:[self title]];
+	}
 
 	if (_url != nil) {
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:_url]];

@@ -201,7 +201,7 @@
 					<object class="IBUIButton" id="916756365">
 						<reference key="NSNextResponder" ref="895728682"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{49, 392}, {230, 37}}</string>
+						<string key="NSFrame">{{49, 397}, {230, 21}}</string>
 						<reference key="NSSuperview" ref="895728682"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -223,7 +223,7 @@
 					<object class="IBUIButton" id="492595854">
 						<reference key="NSNextResponder" ref="895728682"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{49, 346}, {230, 21}}</string>
+						<string key="NSFrame">{{108, 346}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="895728682"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -256,6 +256,22 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">10</float>
+					</object>
+					<object class="IBUIButton" id="888619049">
+						<reference key="NSNextResponder" ref="895728682"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{114, 368}, {100, 21}}</string>
+						<reference key="NSSuperview" ref="895728682"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="880850304"/>
+						<int key="IBUILineBreakMode">0</int>
+						<string key="IBUINormalTitle">Privacy Policy</string>
+						<reference key="IBUIHighlightedTitleColor" ref="260994014"/>
+						<reference key="IBUINormalTitleColor" ref="704663513"/>
+						<reference key="IBUINormalTitleShadowColor" ref="32464071"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -362,6 +378,15 @@
 					</object>
 					<int key="connectionID">36</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">doPrivacy</string>
+						<reference key="source" ref="888619049"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">39</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -394,9 +419,10 @@
 							<reference ref="309894319"/>
 							<reference ref="916756365"/>
 							<reference ref="787825317"/>
-							<reference ref="492595854"/>
 							<reference ref="967253971"/>
 							<reference ref="933104651"/>
+							<reference ref="888619049"/>
+							<reference ref="492595854"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -445,6 +471,11 @@
 						<reference key="object" ref="967253971"/>
 						<reference key="parent" ref="895728682"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">37</int>
+						<reference key="object" ref="888619049"/>
+						<reference key="parent" ref="895728682"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -469,6 +500,8 @@
 					<string>30.IBViewBoundsToFrameTransform</string>
 					<string>34.IBPluginDependency</string>
 					<string>34.IBViewBoundsToFrameTransform</string>
+					<string>37.IBPluginDependency</string>
+					<string>37.IBViewBoundsToFrameTransform</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -504,11 +537,15 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCQAAAw6wAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCRAAAw7aAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCSAAAw6EAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCfAAAw8IAAA</bytes>
 					</object>
 					<string>{{433, 372}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -534,7 +571,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">39</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -562,10 +599,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>doCopyrightButton</string>
 							<string>doJoinButtonSendZip</string>
+							<string>doPrivacy</string>
 							<string>doTermsOfService</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -577,6 +616,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>doCopyrightButton</string>
 							<string>doJoinButtonSendZip</string>
+							<string>doPrivacy</string>
 							<string>doTermsOfService</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -587,6 +627,10 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doJoinButtonSendZip</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doPrivacy</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

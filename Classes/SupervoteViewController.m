@@ -100,6 +100,21 @@
 //	NSLog(@"Display TOS");
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
+	controller.title = @"Terms of Service";
+	controller.url = launchUrl;
+	controller.delegate = self;
+	
+	//[[self navigationController] pushViewController:controller animated:YES];
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+}
+
+- (IBAction)doPrivacy {
+	NSString* launchUrl = @"http://supervote.org/privacy.html";
+	//	NSLog(@"Display TOS");
+	
+	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
+	controller.title = @"Privacy Policy";
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
