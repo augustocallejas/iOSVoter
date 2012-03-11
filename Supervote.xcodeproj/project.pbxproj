@@ -17,6 +17,8 @@
 		140D051A14D6692E00AD98E4 /* LogoutNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D051814D6692E00AD98E4 /* LogoutNormal.png */; };
 		140D051B14D6692E00AD98E4 /* LogoutPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D051914D6692E00AD98E4 /* LogoutPressed.png */; };
 		140D052114D6697A00AD98E4 /* LoginWithFacebookPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */; };
+		140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41D8150CA9AC004E61B5 /* 1-user.png */; };
+		140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41DA150CA9B7004E61B5 /* 2-user.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -36,7 +38,6 @@
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
-		143FB75A14CC81DE00377AF0 /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 143FB75914CC81DE00377AF0 /* friends.png */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
 		1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */; };
 		1474ECA5142330A6004D35AD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1474EC8D142330A6004D35AD /* FBDialog.bundle */; };
@@ -118,6 +119,8 @@
 		140D051814D6692E00AD98E4 /* LogoutNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutNormal.png; sourceTree = "<group>"; };
 		140D051914D6692E00AD98E4 /* LogoutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutPressed.png; sourceTree = "<group>"; };
 		140D052014D6697A00AD98E4 /* LoginWithFacebookPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginWithFacebookPressed.png; sourceTree = "<group>"; };
+		140F41D8150CA9AC004E61B5 /* 1-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-user.png"; sourceTree = "<group>"; };
+		140F41DA150CA9B7004E61B5 /* 2-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-user.png"; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -148,7 +151,6 @@
 		14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteMeasureController.h; sourceTree = "<group>"; };
 		14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteMeasureController.m; sourceTree = "<group>"; };
 		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
-		143FB75914CC81DE00377AF0 /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		1462F3DA141DA394007E31C1 /* BallotItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotItemViewCell.h; sourceTree = "<group>"; };
 		1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotItemViewCell.m; sourceTree = "<group>"; };
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
@@ -550,9 +552,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				140F41D8150CA9AC004E61B5 /* 1-user.png */,
+				140F41DA150CA9B7004E61B5 /* 2-user.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
-				143FB75914CC81DE00377AF0 /* friends.png */,
 				14CBC34E14DF208C00618BB0 /* League_Gothic.otf */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				140D03BD14D6045A00AD98E4 /* LoginWithFacebookNormal.png */,
@@ -658,7 +661,6 @@
 				14EF38A4144AA9F100557A80 /* check-64.png in Resources */,
 				14EF38B6144AAD3C00557A80 /* lock.png in Resources */,
 				1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */,
-				143FB75A14CC81DE00377AF0 /* friends.png in Resources */,
 				140D03AF14D6040E00AD98E4 /* FacebookIntegrationViewController.xib in Resources */,
 				140D03BE14D6045A00AD98E4 /* LoginWithFacebookNormal.png in Resources */,
 				140D051114D65C1200AD98E4 /* twitter.png in Resources */,
@@ -669,6 +671,8 @@
 				14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */,
 				142F680D14E8B7DA002D29CA /* star.png in Resources */,
 				14F6534014F9C0A600A13942 /* UIWebViewController.xib in Resources */,
+				140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */,
+				140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

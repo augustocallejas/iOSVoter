@@ -28,6 +28,8 @@
 @property (nonatomic, retain) MeasureVote *vote;
 @property (nonatomic, retain) SupervoteClient *client;
 
+- (void)barButtonAction:(id)sender;
+- (void)setExpandBarButtonIcon;
 - (IBAction)viewSingleEndorsement:(id)sender;
 - (IBAction)voteOnMeasure:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;

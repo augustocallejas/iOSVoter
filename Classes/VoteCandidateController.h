@@ -29,6 +29,8 @@
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) SupervoteClient *client;
 
+- (void)barButtonAction:(id)sender;
+- (void)setExpandBarButtonIcon;
 + (NSString *)getTextForEndorsementButton:(Position *)position onCandidate:(Candidate *)candidate;
 + (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count;
 + (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController;

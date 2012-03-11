@@ -270,27 +270,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_accountLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="437933334"/>
-					</object>
-					<int key="connectionID">32</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_facebookLabel</string>
+						<string key="label">facebookLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="885939464"/>
 					</object>
-					<int key="connectionID">33</int>
+					<int key="connectionID">35</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_supportLabel</string>
+						<string key="label">accountLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="437933334"/>
+					</object>
+					<int key="connectionID">36</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">supportLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="1030768588"/>
 					</object>
-					<int key="connectionID">34</int>
+					<int key="connectionID">37</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -400,7 +400,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SettingsController</string>
 					<string>UIResponder</string>
-					<string>{{0, 376}, {320, 480}}</string>
+					<string>{{416, 98}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -452,7 +452,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">34</int>
+			<int key="maxID">37</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

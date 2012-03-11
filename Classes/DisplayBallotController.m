@@ -120,42 +120,42 @@
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
 		viewDidLoadCalled = NO;
-		segControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
-		segControl.segmentedControlStyle = UISegmentedControlStyleBar;
-		segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
-		[segControl addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-		self.navigationItem.titleView = segControl;
-		//[control release];
 	}
 	
 	return self;
 }
 
-#pragma mark -
-#pragma mark UISegmentedControl action
-
-- (void)segmentAction:(id)sender {
-	UISegmentedControl* segCtl = sender;
-
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	if ([segCtl selectedSegmentIndex] == 0) {
-		socialBallotView = NO;
+- (void)setExpandBarButtonIcon {
+	if (socialBallotView) {
+		UIImage *userIcon = [UIImage imageNamed:@"1-user.png"];
+		[self.navigationItem.rightBarButtonItem setImage:userIcon];
 	}
 	else {
-		socialBallotView = YES;
+		UIImage *groupIcon = [UIImage imageNamed:@"2-user.png"];
+		[self.navigationItem.rightBarButtonItem setImage:groupIcon];
 	}
+}
+
+#pragma mark -
+#pragma mark UIBarButtonItem action
+
+- (void)barButtonAction:(id)sender {	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+	socialBallotView = !socialBallotView;
 	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
 	if (![prefs synchronize]) {
 		NSLog(@"Did not synchronize correctly");
 	}
-
+	
+	[self setExpandBarButtonIcon];
+	
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
 }
 
-- (void)animationStopped:(id)sender {
-	//NSLog(@"animation");
-}
+#pragma mark -
+#pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
 	/* singleton pattern, lazy instantiation */
@@ -576,14 +576,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	//NSLog(@"DisplayBallotController: viewDidLoad");
+	viewDidLoadCalled = YES;
 
 	/* TODO: disabling this for now */
 //	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBallot)];
 //	self.navigationItem.rightBarButtonItem = reload;
 //	[reload release];
 	
-	//NSLog(@"DisplayBallotController: viewDidLoad");
-	viewDidLoadCalled = YES;
+	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:self action:@selector(barButtonAction:)];
+	self.navigationItem.rightBarButtonItem = barButtonItem;
+	[barButtonItem release];
+	[self setExpandBarButtonIcon];
 	
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
@@ -659,7 +664,7 @@
 	
 	/* reload the table view since the social ballot mode may have been changed in the choose candidate controller */
 	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
-	segControl.selectedSegmentIndex = socialBallotView ? 1 : 0;
+	[self setExpandBarButtonIcon];
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
 }
@@ -883,7 +888,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-	[super viewDidLoad];
+	[super viewDidUnload];
 	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
@@ -893,11 +898,9 @@
 
 
 - (void)dealloc {
-	if (segControl != nil) {
-		[segControl release];
-	}
 	self.election = nil;
 	self.ballot = nil;
+	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;

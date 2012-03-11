@@ -439,38 +439,40 @@
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	socialBallotView = [prefs boolForKey:@"SocialBallotMode"];
 	if (self) {
-		UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Compact", @"Expanded", nil]];
-		control.segmentedControlStyle = UISegmentedControlStyleBar;
-		control.selectedSegmentIndex = socialBallotView ? 1 : 0;
-		[control addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-		self.navigationItem.titleView = control;
-		[control release];
-//		self.tableView.allowsSelection = NO;
-//		[self.tableView setAllowsSelection:NO];
-//		[self.tableView allowsSelection:NO];
+		// Custom initialization.
 	}
 	
 	return self;
 }
 
-- (void)segmentAction:(id)sender {
-	UISegmentedControl* segCtl = sender;
-	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-	if ([segCtl selectedSegmentIndex] == 0) {
-		socialBallotView = NO;
+- (void)setExpandBarButtonIcon {
+	if (socialBallotView) {
+		UIImage *userIcon = [UIImage imageNamed:@"1-user.png"];
+		[self.navigationItem.rightBarButtonItem  setImage:userIcon];
 	}
 	else {
-		socialBallotView = YES;
+		UIImage *groupIcon = [UIImage imageNamed:@"2-user.png"];
+		[self.navigationItem.rightBarButtonItem setImage:groupIcon];
 	}
+}
+
+#pragma mark -
+#pragma mark UIBarButtonItem action
+
+- (void)barButtonAction:(id)sender {	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	
+	socialBallotView = !socialBallotView;
 	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
 	if (![prefs synchronize]) {
 		NSLog(@"Did not synchronize correctly");
 	}
 	
+	[self setExpandBarButtonIcon];
+	
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
 }
-
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -482,6 +484,11 @@
 //	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
 //	self.navigationItem.rightBarButtonItem = reload;
 //	[reload release];
+	
+	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:self action:@selector(barButtonAction:)];
+	self.navigationItem.rightBarButtonItem = barButtonItem;
+	[barButtonItem release];
+	[self setExpandBarButtonIcon];
 	
 	self.tableView.allowsSelection = NO;
 	
@@ -698,8 +705,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.navigationItem.rightBarButtonItem = nil;
-	if (vote != nil)
-	{
+	if (vote != nil) {
 		[vote release];
 		vote = nil;
 	}

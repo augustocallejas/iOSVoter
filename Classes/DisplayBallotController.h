@@ -17,7 +17,6 @@
 
 @private
 	BOOL viewDidLoadCalled;
-	UISegmentedControl* segControl;
 	BOOL socialBallotView;
 	Election *_election;
 	Ballot *_ballot;
@@ -27,7 +26,8 @@
 	SupervoteClient *_client;
 }
 
-- (void)segmentAction:(id)sender;
+- (void)barButtonAction:(id)sender;
+- (void)setExpandBarButtonIcon;
 - (NSString *)tableView:(UITableView *)tableView titleForPositionHeaderInSection:(NSInteger)section;
 - (NSString *)tableView:(UITableView *)tableView titleForMeasureHeaderInSection:(NSInteger)section;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
