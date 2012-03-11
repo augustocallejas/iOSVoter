@@ -678,12 +678,14 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *guid = [election objectForKey:@"guid"];
 	NSString *title = [election objectForKey:@"title"];
+	NSString *icon = [election objectForKey:@"icon"];
 	NSNumber *dateValue = [election objectForKey:@"date"];
 	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 	
 	Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
 	electionObj.guid = guid;
 	electionObj.title = title;
+	electionObj.icon = icon;
 	electionObj.date = date;
 	electionObj.lastModified = time;
 	[date release];

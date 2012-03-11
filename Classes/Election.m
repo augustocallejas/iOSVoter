@@ -2,7 +2,7 @@
 //  Election.m
 //  Supervote
 //
-//  Created by augusto callejas on 1/10/12.
+//  Created by augusto callejas on 3/11/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,10 +13,11 @@
 
 @implementation Election 
 
-@dynamic date;
-@dynamic lastModified;
 @dynamic title;
+@dynamic date;
 @dynamic guid;
+@dynamic icon;
+@dynamic lastModified;
 @dynamic positions;
 @dynamic measures;
 

@@ -64,8 +64,13 @@
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 //	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
 	
-	UIImage *icon = [UIImage imageNamed:@"CA.png"];
-	cell.imageView.image = icon;
+	if (election.icon != nil) {
+		NSLog(@"Load state icon: %@", election.icon);
+		UIImage *icon = [UIImage imageNamed:election.icon];
+		if (icon != nil) {
+			cell.imageView.image = icon;
+		}
+	}
 }
 
 
