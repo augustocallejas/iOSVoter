@@ -97,28 +97,24 @@
 
 - (IBAction)doTermsOfService {
 	NSString* launchUrl = @"http://supervote.org/termsofservice.html";
-//	NSLog(@"Display TOS");
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
 	controller.title = @"Terms of Service";
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
-	//[[self navigationController] pushViewController:controller animated:YES];
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }
 
 - (IBAction)doPrivacy {
 	NSString* launchUrl = @"http://supervote.org/privacy.html";
-	//	NSLog(@"Display TOS");
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
 	controller.title = @"Privacy Policy";
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
-	//[[self navigationController] pushViewController:controller animated:YES];
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
 }
@@ -129,7 +125,14 @@
 
 - (IBAction)doCopyrightButton {
 	NSString* launchUrl = @"http://canaryfalls.com";
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+	
+	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
+	controller.title = @"Canary Falls";
+	controller.url = launchUrl;
+	controller.delegate = self;
+	
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
 }
 
 - (IBAction)doJoinButtonSendZip {
