@@ -20,6 +20,7 @@
 		140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41D8150CA9AC004E61B5 /* 1-user.png */; };
 		140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F41DA150CA9B7004E61B5 /* 2-user.png */; };
 		140F41FB150CB037004E61B5 /* Readme in Resources */ = {isa = PBXBuildFile; fileRef = 140F41FA150CB037004E61B5 /* Readme */; };
+		140F4218150CBC68004E61B5 /* CA.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4217150CBC68004E61B5 /* CA.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -34,7 +35,6 @@
 		14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */; };
 		14399C10140E168C007269A3 /* MeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C06140E168C007269A3 /* MeasureVote.m */; };
 		14399C12140E168C007269A3 /* Measure.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C0A140E168C007269A3 /* Measure.m */; };
-		14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399C77140E1C77007269A3 /* ListMeasures.xib */; };
 		14399DDD140F7612007269A3 /* DisplayBallotController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */; };
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
@@ -123,6 +123,7 @@
 		140F41D8150CA9AC004E61B5 /* 1-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-user.png"; sourceTree = "<group>"; };
 		140F41DA150CA9B7004E61B5 /* 2-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-user.png"; sourceTree = "<group>"; };
 		140F41FA150CB037004E61B5 /* Readme */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme; sourceTree = "<group>"; };
+		140F4217150CBC68004E61B5 /* CA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CA.png; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		14399C06140E168C007269A3 /* MeasureVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeasureVote.m; sourceTree = "<group>"; };
 		14399C09140E168C007269A3 /* Measure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Measure.h; sourceTree = "<group>"; };
 		14399C0A140E168C007269A3 /* Measure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Measure.m; sourceTree = "<group>"; };
-		14399C77140E1C77007269A3 /* ListMeasures.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ListMeasures.xib; path = Classes/ListMeasures.xib; sourceTree = "<group>"; };
 		14399DDB140F7612007269A3 /* DisplayBallotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBallotController.h; sourceTree = "<group>"; };
 		14399DDC140F7612007269A3 /* DisplayBallotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBallotController.m; sourceTree = "<group>"; };
 		14399E20140F7FAC007269A3 /* DisplayBallot.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayBallot.xib; sourceTree = "<group>"; };
@@ -505,7 +505,6 @@
 				140D03AD14D6040E00AD98E4 /* FacebookIntegrationViewController.xib */,
 				14789F1713EBBB220016044C /* FeedController.xib */,
 				14789F2613EBBB9E0016044C /* ListElections.xib */,
-				14399C77140E1C77007269A3 /* ListMeasures.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				14EF327F144231D900557A80 /* MeasureViewCell.xib */,
 				14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */,
@@ -563,6 +562,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				140F4217150CBC68004E61B5 /* CA.png */,
 				140F41D8150CA9AC004E61B5 /* 1-user.png */,
 				140F41DA150CA9B7004E61B5 /* 2-user.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
@@ -659,7 +659,6 @@
 				14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */,
 				1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */,
 				14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */,
-				14399C79140E1C77007269A3 /* ListMeasures.xib in Resources */,
 				14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */,
 				14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */,
 				1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */,
@@ -685,6 +684,7 @@
 				140F41D9150CA9AC004E61B5 /* 1-user.png in Resources */,
 				140F41DB150CA9B7004E61B5 /* 2-user.png in Resources */,
 				140F41FB150CB037004E61B5 /* Readme in Resources */,
+				140F4218150CBC68004E61B5 /* CA.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

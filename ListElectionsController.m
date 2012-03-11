@@ -64,7 +64,7 @@
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 //	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
 	
-	UIImage *icon = [UIImage imageNamed:@"star.png"];
+	UIImage *icon = [UIImage imageNamed:@"CA.png"];
 	cell.imageView.image = icon;
 }
 
