@@ -73,6 +73,7 @@
 		140F42AB150D3FFC004E61B5 /* state-WI.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4276150D3FFC004E61B5 /* state-WI.png */; };
 		140F42AC150D3FFC004E61B5 /* state-WV.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4277150D3FFC004E61B5 /* state-WV.png */; };
 		140F42AD150D3FFC004E61B5 /* state-WY.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4278150D3FFC004E61B5 /* state-WY.png */; };
+		140F42CC150D74F9004E61B5 /* us.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F42CB150D74F9004E61B5 /* us.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -228,6 +229,7 @@
 		140F4276150D3FFC004E61B5 /* state-WI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WI.png"; sourceTree = "<group>"; };
 		140F4277150D3FFC004E61B5 /* state-WV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WV.png"; sourceTree = "<group>"; };
 		140F4278150D3FFC004E61B5 /* state-WY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WY.png"; sourceTree = "<group>"; };
+		140F42CB150D74F9004E61B5 /* us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = us.png; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -410,7 +412,7 @@
 			name = Documents;
 			sourceTree = "<group>";
 		};
-		140F4240150D3F6D004E61B5 /* State Flags */ = {
+		140F4240150D3F6D004E61B5 /* Flags */ = {
 			isa = PBXGroup;
 			children = (
 				140F4244150D3FFC004E61B5 /* state-AK.png */,
@@ -466,8 +468,9 @@
 				140F4276150D3FFC004E61B5 /* state-WI.png */,
 				140F4277150D3FFC004E61B5 /* state-WV.png */,
 				140F4278150D3FFC004E61B5 /* state-WY.png */,
+				140F42CB150D74F9004E61B5 /* us.png */,
 			);
-			name = "State Flags";
+			name = Flags;
 			sourceTree = "<group>";
 		};
 		140F42C6150D44E2004E61B5 /* Facebook Icons */ = {
@@ -746,7 +749,7 @@
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				142F680C14E8B7DA002D29CA /* star.png */,
-				140F4240150D3F6D004E61B5 /* State Flags */,
+				140F4240150D3F6D004E61B5 /* Flags */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
@@ -909,6 +912,7 @@
 				140F42AB150D3FFC004E61B5 /* state-WI.png in Resources */,
 				140F42AC150D3FFC004E61B5 /* state-WV.png in Resources */,
 				140F42AD150D3FFC004E61B5 /* state-WY.png in Resources */,
+				140F42CC150D74F9004E61B5 /* us.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

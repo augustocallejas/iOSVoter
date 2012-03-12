@@ -123,6 +123,19 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.backgroundColor = [UIColor clearColor];
+	label.font = font;
+	//label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+	label.textAlignment = UITextAlignmentCenter;
+	label.textColor = [UIColor whiteColor];
+	label.text = self.title;
+	[label sizeToFit];
+	self.navigationItem.titleView = label;
+	[label release];
 
 	/* TODO: disabling this for now */
 //	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
@@ -685,6 +698,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 }
 

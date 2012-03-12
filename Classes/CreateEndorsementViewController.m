@@ -58,6 +58,20 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+//	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
+//	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
+//	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+//	label.backgroundColor = [UIColor clearColor];
+//	label.font = font;
+//	//label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+//	label.textAlignment = UITextAlignmentCenter;
+//	label.textColor = [UIColor whiteColor];
+//	label.text = @"Vote";
+//	[label sizeToFit];
+//	_navItem.titleView = label;
+//	[label release];
+	
 	if (_candidate != nil) {
 		//self.navItem.title = _candidate.name;
 		self.endorsementTitle.text = _candidate.name;
@@ -106,6 +120,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+//	_navItem.titleView = nil;
 }
 
 
