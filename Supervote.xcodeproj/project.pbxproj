@@ -74,6 +74,7 @@
 		140F42AC150D3FFC004E61B5 /* state-WV.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4277150D3FFC004E61B5 /* state-WV.png */; };
 		140F42AD150D3FFC004E61B5 /* state-WY.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4278150D3FFC004E61B5 /* state-WY.png */; };
 		140F42CC150D74F9004E61B5 /* us.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F42CB150D74F9004E61B5 /* us.png */; };
+		140F4326150DA4AC004E61B5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4325150DA4AC004E61B5 /* Icon@2x.png */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -230,6 +231,7 @@
 		140F4277150D3FFC004E61B5 /* state-WV.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WV.png"; sourceTree = "<group>"; };
 		140F4278150D3FFC004E61B5 /* state-WY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WY.png"; sourceTree = "<group>"; };
 		140F42CB150D74F9004E61B5 /* us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = us.png; sourceTree = "<group>"; };
+		140F4325150DA4AC004E61B5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -482,6 +484,14 @@
 				140D051914D6692E00AD98E4 /* LogoutPressed.png */,
 			);
 			name = "Facebook Icons";
+			sourceTree = "<group>";
+		};
+		140F431A150DA382004E61B5 /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				140F4325150DA4AC004E61B5 /* Icon@2x.png */,
+			);
+			name = "App Icons";
 			sourceTree = "<group>";
 		};
 		1423B40F14081680006F8DBF /* Models */ = {
@@ -740,16 +750,17 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				140F42C6150D44E2004E61B5 /* Facebook Icons */,
 				140F41D8150CA9AC004E61B5 /* 1-user.png */,
 				140F41DA150CA9B7004E61B5 /* 2-user.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
+				140F431A150DA382004E61B5 /* App Icons */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
+				140F42C6150D44E2004E61B5 /* Facebook Icons */,
+				140F4240150D3F6D004E61B5 /* Flags */,
 				14CBC34E14DF208C00618BB0 /* League_Gothic.otf */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				142F680C14E8B7DA002D29CA /* star.png */,
-				140F4240150D3F6D004E61B5 /* Flags */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
@@ -913,6 +924,7 @@
 				140F42AC150D3FFC004E61B5 /* state-WV.png in Resources */,
 				140F42AD150D3FFC004E61B5 /* state-WY.png in Resources */,
 				140F42CC150D74F9004E61B5 /* us.png in Resources */,
+				140F4326150DA4AC004E61B5 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

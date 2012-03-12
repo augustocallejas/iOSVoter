@@ -137,6 +137,11 @@
 		name = CreateEndorsementViewController.m;
 		path = "/Users/augusto/projects/supervote/supervote-ios/Classes/CreateEndorsementViewController.m";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1363, 1781}}";
+			sepNavSelRange = "{4246, 0}";
+			sepNavVisRange = "{3008, 1029}";
+		};
 	};
 	140D05DD14D678A000AD98E4 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -1752,6 +1757,64 @@
 		vrLen = 1919;
 		vrLoc = 2928;
 	};
+	140F431D150DA390004E61B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 143FB54614C530C400377AF0 /* VoteMeasureController.m */;
+		name = "VoteMeasureController.m: 138";
+		rLen = 0;
+		rLoc = 4066;
+		rType = 0;
+		vrLen = 1539;
+		vrLoc = 3386;
+	};
+	140F431E150DA390004E61B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14399DDC140F7612007269A3 /* DisplayBallotController.m */;
+		name = "DisplayBallotController.m: 580";
+		rLen = 0;
+		rLoc = 23295;
+		rType = 0;
+		vrLen = 1609;
+		vrLoc = 32721;
+	};
+	140F431F150DA390004E61B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14E74AFA14359521002E2F82 /* CreateEndorsementViewController.h */;
+		name = "CreateEndorsementViewController.h: 16";
+		rLen = 252;
+		rLoc = 410;
+		rType = 0;
+		vrLen = 2030;
+		vrLoc = 102;
+	};
+	140F4320150DA390004E61B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 140D05DB14D6788F00AD98E4 /* CreateEndorsementViewController.m */;
+		name = "CreateEndorsementViewController.m: 123";
+		rLen = 0;
+		rLoc = 4246;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 3008;
+	};
+	140F4321150DA390004E61B5 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 14A8763913F0F499006B9D73 /* users.png */;
+	};
+	140F4322150DA390004E61B5 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 140F42CB150D74F9004E61B5 /* us.png */;
+	};
+	140F4323150DA390004E61B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 149982ED14CD2D04009BDF33 /* ListElectionsController.m */;
+		name = "ListElectionsController.m: 127";
+		rLen = 535;
+		rLoc = 3783;
+		rType = 0;
+		vrLen = 1919;
+		vrLoc = 2928;
+	};
 	142082741467306900262CC1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 14EF327D1442318800557A80 /* MeasureViewCell.m */;
@@ -2209,8 +2272,8 @@
 	14399DDC140F7612007269A3 /* DisplayBallotController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1517, 12298}}";
-			sepNavSelRange = "{23354, 535}";
-			sepNavVisRange = "{23182, 1379}";
+			sepNavSelRange = "{23295, 0}";
+			sepNavVisRange = "{32721, 1609}";
 			sepNavWindowFrame = "{{15, 13}, {1262, 860}}";
 		};
 	};
@@ -3444,7 +3507,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					506,
+					504,
 					20,
 					43,
 					43,
@@ -3665,6 +3728,13 @@
 			140F430B150D7DEC004E61B5 /* PBXTextBookmark */ = 140F430B150D7DEC004E61B5 /* PBXTextBookmark */;
 			140F430C150D7DEC004E61B5 /* PBXTextBookmark */ = 140F430C150D7DEC004E61B5 /* PBXTextBookmark */;
 			140F430D150D7DEC004E61B5 /* PBXTextBookmark */ = 140F430D150D7DEC004E61B5 /* PBXTextBookmark */;
+			140F431D150DA390004E61B5 /* PBXTextBookmark */ = 140F431D150DA390004E61B5 /* PBXTextBookmark */;
+			140F431E150DA390004E61B5 /* PBXTextBookmark */ = 140F431E150DA390004E61B5 /* PBXTextBookmark */;
+			140F431F150DA390004E61B5 /* PBXTextBookmark */ = 140F431F150DA390004E61B5 /* PBXTextBookmark */;
+			140F4320150DA390004E61B5 /* PBXTextBookmark */ = 140F4320150DA390004E61B5 /* PBXTextBookmark */;
+			140F4321150DA390004E61B5 /* PBXBookmark */ = 140F4321150DA390004E61B5 /* PBXBookmark */;
+			140F4322150DA390004E61B5 /* PBXBookmark */ = 140F4322150DA390004E61B5 /* PBXBookmark */;
+			140F4323150DA390004E61B5 /* PBXTextBookmark */ = 140F4323150DA390004E61B5 /* PBXTextBookmark */;
 			142082741467306900262CC1 = 142082741467306900262CC1 /* PBXTextBookmark */;
 			1420827E1467309400262CC1 = 1420827E1467309400262CC1 /* PBXTextBookmark */;
 			142F676314E85278002D29CA = 142F676314E85278002D29CA /* PBXTextBookmark */;
