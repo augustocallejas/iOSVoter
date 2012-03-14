@@ -542,7 +542,7 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
 	/* TODO: this code is stand in for now... */
-	UIImage *genericIcon = [UIImage imageNamed:@"users.png"];
+	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
 	
 	UIImage *icon = nil;
 	NSError *error = nil;

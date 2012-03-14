@@ -8,6 +8,7 @@
 
 #import "SupervoteAppDelegate.h"
 
+#import "AboutUsViewController.h"
 #import "FacebookClient.h"
 #import "FacebookIntegrationViewController.h"
 #import "FeedController.h"
@@ -186,7 +187,7 @@
 			
 			ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
 			elections.title = @"My Ballots";
-			elections.tabBarItem.image = [UIImage imageNamed:@"users.png"];
+			elections.tabBarItem.image = [UIImage imageNamed:@"check-64.png"];
 			elections.managedObjectContext = self.managedObjectContext;
 			elections.client = self.supervoteClient;
 			UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
@@ -198,8 +199,13 @@
 			settings.client = self.supervoteClient;
 			settings.facebookClient = self.facebookClient;
 			
-			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, nil] autorelease]];
+			AboutUsViewController *aboutUs = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:[NSBundle mainBundle]];
+			aboutUs.title = @"Contact Us";
+			aboutUs.tabBarItem.image = [UIImage imageNamed:@"comment.png"];
+			
+			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, aboutUs, nil] autorelease]];
 			//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
+			[aboutUs release];
 			
 			//if (currentView == nil) {
 				self.window.rootViewController = tabBarController;

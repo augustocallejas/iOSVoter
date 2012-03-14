@@ -34,8 +34,6 @@
 @property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
 
 - (IBAction)doFacebookLogin;
-- (IBAction)doTwitter;
-- (IBAction)doEmailUs;
 - (IBAction)doResetApplication;
 
 @end

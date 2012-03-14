@@ -61,14 +61,6 @@
 	}
 }
 
-- (IBAction)doTwitter {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://mobile.twitter.com/supervote"]];
-}
-
-- (IBAction)doEmailUs {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:support@supervote.org"]];
-}
-
 - (IBAction)doResetApplication {
 	/* user wants to reset the application */
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Resetting the app will erase all saved data.  Are you sure?"

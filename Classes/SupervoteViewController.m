@@ -93,6 +93,13 @@
 }
 
 #pragma mark -
+#pragma mark UIWebViewController methods
+
+- (void) didDismissModalView {
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark -
 #pragma mark IBAction methods
 
 - (IBAction)doTermsOfService {
@@ -117,10 +124,6 @@
 	
 	[self presentModalViewController:controller animated:YES];
 	[controller release];
-}
-
-- (void) didDismissModalView {
-	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)doCopyrightButton {
