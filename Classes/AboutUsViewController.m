@@ -59,6 +59,18 @@
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://mobile.twitter.com/supervote"]];
 }
 
+- (IBAction)doGotoQuiz {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.gotoquiz.com/web-coding/web-design/royalty-free-state-flag-icons"]];
+}
+
+- (IBAction)doIconDrawer {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.icondrawer.com/"]];
+}
+
+- (IBAction)doFatCow {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.fatcow.com/free-icons"]];
+}
+
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {

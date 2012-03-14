@@ -24,5 +24,8 @@
 - (IBAction)doTwitter;
 - (IBAction)doTermsOfService;
 - (IBAction)doPrivacy;
+- (IBAction)doGotoQuiz;
+- (IBAction)doIconDrawer;
+- (IBAction)doFatCow;
 
 @end
