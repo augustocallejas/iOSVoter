@@ -915,6 +915,7 @@
 	self.election = nil;
 	self.ballot = nil;
 	self.navigationItem.rightBarButtonItem = nil;
+	self.managedObjectContext = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;
