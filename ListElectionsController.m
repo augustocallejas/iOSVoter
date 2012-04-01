@@ -255,10 +255,12 @@
 	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
 	
 	if (section < [self.fetchedResultsController1.sections count]) {
-		label.text = @"Upcoming Elections";
+//		label.text = @"Upcoming Elections";
+		label.text = NSLocalizedString(@"UpcomingElections", nil);
 	}
 	else {
-		label.text = @"Past Elections";	
+//		label.text = @"Past Elections";	
+		label.text = NSLocalizedString(@"PastElections", nil);
 	}
 	
 	[customView addSubview:label];
@@ -279,7 +281,8 @@
 	
 //	Election *election = (Election *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	controller.election = election;
-	controller.title = @"Ballot";//election.title;
+//	controller.title = @"Ballot";//election.title;
+	controller.title = NSLocalizedString(@"Ballot", nil);
 	controller.managedObjectContext = self.managedObjectContext;
 	controller.client = self.client;
 	
@@ -436,7 +439,7 @@
 							NSError *storeError = nil;
 							if (![_client updateElection:electionObj withObject:election withLastModified:lastModified withError:&storeError]) {
 								if (storeError != nil) {
-									NSLog(@"Storage error while updating election: %@", [storeError userInfo]);
+									NSLog(@"Storage error while updating election '%@': %@", electionGuid, [storeError userInfo]);
 								}
 							}
 						}
@@ -445,16 +448,21 @@
 				/* handle NOT_FOUND and CLOSED the same way */
 				else if (status == ES_NOT_FOUND || status == ES_CLOSED) { 
 					if (electionObj != nil) {
-						LogInfo(@"Closing election '%@'", electionGuid);
 						if (status == ES_NOT_FOUND) {
 							/* TODO: election got deleted?? */
 						}
 						
-						electionObj.status = [NSNumber numberWithBool:NO];
-						
-						NSError *error = nil;
-						if (![_managedObjectContext save:&error]) {
-							NSLog(@"Error saving close status of election: %@", [error userInfo]);
+						if ([electionObj.status boolValue]) {
+							LogInfo(@"Closing election '%@'", electionGuid);
+							
+							electionObj.status = [NSNumber numberWithBool:NO];							
+							NSError *error = nil;
+							if (![_managedObjectContext save:&error]) {
+								LogError(@"Storage error while setting status of election '%@' to closed: %@", electionGuid, [error userInfo]);
+							}
+						}
+						else {
+							LogInfo(@"Election '%@' up to date, no updates necessary", electionGuid);
 						}
 					}
 					else {

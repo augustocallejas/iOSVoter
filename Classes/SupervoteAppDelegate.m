@@ -186,7 +186,8 @@
 			//		feeds.client = self.supervoteClient;
 			
 			ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
-			elections.title = @"My Ballots";
+//			elections.title = @"My Ballots";
+			elections.title = NSLocalizedString(@"MyBallots", nil);
 			elections.tabBarItem.image = [UIImage imageNamed:@"check-64.png"];
 			elections.managedObjectContext = self.managedObjectContext;
 			elections.client = self.supervoteClient;

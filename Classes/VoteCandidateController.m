@@ -104,9 +104,12 @@
 			/* store vote locally */
 			NSError *error = nil;
 			if (![self.managedObjectContext save:&error]) {
-				/* TODO: log to disk */
-//				NSLog(@"  DetailedError: %@", [error userInfo]);
+				LogError(@"Error while saving managed object: %@", [error userInfo]);
 			}
+			else {
+				LogInfo(@"Endorsement created for candidate '%@' on position '%@'", candidate.guid, position.guid);
+			}
+
 			
 			[self.tableView reloadData];
 		}
@@ -404,7 +407,8 @@
 	NSUInteger count = [[aPosition managedObjectContext] countForFetchRequest:request error:&error];
 	[request release];
 	if (error == nil) {
-		return [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+//		return [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
+		return [NSString stringWithFormat:@"%d %@", count, NSLocalizedString(count==1?@"Friend":@"Friends", nil)];
 	}
 	else {
 		NSLog(@"NO");

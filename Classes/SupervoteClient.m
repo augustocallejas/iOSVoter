@@ -64,14 +64,14 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:deviceID forKey:@"DeviceID"];
 		[defaults synchronize];
-		NSLog(@"Registered new device ID '%@'", deviceID);
+		LogInfo(@"Registered new device ID '%@'", deviceID);
 		registered = YES;
 	}
 	else if ([request responseStatusCode] == 400) {
 		registered = NO;
 	}
 	else {
-		NSLog(@"Unexpected status code response: %d", [request responseStatusCode]);
+		LogError(@"Unexpected status code response: %d", [request responseStatusCode]);
 	}
 	
 	return registered;
@@ -648,6 +648,8 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 //	NSDictionary *election = nil;
 	*httpError = [request error];
 	
+	LogDebug(@"%@ -> %d", [request url], [request responseStatusCode]);
+	
 	election_status status;
 	if (*httpError != nil) {
 	}
@@ -668,17 +670,17 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	}
 	else if ([request responseStatusCode] == 404) {
 		/* NOT_FOUND */
-		NSLog(@"Election '%@' does not exist", guid);
+		//NSLog(@"Election '%@' does not exist", guid);
 		status = ES_NOT_FOUND;
 	}
 	else if ([request responseStatusCode] == 410) {
 		/* GONE */
-		NSLog(@"Election '%@' is closed", guid);
+		//NSLog(@"Election '%@' is closed", guid);
 		status = ES_CLOSED;
 	}
 	else if ([request responseStatusCode] == 304) {
 		/* NOT_MODIFIED */
-		NSLog(@"Election '%@' was not modified", guid);
+		//NSLog(@"Election '%@' was not modified", guid);
 		status = ES_NOT_MODIFIED;
 	}
 	

@@ -295,8 +295,10 @@
 			/* store vote locally */
 			NSError *error = nil;
 			if (![[self.ballot managedObjectContext] save:&error]) {
-				/* TODO: log to disk */
-//				NSLog(@"  DetailedError: %@", [error userInfo]);
+				LogError(@"Error while saving managed object: %@", [error userInfo]);
+			}
+			else {
+				LogInfo(@"Endorsement created for measure '%@'", _measure.guid);
 			}
 			
 			[self.tableView reloadData];
@@ -428,21 +430,24 @@
     
     // Configure the cell...
 	if (indexPath.row == 0) {
-		cell.measureName.text = @"YES";
+//		cell.measureName.text = @"YES";
+		cell.measureName.text = NSLocalizedString(@"YES", nil);
 		if (_vote != nil && _vote.vote != nil && [_vote.vote boolValue] == YES)
 		{
 			selected = YES;
 		}
 	}
 	else if (indexPath.row == 1) {
-		cell.measureName.text = @"NO";
+//		cell.measureName.text = @"NO";
+		cell.measureName.text = NSLocalizedString(@"NO", nil);
 		if (_vote != nil && _vote.vote != nil && [_vote.vote boolValue] == NO)
 		{
 			selected = YES;
 		}
 	}
 	else if (indexPath.row == 2) {
-		cell.measureName.text = @"Undecided";
+//		cell.measureName.text = @"Undecided";
+		cell.measureName.text = NSLocalizedString(@"Undecided", nil);
 		if (_vote != nil && _vote.vote == nil)
 		{
 			selected = YES;
@@ -634,10 +639,7 @@
 	NSUInteger count = [[aMeasure managedObjectContext] countForFetchRequest:request error:&error];
 	[request release];
 	if (error == nil) {
-		//		NSUInteger orgCount = 0;
-		//		NSString *string = [NSString stringWithFormat:@"%d friend%@, %d organization%@", count, count==1?@"":@"s", orgCount, orgCount==1?@"":@"s"];
-		NSString *string = [NSString stringWithFormat:@"%d friend%@", count, count==1?@"":@"s"];
-		return string;
+		return [NSString stringWithFormat:@"%d %@", count, NSLocalizedString(count==1?@"Friend":@"Friends", nil)];
 	}
 	else {
 		NSLog(@"Error: %@", [error userInfo]);

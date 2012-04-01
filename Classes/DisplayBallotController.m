@@ -264,7 +264,8 @@
 	if (array != nil) {
 		NSUInteger count = [array count];
 		if (count == 0) {
-			cell.minorTitle.text = @"<Not selected>";
+//			cell.minorTitle.text = @"<Not selected>";
+			cell.minorTitle.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"NoCandidateSelected", nil)];
 		}
 		else if (count == 1) {
 			candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
@@ -857,7 +858,8 @@
 		controller.position = position;
 		controller.managedObjectContext = self.managedObjectContext;
 		//controller.title = position.level;
-		controller.title = @"Candidates";
+//		controller.title = @"Candidates";
+		controller.title = NSLocalizedString(@"Candidates", nil);
 		
 		[self.navigationController pushViewController:controller animated:YES];
 		[controller release];
@@ -870,7 +872,8 @@
 		controller.client = _client;
 		controller.ballot = self.ballot;
 		controller.measure = measure;
-		controller.title = @"Measure";
+//		controller.title = @"Measure";
+		controller.title = NSLocalizedString(@"Measure", nil);
 		//[NSString stringWithFormat:@"Measure %@", measure.identifier];
 		
 		[self.navigationController pushViewController:controller animated:YES];

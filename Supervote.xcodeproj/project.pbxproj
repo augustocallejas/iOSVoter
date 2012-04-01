@@ -140,6 +140,7 @@
 		14B5F61A1510500A00C21F98 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14B5F6181510500A00C21F98 /* AboutUsViewController.xib */; };
 		14B5F67A1510639700C21F98 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B5F6791510639700C21F98 /* comment.png */; };
 		14C997D01527A2E30041ACDA /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C997B71527A2E30041ACDA /* LoggerClient.m */; };
+		14C999AF152812B60041ACDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C999AD152812B60041ACDA /* Localizable.strings */; };
 		14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14CBC34E14DF208C00618BB0 /* League_Gothic.otf */; };
 		14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E748F914343821002E2F82 /* EndorsementViewCell.xib */; };
 		14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E749021434388B002E2F82 /* EndorsementViewCell.m */; };
@@ -351,6 +352,8 @@
 		14C997B71527A2E30041ACDA /* LoggerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
 		14C997B81527A2E30041ACDA /* LoggerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
 		14C998091527A8310041ACDA /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		14C999AE152812B60041ACDA /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14C999B2152812CD0041ACDA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14CBC34E14DF208C00618BB0 /* League_Gothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = League_Gothic.otf; sourceTree = "<group>"; };
 		14E748F914343821002E2F82 /* EndorsementViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndorsementViewCell.xib; sourceTree = "<group>"; };
 		14E749011434388B002E2F82 /* EndorsementViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementViewCell.h; sourceTree = "<group>"; };
@@ -788,6 +791,7 @@
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
+				14C999AD152812B60041ACDA /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -844,6 +848,8 @@
 				Japanese,
 				French,
 				German,
+				en,
+				es,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -948,6 +954,7 @@
 				140F4326150DA4AC004E61B5 /* Icon@2x.png in Resources */,
 				14B5F61A1510500A00C21F98 /* AboutUsViewController.xib in Resources */,
 				14B5F67A1510639700C21F98 /* comment.png in Resources */,
+				14C999AF152812B60041ACDA /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1025,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		14C999AD152812B60041ACDA /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C999AE152812B60041ACDA /* en */,
+				14C999B2152812CD0041ACDA /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
