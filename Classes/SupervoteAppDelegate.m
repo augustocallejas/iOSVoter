@@ -59,6 +59,9 @@
 	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsPath = [paths objectAtIndex:0];
+	
+	NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+	LogInfo(@"Current language: %@", language);
 
 	_supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
 	_facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
@@ -195,13 +198,15 @@
 			
 			SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
 			settings.managedObjectContext = self.managedObjectContext;
-			settings.title = @"Settings";
+//			settings.title = @"Settings";
+			settings.title = NSLocalizedString(@"Settings", nil);
 			settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
 			settings.client = self.supervoteClient;
 			settings.facebookClient = self.facebookClient;
 			
 			AboutUsViewController *aboutUs = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:[NSBundle mainBundle]];
-			aboutUs.title = @"Contact Us";
+//			aboutUs.title = @"Contact Us";
+			aboutUs.title = NSLocalizedString(@"ContactUs", nil);
 			aboutUs.tabBarItem.image = [UIImage imageNamed:@"comment.png"];
 			
 			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, aboutUs, nil] autorelease]];
