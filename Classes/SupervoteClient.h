@@ -16,6 +16,10 @@ typedef enum {
 	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
 } vote_status;
 
+typedef enum {
+	ES_OK, ES_NOT_FOUND, ES_CLOSED, ES_NOT_MODIFIED
+} election_status;
+
 @interface SupervoteClient : NSObject {
 	
 @private
@@ -36,7 +40,11 @@ typedef enum {
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
 - (NSDictionary *)getElections:(vote_status *)status;
-- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime withError:(NSError **)httpError;
+- (election_status)getElection:(NSDictionary **)election
+					  withGuid:(NSString *)guid
+			  withLastModified:(NSDate *)time
+		   withNewModifiedTime:(NSDate **)newTime
+					 withError:(NSError **)httpError;
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
 - (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error;
 

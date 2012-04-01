@@ -29,7 +29,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"DeviceID"]) {
 			deviceID = [[defaults objectForKey:@"DeviceID"] retain];
-			NSLog(@"Loaded device ID '%@'", deviceID);
+			LogInfo(@"Loaded device ID '%@'", deviceID);
 		}
 		
 		_context = [context retain];
@@ -616,7 +616,11 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	return nil;
 }
 
-- (NSDictionary *)getElection:(NSString *)guid withLastModified:(NSDate *)time withNewModifiedTime:(NSDate **)newTime withError:(NSError **)httpError {
+- (election_status)getElection:(NSDictionary **)election
+					  withGuid:(NSString *)guid
+			  withLastModified:(NSDate *)time
+		   withNewModifiedTime:(NSDate **)newTime
+					 withError:(NSError **)httpError {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
@@ -641,16 +645,17 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	
 	[request startSynchronous];
 	
-	NSDictionary *election = nil;
+//	NSDictionary *election = nil;
 	*httpError = [request error];
 	
+	election_status status;
 	if (*httpError != nil) {
 	}
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		NSError *parseError = nil;
-		election = [parser objectWithString:json error:&parseError];	
-		//NSLog(@"JSON %@", json);
+		*election = [parser objectWithString:json error:&parseError];	
+//		NSLog(@"JSON %@", json);
 		[json release];
 		
 		if (parseError != nil) {
@@ -659,20 +664,28 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 		
 		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
 		*newTime = [df dateFromString:newLastModified];
+		status = ES_OK;
 	}
 	else if ([request responseStatusCode] == 404) {
 		/* NOT_FOUND */
 		NSLog(@"Election '%@' does not exist", guid);
+		status = ES_NOT_FOUND;
+	}
+	else if ([request responseStatusCode] == 410) {
+		/* GONE */
+		NSLog(@"Election '%@' is closed", guid);
+		status = ES_CLOSED;
 	}
 	else if ([request responseStatusCode] == 304) {
 		/* NOT_MODIFIED */
-		NSLog(@"Election '%@' was not modified");
+		NSLog(@"Election '%@' was not modified", guid);
+		status = ES_NOT_MODIFIED;
 	}
 	
 	[df release];
 	[locale release];
 	
-	return election;
+	return status;
 }
 
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
@@ -683,6 +696,7 @@ static NSString* kAPIUrl = @"http://localhost:8080";
 	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 	
 	Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
+	electionObj.status = [NSNumber numberWithBool:YES];
 	electionObj.guid = guid;
 	electionObj.title = title;
 	electionObj.icon = icon;
