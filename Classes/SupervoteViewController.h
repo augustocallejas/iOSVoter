@@ -24,9 +24,13 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *leftLabel;
 @property (nonatomic, retain) IBOutlet UILabel *rightLabel;
+@property (nonatomic, retain) IBOutlet UITextView *ZIPCodePrompt;
 @property (nonatomic, retain) IBOutlet UITextField *FirstZIPField;
 @property (nonatomic, retain) IBOutlet UITextField *SecondZIPField;
 @property (nonatomic, retain) IBOutlet UIButton	*joinButton;
+@property (nonatomic, retain) IBOutlet UILabel *agreeStatement;
+@property (nonatomic, retain) IBOutlet UIButton *tosButton;
+@property (nonatomic, retain) IBOutlet UIButton *privacyButton;
 //@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
 @property (nonatomic, retain) SupervoteClient *client;
 

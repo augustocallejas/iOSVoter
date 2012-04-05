@@ -15,9 +15,13 @@
 
 @synthesize leftLabel = _leftLabel;
 @synthesize rightLabel = _rightLabel;
+@synthesize ZIPCodePrompt;
 @synthesize FirstZIPField;
 @synthesize SecondZIPField;
 @synthesize joinButton;
+@synthesize agreeStatement;
+@synthesize tosButton;
+@synthesize privacyButton;
 //@synthesize mainAppController;
 @synthesize client = _client;
 
@@ -45,7 +49,13 @@
 	
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:50.0];
 	[_leftLabel setFont:font];
-	[_rightLabel setFont:font];	
+	[_rightLabel setFont:font];
+	
+	[ZIPCodePrompt setText:NSLocalizedString(@"ZIPCodePrompt", nil)];
+	[joinButton setTitle:NSLocalizedString(@"Join", nil) forState:UIControlStateNormal];
+	[agreeStatement setText:NSLocalizedString(@"AgreeStatement", nil)];
+	[tosButton setTitle:NSLocalizedString(@"TOS", nil) forState:UIControlStateNormal];
+	[privacyButton setTitle:NSLocalizedString(@"Privacy", nil) forState:UIControlStateNormal];
 }
 
 /*
@@ -106,7 +116,7 @@
 	NSString* launchUrl = @"http://supervote.org/termsofservice.html";
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
-	controller.title = @"Terms of Service";
+	controller.title = NSLocalizedString(@"TOS", nil);
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
@@ -118,7 +128,7 @@
 	NSString* launchUrl = @"http://supervote.org/privacy.html";
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
-	controller.title = @"Privacy Policy";
+	controller.title = NSLocalizedString(@"Privacy", nil);
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
@@ -142,8 +152,8 @@
 	NSString *ZIP;
 	
 	if ([FirstZIPField.text length] != 5) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid ZIP Code" 
-														message:@"ZIP Code must contain 5 digits." 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIPTitle", nil)
+														message:NSLocalizedString(@"InvalidZIPMessage", nil) 
 													   delegate:nil 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
@@ -151,8 +161,8 @@
 		[alert release];
 	}
 	else if ([SecondZIPField.text length] != 0 && [SecondZIPField.text length] != 4) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid ZIP+4 Code" 
-														message:@"ZIP+4 Code must contain 4 digits." 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIP4Title", nil)
+														message:NSLocalizedString(@"InvalidZIP4Message", nil) 
 													   delegate:nil 
 											  cancelButtonTitle:@"OK"
 											  otherButtonTitles:nil];
@@ -177,7 +187,7 @@
 			//
 			if (error != nil) {
 				NSLog(@"Error: %@", [error userInfo]);
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to connect to server"
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
 																message:[error localizedDescription]
 															   delegate:nil 
 													  cancelButtonTitle:@"OK"
@@ -186,8 +196,8 @@
 				[alert release];
 			}
 			else {
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bad ZIP Code" 
-																message:@"Invalid ZIP Code, please review and try again." 
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"BadZIPTitle", nil) 
+																message:NSLocalizedString(@"BadZIPMessage", nil) 
 															   delegate:nil 
 													  cancelButtonTitle:@"OK"
 													  otherButtonTitles:nil];

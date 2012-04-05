@@ -17,7 +17,7 @@
 #import "Position.h"
 
 static NSString *kDeviceIDHeaderKey = @"DeviceID";
-static NSString* kAPIUrl = @"http://localhost:8080";
+static NSString* kAPIUrl = @"http://localhost:9000";
 
 @implementation SupervoteClient
 
