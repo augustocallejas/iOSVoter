@@ -13,9 +13,11 @@
 @implementation FacebookIntegrationViewController
 
 @synthesize titleLabel = _titleLabel;
+@synthesize facebookMessage;
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 @synthesize facebookLoginButton;
+@synthesize noThanksButton;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -34,6 +36,11 @@
 	
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:40.0];
 	[_titleLabel setFont:font];
+	
+	[_titleLabel setText:NSLocalizedString(@"Setup", nil)];
+	[facebookMessage setText:NSLocalizedString(@"FacebookSetup", nil)];
+	
+	[noThanksButton setTitle:NSLocalizedString(@"NoThanks", nil) forState:UIControlStateNormal];
 	
 	if (_facebookClient != nil) {
 		_facebookClient.delegate = self;

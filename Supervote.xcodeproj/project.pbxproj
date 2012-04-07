@@ -537,14 +537,13 @@
 		1423B41014081697006F8DBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				14B84847152EC22200F8788E /* Tutorial */,
 				14B5F6161510500A00C21F98 /* AboutUsViewController.h */,
 				14B5F6171510500A00C21F98 /* AboutUsViewController.m */,
 				14E74AFA14359521002E2F82 /* CreateEndorsementViewController.h */,
 				14E74AFB14359521002E2F82 /* CreateEndorsementViewController.m */,
 				14399DDB140F7612007269A3 /* DisplayBallotController.h */,
 				14399DDC140F7612007269A3 /* DisplayBallotController.m */,
-				140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */,
-				140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */,
 				14789F1513EBBB220016044C /* FeedController.h */,
 				14789F1613EBBB220016044C /* FeedController.m */,
 				143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */,
@@ -553,8 +552,6 @@
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
 				14E7491614343C99002E2F82 /* ListEndorsementsController.h */,
 				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
-				14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */,
-				14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -692,6 +689,17 @@
 			name = Classes;
 			path = "../asi-http-request/Classes";
 			sourceTree = SOURCE_ROOT;
+		};
+		14B84847152EC22200F8788E /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				140D03AB14D6040E00AD98E4 /* FacebookIntegrationViewController.h */,
+				140D03AC14D6040E00AD98E4 /* FacebookIntegrationViewController.m */,
+				14AD9EE014D7A40900B83A48 /* QuickTutorialViewController.h */,
+				14AD9EE114D7A40900B83A48 /* QuickTutorialViewController.m */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
 		};
 		14C997991527A2E30041ACDA /* NSLogger */ = {
 			isa = PBXGroup;

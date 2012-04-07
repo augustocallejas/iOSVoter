@@ -18,9 +18,11 @@
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property(nonatomic, retain) IBOutlet UITextView *facebookMessage;
 @property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
+@property(nonatomic, retain) IBOutlet UIButton *noThanksButton;
 
 - (IBAction)doYesFacebookIntegration;
 - (IBAction)doNoFacebookIntegration;

@@ -186,11 +186,12 @@
 		else {
 			//
 			if (error != nil) {
-				NSLog(@"Error: %@", [error userInfo]);
+				/* TODO: see if someone comes up with a better answer: http://stackoverflow.com/questions/10039420/accessing-localized-error-message-from-asihttprequest-calls */
+				NSString *errorStr = [[[error userInfo] objectForKey:@"NSUnderlyingError"] localizedFailureReason];
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
-																message:[error localizedDescription]
+																message:errorStr//[error localizedDescription]
 															   delegate:nil 
-													  cancelButtonTitle:@"OK"
+													  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 													  otherButtonTitles:nil];
 				[alert show];
 				[alert release];
@@ -199,7 +200,7 @@
 				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"BadZIPTitle", nil) 
 																message:NSLocalizedString(@"BadZIPMessage", nil) 
 															   delegate:nil 
-													  cancelButtonTitle:@"OK"
+													  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 													  otherButtonTitles:nil];
 				[alert show];
 				[alert release];
