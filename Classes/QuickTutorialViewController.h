@@ -12,13 +12,16 @@
 	
 @private
 	UILabel *_titleLabel;
-	IBOutlet UITableViewCell *_privacyCell1;
-	IBOutlet UITableViewCell *_privacyCell2;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
-@property (nonatomic, retain) UITableViewCell *privacyCell1;
-@property (nonatomic, retain) UITableViewCell *privacyCell2;
+@property (nonatomic, retain) IBOutlet UITextView *paragraph1;
+@property (nonatomic, retain) IBOutlet UITableViewCell *privacyCell1;
+@property (nonatomic, retain) IBOutlet UILabel *privacyLabel1;
+@property (nonatomic, retain) IBOutlet UITextView *paragraph2;
+@property (nonatomic, retain) IBOutlet UITableViewCell *privacyCell2;
+@property (nonatomic, retain) IBOutlet UILabel *privacyLabel2;
+@property (nonatomic, retain) IBOutlet UIButton *button;
 
 - (IBAction)doShowBallots;
 

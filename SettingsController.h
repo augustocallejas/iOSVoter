@@ -24,14 +24,16 @@
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *facebookLabel;
+@property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
 @property(nonatomic, retain) IBOutlet UILabel *accountLabel;
+@property(nonatomic, retain) IBOutlet UIButton *changeZIPButton;
 @property(nonatomic, retain) IBOutlet UILabel *supportLabel;
+@property(nonatomic, retain) IBOutlet UIButton *resetAppButton;
 
 @property(nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property(nonatomic, retain) SupervoteClient *client;
 @property(nonatomic, retain) FacebookClient *facebookClient;
 @property(nonatomic, retain) NSString *documentsPath;
-@property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
 
 - (IBAction)doFacebookLogin;
 - (IBAction)doResetApplication;

@@ -20,6 +20,7 @@
 @synthesize isEditOfExisting = _isEditOfExisting;
 @synthesize delegate;
 @synthesize navItem = _navItem;
+@synthesize endorsementHeader;
 @synthesize endorsementTitle = _endorsementTitle;
 @synthesize textView = _textView;
 @synthesize viewableByFriendsCell = _viewableByFriendsCell;
@@ -71,6 +72,10 @@
 //	[label sizeToFit];
 //	_navItem.titleView = label;
 //	[label release];
+	
+	[endorsementHeader setText:NSLocalizedString(@"EnterEndorsement", nil)];
+	
+	[_cancelButton setTitle:NSLocalizedString(@"Cancel", nil)];
 	
 	if (_candidate != nil) {
 		//self.navItem.title = _candidate.name;

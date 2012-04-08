@@ -327,6 +327,14 @@
 					</object>
 					<int key="connectionID">39</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">endorsementHeader</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="528875006"/>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -464,7 +472,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CreateEndorsementViewController</string>
 					<string>UIResponder</string>
-					<string>{{319, 376}, {320, 480}}</string>
+					<string>{{408, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -516,7 +524,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">39</int>
+			<int key="maxID">40</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -569,6 +577,7 @@
 							<string>_viewableByFriendsSwitch</string>
 							<string>_voteButton</string>
 							<string>delegate</string>
+							<string>endorsementHeader</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -581,6 +590,7 @@
 							<string>UISwitch</string>
 							<string>UIBarButtonItem</string>
 							<string>id</string>
+							<string>UILabel</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -596,6 +606,7 @@
 							<string>_viewableByFriendsSwitch</string>
 							<string>_voteButton</string>
 							<string>delegate</string>
+							<string>endorsementHeader</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -634,6 +645,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">delegate</string>
 								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">endorsementHeader</string>
+								<string key="candidateClassName">UILabel</string>
 							</object>
 						</object>
 					</object>

@@ -77,11 +77,11 @@
 - (IBAction)doNoFacebookIntegration {
 	[self markAsViewed];
 	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-													message:@"You can set up Facebook access anytime in the Settings tab."
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
+													message:NSLocalizedString(@"LaterFacebookMessage", nil)
 												   delegate:nil 
 										  cancelButtonTitle:nil
-										  otherButtonTitles:@"Ok", nil];
+										  otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
 	[alert show];
 	[alert release];
 	
@@ -116,11 +116,11 @@
 - (void)fbDidNotLogin:(BOOL)cancelled {
 	[self markAsViewed];
 	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook Setup"
-													message:@"You can setup Facebook access anytime in the Settings tab below."
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
+													message:NSLocalizedString(@"LaterFacebookMessage", nil)
 												   delegate:nil 
 										  cancelButtonTitle:nil
-										  otherButtonTitles:@"Ok", nil];
+										  otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
 	[alert show];
 	[alert release];
 

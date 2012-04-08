@@ -17,6 +17,9 @@
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *aboutUsLabel;
+@property(nonatomic, retain) IBOutlet UITextView *descriptionText;
+@property(nonatomic, retain) IBOutlet UIButton *tosButton;
+@property(nonatomic, retain) IBOutlet UIButton *privacyButton;
 
 - (void)didDismissModalView;
 - (IBAction)doEmailUs;

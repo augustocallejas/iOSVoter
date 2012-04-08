@@ -12,6 +12,9 @@
 @implementation AboutUsViewController
 
 @synthesize aboutUsLabel = _aboutUsLabel;
+@synthesize descriptionText;
+@synthesize tosButton;
+@synthesize privacyButton;
 
 #pragma mark -
 #pragma mark UIWebViewController methods
@@ -87,6 +90,10 @@
     [super viewDidLoad];
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	[_aboutUsLabel setFont:font];
+	
+	[descriptionText setText:NSLocalizedString(@"SupervoteDescription", nil)];
+	[tosButton setTitle:NSLocalizedString(@"TOS", nil) forState:UIControlStateNormal];
+	[privacyButton setTitle:NSLocalizedString(@"Privacy", nil) forState:UIControlStateNormal];
 }
 
 /*

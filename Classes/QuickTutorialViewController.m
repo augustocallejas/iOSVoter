@@ -14,8 +14,13 @@
 @implementation QuickTutorialViewController
 
 @synthesize titleLabel = _titleLabel;
-@synthesize privacyCell1 = _privacyCell1;
-@synthesize privacyCell2 = _privacyCell2;
+@synthesize paragraph1;
+@synthesize privacyCell1;
+@synthesize privacyLabel1;
+@synthesize paragraph2;
+@synthesize privacyCell2;
+@synthesize privacyLabel2;
+@synthesize button;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -35,13 +40,23 @@
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:40.0];
 	[_titleLabel setFont:font];
 	
-	_privacyCell1.layer.cornerRadius = 10.0f;
-	_privacyCell1.layer.borderColor = [UIColor grayColor].CGColor;
-	_privacyCell1.layer.borderWidth = 1.0f;
+	[_titleLabel setText:NSLocalizedString(@"TutorialTitle", nil)];
 	
-	_privacyCell2.layer.cornerRadius = 10.0f;
-	_privacyCell2.layer.borderColor = [UIColor grayColor].CGColor;
-	_privacyCell2.layer.borderWidth = 1.0f;
+	[paragraph1 setText:NSLocalizedString(@"TutorialParagraph1", nil)];
+	
+	privacyCell1.layer.cornerRadius = 10.0f;
+	privacyCell1.layer.borderColor = [UIColor grayColor].CGColor;
+	privacyCell1.layer.borderWidth = 1.0f;
+	[privacyLabel1 setText:NSLocalizedString(@"ViewableByFriends", nil)];
+	 
+	[paragraph2 setText:NSLocalizedString(@"TutorialParagraph2", nil)];
+	
+	privacyCell2.layer.cornerRadius = 10.0f;
+	privacyCell2.layer.borderColor = [UIColor grayColor].CGColor;
+	privacyCell2.layer.borderWidth = 1.0f;
+	[privacyLabel2 setText:NSLocalizedString(@"ViewableByFriends", nil)];
+	
+	[button setTitle:NSLocalizedString(@"ShowBallotsButton", nil) forState:UIControlStateNormal];
 }
 
 #pragma mark -

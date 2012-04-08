@@ -46,6 +46,7 @@
 @property (nonatomic, assign) BOOL viewableByFriends;
 @property (nonatomic, assign) BOOL isEditOfExisting;
 @property (nonatomic, retain) UINavigationItem *navItem;
+@property (nonatomic, retain) IBOutlet UILabel *endorsementHeader;
 @property (nonatomic, retain) UILabel *endorsementTitle;
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) UITableViewCell *viewableByFriendsCell;

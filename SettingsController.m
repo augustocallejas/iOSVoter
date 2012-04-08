@@ -14,10 +14,12 @@
 @implementation SettingsController
 
 @synthesize facebookLabel = _facebookLabel;
-@synthesize accountLabel = _accountLabel;
-@synthesize supportLabel = _supportLabel;
-
 @synthesize facebookLoginButton;
+@synthesize accountLabel = _accountLabel;
+@synthesize changeZIPButton;
+@synthesize supportLabel = _supportLabel;
+@synthesize resetAppButton;
+
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
@@ -54,7 +56,7 @@
 //		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
 //		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
 //		[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-		[[self facebookLoginButton] setTitle:@"Log into Facebook" forState:UIControlStateNormal];
+		[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogIntoFacebookButton", nil) forState:UIControlStateNormal];
 	}
 	else {
 		[_facebookClient authorize];
@@ -63,10 +65,10 @@
 
 - (IBAction)doResetApplication {
 	/* user wants to reset the application */
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Resetting the app will erase all saved data.  Are you sure?"
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ResetApplicationWarning", nil)
 															 delegate:self
-													cancelButtonTitle:@"Cancel"
-											   destructiveButtonTitle:@"Yes"
+													cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+											   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
 													otherButtonTitles:nil];
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 	[actionSheet release];
@@ -112,7 +114,7 @@
 //	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
 //	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
 //	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-	[[self facebookLoginButton] setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
+	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogoutFacebookButton", nil) forState:UIControlStateNormal];
 	
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
@@ -211,51 +213,51 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	if (section == 0) {
-		return @"Facebook Settings";
-	}
-	else if (section == 1) {
-		return @"Application Settings"; 
-	}
-	else if (section == 2) {
-		return @"Social Media";
-	}
-	
-	return nil;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//	if (section == 0) {
+//		return @"Facebook Settings";
+//	}
+//	else if (section == 1) {
+//		return @"Application Settings"; 
+//	}
+//	else if (section == 2) {
+//		return @"Social Media";
+//	}
+//	
+//	return nil;
+//}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
-	
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"default"] autorelease];
-		cell.textLabel.textAlignment = UITextAlignmentCenter;
-	}
-
-	if (indexPath.section == 0 && indexPath.row == 0) {
-		if (_facebookClient.loggedIn) {
-			cell.textLabel.text = @"Log out of Facebook";
-		}
-		else {
-			cell.textLabel.text = @"Log into Facebook";
-		}
-	}
-	else if (indexPath.section == 1 && indexPath.row == 0) {
-		cell.textLabel.text = @"Reset Application";
-	}
-	else if (indexPath.section == 2 && indexPath.row == 0) {
-		cell.textLabel.text = @"Follow us on Twitter";
-	}
-	
-	//NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
-	//UIImage *icon = [UIImage imageWithContentsOfFile:path];
-	//cell.imageView.image = icon;
-	
-	return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"default"];
+//	
+//	if (cell == nil) {
+//		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"default"] autorelease];
+//		cell.textLabel.textAlignment = UITextAlignmentCenter;
+//	}
+//
+//	if (indexPath.section == 0 && indexPath.row == 0) {
+//		if (_facebookClient.loggedIn) {
+//			cell.textLabel.text = NSLocalizedString(@"LogOutFacebookButton", nil);
+//		}
+//		else {
+//			cell.textLabel.text = NSLocalizedString(@"LogIntoFacebookButton", nil);
+//		}
+//	}
+//	else if (indexPath.section == 1 && indexPath.row == 0) {
+//		cell.textLabel.text = @"Reset Application";
+//	}
+//	else if (indexPath.section == 2 && indexPath.row == 0) {
+//		cell.textLabel.text = @"Follow us on Twitter";
+//	}
+//	
+//	//NSString *path = [[NSBundle mainBundle] pathForResource:@"users" ofType:@"png"]; 
+//	//UIImage *icon = [UIImage imageWithContentsOfFile:path];
+//	//cell.imageView.image = icon;
+//	
+//	return cell;
+//}
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -274,9 +276,12 @@
 	
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	[_facebookLabel setFont:font];
+	[_facebookLabel setText:NSLocalizedString(@"FacebookSettings", nil)];
 	[_accountLabel setFont:font];
+	[_accountLabel setText:NSLocalizedString(@"AccountSettings", nil)];
+	[changeZIPButton setTitle:NSLocalizedString(@"ChangeZIPButton", nil) forState:UIControlStateNormal];
 	[_supportLabel setFont:font];
-	
+	[resetAppButton setTitle:NSLocalizedString(@"ResetApplicationButton", nil) forState:UIControlStateNormal];
 	
 	if (_facebookClient != nil) {
 		if (_facebookClient.loggedIn) {
@@ -284,7 +289,7 @@
 //			UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
 //			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
 //			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-			[[self facebookLoginButton] setTitle:@"Log out of Facebook" forState:UIControlStateNormal];
+			[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogoutFacebookButton", nil) forState:UIControlStateNormal];
 
 		}
 		else {
@@ -292,7 +297,7 @@
 //			UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
 //			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
 //			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-			[[self facebookLoginButton] setTitle:@"Log into Facebook" forState:UIControlStateNormal];
+			[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogIntoFacebookButton", nil) forState:UIControlStateNormal];
 
 		}
 

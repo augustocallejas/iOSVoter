@@ -21,15 +21,43 @@
 "BadZIPMessage" = "Código postal no válido, por favor revise y vuelva a intentarlo";
 "Setup" = "Configuración";
 "FacebookSetup" = "Acceso a su cuenta de Facebook le permitirá ver los votos de sus amigos en las próximas elecciones. ¿Quieres configurar el acceso de Facebook?";
+"LaterFacebookTitle" = "Configuración de Facebook";
+"LaterFacebookMessage" = "Puede configurar el acceso de Facebook en cualquier momento en la pestaña Ajustes.";
 "NoThanks" = "No, tal vez más tarde";
+
+/* QuickTutorialViewController */
+"TutorialTitle" = "Tutorial";
+"TutorialParagraph1" = "Cuando se crea un apoyo, se puede establecer el nivel de privacidad. El bloqueo significa que su voto es privado y sus amigos no lo puede ver.";
+"TutorialParagraph2" = "Ningún bloqueo significa que tus amigos pueden ver su apoyo.";
+"ShowBallotsButton" = "Mostrar mis boletas";
+
+/* SettingsController */
+"FacebookSettings" = "Facebook Ajustes";
+"LogIntoFacebookButton" = "Iniciar sesión en Facebook";
+"LogOutOfFacebookButton" = "Salir de Facebook";
+"AccountSettings" = "Configuración";
+"ChangeZIPButton" = "Cambiar mi código postal";
+"ResetApplicationButton" = "Restablecer la Aplicación";
+"ResetApplicationWarning" = "Restablecimiento de la aplicación borrará todos los datos guardados. ¿Está seguro?";
+
+/* CreateEndorsementViewController */
+"EnterEndorsement" = "Escriba una declaración opcional debajo";
+
+/* AboutUsViewController */
+"SupervoteDescription" = "Supervote es un experimento en la democracia. Nos esforzamos por proporcionar información sobre la elección precisa y oportuna. Si hay correcciones que le gustaría decirnos, por favor contacte con nosotros a continuación. Si hay elecciones locales no están cubriendo, por favor contacte con nosotros a continuación.";
+
+/* common */
+"ViewableByFriends" = "Amigos pueden ver";
+"YES" = "Sí";
+"NO" = "No";
+"Cancel" = "Cancelar";
+
 "MyBallots" = "Mis Boletas";
 "UpcomingElections" = "Próximas Elecciónes";
 "PastElections" = "Elecciónes Anteriores";
 "Ballot" = "Boleta";
 "Candidates" = "Candidatos";
 "Measure" = "Medida";
-"YES" = "Sí";
-"NO" = "No";
 "Undecided" = "Indeciso";
 "Friends" = "amigos";
 "Friend" = "amigo";
