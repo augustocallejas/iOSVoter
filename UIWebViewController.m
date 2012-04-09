@@ -15,6 +15,7 @@
 @synthesize url = _url;
 @synthesize webView = _webView;
 @synthesize navItem = _navItem;
+@synthesize closeButton;
 
 #pragma mark -
 #pragma mark IBAction methods
@@ -43,6 +44,8 @@
 	if ([self title] != nil) {
 		[[self navItem] setTitle:[self title]];
 	}
+	
+	[closeButton setTitle:NSLocalizedString(@"Close", nil)];
 
 	if (_url != nil) {
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:_url]];

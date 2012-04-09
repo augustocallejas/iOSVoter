@@ -74,34 +74,34 @@
 	[actionSheet release];
 }
 
-#pragma mark -
-#pragma mark UITableViewDelegate methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	if (indexPath.section == 0 && indexPath.row == 0) {
-		if (_facebookClient.loggedIn) {
-			[_facebookClient logout];
-		}
-		else {
-			[_facebookClient authorize];
-		}
-	}
-	else if (indexPath.section == 1 && indexPath.row == 0) {
-		/* user wants to reset the application */		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Reset"
-														message:@"Reseting the app will erase all saved data.  Are you sure?"
-													   delegate:self 
-											  cancelButtonTitle:@"No"
-											  otherButtonTitles:@"Yes", nil];
-		[alert show];
-		[alert release];
-	}
-	else if (indexPath.section == 2 && indexPath.row == 0) {
-		NSString* launchUrl = @"http://mobile.twitter.com/supervote";
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
-	}
-}
+//#pragma mark -
+//#pragma mark UITableViewDelegate methods
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+//	if (indexPath.section == 0 && indexPath.row == 0) {
+//		if (_facebookClient.loggedIn) {
+//			[_facebookClient logout];
+//		}
+//		else {
+//			[_facebookClient authorize];
+//		}
+//	}
+//	else if (indexPath.section == 1 && indexPath.row == 0) {
+//		/* user wants to reset the application */		
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"App Reset"
+//														message:@"Reseting the app will erase all saved data.  Are you sure?"
+//													   delegate:self 
+//											  cancelButtonTitle:@"No"
+//											  otherButtonTitles:@"Yes", nil];
+//		[alert show];
+//		[alert release];
+//	}
+//	else if (indexPath.section == 2 && indexPath.row == 0) {
+//		NSString* launchUrl = @"http://mobile.twitter.com/supervote";
+//		[[UIApplication sharedApplication] openURL:[NSURL URLWithString: launchUrl]];
+//	}
+//}
 
 #pragma mark -
 #pragma mark FBSessionDelegate methods

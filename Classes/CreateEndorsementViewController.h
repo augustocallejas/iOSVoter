@@ -50,6 +50,7 @@
 @property (nonatomic, retain) UILabel *endorsementTitle;
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) UITableViewCell *viewableByFriendsCell;
+@property (nonatomic, retain) IBOutlet UILabel *viewableByFriendsLabel;
 @property (nonatomic, retain) UIImageView *privacyLock;
 @property (nonatomic, retain) UISwitch *viewableByFriendsSwitch;
 @property (nonatomic, retain) UIBarButtonItem* voteButton;

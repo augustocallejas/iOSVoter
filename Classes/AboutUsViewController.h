@@ -18,8 +18,12 @@
 
 @property(nonatomic, retain) IBOutlet UILabel *aboutUsLabel;
 @property(nonatomic, retain) IBOutlet UITextView *descriptionText;
+@property(nonatomic, retain) IBOutlet UIButton *emailUsButton;
+@property(nonatomic, retain) IBOutlet UIButton *facebookUsButton;
+@property(nonatomic, retain) IBOutlet UIButton *twitterUsButton;
 @property(nonatomic, retain) IBOutlet UIButton *tosButton;
 @property(nonatomic, retain) IBOutlet UIButton *privacyButton;
+@property(nonatomic, retain) IBOutlet UILabel *iconsFromLabel;
 
 - (void)didDismissModalView;
 - (IBAction)doEmailUs;

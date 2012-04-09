@@ -17,6 +17,7 @@
 @synthesize measureVote = _measureVote;
 @synthesize statement = _statement;
 @synthesize viewableByFriends = _viewableByFriends;
+@synthesize viewableByFriendsLabel;
 @synthesize isEditOfExisting = _isEditOfExisting;
 @synthesize delegate;
 @synthesize navItem = _navItem;
@@ -89,8 +90,10 @@
 		_textView.text = _statement;
 	}
 	if (_isEditOfExisting) {
-		_voteButton.title = @"Save";
+		_voteButton.title = NSLocalizedString(@"Save", nil);
 	}
+	
+	[viewableByFriendsLabel setText:NSLocalizedString(@"ViewableByFriends", nil)];
 
 	[_viewableByFriendsSwitch setOn:_viewableByFriends];
 	[_privacyLock setHidden:_viewableByFriends];

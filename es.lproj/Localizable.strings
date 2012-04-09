@@ -6,11 +6,9 @@
    Copyright 2012 Canary Falls Software LLC. All rights reserved.
  */
 
-"OK" = "Aceptar";
 "ZIPCodePrompt" = "Ingrese el código postal donde está registrado para votar.";
-"Join" = "Registrar";
 "AgreeStatement" = "Al unirse, usted está de acuerdo con nuestra";
-"TOS" = "Condiciones de Servico";
+"TOS" = "Condiciones de Servicio";
 "Privacy" = "Política de Privacidad";
 "InvalidZIPTitle" = "Código postal no válido";
 "InvalidZIPMessage" = "Código postal debe contener 5 dígitos.";
@@ -19,17 +17,29 @@
 "HttpErrorTitle" = "No se puede conectar al servidor";
 "BadZIPTitle" = "Código postal no válido";
 "BadZIPMessage" = "Código postal no válido, por favor revise y vuelva a intentarlo";
+
+/* SupervoteViewController */
+"Join" = "Registrarse";
+
+/* UIWebViewController */
+"Close" = "Cerrar";
+
+/* FacebookIntegrationViewController */
 "Setup" = "Configuración";
-"FacebookSetup" = "Acceso a su cuenta de Facebook le permitirá ver los votos de sus amigos en las próximas elecciones. ¿Quieres configurar el acceso de Facebook?";
+"FacebookSetup" = "Acceso a su cuenta de Facebook le permitirá ver los votos de sus amigos en las próximas elecciones. ¿Quieres configurar el acceso a Facebook?";
 "LaterFacebookTitle" = "Configuración de Facebook";
-"LaterFacebookMessage" = "Puede configurar el acceso de Facebook en cualquier momento en la pestaña Ajustes.";
-"NoThanks" = "No, tal vez más tarde";
+"LaterFacebookMessage" = "Puede configurar el acceso a Facebook en cualquier momento en la pestaña Ajustes.";
+"NoThanks" = "No, talvez más tarde";
 
 /* QuickTutorialViewController */
 "TutorialTitle" = "Tutorial";
 "TutorialParagraph1" = "Cuando se crea un apoyo, se puede establecer el nivel de privacidad. El bloqueo significa que su voto es privado y sus amigos no lo puede ver.";
 "TutorialParagraph2" = "Ningún bloqueo significa que tus amigos pueden ver su apoyo.";
 "ShowBallotsButton" = "Mostrar mis boletas";
+
+/* DisplayBallotController */
+"Unknown" = "Desconocido";
+"NotSelected" = "No seleccionado";
 
 /* SettingsController */
 "FacebookSettings" = "Facebook Ajustes";
@@ -42,15 +52,24 @@
 
 /* CreateEndorsementViewController */
 "EnterEndorsement" = "Escriba una declaración opcional debajo";
+"Save" = "Ahorrar";
 
 /* AboutUsViewController */
 "SupervoteDescription" = "Supervote es un experimento en la democracia. Nos esforzamos por proporcionar información sobre la elección precisa y oportuna. Si hay correcciones que le gustaría decirnos, por favor contacte con nosotros a continuación. Si hay elecciones locales no están cubriendo, por favor contacte con nosotros a continuación.";
+"EmailUs" = "E-mail: support@supervote.org";
+"FacebookUs" = "facebook.com/supervote";
+"TwitterUs" = "Twitter: @supervote";
+"IconsFrom" = "Iconos de:";
 
 /* common */
+"OK" = "Aceptar";
 "ViewableByFriends" = "Amigos pueden ver";
 "YES" = "Sí";
 "NO" = "No";
 "Cancel" = "Cancelar";
+"EditEndorsement" = "Modificar su voto";
+"ChangeVoteWarning" = "¿Estás seguro que desea cambiar su voto?";
+"ListEndorsementsTitle" = "Apoyos";
 
 "MyBallots" = "Mis Boletas";
 "UpcomingElections" = "Próximas Elecciónes";

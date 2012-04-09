@@ -27,13 +27,13 @@
 
 + (NSString *)voteToString:(NSNumber *)vote {
 	if (vote == nil) {
-		return @"Undecided";
+		return NSLocalizedString(@"Undecided", nil);
 	}
 	else if ([vote boolValue]) {
-		return @"YES";
+		return NSLocalizedString(@"YES", nil);
 	}
 	
-	return @"NO";
+	return NSLocalizedString(@"NO", nil);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

@@ -246,7 +246,7 @@
 					<object class="IBUILabel" id="661942133">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{126, 365}, {68, 18}}</string>
+						<string key="NSFrame">{{117, 365}, {86, 18}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -259,6 +259,7 @@
 						<reference key="IBUIHighlightedColor" ref="694838865"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">1</int>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -386,6 +387,38 @@
 					</object>
 					<int key="connectionID">36</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">facebookUsButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="5205148"/>
+					</object>
+					<int key="connectionID">37</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">twitterUsButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="81186574"/>
+					</object>
+					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">emailUsButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="773215445"/>
+					</object>
+					<int key="connectionID">39</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">iconsFromLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="661942133"/>
+					</object>
+					<int key="connectionID">40</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -404,7 +437,6 @@
 							<reference ref="173732025"/>
 							<reference ref="773215445"/>
 							<reference ref="81186574"/>
-							<reference ref="5205148"/>
 							<reference ref="698270114"/>
 							<reference ref="621664372"/>
 							<reference ref="535740412"/>
@@ -412,6 +444,7 @@
 							<reference ref="40744010"/>
 							<reference ref="897658551"/>
 							<reference ref="661942133"/>
+							<reference ref="5205148"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -510,12 +543,13 @@
 					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
+					<string>8.IBViewBoundsToFrameTransform</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AboutUsViewController</string>
 					<string>UIResponder</string>
-					<string>{{298, 41}, {320, 480}}</string>
+					<string>{{396, 307}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -552,6 +586,9 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAw4oAAA</bytes>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -570,7 +607,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">36</int>
+			<int key="maxID">40</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -658,13 +695,21 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>aboutUsLabel</string>
 							<string>descriptionText</string>
+							<string>emailUsButton</string>
+							<string>facebookUsButton</string>
+							<string>iconsFromLabel</string>
 							<string>privacyButton</string>
 							<string>tosButton</string>
+							<string>twitterUsButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>UITextView</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 						</object>
@@ -675,8 +720,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>aboutUsLabel</string>
 							<string>descriptionText</string>
+							<string>emailUsButton</string>
+							<string>facebookUsButton</string>
+							<string>iconsFromLabel</string>
 							<string>privacyButton</string>
 							<string>tosButton</string>
+							<string>twitterUsButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -689,11 +738,27 @@
 								<string key="candidateClassName">UITextView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">emailUsButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">facebookUsButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">iconsFromLabel</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">privacyButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">tosButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">twitterUsButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 						</object>

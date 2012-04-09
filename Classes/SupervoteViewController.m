@@ -155,7 +155,7 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIPTitle", nil)
 														message:NSLocalizedString(@"InvalidZIPMessage", nil) 
 													   delegate:nil 
-											  cancelButtonTitle:@"OK"
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -164,7 +164,7 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIP4Title", nil)
 														message:NSLocalizedString(@"InvalidZIP4Message", nil) 
 													   delegate:nil 
-											  cancelButtonTitle:@"OK"
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];

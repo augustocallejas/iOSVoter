@@ -54,11 +54,11 @@
 		}
 		else if ([_measureVote.vote boolValue]) {
 			/* yes */
-			choice = @"Yes";
+			choice = NSLocalizedString(@"YES", nil);
 		}
 		else {
 			/* no */
-			choice = @"No";
+			choice = NSLocalizedString(@"NO", nil);
 		}
 		
 		_candidateName.text = [NSString stringWithFormat:@"%@ on %@", choice, _measureVote.forMeasure.identifier];

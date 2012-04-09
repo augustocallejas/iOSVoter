@@ -26,6 +26,7 @@
 @property (nonatomic, retain) id<UIWebViewControllerDelegate> delegate;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *closeButton;
 
 - (IBAction)dismissView:(id)sender;
 

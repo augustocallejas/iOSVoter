@@ -279,7 +279,7 @@
 				}
 			}
 			else {
-				cell.minorTitle.text = @"Undecided";
+				cell.minorTitle.text = NSLocalizedString(@"Undecided", nil);
 			}
 		}
 		else {
@@ -418,7 +418,7 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.minorTitle.text = @"<Not selected>";
+			cell.minorTitle.text = NSLocalizedString(@"NotSelected", nil);
 		}
 		else if (count == 1)
 		{
@@ -732,7 +732,7 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
 	[fetchRequest setPredicate:predicate];
 	
-	NSString *headerTitle = @"Unknown";
+	NSString *headerTitle = NSLocalizedString(@"Unknown", nil);
 	NSError *error = nil;
 	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if ([fetchResults count] > 0) {
@@ -764,7 +764,7 @@
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
 	[fetchRequest setPredicate:predicate];
 	
-	NSString *headerTitle = @"Unknown";
+	NSString *headerTitle = NSLocalizedString(@"Unknown", nil);
 	NSError *error = nil;
 	NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if ([fetchResults count] > 0) {

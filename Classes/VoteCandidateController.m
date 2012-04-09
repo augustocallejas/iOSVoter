@@ -57,7 +57,11 @@
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
 	
 	if (vote != nil && vote.forCandidate != candidate) {
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to change your vote?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ChangeVoteWarning", nil)
+																 delegate:self
+														cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
+														otherButtonTitles:nil];
 		actionSheet.tag = ((UIButton *)sender).tag;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
 		[actionSheet release];
@@ -160,7 +164,7 @@
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
 														message:message 
 													   delegate:nil 
-											  cancelButtonTitle:@"OK"
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
@@ -178,7 +182,7 @@
 	ListEndorsementsController *controller = [[ListEndorsementsController alloc] initWithStyle:UITableViewStyleGrouped];
 	controller.position = position;
 	controller.candidate = candidate;
-	controller.title = @"Endorsements";
+	controller.title = NSLocalizedString(@"ListEndorsementsTitle", nil);
 	controller.managedObjectContext = [candidate managedObjectContext];
 	
 	[navController pushViewController:controller animated:YES];
@@ -368,7 +372,7 @@
 		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
 		cell.editEndorsement.hidden = NO;
-		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
+		[cell.editEndorsement setTitle:NSLocalizedString(@"EditEndorsement", nil) forState:UIControlStateNormal];
 	}
 	else {
 		/* hide the vote status image */

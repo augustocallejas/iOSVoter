@@ -6,9 +6,7 @@
    Copyright 2012 Canary Falls Software LLC. All rights reserved.
  */
 
-"OK" = "OK";
 "ZIPCodePrompt" = "Enter the ZIP Code where you are registered to vote.";
-"Join" = "Join";
 "AgreeStatement" = "By joining, you are agreeing to our";
 "TOS" = "Terms of Service";
 "Privacy" = "Privacy Policy";
@@ -19,6 +17,14 @@
 "HttpErrorTitle" = "Unable to connect to server";
 "BadZIPTitle" = "Invalid ZIP Code";
 "BadZIPMessage" = "Invalid ZIP Code, please review and try again";
+
+/* SupervoteViewController */
+"Join" = "Join";
+
+/* UIWebViewController */
+"Close" = "Close";
+
+/* FacebookIntegrationViewController */
 "Setup" = "Setup";
 "FacebookSetup" = "Accessing your Facebook account will allow you to view your friends' votes on upcoming elections.  Would you like to set up Facebook access?";
 "LaterFacebookTitle" = "Facebook Setup";
@@ -31,6 +37,10 @@
 "TutorialParagraph2" = "No lock means your friends can view your endorsement.";
 "ShowBallotsButton" = "Show my ballots";
 
+/* DisplayBallotController */
+"Unknown" = "Desconocido";
+"NotSelected" = "Not selected";
+
 /* SettingsController */
 "FacebookSettings" = "Facebook Settings";
 "LogIntoFacebookButton" = "Log into Facebook";
@@ -42,15 +52,24 @@
 
 /* CreateEndorsementViewController */
 "EnterEndorsement" = "Enter an optional endorsement below";
+"Save" = "Save";
 
 /* AboutUsViewController */
 "SupervoteDescription" = "Supervote is a experiment in democracy.  We strive to provide accurate and timely election information.  If there are any corrections you would like to tell us about, please contact us below.  If there are any local elections we are not covering, please contact us below.";
+"EmailUs" = "E-mail: support@supervote.org";
+"FacebookUs" = "facebook.com/supervote";
+"TwitterUs" = "Twitter: @supervote";
+"IconsFrom" = "Icons from:";
 
 /* common */
+"OK" = "OK";
 "ViewableByFriends" = "Viewable by Friends";
 "YES" = "Yes";
 "NO" = "No";
 "Cancel" = "Cancel";
+"EditEndorsement" = "Edit endorsement";
+"ChangeVoteWarning" = "Are you sure you want to change your vote?";
+"ListEndorsementsTitle" = "Endorsements";
 
 "MyBallots" = "My Ballots";
 "UpcomingElections" = "Upcoming Elections";

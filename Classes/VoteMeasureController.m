@@ -240,7 +240,11 @@
 	if (_vote != nil && !((_vote.vote == nil && voteSelected == nil) ||
 						  (_vote.vote != nil && voteSelected != nil && [voteSelected boolValue] == [_vote.vote boolValue]))) {
 		/* choosing a different vote */
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to change your vote?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ChangeVoteWarning", nil)
+																 delegate:self
+														cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
+														otherButtonTitles:nil];
 		actionSheet.tag = button.tag;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
 		[actionSheet release];
@@ -381,7 +385,7 @@
 	ListEndorsementsController *controller = [[ListEndorsementsController alloc] initWithStyle:UITableViewStyleGrouped];
 	controller.measure = aMeasure;
 	controller.vote = aVote;
-	controller.title = @"Endorsements";
+	controller.title = NSLocalizedString(@"ListEndorsementsTitle", nil);
 	controller.managedObjectContext = [aMeasure managedObjectContext];
 	
 	[navController pushViewController:controller animated:YES];
@@ -472,7 +476,7 @@
 		/* enable the "edit endorsement" button */
 		cell.editEndorsement.enabled = YES;
 		cell.editEndorsement.hidden = NO;
-		[cell.editEndorsement setTitle:@"Edit endorsement" forState:UIControlStateNormal];
+		[cell.editEndorsement setTitle:NSLocalizedString(@"EditEndorsement", nil) forState:UIControlStateNormal];
 	}
 	else {
 		/* hide the vote status image */

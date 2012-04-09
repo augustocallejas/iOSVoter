@@ -13,8 +13,12 @@
 
 @synthesize aboutUsLabel = _aboutUsLabel;
 @synthesize descriptionText;
+@synthesize emailUsButton;
+@synthesize facebookUsButton;
+@synthesize twitterUsButton;
 @synthesize tosButton;
 @synthesize privacyButton;
+@synthesize iconsFromLabel;
 
 #pragma mark -
 #pragma mark UIWebViewController methods
@@ -38,7 +42,7 @@
 	NSString* launchUrl = @"http://supervote.org/termsofservice.html";
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
-	controller.title = @"Terms of Service";
+	controller.title =NSLocalizedString(@"TOS", nil);
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
@@ -50,7 +54,7 @@
 	NSString* launchUrl = @"http://supervote.org/privacy.html";
 	
 	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
-	controller.title = @"Privacy Policy";
+	controller.title = NSLocalizedString(@"Privacy", nil);
 	controller.url = launchUrl;
 	controller.delegate = self;
 	
@@ -90,10 +94,17 @@
     [super viewDidLoad];
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	[_aboutUsLabel setFont:font];
+	[_aboutUsLabel setText:NSLocalizedString(@"ContactUs", nil)];
 	
 	[descriptionText setText:NSLocalizedString(@"SupervoteDescription", nil)];
+	
+	[emailUsButton setTitle:NSLocalizedString(@"EmailUs", nil) forState:UIControlStateNormal];
+	[facebookUsButton setTitle:NSLocalizedString(@"FacebookUs", nil) forState:UIControlStateNormal];
+	[twitterUsButton setTitle:NSLocalizedString(@"TwitterUs", nil) forState:UIControlStateNormal];
 	[tosButton setTitle:NSLocalizedString(@"TOS", nil) forState:UIControlStateNormal];
 	[privacyButton setTitle:NSLocalizedString(@"Privacy", nil) forState:UIControlStateNormal];
+	
+	[iconsFromLabel setText:NSLocalizedString(@"IconsFrom", nil)];
 }
 
 /*
