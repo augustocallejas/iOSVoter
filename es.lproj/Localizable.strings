@@ -41,6 +41,21 @@
 "Unknown" = "Desconocido";
 "NotSelected" = "No seleccionado";
 
+/* ListElectionsController */
+/* VoteCandidateController */
+/* VoteMeasureController */
+"HttpErrorTitle" = "Error de red";
+"HttpErrorMessage" = "No se puede conectar al servidor, por favor verifique su conexión de red y vuelva a intentarlo.";
+"ServerErrorTitle" = "Error en el servidor";
+"ListElectionsServerErrorMessage" = "No se puede obtener elecciones del servidor, por favor vuelve a intentarlo en unos minutos.";
+"SaveVoteServerErrorMessage" = "No se puede guardar su voto en el servidor, por favor vuelve a intentarlo en unos minutos.";
+"BadRequestTitle" = "Petición incorrecta";
+"BadRequestMessage" = "La aplicación envía una solicitud de mal en el servidor.";
+"ElectionClosedTitle" = "Elección cerrada";
+"ElectionClosedMessage" = "Esta elección se ha cerrado y no puede recibir nuevos votos.";
+"UnexpectedResponseTitle" = "Respuesta inesperada";
+"UnexpectedResponseMessage" = "El servidor ha devuelto una respuesta inesperada.";
+
 /* SettingsController */
 "FacebookSettings" = "Facebook Ajustes";
 "LogIntoFacebookButton" = "Iniciar sesión en Facebook";
@@ -55,7 +70,7 @@
 "Save" = "Ahorrar";
 
 /* AboutUsViewController */
-"SupervoteDescription" = "Supervote es un experimento en la democracia. Nos esforzamos por proporcionar información sobre la elección precisa y oportuna. Si hay correcciones que le gustaría decirnos, por favor contacte con nosotros a continuación. Si hay elecciones locales no están cubriendo, por favor contacte con nosotros a continuación.";
+"SupervoteDescription" = "Supervote es un experimento en la democracia. Nos esforzamos por proporcionar información sobre la elección precisa y oportuna. Si hay correcciones que le gustaría decirnos, por favor contacte nosotros. Si hay elecciones locales no están cubriendo, por favor contacte nosotros.";
 "EmailUs" = "E-mail: support@supervote.org";
 "FacebookUs" = "facebook.com/supervote";
 "TwitterUs" = "Twitter: @supervote";

@@ -41,6 +41,21 @@
 "Unknown" = "Desconocido";
 "NotSelected" = "Not selected";
 
+/* ListElectionsController */
+/* VoteCandidateController */
+/* VoteMeasureController */
+"HttpErrorTitle" = "Network Error";
+"HttpErrorMessage" = "Unable to connect to the server, please verify your network connection and try again.";
+"ServerErrorTitle" = "Server Error";
+"ListElectionsServerErrorMessage" = "Unable to retrieve elections from the server, please try again in a few minutes.";
+"SaveVoteServerErrorMessage" = "Unable to save vote at the server, please try again in a few minutes.";
+"BadRequestTitle" = "Bad Request";
+"BadRequestMessage" = "The app sent a bad request to the server.";
+"ElectionClosedTitle" = "Election Closed";
+"ElectionClosedMessage" = "This election has closed and cannot receive any new votes.";
+"UnexpectedResponseTitle" = "Unexpected Response";
+"UnexpectedResponseMessage" = "The server returned an unexpected response.";
+
 /* SettingsController */
 "FacebookSettings" = "Facebook Settings";
 "LogIntoFacebookButton" = "Log into Facebook";

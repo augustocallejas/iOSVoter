@@ -139,25 +139,25 @@
 		NSString *message = nil;
 		switch (status) {
 			case HTTP_ERROR:
-				title = @"Network Error";
-				message = @"Unable to connect to server, please verify your network connection and try again.";
+				title = NSLocalizedString(@"HttpErrorTitle", nil);
+				message = NSLocalizedString(@"HttpErrorMessage", nil);
 				break;
 			case SERVER_ERROR:
-				title = @"Server Error";
-				message = @"Unable to save vote at the server, please try again in a few minutes.";
+				title = NSLocalizedString(@"ServerErrorTitle", nil);
+				message = NSLocalizedString(@"SaveVoteServerErrorMessage", nil);
 				break;
 			case BAD_REQUEST:
-				title = @"Bad Request";
-				message = @"The app sent a bad request to the server.";
+				title = NSLocalizedString(@"BadRequestTitle", nil);
+				message = NSLocalizedString(@"BadRequestMessage", nil);
 				break;
 			case ELECTION_CLOSED:
-				title = @"Election Closed";
-				message = @"This election has closed and cannot receive any new votes.";
+				title = NSLocalizedString(@"ElectionClosedTitle", nil);
+				message = NSLocalizedString(@"ElectionClosedMessage", nil);
 				break;
 			case UNEXPECTED_RESPONSE:
 			default:
-				title = @"Unexpected Response";
-				message	= @"The server returned an unexpected response.";
+				title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
+				message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
 				break;
 		}
 		
