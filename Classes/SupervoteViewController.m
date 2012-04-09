@@ -136,18 +136,6 @@
 	[controller release];
 }
 
-- (IBAction)doCopyrightButton {
-	NSString* launchUrl = @"http://canaryfalls.com";
-	
-	UIWebViewController *controller = [[UIWebViewController alloc] initWithNibName:@"UIWebViewController" bundle:nil];
-	controller.title = @"Canary Falls";
-	controller.url = launchUrl;
-	controller.delegate = self;
-	
-	[self presentModalViewController:controller animated:YES];
-	[controller release];
-}
-
 - (IBAction)doJoinButtonSendZip {
 	NSString *ZIP;
 	

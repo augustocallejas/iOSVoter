@@ -37,7 +37,6 @@
 - (IBAction)doTermsOfService;
 - (IBAction)doPrivacy;
 - (void) didDismissModalView;
-- (IBAction)doCopyrightButton;
 - (IBAction)doJoinButtonSendZip;
 
 @end
