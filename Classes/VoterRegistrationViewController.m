@@ -23,7 +23,7 @@
 	NSError *error = nil;
 	NSDictionary *profile = [self.client getProfileWithError:&error];
 	if (error != nil) {
-		LogError(@"Error while retrieving registration: %@", [error userInfo]);
+		LogError(@"Error while retrieving registration: %@", [error localizedDescription]);
 	}
 	else {
 		[self.client findOrInsertGovernmentRegistration:profile withDisplayOrder:0 withParent:nil withError:&error];
@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	/* TODO: only loaded once? */
 	if (self.registrations == nil) {
 		[self getRegistration];
 		[self loadRegistration];
@@ -103,17 +104,10 @@
 	return [self.registrations count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//	return [NSString stringWithFormat:@"Section %d", section];
-	return [[[(GovernmentRegistration *) [self.registrations objectAtIndex:section] government] governmentType] name];
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return 1;
 }
-
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,12 +116,16 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
 	GovernmentRegistration *registration = [self.registrations objectAtIndex:[indexPath section]];
 	cell.textLabel.text = registration.government.name;
+//	cell.detailTextLabel.text = @"detailText";
+	/* TODO: temporary */
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -172,9 +170,31 @@
 }
 */
 
-
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark UITableViewDelegate methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 32.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	/* http://www.iphonedevsdk.com/forum/iphone-sdk-development/5172-font-size-color-tableview-header.html */
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:22.0];
+	
+	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 32.0)] autorelease];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+	label.opaque = NO;
+	label.backgroundColor = [UIColor clearColor];
+	label.textColor = [UIColor darkGrayColor];
+	label.font = font;
+	label.adjustsFontSizeToFitWidth = YES;
+	label.minimumFontSize = 18.0;
+	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
+	label.text = [[[(GovernmentRegistration *) [self.registrations objectAtIndex:section] government] governmentType] name];
+	
+	[customView addSubview:label];
+	return customView;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.

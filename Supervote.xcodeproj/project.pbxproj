@@ -83,6 +83,8 @@
 		1410F78D15688B7900B844E4 /* DistrictRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F78715688B7900B844E4 /* DistrictRegistration.m */; };
 		1410F8441569777400B844E4 /* VoterRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F8421569777400B844E4 /* VoterRegistrationViewController.m */; };
 		1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410F8431569777400B844E4 /* VoterRegistrationViewController.xib */; };
+		1410F9B4156A0C4F00B844E4 /* SegmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F9B3156A0C4F00B844E4 /* SegmentsController.m */; };
+		1410F9CA156A0E8300B844E4 /* NSArray+PerformSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F9C9156A0E8300B844E4 /* NSArray+PerformSelector.m */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -258,6 +260,10 @@
 		1410F8411569777400B844E4 /* VoterRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoterRegistrationViewController.h; sourceTree = "<group>"; };
 		1410F8421569777400B844E4 /* VoterRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoterRegistrationViewController.m; sourceTree = "<group>"; };
 		1410F8431569777400B844E4 /* VoterRegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = VoterRegistrationViewController.xib; path = Classes/VoterRegistrationViewController.xib; sourceTree = "<group>"; };
+		1410F9B2156A0C4F00B844E4 /* SegmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentsController.h; sourceTree = "<group>"; };
+		1410F9B3156A0C4F00B844E4 /* SegmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentsController.m; sourceTree = "<group>"; };
+		1410F9C8156A0E8300B844E4 /* NSArray+PerformSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PerformSelector.h"; sourceTree = "<group>"; };
+		1410F9C9156A0E8300B844E4 /* NSArray+PerformSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PerformSelector.m"; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -433,6 +439,7 @@
 			children = (
 				14E74AE0143591BE002E2F82 /* App Delegate */,
 				1423B41014081697006F8DBF /* Controllers */,
+				1410F9C5156A0E6400B844E4 /* Misc */,
 				1423B40F14081680006F8DBF /* Models */,
 				1462F3DD141DA475007E31C1 /* Views */,
 				14A01B1D14789E0F0029ADFE /* Web */,
@@ -528,6 +535,15 @@
 			name = "App Icons";
 			sourceTree = "<group>";
 		};
+		1410F9C5156A0E6400B844E4 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				1410F9C8156A0E8300B844E4 /* NSArray+PerformSelector.h */,
+				1410F9C9156A0E8300B844E4 /* NSArray+PerformSelector.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
 		1423B40F14081680006F8DBF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,7 +588,6 @@
 		1423B41014081697006F8DBF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				14B84847152EC22200F8788E /* Tutorial */,
 				14B5F6161510500A00C21F98 /* AboutUsViewController.h */,
 				14B5F6171510500A00C21F98 /* AboutUsViewController.m */,
 				14E74AFA14359521002E2F82 /* CreateEndorsementViewController.h */,
@@ -587,10 +602,13 @@
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
 				14E7491614343C99002E2F82 /* ListEndorsementsController.h */,
 				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
+				1410F9B2156A0C4F00B844E4 /* SegmentsController.h */,
+				1410F9B3156A0C4F00B844E4 /* SegmentsController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
 				28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */,
+				14B84847152EC22200F8788E /* Tutorial */,
 				14F6533C14F9C0A600A13942 /* UIWebViewController.h */,
 				14F6533D14F9C0A600A13942 /* UIWebViewController.m */,
 				140904FD14660B5200B7B693 /* ViewEndorsementController.h */,
@@ -1075,6 +1093,8 @@
 				1410F78C15688B7900B844E4 /* DistrictType.m in Sources */,
 				1410F78D15688B7900B844E4 /* DistrictRegistration.m in Sources */,
 				1410F8441569777400B844E4 /* VoterRegistrationViewController.m in Sources */,
+				1410F9B4156A0C4F00B844E4 /* SegmentsController.m in Sources */,
+				1410F9CA156A0E8300B844E4 /* NSArray+PerformSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,14 +19,14 @@
 	FacebookClient *_facebookClient;
 	
 	UILabel *_facebookLabel;
-	UILabel *_accountLabel;
+//	UILabel *_accountLabel;
 	UILabel *_supportLabel;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *facebookLabel;
 @property(nonatomic, retain) IBOutlet UIButton *facebookLoginButton;
-@property(nonatomic, retain) IBOutlet UILabel *accountLabel;
-@property(nonatomic, retain) IBOutlet UIButton *changeZIPButton;
+//@property(nonatomic, retain) IBOutlet UILabel *accountLabel;
+//@property(nonatomic, retain) IBOutlet UIButton *changeZIPButton;
 @property(nonatomic, retain) IBOutlet UILabel *supportLabel;
 @property(nonatomic, retain) IBOutlet UIButton *resetAppButton;
 

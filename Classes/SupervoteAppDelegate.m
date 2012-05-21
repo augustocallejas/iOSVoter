@@ -13,6 +13,7 @@
 #import "FacebookIntegrationViewController.h"
 #import "FeedController.h"
 #import "ListElectionsController.h"
+#import "NSArray+PerformSelector.h"
 #import "QuickTutorialViewController.h"
 #import "SettingsController.h"
 #import "SupervoteViewController.h"
@@ -24,8 +25,11 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize mainAppController;
+@synthesize segmentsController;
+@synthesize segmentedControl;
 @synthesize facebookClient = _facebookClient;
 @synthesize supervoteClient = _supervoteClient;
+
 
 // Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -190,33 +194,49 @@
 			//		feeds.client = self.supervoteClient;
 			
 			ListElectionsController *elections = [[[ListElectionsController alloc] initWithNibName:@"ListElections" bundle:[NSBundle mainBundle]] autorelease];
-//			elections.title = @"My Ballots";
 			elections.title = NSLocalizedString(@"MyBallots", nil);
 			elections.tabBarItem.image = [UIImage imageNamed:@"check-64.png"];
 			elections.managedObjectContext = self.managedObjectContext;
 			elections.client = self.supervoteClient;
 			UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
 			
-			SettingsController *settings = [[[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]] autorelease];
-			settings.managedObjectContext = self.managedObjectContext;
-//			settings.title = @"Settings";
+			SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]];
 			settings.title = NSLocalizedString(@"Settings", nil);
-			settings.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
+			settings.managedObjectContext = self.managedObjectContext;
 			settings.client = self.supervoteClient;
 			settings.facebookClient = self.facebookClient;
 			
-			VoterRegistrationViewController *registration = [[[VoterRegistrationViewController alloc] initWithNibName:@"VoterRegistrationViewController" bundle:[NSBundle mainBundle]] autorelease];
-			registration.title = @"TEST";
+			VoterRegistrationViewController *registration = [[VoterRegistrationViewController alloc] initWithNibName:@"VoterRegistrationViewController" bundle:[NSBundle mainBundle]];
+			registration.title = NSLocalizedString(@"Registration", nil);
 			registration.context = self.managedObjectContext;
 			registration.client = self.supervoteClient;
 			
+			/* http://redartisan.com/2010/6/27/uisegmented-control-view-switching-revisited */
+			NSArray *viewControllers = [NSArray arrayWithObjects:registration, settings, nil];
+			[settings release];
+			[registration release];
+			
+			UINavigationController *navigationController = [[UINavigationController alloc] init];
+			navigationController.title = NSLocalizedString(@"Settings", nil);
+			navigationController.tabBarItem.image = [UIImage imageNamed:@"advanced.png"];
+			
+			segmentsController = [[SegmentsController alloc] initWithNavigationController:navigationController viewControllers:viewControllers];
+			segmentedControl = [[UISegmentedControl alloc] initWithItems:[viewControllers arrayByPerformingSelector:@selector(title)]];
+			segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+			
+			[segmentedControl addTarget:segmentsController
+								 action:@selector(indexDidChangeForSegmentedControl:)
+					   forControlEvents:UIControlEventValueChanged];
+			
+			segmentedControl.selectedSegmentIndex = 0;
+			[segmentsController indexDidChangeForSegmentedControl:segmentedControl];
+			
 			AboutUsViewController *aboutUs = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:[NSBundle mainBundle]];
-//			aboutUs.title = @"Contact Us";
 			aboutUs.title = NSLocalizedString(@"ContactUs", nil);
 			aboutUs.tabBarItem.image = [UIImage imageNamed:@"comment.png"];
 			
-			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, registration, aboutUs, nil] autorelease]];
-			//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
+			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, navigationController, aboutUs, nil] autorelease]];
+			[navigationController release];
 			[aboutUs release];
 			
 			//if (currentView == nil) {
@@ -373,6 +393,8 @@
 	}
 	self.viewController = nil;
 	self.mainAppController = nil;
+	self.segmentsController = nil;
+	self.segmentedControl = nil;
     [window release];
     [super dealloc];
 }

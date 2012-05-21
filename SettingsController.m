@@ -15,8 +15,8 @@
 
 @synthesize facebookLabel = _facebookLabel;
 @synthesize facebookLoginButton;
-@synthesize accountLabel = _accountLabel;
-@synthesize changeZIPButton;
+//@synthesize accountLabel = _accountLabel;
+//@synthesize changeZIPButton;
 @synthesize supportLabel = _supportLabel;
 @synthesize resetAppButton;
 
@@ -277,9 +277,9 @@
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	[_facebookLabel setFont:font];
 	[_facebookLabel setText:NSLocalizedString(@"FacebookSettings", nil)];
-	[_accountLabel setFont:font];
-	[_accountLabel setText:NSLocalizedString(@"AccountSettings", nil)];
-	[changeZIPButton setTitle:NSLocalizedString(@"ChangeZIPButton", nil) forState:UIControlStateNormal];
+//	[_accountLabel setFont:font];
+//	[_accountLabel setText:NSLocalizedString(@"AccountSettings", nil)];
+//	[changeZIPButton setTitle:NSLocalizedString(@"ChangeZIPButton", nil) forState:UIControlStateNormal];
 	[_supportLabel setFont:font];
 	[resetAppButton setTitle:NSLocalizedString(@"ResetApplicationButton", nil) forState:UIControlStateNormal];
 	
