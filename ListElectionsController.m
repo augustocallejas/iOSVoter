@@ -341,7 +341,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	LogDebug(@"View will appear");
+//	LogDebug(@"View will appear");
 }
 
 - (void)viewDidAppear:(BOOL)animated {

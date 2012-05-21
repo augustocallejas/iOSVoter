@@ -75,6 +75,14 @@
 		140F42AD150D3FFC004E61B5 /* state-WY.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4278150D3FFC004E61B5 /* state-WY.png */; };
 		140F42CC150D74F9004E61B5 /* us.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F42CB150D74F9004E61B5 /* us.png */; };
 		140F4326150DA4AC004E61B5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 140F4325150DA4AC004E61B5 /* Icon@2x.png */; };
+		1410F78815688B7900B844E4 /* Government.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F77D15688B7900B844E4 /* Government.m */; };
+		1410F78915688B7900B844E4 /* GovernmentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F77F15688B7900B844E4 /* GovernmentType.m */; };
+		1410F78A15688B7900B844E4 /* GovernmentRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F78115688B7900B844E4 /* GovernmentRegistration.m */; };
+		1410F78B15688B7900B844E4 /* District.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F78315688B7900B844E4 /* District.m */; };
+		1410F78C15688B7900B844E4 /* DistrictType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F78515688B7900B844E4 /* DistrictType.m */; };
+		1410F78D15688B7900B844E4 /* DistrictRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F78715688B7900B844E4 /* DistrictRegistration.m */; };
+		1410F8441569777400B844E4 /* VoterRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410F8421569777400B844E4 /* VoterRegistrationViewController.m */; };
+		1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1410F8431569777400B844E4 /* VoterRegistrationViewController.xib */; };
 		1423B0B814021007006F8DBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1423B0B714021007006F8DBF /* CoreData.framework */; };
 		1423B0BB1404B6DB006F8DBF /* Supervote.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */; };
 		1423B32914075237006F8DBF /* VoteCandidate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1423B32814075237006F8DBF /* VoteCandidate.xib */; };
@@ -235,6 +243,21 @@
 		140F4278150D3FFC004E61B5 /* state-WY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state-WY.png"; sourceTree = "<group>"; };
 		140F42CB150D74F9004E61B5 /* us.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = us.png; sourceTree = "<group>"; };
 		140F4325150DA4AC004E61B5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		1410F77C15688B7900B844E4 /* Government.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Government.h; sourceTree = "<group>"; };
+		1410F77D15688B7900B844E4 /* Government.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Government.m; sourceTree = "<group>"; };
+		1410F77E15688B7900B844E4 /* GovernmentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GovernmentType.h; sourceTree = "<group>"; };
+		1410F77F15688B7900B844E4 /* GovernmentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GovernmentType.m; sourceTree = "<group>"; };
+		1410F78015688B7900B844E4 /* GovernmentRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GovernmentRegistration.h; sourceTree = "<group>"; };
+		1410F78115688B7900B844E4 /* GovernmentRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GovernmentRegistration.m; sourceTree = "<group>"; };
+		1410F78215688B7900B844E4 /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = District.h; sourceTree = "<group>"; };
+		1410F78315688B7900B844E4 /* District.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = District.m; sourceTree = "<group>"; };
+		1410F78415688B7900B844E4 /* DistrictType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrictType.h; sourceTree = "<group>"; };
+		1410F78515688B7900B844E4 /* DistrictType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrictType.m; sourceTree = "<group>"; };
+		1410F78615688B7900B844E4 /* DistrictRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrictRegistration.h; sourceTree = "<group>"; };
+		1410F78715688B7900B844E4 /* DistrictRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrictRegistration.m; sourceTree = "<group>"; };
+		1410F8411569777400B844E4 /* VoterRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoterRegistrationViewController.h; sourceTree = "<group>"; };
+		1410F8421569777400B844E4 /* VoterRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoterRegistrationViewController.m; sourceTree = "<group>"; };
+		1410F8431569777400B844E4 /* VoterRegistrationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = VoterRegistrationViewController.xib; path = Classes/VoterRegistrationViewController.xib; sourceTree = "<group>"; };
 		1423B0B714021007006F8DBF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Supervote.xcdatamodel; sourceTree = "<group>"; };
 		1423B32814075237006F8DBF /* VoteCandidate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteCandidate.xib; sourceTree = "<group>"; };
@@ -514,6 +537,12 @@
 				1423B64114087FE5006F8DBF /* BallotVote.m */,
 				1423B44914082CE3006F8DBF /* Candidate.h */,
 				1423B44A14082CE3006F8DBF /* Candidate.m */,
+				1410F78215688B7900B844E4 /* District.h */,
+				1410F78315688B7900B844E4 /* District.m */,
+				1410F78615688B7900B844E4 /* DistrictRegistration.h */,
+				1410F78715688B7900B844E4 /* DistrictRegistration.m */,
+				1410F78415688B7900B844E4 /* DistrictType.h */,
+				1410F78515688B7900B844E4 /* DistrictType.m */,
 				1423B44614082CB8006F8DBF /* Election.h */,
 				1423B44714082CB8006F8DBF /* Election.m */,
 				1474EF56142FC8CB004D35AD /* FacebookFriend.h */,
@@ -524,6 +553,12 @@
 				14AC6666141D581F00F29A71 /* FriendBallotVote.m */,
 				14AC6669141D581F00F29A71 /* FriendMeasureVote.h */,
 				14AC666A141D581F00F29A71 /* FriendMeasureVote.m */,
+				1410F77C15688B7900B844E4 /* Government.h */,
+				1410F77D15688B7900B844E4 /* Government.m */,
+				1410F78015688B7900B844E4 /* GovernmentRegistration.h */,
+				1410F78115688B7900B844E4 /* GovernmentRegistration.m */,
+				1410F77E15688B7900B844E4 /* GovernmentType.h */,
+				1410F77F15688B7900B844E4 /* GovernmentType.m */,
 				14399C09140E168C007269A3 /* Measure.h */,
 				14399C0A140E168C007269A3 /* Measure.m */,
 				14399C05140E168C007269A3 /* MeasureVote.h */,
@@ -564,6 +599,8 @@
 				1423B32C1407527E006F8DBF /* VoteCandidateController.m */,
 				14399EF0141073FD007269A3 /* VoteMeasureController.h */,
 				14399EF1141073FD007269A3 /* VoteMeasureController.m */,
+				1410F8411569777400B844E4 /* VoterRegistrationViewController.h */,
+				1410F8421569777400B844E4 /* VoterRegistrationViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -735,6 +772,7 @@
 				140904FF14660B5200B7B693 /* ViewEndorsementController.xib */,
 				1423B32814075237006F8DBF /* VoteCandidate.xib */,
 				14399F1114107E8F007269A3 /* VoteMeasure.xib */,
+				1410F8431569777400B844E4 /* VoterRegistrationViewController.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -963,6 +1001,7 @@
 				14B5F61A1510500A00C21F98 /* AboutUsViewController.xib in Resources */,
 				14B5F67A1510639700C21F98 /* comment.png in Resources */,
 				14C999AF152812B60041ACDA /* Localizable.strings in Resources */,
+				1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1068,13 @@
 				14F6533F14F9C0A600A13942 /* UIWebViewController.m in Sources */,
 				14B5F6191510500A00C21F98 /* AboutUsViewController.m in Sources */,
 				14C997D01527A2E30041ACDA /* LoggerClient.m in Sources */,
+				1410F78815688B7900B844E4 /* Government.m in Sources */,
+				1410F78915688B7900B844E4 /* GovernmentType.m in Sources */,
+				1410F78A15688B7900B844E4 /* GovernmentRegistration.m in Sources */,
+				1410F78B15688B7900B844E4 /* District.m in Sources */,
+				1410F78C15688B7900B844E4 /* DistrictType.m in Sources */,
+				1410F78D15688B7900B844E4 /* DistrictRegistration.m in Sources */,
+				1410F8441569777400B844E4 /* VoterRegistrationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

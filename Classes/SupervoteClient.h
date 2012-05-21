@@ -10,6 +10,8 @@
 
 #import "BallotVote.h"
 #import "Election.h"
+#import "Government.h"
+#import "GovernmentType.h"
 #import "MeasureVote.h"
 
 typedef enum {
@@ -31,6 +33,10 @@ typedef enum {
 - (id)initWithContext:(NSManagedObjectContext *)context;
 - (BOOL)isRegistered;
 - (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error;
+- (NSDictionary *)getProfileWithError:(NSError **)error;
+- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
+- (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
+- (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error;
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (vote_status)sendBallotVote:(BallotVote *)vote;

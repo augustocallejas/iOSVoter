@@ -16,6 +16,7 @@
 #import "QuickTutorialViewController.h"
 #import "SettingsController.h"
 #import "SupervoteViewController.h"
+#import "VoterRegistrationViewController.h"
 
 
 @implementation SupervoteAppDelegate
@@ -204,12 +205,17 @@
 			settings.client = self.supervoteClient;
 			settings.facebookClient = self.facebookClient;
 			
+			VoterRegistrationViewController *registration = [[[VoterRegistrationViewController alloc] initWithNibName:@"VoterRegistrationViewController" bundle:[NSBundle mainBundle]] autorelease];
+			registration.title = @"TEST";
+			registration.context = self.managedObjectContext;
+			registration.client = self.supervoteClient;
+			
 			AboutUsViewController *aboutUs = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:[NSBundle mainBundle]];
 //			aboutUs.title = @"Contact Us";
 			aboutUs.title = NSLocalizedString(@"ContactUs", nil);
 			aboutUs.tabBarItem.image = [UIImage imageNamed:@"comment.png"];
 			
-			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, aboutUs, nil] autorelease]];
+			[tabBarController setViewControllers:[[[NSArray alloc] initWithObjects:electionNavigation, settings, registration, aboutUs, nil] autorelease]];
 			//		[controller setViewControllers:[[[NSArray alloc] initWithObjects:feeds, electionNavigation, settings, nil] autorelease]];
 			[aboutUs release];
 			

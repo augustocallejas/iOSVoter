@@ -13,11 +13,14 @@
 #import "Friend.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
+#import "Government.h"
+#import "GovernmentRegistration.h"
+#import "GovernmentType.h"
 #import "Measure.h"
 #import "Position.h"
 
 static NSString *kDeviceIDHeaderKey = @"DeviceID";
-static NSString* kAPIUrl = @"http://localhost:9000";
+static NSString* kAPIUrl = @"http://localhost:9999";
 
 @implementation SupervoteClient
 
@@ -75,6 +78,181 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	}
 	
 	return registered;
+}
+
+- (NSDictionary *)getProfileWithError:(NSError **)error {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/profile"];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request startSynchronous];
+	
+	[request startSynchronous];
+	*error = [request error];
+	if (*error == nil) {
+		if ([request responseStatusCode] == 200) {
+			
+			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+			//NSLog(@"JSON: %@", json);
+			NSError *parseError = nil;
+			id profile = [parser objectWithString:json error:&parseError];	
+			[json release];
+			
+			if (parseError != nil) {
+				NSLog(@"Parse error: %@", [parseError userInfo]);
+			}
+			else {
+				//NSLog(@"Got profile: %@", profile);
+			}
+			
+			return profile;
+			
+		}
+	}
+	
+	return nil;
+}
+
+- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error {
+	/* TODO: check if value is nil? */
+	NSDictionary *governmentObj = [object objectForKey:@"government"];
+	
+	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:error];
+	if (*error == nil) {
+		NSNumber *dateValue = [object objectForKey:@"createdTime"];
+		NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+		
+		/* query for existing GovernmentRegistration at displayOrder */
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		[request setFetchLimit:1];
+		
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
+		[request setEntity:entity];
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayOrder = %@", [NSNumber numberWithInt:displayOrder]];
+		[request setPredicate:predicate];
+		
+		NSArray *results = [_context executeFetchRequest:request error:error];
+		[request release];
+
+		if (*error == nil) {
+			if (results != nil && [results count] == 1) {
+				GovernmentRegistration *currentRegistration = [results objectAtIndex:0];
+				
+				LogDebug(@"Existing GovernmentRegistration, should check and replace if necessary: %@", currentRegistration.government.name);
+			}
+			else {
+				LogDebug(@"Inserting GovernmentRegistration: %@", government.name);
+				
+				/* TODO: currently only inserting... */
+				GovernmentRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
+				registration.displayOrder = [NSNumber numberWithInt:displayOrder];
+				registration.government = government;
+				registration.createdTime = createdTime;
+				[createdTime release];
+				
+				if ([_context save:error]) {
+					
+					NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
+					if (governmentRegistrations != nil) {
+						for (NSDictionary *governmentRegistrationObj in governmentRegistrations) {
+							[self findOrInsertGovernmentRegistration:governmentRegistrationObj withDisplayOrder:(displayOrder+1) withParent:government withError:error];
+							
+							if (*error != nil) {
+								return;
+							}
+						}
+					}
+					
+					NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
+					if (districtRegistrations != nil) {
+						/* TODO: */
+					}
+				}
+			}
+		}
+	}
+}
+
+- (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
+	/* TODO: check if value is nil? */
+	NSDictionary *governmentTypeObj = [object objectForKey:@"governmentType"];
+	
+	GovernmentType *governmentType = [self findOrInsertGovernmentType:governmentTypeObj withError:error];
+	if (*error == nil) {
+		NSString *name = [object objectForKey:@"name"];
+		id shortName = [object objectForKey:@"shortName"];
+		
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		[request setFetchLimit:1];
+		
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Government" inManagedObjectContext:_context];
+		[request setEntity:entity];
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && governmentType = %@", name, governmentType];
+		[request setPredicate:predicate];
+		
+		NSArray *results = [_context executeFetchRequest:request error:error];
+		[request release];
+		
+		if (*error == nil) {
+			if (results != nil && [results count] == 1) {
+				return [results objectAtIndex:0];
+			}
+			
+			/* create and return Government instance */
+			Government *government = [NSEntityDescription insertNewObjectForEntityForName:@"Government" inManagedObjectContext:_context];
+			government.name = name;
+			government.shortName = shortName == [NSNull null] ? nil : shortName;
+			government.governmentType = governmentType;
+			if (parent != nil) {
+				government.parent = parent;
+			}
+			
+			if ([_context save:error]) {
+				return government;
+			}
+		}
+	}
+	
+	return nil;
+}
+
+- (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error {
+	/* TODO: check if values are not nil? */
+	NSString *idValue = [object objectForKey:@"id"];
+	NSString *name = [object objectForKey:@"name"];
+	NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:1];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"GovernmentType" inManagedObjectContext:_context];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
+	[request setPredicate:predicate];
+	
+	NSArray *results = [_context executeFetchRequest:request error:error];
+	[request release];
+
+	if (*error == nil) {
+		if (results != nil && [results count] == 1) {
+			return [results objectAtIndex:0];
+		}
+		
+		/* create and return GovernmentType instance */
+		GovernmentType *governmentType = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentType" inManagedObjectContext:_context];
+		governmentType.id = idValue;
+		governmentType.name = name;
+		governmentType.displayOrder = displayOrder;
+		
+		if ([_context save:error]) {
+			return governmentType;
+		}
+	}
+	
+	return nil;
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
