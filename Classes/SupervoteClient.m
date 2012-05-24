@@ -136,13 +136,25 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		[request release];
 
 		if (*error == nil) {
+
+			BOOL insertObject = YES;
 			if (results != nil && [results count] == 1) {
 				GovernmentRegistration *currentRegistration = [results objectAtIndex:0];
 				
-				LogDebug(@"Existing GovernmentRegistration, should check and replace if necessary: %@", currentRegistration.government.name);
+				if ([currentRegistration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
+					LogDebug(@"Current GovernmentRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", currentRegistration.createdTime, createdTime);
+					
+					[_context deleteObject:currentRegistration];
+				}
+				else {
+					LogDebug(@"Current GovernmentRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", currentRegistration.createdTime, createdTime);
+					
+					insertObject = NO;
+				}
 			}
-			else {
-				LogDebug(@"Inserting GovernmentRegistration: %@", government.name);
+			
+			if (insertObject) {
+				LogDebug(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)", government.governmentType.name, government.name, displayOrder, createdTime);
 				
 				/* TODO: currently only inserting... */
 				GovernmentRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
@@ -151,23 +163,24 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration.createdTime = createdTime;
 				[createdTime release];
 				
-				if ([_context save:error]) {
-					
-					NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
-					if (governmentRegistrations != nil) {
-						for (NSDictionary *governmentRegistrationObj in governmentRegistrations) {
-							[self findOrInsertGovernmentRegistration:governmentRegistrationObj withDisplayOrder:(displayOrder+1) withParent:government withError:error];
-							
-							if (*error != nil) {
-								return;
-							}
+				[_context save:error];
+			}
+			
+			if (*error == nil) {
+				NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
+				if (governmentRegistrations != nil) {
+					for (NSDictionary *governmentRegistrationObj in governmentRegistrations) {
+						[self findOrInsertGovernmentRegistration:governmentRegistrationObj withDisplayOrder:(displayOrder+1) withParent:government withError:error];
+						
+						if (*error != nil) {
+							return;
 						}
 					}
-					
-					NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
-					if (districtRegistrations != nil) {
-						/* TODO: */
-					}
+				}
+				
+				NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
+				if (districtRegistrations != nil) {
+					/* TODO: */
 				}
 			}
 		}
