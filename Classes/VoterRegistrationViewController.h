@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) SupervoteClient *client;
 @property (nonatomic, retain) NSArray *registrations;
+@property (nonatomic, retain) NSMutableArray *sortedDistrictRegistrations;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "VoterRegistrationViewController.h"
 
+#import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
 
 @implementation VoterRegistrationViewController
@@ -15,6 +16,7 @@
 @synthesize context;
 @synthesize client;
 @synthesize registrations;
+@synthesize sortedDistrictRegistrations;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -48,6 +50,31 @@
 	NSError *error = nil;
 	self.registrations = [self.context executeFetchRequest:fetchRequest error:&error];
 	[sort release];
+	
+	if (sortedDistrictRegistrations == nil) {
+		sortedDistrictRegistrations = [[NSMutableArray alloc] initWithCapacity:[self.registrations count]];
+	}
+	
+	NSSortDescriptor *sort2 =
+	[[NSSortDescriptor alloc] initWithKey:@"districtType.displayOrder" ascending:YES];
+	
+	NSArray *descriptors = [NSArray arrayWithObjects:sort, nil];
+	
+	for (GovernmentRegistration *registration in self.registrations) {
+		[sortedDistrictRegistrations addObject:[[registration.registrations allObjects] sortedArrayUsingDescriptors:descriptors]];
+	}
+	[sort2 release];
+	
+//	NSSortDescriptor * frequencyDescriptor =
+//    [[[NSSortDescriptor alloc] initWithKey:FREQUENCY
+//                                 ascending:YES] autorelease];
+//	
+//	id obj;
+//	NSEnumerator * enumerator = [array objectEnumerator];
+//	while ((obj = [enumerator nextObject])) NSLog(@"%@", obj);
+//	
+//	NSArray * descriptors =
+//    [NSArray arrayWithObjects:frequencyDescriptor, nil];
 	
 	LogInfo([NSString stringWithFormat:@"Loaded %d government registration(s)", [self.registrations count]]);
 }
@@ -106,26 +133,40 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+	return 1 + [[[self.registrations objectAtIndex:section] registrations] count];
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     static NSString *CellIdentifier = @"VoterRegistrationViewController";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		//[cell.textLabel setFont:[UIFont systemFontOfSize:14.0]];
+		//[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
+		//	label.minimumFontSize = 18.0;
     }
     
     // Configure the cell...
 	GovernmentRegistration *registration = [self.registrations objectAtIndex:[indexPath section]];
-	cell.textLabel.text = registration.government.name;
-//	cell.detailTextLabel.text = @"detailText";
-	/* TODO: temporary */
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	
+	if ([indexPath row] == 0) {
+		cell.textLabel.text = registration.government.name;
+		//	cell.detailTextLabel.text = @"detailText";
+		/* TODO: temporary */
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	}
+	else {
+		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
+		DistrictRegistration *reg = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
+		
+		cell.textLabel.text = reg.district.name;
+		cell.detailTextLabel.text = reg.district.districtType.name;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	}
     
     return cell;
 }
@@ -228,6 +269,7 @@
 	self.context = nil;
 	self.client = nil;
 	self.registrations = nil;
+	self.sortedDistrictRegistrations = nil;
     [super dealloc];
 }
 

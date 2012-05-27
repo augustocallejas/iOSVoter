@@ -9,6 +9,8 @@
 #import "SupervoteClient.h"
 
 #import "Candidate.h"
+#import "District.h"
+#import "DistrictRegistration.h"
 #import "Election.h"
 #import "Friend.h"
 #import "FriendBallotVote.h"
@@ -93,7 +95,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		if ([request responseStatusCode] == 200) {
 			
 			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-			//NSLog(@"JSON: %@", json);
+			NSLog(@"JSON: %@", json);
 			NSError *parseError = nil;
 			id profile = [parser objectWithString:json error:&parseError];	
 			[json release];
@@ -119,9 +121,6 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:error];
 	if (*error == nil) {
-		NSNumber *dateValue = [object objectForKey:@"createdTime"];
-		NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
-		
 		/* query for existing GovernmentRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -136,18 +135,21 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		[request release];
 
 		if (*error == nil) {
-
+			NSNumber *dateValue = [object objectForKey:@"createdTime"];
+			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+			
+			GovernmentRegistration *registration = nil;
 			BOOL insertObject = YES;
 			if (results != nil && [results count] == 1) {
-				GovernmentRegistration *currentRegistration = [results objectAtIndex:0];
+				registration = [results objectAtIndex:0];
 				
-				if ([currentRegistration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
-					LogDebug(@"Current GovernmentRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", currentRegistration.createdTime, createdTime);
+				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
+					LogDebug(@"Current GovernmentRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
 					
-					[_context deleteObject:currentRegistration];
+					[_context deleteObject:registration];
 				}
 				else {
-					LogDebug(@"Current GovernmentRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", currentRegistration.createdTime, createdTime);
+					LogDebug(@"Current GovernmentRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
 					
 					insertObject = NO;
 				}
@@ -155,16 +157,16 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			
 			if (insertObject) {
 				LogDebug(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)", government.governmentType.name, government.name, displayOrder, createdTime);
-				
+							
 				/* TODO: currently only inserting... */
-				GovernmentRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
+				registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
 				registration.displayOrder = [NSNumber numberWithInt:displayOrder];
 				registration.government = government;
 				registration.createdTime = createdTime;
-				[createdTime release];
 				
 				[_context save:error];
 			}
+			[createdTime release];
 			
 			if (*error == nil) {
 				NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
@@ -181,10 +183,155 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
 				if (districtRegistrations != nil) {
 					/* TODO: */
+					for (NSDictionary *districtRegistrationObj in districtRegistrations) {
+						[self findOrInsertDistrictRegistration:districtRegistrationObj withParent:registration withError:error];
+						
+						if (*error != nil) {
+							return;
+						}
+					}
 				}
 			}
 		}
 	}
+}
+
+- (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error {
+	/* TODO: check if value is nil? */
+	NSDictionary *districtObj = [object objectForKey:@"district"];
+	
+	District *district = [self findOrInsertDistrict:districtObj withParent:parent.government withError:error];
+	if (*error == nil) {
+		/* query for existing DistrictRegistration at displayOrder */
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		[request setFetchLimit:1];
+		
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"DistrictRegistration" inManagedObjectContext:_context];
+		[request setEntity:entity];
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"registration = %@ and district = %@", parent, district];
+		[request setPredicate:predicate];
+		
+		NSArray *results = [_context executeFetchRequest:request error:error];
+		[request release];
+		
+		if (*error == nil) {
+			NSNumber *dateValue = [object objectForKey:@"createdTime"];
+			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+			
+			DistrictRegistration *registration = nil;
+			BOOL insertObject = YES;
+			if (results != nil && [results count] == 1) {
+				registration = [results objectAtIndex:0];
+				
+				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
+					LogDebug(@"Current DistrictRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
+					
+					[_context deleteObject:registration];
+				}
+				else {
+					LogDebug(@"Current DistrictRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
+					
+					insertObject = NO;
+				}
+			}
+			
+			if (insertObject) {
+				LogDebug(@"Inserting incoming DistrictRegistration: (type=%@, name=%@, createdTime=%@)", district.districtType.name, district.name, createdTime);
+				
+				/* TODO: currently only inserting... */
+				registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
+				registration.district = district;
+				registration.registration = parent;
+				registration.createdTime = createdTime;
+				
+				[_context save:error];
+			}
+			[createdTime release];
+		}
+	}
+}
+
+
+- (District*)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
+	/* TODO: check if value is nil? */
+	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
+	
+	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
+	if (*error == nil) {
+		NSString *name = [object objectForKey:@"name"];
+		id shortName = [object objectForKey:@"shortName"];
+		
+		NSFetchRequest *request = [[NSFetchRequest alloc] init];
+		[request setFetchLimit:1];
+		
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"District" inManagedObjectContext:_context];
+		[request setEntity:entity];
+		
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && districtType = %@", name, districtType];
+		[request setPredicate:predicate];
+		
+		NSArray *results = [_context executeFetchRequest:request error:error];
+		[request release];
+		
+		if (*error == nil) {
+			if (results != nil && [results count] == 1) {
+				return [results objectAtIndex:0];
+			}
+			
+			/* create and return Government instance */
+			District *district = [NSEntityDescription insertNewObjectForEntityForName:@"District" inManagedObjectContext:_context];
+			district.name = name;
+			district.shortName = shortName == [NSNull null] ? nil : shortName;
+			district.districtType = districtType;
+			if (parent != nil) {
+				district.inGovernment = parent;
+			}
+			
+			if ([_context save:error]) {
+				return district;
+			}
+		}
+	}
+	
+	return nil;
+}
+
+- (DistrictType *)findOrInsertDistrictType:(NSDictionary *)object withError:(NSError **)error {
+	/* TODO: check if values are not nil? */
+	NSString *idValue = [object objectForKey:@"id"];
+	NSString *name = [object objectForKey:@"name"];
+	NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
+	
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setFetchLimit:1];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"DistrictType" inManagedObjectContext:_context];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
+	[request setPredicate:predicate];
+	
+	NSArray *results = [_context executeFetchRequest:request error:error];
+	[request release];
+	
+	if (*error == nil) {
+		if (results != nil && [results count] == 1) {
+			return [results objectAtIndex:0];
+		}
+		
+		/* create and return DistrictType instance */
+		DistrictType *districtType = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictType" inManagedObjectContext:_context];
+		districtType.id = idValue;
+		districtType.name = name;
+		districtType.displayOrder = displayOrder;
+		
+		if ([_context save:error]) {
+			return districtType;
+		}
+	}
+	
+	return nil;
 }
 
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
