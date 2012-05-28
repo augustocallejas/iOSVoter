@@ -39,6 +39,7 @@ typedef enum {
 - (NSDictionary *)getProfileWithError:(NSError **)error;
 - (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
 - (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error;
+- (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **) error;
 - (District *)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
 - (DistrictType *)findOrInsertDistrictType:(NSDictionary *)object withError:(NSError **)error;
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;

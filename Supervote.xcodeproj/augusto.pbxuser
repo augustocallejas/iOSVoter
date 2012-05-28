@@ -120,6 +120,20 @@
 			sepNavVisRange = "{0, 814}";
 		};
 	};
+	1410F78015688B7900B844E4 /* GovernmentRegistration.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 868}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 800}";
+		};
+	};
+	1410F78115688B7900B844E4 /* GovernmentRegistration.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {752, 868}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 387}";
+		};
+	};
 	1410F78215688B7900B844E4 /* District.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {837, 462}}";
@@ -127,19 +141,33 @@
 			sepNavVisRange = "{0, 639}";
 		};
 	};
+	1410F78615688B7900B844E4 /* DistrictRegistration.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {978, 891}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 473}";
+		};
+	};
+	1410F78715688B7900B844E4 /* DistrictRegistration.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {978, 891}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 355}";
+		};
+	};
 	1410F8411569777400B844E4 /* VoterRegistrationViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {748, 429}}";
-			sepNavSelRange = "{446, 0}";
-			sepNavVisRange = "{0, 453}";
+			sepNavIntBoundsRect = "{{0, 0}, {729, 509}}";
+			sepNavSelRange = "{491, 0}";
+			sepNavVisRange = "{0, 528}";
 		};
 	};
 	1410F8421569777400B844E4 /* VoterRegistrationViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{6462, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{6513, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{6563, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 7332}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1048, 3055}}";
-			sepNavSelRange = "{3824, 0}";
-			sepNavVisRange = "{2006, 1166}";
+			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{8100, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{8151, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{8201, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 9011}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {936, 3692}}";
+			sepNavSelRange = "{4641, 0}";
+			sepNavVisRange = "{286, 1921}";
 		};
 	};
 	1410F86515697CF000B844E4 /* PBXTextBookmark */ = {
@@ -234,7 +262,7 @@
 		fRef = 1410F8411569777400B844E4 /* VoterRegistrationViewController.h */;
 		name = "VoterRegistrationViewController.h: 17";
 		rLen = 0;
-		rLoc = 446;
+		rLoc = 521;
 		rType = 0;
 		vrLen = 453;
 		vrLoc = 0;
@@ -348,7 +376,7 @@
 			"Xdesign Model Editor Bookmark Key" = {
 				UIContextForDetailArea = {
 					_indexOfSelectedPane = 0;
-					_indexOfSelectedView = 1;
+					_indexOfSelectedView = 0;
 				};
 				UIContextForEntityArea = {
 					_indexOfSelectedView = 0;
@@ -369,7 +397,7 @@
 					chosenTableWidths = (
 						103.000000,
 						54.000000,
-						145.080078,
+						47.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -379,8 +407,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {678, 220}}",
-							"{{683, 0}, {354, 220}}",
+							"{{0, 0}, {475, 220}}",
+							"{{480, 0}, {244, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -389,8 +417,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {1037, 220}}",
-							"{{0, 225}, {1037, 681}}",
+							"{{0, 0}, {724, 220}}",
+							"{{0, 225}, {724, 586}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -399,8 +427,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {327, 220}}",
-							"{{332, 0}, {344, 220}}",
+							"{{0, 0}, {229, 220}}",
+							"{{234, 0}, {239, 220}}",
 						);
 					};
 				};
@@ -497,7 +525,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-187, 629.5}, {1022, 666}}";
+				"xdesign model diagram view visible rect key" = "{{-31, 702}, {709, 571}}";
 			};
 			sepNavWindowFrame = "{{15, 18}, {982, 855}}";
 		};
@@ -626,6 +654,13 @@
 		vrLen = 528;
 		vrLoc = 0;
 	};
+	1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {665, 796}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 407}";
+		};
+	};
 	143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1104, 641}}";
@@ -726,6 +761,11 @@
 		name = VoteMeasureController.m;
 		path = "/Users/augusto/projects/supervote/supervote-ios/Classes/VoteMeasureController.m";
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1391, 9724}}";
+			sepNavSelRange = "{10685, 0}";
+			sepNavVisRange = "{9573, 2117}";
+		};
 	};
 	143FB64F14C55F2100377AF0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1339,7 +1379,7 @@
 		fRef = 1410F8421569777400B844E4 /* VoterRegistrationViewController.m */;
 		name = "VoterRegistrationViewController.m: 127";
 		rLen = 0;
-		rLoc = 3824;
+		rLoc = 5088;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 2006;
@@ -1371,7 +1411,7 @@
 		fRef = 14A01B2414789F420029ADFE /* SupervoteClient.m */;
 		name = "SupervoteClient.m: 203";
 		rLen = 0;
-		rLoc = 6701;
+		rLoc = 6776;
 		rType = 0;
 		vrLen = 8010;
 		vrLoc = 3096;
@@ -1480,9 +1520,9 @@
 	};
 	14A01B2414789F420029ADFE /* SupervoteClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1412, 16120}}";
-			sepNavSelRange = "{8689, 0}";
-			sepNavVisRange = "{5726, 2495}";
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 17043}}";
+			sepNavSelRange = "{2174, 0}";
+			sepNavVisRange = "{9605, 2570}";
 			sepNavWindowFrame = "{{15, 4}, {1203, 874}}";
 		};
 	};
