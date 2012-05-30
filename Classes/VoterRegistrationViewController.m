@@ -10,6 +10,7 @@
 
 #import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
+#import "PotentialDistrictRegistration.h"
 
 @implementation VoterRegistrationViewController
 
@@ -25,7 +26,7 @@
 	NSError *error = nil;
 	NSDictionary *profile = [self.client getProfileWithError:&error];
 	if (error != nil) {
-		LogError(@"Error while retrieving registration: %@", [error localizedDescription]);
+		LogError(@"Error while retrieving registration: %@", [error userInfo]);
 	}
 	else {
 		[self.client findOrInsertGovernmentRegistration:profile withDisplayOrder:0 withParent:nil withError:&error];
@@ -61,7 +62,15 @@
 	NSArray *descriptors = [NSArray arrayWithObjects:sort, nil];
 	
 	for (GovernmentRegistration *registration in self.registrations) {
-		[sortedDistrictRegistrations addObject:[[registration.registrations allObjects] sortedArrayUsingDescriptors:descriptors]];
+		
+		NSLog(@"GovernmentRegistration %@ has %d potential district registration(s) to display",
+			  registration.government.governmentType.name, [registration.potentialRegistrations count]);
+		
+		NSMutableArray *allOfThem = [[NSMutableArray alloc] initWithArray:[registration.registrations allObjects]];
+		[allOfThem addObjectsFromArray:[registration.potentialRegistrations allObjects]];
+		
+		[sortedDistrictRegistrations addObject:[allOfThem sortedArrayUsingDescriptors:descriptors]];
+		[allOfThem release];
 	}
 	[sort2 release];
 	
@@ -133,7 +142,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	return 1 + [[[self.registrations objectAtIndex:section] registrations] count];
+	//return 1 + [[[self.registrations objectAtIndex:section] registrations] count];
+	return 1 + [[self.sortedDistrictRegistrations objectAtIndex:section] count];
 }
 
 // Customize the appearance of table view cells.
@@ -161,11 +171,22 @@
 	}
 	else {
 		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
-		DistrictRegistration *reg = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
-		
-		cell.textLabel.text = reg.district.name;
-		cell.detailTextLabel.text = reg.district.districtType.name;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
+
+		if ([obj isKindOfClass:[DistrictRegistration class]]) {
+			DistrictRegistration *reg = (DistrictRegistration *)obj;
+			cell.textLabel.text = reg.district.name;
+			cell.detailTextLabel.text = reg.district.districtType.name;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
+		else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
+			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
+			cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [reg.choices count]];
+			cell.detailTextLabel.text = reg.districtType.name;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			
+			cell.imageView.image = [UIImage imageNamed:@"error.png"];
+		}
 	}
     
     return cell;

@@ -96,7 +96,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		if ([request responseStatusCode] == 200) {
 			
 			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-			NSLog(@"JSON: %@", json);
+			//NSLog(@"JSON: %@", json);
 			NSError *parseError = nil;
 			id profile = [parser objectWithString:json error:&parseError];	
 			[json release];
@@ -314,6 +314,18 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration.createdTime = createdTime;
 				
 				/* TODO: insert choices */
+				NSDictionary *choices = [object objectForKey:@"choices"];
+				if (choices != nil) {
+					for (NSDictionary *choice in choices) {
+						District *district = [self findOrInsertDistrict:choice withParent:parent.government withError:error];
+						if (*error != nil) {
+							NSLog(@"err %@", [*error localizedDescription]);
+							return;
+						}
+						
+						[registration addChoicesObject:district];
+					}
+				}
 				
 				[_context save:error];
 			}
@@ -326,11 +338,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 - (District*)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
 	/* TODO: check if value is nil? */
 	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
-	
+
 	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
 	if (*error == nil) {
 		NSString *name = [object objectForKey:@"name"];
 		id shortName = [object objectForKey:@"shortName"];
+		NSNumber *districtNum = [object objectForKey:@"districtNum"];
+		NSNumber *year = [object objectForKey:@"year"];
 		
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -349,21 +363,23 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				return [results objectAtIndex:0];
 			}
 			
-			/* create and return Government instance */
+			LogDebug(@"Inserting incoming District: (type=%@, name=%@)", districtType.id, name);
+
+			/* create and return District instance */
 			District *district = [NSEntityDescription insertNewObjectForEntityForName:@"District" inManagedObjectContext:_context];
 			district.name = name;
+			district.year = year;
 			district.shortName = shortName == [NSNull null] ? nil : shortName;
 			district.districtType = districtType;
-			if (parent != nil) {
-				district.inGovernment = parent;
-			}
+			district.districtNum = districtNum;
+			district.inGovernment = parent;
 			
 			if ([_context save:error]) {
 				return district;
 			}
 		}
 	}
-	
+	NSLog(@"errrrr %@", [*error localizedDescription]);
 	return nil;
 }
 

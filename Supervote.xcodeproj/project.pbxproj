@@ -95,6 +95,7 @@
 		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
 		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
 		1438A93515740A3D00112C42 /* PotentialDistrictRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */; };
+		1438A9A51574A91F00112C42 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1438A9A41574A91F00112C42 /* error.png */; };
 		143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */; };
 		14399B96140DF7B0007269A3 /* DisplayCombinedElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */; };
 		14399C10140E168C007269A3 /* MeasureVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399C06140E168C007269A3 /* MeasureVote.m */; };
@@ -282,6 +283,7 @@
 		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
 		1438A93315740A3D00112C42 /* PotentialDistrictRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialDistrictRegistration.h; sourceTree = "<group>"; };
 		1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialDistrictRegistration.m; sourceTree = "<group>"; };
+		1438A9A41574A91F00112C42 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		143999DF140B7C8E007269A3 /* FetchedResultsBasedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchedResultsBasedTableViewController.h; sourceTree = "<group>"; };
 		143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchedResultsBasedTableViewController.m; sourceTree = "<group>"; };
 		14399B95140DF7B0007269A3 /* DisplayCombinedElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayCombinedElection.xib; sourceTree = "<group>"; };
@@ -852,15 +854,16 @@
 				140F431A150DA382004E61B5 /* App Icons */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
 				14B5F6791510639700C21F98 /* comment.png */,
+				1438A9A41574A91F00112C42 /* error.png */,
 				140F42C6150D44E2004E61B5 /* Facebook Icons */,
 				140F4240150D3F6D004E61B5 /* Flags */,
 				14CBC34E14DF208C00618BB0 /* League_Gothic.otf */,
+				14C999AD152812B60041ACDA /* Localizable.strings */,
 				14EF38B5144AAD3C00557A80 /* lock.png */,
 				14E74AD91435914E002E2F82 /* NIBs */,
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
-				14C999AD152812B60041ACDA /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1025,6 +1028,7 @@
 				14B5F67A1510639700C21F98 /* comment.png in Resources */,
 				14C999AF152812B60041ACDA /* Localizable.strings in Resources */,
 				1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */,
+				1438A9A51574A91F00112C42 /* error.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
