@@ -94,6 +94,8 @@
 		1423B44B14082CE3006F8DBF /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B44A14082CE3006F8DBF /* Candidate.m */; };
 		1423B64414087FE5006F8DBF /* BallotVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64114087FE5006F8DBF /* BallotVote.m */; };
 		1423B64514087FE5006F8DBF /* Ballot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1423B64314087FE5006F8DBF /* Ballot.m */; };
+		142E665A1575D77000C92477 /* SelectDistrictViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142E66581575D77000C92477 /* SelectDistrictViewController.m */; };
+		142E665B1575D77000C92477 /* SelectDistrictViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142E66591575D77000C92477 /* SelectDistrictViewController.xib */; };
 		1438A93515740A3D00112C42 /* PotentialDistrictRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */; };
 		1438A9A51574A91F00112C42 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1438A9A41574A91F00112C42 /* error.png */; };
 		143999E1140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 143999E0140B7C8E007269A3 /* FetchedResultsBasedTableViewController.m */; };
@@ -281,6 +283,9 @@
 		1423B64114087FE5006F8DBF /* BallotVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotVote.m; sourceTree = "<group>"; };
 		1423B64214087FE5006F8DBF /* Ballot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ballot.h; sourceTree = "<group>"; };
 		1423B64314087FE5006F8DBF /* Ballot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ballot.m; sourceTree = "<group>"; };
+		142E66571575D77000C92477 /* SelectDistrictViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectDistrictViewController.h; sourceTree = "<group>"; };
+		142E66581575D77000C92477 /* SelectDistrictViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectDistrictViewController.m; sourceTree = "<group>"; };
+		142E66591575D77000C92477 /* SelectDistrictViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectDistrictViewController.xib; path = Classes/SelectDistrictViewController.xib; sourceTree = "<group>"; };
 		1438A93315740A3D00112C42 /* PotentialDistrictRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialDistrictRegistration.h; sourceTree = "<group>"; };
 		1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialDistrictRegistration.m; sourceTree = "<group>"; };
 		1438A9A41574A91F00112C42 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
@@ -611,6 +616,8 @@
 				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
 				1410F9B2156A0C4F00B844E4 /* SegmentsController.h */,
 				1410F9B3156A0C4F00B844E4 /* SegmentsController.m */,
+				142E66571575D77000C92477 /* SelectDistrictViewController.h */,
+				142E66581575D77000C92477 /* SelectDistrictViewController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -791,6 +798,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				14EF327F144231D900557A80 /* MeasureViewCell.xib */,
 				14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */,
+				142E66591575D77000C92477 /* SelectDistrictViewController.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
 				14F6533E14F9C0A600A13942 /* UIWebViewController.xib */,
@@ -1029,6 +1037,7 @@
 				14C999AF152812B60041ACDA /* Localizable.strings in Resources */,
 				1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */,
 				1438A9A51574A91F00112C42 /* error.png in Resources */,
+				142E665B1575D77000C92477 /* SelectDistrictViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,6 +1114,7 @@
 				1410F9B4156A0C4F00B844E4 /* SegmentsController.m in Sources */,
 				1410F9CA156A0E8300B844E4 /* NSArray+PerformSelector.m in Sources */,
 				1438A93515740A3D00112C42 /* PotentialDistrictRegistration.m in Sources */,
+				142E665A1575D77000C92477 /* SelectDistrictViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

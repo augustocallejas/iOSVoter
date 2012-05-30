@@ -11,6 +11,7 @@
 #import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
 #import "PotentialDistrictRegistration.h"
+#import "SelectDistrictViewController.h"
 
 @implementation VoterRegistrationViewController
 
@@ -59,12 +60,14 @@
 	NSSortDescriptor *sort2 =
 	[[NSSortDescriptor alloc] initWithKey:@"districtType.displayOrder" ascending:YES];
 	
-	NSArray *descriptors = [NSArray arrayWithObjects:sort, nil];
+	NSArray *descriptors = [NSArray arrayWithObjects:sort2, nil];
 	
 	for (GovernmentRegistration *registration in self.registrations) {
 		
-		NSLog(@"GovernmentRegistration %@ has %d potential district registration(s) to display",
-			  registration.government.governmentType.name, [registration.potentialRegistrations count]);
+		LogDebug(@"GovernmentRegistration (%@, %@) has %d potential district registration(s)",
+				 registration.government.governmentType.name,
+				 registration.government.name,
+				 [registration.potentialRegistrations count]);
 		
 		NSMutableArray *allOfThem = [[NSMutableArray alloc] initWithArray:[registration.registrations allObjects]];
 		[allOfThem addObjectsFromArray:[registration.potentialRegistrations allObjects]];
@@ -73,17 +76,6 @@
 		[allOfThem release];
 	}
 	[sort2 release];
-	
-//	NSSortDescriptor * frequencyDescriptor =
-//    [[[NSSortDescriptor alloc] initWithKey:FREQUENCY
-//                                 ascending:YES] autorelease];
-//	
-//	id obj;
-//	NSEnumerator * enumerator = [array objectEnumerator];
-//	while ((obj = [enumerator nextObject])) NSLog(@"%@", obj);
-//	
-//	NSArray * descriptors =
-//    [NSArray arrayWithObjects:frequencyDescriptor, nil];
 	
 	LogInfo([NSString stringWithFormat:@"Loaded %d government registration(s)", [self.registrations count]]);
 }
@@ -153,7 +145,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		//[cell.textLabel setFont:[UIFont systemFontOfSize:14.0]];
 		//[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
@@ -167,9 +160,10 @@
 		cell.textLabel.text = registration.government.name;
 		//	cell.detailTextLabel.text = @"detailText";
 		/* TODO: temporary */
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	else {
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		
 		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
 		id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
 
@@ -177,15 +171,15 @@
 			DistrictRegistration *reg = (DistrictRegistration *)obj;
 			cell.textLabel.text = reg.district.name;
 			cell.detailTextLabel.text = reg.district.districtType.name;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
 		else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
 			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
 			cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [reg.choices count]];
 			cell.detailTextLabel.text = reg.districtType.name;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			
 			cell.imageView.image = [UIImage imageNamed:@"error.png"];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		}
 	}
     
@@ -259,14 +253,21 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+	if (indexPath.row > 0) {
+		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
+		id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
+		
+		if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
+			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
+			
+			SelectDistrictViewController *controller = [[SelectDistrictViewController alloc] initWithNibName:@"SelectDistrictViewController" bundle:[NSBundle mainBundle]];
+			controller.title = NSLocalizedString(@"SelectDistrict", nil);
+			controller.registration = reg;
+			
+			[[self navigationController] pushViewController:controller animated:YES];
+			[controller release];
+		}
+	}
 }
 
 
