@@ -171,6 +171,9 @@
 			DistrictRegistration *reg = (DistrictRegistration *)obj;
 			cell.textLabel.text = reg.district.name;
 			cell.detailTextLabel.text = reg.district.districtType.name;
+			
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
 		else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
 			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
