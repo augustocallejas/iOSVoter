@@ -2,7 +2,7 @@
 //  District.m
 //  Supervote
 //
-//  Created by augusto callejas on 5/19/12.
+//  Created by augusto callejas on 5/30/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,12 +13,13 @@
 
 @implementation District 
 
-@dynamic districtNum;
 @dynamic shortName;
+@dynamic id;
 @dynamic year;
 @dynamic description;
 @dynamic name;
-@dynamic districtType;
+@dynamic districtNum;
 @dynamic inGovernment;
+@dynamic districtType;
 
 @end

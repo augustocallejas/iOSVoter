@@ -2,7 +2,7 @@
 //  Government.m
 //  Supervote
 //
-//  Created by augusto callejas on 5/19/12.
+//  Created by augusto callejas on 5/30/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,11 +13,12 @@
 
 @implementation Government 
 
-@dynamic name;
 @dynamic shortName;
-@dynamic children;
-@dynamic districts;
-@dynamic governmentType;
+@dynamic id;
+@dynamic name;
 @dynamic parent;
+@dynamic children;
+@dynamic governmentType;
+@dynamic districts;
 
 @end

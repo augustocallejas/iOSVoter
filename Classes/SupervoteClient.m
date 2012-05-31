@@ -252,6 +252,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				
 				/* TODO: currently only inserting... */
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
+				registration.districtType = district.districtType;
 				registration.district = district;
 				registration.registration = parent;
 				registration.createdTime = createdTime;
@@ -261,6 +262,21 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			[createdTime release];
 		}
 	}
+}
+
+- (BOOL)resolveDistrictRegistration:(PotentialDistrictRegistration *)potentialRegistration
+					   withDistrict:(District *)district
+					withCreatedTime:(NSDate *)createdTime
+						  withError:(NSError **)error {
+							  
+	DistrictRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
+	registration.districtType = district.districtType;
+	registration.district = district;
+	registration.registration = potentialRegistration.registration;
+	registration.createdTime = createdTime;
+	
+	[_context deleteObject:potentialRegistration];	
+	return [_context save:error];
 }
 
 - (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
@@ -341,6 +357,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
 	if (*error == nil) {
+		id idValue = [object objectForKey:@"id"];
 		NSString *name = [object objectForKey:@"name"];
 		id shortName = [object objectForKey:@"shortName"];
 		NSNumber *districtNum = [object objectForKey:@"districtNum"];
@@ -352,7 +369,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"District" inManagedObjectContext:_context];
 		[request setEntity:entity];
 		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && districtType = %@", name, districtType];
+//		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && districtType = %@", name, districtType];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
 		NSArray *results = [_context executeFetchRequest:request error:error];
@@ -367,6 +385,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 			/* create and return District instance */
 			District *district = [NSEntityDescription insertNewObjectForEntityForName:@"District" inManagedObjectContext:_context];
+			district.id = [idValue isKindOfClass:[NSNumber class]] ? [idValue stringValue] : idValue;
 			district.name = name;
 			district.year = year;
 			district.shortName = shortName == [NSNull null] ? nil : shortName;
@@ -426,6 +445,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 	GovernmentType *governmentType = [self findOrInsertGovernmentType:governmentTypeObj withError:error];
 	if (*error == nil) {
+		id idValue = [object objectForKey:@"id"];
 		NSString *name = [object objectForKey:@"name"];
 		id shortName = [object objectForKey:@"shortName"];
 		
@@ -435,7 +455,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Government" inManagedObjectContext:_context];
 		[request setEntity:entity];
 		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && governmentType = %@", name, governmentType];
+//		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && governmentType = %@", name, governmentType];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
 		NSArray *results = [_context executeFetchRequest:request error:error];
@@ -448,6 +469,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			
 			/* create and return Government instance */
 			Government *government = [NSEntityDescription insertNewObjectForEntityForName:@"Government" inManagedObjectContext:_context];
+			government.id = [idValue isKindOfClass:[NSNumber class]] ? [idValue stringValue] : idValue;
 			government.name = name;
 			government.shortName = shortName == [NSNull null] ? nil : shortName;
 			government.governmentType = governmentType;
@@ -499,6 +521,51 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	}
 	
 	return nil;
+}
+
+- (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
+				withChoice:(District *)district {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/selectDistrict"];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	//			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+
+	[request setPostValue:[NSNumber numberWithDouble:[potentialDistrict.createdTime timeIntervalSince1970]*1000.0] forKey:@"createdTime"];
+	[request setPostValue:potentialDistrict.registration.government.id forKey:@"government"];
+	[request setPostValue:district.id forKey:@"district"];
+	
+	[request startSynchronous];
+		
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	
+	NSDate *date = nil;
+	NSError *error = [request error];
+	if (error != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
+	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		date = [df dateFromString:[[request responseHeaders] objectForKey:@"X-Created-Time"]];
+		LogDebug(@"Server returned %d from request '%@': X-Created-Time = %@", 200, [url path], date);
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
+	}
+	else {
+		/* unexpected response */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
+	}
+	
+	[df release];
+	[locale release];
+	
+	return date;
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

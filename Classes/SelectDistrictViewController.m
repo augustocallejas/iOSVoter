@@ -14,6 +14,7 @@
 
 @synthesize registration;
 @synthesize sortedDistricts;
+@synthesize client;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -144,20 +145,35 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
+//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	District *district = [sortedDistricts objectAtIndex:indexPath.row];
+	NSDate *date = nil;
 	
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if ((date = [client selectDistrict:self.registration withChoice:district]) != nil) {
+		/* replace PotentialDistrictRegistration with DistrictRegistration */
+		NSError *error = nil;
+		[client resolveDistrictRegistration:self.registration
+							   withDistrict:district
+							withCreatedTime:date
+								  withError:&error];
+		
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+	else {
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		
+		/* TODO: it isn't always an HttpError! */
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
+														message:NSLocalizedString(@"HttpErrorMessage", nil)
+													   delegate:nil 
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 
@@ -180,6 +196,7 @@
 - (void)dealloc {
 	self.registration = nil;
 	self.sortedDistricts = nil;
+	self.client = nil;
     [super dealloc];
 }
 

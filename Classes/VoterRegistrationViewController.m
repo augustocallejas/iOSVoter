@@ -27,7 +27,7 @@
 	NSError *error = nil;
 	NSDictionary *profile = [self.client getProfileWithError:&error];
 	if (error != nil) {
-		LogError(@"Error while retrieving registration: %@", [error userInfo]);
+		LogError(@"Error while retrieving registration: %@", [error localizedDescription]);
 	}
 	else {
 		[self.client findOrInsertGovernmentRegistration:profile withDisplayOrder:0 withParent:nil withError:&error];
@@ -56,6 +56,10 @@
 	if (sortedDistrictRegistrations == nil) {
 		sortedDistrictRegistrations = [[NSMutableArray alloc] initWithCapacity:[self.registrations count]];
 	}
+	else {
+		[sortedDistrictRegistrations removeAllObjects];
+	}
+
 	
 	NSSortDescriptor *sort2 =
 	[[NSSortDescriptor alloc] initWithKey:@"districtType.displayOrder" ascending:YES];
@@ -86,18 +90,20 @@
 	/* TODO: only loaded once? */
 	if (self.registrations == nil) {
 		[self getRegistration];
-		[self loadRegistration];
 	}
 	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	[self loadRegistration];
+	[self.tableView reloadData];
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
-*/
 
 /*
 - (void)viewDidAppear:(BOOL)animated {
@@ -172,6 +178,7 @@
 			cell.textLabel.text = reg.district.name;
 			cell.detailTextLabel.text = reg.district.districtType.name;
 			
+			cell.imageView.image = nil;
 			cell.accessoryType = UITableViewCellAccessoryNone;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		}
@@ -266,6 +273,7 @@
 			SelectDistrictViewController *controller = [[SelectDistrictViewController alloc] initWithNibName:@"SelectDistrictViewController" bundle:[NSBundle mainBundle]];
 			controller.title = NSLocalizedString(@"SelectDistrict", nil);
 			controller.registration = reg;
+			controller.client = self.client;
 			
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
