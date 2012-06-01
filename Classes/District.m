@@ -16,7 +16,7 @@
 @dynamic shortName;
 @dynamic id;
 @dynamic year;
-@dynamic description;
+@dynamic districtDescription;
 @dynamic name;
 @dynamic districtNum;
 @dynamic inGovernment;

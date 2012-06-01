@@ -87,11 +87,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	/* TODO: only loaded once? */
-	if (self.registrations == nil) {
-		[self getRegistration];
-	}
-	
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -99,6 +94,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
+	[self getRegistration];
 	[self loadRegistration];
 	[self.tableView reloadData];
 	[self.tableView beginUpdates];

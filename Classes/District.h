@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString * shortName;
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSNumber * year;
-@property (nonatomic, retain) NSString * description;
+@property (nonatomic, retain) NSString * districtDescription;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * districtNum;
 @property (nonatomic, retain) Government * inGovernment;

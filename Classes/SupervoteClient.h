@@ -45,7 +45,9 @@ typedef enum {
 						withCreatedTime:(NSDate *)createdTime
 							  withError:(NSError **)error;
 - (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **) error;
-- (District *)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
+- (District *)findOrInsertDistrict:(NSDictionary *)object
+						withParent:(Government *)parent
+						 withError:(NSError **)error;
 - (DistrictType *)findOrInsertDistrictType:(NSDictionary *)object withError:(NSError **)error;
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
 - (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error;
@@ -55,7 +57,7 @@ typedef enum {
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (vote_status)sendBallotVote:(BallotVote *)vote;
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
-- (id)getVotesForBallot:(NSString *)electionGuid;
+- (NSArray *)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;

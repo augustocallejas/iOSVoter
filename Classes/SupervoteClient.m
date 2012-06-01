@@ -94,30 +94,47 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	*error = [request error];
 	if (*error == nil) {
 		if ([request responseStatusCode] == 200) {
-			
 			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-			//NSLog(@"JSON: %@", json);
+			LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
+			
 			NSError *parseError = nil;
 			id profile = [parser objectWithString:json error:&parseError];	
 			[json release];
 			
 			if (parseError != nil) {
-				NSLog(@"Parse error: %@", [parseError userInfo]);
-			}
-			else {
-				//NSLog(@"Got profile: %@", profile);
+				LogError(@"Error parsing JSON: %@", [parseError localizedDescription]);
 			}
 			
 			return profile;
-			
+		}
+		else {
+			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 		}
 	}
 	
 	return nil;
 }
 
-- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error {
-	/* TODO: check if value is nil? */
+- (BOOL)deleteGovernmentRegistrationsAbove:(int)displayOrder withError:(NSError **)error {
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
+	[request setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayOrder > %@", [NSNumber numberWithInt:displayOrder]];
+	[request setPredicate:predicate];
+	
+	NSArray *results = [_context executeFetchRequest:request error:error];
+	if (results != nil) {
+		for (GovernmentRegistration *registration in results) {
+			[_context deleteObject:registration];
+		}
+	}
+	
+	return [_context save:error];
+}
+
+- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int)displayOrder withParent:(Government *)parent withError:(NSError **)error {
 	NSDictionary *governmentObj = [object objectForKey:@"government"];
 	
 	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:error];
@@ -135,19 +152,21 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSArray *results = [_context executeFetchRequest:request error:error];
 		[request release];
 
-		if (*error == nil) {
+		if (results != nil) {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
 			GovernmentRegistration *registration = nil;
 			BOOL insertObject = YES;
-			if (results != nil && [results count] == 1) {
+			if ([results count] == 1) {
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
 					LogDebug(@"Current GovernmentRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
 					
 					[_context deleteObject:registration];
+					
+					[self deleteGovernmentRegistrationsAbove:displayOrder withError:error];
 				}
 				else {
 					LogDebug(@"Current GovernmentRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
@@ -157,9 +176,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)", government.governmentType.name, government.name, displayOrder, createdTime);
+				LogDebug(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)", government.governmentType.id, government.name, displayOrder, createdTime);
 							
-				/* TODO: currently only inserting... */
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
 				registration.displayOrder = [NSNumber numberWithInt:displayOrder];
 				registration.government = government;
@@ -207,12 +225,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	}
 }
 
-- (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error {
-	/* TODO: check if value is nil? */
+- (void)findOrInsertDistrictRegistration:(NSDictionary *)object
+							  withParent:(GovernmentRegistration *)parent
+							   withError:(NSError **)error {
 	NSDictionary *districtObj = [object objectForKey:@"district"];
 	
 	District *district = [self findOrInsertDistrict:districtObj withParent:parent.government withError:error];
-	if (*error == nil) {
+	if (district != nil) {
 		/* query for existing DistrictRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -220,19 +239,19 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"DistrictRegistration" inManagedObjectContext:_context];
 		[request setEntity:entity];
 		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"registration = %@ and district = %@", parent, district];
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"registration = %@ and districtType = %@", parent, district.districtType];
 		[request setPredicate:predicate];
 		
 		NSArray *results = [_context executeFetchRequest:request error:error];
 		[request release];
 		
-		if (*error == nil) {
+		if (results != nil) {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
 			DistrictRegistration *registration = nil;
 			BOOL insertObject = YES;
-			if (results != nil && [results count] == 1) {
+			if ([results count] == 1) {
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
@@ -248,9 +267,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming DistrictRegistration: (type=%@, name=%@, createdTime=%@)", district.districtType.name, district.name, createdTime);
+				LogDebug(@"Inserting incoming DistrictRegistration: (type=%@, name=%@, createdTime=%@)", district.districtType.id, district.name, createdTime);
 				
-				/* TODO: currently only inserting... */
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
 				registration.districtType = district.districtType;
 				registration.district = district;
@@ -282,7 +300,6 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 - (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
 									   withParent:(GovernmentRegistration *)parent
 										withError:(NSError **) error {
-	/* TODO: check if value is nil? */
 	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
 	
 	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
@@ -300,13 +317,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSArray *results = [_context executeFetchRequest:request error:error];
 		[request release];
 		
-		if (*error == nil) {
+		if (results != nil) {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
 			PotentialDistrictRegistration *registration = nil;
 			BOOL insertObject = YES;
-			if (results != nil && [results count] == 1) {
+			if ([results count] == 1) {
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
@@ -322,20 +339,18 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming PotentialDistrictRegistration: (type=%@, createdTime=%@)", districtType.name, createdTime);
+				LogDebug(@"Inserting incoming PotentialDistrictRegistration: (type=%@, createdTime=%@)", districtType.id, createdTime);
 				
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"PotentialDistrictRegistration" inManagedObjectContext:_context];
 				registration.districtType = districtType;
 				registration.registration = parent;
 				registration.createdTime = createdTime;
 				
-				/* TODO: insert choices */
 				NSDictionary *choices = [object objectForKey:@"choices"];
 				if (choices != nil) {
 					for (NSDictionary *choice in choices) {
 						District *district = [self findOrInsertDistrict:choice withParent:parent.government withError:error];
 						if (*error != nil) {
-							NSLog(@"err %@", [*error localizedDescription]);
 							return;
 						}
 						
@@ -352,16 +367,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 
 - (District*)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
-	/* TODO: check if value is nil? */
 	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
 
 	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
 	if (*error == nil) {
 		id idValue = [object objectForKey:@"id"];
-		NSString *name = [object objectForKey:@"name"];
-		id shortName = [object objectForKey:@"shortName"];
-		NSNumber *districtNum = [object objectForKey:@"districtNum"];
-		NSNumber *year = [object objectForKey:@"year"];
 		
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -369,17 +379,21 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"District" inManagedObjectContext:_context];
 		[request setEntity:entity];
 		
-//		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && districtType = %@", name, districtType];
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
 		NSArray *results = [_context executeFetchRequest:request error:error];
 		[request release];
 		
-		if (*error == nil) {
-			if (results != nil && [results count] == 1) {
+		if (results != nil) {
+			if ([results count] == 1) {
 				return [results objectAtIndex:0];
 			}
+			
+			NSString *name = [object objectForKey:@"name"];
+			id shortName = [object objectForKey:@"shortName"];
+			NSNumber *districtNum = [object objectForKey:@"districtNum"];
+			NSNumber *year = [object objectForKey:@"year"];
 			
 			LogDebug(@"Inserting incoming District: (type=%@, name=%@)", districtType.id, name);
 
@@ -398,15 +412,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 		}
 	}
-	NSLog(@"errrrr %@", [*error localizedDescription]);
+
 	return nil;
 }
 
 - (DistrictType *)findOrInsertDistrictType:(NSDictionary *)object withError:(NSError **)error {
-	/* TODO: check if values are not nil? */
 	NSString *idValue = [object objectForKey:@"id"];
-	NSString *name = [object objectForKey:@"name"];
-	NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:1];
@@ -420,10 +431,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSArray *results = [_context executeFetchRequest:request error:error];
 	[request release];
 	
-	if (*error == nil) {
-		if (results != nil && [results count] == 1) {
+	if (results != nil) {
+		if ([results count] == 1) {
 			return [results objectAtIndex:0];
 		}
+		
+		NSString *name = [object objectForKey:@"name"];
+		NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
 		
 		/* create and return DistrictType instance */
 		DistrictType *districtType = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictType" inManagedObjectContext:_context];
@@ -440,14 +454,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
-	/* TODO: check if value is nil? */
 	NSDictionary *governmentTypeObj = [object objectForKey:@"governmentType"];
 	
 	GovernmentType *governmentType = [self findOrInsertGovernmentType:governmentTypeObj withError:error];
-	if (*error == nil) {
+	if (governmentType != nil) {
 		id idValue = [object objectForKey:@"id"];
-		NSString *name = [object objectForKey:@"name"];
-		id shortName = [object objectForKey:@"shortName"];
 		
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -455,17 +466,19 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Government" inManagedObjectContext:_context];
 		[request setEntity:entity];
 		
-//		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ && governmentType = %@", name, governmentType];
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
 		NSArray *results = [_context executeFetchRequest:request error:error];
 		[request release];
 		
-		if (*error == nil) {
-			if (results != nil && [results count] == 1) {
+		if (results != nil) {
+			if ([results count] == 1) {
 				return [results objectAtIndex:0];
 			}
+			
+			NSString *name = [object objectForKey:@"name"];
+			id shortName = [object objectForKey:@"shortName"];
 			
 			/* create and return Government instance */
 			Government *government = [NSEntityDescription insertNewObjectForEntityForName:@"Government" inManagedObjectContext:_context];
@@ -487,10 +500,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error {
-	/* TODO: check if values are not nil? */
 	NSString *idValue = [object objectForKey:@"id"];
-	NSString *name = [object objectForKey:@"name"];
-	NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:1];
@@ -504,10 +514,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSArray *results = [_context executeFetchRequest:request error:error];
 	[request release];
 
-	if (*error == nil) {
-		if (results != nil && [results count] == 1) {
+	if (results != nil) {
+		if ([results count] == 1) {
 			return [results objectAtIndex:0];
 		}
+		
+		NSString *name = [object objectForKey:@"name"];
+		NSNumber *displayOrder = [object objectForKey:@"displayOrder"];
 		
 		/* create and return GovernmentType instance */
 		GovernmentType *governmentType = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentType" inManagedObjectContext:_context];
@@ -606,22 +619,22 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSError *error = [request error];
 	if (error != nil) {
 		status = HTTP_ERROR;
-		/* TODO: log to disk? */
-//		NSLog(@"error: %@", [error userInfo]);
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
 		status = OK;
+		LogDebug(@"Server returned %d from request '%@'", 200, [url path]);
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
 		status = SERVER_ERROR;
-		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else {
 		/* unexpected response */
 		status = UNEXPECTED_RESPONSE;
-		/* TODO: log to disk */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 	}
 	
 	return status;
@@ -644,31 +657,32 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSError *error = [request error];
 	if (error != nil) {
 		status = HTTP_ERROR;
-		/* TODO: log to disk? */
-		//NSLog(@"error: %@", [error userInfo]);
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
 		status = OK;
+		LogDebug(@"Server returned %d from request '%@'", 200, [url path]);
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
 		status = SERVER_ERROR;
-		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
 		status = BAD_REQUEST;
-		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
 	}
 	else if ([request responseStatusCode] == 403) {
 		/* FORBIDDEN */
 		status = ELECTION_CLOSED;
+		LogError(@"Server returned %d from request '%@'", 403, [url path]); 
 	}
 	else {
 		/* unexpected response */
 		status = UNEXPECTED_RESPONSE;
-		/* TODO: log to disk */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 	}
 	
 	return status;
@@ -692,57 +706,57 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSError *error = [request error];
 	if (error != nil) {
 		status = HTTP_ERROR;
-		/* TODO: log to disk */
-//		NSLog(@"error: %@", [error userInfo]);
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
 		status = OK;
+		LogDebug(@"Server returned %d from request '%@'", 200, [url path]); 
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
 		status = SERVER_ERROR;
 		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
 		status = BAD_REQUEST;
 		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
 	}
 	else if ([request responseStatusCode] == 403) {
 		/* FORBIDDEN */
 		status = ELECTION_CLOSED;
+		LogError(@"Server returned %d from request '%@'", 403, [url path]); 
 	}
 	else {
 		/* unexpected response */
 		status = UNEXPECTED_RESPONSE;
-		/* TODO: log to disk */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 	}
 	
 	return status;
 }
 
-- (id)getVotesForBallot:(NSString *)electionGuid{
+- (NSArray *)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:[NSString stringWithFormat:@"/votes?election=%@", electionGuid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request startSynchronous];
 	
-	NSError *httpError = [request error];
-	if (httpError != nil) {
-		NSLog(@"Network error while getting votes for election: %@", [httpError userInfo]);
+	NSError *error = [request error];
+	if (error != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-//		NSLog(@"Votes: %@", json);
-		
-		NSError *parseError = nil;
-		NSArray *votes = [parser objectWithString:json error:&parseError];	
+		NSArray *votes = [parser objectWithString:json error:&error];	
 		[json release];
 		
-		if (parseError != nil) {
-			NSLog(@"Parse error: %@", [parseError userInfo]);
+		if (error != nil) {
+			LogError(@"Parse error while parsing JSON '%@': %@", json, [error localizedDescription]);
 		}
 		else {
 			return votes;
@@ -763,11 +777,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request setPredicate:predicate];
 	
 	NSError *error = nil;
-	NSArray *array = [[position managedObjectContext] executeFetchRequest:request error:&error];
+	NSArray *array = [_context executeFetchRequest:request error:&error];
 	[request release];
 	
-	if (error != nil) {
-		NSLog(@"Error while querying for existing ballot vote: %@", [error userInfo]);
+	if (array == nil) {
+		LogError(@"Fetch error while querying for existing position vote: %@", [error localizedDescription]);
 	}
 	else if ([array count] == 1) {
 		return (FriendBallotVote *) [array objectAtIndex:0];
@@ -777,7 +791,6 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (FriendMeasureVote *)getVoteForMeasure:(Measure *)measure byAuthor:(Friend *)friend {
-	/* check if the friend measure vote already exists */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setFetchLimit:1];
 	
@@ -792,7 +805,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request release];
 	
 	if (error != nil) {
-		NSLog(@"Error while querying for existing measure vote: %@", [error userInfo]);
+		LogError(@"Fetch error while querying for existing measure vote: %@", [error localizedDescription]);
 	}
 	else if ([array count] == 1) {
 		return (FriendMeasureVote *) [array objectAtIndex:0];
@@ -802,7 +815,6 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (BOOL)insertVotes:(NSArray *)votes {
-	//NSLog(@"Inserting %d votes", [votes count]);
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
@@ -825,12 +837,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					/* check if the friend ballot vote already exists */
 					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
 					if (existingVote != nil) {
-						NSLog(@"Found existing FriendBallotVote, but incoming vote is not viewable, so delete");
+						LogInfo(@"Found existing FriendBallotVote, but incoming vote is not viewable, so delete");
+						
 						[_context deleteObject:existingVote];
 						NSError *err = nil;
-						[_context save:&err];
-						if (err != nil) {
-							NSLog(@"Error: %@", [err userInfo]);
+						if (![_context save:&err]) {
+							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
 					}
 				}
@@ -842,7 +854,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					
 					if (existingVote != nil) {
 						/* existing friend ballot vote, so update */
-						NSLog(@"Found existing FriendBallotVote, updating certain attributes");
+						LogInfo(@"Found existing FriendBallotVote, updating certain attributes");
+						
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
 						existingVote.forCandidate = candidate;
@@ -850,16 +863,15 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 						existingVote.date = date;
 						
 						NSError *err = nil;
-						[_context save:&err];
-						[date release];
-						
-						if (err != nil) {
-							NSLog(@"Error: %@", [err userInfo]);
+						if (![_context save:&err]) {
+							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
+						[date release];
 					}
 					else {
 						/* insert new friend ballot vote */
-						NSLog(@"Inserting new friend ballot vote");
+						LogInfo(@"Inserting new friend ballot vote");
+						
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
 						FriendBallotVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendBallotVote" inManagedObjectContext:_context];
@@ -870,17 +882,15 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 						voteObj.statement = statement;
 						
 						NSError *err = nil;
-						[_context save:&err];
-						[date release];
-						
-						if (err != nil) {
-							NSLog(@"Error: %@", [err userInfo]);
+						if (![_context save:&err]) {
+							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
+						[date release];
 					}
 				}
 			}
 			else {
-				NSLog(@"Some value was nil..");
+				LogWarn(@"Some value was nil..");
 			}
 
 		}
@@ -903,12 +913,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					/* check if the friend measure vote already exists */
 					FriendMeasureVote *existingVote = [self getVoteForMeasure:measure byAuthor:friend];
 					if (existingVote != nil) {
-						NSLog(@"Found existing FriendMeasureVote, but incoming vote is not viewable, so delete");
+						LogInfo(@"Found existing FriendMeasureVote, but incoming vote is not viewable, so delete");
+						
 						[_context deleteObject:existingVote];
 						NSError *err = nil;
-						[_context save:&err];
-						if (err != nil) {
-							NSLog(@"Error: %@", [err userInfo]);
+						if (![_context save:&err]) {
+							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
 					}
 				}
@@ -919,7 +929,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 				if (existingVote != nil) {
 					/* existing friend measure vote, so update */
-					NSLog(@"Found existing FriendMeasureVote, updating certain attributes");
+					LogInfo(@"Found existing FriendMeasureVote, updating certain attributes");
+					
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
 					existingVote.vote = voteValue;
@@ -927,16 +938,15 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					existingVote.date = date;
 					
 					NSError *err = nil;
-					[_context save:&err];
-					[date release];
-					
-					if (err != nil) {
-						NSLog(@"Error: %@", [err userInfo]);
+					if (![_context save:&err]) {
+						LogError(@"Error while saving context: %@", [err localizedDescription]);
 					}
+					[date release];
 				}
 				else {
 					/* insert new friend measure vote */
-					NSLog(@"Inserting new friend measure vote");
+					LogInfo(@"Inserting new friend measure vote");
+					
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
 					FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:_context];
@@ -947,20 +957,18 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					voteObj.date = date;
 					
 					NSError *err = nil;
-					[_context save:&err];
-					[date release];
-					
-					if (err != nil) {
-						NSLog(@"Error: %@", [err userInfo]);
+					if (![_context save:&err]) {
+						LogError(@"Error while saving context: %@", [err localizedDescription]);
 					}
+					[date release];
 				}
 			}
 			else {
-				NSLog(@"Some value was nil..");
+				LogWarn(@"Some value was nil..");
 			}
 		}
 		else {
-			NSLog(@"Unexpected type: %@", type);
+			LogError(@"Unexpected type: %@", type);
 		}
 	}
 	
@@ -984,7 +992,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		return nil;
 	}
 	else if ([array count] == 2) {
-		NSLog(@"Found multiple objects (%@) with the same guid (%@), returning first object", entityName, guid);
+		LogWarn(@"Found multiple objects (%@) with the same guid (%@), returning first object", entityName, guid);
 	}
 	
 	return [array objectAtIndex:0];
@@ -999,17 +1007,17 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
 	[request startSynchronous];
 	
-	NSError *httpError = [request error];
-	if (httpError != nil) {
+	NSError *error = [request error];
+	if (error != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		NSError *parseError = nil;
-		NSArray *friends = [parser objectWithString:json error:&parseError];	
+		NSArray *friends = [parser objectWithString:json error:&error];	
 		[json release];
 		
-		if (parseError != nil) {
-			NSLog(@"Parse error: %@", [parseError userInfo]);
+		if (error != nil) {
+			LogError(@"Parse error while parsing JSON '%@': %@", json, [error localizedDescription]);
 		}
 		
 		return friends;
@@ -1027,7 +1035,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		/* does the friend exist in the database already? */
 		Friend *friendObj = [self getObject:@"Friend" byGuid:guid];
 		if (friendObj != nil) {
-			NSLog(@"Found existing Friend, updating certain attributes");
+			LogInfo(@"Found existing Friend, updating certain attributes");
 			friendObj.name = name;
 		}
 		else {
@@ -1045,10 +1053,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSError *err = nil;
 			NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
 			[fetchRequest release];
-			if (err != nil) {
-				NSLog(@"Error: %@", [err userInfo]);
+			
+			if (array == nil) {
+				LogError(@"Fetch error while querying for FacebookFriend: %@", [err localizedDescription]);
 			}
-			else if (array != nil && [array count] == 1) {
+			else if ([array count] == 1) {
 				friendObj.facebook = [array objectAtIndex:0];
 			}
 		}
@@ -1070,20 +1079,22 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request startSynchronous];
 	NSError *error = [request error];
 	if (error != nil) {
-//		NSLog(@"Error sending request: %@", [error userInfo]);
-		
 		*status = HTTP_ERROR;
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
 		*status = OK;
 		
+		/* TODO: review this code */
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
+		
 		NSDictionary *elections = [parser objectWithString:json error:&error];
 		[json release];
 		
 		if (error != nil) {
-			NSLog(@"Error parsing JSON: %@", [error userInfo]);
+			LogError(@"Error parsing JSON: %@", [error userInfo]);
 		}
 		
 		return elections;
@@ -1091,17 +1102,17 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
 		*status = SERVER_ERROR;
-		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
 		*status = BAD_REQUEST;
-		/* TODO: log to disk */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
 	}
 	else {
 		/* unexpected response */
 		*status = UNEXPECTED_RESPONSE;
-		/* TODO: log to disk */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 	}
 	
 	return nil;
@@ -1138,21 +1149,21 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 //	NSDictionary *election = nil;
 	*httpError = [request error];
-	
-	LogDebug(@"%@ -> %d", [request url], [request responseStatusCode]);
-	
+		
 	election_status status;
 	if (*httpError != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [*httpError localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
+
 		NSError *parseError = nil;
 		*election = [parser objectWithString:json error:&parseError];	
-//		NSLog(@"JSON %@", json);
 		[json release];
 		
 		if (parseError != nil) {
-			NSLog(@"Parse error: %@", [parseError userInfo]);
+			LogError(@"Parse error while parsing JSON", [parseError localizedDescription]);
 		}
 		
 		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
@@ -1161,19 +1172,24 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	}
 	else if ([request responseStatusCode] == 404) {
 		/* NOT_FOUND */
-		//NSLog(@"Election '%@' does not exist", guid);
 		status = ES_NOT_FOUND;
+		LogError(@"Server returned %d from request '%@'", 404, [url path]); 
 	}
 	else if ([request responseStatusCode] == 410) {
 		/* GONE */
-		//NSLog(@"Election '%@' is closed", guid);
 		status = ES_CLOSED;
+		LogError(@"Server returned %d from request '%@'", 410, [url path]); 
 	}
 	else if ([request responseStatusCode] == 304) {
 		/* NOT_MODIFIED */
-		//NSLog(@"Election '%@' was not modified", guid);
 		status = ES_NOT_MODIFIED;
+		LogError(@"Server returned %d from request '%@'", 304, [url path]); 
 	}
+	else {
+		/* unexpected response */
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
+	}
+
 	
 	[df release];
 	[locale release];
@@ -1210,9 +1226,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSNumber *levelOrder = [position objectForKey:@"levelOrder"];
 			// titleOrder
 			NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
-			
-			//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
-			
+						
 			Position *positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
 			positionObj.guid = positionGuid;
 			positionObj.level = level;
@@ -1229,9 +1243,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					NSString *name = [candidate objectForKey:@"name"];
 					id subtitle = [candidate objectForKey:@"subtitle"];
 					NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
-					
-					//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
-					
+										
 					Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 					candidateObj.guid = candidateGuid;
 					candidateObj.name = name;
@@ -1253,9 +1265,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSNumber *levelOrder = [measure objectForKey:@"levelOrder"];
 			NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
 			NSString *longDescription = [measure objectForKey:@"longDescription"];
-			
-			//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
-			
+						
 			Measure *measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
 			measureObj.guid = guid;
 			measureObj.identifier = identifier;
@@ -1296,12 +1306,10 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSNumber *levelOrder = [position objectForKey:@"levelOrder"];
 			// titleOrder
 			NSNumber *titleOrder = [position objectForKey:@"titleOrder"];
-			
-			//NSLog(@"%@ %@ %@ %@ %@", guid, title, level, levelOrder, titleOrder);
-			
+						
 			Position *positionObj = [self getObject:@"Position" byGuid:positionGuid];
 			if (positionObj == nil) {
-				NSLog(@"Adding new position '%@' to election '%@'", positionGuid, electionGuid);
+				LogInfo(@"Adding new position '%@' to election '%@'", positionGuid, electionGuid);
 				
 				positionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Position" inManagedObjectContext:_context];
 				positionObj.guid = positionGuid;
@@ -1322,12 +1330,10 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 						NSString *name = [candidate objectForKey:@"name"];
 						id subtitle = [candidate objectForKey:@"subtitle"];
 						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
-						
-						//NSLog(@"%@ %@ %@ %@", name, party, occupation, displayOrder);
-						
+												
 						Candidate *candidateObj = [self getObject:@"Candidate" byGuid:candidateGuid];
 						if (candidateObj == nil) {
-							NSLog(@"Adding new candidate '%@' to position '%@'", candidateGuid, positionGuid);
+							LogInfo(@"Adding new candidate '%@' to position '%@'", candidateGuid, positionGuid);
 							
 							candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 							candidateObj.guid = candidateGuid;
@@ -1340,14 +1346,14 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 							candidateObj.displayOrder = displayOrder;
 						}
 						else {
-							NSLog(@"Candidate doesn't belong in position");
+							LogWarn(@"Candidate doesn't belong in position");
 						}
 
 					}
 				}
 			}
 			else {
-				NSLog(@"Position doesn't belong in election");
+				LogWarn(@"Position doesn't belong in election");
 			}
 
 		}
@@ -1364,13 +1370,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSNumber *levelOrder = [measure objectForKey:@"levelOrder"];
 			NSNumber *displayOrder = [measure objectForKey:@"displayOrder"];
 			NSString *longDescription = [measure objectForKey:@"longDescription"];
-			
-			//NSLog(@"%@ %@ %@ %@ %@ %@ %@", guid, identifier, title, level, levelOrder, displayOrder, longDescription);
-			
+						
 			Measure *measureObj = [self getObject:@"Measure" byGuid:measureGuid];
 
 			if (measureObj == nil) {
-				NSLog(@"Adding new measure '%@' to election '%@'", measureGuid, electionGuid);
+				LogInfo(@"Adding new measure '%@' to election '%@'", measureGuid, electionGuid);
 				
 				measureObj = [NSEntityDescription insertNewObjectForEntityForName:@"Measure" inManagedObjectContext:_context];
 				measureObj.guid = measureGuid;
@@ -1386,7 +1390,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				measureObj.displayOrder = displayOrder;
 			}
 			else {
-				NSLog(@"Measure doesn't belong in election");
+				LogWarn(@"Measure doesn't belong in election");
 			}
 
 		}
