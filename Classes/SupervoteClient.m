@@ -598,9 +598,9 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		date = [df dateFromString:[[request responseHeaders] objectForKey:@"X-Created-Time"]];
 		LogDebug(@"Server returned %d from request '%@': X-Created-Time = %@", 200, [url path], date);
 	}
-	else if ([request responseStatusCode] == 500) {
-		/* INTERNAL_SERVER_ERROR */
-		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
 	}
 	else {
 		/* unexpected response */
