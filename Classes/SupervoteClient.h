@@ -44,7 +44,12 @@ typedef enum {
 						   withDistrict:(District *)district
 						withCreatedTime:(NSDate *)createdTime
 							  withError:(NSError **)error;
-- (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **) error;
+- (BOOL)findOrInsertPotentialGovermentRegistration:(NSDictionary *)object
+										withParent:(GovernmentRegistration *)parent
+										 withError:(NSError **) error;
+- (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
+									   withParent:(GovernmentRegistration *)parent
+										withError:(NSError **) error;
 - (District *)findOrInsertDistrict:(NSDictionary *)object
 						withParent:(Government *)parent
 						 withError:(NSError **)error;

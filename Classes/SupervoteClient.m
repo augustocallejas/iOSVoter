@@ -21,6 +21,7 @@
 #import "Measure.h"
 #import "Position.h"
 #import "PotentialDistrictRegistration.h"
+#import "PotentialGovernmentRegistration.h"
 
 static NSString *kDeviceIDHeaderKey = @"DeviceID";
 static NSString* kAPIUrl = @"http://localhost:9999";
@@ -227,11 +228,26 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				NSArray *potentialDistrictRegistrations = [object objectForKey:@"potentialDistrictRegistrations"];
 				if (potentialDistrictRegistrations != nil) {
 					for (NSDictionary *potentialDistrictRegistrationObj in potentialDistrictRegistrations) {
-						[self findOrInsertPotentialDistrictRegistration:potentialDistrictRegistrationObj withParent:registration withError:error];
+						[self findOrInsertPotentialDistrictRegistration:potentialDistrictRegistrationObj
+															 withParent:registration
+															  withError:error];
 						
 						if (*error != nil) {
 							return;
 						}
+					}
+				}
+				
+				NSArray *potentialGovernmentRegistrations = [object objectForKey:@"potentialGovernmentRegistrations"];
+				if (potentialGovernmentRegistrations != nil && [potentialGovernmentRegistrations count] > 0) {
+					if ([potentialGovernmentRegistrations count] > 1) {
+						LogWarn(@"Expected only one PotentialGovernmentRegistration, found many, only processing first element");
+					}
+
+					if (![self findOrInsertPotentialGovermentRegistration:[potentialGovernmentRegistrations objectAtIndex:0]
+															   withParent:registration
+																withError:error]) {
+						return;
 					}
 				}
 			}
@@ -321,6 +337,63 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	return [_context save:error];
 }
 
+- (BOOL)findOrInsertPotentialGovermentRegistration:(NSDictionary *)object
+										withParent:(GovernmentRegistration *)parent
+										 withError:(NSError **) error {
+	BOOL insertObject = YES;
+	NSNumber *dateValue = [object objectForKey:@"createdTime"];
+	NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+	
+	if (parent.potentialGovernmentRegistration != nil) {
+		if ([parent.potentialGovernmentRegistration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
+			LogInfo(@"Current PotentialGovernmentRegistration (parent=%@) is out of date (current=%@ vs incoming=%@), deleting current registration",
+					parent.government.name,
+					parent.potentialGovernmentRegistration.createdTime,
+					createdTime);
+			
+			parent.potentialGovernmentRegistration = nil;
+		}
+		else {
+			LogInfo(@"Current PotentialGovernmentRegistration (parent=%@) with latest timestamp, no update necessary: (current=%@ vs incoming=%@)",
+					parent.government.name,
+					parent.potentialGovernmentRegistration.createdTime,
+					createdTime);
+			
+			insertObject = NO;
+		}
+	}
+	
+	BOOL status = YES;
+	if (insertObject) {
+		LogInfo(@"Inserting incoming PotentialGovernmentRegistration (parent=%@, createdTime=%@)",
+				parent.government.name,
+				createdTime);
+		
+		PotentialGovernmentRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"PotentialGovernmentRegistration" inManagedObjectContext:_context];
+		registration.createdTime = createdTime;
+		registration.registration = parent;
+	
+		NSDictionary *choices = [object objectForKey:@"choices"];
+		if (choices != nil) {
+			for (NSDictionary *choice in choices) {
+				Government *government = [self findOrInsertGovernment:choice withParent:parent.government withError:error];
+				if (government == nil) {
+					return NO;
+				}
+				
+				[registration addChoicesObject:government];
+			}
+		}
+		
+		status = [_context save:error];
+	}
+	[createdTime release];
+	
+	return status;
+}
+
+
+
 - (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
 									   withParent:(GovernmentRegistration *)parent
 										withError:(NSError **) error {
@@ -382,7 +455,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				if (choices != nil) {
 					for (NSDictionary *choice in choices) {
 						District *district = [self findOrInsertDistrict:choice withParent:parent.government withError:error];
-						if (*error != nil) {
+						if (district == nil) {
 							return;
 						}
 						

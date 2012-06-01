@@ -11,6 +11,7 @@
 #import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
 #import "PotentialDistrictRegistration.h"
+#import "PotentialGovernmentRegistration.h"
 #import "SelectDistrictViewController.h"
 
 @implementation VoterRegistrationViewController
@@ -129,16 +130,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-	return [self.registrations count];
+	NSInteger count = [self.registrations count];
+	if (count > 0 && [[self.registrations lastObject] potentialGovernmentRegistration] != nil) {
+		count++;
+	}
+	return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	//return 1 + [[[self.registrations objectAtIndex:section] registrations] count];
+	if (section >= [self.registrations count]) {
+		return 1;
+	}
+	
 	return 1 + [[self.sortedDistrictRegistrations objectAtIndex:section] count];
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"VoterRegistrationViewController";
     
@@ -153,37 +160,49 @@
 		//	label.minimumFontSize = 18.0;
     }
     
-    // Configure the cell...
-	GovernmentRegistration *registration = [self.registrations objectAtIndex:[indexPath section]];
-	
-	if ([indexPath row] == 0) {
-		cell.textLabel.text = registration.government.name;
-		//	cell.detailTextLabel.text = @"detailText";
-		/* TODO: temporary */
+	if ([indexPath section] >= [self.registrations count]) {
+		/* handle special case of a PotentialGovernmentRegistration */
+		PotentialGovernmentRegistration *potentialGovernmentRegistration = 
+		[[self.registrations lastObject] potentialGovernmentRegistration];
+		
+		cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [potentialGovernmentRegistration.choices count]];
+		
+		cell.imageView.image = [UIImage imageNamed:@"error.png"];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 	}
 	else {
-		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		GovernmentRegistration *registration = [self.registrations objectAtIndex:[indexPath section]];
 		
-		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
-		id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
-
-		if ([obj isKindOfClass:[DistrictRegistration class]]) {
-			DistrictRegistration *reg = (DistrictRegistration *)obj;
-			cell.textLabel.text = reg.district.name;
-			cell.detailTextLabel.text = reg.district.districtType.name;
-			
-			cell.imageView.image = nil;
-			cell.accessoryType = UITableViewCellAccessoryNone;
-			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		if ([indexPath row] == 0) {
+			cell.textLabel.text = registration.government.name;
+			//	cell.detailTextLabel.text = @"detailText";
+			/* TODO: temporary */
 		}
-		else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
-			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
-			cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [reg.choices count]];
-			cell.detailTextLabel.text = reg.districtType.name;
-			
-			cell.imageView.image = [UIImage imageNamed:@"error.png"];
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		else {
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			
+			NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
+			id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
+			
+			if ([obj isKindOfClass:[DistrictRegistration class]]) {
+				DistrictRegistration *reg = (DistrictRegistration *)obj;
+				cell.textLabel.text = reg.district.name;
+				cell.detailTextLabel.text = reg.district.districtType.name;
+				
+				cell.imageView.image = nil;
+				cell.accessoryType = UITableViewCellAccessoryNone;
+				cell.selectionStyle = UITableViewCellSelectionStyleNone;
+			}
+			else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
+				PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
+				cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [reg.choices count]];
+				cell.detailTextLabel.text = reg.districtType.name;
+				
+				cell.imageView.image = [UIImage imageNamed:@"error.png"];
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			}
 		}
 	}
     
@@ -250,7 +269,13 @@
 	label.adjustsFontSizeToFitWidth = YES;
 	label.minimumFontSize = 18.0;
 	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
-	label.text = [[[(GovernmentRegistration *) [self.registrations objectAtIndex:section] government] governmentType] name];
+	
+	if (section >= [self.registrations count]) {
+		label.text = [[[self.registrations lastObject] government] name]; 
+	}
+	else {
+		label.text = [[[[self.registrations objectAtIndex:section] government] governmentType] name];
+	}
 	
 	[customView addSubview:label];
 	return customView;

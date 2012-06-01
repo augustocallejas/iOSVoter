@@ -130,6 +130,7 @@
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
 		1490F81D14849DF100352E23 /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490F81C14849DF100352E23 /* FacebookClient.m */; };
 		14A01B2514789F420029ADFE /* SupervoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A01B2414789F420029ADFE /* SupervoteClient.m */; };
+		14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */; };
 		14A6F44D143D932200EBF65D /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F44C143D932200EBF65D /* advanced.png */; };
 		14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A8779713F23DB2006B9D73 /* DisplayElection.xib */; };
 		14AAA6AC1499CA8600D59D0D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA6AB1499CA8600D59D0D /* Reachability.m */; };
@@ -346,6 +347,8 @@
 		1490F81C14849DF100352E23 /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
 		14A01B2314789F420029ADFE /* SupervoteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteClient.h; sourceTree = "<group>"; };
 		14A01B2414789F420029ADFE /* SupervoteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteClient.m; sourceTree = "<group>"; };
+		14A4D146157896EA00E73B21 /* PotentialGovernmentRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialGovernmentRegistration.h; sourceTree = "<group>"; };
+		14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialGovernmentRegistration.m; sourceTree = "<group>"; };
 		14A6F44C143D932200EBF65D /* advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advanced.png; sourceTree = "<group>"; };
 		14A8779713F23DB2006B9D73 /* DisplayElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayElection.xib; sourceTree = "<group>"; };
 		14AAA6AA1499CA8600D59D0D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -593,6 +596,8 @@
 				1423B43E14082BE0006F8DBF /* Position.m */,
 				1438A93315740A3D00112C42 /* PotentialDistrictRegistration.h */,
 				1438A93415740A3D00112C42 /* PotentialDistrictRegistration.m */,
+				14A4D146157896EA00E73B21 /* PotentialGovernmentRegistration.h */,
+				14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1115,6 +1120,7 @@
 				1410F9CA156A0E8300B844E4 /* NSArray+PerformSelector.m in Sources */,
 				1438A93515740A3D00112C42 /* PotentialDistrictRegistration.m in Sources */,
 				142E665A1575D77000C92477 /* SelectDistrictViewController.m in Sources */,
+				14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

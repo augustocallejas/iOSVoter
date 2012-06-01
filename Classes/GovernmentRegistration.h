@@ -2,7 +2,7 @@
 //  GovernmentRegistration.h
 //  Supervote
 //
-//  Created by augusto callejas on 5/28/12.
+//  Created by augusto callejas on 5/31/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 @class DistrictRegistration;
 @class Government;
 @class PotentialDistrictRegistration;
+@class PotentialGovernmentRegistration;
 
 @interface GovernmentRegistration :  NSManagedObject  
 {
@@ -19,6 +20,7 @@
 @property (nonatomic, retain) NSNumber * displayOrder;
 @property (nonatomic, retain) NSDate * createdTime;
 @property (nonatomic, retain) NSSet* potentialRegistrations;
+@property (nonatomic, retain) PotentialGovernmentRegistration * potentialGovernmentRegistration;
 @property (nonatomic, retain) Government * government;
 @property (nonatomic, retain) NSSet* registrations;
 
