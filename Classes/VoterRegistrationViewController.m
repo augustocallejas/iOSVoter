@@ -79,9 +79,7 @@
 		[sortedDistrictRegistrations addObject:[allOfThem sortedArrayUsingDescriptors:descriptors]];
 		[allOfThem release];
 	}
-	[sort2 release];
-	
-	LogInfo([NSString stringWithFormat:@"Loaded %d government registration(s)", [self.registrations count]]);
+	[sort2 release];	
 }
 
 - (void)viewDidLoad {

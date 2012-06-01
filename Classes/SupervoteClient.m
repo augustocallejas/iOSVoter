@@ -138,7 +138,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSDictionary *governmentObj = [object objectForKey:@"government"];
 	
 	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:error];
-	if (*error == nil) {
+	if (government != nil) {
 		/* query for existing GovernmentRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -162,21 +162,35 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
-					LogDebug(@"Current GovernmentRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
+					LogInfo(@"Current GovernmentRegistration (type=%@, name=%@, displayOrder=%d) is out of date (current=%@ vs incoming=%@), deleting current registration",
+							registration.government.governmentType.id,
+							registration.government.name,
+							displayOrder,
+							registration.createdTime,
+							createdTime);
 					
 					[_context deleteObject:registration];
 					
 					[self deleteGovernmentRegistrationsAbove:displayOrder withError:error];
 				}
 				else {
-					LogDebug(@"Current GovernmentRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
+					LogInfo(@"Current GovernmentRegistration (type=%@, name=%@, displayOrder=%d) with latest timestamp, no update necessary: (current=%@ vs incoming=%@)",
+							registration.government.governmentType.id,
+							registration.government.name,
+							displayOrder,
+							registration.createdTime,
+							createdTime);
 					
 					insertObject = NO;
 				}
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)", government.governmentType.id, government.name, displayOrder, createdTime);
+				LogInfo(@"Inserting incoming GovernmentRegistration: (type=%@, name=%@, displayOrder=%d, createdTime=%@)",
+						government.governmentType.id,
+						government.name,
+						displayOrder,
+						createdTime);
 							
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
 				registration.displayOrder = [NSNumber numberWithInt:displayOrder];
@@ -255,19 +269,29 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
-					LogDebug(@"Current DistrictRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
+					LogInfo(@"Current DistrictRegistration (type=%@, name=%@) is out of date (current=%@ vs incoming=%@), deleting current registration",
+							registration.district.districtType.id,
+							registration.district.name,
+							registration.createdTime,
+							createdTime);
 					
 					[_context deleteObject:registration];
 				}
 				else {
-					LogDebug(@"Current DistrictRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
+					LogInfo(@"Current DistrictRegistration (type=%@) with latest timestamp, no update necessary: (current=%@ vs incoming=%@)",
+							registration.districtType.id,
+							registration.createdTime,
+							createdTime);
 					
 					insertObject = NO;
 				}
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming DistrictRegistration: (type=%@, name=%@, createdTime=%@)", district.districtType.id, district.name, createdTime);
+				LogInfo(@"Inserting incoming DistrictRegistration (type=%@, name=%@, createdTime=%@)",
+						district.districtType.id,
+						district.name,
+						createdTime);
 				
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
 				registration.districtType = district.districtType;
@@ -327,19 +351,27 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
-					LogDebug(@"Current PotentialDistrictRegistration is out of date (current=%@ vs incoming=%@), deleting current registration", registration.createdTime, createdTime);
+					LogInfo(@"Current PotentialDistrictRegistration (type=%@) is out of date (current=%@ vs incoming=%@), deleting current registration",
+							registration.districtType.id,
+							registration.createdTime,
+							createdTime);
 					
 					[_context deleteObject:registration];
 				}
 				else {
-					LogDebug(@"Current PotentialDistrictRegistration with latest timestamp, no update necessary: (current=%@ vs incoming=%@)", registration.createdTime, createdTime);
+					LogInfo(@"Current PotentialDistrictRegistration (type=%@) with latest timestamp, no update necessary: (current=%@ vs incoming=%@)",
+							registration.districtType.id,
+							registration.createdTime,
+							createdTime);
 					
 					insertObject = NO;
 				}
 			}
 			
 			if (insertObject) {
-				LogDebug(@"Inserting incoming PotentialDistrictRegistration: (type=%@, createdTime=%@)", districtType.id, createdTime);
+				LogInfo(@"Inserting incoming PotentialDistrictRegistration (type=%@, createdTime=%@)",
+						districtType.id,
+						createdTime);
 				
 				registration = [NSEntityDescription insertNewObjectForEntityForName:@"PotentialDistrictRegistration" inManagedObjectContext:_context];
 				registration.districtType = districtType;
@@ -395,7 +427,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			NSNumber *districtNum = [object objectForKey:@"districtNum"];
 			NSNumber *year = [object objectForKey:@"year"];
 			
-			LogDebug(@"Inserting incoming District: (type=%@, name=%@)", districtType.id, name);
+			LogInfo(@"Inserting incoming District (type=%@, name=%@)", districtType.id, name);
 
 			/* create and return District instance */
 			District *district = [NSEntityDescription insertNewObjectForEntityForName:@"District" inManagedObjectContext:_context];
@@ -716,13 +748,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
 		status = SERVER_ERROR;
-		/* TODO: log to disk */
 		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
 		status = BAD_REQUEST;
-		/* TODO: log to disk */
 		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
 	}
 	else if ([request responseStatusCode] == 403) {
