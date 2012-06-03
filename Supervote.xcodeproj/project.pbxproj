@@ -106,6 +106,8 @@
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
+		14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */; };
+		14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
 		1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */; };
 		1474ECA5142330A6004D35AD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1474EC8D142330A6004D35AD /* FBDialog.bundle */; };
@@ -303,6 +305,9 @@
 		14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteMeasureController.h; sourceTree = "<group>"; };
 		14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteMeasureController.m; sourceTree = "<group>"; };
 		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
+		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
+		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
+		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
 		1462F3DA141DA394007E31C1 /* BallotItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotItemViewCell.h; sourceTree = "<group>"; };
 		1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotItemViewCell.m; sourceTree = "<group>"; };
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
@@ -623,6 +628,8 @@
 				1410F9B3156A0C4F00B844E4 /* SegmentsController.m */,
 				142E66571575D77000C92477 /* SelectDistrictViewController.h */,
 				142E66581575D77000C92477 /* SelectDistrictViewController.m */,
+				14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */,
+				14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */,
 				14789F2E13EBBBF20016044C /* SettingsController.h */,
 				14789F2F13EBBBF20016044C /* SettingsController.m */,
 				28D7ACF60DDB3853001CB0EB /* SupervoteViewController.h */,
@@ -804,6 +811,7 @@
 				14EF327F144231D900557A80 /* MeasureViewCell.xib */,
 				14AD9EE214D7A40900B83A48 /* QuickTutorialViewController.xib */,
 				142E66591575D77000C92477 /* SelectDistrictViewController.xib */,
+				14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */,
 				14789F3013EBBBF20016044C /* SettingsController.xib */,
 				2899E5210DE3E06400AC0155 /* SupervoteViewController.xib */,
 				14F6533E14F9C0A600A13942 /* UIWebViewController.xib */,
@@ -1043,6 +1051,7 @@
 				1410F8451569777500B844E4 /* VoterRegistrationViewController.xib in Resources */,
 				1438A9A51574A91F00112C42 /* error.png in Resources */,
 				142E665B1575D77000C92477 /* SelectDistrictViewController.xib in Resources */,
+				14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1130,7 @@
 				1438A93515740A3D00112C42 /* PotentialDistrictRegistration.m in Sources */,
 				142E665A1575D77000C92477 /* SelectDistrictViewController.m in Sources */,
 				14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */,
+				14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

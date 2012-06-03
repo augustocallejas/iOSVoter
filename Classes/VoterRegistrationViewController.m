@@ -13,6 +13,7 @@
 #import "PotentialDistrictRegistration.h"
 #import "PotentialGovernmentRegistration.h"
 #import "SelectDistrictViewController.h"
+#import "SelectGovernmentViewController.h"
 
 @implementation VoterRegistrationViewController
 
@@ -282,7 +283,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row > 0) {
+	if (indexPath.section >= [self.registrations count]) {
+		
+		SelectGovernmentViewController *controller = [[SelectGovernmentViewController alloc] initWithNibName:@"SelectGovernmentViewController" bundle:[NSBundle mainBundle]];
+		controller.registration = [[self.registrations lastObject] potentialGovernmentRegistration];
+		controller.client = client;
+		controller.managedObjectContext = self.context;
+		
+		[[self navigationController] pushViewController:controller animated:YES];
+		[controller release];
+	}
+	else if (indexPath.row > 0) {
 		NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
 		id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
 		

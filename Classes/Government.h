@@ -2,7 +2,7 @@
 //  Government.h
 //  Supervote
 //
-//  Created by augusto callejas on 5/30/12.
+//  Created by augusto callejas on 6/2/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 
 @class District;
 @class GovernmentType;
+@class PotentialGovernmentRegistration;
 
 @interface Government :  NSManagedObject  
 {
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) Government * parent;
 @property (nonatomic, retain) NSSet* children;
 @property (nonatomic, retain) GovernmentType * governmentType;
+@property (nonatomic, retain) NSSet* potentialGovernmentRegistrations;
 @property (nonatomic, retain) NSSet* districts;
 
 @end
@@ -31,6 +33,11 @@
 - (void)removeChildrenObject:(Government *)value;
 - (void)addChildren:(NSSet *)value;
 - (void)removeChildren:(NSSet *)value;
+
+- (void)addPotentialGovernmentRegistrationsObject:(PotentialGovernmentRegistration *)value;
+- (void)removePotentialGovernmentRegistrationsObject:(PotentialGovernmentRegistration *)value;
+- (void)addPotentialGovernmentRegistrations:(NSSet *)value;
+- (void)removePotentialGovernmentRegistrations:(NSSet *)value;
 
 - (void)addDistrictsObject:(District *)value;
 - (void)removeDistrictsObject:(District *)value;
