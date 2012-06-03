@@ -41,6 +41,7 @@
 }
 
 - (void)loadRegistration {
+	NSLog(@"Loading");
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"GovernmentRegistration" inManagedObjectContext:self.context];
 	[fetchRequest setEntity:entity];
@@ -153,16 +154,19 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
 		//[cell.textLabel setFont:[UIFont systemFontOfSize:14.0]];
 		//[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
 		//	label.minimumFontSize = 18.0;
     }
+	
+	/* by default, no decorations */
+	cell.imageView.image = nil;
+	cell.accessoryType = UITableViewCellAccessoryNone;
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 	if ([indexPath section] >= [self.registrations count]) {
 		/* handle special case of a PotentialGovernmentRegistration */
+
 		PotentialGovernmentRegistration *potentialGovernmentRegistration = 
 		[[self.registrations lastObject] potentialGovernmentRegistration];
 		
@@ -190,10 +194,6 @@
 				DistrictRegistration *reg = (DistrictRegistration *)obj;
 				cell.textLabel.text = reg.district.name;
 				cell.detailTextLabel.text = reg.district.districtType.name;
-				
-				cell.imageView.image = nil;
-				cell.accessoryType = UITableViewCellAccessoryNone;
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			}
 			else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
 				PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;

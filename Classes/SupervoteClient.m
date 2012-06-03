@@ -322,11 +322,23 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	}
 }
 
+- (BOOL)resolveGovernmentRegistration:(PotentialGovernmentRegistration *)potentialRegistration
+					   withGovernment:(Government *)choice
+					  withCreatedTime:(NSDate *)createdTime
+							withError:(NSError **)error {
+	GovernmentRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"GovernmentRegistration" inManagedObjectContext:_context];
+	registration.government = choice;
+	registration.createdTime = createdTime;
+	registration.displayOrder = [NSNumber numberWithInt:([potentialRegistration.registration.displayOrder intValue] + 1)];
+	
+	[_context deleteObject:potentialRegistration];
+	return [_context save:error];
+}
+
 - (BOOL)resolveDistrictRegistration:(PotentialDistrictRegistration *)potentialRegistration
 					   withDistrict:(District *)district
 					withCreatedTime:(NSDate *)createdTime
 						  withError:(NSError **)error {
-							  
 	DistrictRegistration *registration = [NSEntityDescription insertNewObjectForEntityForName:@"DistrictRegistration" inManagedObjectContext:_context];
 	registration.districtType = district.districtType;
 	registration.district = district;
@@ -639,6 +651,68 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	}
 	
 	return nil;
+}
+
+- (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
+					withChoice:(Government *)choice {
+	NSURL *url = [self createURL:@"/selectGovernment"];
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:[NSNumber numberWithDouble:[potentialRegistration.createdTime timeIntervalSince1970]*1000.0] forKey:@"createdTime"];
+	[request setPostValue:potentialRegistration.registration.government.id forKey:@"government"];
+	[request setPostValue:choice.id forKey:@"choice"];
+	[request setDelegate:self];
+	request.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:potentialRegistration, @"potentialRegistration",
+						choice, @"choice", nil];
+	
+	[request startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request {
+	NSURL *url = [request url];
+	if ([@"/selectGovernment" isEqual:[url path]]) {
+		NSDateFormatter *df = [[NSDateFormatter alloc] init];
+		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+		df.locale = locale;
+		
+		NSDate *date = nil;
+		if ([request responseStatusCode] == 200) {
+			/* OK */
+			date = [df dateFromString:[[request responseHeaders] objectForKey:@"X-Created-Time"]];
+			LogDebug(@"Server returned %d from request '%@': X-Created-Time = %@", 200, [url path], date);
+		}
+		else if ([request responseStatusCode] == 400) {
+			/* BAD_REQUEST */
+			LogError(@"Server returned %d from request '%@'", 400, [[request url] path]); 
+		}
+		else {
+			/* unexpected response */
+			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
+		}
+		
+		[df release];
+		[locale release];
+		
+		PotentialGovernmentRegistration *potentialRegistration = [[request userInfo] objectForKey:@"potentialRegistration"];
+		Government *choice = [[request userInfo] objectForKey:@"choice"];
+		
+		if (date != nil) {
+			NSError *error = nil;
+			[self resolveGovernmentRegistration:potentialRegistration
+								 withGovernment:choice
+								withCreatedTime:date
+									  withError:&error];
+			/* TODO: log error */
+		}
+	}
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request {
+	NSError *error = [request error];
+	NSURL *url = [request url];
+	LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 }
 
 - (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict

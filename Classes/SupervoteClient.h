@@ -17,6 +17,7 @@
 #import "GovernmentType.h"
 #import "MeasureVote.h"
 #import "PotentialDistrictRegistration.h"
+#import "PotentialGovernmentRegistration.h"
 
 typedef enum {
 	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
@@ -40,6 +41,10 @@ typedef enum {
 - (NSDictionary *)getProfileWithError:(NSError **)error;
 - (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
 - (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error;
+- (BOOL)resolveGovernmentRegistration:(PotentialGovernmentRegistration *)potentialRegistration
+					   withGovernment:(Government *)choice
+					  withCreatedTime:(NSDate *)createdTime
+							withError:(NSError **)error;
 - (BOOL)resolveDistrictRegistration:(PotentialDistrictRegistration *)potentialRegistration
 						   withDistrict:(District *)district
 						withCreatedTime:(NSDate *)createdTime
@@ -56,6 +61,8 @@ typedef enum {
 - (DistrictType *)findOrInsertDistrictType:(NSDictionary *)object withError:(NSError **)error;
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
 - (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error;
+- (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
+			  withChoice:(Government *)choice;
 - (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
 				withChoice:(District *)district;
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken;

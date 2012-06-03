@@ -170,6 +170,7 @@
 		14EF38B6144AAD3C00557A80 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EF38B5144AAD3C00557A80 /* lock.png */; };
 		14F6533F14F9C0A600A13942 /* UIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F6533D14F9C0A600A13942 /* UIWebViewController.m */; };
 		14F6534014F9C0A600A13942 /* UIWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F6533E14F9C0A600A13942 /* UIWebViewController.xib */; };
+		14FC45FD157B1B5500B71B88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FC45FC157B1B5500B71B88 /* QuartzCore.framework */; };
 		1D3623260D0F684500981E51 /* SupervoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -418,6 +419,7 @@
 		14F6533C14F9C0A600A13942 /* UIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIWebViewController.h; path = ../UIWebViewController.h; sourceTree = "<group>"; };
 		14F6533D14F9C0A600A13942 /* UIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWebViewController.m; path = ../UIWebViewController.m; sourceTree = "<group>"; };
 		14F6533E14F9C0A600A13942 /* UIWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UIWebViewController.xib; sourceTree = "<group>"; };
+		14FC45FC157B1B5500B71B88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SupervoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SupervoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteAppDelegate.m; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				14AAA73B1499CD1200D59D0D /* SystemConfiguration.framework in Frameworks */,
 				14AAA73F1499CD2900D59D0D /* MobileCoreServices.framework in Frameworks */,
 				14AAA7431499CD3B00D59D0D /* libz.dylib in Frameworks */,
+				14FC45FD157B1B5500B71B88 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +835,16 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
+		14FC45E6157B196700B71B88 /* Third Party Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				14AAA6AD1499CA9200D59D0D /* ASIHTTPRequest */,
+				1474EC8C142330A6004D35AD /* FBConnect */,
+				14C997991527A2E30041ACDA /* NSLogger */,
+			);
+			name = "Third Party Libraries";
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,9 +856,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				14C997991527A2E30041ACDA /* NSLogger */,
-				14AAA6AD1499CA9200D59D0D /* ASIHTTPRequest */,
-				1474EC8C142330A6004D35AD /* FBConnect */,
+				14FC45E6157B196700B71B88 /* Third Party Libraries */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -900,6 +911,7 @@
 				14AAA73A1499CD1200D59D0D /* SystemConfiguration.framework */,
 				14AAA73E1499CD2900D59D0D /* MobileCoreServices.framework */,
 				14AAA7421499CD3B00D59D0D /* libz.dylib */,
+				14FC45FC157B1B5500B71B88 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

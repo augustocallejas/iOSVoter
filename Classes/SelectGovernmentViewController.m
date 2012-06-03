@@ -13,19 +13,22 @@
 @implementation SelectGovernmentViewController
 
 @synthesize registration;
-//@synthesize sortedDistricts;
 @synthesize client;
+@synthesize selectedRow;
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.selectedRow = nil;
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	UITextView *tableHeader = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 32.0)];
+	tableHeader.editable = NO;
 	tableHeader.backgroundColor = [UIColor clearColor];
 	tableHeader.textAlignment = UITextAlignmentCenter;
 	tableHeader.font = [UIFont systemFontOfSize:16];
@@ -48,11 +51,20 @@
     [super viewDidAppear:animated];
 }
 */
-/*
-- (void)viewWillDisappear:(BOOL)animated {
+
+-(void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+		// back button was pressed.  We know this is true because self is no longer
+		// in the navigation stack.
+		if (self.selectedRow != nil) {
+			Government *choice = [self.fetchedResultsController objectAtIndexPath:self.selectedRow];
+			
+			[self.client selectGovernment:self.registration withChoice:choice];
+		}
+    }
     [super viewWillDisappear:animated];
 }
-*/
+
 /*
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -100,6 +112,16 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	Government *government = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = government.name;
+//	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	
+	if (self.selectedRow != nil && [self.selectedRow isEqual:selectedRow]) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
+
 }
 
 #pragma mark -
@@ -179,15 +201,26 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
+	if (self.selectedRow == nil) {
+		self.selectedRow = indexPath;
+		[self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	else if ([self.selectedRow isEqual:indexPath]) {
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
+		self.selectedRow = nil;
+	}
+	else if (![self.selectedRow isEqual:indexPath]) {
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
+		self.selectedRow = indexPath;
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+//- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+//	NSLog(@"Display detailed information about this government");
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 32.0;
