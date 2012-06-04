@@ -654,7 +654,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
-					withChoice:(Government *)choice {
+			  withChoice:(Government *)choice
+			withDelegate:(id)delegate {
 	NSURL *url = [self createURL:@"/selectGovernment"];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -664,7 +665,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request setPostValue:choice.id forKey:@"choice"];
 	[request setDelegate:self];
 	request.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:potentialRegistration, @"potentialRegistration",
-						choice, @"choice", nil];
+						choice, @"choice", delegate, @"delegate", nil];
 	
 	[request startAsynchronous];
 }
@@ -677,6 +678,8 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 		df.locale = locale;
 		
+		id delegate = [request.userInfo objectForKey:@"delegate"];
+		
 		NSDate *date = nil;
 		if ([request responseStatusCode] == 200) {
 			/* OK */
@@ -686,10 +689,22 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		else if ([request responseStatusCode] == 400) {
 			/* BAD_REQUEST */
 			LogError(@"Server returned %d from request '%@'", 400, [[request url] path]); 
+			
+			if (delegate != nil) {
+				if ([delegate respondsToSelector:@selector(selectGovernmentFailed:status:)]) {
+					[delegate performSelector:@selector(selectGovernmentFailed:status:) withObject:[NSNumber numberWithInt:STATUS_BAD_REQUEST]];
+				}
+			}
 		}
 		else {
 			/* unexpected response */
 			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
+			
+			if (delegate != nil) {
+				if ([delegate respondsToSelector:@selector(selectGovernmentFailed:status:)]) {
+					[delegate performSelector:@selector(selectGovernmentFailed:status:) withObject:[NSNumber numberWithInt:STATUS_UNEXPECTED_RESPONSE]];
+				}
+			}
 		}
 		
 		[df release];
@@ -704,15 +719,29 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 								 withGovernment:choice
 								withCreatedTime:date
 									  withError:&error];
-			/* TODO: log error */
+			/* TODO: log error vote_status */
+			if (delegate != nil) {
+				if ([delegate respondsToSelector:@selector(selectGovernmentSuccess)]) {
+					[delegate performSelector:@selector(selectGovernmentSuccess)];
+				}
+			}
 		}
 	}
+	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	NSError *error = [request error];
 	NSURL *url = [request url];
+	
 	LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
+	
+	id delegate = [request.userInfo objectForKey:@"delegate"];
+	if (delegate != nil) {
+		if ([delegate respondsToSelector:@selector(selectGovernmentFailed:)]) {
+			[delegate performSelector:@selector(selectGovernmentFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
+		}
+	}
 }
 
 - (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict

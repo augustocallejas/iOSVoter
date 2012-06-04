@@ -62,7 +62,8 @@ typedef enum {
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error;
 - (GovernmentType *)findOrInsertGovernmentType:(NSDictionary *)object withError:(NSError **)error;
 - (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
-			  withChoice:(Government *)choice;
+			  withChoice:(Government *)choice
+			withDelegate:(id)delegate;
 - (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
 				withChoice:(District *)district;
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken;

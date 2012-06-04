@@ -7,6 +7,7 @@
 //
 
 #import "FetchedResultsBasedTableViewController.h"
+#import "Government.h"
 #import "PotentialGovernmentRegistration.h"
 #import "SupervoteClient.h"
 
@@ -16,5 +17,6 @@
 @property (nonatomic, retain) PotentialGovernmentRegistration* registration;
 @property (nonatomic, retain) SupervoteClient *client;
 @property (nonatomic, retain) NSIndexPath *selectedRow;
+@property (nonatomic, retain) Government *choice;
 
 @end

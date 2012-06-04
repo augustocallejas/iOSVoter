@@ -11,9 +11,7 @@
 #import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
 #import "PotentialDistrictRegistration.h"
-#import "PotentialGovernmentRegistration.h"
 #import "SelectDistrictViewController.h"
-#import "SelectGovernmentViewController.h"
 
 @implementation VoterRegistrationViewController
 
@@ -21,6 +19,7 @@
 @synthesize client;
 @synthesize registrations;
 @synthesize sortedDistrictRegistrations;
+@synthesize pushedController;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -41,7 +40,6 @@
 }
 
 - (void)loadRegistration {
-	NSLog(@"Loading");
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"GovernmentRegistration" inManagedObjectContext:self.context];
 	[fetchRequest setEntity:entity];
@@ -94,12 +92,70 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
-	[self getRegistration];
+		
+	if (self.pushedController != nil) {
+		
+		if (self.pushedController.choice != nil) {
+			[[ProgressHUD defaultHUD] showInView:self.view];
+			[self.client selectGovernment:self.pushedController.registration
+							   withChoice:self.pushedController.choice
+							 withDelegate:self];
+		}
+		
+		self.pushedController = nil;
+	}
+	else {
+		[self getRegistration];
+		[self loadRegistration];
+		
+		[self.tableView reloadData];
+		[self.tableView beginUpdates];
+		[self.tableView endUpdates];
+	}
+}
+
+- (void)selectGovernmentSuccess {
+	[[ProgressHUD defaultHUD] hideActivityIndicator];
+
 	[self loadRegistration];
 	[self.tableView reloadData];
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
+}
+
+- (void)selectGovernmentFailed:(NSNumber *)status {
+	[[ProgressHUD defaultHUD] hideActivityIndicator];
+	
+	NSString *title = nil;
+	NSString *message = nil;
+	switch ([status intValue]) {
+		case STATUS_BAD_REQUEST:
+			title = NSLocalizedString(@"BadRequestTitle", nil);
+			message = NSLocalizedString(@"BadRequestMessage", nil);
+			break;
+			break;
+		case STATUS_HTTP_ERROR:
+			title = NSLocalizedString(@"HttpErrorTitle", nil);
+			message = NSLocalizedString(@"HttpErrorMessage", nil);
+			break;
+		case STATUS_SERVER_ERROR:
+			title = NSLocalizedString(@"ServerErrorTitle", nil);
+			message = NSLocalizedString(@"SaveVoteServerErrorMessage", nil);
+			break;
+		case STATUS_UNEXPECTED_RESPONSE:
+		default:
+			title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
+			message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
+			break;
+	}
+
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+													message:message 
+												   delegate:nil 
+										  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 /*
@@ -290,6 +346,9 @@
 		controller.client = client;
 		controller.managedObjectContext = self.context;
 		
+		/* remember which registration was selected */
+		self.pushedController = controller;
+		
 		[[self navigationController] pushViewController:controller animated:YES];
 		[controller release];
 	}
@@ -333,6 +392,7 @@
 	self.client = nil;
 	self.registrations = nil;
 	self.sortedDistrictRegistrations = nil;
+	self.pushedController = nil;
     [super dealloc];
 }
 

@@ -8,13 +8,12 @@
 
 #import "SelectGovernmentViewController.h"
 
-#import "Government.h"
-
 @implementation SelectGovernmentViewController
 
 @synthesize registration;
 @synthesize client;
 @synthesize selectedRow;
+@synthesize choice;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -52,6 +51,7 @@
 }
 */
 
+/*
 -(void) viewWillDisappear:(BOOL)animated {
     if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
 		// back button was pressed.  We know this is true because self is no longer
@@ -64,6 +64,7 @@
     }
     [super viewWillDisappear:animated];
 }
+*/
 
 /*
 - (void)viewDidDisappear:(BOOL)animated {
@@ -204,15 +205,21 @@
 	if (self.selectedRow == nil) {
 		self.selectedRow = indexPath;
 		[self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		self.choice = [self.fetchedResultsController objectAtIndexPath:self.selectedRow];
 	}
 	else if ([self.selectedRow isEqual:indexPath]) {
 		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
 		self.selectedRow = nil;
+		
+		self.choice = nil;
 	}
 	else if (![self.selectedRow isEqual:indexPath]) {
 		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
 		self.selectedRow = indexPath;
 		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		self.choice = [self.fetchedResultsController objectAtIndexPath:self.selectedRow];
 	}
 
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -266,6 +273,8 @@
 - (void)dealloc {
 	self.registration = nil;
 	self.client = nil;
+	self.selectedRow = nil;
+	self.choice = nil;
     [super dealloc];
 }
 

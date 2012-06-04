@@ -8,6 +8,8 @@
 
 #import "SupervoteClient.h"
 
+#import "PotentialGovernmentRegistration.h"
+#import "SelectGovernmentViewController.h"
 
 @interface VoterRegistrationViewController : UITableViewController {
 }
@@ -16,5 +18,6 @@
 @property (nonatomic, retain) SupervoteClient *client;
 @property (nonatomic, retain) NSArray *registrations;
 @property (nonatomic, retain) NSMutableArray *sortedDistrictRegistrations;
+@property (nonatomic, retain) SelectGovernmentViewController* pushedController;
 
 @end
