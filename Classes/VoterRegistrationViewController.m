@@ -94,7 +94,6 @@
     [super viewWillAppear:animated];
 		
 	if (self.pushedController != nil) {
-		
 		if (self.pushedController.choice != nil) {
 			[[ProgressHUD defaultHUD] showInView:self.view];
 			[self.client selectGovernment:self.pushedController.registration
@@ -125,17 +124,16 @@
 }
 
 - (void)selectDistrictSuccess {
-	[[ProgressHUD defaultHUD] hideActivityIndicator];
-	
-	[self loadRegistration];
-	[self.tableView reloadData];
-	[self.tableView beginUpdates];
-	[self.tableView endUpdates];
+	[self selectChoiceSuccess];
 }
 
 - (void)selectGovernmentSuccess {
-	[[ProgressHUD defaultHUD] hideActivityIndicator];
+	[self selectChoiceSuccess];
+}
 
+- (void)selectChoiceSuccess {
+	[[ProgressHUD defaultHUD] hideActivityIndicator];
+	
 	[self loadRegistration];
 	[self.tableView reloadData];
 	[self.tableView beginUpdates];

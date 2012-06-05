@@ -15,6 +15,7 @@
 @interface VoterRegistrationViewController : UITableViewController {
 }
 
+- (void)selectChoiceSuccess;
 - (void)selectChoiceFailed:(NSNumber *)status;
 
 @property (nonatomic, retain) NSManagedObjectContext *context;
