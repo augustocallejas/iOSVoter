@@ -246,6 +246,8 @@
 	cell.imageView.image = nil;
 	cell.accessoryType = UITableViewCellAccessoryNone;
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	cell.textLabel.adjustsFontSizeToFitWidth = YES;
+	cell.textLabel.minimumFontSize = 12;
     
 	if ([indexPath section] >= [self.registrations count]) {
 		/* handle special case of a PotentialGovernmentRegistration */
@@ -253,7 +255,9 @@
 		PotentialGovernmentRegistration *potentialGovernmentRegistration = 
 		[[self.registrations lastObject] potentialGovernmentRegistration];
 		
-		cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [potentialGovernmentRegistration.choices count]];
+		cell.textLabel.text = [NSString stringWithFormat:@"%d %@",
+							   [potentialGovernmentRegistration.choices count],
+							   NSLocalizedString(@"Choices", nil)];
 		
 		cell.imageView.image = [UIImage imageNamed:@"error.png"];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -278,7 +282,9 @@
 			}
 			else if ([obj isKindOfClass:[PotentialDistrictRegistration class]]) {
 				PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
-				cell.textLabel.text = [NSString stringWithFormat:@"%d choice(s)", [reg.choices count]];
+				cell.textLabel.text = [NSString stringWithFormat:@"%d %@",
+									   [reg.choices count],
+									   NSLocalizedString(@"Choices", nil)];
 				cell.detailTextLabel.text = reg.districtType.name;
 				
 				cell.imageView.image = [UIImage imageNamed:@"error.png"];

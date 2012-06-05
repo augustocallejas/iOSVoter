@@ -203,7 +203,7 @@
 			UINavigationController *electionNavigation = [[[UINavigationController alloc] initWithRootViewController:elections] autorelease];
 			
 			SettingsController *settings = [[SettingsController alloc] initWithNibName:@"SettingsController" bundle:[NSBundle mainBundle]];
-			settings.title = NSLocalizedString(@"Settings", nil);
+			settings.title = NSLocalizedString(@"Advanced", nil);
 			settings.managedObjectContext = self.managedObjectContext;
 			settings.client = self.supervoteClient;
 			settings.facebookClient = self.facebookClient;
