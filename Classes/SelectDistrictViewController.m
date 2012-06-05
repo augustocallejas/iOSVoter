@@ -92,14 +92,14 @@
 }
 
 - (NSString *)getCellIdentifier{
-	return @"SelectGovernmentViewController";
+	return @"SelectDistrictViewController";
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	District *district = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = district.name;
-	//	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-	//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	
 	if (self.selectedRow != nil && [self.selectedRow isEqual:selectedRow]) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -115,36 +115,6 @@
 
 #pragma mark -
 #pragma mark Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    return 1;
-//}
-//
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    // Return the number of rows in the section.
-//    return [sortedDistricts count];
-//}
-
-
-// Customize the appearance of table view cells.
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    static NSString *CellIdentifier = @"SelectDistrictViewController";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//    }
-//    
-//    // Configure the cell...
-//	District *district = [sortedDistricts objectAtIndex:indexPath.row];
-//    cell.textLabel.text = district.name;
-//	
-//    return cell;
-//}
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -211,35 +181,6 @@
 	}
 	
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//	District *district = [sortedDistricts objectAtIndex:indexPath.row];
-//	NSDate *date = nil;
-//	
-//	if ((date = [client selectDistrict:self.registration withChoice:district]) != nil) {
-//		/* replace PotentialDistrictRegistration with DistrictRegistration */
-//		NSError *error = nil;
-//		[client resolveDistrictRegistration:self.registration
-//							   withDistrict:district
-//							withCreatedTime:date
-//								  withError:&error];
-//		
-//		[tableView deselectRowAtIndexPath:indexPath animated:YES];
-//		
-//		[self.navigationController popViewControllerAnimated:YES];
-//	}
-//	else {
-//		[tableView deselectRowAtIndexPath:indexPath animated:YES];
-//		
-//		/* TODO: it isn't always an HttpError! */
-//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
-//														message:NSLocalizedString(@"HttpErrorMessage", nil)
-//													   delegate:nil 
-//											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
-//											  otherButtonTitles:nil];
-//		[alert show];
-//		[alert release];
-//	}
 }
 
 
@@ -256,6 +197,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	self.tableView.tableHeaderView = nil;
 }
 
 - (void)dealloc {

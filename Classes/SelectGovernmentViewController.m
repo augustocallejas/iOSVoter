@@ -11,9 +11,9 @@
 @implementation SelectGovernmentViewController
 
 @synthesize registration;
-@synthesize client;
 @synthesize selectedRow;
 @synthesize choice;
+@synthesize client;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -21,9 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.selectedRow = nil;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	UITextView *tableHeader = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 64.0)];
 	tableHeader.editable = NO;
@@ -121,40 +118,12 @@
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 
+	cell.textLabel.adjustsFontSizeToFitWidth = YES;
+	cell.textLabel.minimumFontSize = 12;
 }
 
 #pragma mark -
 #pragma mark Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    // Return the number of sections.
-//    //return <#number of sections#>;
-//	return 0;
-//}
-//
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    // Return the number of rows in the section.
-//    //return <#number of rows in section#>;
-//	return 0;
-//}
-//
-//
-//// Customize the appearance of table view cells.
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//    }
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -197,7 +166,7 @@
 
 
 #pragma mark -
-#pragma mark Table view delegate
+#pragma mark UITableViewDelegate delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.selectedRow == nil) {
@@ -265,6 +234,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	self.tableView.tableHeaderView = nil;
 }
 
 - (void)dealloc {
