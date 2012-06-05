@@ -73,7 +73,7 @@
 			[VoteCandidateController displayEndorsements:ballotVote.forCandidate forPosition:position onNavigationController:self.navigationController];
 		}
 		else if (error != nil) {
-			NSLog(@"Error: %@", [error userInfo]);
+			LogError("Error while getting ballot vote: %@", [error localizedDescription]);
 		}
 		else {
 			//		NSLog(@"");
@@ -91,7 +91,7 @@
 			[VoteMeasureController displayEndorsements:measureVote.vote forMeasure:measure onNavigationController:self.navigationController];
 		}
 		else if (error != nil) {
-			NSLog(@"Error: %@", [error userInfo]);
+			LogError("Error while getting measure vote: %@", [error localizedDescription]);
 		}
 		else {
 			//      NSLog(@"");
@@ -145,7 +145,7 @@
 	socialBallotView = !socialBallotView;
 	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
 	if (![prefs synchronize]) {
-		NSLog(@"Did not synchronize correctly");
+		LogError(@"Unable to synchronize preferences");
 	}
 	
 	[self setExpandBarButtonIcon];
@@ -283,12 +283,11 @@
 			}
 		}
 		else {
-			NSLog(@"Should have only one vote!");
+			LogWarn(@"Should have only one vote!");
 		}
 	}
 	else {
-		/* TODO: Handle the error */
-		NSLog(@"  DetailedError: %@", [error userInfo]);
+		LogError(@"Error while fetching ballot vote: %@", [error localizedDescription]);
 	}
 		
 	[request release];
@@ -360,7 +359,7 @@
 			}
 		}
 		else {
-			NSLog(@"Error: %@", [error userInfo]);
+			LogError(@"Error while fetching friend endorsements: %@", [error localizedDescription]);
 		}
 
 	}
@@ -433,13 +432,12 @@
 		}
 		else
 		{
-			NSLog(@"Should have only one vote!");
+			LogWarn(@"Should have only one vote!");
 		}
 	}
 	else
 	{
-		/* TODO: Handle the error */
-		NSLog(@"  DetailedError: %@", [error userInfo]);
+		LogError(@"Error while executing fetch: %@", [error localizedDescription]);
 	}
 	
 	/* add small black border to all friend icons */
@@ -505,7 +503,7 @@
 			}
 		}
 		else {
-			NSLog(@"Error: %@", [error userInfo]);
+			LogError(@"Error while fetching friend endorsements: %@", [error localizedDescription]);
 		}
 	}
 
@@ -607,12 +605,12 @@
 	NSError *error;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		LogError(@"Error while performing fetch: %@", [error localizedDescription]);
 	}
 	
 	if (![[self fetchedResultsController2] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		LogError(@"Error while performing fetch: %@", [error localizedDescription]);
 	}
 	
 	/* create a ballot */
@@ -627,7 +625,7 @@
 	NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
 	if (fetchedObjects == nil)
 	{
-		NSLog(@"  DetailedError: %@", [error userInfo]);
+		LogError(@"Error while executing fetch: %@", [error localizedDescription]);
 	}
 	else
 	{
@@ -639,7 +637,7 @@
 			
 			if (![self.managedObjectContext save:&error])
 			{
-				NSLog(@"  DetailedError: %@", [error userInfo]);
+				LogError(@"Error while saving managed context: %@", [error localizedDescription]);
 			}
 		}
 		else if ([fetchedObjects count] == 1)
@@ -647,7 +645,7 @@
 			self.ballot = (Ballot *) [fetchedObjects objectAtIndex:0];
 		}
 		else {
-			NSLog(@"Too many ballots?");
+			LogWarn(@"Too many ballots?");
 		}
 	}
 	
@@ -740,7 +738,7 @@
 		//headerView.titleLabel.text = position.level;
 		headerTitle = [[position.level retain] autorelease];
 	} else if (error != nil) {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while executing fetch: %@", [error localizedDescription]);
 	}
 	
 	[numberFormatter release];
@@ -771,7 +769,7 @@
 		Measure *measure =  (Measure *)[fetchResults objectAtIndex:0];
 		headerTitle = [[measure.level retain] autorelease];
 	} else if (error != nil) {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while executing fetch: %@", [error localizedDescription]);
 	}
 	
 	[numberFormatter release];

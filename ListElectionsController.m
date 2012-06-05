@@ -330,12 +330,12 @@
 	NSError *error = nil;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		LogError("Error while performing a fetch: %@", [error localizedDescription]);
 	}
 	
 	if (![[self fetchedResultsController2] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		LogError("Error while performing a fetch: %@", [error localizedDescription]);
 	}
 }
 
@@ -417,7 +417,7 @@
 													 withError:&httpError];
 				
 				if (httpError != nil) {
-					NSLog(@"Network error while fetching election: %@", [httpError userInfo]);
+					LogError(@"Network error while fetching election: %@", [httpError localizedDescription]);
 				}
 				else if (status == ES_OK) {
 					if (electionObj == nil) {
@@ -427,7 +427,7 @@
 							NSError *storeError = nil;
 							if (![_client insertElection:election withLastModified:newLastModified withError:&storeError]) {
 								if (storeError != nil) {
-									NSLog(@"Storage error while inserting election: %@", [storeError userInfo]);
+									LogError(@"Storage error while inserting election: %@", [storeError localizedDescription]);
 								}
 							}
 						}
@@ -439,7 +439,7 @@
 							NSError *storeError = nil;
 							if (![_client updateElection:electionObj withObject:election withLastModified:lastModified withError:&storeError]) {
 								if (storeError != nil) {
-									NSLog(@"Storage error while updating election '%@': %@", electionGuid, [storeError userInfo]);
+									LogError(@"Storage error while updating election '%@': %@", electionGuid, [storeError localizedDescription]);
 								}
 							}
 						}
@@ -485,7 +485,7 @@
 			[_client insertFriends:friends withError:&storeError];
 			
 			if (storeError != nil) {
-				NSLog(@"Store error while inserting friends: %@", [storeError userInfo]);
+				LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
 			}
 		}
 		

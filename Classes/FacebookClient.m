@@ -58,17 +58,17 @@ static NSString *kAppId = @"367473609934472";
 }
 
 - (void)updateFriends {
-	NSLog(@"Updating Facebook friend list");
+	LogInfo(@"Updating Facebook friend list");
 	
 	NSFileManager *manager = [NSFileManager defaultManager];
 	
 	NSError *error = nil;
 	if (![manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/facebook", _documentsPath] withIntermediateDirectories:YES attributes:nil error:&error]) {
-		NSLog(@"Error while creating facebook directory: %@", [error userInfo]);
+		LogError(@"Error while creating facebook directory: %@", [error userInfo]);
 	}
 	
 	if (![_facebook isSessionValid]) {
-		NSLog(@"Facebook session not valid, need to reauthorize");
+		LogInfo(@"Facebook session not valid, need to reauthorize");
 		[_facebook authorize:nil];
 	}
 	
@@ -98,7 +98,7 @@ static NSString *kAppId = @"367473609934472";
 - (void)fbDidLogin {
 	_loggedIn = YES;
 	
-	NSLog(@"Facebook login successful, session expiration date %@", [_facebook expirationDate]);
+	LogInfo(@"Facebook login successful, session expiration date %@", [_facebook expirationDate]);
 	/* save access token */
 	[self storeAuthData:[_facebook accessToken] expiresAt:[_facebook expirationDate]];
 	
@@ -114,7 +114,7 @@ static NSString *kAppId = @"367473609934472";
  * Called when the user dismissed the dialog without logging in.
  */
 - (void)fbDidNotLogin:(BOOL)cancelled {
-	NSLog(@"Did not log in");
+	LogInfo(@"Did not log into Facebook");
 	
 	if (_delegate != nil) {
 		[_delegate fbDidNotLogin:cancelled];
@@ -129,7 +129,7 @@ static NSString *kAppId = @"367473609934472";
  * See extendAccessToken for more details.
  */
 - (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-	NSLog(@"Facebook access token extended with expiration date %@", expiresAt);
+	LogDebug(@"Facebook access token extended with expiration date %@", expiresAt);
 	[self storeAuthData:accessToken expiresAt:expiresAt];
 	
 	if (_delegate != nil) {
@@ -142,7 +142,7 @@ static NSString *kAppId = @"367473609934472";
  */
 - (void)fbDidLogout {
 	_loggedIn = NO;
-	NSLog(@"Logged out of Facebook");
+	LogInfo(@"Logged out of Facebook");
 	
 	// Remove saved authorization information if it exists
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

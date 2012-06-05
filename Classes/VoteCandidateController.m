@@ -415,7 +415,7 @@
 		return [NSString stringWithFormat:@"%d %@", count, NSLocalizedString(count==1?@"Friend":@"Friends", nil)];
 	}
 	else {
-		NSLog(@"NO");
+		LogError(@"Error while fetching friend count for ballot: %@", [error localizedDescription]);
 	}
 	
 	/* don't count users vote */
@@ -473,7 +473,7 @@
 	socialBallotView = !socialBallotView;
 	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
 	if (![prefs synchronize]) {
-		NSLog(@"Did not synchronize correctly");
+		LogError(@"Unable to synchronize preferences");
 	}
 	
 	[self setExpandBarButtonIcon];
@@ -522,7 +522,7 @@
 		vote = ballotVote;
 	}
 	else if (error != nil) {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while fetching ballot vote: %@", [error localizedDescription]);
 	}
 	else {
 //		NSLog(@"Unexpected count: %@", count);

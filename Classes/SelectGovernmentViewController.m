@@ -98,7 +98,7 @@
 }
 
 - (NSPredicate *)getPredicate{
-	return [NSPredicate predicateWithFormat:@"potentialRegistrations contains %@", self.registration];
+	return [NSPredicate predicateWithFormat:@"potentialGovernmentRegistrations contains %@", self.registration];
 }
 
 - (NSString *)getCellIdentifier{

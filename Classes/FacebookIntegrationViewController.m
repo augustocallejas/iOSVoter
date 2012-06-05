@@ -70,7 +70,7 @@
 }
 
 - (IBAction)doYesFacebookIntegration {
-	NSLog(@"doYesFacebookIntegration");
+	LogInfo(@"User selected Facebook integration");
 	[_facebookClient authorize];
 }
 

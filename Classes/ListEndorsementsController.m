@@ -274,7 +274,6 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"selected");
 	FriendBallotVote *ballotVote = nil;
 	FriendMeasureVote *measureVote = nil;
 	if (_position != nil) {

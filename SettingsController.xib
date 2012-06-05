@@ -45,7 +45,7 @@
 					<object class="IBUIButton" id="726916611">
 						<reference key="NSNextResponder" ref="359027785"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 57}, {280, 37}}</string>
+						<string key="NSFrame">{{20, 36}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="359027785"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -73,7 +73,7 @@
 					<object class="IBUILabel" id="885939464">
 						<reference key="NSNextResponder" ref="359027785"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{84, 21}, {151, 32}}</string>
+						<string key="NSFrame">{{84, 0}, {151, 32}}</string>
 						<reference key="NSSuperview" ref="359027785"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -93,7 +93,7 @@
 					<object class="IBUIButton" id="719893435">
 						<reference key="NSNextResponder" ref="359027785"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 322}, {280, 37}}</string>
+						<string key="NSFrame">{{20, 301}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="359027785"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -116,7 +116,6 @@
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC44MDAwMDAwMTE5IDAuODAwMDAwMDExOSAwLjgwMDAwMDAxMTkAA</bytes>
 				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -241,7 +240,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>SettingsController</string>
 					<string>UIResponder</string>
-					<string>{{0, 376}, {320, 480}}</string>
+					<string>{{0, 396}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -331,7 +330,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>accountLabel</string>
 							<string>facebookLabel</string>
 							<string>facebookLoginButton</string>
 							<string>resetAppButton</string>
@@ -339,7 +337,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -350,7 +347,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>accountLabel</string>
 							<string>facebookLabel</string>
 							<string>facebookLoginButton</string>
 							<string>resetAppButton</string>
@@ -358,10 +354,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">accountLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">facebookLabel</string>
 								<string key="candidateClassName">UILabel</string>
@@ -456,6 +448,20 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSURLConnection.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CALayer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

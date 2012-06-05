@@ -331,6 +331,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	registration.createdTime = createdTime;
 	registration.displayOrder = [NSNumber numberWithInt:([potentialRegistration.registration.displayOrder intValue] + 1)];
 	
+	LogInfo(@"Replacing current PotentialGovernmentRegistration (parent=%@, createdTime=%@) with chosen GovernmentRegistration (name=%@, createdTime=%@)",
+			potentialRegistration.registration.government.name,
+			potentialRegistration.createdTime,
+			choice.name,
+			registration.createdTime);
+	
 	[_context deleteObject:potentialRegistration];
 	return [_context save:error];
 }
@@ -344,6 +350,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	registration.district = district;
 	registration.registration = potentialRegistration.registration;
 	registration.createdTime = createdTime;
+	
+	LogInfo(@"Replacing current PotentialDistrictRegistration (type=%@, createdTime=%@) with chosen DistrictRegistration (districtNum=%@, createdTime=%@)",
+			potentialRegistration.districtType.id,
+			potentialRegistration.createdTime,
+			district.districtNum,
+			registration.createdTime);
 	
 	[_context deleteObject:potentialRegistration];	
 	return [_context save:error];
