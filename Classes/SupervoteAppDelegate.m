@@ -139,8 +139,10 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsPath = [paths objectAtIndex:0];
 	
+	NSString *fbDir = [NSString stringWithFormat:@"%@/facebook", documentsPath];
+	
 	NSError *error = nil;
-	if (![manager removeItemAtPath:[NSString stringWithFormat:@"%@/facebook", documentsPath] error:&error]) {
+	if ([manager fileExistsAtPath:fbDir] && ![manager removeItemAtPath:fbDir error:&error]) {
 		NSLog(@"Error while deleting facebook directory: %@", [error userInfo]);
 	}
 }
