@@ -727,7 +727,53 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 		}
 	}
-	
+	else if ([@"/selectDistrict" isEqual:[url path]]) {
+		NSDateFormatter *df = [[NSDateFormatter alloc] init];
+		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+		df.locale = locale;
+		
+		id delegate = [request.userInfo objectForKey:@"delegate"];
+		
+		NSDate *date = nil;
+		NSError *error = [request error];
+		if (error != nil) {
+			LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
+		}
+		
+		if ([request responseStatusCode] == 200) {
+			/* OK */
+			date = [df dateFromString:[[request responseHeaders] objectForKey:@"X-Created-Time"]];
+			LogDebug(@"Server returned %d from request '%@': X-Created-Time = %@", 200, [url path], date);
+		}
+		else if ([request responseStatusCode] == 400) {
+			/* BAD_REQUEST */
+			LogError(@"Server returned %d from request '%@'", 400, [url path]); 
+		}
+		else {
+			/* unexpected response */
+			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
+		}
+		
+		[df release];
+		[locale release];
+		
+		PotentialDistrictRegistration *potentialRegistration = [[request userInfo] objectForKey:@"potentialRegistration"];
+		District *choice = [[request userInfo] objectForKey:@"choice"];
+		
+		if (date != nil) {
+			NSError *error = nil;
+			[self resolveDistrictRegistration:potentialRegistration
+								 withDistrict:choice
+							  withCreatedTime:date withError:&error];
+			/* TODO: log error */
+			if (delegate != nil) {
+				if ([delegate respondsToSelector:@selector(selectDistrictSuccess)]) {
+					[delegate performSelector:@selector(selectDistrictSuccess)];
+				}
+			}
+		}
+	}
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
@@ -738,15 +784,22 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 	id delegate = [request.userInfo objectForKey:@"delegate"];
 	if (delegate != nil) {
-		if ([delegate respondsToSelector:@selector(selectGovernmentFailed:)]) {
-			[delegate performSelector:@selector(selectGovernmentFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
+		if ([@"/selectGovernment" isEqual:[url path]]) {
+			if ([delegate respondsToSelector:@selector(selectGovernmentFailed:)]) {
+				[delegate performSelector:@selector(selectGovernmentFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
+			}
+		}
+		else if ([@"/selectDistrict" isEqual:[url path]]) {
+			if ([delegate respondsToSelector:@selector(selectDistrictFailed:)]) {
+				[delegate performSelector:@selector(selectDistrictFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
+			}
 		}
 	}
 }
 
-- (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
-				withChoice:(District *)district {
-	/* TODO: this should be asynchronous */
+- (void)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
+			withChoice:(District *)choice
+		  withDelegate:(id)delegate{
 	NSURL *url = [self createURL:@"/selectDistrict"];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -755,38 +808,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 	[request setPostValue:[NSNumber numberWithDouble:[potentialDistrict.createdTime timeIntervalSince1970]*1000.0] forKey:@"createdTime"];
 	[request setPostValue:potentialDistrict.registration.government.id forKey:@"government"];
-	[request setPostValue:district.id forKey:@"district"];
+	[request setPostValue:choice.id forKey:@"district"];
+	[request setDelegate:self];
+	request.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:potentialDistrict, @"potentialRegistration",
+						choice, @"choice", delegate, @"delegate", nil];
 	
-	[request startSynchronous];
-		
-	NSDateFormatter *df = [[NSDateFormatter alloc] init];
-	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
-	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-	df.locale = locale;
-	
-	NSDate *date = nil;
-	NSError *error = [request error];
-	if (error != nil) {
-		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
-	}
-	else if ([request responseStatusCode] == 200) {
-		/* OK */
-		date = [df dateFromString:[[request responseHeaders] objectForKey:@"X-Created-Time"]];
-		LogDebug(@"Server returned %d from request '%@': X-Created-Time = %@", 200, [url path], date);
-	}
-	else if ([request responseStatusCode] == 400) {
-		/* BAD_REQUEST */
-		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
-	}
-	else {
-		/* unexpected response */
-		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
-	}
-	
-	[df release];
-	[locale release];
-	
-	return date;
+	[request startAsynchronous];
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {

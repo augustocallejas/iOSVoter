@@ -6,15 +6,18 @@
 //  Copyright 2012 Canary Falls Software LLC. All rights reserved.
 //
 
+#import "FetchedResultsBasedTableViewController.h"
+#import "District.h"
 #import "PotentialDistrictRegistration.h"
 #import "SupervoteClient.h"
 
-@interface SelectDistrictViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface SelectDistrictViewController : FetchedResultsBasedTableViewController {
 
 }
 
 @property (nonatomic, retain) PotentialDistrictRegistration* registration;
-@property (nonatomic, retain) NSMutableArray *sortedDistricts;
+@property (nonatomic, retain) NSIndexPath *selectedRow;
+@property (nonatomic, retain) District *choice;
 @property (nonatomic, retain) SupervoteClient *client;
 
 @end

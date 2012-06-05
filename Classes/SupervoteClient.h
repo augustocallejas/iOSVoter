@@ -64,8 +64,9 @@ typedef enum {
 - (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
 			  withChoice:(Government *)choice
 			withDelegate:(id)delegate;
-- (NSDate *)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
-				withChoice:(District *)district;
+- (void)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
+			withChoice:(District *)choice
+		  withDelegate:(id)delegate;
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken;
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (vote_status)sendBallotVote:(BallotVote *)vote;

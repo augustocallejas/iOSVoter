@@ -11,7 +11,6 @@
 #import "DistrictRegistration.h"
 #import "GovernmentRegistration.h"
 #import "PotentialDistrictRegistration.h"
-#import "SelectDistrictViewController.h"
 
 @implementation VoterRegistrationViewController
 
@@ -19,6 +18,7 @@
 @synthesize client;
 @synthesize registrations;
 @synthesize sortedDistrictRegistrations;
+@synthesize pushedDistrictController;
 @synthesize pushedController;
 
 #pragma mark -
@@ -104,6 +104,16 @@
 		
 		self.pushedController = nil;
 	}
+	else if (self.pushedDistrictController != nil) {
+		if (self.pushedDistrictController.choice != nil) {
+			[[ProgressHUD defaultHUD] showInView:self.view];
+			[self.client selectDistrict:self.pushedDistrictController.registration
+							 withChoice:self.pushedDistrictController.choice
+						   withDelegate:self];
+		}
+		
+		self.pushedDistrictController = nil;
+	}
 	else {
 		[self getRegistration];
 		[self loadRegistration];
@@ -112,6 +122,15 @@
 		[self.tableView beginUpdates];
 		[self.tableView endUpdates];
 	}
+}
+
+- (void)selectDistrictSuccess {
+	[[ProgressHUD defaultHUD] hideActivityIndicator];
+	
+	[self loadRegistration];
+	[self.tableView reloadData];
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
 
 - (void)selectGovernmentSuccess {
@@ -123,7 +142,15 @@
 	[self.tableView endUpdates];
 }
 
+- (void)selectDistrictFailed:(NSNumber *)status {
+	[self selectChoiceFailed:status];
+}
+
 - (void)selectGovernmentFailed:(NSNumber *)status {
+	[self selectChoiceFailed:status];
+}
+
+- (void)selectChoiceFailed:(NSNumber *)status {
 	[[ProgressHUD defaultHUD] hideActivityIndicator];
 	
 	NSString *title = nil;
@@ -240,9 +267,7 @@
 			//	cell.detailTextLabel.text = @"detailText";
 			/* TODO: temporary */
 		}
-		else {
-			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-			
+		else {			
 			NSArray *districtRegistrations = [self.sortedDistrictRegistrations objectAtIndex:indexPath.section];
 			id obj = [districtRegistrations objectAtIndex:(indexPath.row - 1)];
 			
@@ -360,9 +385,12 @@
 			PotentialDistrictRegistration *reg = (PotentialDistrictRegistration *)obj;
 			
 			SelectDistrictViewController *controller = [[SelectDistrictViewController alloc] initWithNibName:@"SelectDistrictViewController" bundle:[NSBundle mainBundle]];
-			controller.title = NSLocalizedString(@"SelectDistrict", nil);
 			controller.registration = reg;
 			controller.client = self.client;
+			controller.managedObjectContext = self.context;
+			
+			/* remember which registration was selected */
+			self.pushedDistrictController = controller;
 			
 			[[self navigationController] pushViewController:controller animated:YES];
 			[controller release];
@@ -392,6 +420,7 @@
 	self.client = nil;
 	self.registrations = nil;
 	self.sortedDistrictRegistrations = nil;
+	self.pushedDistrictController = nil;
 	self.pushedController = nil;
     [super dealloc];
 }

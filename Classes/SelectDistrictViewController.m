@@ -13,31 +13,29 @@
 @implementation SelectDistrictViewController
 
 @synthesize registration;
-@synthesize sortedDistricts;
+@synthesize selectedRow;
+@synthesize choice;
 @synthesize client;
 
 #pragma mark -
 #pragma mark View lifecycle
 
-- (void)loadDistricts {
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"districtNum" ascending:YES];
-	
-	NSArray *descriptors = [NSArray arrayWithObjects:sort, nil];
-	
-	if (sortedDistricts == nil) {
-		sortedDistricts = [[NSMutableArray alloc] initWithCapacity:[self.registration.choices count]];
-	}
-	
-	[sortedDistricts addObjectsFromArray:[[self.registration.choices allObjects] sortedArrayUsingDescriptors:descriptors]];
-	
-	[sort release];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self loadDistricts];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.selectedRow = nil;
+	
+	UITextView *tableHeader = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 64.0)];
+	tableHeader.editable = NO;
+	tableHeader.backgroundColor = [UIColor clearColor];
+	tableHeader.textAlignment = UITextAlignmentLeft;
+	tableHeader.font = [UIFont systemFontOfSize:16];
+	tableHeader.text = [NSString stringWithFormat:@"%@ %@ %@",
+						NSLocalizedString(@"Which", nil),
+						self.registration.districtType.name,
+						NSLocalizedString(@"AreYouIn", nil)];
+	
+	self.tableView.tableHeaderView = tableHeader;
+	[tableHeader release];
 }
 
 /*
@@ -68,38 +66,84 @@
 }
 */
 
+#pragma mark -
+#pragma mark FetchedResultsBasedTableViewController implementation methods
+
+- (NSString *)getEntityName{
+	return @"District";
+}
+
+- (NSString *)getSectionNameKeyPath{
+	return nil;
+}
+
+- (NSString *)getCacheName{
+	/* TODO: cache name must be different for each candidate? this may be a general issue across my controllers */
+	return nil;
+}
+
+- (NSArray *)allocSortDescriptors{
+	NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"districtNum" ascending:YES];
+	return [NSArray arrayWithObjects:sort1, nil];
+}
+
+- (NSPredicate *)getPredicate{
+	return [NSPredicate predicateWithFormat:@"potentialRegistrations contains %@", self.registration];
+}
+
+- (NSString *)getCellIdentifier{
+	return @"SelectGovernmentViewController";
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+	District *district = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	cell.textLabel.text = district.name;
+	//	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	
+	if (self.selectedRow != nil && [self.selectedRow isEqual:selectedRow]) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
+	
+	cell.textLabel.adjustsFontSizeToFitWidth = YES;
+	cell.textLabel.minimumFontSize = 12;
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [sortedDistricts count];
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    // Return the number of sections.
+//    return 1;
+//}
+//
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    // Return the number of rows in the section.
+//    return [sortedDistricts count];
+//}
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"SelectDistrictViewController";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-    
-    // Configure the cell...
-	District *district = [sortedDistricts objectAtIndex:indexPath.row];
-    cell.textLabel.text = district.name;
-	
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    static NSString *CellIdentifier = @"SelectDistrictViewController";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//    }
+//    
+//    // Configure the cell...
+//	District *district = [sortedDistricts objectAtIndex:indexPath.row];
+//    cell.textLabel.text = district.name;
+//	
+//    return cell;
+//}
 
 
 /*
@@ -145,35 +189,57 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-	District *district = [sortedDistricts objectAtIndex:indexPath.row];
-	NSDate *date = nil;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.selectedRow == nil) {
+		self.selectedRow = indexPath;
+		[self.tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		self.choice = [self.fetchedResultsController objectAtIndexPath:self.selectedRow];
+	}
+	else if ([self.selectedRow isEqual:indexPath]) {
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
+		self.selectedRow = nil;
+		
+		self.choice = nil;
+	}
+	else if (![self.selectedRow isEqual:indexPath]) {
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryNone;
+		self.selectedRow = indexPath;
+		[self.tableView cellForRowAtIndexPath:self.selectedRow].accessoryType = UITableViewCellAccessoryCheckmark;
+		
+		self.choice = [self.fetchedResultsController objectAtIndexPath:self.selectedRow];
+	}
 	
-	if ((date = [client selectDistrict:self.registration withChoice:district]) != nil) {
-		/* replace PotentialDistrictRegistration with DistrictRegistration */
-		NSError *error = nil;
-		[client resolveDistrictRegistration:self.registration
-							   withDistrict:district
-							withCreatedTime:date
-								  withError:&error];
-		
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
-		
-		[self.navigationController popViewControllerAnimated:YES];
-	}
-	else {
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
-		
-		/* TODO: it isn't always an HttpError! */
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
-														message:NSLocalizedString(@"HttpErrorMessage", nil)
-													   delegate:nil 
-											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//	District *district = [sortedDistricts objectAtIndex:indexPath.row];
+//	NSDate *date = nil;
+//	
+//	if ((date = [client selectDistrict:self.registration withChoice:district]) != nil) {
+//		/* replace PotentialDistrictRegistration with DistrictRegistration */
+//		NSError *error = nil;
+//		[client resolveDistrictRegistration:self.registration
+//							   withDistrict:district
+//							withCreatedTime:date
+//								  withError:&error];
+//		
+//		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+//		
+//		[self.navigationController popViewControllerAnimated:YES];
+//	}
+//	else {
+//		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+//		
+//		/* TODO: it isn't always an HttpError! */
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HttpErrorTitle", nil)
+//														message:NSLocalizedString(@"HttpErrorMessage", nil)
+//													   delegate:nil 
+//											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+//											  otherButtonTitles:nil];
+//		[alert show];
+//		[alert release];
+//	}
 }
 
 
@@ -192,14 +258,13 @@
     // For example: self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
 	self.registration = nil;
-	self.sortedDistricts = nil;
+	self.selectedRow = nil;
+	self.choice = nil;
 	self.client = nil;
     [super dealloc];
 }
-
 
 @end
 

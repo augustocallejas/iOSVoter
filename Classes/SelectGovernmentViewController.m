@@ -20,13 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	self.selectedRow = nil;
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	UITextView *tableHeader = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 32.0)];
+	UITextView *tableHeader = [[UITextView alloc] initWithFrame:CGRectMake(0.0, 0.0, 300, 64.0)];
 	tableHeader.editable = NO;
 	tableHeader.backgroundColor = [UIColor clearColor];
 	tableHeader.textAlignment = UITextAlignmentCenter;
@@ -93,7 +92,6 @@
 - (NSString *)getCacheName{
 	/* TODO: cache name must be different for each candidate? this may be a general issue across my controllers */
 	return nil;
-	//return @"ListEndorsementsController";
 }
 
 - (NSArray *)allocSortDescriptors{
@@ -103,7 +101,7 @@
 }
 
 - (NSPredicate *)getPredicate{
-	return [NSPredicate predicateWithFormat:@"potentialGovernmentRegistrations contains %@", self.registration];
+	return [NSPredicate predicateWithFormat:@"potentialRegistrations contains %@", self.registration];
 }
 
 - (NSString *)getCellIdentifier{
@@ -269,15 +267,13 @@
     // For example: self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
 	self.registration = nil;
-	self.client = nil;
 	self.selectedRow = nil;
 	self.choice = nil;
+	self.client = nil;
     [super dealloc];
 }
-
 
 @end
 

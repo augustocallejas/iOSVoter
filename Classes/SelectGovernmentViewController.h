@@ -12,11 +12,12 @@
 #import "SupervoteClient.h"
 
 @interface SelectGovernmentViewController : FetchedResultsBasedTableViewController {
+
 }
 
 @property (nonatomic, retain) PotentialGovernmentRegistration* registration;
-@property (nonatomic, retain) SupervoteClient *client;
 @property (nonatomic, retain) NSIndexPath *selectedRow;
 @property (nonatomic, retain) Government *choice;
+@property (nonatomic, retain) SupervoteClient *client;
 
 @end
