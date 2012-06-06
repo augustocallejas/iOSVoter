@@ -133,7 +133,7 @@
 
 - (void)selectChoiceSuccess {
 	[[ProgressHUD defaultHUD] hideActivityIndicator];
-	
+		
 	[self loadRegistration];
 	[self.tableView reloadData];
 	[self.tableView beginUpdates];

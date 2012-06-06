@@ -744,7 +744,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
 		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 		df.locale = locale;
-		
+
 		id delegate = [request.userInfo objectForKey:@"delegate"];
 		
 		NSDate *date = nil;
