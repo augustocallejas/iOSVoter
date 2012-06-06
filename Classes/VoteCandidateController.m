@@ -240,7 +240,6 @@
 }
 
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	//NSLog(@"Configure %d", indexPath.row);
 	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
@@ -344,7 +343,7 @@
 		}
 	}
 	else {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while getting most recent friend endorsements: %@", [error userInfo]);
 	}
 	
 	NSString *string = [VoteCandidateController getTextForEndorsementButton:position onCandidate:candidate];
@@ -524,9 +523,6 @@
 	else if (error != nil) {
 		LogError(@"Error while fetching ballot vote: %@", [error localizedDescription]);
 	}
-	else {
-//		NSLog(@"Unexpected count: %@", count);
-	}
 }
 
 + (BallotVote *)getBallotVoteForBallot:(Ballot *)ballot forPosition:(Position *)position withError:(NSError **)error andCount:(NSUInteger *)count{
@@ -688,7 +684,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	//NSLog(@"cellForRow %d", indexPath.row);
     static NSString *identifier = @"CandidateViewCell";
     CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {

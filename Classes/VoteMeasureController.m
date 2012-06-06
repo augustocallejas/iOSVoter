@@ -104,7 +104,7 @@
 	socialBallotView = !socialBallotView;
 	[prefs setBool:socialBallotView forKey:@"SocialBallotMode"];
 	if (![prefs synchronize]) {
-		NSLog(@"Did not synchronize correctly");
+		LogWarn(@"Did not synchronize preferences correctly");
 	}
 	
 	[self setExpandBarButtonIcon];
@@ -166,9 +166,7 @@
 		self.vote = measureVote;
 	}
 	else if (error != nil) {
-		NSLog(@"Error: %@", [error userInfo]);
-	}
-	else {
+		LogError(@"Error while getting measure vote: %@", [error localizedDescription]);
 	}
 }
 
@@ -194,14 +192,6 @@
 		{
 			measureVote = (MeasureVote *) [array objectAtIndex:0];
 		}
-		else
-		{
-			NSLog(@"NOOO");
-		}
-	}
-	else
-	{
-		NSLog(@"no!");
 	}
 	
 	[request release];
@@ -376,7 +366,7 @@
 		voteSelected = nil;
 	}
 	
-	NSLog(@"Vote selected to view %@", voteSelected);
+	LogInfo(@"Vote selected to view: %@", voteSelected);
 
 	[VoteMeasureController displayEndorsements:voteSelected forMeasure:_measure onNavigationController:self.navigationController];
 }
@@ -646,7 +636,7 @@
 		return [NSString stringWithFormat:@"%d %@", count, NSLocalizedString(count==1?@"Friend":@"Friends", nil)];
 	}
 	else {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while fetching request for friend count: %@", [error localizedDescription]);
 	}
 	
 	return nil;

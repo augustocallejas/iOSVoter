@@ -576,7 +576,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	//NSLog(@"DisplayBallotController: viewDidLoad");
 	viewDidLoadCalled = YES;
 	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
@@ -655,7 +654,6 @@
 /*
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	NSLog(@"ViewWillApear");
 	socialBallotView = [[NSUserDefaults standardUserDefaults] boolForKey:@"SocialBallotMode"];
 	[self.tableView beginUpdates];
 	[self.tableView endUpdates];
