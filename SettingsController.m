@@ -160,7 +160,7 @@
  * Called when the user dismissed the dialog without logging in.
  */
 - (void)fbDidNotLogin:(BOOL)cancelled {
-	NSLog(@"Facebook Login cancelled");
+	LogInfo(@"Facebook Login cancelled");
 }
 
 /**

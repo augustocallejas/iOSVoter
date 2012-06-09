@@ -177,14 +177,14 @@ static NSString *kAppId = @"367473609934472";
  * Called just before the request is sent to the server.
  */
 - (void)requestLoading:(FBRequest *)request {
-	//NSLog(@"FB: request loading");
+	//LogInfo(@"FB: request loading");
 }
 
 /**
  * Called when the server responds and begins to send back data.
  */
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-	//NSLog(@"FB: request did receive response");
+	//LogInfo(@"FB: request did receive response");
 }
 
 /**
@@ -202,10 +202,9 @@ static NSString *kAppId = @"367473609934472";
  * depending on thee format of the API response.
  */
 - (void)request:(FBRequest *)request didLoad:(id)result {
-	//NSLog(@"requestDidLoad %@", [request url]);
+	//LogInfo(@"requestDidLoad %@", [request url]);
 	
-	if ([[request url] hasSuffix:@"me/friends"])
-	{
+	if ([[request url] hasSuffix:@"me/friends"]) {
 		if ([result isKindOfClass:[NSDictionary class]]) {
 			NSDictionary *dict = (NSDictionary *)result;
 			
@@ -315,7 +314,7 @@ static NSString *kAppId = @"367473609934472";
 		}
 	}
 	else {
-		//NSLog(@"result %@", result);
+		LogWarn(@"Unexpected request: %@", [request url]);
 	}
 }
 
@@ -360,7 +359,7 @@ static NSString *kAppId = @"367473609934472";
 						LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
 					}
 					else {
-						//NSLog(@"Saved with date: %@", friend.photoDownloaded);
+						LogInfo(@"Saved with date: %@", friend.photoDownloaded);
 					}
 				}
 				else if (count == 0) {

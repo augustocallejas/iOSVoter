@@ -151,11 +151,11 @@
 	if (mainAppController == nil)
 	{
 //		if (_facebookClient.loggedIn) {
-//			NSLog(@"logged in");
+//			LogIno(@"logged in");
 //			[_facebookClient updateFriends];
 //		}
 //		else {
-//			NSLog(@"not logged in");
+//			LogInfo(@"not logged in");
 //		}
 		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -305,7 +305,7 @@
 	// http://stackoverflow.com/questions/1077810/delete-reset-all-entries-in-core-data
 	for(NSPersistentStore *store in stores) {
 		[persistentStoreCoordinator_ removePersistentStore:store error:nil];
-		//NSLog(@"removing %@", store.URL.path);
+		LogInfo(@"Deleting persistence store: %@", store.URL.path);
 		[[NSFileManager defaultManager] removeItemAtPath:store.URL.path error:nil];
 	}
 
@@ -313,8 +313,8 @@
 }
 
 - (void)addDefaultPersistentStore {
-//	NSLog(@"addDefaultPersistentStore");
 	NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Supervote.sqlite"];
+	LogInfo(@"Adding persistent store: %@", storeURL);
     
     NSError *error = nil;
 	if (persistentStoreCoordinator_ == nil) {

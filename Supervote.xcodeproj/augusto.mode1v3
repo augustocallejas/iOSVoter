@@ -276,14 +276,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>56</integer>
-									<integer>52</integer>
-									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 398}, {179, 760}}</string>
+							<string>{{0, 0}, {179, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -313,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SupervoteClient.m</string>
+								<string>VoterRegistrationViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SupervoteClient.m</string>
+										<string>VoterRegistrationViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>14AD2670157F547F00FF916B</string>
+										<string>14AD2683157F560600FF916B</string>
 										<key>history</key>
 										<array>
 											<string>14EF33E314454AD600557A80</string>
@@ -454,8 +449,8 @@
 											<string>14AD264A157F51E200FF916B</string>
 											<string>14AD265C157F537000FF916B</string>
 											<string>14AD266D157F547F00FF916B</string>
-											<string>14AD266E157F547F00FF916B</string>
-											<string>14AD266F157F547F00FF916B</string>
+											<string>14AD2681157F560600FF916B</string>
+											<string>14AD2682157F560600FF916B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -477,6 +472,8 @@
 							<string>627pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -630,7 +627,7 @@
 	<key>PerspectivesBarVisible</key>
 	<false/>
 	<key>PinnedNavigatorIdentifier</key>
-	<string>14AD262C157F4E4900FF916B</string>
+	<string>14AD267A157F558B00FF916B</string>
 	<key>ShelfIsVisible</key>
 	<false/>
 	<key>SourceDescription</key>

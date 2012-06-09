@@ -829,11 +829,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 //- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-//	NSLog(@"Received a response: %@", response);
+//	LogInfo(@"Received a response: %@", response);
 //}
 //
 //- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-//	NSLog(@"Error: %@", [error userInfo]);
+//	LogInfo(@"Error: %@", [error userInfo]);
 //}
 //
 //- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -844,7 +844,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 //	
 //	NSString* responseString = [[NSString alloc] initWithData:responseData
 //													 encoding:NSUTF8StringEncoding];
-//	NSLog(@"Done loading, the data is: %@", responseString);
+//	LogInfo(@"Done loading, the data is: %@", responseString);
 //	[responseString release];
 //	
 //	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];

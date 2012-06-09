@@ -304,7 +304,7 @@
 	}
 	else {
 		/* user hit cancel so just dismiss the modal view */
-		//NSLog(@"User canceled their vote selection");
+		LogInfo(@"User canceled their vote selection");
 		dismissModalView = YES;
 	}
 	
@@ -593,7 +593,7 @@
 		}
 	}
 	else {
-		NSLog(@"Error: %@", [error userInfo]);
+		LogError(@"Error while retrieving recent friend endorsements: %@", [error localizedDescription]);
 	}
 	
     return cell;

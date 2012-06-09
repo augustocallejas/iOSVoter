@@ -193,7 +193,7 @@
 }
 
 //- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-//	NSLog(@"Display detailed information about this government");
+//	LogInfo(@"Display detailed information about this government");
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

@@ -60,7 +60,6 @@
 	
 	NSInteger section = button.tag >> 10;
 	NSInteger row = button.tag - (section << 10);
-	//NSLog(@"Section %d row %d", section, row);
 	
 	if (section < [self.fetchedResultsController1.sections count]) {	
 		Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
@@ -73,10 +72,7 @@
 			[VoteCandidateController displayEndorsements:ballotVote.forCandidate forPosition:position onNavigationController:self.navigationController];
 		}
 		else if (error != nil) {
-			LogError("Error while getting ballot vote: %@", [error localizedDescription]);
-		}
-		else {
-			//		NSLog(@"");
+			LogError(@"Error while getting ballot vote: %@", [error localizedDescription]);
 		}
 	}
 	else {
@@ -91,10 +87,7 @@
 			[VoteMeasureController displayEndorsements:measureVote.vote forMeasure:measure onNavigationController:self.navigationController];
 		}
 		else if (error != nil) {
-			LogError("Error while getting measure vote: %@", [error localizedDescription]);
-		}
-		else {
-			//      NSLog(@"");
+			LogError(@"Error while getting measure vote: %@", [error localizedDescription]);
 		}
 	}
 }
@@ -232,7 +225,6 @@
 }
 
 - (void)configureCellAsPosition:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	//NSLog(@"Configure %d %d", [indexPath section], [indexPath row]);
     Position *position = (Position *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
 	cell.majorTitle.text = position.title;
 	
@@ -462,7 +454,6 @@
 			//		UIImage *candidateIcon = [UIImage imageWithContentsOfFile:pathToCandidateIcon];
 			//cell.candidateIcon.image = candidateIcon;
 			NSUInteger totalCount = [friendVotes count];
-			//NSLog(@"count %d", totalCount);
 			
 			/* TODO: this section is copy and pasted elsewhere, consider evaluating once and accessing from app delegate */
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -665,7 +656,6 @@
     [super viewDidAppear:animated];
 	
 	if (!viewDidLoadCalled) {
-		//NSLog(@"DisplayBallotController: reloading data in viewDidAppear");
 		[self.tableView reloadData];
 	}
 	else {

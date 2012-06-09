@@ -35,7 +35,7 @@
 }
 
 - (IBAction)doFacebook {
-	NSLog(@"TODO: fill with facebook url");
+	LogInfo(@"TODO: fill with facebook url");
 }
 
 - (IBAction)doTermsOfService {

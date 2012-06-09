@@ -200,12 +200,6 @@
 	return [self.fetchedResultsController1.sections count] + [self.fetchedResultsController2.sections count];
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//	id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchedResultsController1 sections] objectAtIndex:section];
-//	NSLog(@"sectionInfo %@", sectionInfo);
-//    return [sectionInfo numberOfObjects];
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	id <NSFetchedResultsSectionInfo> sectionInfo;
 	if (section < [self.fetchedResultsController1.sections count]) {
@@ -330,12 +324,12 @@
 	NSError *error = nil;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		LogError("Error while performing a fetch: %@", [error localizedDescription]);
+		LogError(@"Error while performing a fetch: %@", [error localizedDescription]);
 	}
 	
 	if (![[self fetchedResultsController2] performFetch:&error]) {
 		// Update to handle the error appropriately.
-		LogError("Error while performing a fetch: %@", [error localizedDescription]);
+		LogError(@"Error while performing a fetch: %@", [error localizedDescription]);
 	}
 }
 

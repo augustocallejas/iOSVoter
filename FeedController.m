@@ -91,13 +91,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-//	error = nil;
-//	NSArray *friends = [client getFriends];
-//	[client insertFriends:friends intoManagedContext:_managedObjectContext withError:&error];
-	
-
-	//NSLog(@"Elections: %@", [client getElections]);
 }
 
 /*
