@@ -56,7 +56,7 @@
 	privacyCell2.layer.borderWidth = 1.0f;
 	[privacyLabel2 setText:NSLocalizedString(@"ViewableByFriends", nil)];
 	
-	[button setTitle:NSLocalizedString(@"ShowBallotsButton", nil) forState:UIControlStateNormal];
+	[button setTitle:NSLocalizedString(@"Continue", nil) forState:UIControlStateNormal];
 }
 
 #pragma mark -

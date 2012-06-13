@@ -159,7 +159,13 @@
 //		}
 		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-		if ([defaults objectForKey:@"FacebookAlert"] == nil) {
+		if ([defaults objectForKey:@"ShowedTutorial"] == nil) {
+			QuickTutorialViewController *controller = [[QuickTutorialViewController alloc] initWithNibName:@"QuickTutorialViewController" bundle:[NSBundle mainBundle]];
+			
+			self.window.rootViewController = controller;
+			[controller release];
+		}
+		else if ([defaults objectForKey:@"FacebookAlert"] == nil) {
 			FacebookIntegrationViewController *fbController = [[FacebookIntegrationViewController alloc] initWithNibName:@"FacebookIntegrationViewController" bundle:[NSBundle mainBundle]];
 			fbController.facebookClient = self.facebookClient;
 			fbController.client = self.supervoteClient;
@@ -178,14 +184,8 @@
 //								completion:^(BOOL finished) {/*self.window.rootViewController = fbController;*/}];
 //				self.window.rootViewController = fbController;
 			}
-		}
-		else if ([defaults objectForKey:@"ShowedTutorial"] == nil) {
-			QuickTutorialViewController *controller = [[QuickTutorialViewController alloc] initWithNibName:@"QuickTutorialViewController" bundle:[NSBundle mainBundle]];
-			
-			self.window.rootViewController = controller;
-			[controller release];
-		}
-		else {
+			[fbController release];
+		}		else {
 			UITabBarController *tabBarController = [[UITabBarController alloc] init];
 			self.mainAppController = tabBarController;
 
