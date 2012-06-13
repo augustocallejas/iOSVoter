@@ -266,7 +266,7 @@
 		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
 		name = "SupervoteViewController.m: 178";
 		rLen = 104;
-		rLoc = 5778;
+		rLoc = 6035;
 		rType = 0;
 		vrLen = 2059;
 		vrLoc = 3182;
@@ -1978,7 +1978,7 @@
 		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
 		name = "SupervoteViewController.m: 170";
 		rLen = 14;
-		rLoc = 5355;
+		rLoc = 5612;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 4600;
@@ -2047,7 +2047,7 @@
 		isa = PBXTextBookmark;
 		fRef = 28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */;
 		rLen = 14;
-		rLoc = 5355;
+		rLoc = 5612;
 		rType = 0;
 	};
 	14B04D9C15886C4F00FC2907 /* PBXTextBookmark */ = {
@@ -2055,7 +2055,7 @@
 		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
 		name = "SupervoteViewController.m: 171";
 		rLen = 0;
-		rLoc = 5386;
+		rLoc = 5643;
 		rType = 0;
 		vrLen = 1956;
 		vrLoc = 4597;
@@ -2074,7 +2074,7 @@
 		isa = PBXTextBookmark;
 		fRef = 28D7ACF70DDB3853001CB0EB /* SupervoteViewController.m */;
 		rLen = 14;
-		rLoc = 5355;
+		rLoc = 5612;
 		rType = 0;
 	};
 	14B04DA115886D0200FC2907 /* PBXTextBookmark */ = {
@@ -2082,10 +2082,60 @@
 		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
 		name = "SupervoteViewController.m: 171";
 		rLen = 14;
-		rLoc = 5355;
+		rLoc = 5612;
 		rType = 0;
 		vrLen = 1899;
 		vrLoc = 4597;
+	};
+	14B04DAB1588707B00FC2907 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14AAA3D8148C6A4E00D59D0D /* SupervoteClient.h */;
+		name = "SupervoteClient.h: 40";
+		rLen = 0;
+		rLoc = 957;
+		rType = 0;
+		vrLen = 1067;
+		vrLoc = 675;
+	};
+	14B04DAC1588707B00FC2907 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14A01B2414789F420029ADFE /* SupervoteClient.m */;
+		name = "SupervoteClient.m: 56";
+		rLen = 14;
+		rLoc = 1419;
+		rType = 0;
+		vrLen = 717;
+		vrLoc = 1108;
+	};
+	14B04DAD1588707B00FC2907 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
+		name = "SupervoteViewController.m: 171";
+		rLen = 14;
+		rLoc = 5612;
+		rType = 0;
+		vrLen = 1712;
+		vrLoc = 5030;
+	};
+	14B04DAE1588707B00FC2907 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
+		name = "SupervoteViewController.m: 86";
+		rLen = 0;
+		rLoc = 2811;
+		rType = 0;
+		vrLen = 1577;
+		vrLoc = 1746;
+	};
+	14B04DB2158870A200FC2907 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 14BA193914B9330D00B7F3ED /* SupervoteViewController.m */;
+		name = "SupervoteViewController.m: 86";
+		rLen = 0;
+		rLoc = 2654;
+		rType = 0;
+		vrLen = 1574;
+		vrLoc = 1742;
 	};
 	14B5F6161510500A00C21F98 /* AboutUsViewController.h */ = {
 		uiCtxt = {
@@ -2199,9 +2249,9 @@
 		path = "/Users/augusto/projects/supervote/supervote-ios/Classes/SupervoteViewController.m";
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1251, 2665}}";
-			sepNavSelRange = "{5355, 14}";
-			sepNavVisRange = "{4597, 1899}";
+			sepNavIntBoundsRect = "{{0, 0}, {894, 2938}}";
+			sepNavSelRange = "{2654, 0}";
+			sepNavVisRange = "{1742, 1574}";
 		};
 	};
 	14C997B61527A2E30041ACDA /* LoggerClient.h */ = {
@@ -2731,6 +2781,11 @@
 			14B04D9D15886C5300FC2907 /* PBXTextBookmark */ = 14B04D9D15886C5300FC2907 /* PBXTextBookmark */;
 			14B04DA015886D0200FC2907 /* PBXTextBookmark */ = 14B04DA015886D0200FC2907 /* PBXTextBookmark */;
 			14B04DA115886D0200FC2907 /* PBXTextBookmark */ = 14B04DA115886D0200FC2907 /* PBXTextBookmark */;
+			14B04DAB1588707B00FC2907 /* PBXTextBookmark */ = 14B04DAB1588707B00FC2907 /* PBXTextBookmark */;
+			14B04DAC1588707B00FC2907 /* PBXTextBookmark */ = 14B04DAC1588707B00FC2907 /* PBXTextBookmark */;
+			14B04DAD1588707B00FC2907 /* PBXTextBookmark */ = 14B04DAD1588707B00FC2907 /* PBXTextBookmark */;
+			14B04DAE1588707B00FC2907 /* PBXTextBookmark */ = 14B04DAE1588707B00FC2907 /* PBXTextBookmark */;
+			14B04DB2158870A200FC2907 /* PBXTextBookmark */ = 14B04DB2158870A200FC2907 /* PBXTextBookmark */;
 			14B5F61E1510502100C21F98 = 14B5F61E1510502100C21F98 /* PBXBookmark */;
 			14B5F6D515106B3900C21F98 = 14B5F6D515106B3900C21F98 /* PBXTextBookmark */;
 			14B5F6E61510731C00C21F98 = 14B5F6E61510731C00C21F98 /* PBXBookmark */;

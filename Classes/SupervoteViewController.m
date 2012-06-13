@@ -83,6 +83,14 @@
     BOOL validCharactersInRange = YES;  
     if (![string isEqualToString:@""])  
     {
+		NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+		for (int i = 0; i < [string length]; i++) {
+			unichar c = [string characterAtIndex:i];
+			if (![myCharSet characterIsMember:c]) {
+				return NO;
+			}
+		}
+		
         NSUInteger testLength = textField.text.length + string.length + range.length;
 		NSUInteger max = FirstZIPField == textField ? 5 : 4;
         validCharactersInRange = (testLength > max) ? NO : YES; //change the 1 to your textfield's upper limit
