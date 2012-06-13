@@ -167,7 +167,8 @@
 		}
 		
 		NSError *error = nil;
-		if ([_client registerDevice:ZIP withError:&error]) {
+		NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+		if ([_client registerDevice:ZIP withLanguage:language withError:&error]) {
 			SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 			[appDelegate switchToMainApp:self.view];
 		}

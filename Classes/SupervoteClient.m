@@ -53,11 +53,12 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 /* TODO: this method should take arguments and return some value, and also have an error argument */
-- (BOOL)registerDevice:(NSString *)zip5or9 withError:(NSError **)error {
+- (BOOL)registerDevice:(NSString *)zip5or9 withLanguage:(NSString *)language withError:(NSError **)error {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:zip5or9 forKey:@"z"];
+	[request setPostValue:language forKey:@"l"];
 	
 	[request startSynchronous];
 	BOOL registered = NO;
