@@ -47,7 +47,7 @@
 	privacyCell1.layer.cornerRadius = 10.0f;
 	privacyCell1.layer.borderColor = [UIColor grayColor].CGColor;
 	privacyCell1.layer.borderWidth = 1.0f;
-	[privacyLabel1 setText:NSLocalizedString(@"ViewableByFriends", nil)];
+	[privacyLabel1 setText:NSLocalizedString(@"NotViewableByFriends", nil)];
 	 
 	[paragraph2 setText:NSLocalizedString(@"TutorialParagraph2", nil)];
 	

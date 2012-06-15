@@ -39,6 +39,13 @@
 - (IBAction)switchedPrivacy:(id)sender {
 	UISwitch *switchControl = (UISwitch*) sender;
 	[_privacyLock setHidden:switchControl.on];
+	
+	if (switchControl.on) {
+		[viewableByFriendsLabel setText:NSLocalizedString(@"ViewableByFriends", nil)];
+	}
+	else {
+		[viewableByFriendsLabel setText:NSLocalizedString(@"NotViewableByFriends", nil)];
+	}
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)string {
