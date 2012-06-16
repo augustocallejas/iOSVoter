@@ -90,7 +90,19 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSURL *url = [self createURL:@"/profile"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
-	[request startSynchronous];
+	
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	id lastModified = [defaults objectForKey:@"RegistrationLastModified"];
+	if (lastModified != nil) {
+		[request addRequestHeader:@"If-Modified-Since" value:[df stringFromDate:lastModified]];
+	}
+	
+	id profile = nil;
 	
 	[request startSynchronous];
 	*error = [request error];
@@ -100,21 +112,36 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
 			
 			NSError *parseError = nil;
-			id profile = [parser objectWithString:json error:&parseError];	
+			profile = [parser objectWithString:json error:&parseError];	
 			[json release];
 			
 			if (parseError != nil) {
 				LogError(@"Error parsing JSON: %@", [parseError localizedDescription]);
 			}
 			
-			return profile;
+			NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
+			lastModified = [df dateFromString:newLastModified];
+			
+			/* save LastModified */
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+			[defaults setObject:lastModified forKey:@"RegistrationLastModified"];
+			[defaults synchronize];
+			
+			LogInfo(@"Updating last modified time for voter registration: %@", lastModified);
+		}
+		else if (request.responseStatusCode == 304) {
+			/* NOT MODIFIED */
+			LogInfo(@"Voter registration is up to date");
 		}
 		else {
 			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 		}
 	}
 	
-	return nil;
+	[df release];
+	[locale release];
+	
+	return profile;
 }
 
 - (BOOL)deleteGovernmentRegistrationsAbove:(int)displayOrder withError:(NSError **)error {
@@ -315,6 +342,16 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 				registration.district = district;
 				registration.registration = parent;
 				registration.createdTime = createdTime;
+				
+				
+				for (PotentialDistrictRegistration* obj in parent.potentialRegistrations) {
+					if (obj.districtType == district.districtType) {
+						LogInfo(@"Found obsolete PotentialDistrictRegistration, deleting (type=%@, createdTime=%@)",
+								obj.districtType.name,
+								obj.createdTime);
+						[_context deleteObject:obj];
+					}
+				}
 				
 				[_context save:error];
 			}

@@ -27,10 +27,11 @@
 - (void)getRegistration {
 	NSError *error = nil;
 	NSDictionary *profile = [self.client getProfileWithError:&error];
+
 	if (error != nil) {
 		LogError(@"Error while retrieving registration: %@", [error localizedDescription]);
 	}
-	else {
+	else if (profile != nil) {
 		[self.client findOrInsertGovernmentRegistration:profile withDisplayOrder:0 withParent:nil withError:&error];
 		
 		if (error != nil) {
