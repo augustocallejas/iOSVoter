@@ -1022,6 +1022,66 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	return status;
 }
 
+- (BOOL)deleteBallotVote:(BallotVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/deleteVote"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forPosition.guid forKey:@"position"];
+	[request startSynchronous];
+	
+	BOOL status = NO;
+	NSError *error = [request error];
+	if (error != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
+	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		status = YES;
+		LogDebug(@"Server returned %d from request '%@'", 200, [url path]); 
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
+	}
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
+	}
+	
+	return status;
+}
+
+- (BOOL)deleteMeasureVote:(MeasureVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/deleteVote"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
+	[request startSynchronous];
+
+	BOOL status = NO;
+	NSError *error = [request error];
+	if (error != nil) {
+		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
+	}
+	else if ([request responseStatusCode] == 200) {
+		/* OK */
+		status = YES;
+		LogDebug(@"Server returned %d from request '%@'", 200, [url path]); 
+	}
+	else if ([request responseStatusCode] == 500) {
+		/* INTERNAL_SERVER_ERROR */
+		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
+	}
+	else if ([request responseStatusCode] == 400) {
+		/* BAD_REQUEST */
+		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
+	}
+	
+	return status;
+}
+
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:[NSString stringWithFormat:@"/votes?election=%@", electionGuid]];
@@ -1259,6 +1319,10 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 }
 
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid {
+	if (guid == nil) {
+		return nil;
+	}
+	
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_context];
 	[fetchRequest setEntity:entity];

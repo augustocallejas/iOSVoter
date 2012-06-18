@@ -71,6 +71,8 @@ typedef enum {
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid;
 - (vote_status)sendBallotVote:(BallotVote *)vote;
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
+- (BOOL)deleteBallotVote:(BallotVote *)vote;
+- (BOOL)deleteMeasureVote:(MeasureVote *)vote;
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
