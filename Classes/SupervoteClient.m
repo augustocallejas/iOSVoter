@@ -1022,7 +1022,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	return status;
 }
 
-- (BOOL)deleteBallotVote:(BallotVote *)vote {
+- (vote_status)deleteBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/deleteVote"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
@@ -1030,23 +1030,31 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	[request setPostValue:vote.forPosition.guid forKey:@"position"];
 	[request startSynchronous];
 	
-	BOOL status = NO;
+	vote_status status = OK;
 	NSError *error = [request error];
 	if (error != nil) {
+		status = HTTP_ERROR;
 		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* OK */
-		status = YES;
+		status = OK;
 		LogDebug(@"Server returned %d from request '%@'", 200, [url path]); 
 	}
 	else if ([request responseStatusCode] == 500) {
 		/* INTERNAL_SERVER_ERROR */
+		status = SERVER_ERROR;
 		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
 	}
 	else if ([request responseStatusCode] == 400) {
 		/* BAD_REQUEST */
+		status = BAD_REQUEST;
 		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
+	}
+	else {
+		/* unexpected response */
+		status = UNEXPECTED_RESPONSE;
+		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
 	}
 	
 	return status;

@@ -146,6 +146,26 @@
 								<reference key="IBUINormalTitleColor" ref="496611968"/>
 								<reference key="IBUINormalTitleShadowColor" ref="681965449"/>
 							</object>
+							<object class="IBUIButton" id="433034902">
+								<reference key="NSNextResponder" ref="108645557"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{239, 8}, {49, 29}}</string>
+								<reference key="NSSuperview" ref="108645557"/>
+								<reference key="IBUIBackgroundColor" ref="508871441"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<string key="IBUINormalTitle">Delete</string>
+								<reference key="IBUIHighlightedTitleColor" ref="496611968"/>
+								<reference key="IBUINormalTitleColor" ref="496611968"/>
+								<reference key="IBUINormalTitleShadowColor" ref="681965449"/>
+							</object>
 							<object class="IBUIImageView" id="388599949">
 								<reference key="NSNextResponder" ref="108645557"/>
 								<int key="NSvFlags">292</int>
@@ -539,6 +559,23 @@
 					</object>
 					<int key="connectionID">101</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">deleteCandidate</string>
+						<reference key="source" ref="928037324"/>
+						<reference key="destination" ref="433034902"/>
+					</object>
+					<int key="connectionID">104</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">performDeleteVote:</string>
+						<reference key="source" ref="433034902"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">105</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -579,6 +616,7 @@
 							<reference ref="175977607"/>
 							<reference ref="781804776"/>
 							<reference ref="433764306"/>
+							<reference ref="433034902"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -652,6 +690,11 @@
 						<reference key="object" ref="433764306"/>
 						<reference key="parent" ref="928037324"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">102</int>
+						<reference key="object" ref="433034902"/>
+						<reference key="parent" ref="928037324"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -660,6 +703,8 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>102.IBPluginDependency</string>
+					<string>102.IBViewBoundsToFrameTransform</string>
 					<string>13.IBPluginDependency</string>
 					<string>13.IBViewBoundsToFrameTransform</string>
 					<string>14.IBPluginDependency</string>
@@ -705,6 +750,10 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDfgAAwfAAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAADAQAAAwvYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -712,7 +761,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABCYAAAwigAAA</bytes>
 					</object>
 					<string>CandidateViewCell</string>
-					<string>{{736, 520}, {320, 110}}</string>
+					<string>{{306, 478}, {320, 110}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -720,7 +769,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDfgAAwfAAAA</bytes>
+						<bytes key="NSTransformStruct">AUNvAABBAAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -787,7 +836,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">101</int>
+			<int key="maxID">105</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -813,6 +862,7 @@
 							<string>_voteCandidate</string>
 							<string>_votePrivate</string>
 							<string>_voteStatus</string>
+							<string>deleteCandidate</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -830,6 +880,7 @@
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -850,6 +901,7 @@
 							<string>_voteCandidate</string>
 							<string>_votePrivate</string>
 							<string>_voteStatus</string>
+							<string>deleteCandidate</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -909,6 +961,10 @@
 								<string key="name">_voteStatus</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">deleteCandidate</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -953,12 +1009,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>barButtonAction:</string>
+							<string>performDeleteVote:</string>
 							<string>viewAllEndorsements:</string>
 							<string>viewSingleEndorsement:</string>
 							<string>voteOnCandidate:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -968,12 +1028,22 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>barButtonAction:</string>
+							<string>performDeleteVote:</string>
 							<string>viewAllEndorsements:</string>
 							<string>viewSingleEndorsement:</string>
 							<string>voteOnCandidate:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">barButtonAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">performDeleteVote:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">viewAllEndorsements:</string>
 								<string key="candidateClassName">id</string>
@@ -1072,6 +1142,20 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSURLConnection.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CALayer.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

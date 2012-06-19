@@ -24,6 +24,7 @@
 @synthesize viewAllEndorsements = _viewAllEndorsements;
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteCandidate = _voteCandidate;
+@synthesize deleteCandidate;
 @synthesize voteStatus = _voteStatus;
 @synthesize votePrivate = _votePrivate;
 
@@ -36,7 +37,6 @@
     return self;
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
@@ -44,6 +44,18 @@
     // Configure the view for the selected state.
 }
 
+- (void)toggleDeleteButton {
+	if (deleteCandidate.hidden) {
+		deleteCandidate.enabled = YES;
+		deleteCandidate.hidden = NO;
+		_voteStatus.hidden = YES;
+	}
+	else {
+		deleteCandidate.enabled = NO;
+		deleteCandidate.hidden = YES;
+		_voteStatus.hidden = NO;
+	}
+}
 
 - (void)dealloc {
     [super dealloc];

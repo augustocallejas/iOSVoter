@@ -31,7 +31,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == actionSheet.destructiveButtonIndex) {
-		Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+		Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
 		[self presentCreateEndorsementViewController:candidate];
 	}
 	else if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -41,6 +41,58 @@
 
 #pragma mark -
 #pragma mark UIButton custom actions
+
+- (IBAction)performDeleteVote:(id)sender {
+	UIButton *deleteButton = sender;
+	NSLog(@"superview %@", [deleteButton superview]);
+	
+	if (vote != nil) {
+		vote_status status = [[self client] deleteBallotVote:vote];
+		if (status == OK) {
+			NSError *error = nil;
+			[self.managedObjectContext deleteObject:vote];
+			[self.managedObjectContext save:&error];
+			vote = nil;
+			
+			[self.tableView reloadData];
+		}
+		else {
+			/* TODO: TOGGLE Delete button away!!! */
+			
+			/* TODO: this code is a direct copy from VoteMeasureController */
+			//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
+			NSString *title = nil;
+			NSString *message = nil;
+			switch (status) {
+				case HTTP_ERROR:
+					title = NSLocalizedString(@"HttpErrorTitle", nil);
+					message = NSLocalizedString(@"HttpErrorMessage", nil);
+					break;
+				case SERVER_ERROR:
+					title = NSLocalizedString(@"ServerErrorTitle", nil);
+					message = NSLocalizedString(@"SaveVoteServerErrorMessage", nil);
+					break;
+				case BAD_REQUEST:
+					title = NSLocalizedString(@"BadRequestTitle", nil);
+					message = NSLocalizedString(@"BadRequestMessage", nil);
+					break;
+				case UNEXPECTED_RESPONSE:
+				default:
+					title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
+					message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
+					break;
+			}
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+															message:message 
+														   delegate:nil 
+												  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
+	}
+}
 
 - (IBAction)viewSingleEndorsement:(id)sender{
 	EndorsementButton *button = (EndorsementButton *)sender;
@@ -54,7 +106,7 @@
 }
 
 - (void)voteOnCandidate:(id)sender{
-	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
+	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
 	
 	if (vote != nil && vote.forCandidate != candidate) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ChangeVoteWarning", nil)
@@ -113,7 +165,6 @@
 			else {
 				LogInfo(@"Endorsement created for candidate '%@' on position '%@'", candidate.guid, position.guid);
 			}
-
 			
 			[self.tableView reloadData];
 		}
@@ -239,12 +290,35 @@
 	return array;
 }
 
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer {
+	CandidateViewCell *viewCell = (CandidateViewCell *) gestureRecognizer.view;
+	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:gestureRecognizer.view.tag inSection:0]];
+
+	if (vote != nil && vote.forCandidate == candidate) {
+		/* toggle delete button */
+		[viewCell toggleDeleteButton];
+	}
+}
+
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:indexPath];
+	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
 	if (candidate.subtitle != nil) {
 		cell.partyName.text = candidate.subtitle;
+	}
+	
+	
+	[cell.deleteCandidate setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+		
+	if ([cell.gestureRecognizers count] == 0) {
+		UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc]
+													 initWithTarget:self action:@selector(rightSwipeHandle:)];
+		
+		rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+		[rightRecognizer setNumberOfTouchesRequired:1];
+		[cell addGestureRecognizer:rightRecognizer];
+		[rightRecognizer release];
 	}
 	
 	/* add small black border to all friend icons */
@@ -356,6 +430,13 @@
 		//cell.viewAllEndorsements.layer.borderColor = [UIColor grayColor].CGColor;
 		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
 	}
+
+	/* disable the "delete" button */
+	cell.deleteCandidate.enabled = NO;
+	cell.deleteCandidate.hidden = YES;
+	[[cell.deleteCandidate layer] setCornerRadius:8.0f];
+	[[cell.deleteCandidate layer] setMasksToBounds:YES];
+	[[cell.deleteCandidate layer] setBorderWidth:1.0f];
 
 	if (vote != nil && vote.forCandidate == candidate) {
 		/* display the vote status image */
@@ -698,8 +779,10 @@
 		}
 	}
 	
+	cell.tag = indexPath.row;
 	cell.editEndorsement.tag = indexPath.row;
 	cell.voteCandidate.tag = indexPath.row;
+	cell.deleteCandidate.tag = indexPath.row;
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	[self configureCell:cell atIndexPath:indexPath];

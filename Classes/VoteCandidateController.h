@@ -36,6 +36,7 @@
 + (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController;
 + (NSArray *)getMostRecentFriendEndorsements:(NSInteger)count forPosition:(Position *)position forCandidate:(Candidate *)candidate withError:(NSError **)error;
 
+- (IBAction)performDeleteVote:(id)sender;
 - (IBAction)viewSingleEndorsement:(id)sender;
 - (IBAction)voteOnCandidate:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;
