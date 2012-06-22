@@ -1168,7 +1168,10 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid];
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
-			if (![viewable boolValue])
+			if (candidate == nil) {
+				LogWarn(@"Unrecognized candidate (%@), so not storing vote", candidateGuid);
+			}
+			else if (![viewable boolValue])
 			{
 				if (position != nil && friend != nil) {
 					/* check if the friend ballot vote already exists */
