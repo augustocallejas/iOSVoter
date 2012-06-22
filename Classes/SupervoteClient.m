@@ -113,11 +113,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			
 			NSError *parseError = nil;
 			profile = [parser objectWithString:json error:&parseError];	
-			[json release];
 			
 			if (parseError != nil) {
-				LogError(@"Error parsing JSON: %@", [parseError localizedDescription]);
+				LogError(@"Error parsing JSON (%@): %@", json, [parseError localizedDescription]);
 			}
+			[json release];
 			
 			NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
 			lastModified = [df dateFromString:newLastModified];
@@ -1100,7 +1100,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		NSArray *votes = [parser objectWithString:json error:&error];	
 		
 		if (error != nil) {
-			LogError(@"Parse error while parsing JSON '%@': %@", json, [error localizedDescription]);
+			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
 			[json release];
 		}
 		else {
@@ -1367,11 +1367,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		NSArray *friends = [parser objectWithString:json error:&error];	
-		[json release];
 		
 		if (error != nil) {
-			LogError(@"Parse error while parsing JSON '%@': %@", json, [error localizedDescription]);
+			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
 		}
+		[json release];
 		
 		return friends;
 	}
@@ -1444,11 +1444,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
 		
 		NSDictionary *elections = [parser objectWithString:json error:&error];
-		[json release];
 		
 		if (error != nil) {
-			LogError(@"Error parsing JSON: %@", [error userInfo]);
+			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
 		}
+		[json release];
 		
 		return elections;
 	}
@@ -1513,11 +1513,11 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 		NSError *parseError = nil;
 		*election = [parser objectWithString:json error:&parseError];	
-		[json release];
 		
 		if (parseError != nil) {
-			LogError(@"Parse error while parsing JSON", [parseError localizedDescription]);
+			LogError(@"Error parsing JSON '%@': %@", json, [parseError localizedDescription]);
 		}
+		[json release];
 		
 		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
 		*newTime = [df dateFromString:newLastModified];
