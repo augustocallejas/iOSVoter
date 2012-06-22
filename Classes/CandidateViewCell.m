@@ -45,15 +45,14 @@
 }
 
 - (void)toggleDeleteButton {
+	/* TODO: not sure why the button is disabled at startup */
 	if (deleteCandidate.hidden) {
 		deleteCandidate.enabled = YES;
 		deleteCandidate.hidden = NO;
-		_voteStatus.hidden = YES;
 	}
 	else {
 		deleteCandidate.enabled = NO;
 		deleteCandidate.hidden = YES;
-		_voteStatus.hidden = NO;
 	}
 }
 
