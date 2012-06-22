@@ -55,7 +55,6 @@
 }
 
 - (void)toggleDeleteButton {
-	/* TODO: not sure why the button is disabled at startup */
 	if (deleteVote.hidden) {
 		deleteVote.hidden = NO;
 	}
