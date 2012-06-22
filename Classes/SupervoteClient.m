@@ -55,7 +55,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 /* TODO: this method should take arguments and return some value, and also have an error argument */
 - (BOOL)registerDevice:(NSString *)zip5or9 withLanguage:(NSString *)language withError:(NSError **)error {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/registration"];
+	NSURL *url = [self createURL:@"/voter/v1/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setPostValue:zip5or9 forKey:@"z"];
 	[request setPostValue:language forKey:@"l"];
@@ -87,7 +87,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (NSDictionary *)getProfileWithError:(NSError **)error {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/profile"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/profile"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	
@@ -706,7 +706,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 - (void)selectGovernment:(PotentialGovernmentRegistration *)potentialRegistration
 			  withChoice:(Government *)choice
 			withDelegate:(id)delegate {
-	NSURL *url = [self createURL:@"/selectGovernment"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/selectGovernment"];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
@@ -722,7 +722,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	NSURL *url = [request url];
-	if ([@"/selectGovernment" isEqual:[url path]]) {
+	if ([@"/voter/v1/auth/selectGovernment" isEqual:[url path]]) {
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
 		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
@@ -777,7 +777,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 		}
 	}
-	else if ([@"/selectDistrict" isEqual:[url path]]) {
+	else if ([@"/voter/v1/auth/selectDistrict" isEqual:[url path]]) {
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
 		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
@@ -824,6 +824,10 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 			}
 		}
 	}
+	else {
+		LogError(@"Cannot handle unexpected response: %@", [url path]);
+	}
+
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
@@ -834,23 +838,27 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 	id delegate = [request.userInfo objectForKey:@"delegate"];
 	if (delegate != nil) {
-		if ([@"/selectGovernment" isEqual:[url path]]) {
+		if ([@"/voter/v1/auth/selectGovernment" isEqual:[url path]]) {
 			if ([delegate respondsToSelector:@selector(selectGovernmentFailed:)]) {
 				[delegate performSelector:@selector(selectGovernmentFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
 			}
 		}
-		else if ([@"/selectDistrict" isEqual:[url path]]) {
+		else if ([@"/voter/v1/auth/selectDistrict" isEqual:[url path]]) {
 			if ([delegate respondsToSelector:@selector(selectDistrictFailed:)]) {
 				[delegate performSelector:@selector(selectDistrictFailed:) withObject:[NSNumber numberWithInt:STATUS_HTTP_ERROR]];
 			}
 		}
+		else {
+			LogError(@"Cannot handle unexpected response: %@", [url path]);
+		}
+
 	}
 }
 
 - (void)selectDistrict:(PotentialDistrictRegistration *)potentialDistrict
 			withChoice:(District *)choice
 		  withDelegate:(id)delegate{
-	NSURL *url = [self createURL:@"/selectDistrict"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/selectDistrict"];
 	
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
@@ -891,7 +899,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/accessToken"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/accessToken"];
 
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
@@ -927,7 +935,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (vote_status)sendBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voteCandidate"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
@@ -975,7 +983,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (vote_status)sendMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voteMeasure"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
@@ -1057,7 +1065,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (vote_status)deleteBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/deleteVote"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/deleteVote"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forPosition.guid forKey:@"position"];
@@ -1067,7 +1075,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (vote_status)deleteMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/deleteVote"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/deleteVote"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
@@ -1078,7 +1086,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid{
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:[NSString stringWithFormat:@"/votes?election=%@", electionGuid]];
+	NSURL *url = [self createURL:[NSString stringWithFormat:@"/voter/v1/auth/votes?election=%@", electionGuid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	[request startSynchronous];
@@ -1090,12 +1098,13 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		NSArray *votes = [parser objectWithString:json error:&error];	
-		[json release];
 		
 		if (error != nil) {
 			LogError(@"Parse error while parsing JSON '%@': %@", json, [error localizedDescription]);
+			[json release];
 		}
 		else {
+			[json release];
 			return votes;
 		}
 	}
@@ -1345,7 +1354,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 
 - (id)getFriends {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/friends"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/friends"];
 
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
@@ -1417,7 +1426,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/elections"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/elections"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
 	[request startSynchronous];
@@ -1482,7 +1491,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	
 	/* TODO: this should be asynchronous */
 	//NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
-	NSURL *url = [self createURL:[NSString stringWithFormat:@"/election?election=%@", guid]];
+	NSURL *url = [self createURL:[NSString stringWithFormat:@"/voter/v1/auth/election?election=%@", guid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
 	if (time != nil) {
