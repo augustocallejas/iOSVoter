@@ -42,6 +42,57 @@
 	}
 }
 
+- (IBAction)performDeleteVote:(id)sender {
+	UIButton *deleteButton = sender;
+	
+	if (self.vote != nil) {
+		vote_status status = [self.client deleteMeasureVote:self.vote];
+		if (status == OK) {
+			NSError *error = nil;
+			[[self.ballot managedObjectContext] deleteObject:self.vote];
+			[[self.ballot managedObjectContext] save:&error];
+			self.vote = nil;
+			
+			[self.tableView reloadData];
+		}
+		else {
+			deleteButton.hidden = YES;
+			
+			/* TODO: this code is a direct copy from VoteMeasureController */
+			//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
+			NSString *title = nil;
+			NSString *message = nil;
+			switch (status) {
+				case HTTP_ERROR:
+					title = NSLocalizedString(@"HttpErrorTitle", nil);
+					message = NSLocalizedString(@"HttpErrorMessage", nil);
+					break;
+				case SERVER_ERROR:
+					title = NSLocalizedString(@"ServerErrorTitle", nil);
+					message = NSLocalizedString(@"SaveVoteServerErrorMessage", nil);
+					break;
+				case BAD_REQUEST:
+					title = NSLocalizedString(@"BadRequestTitle", nil);
+					message = NSLocalizedString(@"BadRequestMessage", nil);
+					break;
+				case UNEXPECTED_RESPONSE:
+				default:
+					title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
+					message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
+					break;
+			}
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+															message:message 
+														   delegate:nil 
+												  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
+	}
+}
+
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
 
@@ -404,6 +455,20 @@
 	return 3;
 }
 
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer {
+	MeasureViewCell *viewCell = (MeasureViewCell*) gestureRecognizer.view;
+	// 0 = YES, 1 = NO, 2 = Undecided
+	int row = gestureRecognizer.view.tag; 
+	
+	NSLog(@"Row %d Vote %@", row, _vote);
+	if ((row == 0 && _vote != nil && [_vote.vote boolValue] == YES) ||
+		(row == 1 && _vote != nil && [_vote.vote boolValue] == NO)  ||
+		(row == 2 && _vote != nil && _vote.vote == nil)) {
+		/* toggle delete button */
+		[viewCell toggleDeleteButton];
+	}
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *identifier = @"MeasureViewCell";
@@ -418,6 +483,18 @@
 				break;
 			}
 		}
+	}
+	
+	[cell.deleteVote setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+	
+	if ([cell.gestureRecognizers count] == 0) {
+		UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc]
+													 initWithTarget:self action:@selector(rightSwipeHandle:)];
+		
+		rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+		[rightRecognizer setNumberOfTouchesRequired:1];
+		[cell addGestureRecognizer:rightRecognizer];
+		[rightRecognizer release];
 	}
 	
 	BOOL selected = NO;
@@ -448,6 +525,7 @@
 		}
 	}
 	
+	cell.tag = indexPath.row;
 	cell.editEndorsement.tag = indexPath.row;
 	cell.voteMeasure.tag = indexPath.row;
 	cell.viewAllEndorsements.tag = indexPath.row;
@@ -486,6 +564,12 @@
 		cell.editEndorsement.enabled = NO;
 		cell.editEndorsement.hidden = YES;
 	}
+	
+	/* TODO: shouldn't this be in the MeasureViewCell? */
+	cell.deleteVote.hidden = YES;
+	[[cell.deleteVote layer] setCornerRadius:8.0f];
+	[[cell.deleteVote layer] setMasksToBounds:YES];
+	[[cell.deleteVote layer] setBorderWidth:1.0f];
 	
 	NSNumber* currVote = nil;
 	if (indexPath.row == 0) {

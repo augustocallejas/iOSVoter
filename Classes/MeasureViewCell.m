@@ -22,6 +22,7 @@
 @synthesize viewAllEndorsements = _viewAllEndorsements;
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteMeasure = _voteMeasure;
+@synthesize deleteVote;
 @synthesize voteStatus = _voteStatus;
 @synthesize votePrivate = _votePrivate;
 
@@ -51,6 +52,16 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state.
+}
+
+- (void)toggleDeleteButton {
+	/* TODO: not sure why the button is disabled at startup */
+	if (deleteVote.hidden) {
+		deleteVote.hidden = NO;
+	}
+	else {
+		deleteVote.hidden = YES;
+	}
 }
 
 

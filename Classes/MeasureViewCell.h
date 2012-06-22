@@ -36,9 +36,11 @@
 @property (nonatomic, retain) UIButton *viewAllEndorsements;
 @property (nonatomic, retain) UIButton *editEndorsement;
 @property (nonatomic, retain) UIButton *voteMeasure;
+@property (nonatomic, retain) IBOutlet UIButton *deleteVote;
 @property (nonatomic, retain) UIImageView *voteStatus;
 @property (nonatomic, retain) UIImageView *votePrivate;
 
 + (NSString *)voteToString:(NSNumber *)vote;
+- (void)toggleDeleteButton;
 
 @end

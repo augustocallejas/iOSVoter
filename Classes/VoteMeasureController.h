@@ -28,6 +28,7 @@
 @property (nonatomic, retain) MeasureVote *vote;
 @property (nonatomic, retain) SupervoteClient *client;
 
+- (IBAction)performDeleteVote:(id)sender;
 - (void)barButtonAction:(id)sender;
 - (void)setExpandBarButtonIcon;
 - (IBAction)viewSingleEndorsement:(id)sender;

@@ -430,8 +430,7 @@
 		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
 	}
 
-	/* disable the "delete" button */
-	cell.deleteCandidate.enabled = NO;
+	/* TODO: shouldn't this be in the CandidateViewCell? */
 	cell.deleteCandidate.hidden = YES;
 	[[cell.deleteCandidate layer] setCornerRadius:8.0f];
 	[[cell.deleteCandidate layer] setMasksToBounds:YES];

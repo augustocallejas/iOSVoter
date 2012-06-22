@@ -72,7 +72,7 @@ typedef enum {
 - (vote_status)sendBallotVote:(BallotVote *)vote;
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
 - (vote_status)deleteBallotVote:(BallotVote *)vote;
-- (BOOL)deleteMeasureVote:(MeasureVote *)vote;
+- (vote_status)deleteMeasureVote:(MeasureVote *)vote;
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
