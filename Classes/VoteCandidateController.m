@@ -363,7 +363,7 @@
 	NSArray *array = [VoteCandidateController getMostRecentFriendEndorsements:7 forPosition:position forCandidate:candidate withError:&error];
 	if (error == nil) {
 		NSUInteger count = [array count];
-		LogInfo(@"Candidate %@ has %d friend vote(s)", candidate.name, count);
+		LogDebug(@"Candidate %@ has %d friend vote(s)", candidate.name, count);
 		
 		FriendBallotVote *friendVote;
 		if (count > 0) {
