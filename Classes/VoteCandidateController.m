@@ -44,7 +44,6 @@
 
 - (IBAction)performDeleteVote:(id)sender {
 	UIButton *deleteButton = sender;
-	NSLog(@"superview %@", [deleteButton superview]);
 	
 	if (vote != nil) {
 		vote_status status = [[self client] deleteBallotVote:vote];
@@ -57,7 +56,7 @@
 			[self.tableView reloadData];
 		}
 		else {
-			/* TODO: TOGGLE Delete button away!!! */
+			deleteButton.hidden = YES;
 			
 			/* TODO: this code is a direct copy from VoteMeasureController */
 			//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
