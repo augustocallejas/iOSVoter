@@ -11,7 +11,8 @@
 
 @implementation AboutUsViewController
 
-@synthesize aboutUsLabel = _aboutUsLabel;
+@synthesize leftLabel;
+@synthesize rightLabel;
 @synthesize descriptionText;
 @synthesize emailUsButton;
 @synthesize facebookUsButton;
@@ -92,9 +93,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
-	[_aboutUsLabel setFont:font];
-	[_aboutUsLabel setText:NSLocalizedString(@"ContactUs", nil)];
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:50.0];
+	[leftLabel setFont:font];
+	[rightLabel setFont:font];
 	
 	[descriptionText setText:NSLocalizedString(@"SupervoteDescription", nil)];
 	

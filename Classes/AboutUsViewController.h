@@ -11,12 +11,10 @@
 #import "UIWebViewController.h"
 
 @interface AboutUsViewController : UIViewController <UIWebViewControllerDelegate> {
-
-@private
-	UILabel *_aboutUsLabel;
 }
 
-@property(nonatomic, retain) IBOutlet UILabel *aboutUsLabel;
+@property(nonatomic, retain) IBOutlet UILabel *leftLabel;
+@property(nonatomic, retain) IBOutlet UILabel *rightLabel;
 @property(nonatomic, retain) IBOutlet UITextView *descriptionText;
 @property(nonatomic, retain) IBOutlet UIButton *emailUsButton;
 @property(nonatomic, retain) IBOutlet UIButton *facebookUsButton;
