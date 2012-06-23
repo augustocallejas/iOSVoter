@@ -15,9 +15,7 @@
 
 @synthesize facebookLabel = _facebookLabel;
 @synthesize facebookLoginButton;
-//@synthesize accountLabel = _accountLabel;
-//@synthesize changeZIPButton;
-@synthesize supportLabel = _supportLabel;
+@synthesize advancedLabel;
 @synthesize resetAppButton;
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -274,13 +272,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
+	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:22.0];
+	_facebookLabel.textColor = [UIColor darkGrayColor];
 	[_facebookLabel setFont:font];
 	[_facebookLabel setText:NSLocalizedString(@"FacebookSettings", nil)];
-//	[_accountLabel setFont:font];
-//	[_accountLabel setText:NSLocalizedString(@"AccountSettings", nil)];
-//	[changeZIPButton setTitle:NSLocalizedString(@"ChangeZIPButton", nil) forState:UIControlStateNormal];
-	[_supportLabel setFont:font];
+	
+	advancedLabel.textColor = [UIColor darkGrayColor];
+	[advancedLabel setFont:font];
+	[advancedLabel setText:NSLocalizedString(@"Advanced", nil)];
 	[resetAppButton setTitle:NSLocalizedString(@"ResetApplicationButton", nil) forState:UIControlStateNormal];
 	
 	if (_facebookClient != nil) {
