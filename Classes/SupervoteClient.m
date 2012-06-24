@@ -1553,7 +1553,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 - (BOOL)insertElection:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *guid = [election objectForKey:@"guid"];
 	NSString *title = [election objectForKey:@"title"];
-	NSString *icon = [election objectForKey:@"icon"];
+	id icon = [election objectForKey:@"icon"];
 	NSNumber *dateValue = [election objectForKey:@"date"];
 	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 	
@@ -1561,7 +1561,7 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	electionObj.status = [NSNumber numberWithBool:YES];
 	electionObj.guid = guid;
 	electionObj.title = title;
-	electionObj.icon = icon;
+	electionObj.icon = icon == [NSNull null] ? nil : icon;
 	electionObj.date = date;
 	electionObj.lastModified = time;
 	[date release];
