@@ -1554,8 +1554,16 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	NSString *guid = [election objectForKey:@"guid"];
 	NSString *title = [election objectForKey:@"title"];
 	id icon = [election objectForKey:@"icon"];
-	NSNumber *dateValue = [election objectForKey:@"date"];
-	NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+	NSString *dateValue = [election objectForKey:@"date"];
+	
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"yyyy-MM-dd";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	
+	NSDate *date = [df dateFromString:dateValue];	
+	[df release];
+	[locale release];
 	
 	Election *electionObj = [NSEntityDescription insertNewObjectForEntityForName:@"Election" inManagedObjectContext:_context];
 	electionObj.status = [NSNumber numberWithBool:YES];

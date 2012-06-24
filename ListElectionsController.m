@@ -125,7 +125,6 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-	LogDebug(@"beginUpdates");
     [self.tableView beginUpdates];
 }
 
@@ -188,7 +187,6 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-	LogDebug(@"endUpdates");
     [self.tableView endUpdates];
 }
 
