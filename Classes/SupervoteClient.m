@@ -1572,7 +1572,6 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 	electionObj.icon = icon == [NSNull null] ? nil : icon;
 	electionObj.date = date;
 	electionObj.lastModified = time;
-	[date release];
 	
 	NSArray *positions = [election objectForKey:@"positions"];
 	if (positions != nil) {
