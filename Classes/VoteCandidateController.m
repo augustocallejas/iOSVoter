@@ -18,6 +18,7 @@
 #import "Friend.h"
 #import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
+#import "PoliticalParty.h"
 #import "ViewEndorsementController.h"
 
 @implementation VoteCandidateController
@@ -303,7 +304,11 @@
 	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	
 	cell.candidateName.text = candidate.name;
-	if (candidate.subtitle != nil) {
+	/* political party takes priority over subtitle attribute */
+	if (candidate.party != nil) {
+		cell.partyName.text = candidate.party.name;
+	}
+	else if (candidate.subtitle != nil) {
 		cell.partyName.text = candidate.subtitle;
 	}
 	

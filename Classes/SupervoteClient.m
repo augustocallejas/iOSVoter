@@ -19,6 +19,7 @@
 #import "GovernmentRegistration.h"
 #import "GovernmentType.h"
 #import "Measure.h"
+#import "PoliticalParty.h"
 #import "Position.h"
 #import "PotentialDistrictRegistration.h"
 #import "PotentialGovernmentRegistration.h"
@@ -1603,12 +1604,28 @@ static NSString* kAPIUrl = @"http://localhost:9999";
 					NSString *name = [candidate objectForKey:@"name"];
 					id subtitle = [candidate objectForKey:@"subtitle"];
 					NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
+					NSDictionary *politicalParty = [candidate objectForKey:@"party"];
 										
 					Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 					candidateObj.guid = candidateGuid;
 					candidateObj.name = name;
 					candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
 					candidateObj.displayOrder = displayOrder;
+					
+					if (politicalParty != nil) {
+						NSString *partyGuid = [politicalParty objectForKey:@"guid"];
+						NSString *partyName = [politicalParty objectForKey:@"name"];
+						
+						PoliticalParty *partyObj = [self getObject:@"PoliticalParty" byGuid:guid];
+						if (partyObj == nil) {
+							partyObj = [NSEntityDescription insertNewObjectForEntityForName:@"PoliticalParty" inManagedObjectContext:_context];
+							partyObj.guid = partyGuid;
+							partyObj.name = partyName;
+						}
+						
+						candidateObj.party = partyObj;
+					}
+					
 					[positionObj addCandidatesObject:candidateObj];
 				}
 			}

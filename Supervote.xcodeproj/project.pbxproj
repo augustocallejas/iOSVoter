@@ -106,6 +106,7 @@
 		14399E21140F7FAC007269A3 /* DisplayBallot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399E20140F7FAC007269A3 /* DisplayBallot.xib */; };
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
+		144215CD15AA2B1000972EB8 /* PoliticalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 144215CA15AA2B1000972EB8 /* PoliticalParty.m */; };
 		14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */; };
 		14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
@@ -307,6 +308,8 @@
 		14399EF0141073FD007269A3 /* VoteMeasureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoteMeasureController.h; sourceTree = "<group>"; };
 		14399EF1141073FD007269A3 /* VoteMeasureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoteMeasureController.m; sourceTree = "<group>"; };
 		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
+		144215C915AA2B1000972EB8 /* PoliticalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoliticalParty.h; path = ../PoliticalParty.h; sourceTree = "<group>"; };
+		144215CA15AA2B1000972EB8 /* PoliticalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoliticalParty.m; path = ../PoliticalParty.m; sourceTree = "<group>"; };
 		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
 		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
 		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
@@ -603,6 +606,8 @@
 				14399C0A140E168C007269A3 /* Measure.m */,
 				14399C05140E168C007269A3 /* MeasureVote.h */,
 				14399C06140E168C007269A3 /* MeasureVote.m */,
+				144215C915AA2B1000972EB8 /* PoliticalParty.h */,
+				144215CA15AA2B1000972EB8 /* PoliticalParty.m */,
 				1423B43D14082BE0006F8DBF /* Position.h */,
 				1423B43E14082BE0006F8DBF /* Position.m */,
 				1438A93315740A3D00112C42 /* PotentialDistrictRegistration.h */,
@@ -1158,6 +1163,7 @@
 				14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */,
 				14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */,
 				14FC46E3157C1AA000B71B88 /* ProgressHUD.m in Sources */,
+				144215CD15AA2B1000972EB8 /* PoliticalParty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
