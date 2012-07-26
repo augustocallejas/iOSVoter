@@ -13,9 +13,12 @@
 
 @implementation SupervoteViewController
 
+@synthesize scrollView;
+@synthesize toolBar;
 @synthesize leftLabel = _leftLabel;
 @synthesize rightLabel = _rightLabel;
 @synthesize ZIPCodePrompt;
+@synthesize AddressField;
 @synthesize FirstZIPField;
 @synthesize SecondZIPField;
 @synthesize joinButton;
@@ -42,10 +45,117 @@
 }
 */
 
+- (void)doPrev {
+	if ([self.AddressField isFirstResponder]) {
+		[self.SecondZIPField becomeFirstResponder];
+	}
+	else if ([self.FirstZIPField isFirstResponder]) {
+		[self.AddressField becomeFirstResponder];
+	}
+	else if ([self.SecondZIPField isFirstResponder]) {
+		[self.FirstZIPField becomeFirstResponder];
+	}
+}
+
+- (void)doNext {
+	if ([self.AddressField isFirstResponder]) {
+		[self.FirstZIPField becomeFirstResponder];
+	}
+	else if ([self.FirstZIPField isFirstResponder]) {
+		[self.SecondZIPField becomeFirstResponder];
+	}
+	else if ([self.SecondZIPField isFirstResponder]) {
+		[self.AddressField becomeFirstResponder];
+	}
+}
+
+- (void)doDone {
+	if ([self.AddressField isFirstResponder]) {
+		[self.AddressField endEditing:YES];
+	}
+	else if ([self.FirstZIPField isFirstResponder]) {
+		[self.FirstZIPField endEditing:YES];
+	}
+	else if ([self.SecondZIPField isFirstResponder]) {
+		[self.SecondZIPField endEditing:YES];
+	}
+}
+
+#pragma mark -
+#pragma mark Keyboard/Scrolling methods
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWasShown:)
+												 name:UIKeyboardDidShowNotification object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(keyboardWillBeHidden:)
+												 name:UIKeyboardWillHideNotification object:nil];
+	
+}
+
+- (void)unregisterForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+													name:UIKeyboardDidShowNotification object:nil];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self
+													name:UIKeyboardWillHideNotification object:nil];
+	
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+	
+	float kbHeight = kbSize.height + [toolBar frame].size.height; 
+	
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbHeight, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+	
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbHeight;
+	CGPoint scrollPoint = CGPointMake(0.0, FirstZIPField.frame.origin.y-aRect.size.height);
+	[self.scrollView setContentOffset:scrollPoint animated:YES];
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	toolBar = [[UIToolbar alloc] init];
+	[toolBar setBarStyle:UIBarStyleBlack];
+	[toolBar setTranslucent:YES];
+	[toolBar sizeToFit];
+	
+	self.AddressField.placeholder = NSLocalizedString(@"Address", nil);
+	
+	UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Previous", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(doPrev)];
+	UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Next", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(doNext)];
+	
+	[toolBar setItems:[NSArray arrayWithObjects:prev, next, nil]];
+	[prev release];
+	[next release];
+	
+	self.AddressField.inputAccessoryView = toolBar;
+	self.FirstZIPField.inputAccessoryView = toolBar;
+	self.SecondZIPField.inputAccessoryView = toolBar;
 	
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:50.0];
 	[_leftLabel setFont:font];
@@ -56,6 +166,8 @@
 	[agreeStatement setText:NSLocalizedString(@"AgreeStatement", nil)];
 	[tosButton setTitle:NSLocalizedString(@"TOS", nil) forState:UIControlStateNormal];
 	[privacyButton setTitle:NSLocalizedString(@"Privacy", nil) forState:UIControlStateNormal];
+	
+	[self registerForKeyboardNotifications];
 }
 
 /*
@@ -76,10 +188,16 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	[self unregisterForKeyboardNotifications];
+	toolBar = nil;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
-{  
+{
+	if (textField == AddressField) {
+		return YES;
+	}
+	
     BOOL validCharactersInRange = YES;  
     if (![string isEqualToString:@""])  
     {

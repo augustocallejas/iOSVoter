@@ -22,9 +22,12 @@
 	SupervoteClient *_client;
 }
 
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) UIToolbar *toolBar;
 @property (nonatomic, retain) IBOutlet UILabel *leftLabel;
 @property (nonatomic, retain) IBOutlet UILabel *rightLabel;
 @property (nonatomic, retain) IBOutlet UITextView *ZIPCodePrompt;
+@property (nonatomic, retain) IBOutlet UITextField *AddressField;
 @property (nonatomic, retain) IBOutlet UITextField *FirstZIPField;
 @property (nonatomic, retain) IBOutlet UITextField *SecondZIPField;
 @property (nonatomic, retain) IBOutlet UIButton	*joinButton;
@@ -34,6 +37,9 @@
 //@property (nonatomic, retain) IBOutlet UITabBarController *mainAppController;
 @property (nonatomic, retain) SupervoteClient *client;
 
+- (void)doPrev;
+- (void)doNext;
+- (void)doDone;
 - (IBAction)doTermsOfService;
 - (IBAction)doPrivacy;
 - (void) didDismissModalView;

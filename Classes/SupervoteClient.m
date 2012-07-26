@@ -25,7 +25,7 @@
 #import "PotentialGovernmentRegistration.h"
 
 static NSString *kDeviceIDHeaderKey = @"DeviceID";
-static NSString* kAPIUrl = @"http://localhost:9999";
+static NSString* kAPIUrl = @"http://localhost:9000";
 
 @implementation SupervoteClient
 
