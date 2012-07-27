@@ -263,9 +263,14 @@
 }
 
 - (IBAction)doJoinButtonSendZip {
-	NSString *ZIP;
+	/*
+	 * 1. adddress + zip
+	 * 2. zip + 4
+	 *
+	 */
 	
 	if ([FirstZIPField.text length] != 5) {
+		/* ZIP doesn't contain 5 required digits */
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIPTitle", nil)
 														message:NSLocalizedString(@"InvalidZIPMessage", nil) 
 													   delegate:nil 
@@ -275,6 +280,7 @@
 		[alert release];
 	}
 	else if ([SecondZIPField.text length] != 0 && [SecondZIPField.text length] != 4) {
+		/* ZIP contains 5 digits, but +4 portion is incomplete */
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"InvalidZIP4Title", nil)
 														message:NSLocalizedString(@"InvalidZIP4Message", nil) 
 													   delegate:nil 
@@ -285,6 +291,8 @@
 	}
 	else
 	{
+		NSString *ZIP;
+		
 		if ([SecondZIPField.text length] == 0) {
 			ZIP = [NSString stringWithFormat:@"%@", FirstZIPField.text];
 		}
@@ -294,7 +302,7 @@
 		
 		NSError *error = nil;
 		NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-		if ([_client registerDevice:ZIP withLanguage:language withError:&error]) {
+		if ([_client registerDevice:ZIP withAddress:AddressField.text withLanguage:language withError:&error]) {
 			SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 			[appDelegate switchToMainApp:self.view];
 		}

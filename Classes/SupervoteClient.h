@@ -37,7 +37,7 @@ typedef enum {
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 - (BOOL)isRegistered;
-- (BOOL)registerDevice:(NSString *)zip5or9 withLanguage:(NSString *)language withError:(NSError **)error;
+- (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error;
 - (NSDictionary *)getProfileWithError:(NSError **)error;
 - (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
 - (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error;

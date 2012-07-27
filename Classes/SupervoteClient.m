@@ -53,11 +53,13 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kAPIUrl, service]];
 }
 
-/* TODO: this method should take arguments and return some value, and also have an error argument */
-- (BOOL)registerDevice:(NSString *)zip5or9 withLanguage:(NSString *)language withError:(NSError **)error {
+- (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/voter/v1/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	if (address != nil) {
+		[request setPostValue:address forKey:@"a"];
+	}
 	[request setPostValue:zip5or9 forKey:@"z"];
 	[request setPostValue:language forKey:@"l"];
 	
