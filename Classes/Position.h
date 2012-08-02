@@ -2,14 +2,14 @@
 //  Position.h
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 7/31/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
-@class Candidate;
 @class Election;
+@class PositionToCandidate;
 
 @interface Position :  NSManagedObject  
 {
@@ -27,8 +27,8 @@
 
 
 @interface Position (CoreDataGeneratedAccessors)
-- (void)addCandidatesObject:(Candidate *)value;
-- (void)removeCandidatesObject:(Candidate *)value;
+- (void)addCandidatesObject:(PositionToCandidate *)value;
+- (void)removeCandidatesObject:(PositionToCandidate *)value;
 - (void)addCandidates:(NSSet *)value;
 - (void)removeCandidates:(NSSet *)value;
 

@@ -2,14 +2,14 @@
 //  Position.m
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 7/31/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Position.h"
 
-#import "Candidate.h"
 #import "Election.h"
+#import "PositionToCandidate.h"
 
 @implementation Position 
 

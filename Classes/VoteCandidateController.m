@@ -19,6 +19,7 @@
 #import "FriendBallotVote.h"
 #import "ListEndorsementsController.h"
 #import "PoliticalParty.h"
+#import "PositionToCandidate.h"
 #import "ViewEndorsementController.h"
 
 @implementation VoteCandidateController
@@ -32,8 +33,8 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == actionSheet.destructiveButtonIndex) {
-		Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
-		[self presentCreateEndorsementViewController:candidate];
+		PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+		[self presentCreateEndorsementViewController:p2c.candidate];
 	}
 	else if (buttonIndex == actionSheet.cancelButtonIndex) {
 		/* do nothing */
@@ -106,9 +107,9 @@
 }
 
 - (void)voteOnCandidate:(id)sender{
-	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
+	PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:((UIButton *)sender).tag inSection:0]];
 	
-	if (vote != nil && vote.forCandidate != candidate) {
+	if (vote != nil && vote.forCandidate != p2c.candidate) {
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ChangeVoteWarning", nil)
 																 delegate:self
 														cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
@@ -119,7 +120,7 @@
 		[actionSheet release];
 	}
 	else {
-		[self presentCreateEndorsementViewController:candidate];
+		[self presentCreateEndorsementViewController:p2c.candidate];
 	}
 }
 
@@ -225,8 +226,8 @@
 - (IBAction)viewAllEndorsements:(id)sender{
 	UIButton *button = (UIButton *)sender;
 	
-	Candidate *candidate = (Candidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
-	[VoteCandidateController displayEndorsements:candidate forPosition:self.position onNavigationController:self.navigationController];
+	PositionToCandidate *p2c = (PositionToCandidate *) [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:button.tag inSection:0]];
+	[VoteCandidateController displayEndorsements:p2c.candidate forPosition:self.position onNavigationController:self.navigationController];
 }
 
 + (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController {
@@ -245,7 +246,7 @@
 #pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSString *)getEntityName{
-	return @"Candidate";
+	return @"PositionToCandidate";
 }
 
 - (NSString *)getSectionNameKeyPath{
@@ -292,16 +293,17 @@
 
 - (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer {
 	CandidateViewCell *viewCell = (CandidateViewCell *) gestureRecognizer.view;
-	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:gestureRecognizer.view.tag inSection:0]];
+	PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:gestureRecognizer.view.tag inSection:0]];
 
-	if (vote != nil && vote.forCandidate == candidate) {
+	if (vote != nil && vote.forCandidate == p2c.candidate) {
 		/* toggle delete button */
 		[viewCell toggleDeleteButton];
 	}
 }
 
 - (void)configureCell:(CandidateViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-	Candidate *candidate = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	Candidate *candidate = p2c.candidate;
 	
 	cell.candidateName.text = candidate.name;
 	/* political party takes priority over subtitle attribute */
@@ -311,7 +313,6 @@
 	else if (candidate.subtitle != nil) {
 		cell.partyName.text = candidate.subtitle;
 	}
-	
 	
 	[cell.deleteCandidate setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
 		

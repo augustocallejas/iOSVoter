@@ -21,6 +21,7 @@
 #import "Measure.h"
 #import "PoliticalParty.h"
 #import "Position.h"
+#import "PositionToCandidate.h"
 #import "PotentialDistrictRegistration.h"
 #import "PotentialGovernmentRegistration.h"
 
@@ -1200,7 +1201,8 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 				}
 			}
 			else if (position != nil && candidate != nil && friend != nil) {
-				if (candidate.position == position) {
+				/* TODO: this check isn't valid anymore, but is it overkill? */
+//				if (candidate.position == position) {
 					/* check if the friend ballot vote already exists */					
 					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
 					
@@ -1239,7 +1241,7 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 						}
 						[date release];
 					}
-				}
+//				}
 			}
 			else {
 				LogWarn(@"Some value was nil..");
@@ -1612,7 +1614,6 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 					candidateObj.guid = candidateGuid;
 					candidateObj.name = name;
 					candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
-					candidateObj.displayOrder = displayOrder;
 					
 					if (politicalParty != nil) {
 						NSString *partyGuid = [politicalParty objectForKey:@"guid"];
@@ -1628,7 +1629,11 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 						candidateObj.party = partyObj;
 					}
 					
-					[positionObj addCandidatesObject:candidateObj];
+					PositionToCandidate *p2c = [NSEntityDescription insertNewObjectForEntityForName:@"PositionToCandidate" inManagedObjectContext:_context];
+					p2c.displayOrder = displayOrder;
+					p2c.candidate = candidateObj;
+					
+					[positionObj addCandidatesObject:p2c];
 				}
 			}
 		}
@@ -1663,13 +1668,19 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 - (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *electionGuid = [election objectForKey:@"guid"];
 	NSString *title = [election objectForKey:@"title"];
-	NSNumber *dateValue = [election objectForKey:@"date"];
-	NSDate* date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+	NSString *dateValue = [election objectForKey:@"date"];
+	
+	NSDateFormatter *df = [[NSDateFormatter alloc] init];
+	df.dateFormat = @"yyyy-MM-dd";
+	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+	df.locale = locale;
+	
+	NSDate *date = [df dateFromString:dateValue];	
+	[df release];
 	
 	electionObj.title = title;
 	electionObj.date = date;
 	electionObj.lastModified = time;
-	[date release];
 	
 	// positions
 	NSArray *positions = [election objectForKey:@"positions"];
@@ -1716,17 +1727,50 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 							
 							candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 							candidateObj.guid = candidateGuid;
-							[positionObj addCandidatesObject:candidateObj];
 						}
 						
-						if (candidateObj.position == positionObj) {
+						/* find an existing PositionToCandidate */
+						NSFetchRequest *request = [[NSFetchRequest alloc] init];
+						
+						NSEntityDescription *entity = [NSEntityDescription entityForName:@"PositionToCandidate" inManagedObjectContext:_context];
+						[request setEntity:entity];
+						
+						NSPredicate *predicate = [NSPredicate predicateWithFormat:@"position = %@ and candidate = %@", positionObj, candidateObj];
+						[request setPredicate:predicate];
+						
+						NSError *error = nil;
+						NSArray *results = [_context executeFetchRequest:request error:&error];
+						if (error != nil) {
+						}
+						else if (results != nil) {
+							if ([results count] == 0) {
+								PositionToCandidate *p2c = [NSEntityDescription insertNewObjectForEntityForName:@"PositionToCandidate" inManagedObjectContext:_context];
+								p2c.displayOrder = displayOrder;
+								p2c.candidate = candidateObj;
+								
+								[positionObj addCandidatesObject:p2c];
+							}
+							else if ([results count] == 1) {
+								PositionToCandidate *p2c = [results objectAtIndex:0];
+								
+								if (![displayOrder isEqualToNumber:p2c.displayOrder]) {
+									LogInfo(@"");
+								}
+								
+								p2c.displayOrder = displayOrder;
+							}
+						}
+						[request release];
+
+						/* TODO: unnecessary check? */
+//						if (candidateObj.position == positionObj) {
 							candidateObj.name = name;
 							candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
-							candidateObj.displayOrder = displayOrder;
-						}
-						else {
-							LogWarn(@"Candidate doesn't belong in position");
-						}
+//							candidateObj.displayOrder = displayOrder;
+//						}
+//						else {
+//							LogWarn(@"Candidate doesn't belong in position");
+//						}
 
 					}
 				}
