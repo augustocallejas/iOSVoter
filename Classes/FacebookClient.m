@@ -314,7 +314,7 @@ static NSString *kAppId = @"367473609934472";
 		}
 	}
 	else {
-		LogWarn(@"Unexpected request: %@", [request url]);
+		//LogWarn(@"Unexpected request: %@", [request url]);
 	}
 }
 
