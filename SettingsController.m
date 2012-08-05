@@ -112,7 +112,7 @@
 //	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
 //	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
 //	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogoutFacebookButton", nil) forState:UIControlStateNormal];
+	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
 	
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
