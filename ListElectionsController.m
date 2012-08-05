@@ -413,7 +413,7 @@
 				}
 				else if (status == ES_OK) {
 					if (electionObj == nil) {
-						LogInfo(@"Election '%@' not in database, going to fetch it", electionGuid);
+						LogInfo(@"Election '%@' not in database, going to insert it", electionGuid);
 						
 						if (election != nil) {
 							NSError *storeError = nil;
