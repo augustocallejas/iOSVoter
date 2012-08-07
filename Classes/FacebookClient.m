@@ -296,12 +296,11 @@ static NSString *kAppId = @"367473609934472";
 								}
 							}
 							else if (count == 1) {
-								FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+								FacebookFriend *friend = [array objectAtIndex:0];
 								LogInfo(@"Profile photo for '%@' is missing, will redownload", friend.name);
 							}
 							
-							LogInfo(@"Downloading profile photo for '%@' to file '%@.gif'", friendName, friendId);
-							[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+							[self downloadFacebookPhoto:friendId];
 						}
 						else {
 							LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
@@ -316,6 +315,11 @@ static NSString *kAppId = @"367473609934472";
 	else {
 		//LogWarn(@"Unexpected request: %@", [request url]);
 	}
+}
+
+- (void)downloadFacebookPhoto:(NSString *)facebookId {
+	LogInfo(@"Downloading profile photo to file '%@.gif'", facebookId);
+	[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", facebookId] andDelegate:self];
 }
 
 /**
@@ -359,7 +363,7 @@ static NSString *kAppId = @"367473609934472";
 						LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
 					}
 					else {
-						LogInfo(@"Saved with date: %@", friend.photoDownloaded);
+						LogDebug(@"Saved with date: %@", friend.photoDownloaded);
 					}
 				}
 				else if (count == 0) {
