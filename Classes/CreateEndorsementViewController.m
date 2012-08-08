@@ -83,6 +83,7 @@
 	
 	[endorsementHeader setText:NSLocalizedString(@"EnterEndorsement", nil)];
 	
+	[_voteButton setTitle:NSLocalizedString(@"Vote", nil)];
 	[_cancelButton setTitle:NSLocalizedString(@"Cancel", nil)];
 	
 	if (_candidate != nil) {
