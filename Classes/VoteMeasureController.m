@@ -330,7 +330,7 @@
 			_vote.forBallot = _ballot;
 			_vote.forMeasure = _measure;
 		}
-
+		
 		_vote.vote = measureVote;
 		_vote.statement = statement;
 		_vote.viewableByFriends = [NSNumber numberWithBool:viewable];
@@ -625,7 +625,7 @@
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
 	/* TODO: this code is stand in for now... */
-	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
+	UIImage *genericIcon = [UIImage imageNamed:@"user.png"];
 	
 	UIImage *icon = nil;
 	NSError *error = nil;
