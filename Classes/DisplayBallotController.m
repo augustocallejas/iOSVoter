@@ -307,7 +307,7 @@
 			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			NSString *documentsDirectory = [paths objectAtIndex:0];
 			
-			UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
+			UIImage *genericIcon = [UIImage imageNamed:@"user.png"];
 			
 			//		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			//		NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -359,10 +359,37 @@
 
 + (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
 	UIImage *icon = nil;
-	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
-		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
-		icon = [UIImage imageWithContentsOfFile:path];
+	
+	if (friendVote.author.facebookId != nil) {
+		/* query for facebook friend */
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:[friendVote managedObjectContext]];
+		[fetchRequest setFetchLimit:1];
+		[fetchRequest setEntity:entity];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", friendVote.author.facebookId]];
+		
+		NSError *err = nil;
+		NSArray *array = [[friendVote managedObjectContext] executeFetchRequest:fetchRequest error:&err];
+		[fetchRequest release];
+		
+		FacebookFriend *facebookFriend = nil;
+		if (array == nil) {
+			LogError(@"Fetch error while querying for FacebookFriend: %@", [err localizedDescription]);
+		}
+		else if ([array count] == 1) {
+			facebookFriend =[array objectAtIndex:0];
+		}
+		
+		if (facebookFriend != nil && facebookFriend.photoDownloaded != nil) {
+			NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebookId];
+			LogDebug(@"Found path to Facebook photo: %@", path);
+			icon = [UIImage imageWithContentsOfFile:path];
+		}
 	}
+	else {
+		LogError(@"Friend %@ doesn't have a Facebook id", friendVote.author.name);
+	}
+
 	
 	if (icon == nil) {
 		icon = defaultIcon;
@@ -373,9 +400,32 @@
 
 + (UIImage *) loadImageForAuthorOfMeasureVote:(FriendMeasureVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon {
 	UIImage *icon = nil;
-	if (friendVote.author.facebook != nil && friendVote.author.facebook.photoDownloaded != nil) {
-		NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebook.friendId];
-		icon = [UIImage imageWithContentsOfFile:path];
+	
+	if (friendVote.author.facebookId != nil) {
+		/* query for facebook friend */
+		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:[friendVote managedObjectContext]];
+		[fetchRequest setFetchLimit:1];
+		[fetchRequest setEntity:entity];
+		[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", friendVote.author.facebookId]];
+		
+		NSError *err = nil;
+		NSArray *array = [[friendVote managedObjectContext] executeFetchRequest:fetchRequest error:&err];
+		[fetchRequest release];
+		
+		FacebookFriend *facebookFriend = nil;
+		if (array == nil) {
+			LogError(@"Fetch error while querying for FacebookFriend: %@", [err localizedDescription]);
+		}
+		else if ([array count] == 1) {
+			facebookFriend =[array objectAtIndex:0];
+		}
+		
+		if (facebookFriend != nil && facebookFriend.photoDownloaded != nil) {
+			NSString *path = [NSString stringWithFormat:@"%@/facebook/%@.gif", documentsDirectory, friendVote.author.facebookId];
+			LogDebug(@"Found path to Facebook photo: %@", path);
+			icon = [UIImage imageWithContentsOfFile:path];
+		}
 	}
 	
 	if (icon == nil) {
