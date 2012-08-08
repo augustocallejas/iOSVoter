@@ -2,21 +2,20 @@
 //  Friend.m
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/5/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Friend.h"
 
-#import "FacebookFriend.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
 
 @implementation Friend 
 
 @dynamic guid;
+@dynamic facebookId;
 @dynamic name;
-@dynamic facebook;
 @dynamic measures;
 @dynamic votes;
 
