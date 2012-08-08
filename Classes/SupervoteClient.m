@@ -1182,10 +1182,10 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			Candidate *candidate = [self getObject:@"Candidate" byGuid:candidateGuid];
 			Friend *friend = [self getObject:@"Friend" byGuid:authorGuid];
 			
-			if (candidate == nil) {
-				LogWarn(@"Unrecognized candidate (%@), so not storing vote", candidateGuid);
-			}
-			else if (![viewable boolValue])
+			LogDebug(@"Incoming ballot vote: (viewable=%@, author=%@, position=%@, candidate=%@)", viewable, authorGuid, positionGuid, candidateGuid);
+			
+
+			if (![viewable boolValue])
 			{
 				if (position != nil && friend != nil) {
 					/* check if the friend ballot vote already exists */
@@ -1200,6 +1200,9 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 						}
 					}
 				}
+			}
+			else if (candidate == nil) {
+				LogWarn(@"Unrecognized candidate (%@), so not storing vote", candidateGuid);
 			}
 			else if (position != nil && candidate != nil && friend != nil) {
 				/* TODO: this check isn't valid anymore, but is it overkill? */
@@ -1225,7 +1228,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					}
 					else {
 						/* insert new friend ballot vote */
-						LogInfo(@"Inserting new friend ballot vote");
+						LogInfo(@"Inserting new friend ballot vote: %@ %@", friend.name, candidate.guid);
 						
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
@@ -1372,6 +1375,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
 		NSArray *friends = [parser objectWithString:json error:&error];	
 		
 		if (error != nil) {
@@ -1385,39 +1389,38 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return nil;	
 }
 
-- (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error{
+- (BOOL)insertFriends:(NSArray *)friends withNewFriends:(NSMutableArray**)newFriends withError:(NSError **)error{
+	*newFriends = [NSMutableArray arrayWithCapacity:10];
+	
 	for (NSDictionary *friend in friends) {
 		NSString *guid = [friend objectForKey:@"guid"];
-		NSString *name = [friend objectForKey:@"name"];
+		id name = [friend objectForKey:@"name"];
 		NSString *facebookId = [friend objectForKey:@"facebookFriendId"];
 		
 		/* does the friend exist in the database already? */
 		Friend *friendObj = [self getObject:@"Friend" byGuid:guid];
 		if (friendObj != nil) {
-			LogInfo(@"Found existing Friend, updating certain attributes");
-			friendObj.name = name;
+			if (name == [NSNull null]) {
+				LogWarn(@"Friend %@ has no name, cannot update", guid);
+			}
+			else {
+				LogInfo(@"Found existing Friend '%@', updating certain attributes: (%@, %@)", friendObj.name, name, facebookId);
+				friendObj.name = name;
+				friendObj.facebookId = facebookId;
+			}
 		}
 		else {
-			friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:_context];
-			friendObj.guid = guid;
-			friendObj.name = name;
-			
-			/* query for facebook friend object */
-			NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-			NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
-			[fetchRequest setFetchLimit:1];
-			[fetchRequest setEntity:entity];
-			[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"friendId == %@", facebookId]];
-			
-			NSError *err = nil;
-			NSArray *array = [_context executeFetchRequest:fetchRequest error:&err];
-			[fetchRequest release];
-			
-			if (array == nil) {
-				LogError(@"Fetch error while querying for FacebookFriend: %@", [err localizedDescription]);
+			if (name == [NSNull null]) {
+				LogWarn(@"Friend %@ has no name, cannot insert", guid);
 			}
-			else if ([array count] == 1) {
-				friendObj.facebook = [array objectAtIndex:0];
+			else {
+				LogInfo(@"Inserting new Friend: (%@, %@)", name, facebookId);
+				friendObj = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:_context];
+				friendObj.guid = guid;
+				friendObj.name = name;
+				friendObj.facebookId = facebookId;
+				
+				[*newFriends addObject:friendObj];
 			}
 		}
 	}

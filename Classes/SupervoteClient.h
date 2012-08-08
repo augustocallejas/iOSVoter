@@ -12,6 +12,7 @@
 #import "District.h"
 #import "DistrictType.h"
 #import "Election.h"
+#import "FacebookFriend.h"
 #import "Government.h"
 #import "GovernmentRegistration.h"
 #import "GovernmentType.h"
@@ -76,7 +77,7 @@ typedef enum {
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid;
 - (BOOL)insertVotes:(NSArray *)votes;
 - (id)getFriends;
-- (BOOL)insertFriends:(NSArray *)friends withError:(NSError **)error;
+- (BOOL)insertFriends:(NSArray *)friends withNewFriends:(NSMutableArray**)newFriends withError:(NSError **)error;
 - (NSDictionary *)getElections:(vote_status *)status;
 - (election_status)getElection:(NSDictionary **)election
 					  withGuid:(NSString *)guid

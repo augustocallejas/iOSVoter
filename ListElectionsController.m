@@ -333,7 +333,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//	LogDebug(@"View will appear");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -474,11 +473,21 @@
 		NSError *storeError = nil;
 		NSArray *friends = [_client getFriends];
 		if (friends != nil) {
-			[_client insertFriends:friends withError:&storeError];
+			NSMutableArray *newFriends = nil;
+			[_client insertFriends:friends withNewFriends:&newFriends withError:&storeError];
 			
 			if (storeError != nil) {
 				LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
 			}
+			else {
+				for (Friend* friend in newFriends) {
+					if (friend.facebookId != nil) {
+						LogInfo(@"Downloading Facebook photo for new friend: %@", friend.name);
+						[_facebookClient downloadFacebookPhoto:friend.facebookId];
+					}
+				}
+			}
+
 		}
 		
 		for (NSString *electionGuid in elections) {
