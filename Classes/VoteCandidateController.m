@@ -314,6 +314,7 @@
 		cell.partyName.text = candidate.subtitle;
 	}
 	
+	[cell.voteCandidate setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
 	[cell.deleteCandidate setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
 		
 	if ([cell.gestureRecognizers count] == 0) {
@@ -346,7 +347,7 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
-	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
+	UIImage *genericIcon = [UIImage imageNamed:@"user.png"];
 
 	[cell.friendIcon1 setImage:nil forState:UIControlStateNormal];
 	cell.friendIcon1.ballotVote = nil;
