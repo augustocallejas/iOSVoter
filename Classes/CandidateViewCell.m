@@ -24,7 +24,6 @@
 @synthesize viewAllEndorsements = _viewAllEndorsements;
 @synthesize editEndorsement = _editEndorsement;
 @synthesize	voteCandidate = _voteCandidate;
-@synthesize deleteCandidate;
 @synthesize voteStatus = _voteStatus;
 @synthesize votePrivate = _votePrivate;
 
@@ -44,14 +43,14 @@
     // Configure the view for the selected state.
 }
 
-- (void)toggleDeleteButton {
-	if (deleteCandidate.hidden) {
-		deleteCandidate.hidden = NO;
-	}
-	else {
-		deleteCandidate.hidden = YES;
-	}
-}
+//- (void)toggleDeleteButton {
+//	if (deleteCandidate.hidden) {
+//		deleteCandidate.hidden = NO;
+//	}
+//	else {
+//		deleteCandidate.hidden = YES;
+//	}
+//}
 
 - (void)dealloc {
     [super dealloc];

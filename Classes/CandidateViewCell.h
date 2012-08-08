@@ -42,7 +42,6 @@
 @property (nonatomic, retain) UIButton *viewAllEndorsements;
 @property (nonatomic, retain) UIButton *editEndorsement;
 @property (nonatomic, retain) UIButton *voteCandidate;
-@property (nonatomic, retain) IBOutlet UIButton *deleteCandidate;
 @property (nonatomic, retain) UIImageView *voteStatus;
 @property (nonatomic, retain) UIImageView *votePrivate;
 

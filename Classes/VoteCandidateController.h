@@ -28,6 +28,8 @@
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) SupervoteClient *client;
+@property (nonatomic, retain) UIActionSheet *changeVoteSheet;
+@property (nonatomic, retain) UIActionSheet *deleteVoteSheet;
 
 - (void)barButtonAction:(id)sender;
 - (void)setExpandBarButtonIcon;
@@ -36,7 +38,7 @@
 + (void)displayEndorsements:(Candidate *)candidate forPosition:(Position *)position onNavigationController:(UINavigationController *)navController;
 + (NSArray *)getMostRecentFriendEndorsements:(NSInteger)count forPosition:(Position *)position forCandidate:(Candidate *)candidate withError:(NSError **)error;
 
-- (IBAction)performDeleteVote:(id)sender;
+- (void)performDeleteVote;
 - (IBAction)viewSingleEndorsement:(id)sender;
 - (IBAction)voteOnCandidate:(id)sender;
 - (IBAction)viewAllEndorsements:(id)sender;

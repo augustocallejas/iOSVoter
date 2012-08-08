@@ -27,26 +27,35 @@
 @synthesize ballot;
 @synthesize position;
 @synthesize client = _client;
+@synthesize changeVoteSheet;
+@synthesize deleteVoteSheet;
 
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == actionSheet.destructiveButtonIndex) {
-		PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
-		[self presentCreateEndorsementViewController:p2c.candidate];
+	if (changeVoteSheet == actionSheet) {
+		changeVoteSheet = nil;
+		if (buttonIndex == actionSheet.destructiveButtonIndex) {
+			PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:actionSheet.tag inSection:0]];
+			[self presentCreateEndorsementViewController:p2c.candidate];
+		}
+		else if (buttonIndex == actionSheet.cancelButtonIndex) {
+			/* do nothing */
+		}
 	}
-	else if (buttonIndex == actionSheet.cancelButtonIndex) {
-		/* do nothing */
+	else if (deleteVoteSheet == actionSheet) {
+		deleteVoteSheet = nil;
+		if (buttonIndex == actionSheet.destructiveButtonIndex) {
+			[self performDeleteVote];
+		}
+		else if (buttonIndex == actionSheet.cancelButtonIndex) {
+			/* do nothing */
+		}
 	}
 }
 
-#pragma mark -
-#pragma mark UIButton custom actions
-
-- (IBAction)performDeleteVote:(id)sender {
-	UIButton *deleteButton = sender;
-	
+- (void)performDeleteVote {
 	if (vote != nil) {
 		vote_status status = [[self client] deleteBallotVote:vote];
 		if (status == OK) {
@@ -58,8 +67,6 @@
 			[self.tableView reloadData];
 		}
 		else {
-			deleteButton.hidden = YES;
-			
 			/* TODO: this code is a direct copy from VoteMeasureController */
 			//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
 			NSString *title = nil;
@@ -116,6 +123,7 @@
 												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
 														otherButtonTitles:nil];
 		actionSheet.tag = ((UIButton *)sender).tag;
+		changeVoteSheet = actionSheet;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
 		[actionSheet release];
 	}
@@ -146,6 +154,8 @@
 	BOOL dismissModalView = YES;
 	vote_status status = OK;
 	if (withVote) {
+//		[TestFlight passCheckpoint:@"EndorsedCandidate"];
+		
 		if (vote == nil) {
 			vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];
 			vote.forBallot = ballot;
@@ -291,13 +301,17 @@
 	return array;
 }
 
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer {
-	CandidateViewCell *viewCell = (CandidateViewCell *) gestureRecognizer.view;
-	PositionToCandidate *p2c = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:gestureRecognizer.view.tag inSection:0]];
-
-	if (vote != nil && vote.forCandidate == p2c.candidate) {
-		/* toggle delete button */
-		[viewCell toggleDeleteButton];
+- (void)longPressHandle:(UILongPressGestureRecognizer *)longRecogizer {
+	if (longRecogizer.state == UIGestureRecognizerStateBegan) {		
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DeleteVoteWarning", nil)
+																 delegate:self
+														cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
+														otherButtonTitles:nil];
+		actionSheet.tag = longRecogizer.view.tag;
+		deleteVoteSheet = actionSheet;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
 	}
 }
 
@@ -315,16 +329,15 @@
 	}
 	
 	[cell.voteCandidate setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
-	[cell.deleteCandidate setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
+	
+	if ([cell.voteStatus.gestureRecognizers count] == 0) {
+		UILongPressGestureRecognizer *longRecognizer = [[UILongPressGestureRecognizer alloc]
+														initWithTarget:self action:@selector(longPressHandle:)];
 		
-	if ([cell.gestureRecognizers count] == 0) {
-		UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc]
-													 initWithTarget:self action:@selector(rightSwipeHandle:)];
-		
-		rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-		[rightRecognizer setNumberOfTouchesRequired:1];
-		[cell addGestureRecognizer:rightRecognizer];
-		[rightRecognizer release];
+		[longRecognizer setNumberOfTouchesRequired:1];
+		longRecognizer.minimumPressDuration = 1.0;
+		[cell.voteStatus addGestureRecognizer:longRecognizer];
+		[longRecognizer release];
 	}
 	
 	/* add small black border to all friend icons */
@@ -437,11 +450,11 @@
 		//cell.viewAllEndorsements.layer.borderWidth = 1.0f;
 	}
 
-	/* TODO: shouldn't this be in the CandidateViewCell? */
-	cell.deleteCandidate.hidden = YES;
-	[[cell.deleteCandidate layer] setCornerRadius:8.0f];
-	[[cell.deleteCandidate layer] setMasksToBounds:YES];
-	[[cell.deleteCandidate layer] setBorderWidth:1.0f];
+//	/* TODO: shouldn't this be in the CandidateViewCell? */
+//	cell.deleteCandidate.hidden = YES;
+//	[[cell.deleteCandidate layer] setCornerRadius:8.0f];
+//	[[cell.deleteCandidate layer] setMasksToBounds:YES];
+//	[[cell.deleteCandidate layer] setBorderWidth:1.0f];
 
 	if (vote != nil && vote.forCandidate == candidate) {
 		/* display the vote status image */
@@ -773,7 +786,6 @@
     static NSString *identifier = @"CandidateViewCell";
     CandidateViewCell *cell = (CandidateViewCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 	if (cell == nil) {
-		
 		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
 		
 		for (id nibObject in nibObjects) {
@@ -787,8 +799,9 @@
 	cell.tag = indexPath.row;
 	cell.editEndorsement.tag = indexPath.row;
 	cell.voteCandidate.tag = indexPath.row;
-	cell.deleteCandidate.tag = indexPath.row;
+//	cell.deleteCandidate.tag = indexPath.row;
 	cell.viewAllEndorsements.tag = indexPath.row;
+	cell.voteStatus.tag = indexPath.row;
 	
 	[self configureCell:cell atIndexPath:indexPath];
 	
