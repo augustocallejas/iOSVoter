@@ -107,6 +107,7 @@
 		election = (Election *) [self.fetchedResultsController2 objectAtIndexPath:correctedIndexPath];
 	}
 	
+	cell.imageView.image = nil;
     cell.textLabel.text = election.title;
     cell.detailTextLabel.text =  [dateFormatter stringFromDate:election.date];
 //	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
@@ -343,10 +344,12 @@
 	}
 	
 	[self updateElections:NO];
+	[self.tableView reloadData];
 }
 
 - (void)updateElections {
 	[self updateElections:YES];
+	[self.tableView reloadData];
 }
 
 /* TODO: run in background? */

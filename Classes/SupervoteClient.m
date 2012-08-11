@@ -1672,6 +1672,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 - (BOOL)updateElection:(Election *)electionObj withObject:(NSDictionary *)election withLastModified:(NSDate *)time withError:(NSError **)error {
 	NSString *electionGuid = [election objectForKey:@"guid"];
 	NSString *title = [election objectForKey:@"title"];
+	id icon = [election objectForKey:@"icon"];
 	NSString *dateValue = [election objectForKey:@"date"];
 	
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -1683,6 +1684,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	[df release];
 	
 	electionObj.title = title;
+	electionObj.icon = icon == [NSNull null] ? nil : icon;
 	electionObj.date = date;
 	electionObj.lastModified = time;
 	
