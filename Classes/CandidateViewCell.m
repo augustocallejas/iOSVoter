@@ -43,15 +43,6 @@
     // Configure the view for the selected state.
 }
 
-//- (void)toggleDeleteButton {
-//	if (deleteCandidate.hidden) {
-//		deleteCandidate.hidden = NO;
-//	}
-//	else {
-//		deleteCandidate.hidden = YES;
-//	}
-//}
-
 - (void)dealloc {
     [super dealloc];
 }
