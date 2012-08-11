@@ -248,11 +248,9 @@
 	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
 	
 	if (section < [self.fetchedResultsController1.sections count]) {
-//		label.text = @"Upcoming Elections";
 		label.text = NSLocalizedString(@"UpcomingElections", nil);
 	}
 	else {
-//		label.text = @"Past Elections";	
 		label.text = NSLocalizedString(@"PastElections", nil);
 	}
 	
