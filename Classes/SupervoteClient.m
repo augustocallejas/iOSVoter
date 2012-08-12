@@ -1630,7 +1630,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 						NSString *partyGuid = [politicalParty objectForKey:@"guid"];
 						NSString *partyName = [politicalParty objectForKey:@"name"];
 						
-						PoliticalParty *partyObj = [self getObject:@"PoliticalParty" byGuid:guid];
+						PoliticalParty *partyObj = [self getObject:@"PoliticalParty" byGuid:partyGuid];
 						if (partyObj == nil) {
 							partyObj = [NSEntityDescription insertNewObjectForEntityForName:@"PoliticalParty" inManagedObjectContext:_context];
 							partyObj.guid = partyGuid;
@@ -1733,6 +1733,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 						NSString *name = [candidate objectForKey:@"name"];
 						id subtitle = [candidate objectForKey:@"subtitle"];
 						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
+						NSDictionary *politicalParty = [candidate objectForKey:@"party"];
 												
 						Candidate *candidateObj = [self getObject:@"Candidate" byGuid:candidateGuid];
 						if (candidateObj == nil) {
@@ -1740,6 +1741,20 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 							
 							candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 							candidateObj.guid = candidateGuid;
+						}
+						
+						if (politicalParty != nil) {
+							NSString *partyGuid = [politicalParty objectForKey:@"guid"];
+							NSString *partyName = [politicalParty objectForKey:@"name"];
+							
+							PoliticalParty *partyObj = [self getObject:@"PoliticalParty" byGuid:partyGuid];
+							if (partyObj == nil) {
+								partyObj = [NSEntityDescription insertNewObjectForEntityForName:@"PoliticalParty" inManagedObjectContext:_context];
+								partyObj.guid = partyGuid;
+								partyObj.name = partyName;
+							}
+							
+							candidateObj.party = partyObj;
 						}
 						
 						/* find an existing PositionToCandidate */
