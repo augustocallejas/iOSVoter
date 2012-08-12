@@ -13,6 +13,7 @@
 	#import "../asi-http-request/Classes/ASIHTTPRequest.h"
 	#import "../asi-http-request/Classes/ASIFormDataRequest.h"
 	#import "../SimpleProgressHUD/ProgressHUD/ProgressHUD.h"
+	#import "TestFlight.h"
 
 typedef enum {
 	STATUS_OK, STATUS_HTTP_ERROR, STATUS_SERVER_ERROR, STATUS_BAD_REQUEST, STATUS_UNEXPECTED_RESPONSE

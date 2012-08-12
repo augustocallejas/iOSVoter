@@ -23,6 +23,8 @@
 @synthesize measure = _measure;
 @synthesize vote = _vote;
 @synthesize client = _client;
+@synthesize changeVoteSheet;
+@synthesize deleteVoteSheet;
 
 //static NSNumber *YES_VOTE = [NSNumber numberWithBool:YES];
 //static NSNumber *NO_VOTE = [NSNumber numberWithBool:NO];
@@ -42,9 +44,7 @@
 	}
 }
 
-- (IBAction)performDeleteVote:(id)sender {
-	UIButton *deleteButton = sender;
-	
+- (void)performDeleteVote {	
 	if (self.vote != nil) {
 		vote_status status = [self.client deleteMeasureVote:self.vote];
 		if (status == OK) {
@@ -55,9 +55,7 @@
 			
 			[self.tableView reloadData];
 		}
-		else {
-			deleteButton.hidden = YES;
-			
+		else {		
 			/* TODO: this code is a direct copy from VoteMeasureController */
 			//	OK, HTTP_ERROR, SERVER_ERROR, BAD_REQUEST, ELECTION_CLOSED, UNEXPECTED_RESPONSE
 			NSString *title = nil;
@@ -97,26 +95,38 @@
 #pragma mark UIActionSheetDelegate methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == actionSheet.destructiveButtonIndex) {
-		/* yes, they want to change their vote */
-		NSNumber *voteSelected = nil;
-		if (actionSheet.tag == 0) {
-			/* YES */
-			voteSelected = [NSNumber numberWithBool:YES];
+	if (changeVoteSheet == actionSheet) {
+		changeVoteSheet = nil;
+		if (buttonIndex == actionSheet.destructiveButtonIndex) {
+			/* yes, they want to change their vote */
+			NSNumber *voteSelected = nil;
+			if (actionSheet.tag == 0) {
+				/* YES */
+				voteSelected = [NSNumber numberWithBool:YES];
+			}
+			else if (actionSheet.tag == 1) {
+				/* NO */
+				voteSelected = [NSNumber numberWithBool:NO];
+			}
+			else if (actionSheet.tag == 2) {
+				/* Undecided */
+				voteSelected = nil;
+			}
+			
+			[self presentCreateEndorsementViewController:voteSelected];
 		}
-		else if (actionSheet.tag == 1) {
-			/* NO */
-			voteSelected = [NSNumber numberWithBool:NO];
+		else if (buttonIndex == actionSheet.cancelButtonIndex) {
+			/* do nothing */
 		}
-		else if (actionSheet.tag == 2) {
-			/* Undecided */
-			voteSelected = nil;
-		}
-		
-		[self presentCreateEndorsementViewController:voteSelected];
 	}
-	else if (buttonIndex == actionSheet.cancelButtonIndex) {
-		/* do nothing */
+	else if (deleteVoteSheet == actionSheet) {
+		deleteVoteSheet = nil;
+		if (buttonIndex == actionSheet.destructiveButtonIndex) {
+			[self performDeleteVote];
+		}
+		else if (buttonIndex == actionSheet.cancelButtonIndex) {
+			/* do nothing */
+		}
 	}
 }
 
@@ -198,7 +208,8 @@
 	[barButtonItem release];
 	[self setExpandBarButtonIcon];
 	
-	self.tableView.allowsSelection = NO;
+	/* disables selection of cells */
+//	self.tableView.allowsSelection = NO;
 	
 	/* query for a measure vote, if any */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -287,6 +298,7 @@
 												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
 														otherButtonTitles:nil];
 		actionSheet.tag = button.tag;
+		changeVoteSheet = actionSheet;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
 		[actionSheet release];
 	}
@@ -331,6 +343,8 @@
 			_vote.forMeasure = _measure;
 		}
 		
+		[TestFlight passCheckpoint:@"EndorsedMeasure"];
+
 		_vote.vote = measureVote;
 		_vote.statement = statement;
 		_vote.viewableByFriends = [NSNumber numberWithBool:viewable];
@@ -455,17 +469,17 @@
 	return 3;
 }
 
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer {
-	MeasureViewCell *viewCell = (MeasureViewCell*) gestureRecognizer.view;
-	// 0 = YES, 1 = NO, 2 = Undecided
-	int row = gestureRecognizer.view.tag; 
-	
-	NSLog(@"Row %d Vote %@", row, _vote);
-	if ((row == 0 && _vote != nil && [_vote.vote boolValue] == YES) ||
-		(row == 1 && _vote != nil && [_vote.vote boolValue] == NO)  ||
-		(row == 2 && _vote != nil && _vote.vote == nil)) {
-		/* toggle delete button */
-		[viewCell toggleDeleteButton];
+- (void)longPressHandle:(UILongPressGestureRecognizer *)longRecogizer {
+	if (longRecogizer.state == UIGestureRecognizerStateBegan) {		
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"DeleteVoteWarning", nil)
+																 delegate:self
+														cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+												   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
+														otherButtonTitles:nil];
+		actionSheet.tag = longRecogizer.view.tag;
+		deleteVoteSheet = actionSheet;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
 	}
 }
 
@@ -486,16 +500,6 @@
 	}
 	
 	[cell.deleteVote setTitle:NSLocalizedString(@"Delete", nil) forState:UIControlStateNormal];
-	
-	if ([cell.gestureRecognizers count] == 0) {
-		UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc]
-													 initWithTarget:self action:@selector(rightSwipeHandle:)];
-		
-		rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-		[rightRecognizer setNumberOfTouchesRequired:1];
-		[cell addGestureRecognizer:rightRecognizer];
-		[rightRecognizer release];
-	}
 	
 	BOOL selected = NO;
     
@@ -531,6 +535,17 @@
 	cell.viewAllEndorsements.tag = indexPath.row;
 	
 	if (selected) {
+		if ([cell.gestureRecognizers count] == 0) {
+			UILongPressGestureRecognizer *longRecognizer = [[UILongPressGestureRecognizer alloc]
+															initWithTarget:self action:@selector(longPressHandle:)];
+			
+			[longRecognizer setNumberOfTouchesRequired:1];
+			longRecognizer.minimumPressDuration = 1.0;
+			[cell addGestureRecognizer:longRecognizer];
+			[longRecognizer release];
+		}
+		[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+		
 		/* display the vote status image */
 		cell.voteStatus.hidden = NO;
 
@@ -547,6 +562,11 @@
 		[cell.editEndorsement setTitle:NSLocalizedString(@"EditEndorsement", nil) forState:UIControlStateNormal];
 	}
 	else {
+		if ([cell.gestureRecognizers count] == 1) {
+			[cell removeGestureRecognizer:[cell.gestureRecognizers objectAtIndex:0]];
+		}
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
 		/* hide the vote status image */
 		cell.voteStatus.hidden = YES;
 		
@@ -729,6 +749,10 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section != 0) {
 		return 0.0;
@@ -753,7 +777,7 @@
 	label.adjustsFontSizeToFitWidth = YES;
 	label.minimumFontSize = 18.0;
 	label.frame = CGRectMake(10.0, 0.0, 290.0, 32.0);
-	label.text = [NSString stringWithFormat:@"%@ %@", _measure.identifier, _measure.title];
+	label.text = [NSString stringWithFormat:@"%@: %@", _measure.identifier, _measure.title];
 	
 	[customView addSubview:label];
 	return customView;

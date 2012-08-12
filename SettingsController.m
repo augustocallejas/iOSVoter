@@ -114,6 +114,8 @@
 //	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
 	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
 	
+	[TestFlight passCheckpoint:@"FacebookIntegrationInSettings"];
+	
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
 		[_facebookClient updateFriends];
@@ -159,6 +161,8 @@
  */
 - (void)fbDidNotLogin:(BOOL)cancelled {
 	LogInfo(@"Facebook Login cancelled");
+	
+	[TestFlight passCheckpoint:@"CanceledFacebookIntegrationInSettings"];
 }
 
 /**

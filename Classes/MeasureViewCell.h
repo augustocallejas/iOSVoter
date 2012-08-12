@@ -41,6 +41,5 @@
 @property (nonatomic, retain) UIImageView *votePrivate;
 
 + (NSString *)voteToString:(NSNumber *)vote;
-- (void)toggleDeleteButton;
 
 @end

@@ -98,6 +98,8 @@
 - (void)fbDidLogin {
 	[self markAsViewed];
 	
+	[TestFlight passCheckpoint:@"FacebookIntegration"];
+	
 	/* TODO: same logic as in SettingsController */
 	vote_status status = [_client sendFacebookAccessToken:[[_facebookClient facebook] accessToken]];
 	if (status == OK) {
@@ -115,6 +117,8 @@
  */
 - (void)fbDidNotLogin:(BOOL)cancelled {
 	[self markAsViewed];
+	
+	[TestFlight passCheckpoint:@"CanceledFacebookIntegration"];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
 													message:NSLocalizedString(@"LaterFacebookMessage", nil)

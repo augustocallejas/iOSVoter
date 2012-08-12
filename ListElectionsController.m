@@ -113,12 +113,13 @@
 //	cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
 	
 	if (election.icon != nil) {
-		LogDebug(@"Load election icon: %@", election.icon);
 		UIImage *icon = [UIImage imageNamed:election.icon];
 		if (icon != nil) {
 			cell.imageView.image = icon;
 		}
 	}
+	
+	[cell setNeedsLayout];
 }
 
 #pragma mark -
@@ -269,10 +270,8 @@
 		NSIndexPath *correctIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section-[self.fetchedResultsController1.sections count])];
 		election = (Election *) [self.fetchedResultsController2 objectAtIndexPath:correctIndexPath];
 	}
-	
-//	Election *election = (Election *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
+
 	controller.election = election;
-//	controller.title = @"Ballot";//election.title;
 	controller.title = NSLocalizedString(@"Ballot", nil);
 	controller.managedObjectContext = self.managedObjectContext;
 	controller.client = self.client;
@@ -342,12 +341,10 @@
 	}
 	
 	[self updateElections:NO];
-	[self.tableView reloadData];
 }
 
 - (void)updateElections {
 	[self updateElections:YES];
-	[self.tableView reloadData];
 }
 
 /* TODO: run in background? */

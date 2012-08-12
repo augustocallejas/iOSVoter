@@ -437,7 +437,7 @@
 
 - (void)configureCellAsMeasure:(BallotItemViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     Measure *measure = (Measure *) [self.fetchedResultsController2 objectAtIndexPath:indexPath];
-	cell.majorTitle.text = [NSString stringWithFormat:@"%@ %@", measure.identifier, measure.title];
+	cell.majorTitle.text = [NSString stringWithFormat:@"%@: %@", measure.identifier, measure.title];
 	
 	/* TODO: break this functionality out into a method that VoteCandidate can use, or save references? */
 	/* query for a measure vote, if any */

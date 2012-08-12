@@ -330,16 +330,6 @@
 	
 	[cell.voteCandidate setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
 	
-	if ([cell.voteStatus.gestureRecognizers count] == 0) {
-		UILongPressGestureRecognizer *longRecognizer = [[UILongPressGestureRecognizer alloc]
-														initWithTarget:self action:@selector(longPressHandle:)];
-		
-		[longRecognizer setNumberOfTouchesRequired:1];
-		longRecognizer.minimumPressDuration = 1.0;
-		[cell.voteStatus addGestureRecognizer:longRecognizer];
-		[longRecognizer release];
-	}
-	
 	/* add small black border to all friend icons */
 	cell.friendIcon1.layer.borderColor = [UIColor grayColor].CGColor;
 	cell.friendIcon1.layer.borderWidth = 1.0f;
@@ -457,6 +447,17 @@
 //	[[cell.deleteCandidate layer] setBorderWidth:1.0f];
 
 	if (vote != nil && vote.forCandidate == candidate) {
+		if ([cell.gestureRecognizers count] == 0) {
+			UILongPressGestureRecognizer *longRecognizer = [[UILongPressGestureRecognizer alloc]
+															initWithTarget:self action:@selector(longPressHandle:)];
+			
+			[longRecognizer setNumberOfTouchesRequired:1];
+			longRecognizer.minimumPressDuration = 1.0;
+			[cell addGestureRecognizer:longRecognizer];
+			[longRecognizer release];
+		}
+		[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+		
 		/* display the vote status image */
 		cell.voteStatus.hidden = NO;
 		
@@ -473,6 +474,11 @@
 		[cell.editEndorsement setTitle:NSLocalizedString(@"EditEndorsement", nil) forState:UIControlStateNormal];
 	}
 	else {
+		if ([cell.gestureRecognizers count] == 1) {
+			[cell removeGestureRecognizer:[cell.gestureRecognizers objectAtIndex:0]];
+		}
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		
 		/* hide the vote status image */
 	    cell.voteStatus.hidden = YES;
 		
@@ -609,8 +615,6 @@
 	[barButtonItem release];
 	[self setExpandBarButtonIcon];
 	
-	self.tableView.allowsSelection = NO;
-	
 	/* query for a ballot vote, if any */
 	NSError *error = nil;
 	NSUInteger count = 0;
@@ -738,9 +742,12 @@
 }
 */
 
-
 #pragma mark -
 #pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	if (section != 0) {

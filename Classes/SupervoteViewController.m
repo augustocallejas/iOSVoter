@@ -303,6 +303,9 @@
 		NSError *error = nil;
 		NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
 		if ([_client registerDevice:ZIP withAddress:AddressField.text withLanguage:language withError:&error]) {
+			
+			[TestFlight passCheckpoint:@"RegisteredSuccessfully"];
+			
 			SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 			[appDelegate switchToMainApp:self.view];
 		}

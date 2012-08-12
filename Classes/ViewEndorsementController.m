@@ -43,6 +43,8 @@
 		else {
 			_endorsementStatement.text = _ballotVote.statement;
 		}
+		
+		LogDebug(@"Displaying vote by %@ (%@)", _ballotVote.author.name, _ballotVote.author.guid);
 	}
 	else if (_measureVote != nil) {
 		_friendLabel.text = _measureVote.author.name;

@@ -19,6 +19,7 @@
 #import "SupervoteViewController.h"
 #import "VoterRegistrationViewController.h"
 
+#define TESTING 1
 
 @implementation SupervoteAppDelegate
 
@@ -56,6 +57,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
+	/* http://blog.goosoftware.co.uk/2012/04/18/unique-identifier-no-warnings/ */
+#ifdef TESTING
+	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
+	[TestFlight takeOff:@"08e9cf49dda0f6525984558248826e2c_MTE3ODE0MjAxMi0wOC0wNCAyMDo0OTozMy43MDgwMDA"];
+	
+	[TestFlight passCheckpoint:@"FirstCheckpoint"];
+	
     // Override point for customization after application launch.
 	NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 										  [NSNumber numberWithBool:NO], @"SocialBallotMode",
@@ -151,11 +160,8 @@
 	if (mainAppController == nil)
 	{
 //		if (_facebookClient.loggedIn) {
-//			LogIno(@"logged in");
+//			LogInfo(@"Already logged into Facebook, updating friends");
 //			[_facebookClient updateFriends];
-//		}
-//		else {
-//			LogInfo(@"not logged in");
 //		}
 		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -291,12 +297,15 @@
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
-	if (managedObjectModel_ != nil) {
-		return managedObjectModel_;
-	}
-	managedObjectModel_ = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
+    if (managedObjectModel_ != nil) {
+        return managedObjectModel_;
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Supervote" ofType:@"momd"];
+    NSURL *momURL = [NSURL fileURLWithPath:path];
+    managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURL];
 	
-	return managedObjectModel_;
+    return managedObjectModel_;
 }
 
 - (void)deletePersistentStoreCoordinator {
@@ -320,7 +329,16 @@
 	if (persistentStoreCoordinator_ == nil) {
 		persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 	}
-    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+	
+	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+							 [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+							 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+	
+    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType
+												   configuration:nil
+															 URL:storeURL
+														 options:options
+														   error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
