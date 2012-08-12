@@ -2,12 +2,13 @@
 //  Election.m
 //  Supervote
 //
-//  Created by augusto callejas on 3/30/12.
+//  Created by augusto callejas on 8/12/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Election.h"
 
+#import "Ballot.h"
 #import "Measure.h"
 #import "Position.h"
 
@@ -19,6 +20,7 @@
 @dynamic guid;
 @dynamic icon;
 @dynamic lastModified;
+@dynamic ballot;
 @dynamic positions;
 @dynamic measures;
 

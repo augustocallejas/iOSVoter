@@ -463,7 +463,7 @@
 				}
 			}
 			else {
-				LogInfo(@"Election '%@' up to date, no updates necessary", electionGuid);
+				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionObj.lastModified, electionGuid);
 			}
 		}
 		

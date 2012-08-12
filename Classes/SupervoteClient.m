@@ -1102,6 +1102,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
+		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
 		NSArray *votes = [parser objectWithString:json error:&error];	
 		
 		if (error != nil) {
@@ -1184,10 +1185,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			
 			LogDebug(@"Incoming ballot vote: (viewable=%@, author=%@, position=%@, candidate=%@)", viewable, authorGuid, positionGuid, candidateGuid);
 			
-
 			if (![viewable boolValue])
 			{
-				if (position != nil && friend != nil) {
+				if (friend == nil) {
+					LogWarn(@"No friend found with guid %@", authorGuid);
+				}
+				else if (position != nil && friend != nil) {
 					/* check if the friend ballot vote already exists */
 					FriendBallotVote *existingVote = [self getVoteForPosition:position byAuthor:friend];
 					if (existingVote != nil) {
@@ -1199,6 +1202,10 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
 					}
+					else {
+						LogInfo(@"No previous vote found by author %@ for position %@", authorGuid, positionGuid);
+					}
+
 				}
 			}
 			else if (candidate == nil) {

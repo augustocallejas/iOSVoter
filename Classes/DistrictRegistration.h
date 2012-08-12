@@ -2,7 +2,7 @@
 //  DistrictRegistration.h
 //  Supervote
 //
-//  Created by augusto callejas on 5/30/12.
+//  Created by augusto callejas on 8/12/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 

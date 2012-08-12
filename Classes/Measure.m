@@ -2,13 +2,15 @@
 //  Measure.m
 //  Supervote
 //
-//  Created by augusto callejas on 11/22/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/12/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Measure.h"
 
 #import "Election.h"
+#import "FriendMeasureVote.h"
+#import "MeasureVote.h"
 
 @implementation Measure 
 
@@ -19,6 +21,8 @@
 @dynamic displayOrder;
 @dynamic longDescription;
 @dynamic guid;
+@dynamic myVotes;
 @dynamic forElection;
+@dynamic friendVotes;
 
 @end

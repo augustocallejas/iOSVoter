@@ -2,14 +2,15 @@
 //  Ballot.m
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/12/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Ballot.h"
 
 #import "BallotVote.h"
 #import "Election.h"
+#import "MeasureVote.h"
 
 @implementation Ballot 
 

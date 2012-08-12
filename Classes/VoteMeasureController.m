@@ -430,8 +430,6 @@
 		/* Undecided */
 		voteSelected = nil;
 	}
-	
-	LogInfo(@"Vote selected to view: %@", voteSelected);
 
 	[VoteMeasureController displayEndorsements:voteSelected forMeasure:_measure onNavigationController:self.navigationController];
 }

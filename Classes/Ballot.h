@@ -2,14 +2,15 @@
 //  Ballot.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/31/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/12/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
 @class BallotVote;
 @class Election;
+@class MeasureVote;
 
 @interface Ballot :  NSManagedObject  
 {
@@ -28,8 +29,8 @@
 - (void)addVotes:(NSSet *)value;
 - (void)removeVotes:(NSSet *)value;
 
-- (void)addMeasuresObject:(NSManagedObject *)value;
-- (void)removeMeasuresObject:(NSManagedObject *)value;
+- (void)addMeasuresObject:(MeasureVote *)value;
+- (void)removeMeasuresObject:(MeasureVote *)value;
 - (void)addMeasures:(NSSet *)value;
 - (void)removeMeasures:(NSSet *)value;
 

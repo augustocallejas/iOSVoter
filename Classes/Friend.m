@@ -2,7 +2,7 @@
 //  Friend.m
 //  Supervote
 //
-//  Created by augusto callejas on 8/5/12.
+//  Created by augusto callejas on 8/12/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 
 @implementation Friend 
 
-@dynamic guid;
-@dynamic facebookId;
 @dynamic name;
+@dynamic facebookId;
+@dynamic guid;
 @dynamic measures;
 @dynamic votes;
 

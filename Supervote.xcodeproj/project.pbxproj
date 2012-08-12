@@ -316,6 +316,7 @@
 		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
 		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
 		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
+		1449B63C15D7469D00A41187 /* Supervote 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Supervote 3.xcdatamodel"; sourceTree = "<group>"; };
 		1462F3DA141DA394007E31C1 /* BallotItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotItemViewCell.h; sourceTree = "<group>"; };
 		1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotItemViewCell.m; sourceTree = "<group>"; };
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
@@ -1316,8 +1317,9 @@
 			children = (
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				1401CB9415CF1C98007CFE6A /* Supervote 2.xcdatamodel */,
+				1449B63C15D7469D00A41187 /* Supervote 3.xcdatamodel */,
 			);
-			currentVersion = 1401CB9415CF1C98007CFE6A /* Supervote 2.xcdatamodel */;
+			currentVersion = 1449B63C15D7469D00A41187 /* Supervote 3.xcdatamodel */;
 			path = Supervote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -2,13 +2,14 @@
 //  Government.h
 //  Supervote
 //
-//  Created by augusto callejas on 6/2/12.
+//  Created by augusto callejas on 8/12/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>
 
 @class District;
+@class GovernmentRegistration;
 @class GovernmentType;
 @class PotentialGovernmentRegistration;
 
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Government * parent;
 @property (nonatomic, retain) NSSet* children;
+@property (nonatomic, retain) NSSet* registrations;
 @property (nonatomic, retain) GovernmentType * governmentType;
 @property (nonatomic, retain) NSSet* potentialGovernmentRegistrations;
 @property (nonatomic, retain) NSSet* districts;
@@ -33,6 +35,11 @@
 - (void)removeChildrenObject:(Government *)value;
 - (void)addChildren:(NSSet *)value;
 - (void)removeChildren:(NSSet *)value;
+
+- (void)addRegistrationsObject:(GovernmentRegistration *)value;
+- (void)removeRegistrationsObject:(GovernmentRegistration *)value;
+- (void)addRegistrations:(NSSet *)value;
+- (void)removeRegistrations:(NSSet *)value;
 
 - (void)addPotentialGovernmentRegistrationsObject:(PotentialGovernmentRegistration *)value;
 - (void)removePotentialGovernmentRegistrationsObject:(PotentialGovernmentRegistration *)value;

@@ -2,8 +2,8 @@
 //  BallotVote.m
 //  Supervote
 //
-//  Created by augusto callejas on 10/14/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/12/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "BallotVote.h"
@@ -14,10 +14,10 @@
 
 @implementation BallotVote 
 
-@dynamic statement;
 @dynamic viewableByFriends;
-@dynamic forPosition;
+@dynamic statement;
 @dynamic forBallot;
+@dynamic forPosition;
 @dynamic forCandidate;
 
 @end

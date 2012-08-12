@@ -2,8 +2,8 @@
 //  FriendMeasureVote.h
 //  Supervote
 //
-//  Created by augusto callejas on 10/11/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Created by augusto callejas on 8/12/12.
+//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <CoreData/CoreData.h>

@@ -2,7 +2,7 @@
 //  Friend.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/5/12.
+//  Created by augusto callejas on 8/12/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -15,9 +15,9 @@
 {
 }
 
-@property (nonatomic, retain) NSString * guid;
-@property (nonatomic, retain) NSString * facebookId;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * facebookId;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSSet* measures;
 @property (nonatomic, retain) NSSet* votes;
 
