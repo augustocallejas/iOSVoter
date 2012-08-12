@@ -938,103 +938,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return status;
 }
 
-- (vote_status)sendBallotVote:(BallotVote *)vote {
-	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voter/v1/auth/voteCandidate"];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
-	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
-	[request setPostValue:vote.forPosition.guid forKey:@"position"];
-	[request setPostValue:vote.forCandidate.guid forKey:@"candidate"];
-	[request setPostValue:vote.statement forKey:@"statement"];
-	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
-	
-	[request startSynchronous];
-	
-	vote_status status = OK;
-	NSError *error = [request error];
-	if (error != nil) {
-		status = HTTP_ERROR;
-		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
-	}
-	else if ([request responseStatusCode] == 200) {
-		/* OK */
-		status = OK;
-		LogDebug(@"Server returned %d from request '%@'", 200, [url path]);
-	}
-	else if ([request responseStatusCode] == 500) {
-		/* INTERNAL_SERVER_ERROR */
-		status = SERVER_ERROR;
-		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
-	}
-	else if ([request responseStatusCode] == 400) {
-		/* BAD_REQUEST */
-		status = BAD_REQUEST;
-		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
-	}
-	else if ([request responseStatusCode] == 403) {
-		/* FORBIDDEN */
-		status = ELECTION_CLOSED;
-		LogError(@"Server returned %d from request '%@'", 403, [url path]); 
-	}
-	else {
-		/* unexpected response */
-		status = UNEXPECTED_RESPONSE;
-		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
-	}
-	
-	return status;
-}
-
-- (vote_status)sendMeasureVote:(MeasureVote *)vote {
-	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voter/v1/auth/voteMeasure"];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
-	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
-	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
-	[request setPostValue:vote.statement forKey:@"statement"];
-	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
-	if (vote.vote != nil) {
-		[request setPostValue:vote.vote forKey:@"vote"];
-	}
-	
-	vote_status status = OK;
-	[request startSynchronous];
-	NSError *error = [request error];
-	if (error != nil) {
-		status = HTTP_ERROR;
-		LogError(@"Network error during request '%@': %@", [url path], [error localizedDescription]);
-	}
-	else if ([request responseStatusCode] == 200) {
-		/* OK */
-		status = OK;
-		LogDebug(@"Server returned %d from request '%@'", 200, [url path]); 
-	}
-	else if ([request responseStatusCode] == 500) {
-		/* INTERNAL_SERVER_ERROR */
-		status = SERVER_ERROR;
-		LogError(@"Server returned %d from request '%@'", 500, [url path]); 
-	}
-	else if ([request responseStatusCode] == 400) {
-		/* BAD_REQUEST */
-		status = BAD_REQUEST;
-		LogError(@"Server returned %d from request '%@'", 400, [url path]); 
-	}
-	else if ([request responseStatusCode] == 403) {
-		/* FORBIDDEN */
-		status = ELECTION_CLOSED;
-		LogError(@"Server returned %d from request '%@'", 403, [url path]); 
-	}
-	else {
-		/* unexpected response */
-		status = UNEXPECTED_RESPONSE;
-		LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
-	}
-	
-	return status;
-}
-
 - (vote_status)handleSyncRequest:(ASIHTTPRequest *)request {
 	[request startSynchronous];
 	
@@ -1059,6 +962,11 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		status = BAD_REQUEST;
 		LogError(@"Server returned %d from request '%@'", 400, [request.url path]); 
 	}
+	else if ([request responseStatusCode] == 403) {
+		/* FORBIDDEN */
+		status = ELECTION_CLOSED;
+		LogError(@"Server returned %d from request '%@'", 403, [request.url path]); 
+	}
 	else {
 		/* unexpected response */
 		status = UNEXPECTED_RESPONSE;
@@ -1068,23 +976,56 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return status;
 }
 
-- (vote_status)deleteBallotVote:(BallotVote *)vote {
+- (vote_status)sendBallotVote:(BallotVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voter/v1/auth/deleteVote"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteCandidate"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
 	[request setPostValue:vote.forPosition.guid forKey:@"position"];
+	[request setPostValue:vote.forCandidate.guid forKey:@"candidate"];
+	[request setPostValue:vote.statement forKey:@"statement"];
+	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
+	
+	return [self handleSyncRequest:request];
+}
+
+- (vote_status)sendMeasureVote:(MeasureVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteMeasure"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
+	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
+	[request setPostValue:vote.statement forKey:@"statement"];
+	[request setPostValue:vote.viewableByFriends forKey:@"viewable_by_friends"];
+	if (vote.vote != nil) {
+		[request setPostValue:vote.vote forKey:@"vote"];
+	}
+	
+	return [self handleSyncRequest:request];
+}
+
+- (vote_status)deleteBallotVote:(BallotVote *)vote {
+	/* TODO: this should be asynchronous */
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteCandidate"];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forPosition.forElection.guid forKey:@"election"];
+	[request setPostValue:vote.forPosition.guid forKey:@"position"];
+	[request setPostValue:[NSNumber numberWithBool:YES] forKey:@"deleted"];
 
 	return [self handleSyncRequest:request];
 }
 
 - (vote_status)deleteMeasureVote:(MeasureVote *)vote {
 	/* TODO: this should be asynchronous */
-	NSURL *url = [self createURL:@"/voter/v1/auth/deleteVote"];
+	NSURL *url = [self createURL:@"/voter/v1/auth/voteMeasure"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	[request setPostValue:vote.forMeasure.forElection.guid forKey:@"election"];
 	[request setPostValue:vote.forMeasure.guid forKey:@"measure"];
-	[request startSynchronous];
+	[request setPostValue:[NSNumber numberWithBool:YES] forKey:@"deleted"];
 
 	return [self handleSyncRequest:request];
 }
