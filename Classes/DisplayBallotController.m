@@ -256,7 +256,6 @@
 	if (array != nil) {
 		NSUInteger count = [array count];
 		if (count == 0) {
-//			cell.minorTitle.text = @"<Not selected>";
 			cell.minorTitle.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"NoCandidateSelected", nil)];
 		}
 		else if (count == 1) {
@@ -459,7 +458,7 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.minorTitle.text = NSLocalizedString(@"NotSelected", nil);
+			cell.minorTitle.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"NotSelected", nil)];
 		}
 		else if (count == 1)
 		{
