@@ -22,6 +22,7 @@
 @property(nonatomic, retain) IBOutlet UIButton *tosButton;
 @property(nonatomic, retain) IBOutlet UIButton *privacyButton;
 @property(nonatomic, retain) IBOutlet UILabel *iconsFromLabel;
+@property(nonatomic, retain) IBOutlet UILabel *versionLabel;
 
 - (void)didDismissModalView;
 - (IBAction)doEmailUs;

@@ -20,6 +20,7 @@
 @synthesize tosButton;
 @synthesize privacyButton;
 @synthesize iconsFromLabel;
+@synthesize versionLabel;
 
 #pragma mark -
 #pragma mark UIWebViewController methods
@@ -106,6 +107,11 @@
 	[privacyButton setTitle:NSLocalizedString(@"Privacy", nil) forState:UIControlStateNormal];
 	
 	[iconsFromLabel setText:NSLocalizedString(@"IconsFrom", nil)];
+	
+	
+	//[NSString stringWithFormat:@"Version %@ (%@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"], kRevisionNumber]
+	NSString *version = [NSString stringWithFormat:@"v. %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+	[versionLabel setText:version];
 }
 
 /*
