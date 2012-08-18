@@ -11,12 +11,9 @@
 #import "Candidate.h"
 #import "DisplayBallotController.h"
 #import "Election.h"
-#import "FacebookFriend.h"
-#import "Friend.h"
-#import "FriendBallotVote.h"
-#import "FriendMeasureVote.h"
 #import "Measure.h"
 #import "Position.h"
+#import "SupervoteAppDelegate.h"
 
 @implementation ListElectionsController
 
@@ -300,6 +297,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
+                                             selector:@selector(reloadData)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -339,162 +341,11 @@
 	if ([_facebookClient loggedIn]) {
 		[_facebookClient extendAccessTokenIfNeeded];
 	}
-	
-	[self updateElections:NO];
 }
 
 - (void)updateElections {
-	[self updateElections:YES];
-}
-
-/* TODO: run in background? */
-/* TODO: doesn't manage deleted elections or past elections */
-- (void)updateElections:(BOOL)withAlerts {
-	vote_status status = OK;
-	NSDictionary *elections = [_client getElections:&status];
-	
-	if (elections == nil) {
-		/* nil means we couldn't contact the server */
-		NSString *title = nil;
-		NSString *message = nil;
-		switch (status) {
-			case HTTP_ERROR:
-				title = NSLocalizedString(@"HttpErrorTitle", nil);
-				message = NSLocalizedString(@"HttpErrorMessage", nil);
-				break;
-			case SERVER_ERROR:
-				title = NSLocalizedString(@"ServerErrorTitle", nil);
-				message = NSLocalizedString(@"ListElectionsServerErrorMessage", nil);
-				break;
-			case BAD_REQUEST:
-				title = NSLocalizedString(@"BadRequestTitle", nil);
-				message = NSLocalizedString(@"BadRequestMessage", nil);
-				break;
-			case UNEXPECTED_RESPONSE:
-			default:
-				title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
-				message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
-				break;
-		}
-		
-		if (withAlerts) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-															message:message 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK"
-												  otherButtonTitles:nil];
-			[alert show];
-			[alert release];
-		}
-	}
-	else {
-		NSError *httpError = nil;
-		for (NSString *electionGuid in elections) {
-			double timestamp = [((NSNumber *)[elections objectForKey:electionGuid]) doubleValue] / 1000.0;
-			NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:timestamp];
-			NSDate *newLastModified = nil;
-			Election *electionObj = [_client getObject:@"Election" byGuid:electionGuid];
-			httpError = nil;
-			
-			if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
-				/* get election from server */
-				NSDictionary *election = nil;
-				election_status status  = [_client getElection:&election
-													  withGuid:electionGuid
-											  withLastModified:nil
-										   withNewModifiedTime:&newLastModified
-													 withError:&httpError];
-				
-				if (httpError != nil) {
-					LogError(@"Network error while fetching election: %@", [httpError localizedDescription]);
-				}
-				else if (status == ES_OK) {
-					if (electionObj == nil) {
-						LogInfo(@"Election '%@' not in database, going to insert it", electionGuid);
-						
-						if (election != nil) {
-							NSError *storeError = nil;
-							if (![_client insertElection:election withLastModified:newLastModified withError:&storeError]) {
-								if (storeError != nil) {
-									LogError(@"Storage error while inserting election: %@", [storeError localizedDescription]);
-								}
-							}
-						}
-					}
-					else {
-						LogInfo(@"Election '%@' needs updates (local %@ versus server %@)", electionGuid, electionObj.lastModified, lastModified);
-						
-						if (election != nil) {
-							NSError *storeError = nil;
-							if (![_client updateElection:electionObj withObject:election withLastModified:lastModified withError:&storeError]) {
-								if (storeError != nil) {
-									LogError(@"Storage error while updating election '%@': %@", electionGuid, [storeError localizedDescription]);
-								}
-							}
-						}
-					}
-				}
-				/* handle NOT_FOUND and CLOSED the same way */
-				else if (status == ES_NOT_FOUND || status == ES_CLOSED) { 
-					if (electionObj != nil) {
-						if (status == ES_NOT_FOUND) {
-							/* TODO: election got deleted?? */
-						}
-						
-						if ([electionObj.status boolValue]) {
-							LogInfo(@"Closing election '%@'", electionGuid);
-							
-							electionObj.status = [NSNumber numberWithBool:NO];							
-							NSError *error = nil;
-							if (![_managedObjectContext save:&error]) {
-								LogError(@"Storage error while setting status of election '%@' to closed: %@", electionGuid, [error userInfo]);
-							}
-						}
-						else {
-							LogInfo(@"Election '%@' up to date, no updates necessary", electionGuid);
-						}
-					}
-					else {
-						/* TODO: election closed but its not in the database?? */
-					}
-				}
-				else if (status == ES_NOT_MODIFIED) {
-					/* nothing to do */
-				}
-			}
-			else {
-				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionObj.lastModified, electionGuid);
-			}
-		}
-		
-		/* TODO: do this somewhere else!!!! */
-		NSError *storeError = nil;
-		NSArray *friends = [_client getFriends];
-		if (friends != nil) {
-			NSMutableArray *newFriends = nil;
-			[_client insertFriends:friends withNewFriends:&newFriends withError:&storeError];
-			
-			if (storeError != nil) {
-				LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
-			}
-			else {
-				for (Friend* friend in newFriends) {
-					if (friend.facebookId != nil) {
-						LogInfo(@"Downloading Facebook photo for new friend: %@", friend.name);
-						[_facebookClient downloadFacebookPhoto:friend.facebookId];
-					}
-				}
-			}
-
-		}
-		
-		for (NSString *electionGuid in elections) {
-			NSArray *votes = [_client getVotesForBallot:electionGuid];
-			if (votes != nil) {
-				[_client insertVotes:votes];
-			}
-		}
-	}
+	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate updateElections:YES];
 }
 
 /*
@@ -518,6 +369,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;

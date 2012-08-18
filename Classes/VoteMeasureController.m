@@ -180,10 +180,14 @@
 }
 */
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
+                                             selector:@selector(reloadData)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
@@ -798,6 +802,9 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
+	
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	self.navigationItem.titleView = nil;

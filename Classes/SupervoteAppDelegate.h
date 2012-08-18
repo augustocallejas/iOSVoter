@@ -21,8 +21,6 @@
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
-	SupervoteClient *_supervoteClient;
-	FacebookClient *_facebookClient;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -43,6 +41,7 @@
 @property (nonatomic, retain) SupervoteClient *supervoteClient;
 @property (nonatomic, retain) FacebookClient *facebookClient;
 
+- (void)updateElections:(BOOL)withAlerts;
 - (void)deleteFacebookPhotos;
 - (void)addDefaultPersistentStore;
 - (void)deletePersistentStoreCoordinator;

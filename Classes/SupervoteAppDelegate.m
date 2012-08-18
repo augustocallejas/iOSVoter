@@ -12,6 +12,7 @@
 #import "FacebookClient.h"
 #import "FacebookIntegrationViewController.h"
 #import "FeedController.h"
+#import "Friend.h"
 #import "ListElectionsController.h"
 #import "NSArray+PerformSelector.h"
 #import "QuickTutorialViewController.h"
@@ -28,14 +29,15 @@
 @synthesize mainAppController;
 @synthesize segmentsController;
 @synthesize segmentedControl;
-@synthesize facebookClient = _facebookClient;
-@synthesize supervoteClient = _supervoteClient;
+@synthesize managedObjectContext;
+@synthesize facebookClient;
+@synthesize supervoteClient;
 
 
 // Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	if (_facebookClient != nil) {
-		return [_facebookClient.facebook handleOpenURL:url];
+	if (facebookClient != nil) {
+		return [facebookClient.facebook handleOpenURL:url];
 	}
 	
 	return NO;
@@ -44,8 +46,8 @@
 // For 4.2+ support
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-	if (_facebookClient != nil) {
-		return [_facebookClient.facebook handleOpenURL:url];
+	if (facebookClient != nil) {
+		return [facebookClient.facebook handleOpenURL:url];
 	}
 	
 	return NO;
@@ -77,10 +79,10 @@
 	NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
 	LogInfo(@"Current language: %@", language);
 
-	_supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
-	_facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
+	supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
+	facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
 	
-	if (![_supervoteClient isRegistered]) {
+	if (![supervoteClient isRegistered]) {
 		[self switchToWelcomePage];
 	}
 	else {
@@ -88,12 +90,13 @@
 	}
 	[self.window makeKeyAndVisible];
 	
+	NSLog(@"didFinishLaunchingWithOptions");
 	return YES;
 }
 
 - (void)switchToWelcomePage {
 	SupervoteViewController *controller = [[SupervoteViewController alloc] initWithNibName:@"SupervoteViewController" bundle:nil];
-	controller.client = _supervoteClient;
+	controller.client = supervoteClient;
 	self.viewController = controller;
 	self.window.rootViewController = controller;
 //		//	[self.window addSubview:self.viewController.view];
@@ -129,6 +132,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+	[self updateElections:NO];
 }
 
 
@@ -137,6 +141,159 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark -
+#pragma mark SupervoteAppDelegate methods
+
+/* TODO: run in background? */
+/* TODO: doesn't manage deleted elections or past elections */
+- (void)updateElections:(BOOL)withAlerts {
+	vote_status status = OK;
+	NSDictionary *elections = [supervoteClient getElections:&status];
+	
+	if (elections == nil) {
+		/* nil means we couldn't contact the server */
+		NSString *title = nil;
+		NSString *message = nil;
+		switch (status) {
+			case HTTP_ERROR:
+				title = NSLocalizedString(@"HttpErrorTitle", nil);
+				message = NSLocalizedString(@"HttpErrorMessage", nil);
+				break;
+			case SERVER_ERROR:
+				title = NSLocalizedString(@"ServerErrorTitle", nil);
+				message = NSLocalizedString(@"ListElectionsServerErrorMessage", nil);
+				break;
+			case BAD_REQUEST:
+				title = NSLocalizedString(@"BadRequestTitle", nil);
+				message = NSLocalizedString(@"BadRequestMessage", nil);
+				break;
+			case UNEXPECTED_RESPONSE:
+			default:
+				title = NSLocalizedString(@"UnexpectedResponseTitle", nil);
+				message	= NSLocalizedString(@"UnexpectedResponseMessage", nil);
+				break;
+		}
+		
+		if (withAlerts) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+															message:message 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK"
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
+	}
+	else {
+		NSError *httpError = nil;
+		for (NSString *electionGuid in elections) {
+			double timestamp = [((NSNumber *)[elections objectForKey:electionGuid]) doubleValue] / 1000.0;
+			NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:timestamp];
+			NSDate *newLastModified = nil;
+			Election *electionObj = [supervoteClient getObject:@"Election" byGuid:electionGuid];
+			httpError = nil;
+			
+			if (electionObj == nil || [electionObj.lastModified timeIntervalSinceDate:lastModified] <= -1.0) {
+				/* get election from server */
+				NSDictionary *election = nil;
+				election_status status  = [supervoteClient getElection:&election
+															  withGuid:electionGuid
+													  withLastModified:nil
+												   withNewModifiedTime:&newLastModified
+															 withError:&httpError];
+				
+				if (httpError != nil) {
+					LogError(@"Network error while fetching election: %@", [httpError localizedDescription]);
+				}
+				else if (status == ES_OK) {
+					if (electionObj == nil) {
+						LogInfo(@"Election '%@' not in database, going to insert it", electionGuid);
+						
+						if (election != nil) {
+							NSError *storeError = nil;
+							if (![supervoteClient insertElection:election withLastModified:newLastModified withError:&storeError]) {
+								if (storeError != nil) {
+									LogError(@"Storage error while inserting election: %@", [storeError localizedDescription]);
+								}
+							}
+						}
+					}
+					else {
+						LogInfo(@"Election '%@' needs updates (local %@ versus server %@)", electionGuid, electionObj.lastModified, lastModified);
+						
+						if (election != nil) {
+							NSError *storeError = nil;
+							if (![supervoteClient updateElection:electionObj withObject:election withLastModified:lastModified withError:&storeError]) {
+								if (storeError != nil) {
+									LogError(@"Storage error while updating election '%@': %@", electionGuid, [storeError localizedDescription]);
+								}
+							}
+						}
+					}
+				}
+				/* handle NOT_FOUND and CLOSED the same way */
+				else if (status == ES_NOT_FOUND || status == ES_CLOSED) { 
+					if (electionObj != nil) {
+						if (status == ES_NOT_FOUND) {
+							/* TODO: election got deleted?? */
+						}
+						
+						if ([electionObj.status boolValue]) {
+							LogInfo(@"Closing election '%@'", electionGuid);
+							
+							electionObj.status = [NSNumber numberWithBool:NO];							
+							NSError *error = nil;
+							if (![managedObjectContext save:&error]) {
+								LogError(@"Storage error while setting status of election '%@' to closed: %@", electionGuid, [error userInfo]);
+							}
+						}
+						else {
+							LogInfo(@"Election '%@' up to date, no updates necessary", electionGuid);
+						}
+					}
+					else {
+						/* TODO: election closed but its not in the database?? */
+					}
+				}
+				else if (status == ES_NOT_MODIFIED) {
+					/* nothing to do */
+				}
+			}
+			else {
+				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionObj.lastModified, electionGuid);
+			}
+		}
+		
+		/* TODO: do this somewhere else!!!! */
+		NSError *storeError = nil;
+		NSArray *friends = [supervoteClient getFriends];
+		if (friends != nil) {
+			NSMutableArray *newFriends = nil;
+			[supervoteClient insertFriends:friends withNewFriends:&newFriends withError:&storeError];
+			
+			if (storeError != nil) {
+				LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
+			}
+			else {
+				for (Friend* friend in newFriends) {
+					if (friend.facebookId != nil) {
+						LogInfo(@"Downloading Facebook photo for new friend: %@", friend.name);
+						[facebookClient downloadFacebookPhoto:friend.facebookId];
+					}
+				}
+			}
+			
+		}
+		
+		for (NSString *electionGuid in elections) {
+			NSArray *votes = [supervoteClient getVotesForBallot:electionGuid];
+			if (votes != nil) {
+				[supervoteClient insertVotes:votes];
+			}
+		}
+	}
 }
 
 

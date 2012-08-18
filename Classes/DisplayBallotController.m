@@ -566,24 +566,32 @@
 	
     UITableView *tableView = self.tableView;
 	
+	NSIndexPath *correctIndexPath = indexPath;
+	NSIndexPath *correctNewIndexPath = newIndexPath;
+	
+	if (controller == self.fetchedResultsController2) {
+		correctIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section+[self.fetchedResultsController1.sections count])];
+		correctNewIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:(newIndexPath.section+[self.fetchedResultsController1.sections count])];
+	}
+	
     switch(type) {
 			
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:correctNewIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 			
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:correctIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
 			
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:correctIndexPath] atIndexPath:correctIndexPath];
             break;
 			
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:correctIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             // Reloading the section inserts a new row and ensures that titles are updated appropriately.
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:newIndexPath.section] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:correctNewIndexPath.section] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -591,14 +599,19 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
 	
+	NSUInteger correctSectionIndex = sectionIndex;
+	if (controller == self.fetchedResultsController2) {
+		correctSectionIndex += [self.fetchedResultsController1.sections count];
+	}
+	
     switch(type) {
 			
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:correctSectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
 			
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:correctSectionIndex] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -617,6 +630,11 @@
     [super viewDidLoad];
 	
 	viewDidLoadCalled = YES;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
+                                             selector:@selector(reloadData)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
 	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
@@ -940,6 +958,7 @@
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 	[super viewDidUnload];
+	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
