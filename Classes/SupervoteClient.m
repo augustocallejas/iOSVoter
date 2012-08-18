@@ -1176,7 +1176,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					}
 					else {
 						/* insert new friend ballot vote */
-						LogInfo(@"Inserting new friend ballot vote: %@ %@", friend.name, candidate.guid);
+						LogInfo(@"Inserting new friend ballot vote: friend=%@, candidate=%@", friend.name, candidate.guid);
 						
 						NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 						
@@ -1207,7 +1207,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
 			NSString *statement = [vote objectForKey:@"statement"];
-			NSNumber *voteValue = [vote objectForKey:@"vote"];
+			id voteValue = [vote objectForKey:@"vote"];
 			NSString *measureGuid = [vote objectForKey:@"measure"];
 			
 			Measure *measure = [self getObject:@"Measure" byGuid:measureGuid];
@@ -1239,7 +1239,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
-					existingVote.vote = voteValue;
+					existingVote.vote = voteValue == [NSNull null] ? nil : voteValue;
 					existingVote.statement = statement;
 					existingVote.date = date;
 					
@@ -1251,13 +1251,13 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 				}
 				else {
 					/* insert new friend measure vote */
-					LogInfo(@"Inserting new friend measure vote");
+					LogInfo(@"Inserting new friend measure vote: friend=%@, vote=%@", friend.name, voteValue);
 					
 					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 					
 					FriendMeasureVote *voteObj = [NSEntityDescription insertNewObjectForEntityForName:@"FriendMeasureVote" inManagedObjectContext:_context];
 					voteObj.forMeasure = measure;
-					voteObj.vote = voteValue;
+					voteObj.vote = voteValue == [NSNull null] ? nil : voteValue;
 					voteObj.author = friend;
 					voteObj.statement = statement;
 					voteObj.date = date;
