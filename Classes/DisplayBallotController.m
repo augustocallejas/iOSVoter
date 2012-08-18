@@ -256,7 +256,7 @@
 	if (array != nil) {
 		NSUInteger count = [array count];
 		if (count == 0) {
-			cell.minorTitle.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"NoCandidateSelected", nil)];
+			cell.minorTitle.text = [NSString stringWithFormat:@"-%@-", NSLocalizedString(@"NotSelected", nil)];
 		}
 		else if (count == 1) {
 			candidate = ((BallotVote *) [array objectAtIndex:0]).forCandidate;
@@ -458,7 +458,7 @@
 		NSUInteger count = [array count];
 		if (count == 0)
 		{
-			cell.minorTitle.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"NotSelected", nil)];
+			cell.minorTitle.text = [NSString stringWithFormat:@"-%@-", NSLocalizedString(@"NotSelected", nil)];
 		}
 		else if (count == 1)
 		{
