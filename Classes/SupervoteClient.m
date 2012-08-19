@@ -1030,11 +1030,21 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return [self handleSyncRequest:request];
 }
 
-- (NSArray *)getVotesForBallot:(NSString *)electionGuid{
+- (NSArray *)getVotesForBallot:(NSString *)electionGuid withLastUpdatedTime:(NSDate *)date {
 	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:[NSString stringWithFormat:@"/voter/v1/auth/votes?election=%@", electionGuid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
+	if (date != nil) {
+		NSDateFormatter *df = [[NSDateFormatter alloc] init];
+		df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
+		NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+		df.locale = locale;
+		
+		[request addRequestHeader:@"If-Modified-Since" value:[df stringFromDate:date]];
+		[df release];
+	}
+	
 	[request startSynchronous];
 	
 	NSError *error = [request error];
@@ -1107,7 +1117,9 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return nil;
 }
 
-- (BOOL)insertVotes:(NSArray *)votes {
+- (NSDate *)insertVotes:(NSArray *)votes {
+	NSDate *lastUpdatedTime = nil;
+	
 	for (NSDictionary *vote in votes) {
 		NSString *type = [vote objectForKey:@"type"];
 		
@@ -1146,7 +1158,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					else {
 						LogInfo(@"No previous vote found by author %@ for position %@", authorGuid, positionGuid);
 					}
-
+					
+					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+					if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+						lastUpdatedTime = [[date copy] autorelease];
+					}
+					[date release];
 				}
 			}
 			else if (candidate == nil) {
@@ -1172,6 +1189,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 						if (![_context save:&err]) {
 							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
+						else {
+							if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+								lastUpdatedTime = [[date copy] autorelease];
+							}
+						}
+
 						[date release];
 					}
 					else {
@@ -1191,6 +1214,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 						if (![_context save:&err]) {
 							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
+						else {
+							if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+								lastUpdatedTime = [[date copy] autorelease];
+							}
+						}
+							
 						[date release];
 					}
 //				}
@@ -1227,6 +1256,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 							LogError(@"Error while saving context: %@", [err localizedDescription]);
 						}
 					}
+					
+					NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
+					if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+						lastUpdatedTime = [[date copy] autorelease];
+					}
+					[date release];
 				}
 			}
 			else if (measure != nil && friend != nil) {
@@ -1247,6 +1282,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					if (![_context save:&err]) {
 						LogError(@"Error while saving context: %@", [err localizedDescription]);
 					}
+					else {
+						if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+							lastUpdatedTime = [[date copy] autorelease];
+						}
+					}
+					
 					[date release];
 				}
 				else {
@@ -1266,6 +1307,12 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					if (![_context save:&err]) {
 						LogError(@"Error while saving context: %@", [err localizedDescription]);
 					}
+					else {
+						if (lastUpdatedTime == nil || [lastUpdatedTime timeIntervalSinceDate:date] <= -1.0) {
+							lastUpdatedTime = [[date copy] autorelease];
+						}
+					}
+					
 					[date release];
 				}
 			}
@@ -1278,7 +1325,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		}
 	}
 	
-	return YES;
+	return lastUpdatedTime;
 }
 
 - (id)getObject:(NSString *)entityName byGuid:(NSString *)guid {

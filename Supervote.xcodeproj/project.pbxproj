@@ -313,6 +313,7 @@
 		14399F1114107E8F007269A3 /* VoteMeasure.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoteMeasure.xib; sourceTree = "<group>"; };
 		144215C915AA2B1000972EB8 /* PoliticalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoliticalParty.h; path = ../PoliticalParty.h; sourceTree = "<group>"; };
 		144215CA15AA2B1000972EB8 /* PoliticalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoliticalParty.m; path = ../PoliticalParty.m; sourceTree = "<group>"; };
+		1444566815E057D300F7CD9A /* Supervote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Supervote 4.xcdatamodel"; sourceTree = "<group>"; };
 		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
 		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
 		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
@@ -1318,8 +1319,9 @@
 				1423B0BA1404B6DB006F8DBF /* Supervote.xcdatamodel */,
 				1401CB9415CF1C98007CFE6A /* Supervote 2.xcdatamodel */,
 				1449B63C15D7469D00A41187 /* Supervote 3.xcdatamodel */,
+				1444566815E057D300F7CD9A /* Supervote 4.xcdatamodel */,
 			);
-			currentVersion = 1449B63C15D7469D00A41187 /* Supervote 3.xcdatamodel */;
+			currentVersion = 1444566815E057D300F7CD9A /* Supervote 4.xcdatamodel */;
 			path = Supervote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

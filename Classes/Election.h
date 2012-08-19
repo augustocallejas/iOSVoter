@@ -2,7 +2,7 @@
 //  Election.h
 //  Supervote
 //
-//  Created by augusto callejas on 8/12/12.
+//  Created by augusto callejas on 8/18/12.
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 }
 
 @property (nonatomic, retain) NSNumber * status;
+@property (nonatomic, retain) NSDate * lastFriendUpdate;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSString * guid;

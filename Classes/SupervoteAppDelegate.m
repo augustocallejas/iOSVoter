@@ -90,7 +90,6 @@
 	}
 	[self.window makeKeyAndVisible];
 	
-	NSLog(@"didFinishLaunchingWithOptions");
 	return YES;
 }
 
@@ -149,6 +148,27 @@
 /* TODO: run in background? */
 /* TODO: doesn't manage deleted elections or past elections */
 - (void)updateElections:(BOOL)withAlerts {
+	/* TODO: do this somewhere else!!!! */
+	NSError *storeError = nil;
+	NSArray *friends = [supervoteClient getFriends];
+	if (friends != nil) {
+		NSMutableArray *newFriends = nil;
+		[supervoteClient insertFriends:friends withNewFriends:&newFriends withError:&storeError];
+		
+		if (storeError != nil) {
+			LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
+		}
+		else {
+			for (Friend* friend in newFriends) {
+				if (friend.facebookId != nil) {
+					LogInfo(@"Downloading Facebook photo for new friend: %@", friend.name);
+					[facebookClient downloadFacebookPhoto:friend.facebookId];
+				}
+			}
+		}
+		
+	}
+	
 	vote_status status = OK;
 	NSDictionary *elections = [supervoteClient getElections:&status];
 	
@@ -245,7 +265,7 @@
 							
 							electionObj.status = [NSNumber numberWithBool:NO];							
 							NSError *error = nil;
-							if (![managedObjectContext save:&error]) {
+							if (![managedObjectContext_ save:&error]) {
 								LogError(@"Storage error while setting status of election '%@' to closed: %@", electionGuid, [error userInfo]);
 							}
 						}
@@ -264,33 +284,22 @@
 			else {
 				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionObj.lastModified, electionGuid);
 			}
-		}
-		
-		/* TODO: do this somewhere else!!!! */
-		NSError *storeError = nil;
-		NSArray *friends = [supervoteClient getFriends];
-		if (friends != nil) {
-			NSMutableArray *newFriends = nil;
-			[supervoteClient insertFriends:friends withNewFriends:&newFriends withError:&storeError];
 			
-			if (storeError != nil) {
-				LogError(@"Store error while inserting friends: %@", [storeError localizedDescription]);
-			}
-			else {
-				for (Friend* friend in newFriends) {
-					if (friend.facebookId != nil) {
-						LogInfo(@"Downloading Facebook photo for new friend: %@", friend.name);
-						[facebookClient downloadFacebookPhoto:friend.facebookId];
+			if (electionObj != nil) {
+				NSArray *votes = [supervoteClient getVotesForBallot:electionGuid withLastUpdatedTime:electionObj.lastFriendUpdate];
+				if (votes != nil) {
+					NSDate *newUpdateTime = [supervoteClient insertVotes:votes];
+
+					if (newUpdateTime != nil && (electionObj.lastFriendUpdate == nil || [electionObj.lastFriendUpdate timeIntervalSinceDate:newUpdateTime] <= -1.0)) {
+						LogDebug(@"Updating last friend vote to %@ for election %@", newUpdateTime, electionObj.guid);
+						NSError *error = nil;
+						
+						electionObj.lastFriendUpdate = newUpdateTime;
+						if (![managedObjectContext_ save:&error]) {
+							LogError(@"Storage error while setting lastFriendUpdate of election '%@' to %@: %@", electionGuid, electionObj.lastFriendUpdate, error);
+						}
 					}
 				}
-			}
-			
-		}
-		
-		for (NSString *electionGuid in elections) {
-			NSArray *votes = [supervoteClient getVotesForBallot:electionGuid];
-			if (votes != nil) {
-				[supervoteClient insertVotes:votes];
 			}
 		}
 	}

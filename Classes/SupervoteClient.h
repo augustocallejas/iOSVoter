@@ -74,8 +74,8 @@ typedef enum {
 - (vote_status)sendMeasureVote:(MeasureVote *)vote;
 - (vote_status)deleteBallotVote:(BallotVote *)vote;
 - (vote_status)deleteMeasureVote:(MeasureVote *)vote;
-- (NSArray *)getVotesForBallot:(NSString *)electionGuid;
-- (BOOL)insertVotes:(NSArray *)votes;
+- (NSArray *)getVotesForBallot:(NSString *)electionGuid withLastUpdatedTime:(NSDate *)date;
+- (NSDate *)insertVotes:(NSArray *)votes;
 - (id)getFriends;
 - (BOOL)insertFriends:(NSArray *)friends withNewFriends:(NSMutableArray**)newFriends withError:(NSError **)error;
 - (NSDictionary *)getElections:(vote_status *)status;
