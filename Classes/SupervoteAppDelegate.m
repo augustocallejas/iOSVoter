@@ -131,7 +131,7 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
-	[self updateElections:NO];
+	[self updateDataAsynchronously:NO withDelegate:nil];
 }
 
 
@@ -145,10 +145,8 @@
 #pragma mark -
 #pragma mark SupervoteAppDelegate methods
 
-/* TODO: run in background? */
-/* TODO: doesn't manage deleted elections or past elections */
-- (void)updateElections:(BOOL)withAlerts {
-	/* TODO: do this somewhere else!!!! */
+/* TODO: doesn't manage deleted elections or past elections (this may not be true at this point) */
+- (void)updateData:(BOOL)withAlerts {
 	NSError *storeError = nil;
 	NSArray *friends = [supervoteClient getFriends];
 	if (friends != nil) {
@@ -257,7 +255,7 @@
 				else if (status == ES_NOT_FOUND || status == ES_CLOSED) { 
 					if (electionObj != nil) {
 						if (status == ES_NOT_FOUND) {
-							/* TODO: election got deleted?? */
+							LogWarn(@"Election '%@' not found at the server, but exists locally?", electionGuid);
 						}
 						
 						if ([electionObj.status boolValue]) {
@@ -274,7 +272,7 @@
 						}
 					}
 					else {
-						/* TODO: election closed but its not in the database?? */
+						LogWarn(@"Election '%@' closed, but not stored locally?", electionGuid);
 					}
 				}
 				else if (status == ES_NOT_MODIFIED) {
@@ -282,7 +280,7 @@
 				}
 			}
 			else {
-				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionObj.lastModified, electionGuid);
+				LogInfo(@"Election '%@' up to date (%@), no updates necessary", electionGuid, electionObj.lastModified);
 			}
 			
 			if (electionObj != nil) {
@@ -303,6 +301,24 @@
 			}
 		}
 	}
+}
+
+/* http://stackoverflow.com/questions/3869217/iphone-ios-running-in-separate-thread */
+- (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate {
+	dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		// Add code here to do background processing
+		//
+		//
+		[self updateData:withAlerts];
+
+		dispatch_async( dispatch_get_main_queue(), ^{
+			// Add code here to update the UI/send notifications based on the
+			// results of the background processing
+			if (delegate != nil && [delegate respondsToSelector:@selector(doneWithUpdateData)]) {
+				[delegate performSelector:@selector(doneWithUpdateData)];
+			}
+		});
+	});
 }
 
 

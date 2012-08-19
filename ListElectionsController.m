@@ -315,7 +315,7 @@
 	self.navigationItem.titleView = label;
 	[label release];
 	
-	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateElections)];
+	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateData)];
 	self.navigationItem.rightBarButtonItem = reload;
 	[reload release];
 	
@@ -343,9 +343,18 @@
 	}
 }
 
-- (void)updateElections {
+- (void)doneWithUpdateData {
+	LogInfo(@"Done manual update of elections");
+			 
+	[[ProgressHUD defaultHUD] hideActivityIndicator];
+}
+
+- (void)updateData {
+	LogInfo(@"Manually update elections");
+	
 	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	[appDelegate updateElections:YES];
+	[[ProgressHUD defaultHUD] showInView:self.view];
+	[appDelegate updateDataAsynchronously:YES withDelegate:self];
 }
 
 /*

@@ -41,7 +41,7 @@
 @property (nonatomic, retain) SupervoteClient *supervoteClient;
 @property (nonatomic, retain) FacebookClient *facebookClient;
 
-- (void)updateElections:(BOOL)withAlerts;
+- (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate;
 - (void)deleteFacebookPhotos;
 - (void)addDefaultPersistentStore;
 - (void)deletePersistentStoreCoordinator;

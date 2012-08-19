@@ -1030,8 +1030,8 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return [self handleSyncRequest:request];
 }
 
+/* this is currently being called asynchronously */
 - (NSArray *)getVotesForBallot:(NSString *)electionGuid withLastUpdatedTime:(NSDate *)date {
-	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:[NSString stringWithFormat:@"/voter/v1/auth/votes?election=%@", electionGuid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];
@@ -1356,8 +1356,8 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 }
 
 
+/* currently being called asynchronously */
 - (id)getFriends {
-	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/voter/v1/auth/friends"];
 
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
@@ -1423,13 +1423,13 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return [_context save:error];
 }
 
+/* currently being called asynchronously */
 - (NSDictionary *)getElections:(vote_status *)status {
 	/* http://stackoverflow.com/questions/5035132/how-to-sync-iphone-core-data-with-web-server-and-then-push-to-other-devices */
 	/* http://petermcintyre.com/2010/11/04/consume-json-rest-in-ios/ */
 	/* http://developer.apple.com/library/IOs/#documentation/Foundation/Reference/NSURLConnectionDelegate_Protocol/Reference/Reference.html */
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
-	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/voter/v1/auth/elections"];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 	[request addRequestHeader:kDeviceIDHeaderKey value:deviceID];	
@@ -1475,6 +1475,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return nil;
 }
 
+/* currently being called asynchronously */
 - (election_status)getElection:(NSDictionary **)election
 					  withGuid:(NSString *)guid
 			  withLastModified:(NSDate *)time
@@ -1493,7 +1494,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
 	df.locale = locale;
 	
-	/* TODO: this should be asynchronous */
 	//NSString *url = [NSString stringWithFormat:@"http://localhost:8080/election?election=%@", guid];
 	NSURL *url = [self createURL:[NSString stringWithFormat:@"/voter/v1/auth/election?election=%@", guid]];
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
