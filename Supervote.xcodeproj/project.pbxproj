@@ -141,6 +141,8 @@
 		1474F0651432DCFD004D35AD /* CandidateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474F0641432DCFD004D35AD /* CandidateViewCell.m */; };
 		1477A27115E1CA0A00A45F6D /* PullTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1477A27015E1CA0A00A45F6D /* PullTableViewController.m */; };
 		1477A32215E1E1B000A45F6D /* PullTableViewLan.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1477A32115E1E1B000A45F6D /* PullTableViewLan.strings */; };
+		1477A35A15E1FC3E00A45F6D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1477A35815E1FC3E00A45F6D /* Default.png */; };
+		1477A35B15E1FC3E00A45F6D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1477A35915E1FC3E00A45F6D /* Default@2x.png */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -386,6 +388,8 @@
 		1477A26F15E1CA0A00A45F6D /* PullTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableViewController.h; sourceTree = "<group>"; };
 		1477A27015E1CA0A00A45F6D /* PullTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullTableViewController.m; sourceTree = "<group>"; };
 		1477A32315E1E1B600A45F6D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PullTableViewLan.strings; sourceTree = "<group>"; };
+		1477A35815E1FC3E00A45F6D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		1477A35915E1FC3E00A45F6D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -603,12 +607,14 @@
 			name = "Facebook Icons";
 			sourceTree = "<group>";
 		};
-		140F431A150DA382004E61B5 /* App Icons */ = {
+		140F431A150DA382004E61B5 /* App Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				1477A35815E1FC3E00A45F6D /* Default.png */,
+				1477A35915E1FC3E00A45F6D /* Default@2x.png */,
 				140F4325150DA4AC004E61B5 /* Icon@2x.png */,
 			);
-			name = "App Icons";
+			name = "App Artwork";
 			sourceTree = "<group>";
 		};
 		1410F9C5156A0E6400B844E4 /* Misc */ = {
@@ -1009,7 +1015,7 @@
 				140F41D8150CA9AC004E61B5 /* 1-user.png */,
 				140F41DA150CA9B7004E61B5 /* 2-user.png */,
 				14A6F44C143D932200EBF65D /* advanced.png */,
-				140F431A150DA382004E61B5 /* App Icons */,
+				140F431A150DA382004E61B5 /* App Artwork */,
 				14EF38A3144AA9F100557A80 /* check-64.png */,
 				14B5F6791510639700C21F98 /* comment.png */,
 				1438A9A41574A91F00112C42 /* error.png */,
@@ -1203,6 +1209,8 @@
 				144458A715E0BCC200F7CD9A /* whiteArrow.png in Resources */,
 				144458A815E0BCC200F7CD9A /* whiteArrow@2x.png in Resources */,
 				1477A32215E1E1B000A45F6D /* PullTableViewLan.strings in Resources */,
+				1477A35A15E1FC3E00A45F6D /* Default.png in Resources */,
+				1477A35B15E1FC3E00A45F6D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
