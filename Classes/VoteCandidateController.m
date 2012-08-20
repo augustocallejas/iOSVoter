@@ -20,15 +20,34 @@
 #import "ListEndorsementsController.h"
 #import "PoliticalParty.h"
 #import "PositionToCandidate.h"
+#import "SupervoteAppDelegate.h"
 #import "ViewEndorsementController.h"
 
 @implementation VoteCandidateController
 
+@synthesize pullTableView;
 @synthesize ballot;
 @synthesize position;
 @synthesize client = _client;
 @synthesize changeVoteSheet;
 @synthesize deleteVoteSheet;
+
+# pragma mark -
+# pragma mark PullTableViewDelegate methods
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.0f];
+}
+
+- (void) refreshTable
+{
+	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate updateData:YES];
+	
+    self.pullTableView.pullLastRefreshDate = appDelegate.lastRefreshDate;
+    self.pullTableView.pullTableIsRefreshing = NO;
+}
 
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
@@ -592,6 +611,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	/* TODO: copied from ListElectionsController */
+	self.pullTableView.pullArrowImage = [UIImage imageNamed:@"blackArrow"];
+    self.pullTableView.pullBackgroundColor = [UIColor lightTextColor];
+    self.pullTableView.pullTextColor = [UIColor blackColor];
+	
+	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	self.pullTableView.pullLastRefreshDate = appDelegate.lastRefreshDate;
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
                                              selector:@selector(reloadData)
                                                  name:UIApplicationDidBecomeActiveNotification
@@ -833,7 +860,6 @@
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	[super viewDidUnload];
 	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
@@ -841,10 +867,12 @@
 		[vote release];
 		vote = nil;
 	}
+	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.pullTableView = nil;
 	self.client = nil;
 	self.ballot = nil;
 	self.position = nil;

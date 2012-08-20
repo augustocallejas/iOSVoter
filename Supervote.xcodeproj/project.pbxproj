@@ -106,6 +106,18 @@
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
 		144215CD15AA2B1000972EB8 /* PoliticalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 144215CA15AA2B1000972EB8 /* PoliticalParty.m */; };
+		1444589D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */; };
+		1444589E15E0BCC200F7CD9A /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */; };
+		1444589F15E0BCC200F7CD9A /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444589115E0BCC200F7CD9A /* MessageInterceptor.m */; };
+		144458A015E0BCC200F7CD9A /* PullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444589315E0BCC200F7CD9A /* PullTableView.m */; };
+		144458A115E0BCC200F7CD9A /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589515E0BCC200F7CD9A /* blackArrow.png */; };
+		144458A215E0BCC200F7CD9A /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589615E0BCC200F7CD9A /* blackArrow@2x.png */; };
+		144458A315E0BCC200F7CD9A /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589715E0BCC200F7CD9A /* blueArrow.png */; };
+		144458A415E0BCC200F7CD9A /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589815E0BCC200F7CD9A /* blueArrow@2x.png */; };
+		144458A515E0BCC200F7CD9A /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589915E0BCC200F7CD9A /* grayArrow.png */; };
+		144458A615E0BCC200F7CD9A /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */; };
+		144458A715E0BCC200F7CD9A /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589B15E0BCC200F7CD9A /* whiteArrow.png */; };
+		144458A815E0BCC200F7CD9A /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */; };
 		14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */; };
 		14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
@@ -127,6 +139,8 @@
 		1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474EF57142FC8CB004D35AD /* FacebookFriend.m */; };
 		1474F05B1432C48C004D35AD /* CandidateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474F05A1432C48C004D35AD /* CandidateViewCell.xib */; };
 		1474F0651432DCFD004D35AD /* CandidateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474F0641432DCFD004D35AD /* CandidateViewCell.m */; };
+		1477A27115E1CA0A00A45F6D /* PullTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1477A27015E1CA0A00A45F6D /* PullTableViewController.m */; };
+		1477A32215E1E1B000A45F6D /* PullTableViewLan.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1477A32115E1E1B000A45F6D /* PullTableViewLan.strings */; };
 		14789F1813EBBB220016044C /* FeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F1613EBBB220016044C /* FeedController.m */; };
 		14789F1913EBBB220016044C /* FeedController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F1713EBBB220016044C /* FeedController.xib */; };
 		14789F2713EBBB9E0016044C /* ListElectionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2513EBBB9E0016044C /* ListElectionsController.m */; };
@@ -314,6 +328,22 @@
 		144215C915AA2B1000972EB8 /* PoliticalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoliticalParty.h; path = ../PoliticalParty.h; sourceTree = "<group>"; };
 		144215CA15AA2B1000972EB8 /* PoliticalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoliticalParty.m; path = ../PoliticalParty.m; sourceTree = "<group>"; };
 		1444566815E057D300F7CD9A /* Supervote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Supervote 4.xcdatamodel"; sourceTree = "<group>"; };
+		1444588C15E0BCC200F7CD9A /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		1444588E15E0BCC200F7CD9A /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
+		1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreTableFooterView.m; sourceTree = "<group>"; };
+		1444589015E0BCC200F7CD9A /* MessageInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInterceptor.h; sourceTree = "<group>"; };
+		1444589115E0BCC200F7CD9A /* MessageInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInterceptor.m; sourceTree = "<group>"; };
+		1444589215E0BCC200F7CD9A /* PullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableView.h; sourceTree = "<group>"; };
+		1444589315E0BCC200F7CD9A /* PullTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullTableView.m; sourceTree = "<group>"; };
+		1444589515E0BCC200F7CD9A /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		1444589615E0BCC200F7CD9A /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		1444589715E0BCC200F7CD9A /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		1444589815E0BCC200F7CD9A /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		1444589915E0BCC200F7CD9A /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		1444589B15E0BCC200F7CD9A /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
 		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
 		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
@@ -353,6 +383,9 @@
 		1474F05A1432C48C004D35AD /* CandidateViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CandidateViewCell.xib; sourceTree = "<group>"; };
 		1474F0631432DCFD004D35AD /* CandidateViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CandidateViewCell.h; sourceTree = "<group>"; };
 		1474F0641432DCFD004D35AD /* CandidateViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CandidateViewCell.m; sourceTree = "<group>"; };
+		1477A26F15E1CA0A00A45F6D /* PullTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableViewController.h; sourceTree = "<group>"; };
+		1477A27015E1CA0A00A45F6D /* PullTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullTableViewController.m; sourceTree = "<group>"; };
+		1477A32315E1E1B600A45F6D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PullTableViewLan.strings; sourceTree = "<group>"; };
 		14789F1513EBBB220016044C /* FeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedController.h; path = ../FeedController.h; sourceTree = "<group>"; };
 		14789F1613EBBB220016044C /* FeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedController.m; path = ../FeedController.m; sourceTree = "<group>"; };
 		14789F1713EBBB220016044C /* FeedController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedController.xib; sourceTree = "<group>"; };
@@ -653,6 +686,8 @@
 				14789F2513EBBB9E0016044C /* ListElectionsController.m */,
 				14E7491614343C99002E2F82 /* ListEndorsementsController.h */,
 				14E7491714343C99002E2F82 /* ListEndorsementsController.m */,
+				1477A26F15E1CA0A00A45F6D /* PullTableViewController.h */,
+				1477A27015E1CA0A00A45F6D /* PullTableViewController.m */,
 				1410F9B2156A0C4F00B844E4 /* SegmentsController.h */,
 				1410F9B3156A0C4F00B844E4 /* SegmentsController.m */,
 				142E66571575D77000C92477 /* SelectDistrictViewController.h */,
@@ -676,6 +711,46 @@
 				1410F8421569777400B844E4 /* VoterRegistrationViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				1444588B15E0BCC200F7CD9A /* Classes */,
+				1444589415E0BCC200F7CD9A /* Resources */,
+			);
+			name = EGOTableViewPullRefresh;
+			path = ../../EGOTableViewPullRefresh/EGOTableViewPullRefresh;
+			sourceTree = SOURCE_ROOT;
+		};
+		1444588B15E0BCC200F7CD9A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1444588C15E0BCC200F7CD9A /* EGORefreshTableHeaderView.h */,
+				1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */,
+				1444588E15E0BCC200F7CD9A /* LoadMoreTableFooterView.h */,
+				1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */,
+				1444589015E0BCC200F7CD9A /* MessageInterceptor.h */,
+				1444589115E0BCC200F7CD9A /* MessageInterceptor.m */,
+				1444589215E0BCC200F7CD9A /* PullTableView.h */,
+				1444589315E0BCC200F7CD9A /* PullTableView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1444589415E0BCC200F7CD9A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1444589515E0BCC200F7CD9A /* blackArrow.png */,
+				1444589615E0BCC200F7CD9A /* blackArrow@2x.png */,
+				1444589715E0BCC200F7CD9A /* blueArrow.png */,
+				1444589815E0BCC200F7CD9A /* blueArrow@2x.png */,
+				1444589915E0BCC200F7CD9A /* grayArrow.png */,
+				1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */,
+				1444589B15E0BCC200F7CD9A /* whiteArrow.png */,
+				1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		1462F3DD141DA475007E31C1 /* Views */ = {
@@ -875,6 +950,7 @@
 		14FC45E6157B196700B71B88 /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */,
 				147190E415CDFBDB00116E49 /* TestFlightSDK */,
 				14FC46E0157C1AA000B71B88 /* ProgressHUD */,
 				14AAA6AD1499CA9200D59D0D /* ASIHTTPRequest */,
@@ -946,6 +1022,7 @@
 				8D1107310486CEB800E47090 /* Supervote-Info.plist */,
 				1401CB9215CF1C98007CFE6A /* Supervote.xcdatamodeld */,
 				140D051014D65C1200AD98E4 /* twitter.png */,
+				1477A32115E1E1B000A45F6D /* PullTableViewLan.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1117,6 +1194,15 @@
 				147190EA15CDFBDB00116E49 /* README.txt in Resources */,
 				147190EB15CDFBDB00116E49 /* release_notes.txt in Resources */,
 				1401CBFD15CF384B007CFE6A /* user.png in Resources */,
+				144458A115E0BCC200F7CD9A /* blackArrow.png in Resources */,
+				144458A215E0BCC200F7CD9A /* blackArrow@2x.png in Resources */,
+				144458A315E0BCC200F7CD9A /* blueArrow.png in Resources */,
+				144458A415E0BCC200F7CD9A /* blueArrow@2x.png in Resources */,
+				144458A515E0BCC200F7CD9A /* grayArrow.png in Resources */,
+				144458A615E0BCC200F7CD9A /* grayArrow@2x.png in Resources */,
+				144458A715E0BCC200F7CD9A /* whiteArrow.png in Resources */,
+				144458A815E0BCC200F7CD9A /* whiteArrow@2x.png in Resources */,
+				1477A32215E1E1B000A45F6D /* PullTableViewLan.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,12 +1285,25 @@
 				148EF0A615C87600009D78CB /* PositionToCandidate.m in Sources */,
 				148EF0BE15C878E0009D78CB /* Position.m in Sources */,
 				148EF0FF15C883FF009D78CB /* Candidate.m in Sources */,
+				1444589D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m in Sources */,
+				1444589E15E0BCC200F7CD9A /* LoadMoreTableFooterView.m in Sources */,
+				1444589F15E0BCC200F7CD9A /* MessageInterceptor.m in Sources */,
+				144458A015E0BCC200F7CD9A /* PullTableView.m in Sources */,
+				1477A27115E1CA0A00A45F6D /* PullTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1477A32115E1E1B000A45F6D /* PullTableViewLan.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1477A32315E1E1B600A45F6D /* es */,
+			);
+			name = PullTableViewLan.strings;
+			sourceTree = "<group>";
+		};
 		14C999AD152812B60041ACDA /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

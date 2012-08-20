@@ -142,7 +142,6 @@
 }
 
 #pragma mark -
-#pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
 	/* singleton pattern, lazy instantiation */
@@ -625,11 +624,6 @@
 	
 	viewDidLoadCalled = YES;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
-                                             selector:@selector(reloadData)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
-	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -946,14 +940,13 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-	[super viewDidUnload];
-	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;
 	self.fetchedResultsController2 = nil;
+	[super viewDidUnload];
 }
 
 

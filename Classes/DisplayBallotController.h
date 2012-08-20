@@ -11,9 +11,10 @@
 #import "BallotItemViewCell.h"
 #import "FriendBallotVote.h"
 #import "FriendMeasureVote.h"
+#import "PullTableViewController.h"
 #import "SupervoteClient.h"
 
-@interface DisplayBallotController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface DisplayBallotController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
 	BOOL viewDidLoadCalled;
@@ -37,7 +38,7 @@
 - (IBAction)viewAllEndorsements:(id)sender;
 + (UIImage *) loadImageForAuthorOfBallotVote:(FriendBallotVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon;
 + (UIImage *) loadImageForAuthorOfMeasureVote:(FriendMeasureVote *)friendVote inDirectory:(NSString *)documentsDirectory orUseIconIfNotPresent:(UIImage *)defaultIcon;
-	
+
 @property (nonatomic, retain) Election *election;
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

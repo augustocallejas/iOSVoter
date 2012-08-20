@@ -7,15 +7,16 @@
 //
 
 #import "Ballot.h"
+#import "BallotItemViewCell.h"
 #import "BallotVote.h"
 #import "Candidate.h"
 #import "CreateEndorsementViewController.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
-#import "BallotItemViewCell.h"
+#import "PullTableView.h"
 #import "SupervoteClient.h"
 
-@interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate, UIActionSheetDelegate> {
+@interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate, UIActionSheetDelegate, PullTableViewDelegate> {
 
 @private
 	BOOL socialBallotView;
@@ -25,6 +26,7 @@
 	SupervoteClient *_client;
 }
 
+@property (nonatomic, retain) IBOutlet PullTableView *pullTableView;
 @property (nonatomic, retain) Ballot *ballot;
 @property (nonatomic, retain) Position *position;
 @property (nonatomic, retain) SupervoteClient *client;

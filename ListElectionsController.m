@@ -13,7 +13,6 @@
 #import "Election.h"
 #import "Measure.h"
 #import "Position.h"
-#import "SupervoteAppDelegate.h"
 
 @implementation ListElectionsController
 
@@ -22,9 +21,6 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize fetchedResultsController1 = _fetchedResultsController1;
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
-
-#pragma mark -
-#pragma mark FetchedResultsBasedTableViewController methods
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
 	/* singleton pattern, lazy instantiation */
@@ -277,7 +273,6 @@
 	[controller release];
 }
 
-
 #pragma mark -
 #pragma mark UIViewController methods
 
@@ -297,11 +292,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
-                                             selector:@selector(reloadData)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
-	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -314,10 +304,6 @@
 	[label sizeToFit];
 	self.navigationItem.titleView = label;
 	[label release];
-	
-	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateData)];
-	self.navigationItem.rightBarButtonItem = reload;
-	[reload release];
 	
 	NSError *error = nil;
 	if (![[self fetchedResultsController1] performFetch:&error]) {
@@ -343,20 +329,6 @@
 	}
 }
 
-- (void)doneWithUpdateData {
-	LogInfo(@"Done manual update of elections");
-			 
-	[[ProgressHUD defaultHUD] hideActivityIndicator];
-}
-
-- (void)updateData {
-	LogInfo(@"Manually update elections");
-	
-	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	[[ProgressHUD defaultHUD] showInView:self.view];
-	[appDelegate updateDataAsynchronously:YES withDelegate:self];
-}
-
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -375,16 +347,14 @@
 */
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.navigationItem.titleView = nil;
-	self.navigationItem.rightBarButtonItem = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
 	self.fetchedResultsController2.delegate = nil;
 	self.fetchedResultsController2 = nil;
+	[super viewDidUnload];
 }
 
 

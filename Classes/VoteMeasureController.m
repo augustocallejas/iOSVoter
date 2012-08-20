@@ -184,11 +184,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self.tableView
-                                             selector:@selector(reloadData)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
-	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -201,11 +196,6 @@
 	[label sizeToFit];
 	self.navigationItem.titleView = label;
 	[label release];
-
-	/* TODO: disabling this for now */
-//	UIBarButtonItem *reload = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:nil action:nil];
-//	self.navigationItem.rightBarButtonItem = reload;
-//	[reload release];
 	
 	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:self action:@selector(barButtonAction:)];
 	self.navigationItem.rightBarButtonItem = barButtonItem;
@@ -801,14 +791,11 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
-	
-	[[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
-	
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	self.navigationItem.titleView = nil;
 	self.navigationItem.rightBarButtonItem = nil;
+	[super viewDidUnload];
 }
 
 

@@ -32,6 +32,7 @@
 @synthesize managedObjectContext;
 @synthesize facebookClient;
 @synthesize supervoteClient;
+@synthesize lastRefreshDate = _lastRefreshDate;
 
 
 // Pre 4.2 support
@@ -59,6 +60,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
+	runningUpdate = NO;
+	
 	/* http://blog.goosoftware.co.uk/2012/04/18/unique-identifier-no-warnings/ */
 #ifdef TESTING
 	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
@@ -147,6 +150,14 @@
 
 /* TODO: doesn't manage deleted elections or past elections (this may not be true at this point) */
 - (void)updateData:(BOOL)withAlerts {
+	if (runningUpdate) {
+		LogDebug(@"Currently updating, so ignoring this request");
+		return;
+	}
+	runningUpdate = YES;
+	
+	_lastRefreshDate = [[NSDate date] retain];
+	
 	NSError *storeError = nil;
 	NSArray *friends = [supervoteClient getFriends];
 	if (friends != nil) {
@@ -301,6 +312,8 @@
 			}
 		}
 	}
+	
+	runningUpdate = NO;
 }
 
 /* http://stackoverflow.com/questions/3869217/iphone-ios-running-in-separate-thread */
@@ -586,6 +599,10 @@
 }
 
 - (void)dealloc {
+	if (_lastRefreshDate != nil) {
+		[_lastRefreshDate release];
+		_lastRefreshDate = nil;
+	}
 	self.supervoteClient = nil;
 	self.facebookClient = nil;
 	[managedObjectContext_ release];

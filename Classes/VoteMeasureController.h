@@ -11,9 +11,10 @@
 #import "CreateEndorsementViewController.h"
 #import "Measure.h"
 #import "MeasureVote.h"
+#import "PullTableViewController.h"
 #import "SupervoteClient.h"
 
-@interface VoteMeasureController : UITableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate, UIActionSheetDelegate> {
+@interface VoteMeasureController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, ModalViewControllerDelegate, UIActionSheetDelegate> {
 
 @private
 	BOOL socialBallotView;

@@ -7,10 +7,10 @@
 //
 
 #import "FacebookClient.h"
-#import "FetchedResultsBasedTableViewController.h"
+#import "PullTableViewController.h"
 #import "SupervoteClient.h"
 
-@interface ListElectionsController : UITableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ListElectionsController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
 	NSDateFormatter *dateFormatter;

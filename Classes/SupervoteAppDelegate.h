@@ -18,9 +18,11 @@
 	UITabBarController *mainAppController;
 	
 @private
+	BOOL runningUpdate;
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
+	NSDate *_lastRefreshDate;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -41,6 +43,9 @@
 @property (nonatomic, retain) SupervoteClient *supervoteClient;
 @property (nonatomic, retain) FacebookClient *facebookClient;
 
+@property (nonatomic, retain, readonly) NSDate *lastRefreshDate;
+
+- (void)updateData:(BOOL)withAlerts;
 - (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate;
 - (void)deleteFacebookPhotos;
 - (void)addDefaultPersistentStore;
