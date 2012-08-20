@@ -96,8 +96,8 @@
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	
-	UIImage *genericIcon = [UIImage imageNamed:@"friends.png"];
-
+	UIImage *genericIcon = [UIImage imageNamed:@"user.png"];
+	
 	if (friendBallotVote != nil) {
 		cell.textLabel.text = friendBallotVote.author.name;
 		cell.detailTextLabel.text = friendBallotVote.statement;
@@ -109,9 +109,8 @@
 		cell.imageView.image = [DisplayBallotController loadImageForAuthorOfMeasureVote:friendMeasureVote inDirectory:documentsDirectory orUseIconIfNotPresent:genericIcon];
 	}
 	
-	//cell.layer.masksToBounds = YES;
-	//cell.layer.cornerRadius = 5.0;
-	//cell.imageView.layer.masksToBounds = YES;
+	cell.imageView.layer.masksToBounds = YES;
+	cell.imageView.layer.cornerRadius = 7.0;
 	
 //	EndorsementViewCell *endorsementCell = (EndorsementViewCell *)cell;
 //	if (friendBallotVote != nil) {
