@@ -9,7 +9,7 @@
 #import "FacebookClient.h"
 #import "SupervoteClient.h"
 
-@interface FacebookIntegrationViewController : UIViewController <FBSessionDelegate> {
+@interface FacebookIntegrationViewController : UIViewController {
 
 @private
 	UILabel *_titleLabel;

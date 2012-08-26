@@ -24,7 +24,7 @@
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleIdentifier</key>
-	<string>com.canaryfalls.supervote.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.canaryfalls.supervote.Supervote</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -39,6 +39,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>FacebookAppID</key>
+	<string>367473609934472</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>League_Gothic.otf</string>

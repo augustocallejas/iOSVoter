@@ -6,26 +6,20 @@
 //  Copyright 2011 Canary Falls Software LLC. All rights reserved.
 //
 
-
-@interface FacebookClient : NSObject <FBSessionDelegate, FBRequestDelegate> {
+@interface FacebookClient : NSObject {
 
 @private
 	NSManagedObjectContext* _context;
-	Facebook* _facebook;
 	NSString* _documentsPath;
-	BOOL _loggedIn;
-	id<FBSessionDelegate> _delegate;
 }
 
-@property (readonly) Facebook* facebook;
-@property (readonly) BOOL loggedIn;
-@property (nonatomic, retain) id<FBSessionDelegate> delegate;
-
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path;
+- (BOOL)isLoggedIn;
+- (NSString *)getAccessToken;
 - (void)updateFriends;
 - (void)downloadFacebookPhoto:(NSString *)facebookId;
-- (void)extendAccessTokenIfNeeded;
-- (void)authorize;
+- (void)saveFacebookPhoto:(NSData *)data forFriend:(NSString *)friendId;
+- (void)authorize:(id)delegate;
 - (void)logout;
 
 @end

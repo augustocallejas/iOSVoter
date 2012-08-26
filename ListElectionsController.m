@@ -321,13 +321,11 @@
 	[super viewWillAppear:animated];
 }
 
+/*
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	
-	if ([_facebookClient loggedIn]) {
-		[_facebookClient extendAccessTokenIfNeeded];
-	}
 }
+*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
