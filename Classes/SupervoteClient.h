@@ -32,7 +32,7 @@ typedef enum {
 	
 @private
 	NSManagedObjectContext* _context;
-	SBJSON *parser;
+	SBJsonParser *parser;
 	NSString *deviceID;
 }
 

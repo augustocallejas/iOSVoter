@@ -34,7 +34,7 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 - (id)initWithContext:(NSManagedObjectContext *)context {
     self = [super init];
 	if (self) {
-		parser = [[SBJSON alloc] init];
+		parser = [[SBJsonParser alloc] init];
 		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"DeviceID"]) {
