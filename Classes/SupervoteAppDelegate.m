@@ -42,13 +42,27 @@ NSString *const FBSessionStateChangedNotification =
 
 // Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	return [[FBSession activeSession] handleOpenURL:url]; 
+	if ([facebookAppURLScheme isEqualToString:[url scheme]]) {
+		return [FacebookClient handleOpenURL:url];
+	}
+	else {
+		LogWarn(@"Unsupported openURL: %@", url);
+	}
+	
+	return NO;
 }
 
 // For 4.2+ support
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-	return [[FBSession activeSession] handleOpenURL:url]; 
+	if ([facebookAppURLScheme isEqualToString:[url scheme]]) {
+		return [FacebookClient handleOpenURL:url];
+	}
+	else {
+		LogWarn(@"Unsupported openURL: %@", url);
+	}
+	
+	return NO;
 }
 
 #pragma mark -
@@ -111,6 +125,7 @@ NSString *const FBSessionStateChangedNotification =
 }
 
 - (void) closeSession {
+	LogInfo(@"Closing and clearing token for Facebook");
     [[FBSession activeSession] closeAndClearTokenInformation];
 }
 
@@ -130,6 +145,10 @@ NSString *const FBSessionStateChangedNotification =
 	[TestFlight passCheckpoint:@"FirstCheckpoint"];
 	
     // Override point for customization after application launch.
+	
+	NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+	facebookAppURLScheme = [[NSString stringWithFormat:@"fb%@", [infoDict objectForKey:@"FacebookAppID"]] retain];
+	
 	NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 										  [NSNumber numberWithBool:NO], @"SocialBallotMode",
 										  nil];
@@ -143,10 +162,6 @@ NSString *const FBSessionStateChangedNotification =
 
 	supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
 	facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
-	
-	if ([facebookClient isLoggedIn]) {
-		[facebookClient updateFriends];
-	}
 	
 	if (![supervoteClient isRegistered]) {
 		[self switchToWelcomePage];
@@ -203,6 +218,9 @@ NSString *const FBSessionStateChangedNotification =
 		[[FBSession activeSession] close]; // so we close our session and start over
 	}
 	
+	if ([facebookClient isLoggedIn]) {
+		[facebookClient updateFriends];
+	}
 	if ([supervoteClient isRegistered]) {
 		[self updateDataAsynchronously:NO withDelegate:nil];
 	}
@@ -426,11 +444,6 @@ NSString *const FBSessionStateChangedNotification =
 - (void)switchToMainApp:(UIView *)currentView {
 	if (mainAppController == nil)
 	{
-//		if (_facebookClient.loggedIn) {
-//			LogInfo(@"Already logged into Facebook, updating friends");
-//			[_facebookClient updateFriends];
-//		}
-		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"ShowedTutorial"] == nil) {
 			QuickTutorialViewController *controller = [[QuickTutorialViewController alloc] initWithNibName:@"QuickTutorialViewController" bundle:[NSBundle mainBundle]];

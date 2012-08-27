@@ -13,6 +13,7 @@
 	NSString* _documentsPath;
 }
 
++ (BOOL)handleOpenURL:(NSURL *)url;
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path;
 - (BOOL)isLoggedIn;
 - (NSString *)getAccessToken;

@@ -20,6 +20,7 @@ extern NSString *const FBSessionStateChangedNotification;
 	UITabBarController *mainAppController;
 	
 @private
+	NSString *facebookAppURLScheme;
 	BOOL runningUpdate;
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;

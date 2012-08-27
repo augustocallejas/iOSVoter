@@ -8,8 +8,6 @@
 
 #import "FacebookClient.h"
 
-#import <FacebookSDK/FacebookSDK.h>
-
 #import "FacebookFriend.h"
 #import "SupervoteAppDelegate.h"
 
@@ -65,6 +63,10 @@
 
 #pragma mark -
 #pragma mark FacebookClient methods
+
++ (BOOL)handleOpenURL:(NSURL *)url {
+	return [[FBSession activeSession] handleOpenURL:url];
+}
 
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path {
 	self = [super init];
