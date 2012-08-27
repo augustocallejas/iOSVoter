@@ -60,6 +60,14 @@
 */
 
 #pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
+	[appDelegate switchToMainApp:self.view];
+}
+
+#pragma mark -
 #pragma mark Custom IBAction methods
 
 - (void)markAsViewed {
@@ -77,18 +85,20 @@
 	LogInfo(@"User opted out of Facebook integration");
 	[self markAsViewed];
 	
+	SupervoteAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	[delegate updateDataAsynchronously:NO withDelegate:nil];
+	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
 													message:NSLocalizedString(@"LaterFacebookMessage", nil)
-												   delegate:nil 
+												   delegate:self 
 										  cancelButtonTitle:NSLocalizedString(@"OK", nil)
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-	
-	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-	[appDelegate switchToMainApp:self.view];
 }
 
+#pragma mark -
+#pragma mark FacebookClient delegete methods
 
 /**
  * Called when the user successfully logged in.

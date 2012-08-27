@@ -169,7 +169,8 @@
 	[controller release];
 }
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
+- (BOOL)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
+	BOOL voted = NO;
 	BOOL dismissModalView = YES;
 	vote_status status = OK;
 	if (withVote) {
@@ -196,6 +197,7 @@
 				LogInfo(@"Endorsement created for candidate '%@' on position '%@'", candidate.guid, position.guid);
 			}
 			
+			voted = YES;
 			[self.tableView reloadData];
 		}
 		else {
@@ -250,6 +252,8 @@
 		[alert show];
 		[alert release];
 	}
+	
+	return voted;
 }
 
 - (IBAction)viewAllEndorsements:(id)sender{

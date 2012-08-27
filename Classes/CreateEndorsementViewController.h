@@ -15,13 +15,14 @@
  */
 @protocol ModalViewControllerDelegate <NSObject>
 
-- (void)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable;
+- (BOOL)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable;
 
 @end
 
 @interface CreateEndorsementViewController : UIViewController <UITextViewDelegate> {
 	id<ModalViewControllerDelegate> delegate;
 @private
+	BOOL hintDisplayed;
 	Candidate *_candidate;
 	Measure *_measure;
 	NSNumber *_measureVote;

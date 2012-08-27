@@ -10,6 +10,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+static NSString *hintName = @"PostEndorsementHint";
+
 @implementation CreateEndorsementViewController
 
 @synthesize candidate = _candidate;
@@ -33,7 +35,22 @@
 // Done button clicked
 - (IBAction)dismissView:(id)sender {
     // Call the delegate to dismiss the modal view
-    [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on];
+    if ([delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on]) {
+		if (!hintDisplayed) {
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+			[defaults setObject:@"1" forKey:hintName];
+			[defaults synchronize];
+			hintDisplayed = YES;
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+															message:NSLocalizedString(hintName, nil)
+														   delegate:nil 
+												  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
+	}
 }
 
 - (IBAction)switchedPrivacy:(id)sender {
@@ -81,6 +98,8 @@
 //	_navItem.titleView = label;
 //	[label release];
 	
+	hintDisplayed = [[NSUserDefaults standardUserDefaults] objectForKey:hintName] != nil;
+
 	[endorsementHeader setText:NSLocalizedString(@"EnterEndorsement", nil)];
 	
 	[_voteButton setTitle:NSLocalizedString(@"Vote", nil)];

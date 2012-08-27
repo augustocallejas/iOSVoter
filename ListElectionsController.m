@@ -14,6 +14,8 @@
 #import "Measure.h"
 #import "Position.h"
 
+static NSString *hintName = @"ListElectionsHint";
+
 @implementation ListElectionsController
 
 @synthesize client = _client;
@@ -292,6 +294,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	hintDisplayed = [[NSUserDefaults standardUserDefaults] objectForKey:hintName] != nil;
+	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -321,11 +325,24 @@
 	[super viewWillAppear:animated];
 }
 
-/*
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	
+	if (!hintDisplayed) {
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setObject:@"1" forKey:hintName];
+		[defaults synchronize];
+		hintDisplayed = YES;
+		
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+														message:NSLocalizedString(hintName, nil)
+													   delegate:nil 
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.

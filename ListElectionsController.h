@@ -13,6 +13,7 @@
 @interface ListElectionsController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
+	BOOL hintDisplayed;
 	NSDateFormatter *dateFormatter;
 	NSManagedObjectContext *_managedObjectContext;
 	NSFetchedResultsController *_fetchedResultsController1;

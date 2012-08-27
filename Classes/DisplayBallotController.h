@@ -17,6 +17,7 @@
 @interface DisplayBallotController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
 
 @private
+	BOOL hintDisplayed;
 	BOOL viewDidLoadCalled;
 	BOOL socialBallotView;
 	Election *_election;
