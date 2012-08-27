@@ -61,7 +61,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 }
 
 - (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error {
-	/* TODO: this should be asynchronous */
 	NSURL *url = [self createURL:@"/voter/v1/registration"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	if (address != nil) {
@@ -143,7 +142,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		}
 		else if (request.responseStatusCode == 304) {
 			/* NOT MODIFIED */
-			LogInfo(@"Voter registration is up to date");
+			LogInfo(@"Voter registration is up to date: %@", lastModified == nil ? @"<no timestamp>" : lastModified);
 		}
 		else {
 			LogError(@"Server returned unexpected response %d from request '%@'", [request responseStatusCode], [url path]);
@@ -781,8 +780,11 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 								 withGovernment:choice
 								withCreatedTime:date
 									  withError:&error];
-			/* TODO: log error vote_status */
-			if (delegate != nil) {
+
+			if (error != nil) {
+				LogError(@"Error while resolving government registration with choice '%@': %@", choice.name, [error localizedDescription]);
+			}
+			else if (delegate != nil) {
 				if ([delegate respondsToSelector:@selector(selectGovernmentSuccess)]) {
 					[delegate performSelector:@selector(selectGovernmentSuccess)];
 				}
@@ -828,8 +830,11 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			[self resolveDistrictRegistration:potentialRegistration
 								 withDistrict:choice
 							  withCreatedTime:date withError:&error];
-			/* TODO: log error */
-			if (delegate != nil) {
+			
+			if (error != nil) {
+				LogError(@"Error while resolving district registration with choice '%@': %@", choice.name, [error localizedDescription]);
+			}
+			else if (delegate != nil) {
 				if ([delegate respondsToSelector:@selector(selectDistrictSuccess)]) {
 					[delegate performSelector:@selector(selectDistrictSuccess)];
 				}
@@ -885,29 +890,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	
 	[request startAsynchronous];
 }
-
-//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-//	LogInfo(@"Received a response: %@", response);
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-//	LogInfo(@"Error: %@", [error userInfo]);
-//}
-//
-//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//	[responseData appendData:data];
-//}
-//
-//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-//	
-//	NSString* responseString = [[NSString alloc] initWithData:responseData
-//													 encoding:NSUTF8StringEncoding];
-//	LogInfo(@"Done loading, the data is: %@", responseString);
-//	[responseString release];
-//	
-//	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
-//	[appDelegate switchToMainApp];
-//}
 
 - (vote_status)sendFacebookAccessToken:(NSString *)accessToken {
 	/* TODO: this should be asynchronous */
@@ -1243,7 +1225,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		}
 		else if ([@"MeasureVote" isEqualToString:type]) {
 			/* cases 1) insert 2) update 3) delete */
-			/* TODO: doesn't handle the delete case */
 			NSNumber *viewable = [vote objectForKey:@"viewable"];
 			NSNumber *dateValue = [vote objectForKey:@"date"];
 			NSString *authorGuid = [vote objectForKey:@"author"];
