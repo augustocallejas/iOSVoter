@@ -63,6 +63,7 @@
 		[appDelegate deletePersistentStoreCoordinator];
 		[appDelegate deleteFacebookPhotos];
 		[_facebookClient logout];
+		[_client logout];
 		[appDelegate switchToWelcomePage];
 	}
 	else if (buttonIndex == actionSheet.cancelButtonIndex) {
