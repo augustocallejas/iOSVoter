@@ -32,12 +32,12 @@ typedef enum {
 	
 @private
 	NSManagedObjectContext* _context;
-	SBJsonParser *parser;
 	NSString *deviceID;
 }
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 - (BOOL)isRegistered;
+- (void)logout;
 - (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error;
 - (NSDictionary *)getProfileWithError:(NSError **)error;
 - (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;

@@ -8,6 +8,8 @@
 
 #import "SupervoteClient.h"
 
+#import "SBJSON.h"
+
 #import "Candidate.h"
 #import "District.h"
 #import "DistrictRegistration.h"
@@ -34,8 +36,6 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 - (id)initWithContext:(NSManagedObjectContext *)context {
     self = [super init];
 	if (self) {
-		parser = [[SBJsonParser alloc] init];
-		
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		if ([defaults objectForKey:@"DeviceID"]) {
 			deviceID = [[defaults objectForKey:@"DeviceID"] retain];
@@ -49,6 +49,11 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 
 - (BOOL)isRegistered {
 	return deviceID != nil;
+}
+
+- (void)logout {
+	[deviceID release];
+	deviceID = nil;
 }
 
 - (NSURL *)createURL:(NSString *)service {
@@ -73,7 +78,7 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	}
 	else if ([request responseStatusCode] == 200) {
 		/* save UUID */
-		deviceID = [request responseString];
+		deviceID = [[request responseString] retain];
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:deviceID forKey:@"DeviceID"];
 		[defaults synchronize];
@@ -114,15 +119,17 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	if (*error == nil) {
 		if ([request responseStatusCode] == 200) {
 			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-			LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
+			LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
 			
 			NSError *parseError = nil;
+			SBJSON *parser = [[SBJSON alloc] init];
 			profile = [parser objectWithString:json error:&parseError];	
 			
 			if (parseError != nil) {
 				LogError(@"Error parsing JSON (%@): %@", json, [parseError localizedDescription]);
 			}
 			[json release];
+			[parser release];
 			
 			NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
 			lastModified = [df dateFromString:newLastModified];
@@ -1054,13 +1061,18 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
-		NSArray *votes = [parser objectWithString:json error:&error];	
 		
-		if (error != nil) {
-			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
+		NSError *parseError = nil;
+		SBJSON *parser = [[SBJSON alloc] init];
+		NSArray *votes = [parser objectWithString:json error:&parseError];	
+		
+		if (parseError != nil) {
+			LogError(@"Error parsing JSON '%@': %@", json, [parseError localizedDescription]);
+			[parser release];
 			[json release];
 		}
 		else {
+			[parser release];
 			[json release];
 			return votes;
 		}
@@ -1370,13 +1382,16 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	}
 	else {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
-		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
-		NSArray *friends = [parser objectWithString:json error:&error];	
 		
-		if (error != nil) {
-			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
+		NSError *parseError = nil;
+		SBJSON *parser = [[SBJSON alloc] init];
+		NSArray *friends = [parser objectWithString:json error:&parseError];
+		
+		if (parseError != nil) {
+			LogError(@"Error parsing JSON '%@': %@", json, [parseError localizedDescription]);
 		}
 		[json release];
+		[parser release];
 		
 		return friends;
 	}
@@ -1447,12 +1462,15 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json); 
 		
-		NSDictionary *elections = [parser objectWithString:json error:&error];
+		NSError *parseError = nil;
+		SBJSON *parser = [[SBJSON alloc] init];
+		NSDictionary *elections = [parser objectWithString:json error:&parseError];
 		
-		if (error != nil) {
-			LogError(@"Error parsing JSON '%@': %@", json, [error localizedDescription]);
+		if (parseError != nil) {
+			LogError(@"Error parsing JSON '%@': %@", json, [parseError localizedDescription]);
 		}
 		[json release];
+		[parser release];
 		
 		return elections;
 	}
@@ -1516,12 +1534,14 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 		LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
 
 		NSError *parseError = nil;
+		SBJSON *parser = [[SBJSON alloc] init];
 		*election = [parser objectWithString:json error:&parseError];	
 		
 		if (parseError != nil) {
 			LogError(@"Error parsing JSON '%@': %@", json, [parseError localizedDescription]);
 		}
 		[json release];
+		[parser release];
 		
 		NSString *newLastModified = [[request responseHeaders] objectForKey:@"Last-Modified"];
 		*newTime = [df dateFromString:newLastModified];
@@ -1843,7 +1863,6 @@ static NSString* kAPIUrl = @"http://localhost:9000";
 	if (deviceID != nil) {
 		[deviceID release];
 	}
-	[parser release];
     [super dealloc];
 }
 
