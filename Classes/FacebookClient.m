@@ -223,9 +223,7 @@
 	}
 }
 
-- (void)updateFriends {
-	LogInfo(@"Updating local Facebook friends");
-	
+- (void)updateFriends {	
 	NSFileManager *manager = [NSFileManager defaultManager];
 	
 	NSError *error = nil;
@@ -233,24 +231,25 @@
 		LogError(@"Error while creating facebook directory: %@", [error localizedDescription]);
 	}
 	
+	/* TODO: is this necessary? */
 	if (![FBSession activeSession].isOpen) {
 		LogInfo(@"Facebook session not valid, need to reauthorize");
 		[self authorize:nil];
 	}
-	
+		
 	if ([FBSession activeSession].isOpen) {
 		[FBRequestConnection
 		 startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection,
 												  id request,
-												  NSError *error) {
-			 
+												  NSError *error) {			 
 			 if (error) {
 				 LogError(@"Error while retrieving Facebook friend data: %@", [error localizedDescription]);
 			 }
 			 else {
 				 [self myFriendsRequest:request];
 			 }
-		 }];}
+		 }];
+	}
 }
 
 - (void)authorize:(id)delegate {

@@ -79,7 +79,6 @@ NSString *const FBSessionStateChangedNotification =
     switch (state) {
         case FBSessionStateOpen:
             if (!error) {
-                // We have a valid session
 				if (delegate != nil) {
 					if ([delegate respondsToSelector:@selector(fbDidLogin)]) {
 						[delegate performSelector:@selector(fbDidLogin)];
@@ -212,15 +211,13 @@ NSString *const FBSessionStateChangedNotification =
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+	
 	// this means the user switched back to this app without completing 
 	// a login in Safari/Facebook App
 	if ([[FBSession activeSession] state] == FBSessionStateCreatedOpening) {
 		[[FBSession activeSession] close]; // so we close our session and start over
 	}
 	
-	if ([facebookClient isLoggedIn]) {
-		[facebookClient updateFriends];
-	}
 	if ([supervoteClient isRegistered]) {
 		[self updateDataAsynchronously:NO withDelegate:nil];
 	}
@@ -244,9 +241,19 @@ NSString *const FBSessionStateChangedNotification =
 		LogDebug(@"Currently updating, so ignoring this request");
 		return;
 	}
+	
+	if (![supervoteClient isRegistered]) {
+		LogWarn(@"Not registered, but requesting to update data?");
+		return;
+	}
+
 	runningUpdate = YES;
 	
 	_lastRefreshDate = [[NSDate date] retain];
+	
+	if ([facebookClient isLoggedIn]) {
+		[facebookClient updateFriends];
+	}
 	
 	NSError *storeError = nil;
 	NSArray *friends = [supervoteClient getFriends];
@@ -407,20 +414,23 @@ NSString *const FBSessionStateChangedNotification =
 }
 
 /* http://stackoverflow.com/questions/3869217/iphone-ios-running-in-separate-thread */
+/* http://stackoverflow.com/questions/5267411/in-which-thread-are-ios-completion-handler-blocks-called */
 - (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate {
-	dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	/* running in a non-main thread breaks Facebook completion handlers */
+	//dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	dispatch_async(dispatch_get_main_queue(), ^{
 		// Add code here to do background processing
 		//
 		//
 		[self updateData:withAlerts];
 
-		dispatch_async( dispatch_get_main_queue(), ^{
+		//dispatch_async( dispatch_get_main_queue(), ^{
 			// Add code here to update the UI/send notifications based on the
 			// results of the background processing
 			if (delegate != nil && [delegate respondsToSelector:@selector(doneWithUpdateData)]) {
 				[delegate performSelector:@selector(doneWithUpdateData)];
 			}
-		});
+		//});
 	});
 }
 
@@ -471,7 +481,8 @@ NSString *const FBSessionStateChangedNotification =
 //				self.window.rootViewController = fbController;
 			}
 			[fbController release];
-		}		else {
+		}
+		else {			
 			UITabBarController *tabBarController = [[UITabBarController alloc] init];
 			self.mainAppController = tabBarController;
 

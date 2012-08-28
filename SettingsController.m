@@ -107,7 +107,7 @@
 
 	vote_status status = [_client sendFacebookAccessToken:[_facebookClient getAccessToken]];
 	if (status == OK) {
-		[_facebookClient updateFriends];
+//		[_facebookClient updateFriends];
 	}
 	else {
 		LogWarn(@"Network error sending Facebook access token");
