@@ -42,7 +42,7 @@ static NSString *hintName = @"PostEndorsementHint";
 			[defaults synchronize];
 			hintDisplayed = YES;
 			
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HintTitle", nil)
 															message:NSLocalizedString(hintName, nil)
 														   delegate:nil 
 												  cancelButtonTitle:NSLocalizedString(@"OK", nil)
