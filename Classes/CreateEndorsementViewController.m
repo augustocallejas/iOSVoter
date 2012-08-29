@@ -9,6 +9,7 @@
 #import "CreateEndorsementViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "YRDropdownView.h"
 
 static NSString *hintName = @"PostEndorsementHint";
 
@@ -35,20 +36,20 @@ static NSString *hintName = @"PostEndorsementHint";
 // Done button clicked
 - (IBAction)dismissView:(id)sender {
     // Call the delegate to dismiss the modal view
-    if ([delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on]) {
+    UIView *theView = [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on];
+	if (theView != nil) {
 		if (!hintDisplayed) {
 			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 			[defaults setObject:@"1" forKey:hintName];
 			[defaults synchronize];
 			hintDisplayed = YES;
 			
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"HintTitle", nil)
-															message:NSLocalizedString(hintName, nil)
-														   delegate:nil 
-												  cancelButtonTitle:NSLocalizedString(@"OK", nil)
-												  otherButtonTitles:nil];
-			[alert show];
-			[alert release];
+			[YRDropdownView showDropdownInView:theView
+										 title:NSLocalizedString(@"HintTitle", nil)
+										detail:NSLocalizedString(hintName, nil)
+										 image:nil
+									  animated:YES
+									 hideAfter:8.0f];
 		}
 	}
 }

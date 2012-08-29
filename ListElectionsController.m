@@ -8,6 +8,8 @@
 
 #import "ListElectionsController.h"
 
+#import "YRDropdownView.h"
+
 #import "Candidate.h"
 #import "DisplayBallotController.h"
 #import "Election.h"
@@ -334,13 +336,12 @@ static NSString *hintName = @"ListElectionsHint";
 		[defaults synchronize];
 		hintDisplayed = YES;
 		
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"WelcomeTitle", nil)
-														message:NSLocalizedString(hintName, nil)
-													   delegate:nil 
-											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[YRDropdownView showDropdownInView:self.pullTableView
+									 title:NSLocalizedString(@"WelcomeTitle", nil)
+									detail:NSLocalizedString(hintName, nil)
+									 image:nil
+								  animated:YES
+								 hideAfter:8.0f];
 	}
 }
 
