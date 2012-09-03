@@ -81,6 +81,7 @@
 			NSError *error = nil;
 			[self.managedObjectContext deleteObject:vote];
 			[self.managedObjectContext save:&error];
+			[vote release];
 			vote = nil;
 			
 			[self.tableView reloadData];
