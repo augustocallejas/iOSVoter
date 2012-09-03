@@ -65,8 +65,8 @@
 	//return @"ListEndorsementsController";
 }
 
-- (NSArray *)allocSortDescriptors{
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+- (NSArray *)getSortDescriptors{
+	NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO] autorelease];
     return [NSArray arrayWithObject:sort];
 }
 

@@ -291,8 +291,8 @@
 //	return @"VoteCandidateController";
 }
 
-- (NSArray *)allocSortDescriptors{
-	NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+- (NSArray *)getSortDescriptors{
+	NSSortDescriptor *sort = [[[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES] autorelease];
     return [NSArray arrayWithObject:sort];
 }
 
@@ -657,7 +657,7 @@
 	BallotVote *ballotVote = [VoteCandidateController getBallotVoteForBallot:ballot forPosition:position withError:&error andCount:&count];
 	
 	if (ballotVote != nil) {
-		vote = ballotVote;
+		vote = [ballotVote retain];
 	}
 	else if (error != nil) {
 		LogError(@"Error while fetching ballot vote: %@", [error localizedDescription]);
@@ -684,7 +684,7 @@
 		}
 		else if (*count == 1)
 		{
-			ballotVote = [(BallotVote *) [array objectAtIndex:0] retain];
+			ballotVote = (BallotVote *) [array objectAtIndex:0];
 		}
 		else
 		{
@@ -812,6 +812,7 @@
 	label.text = position.title;
 	
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

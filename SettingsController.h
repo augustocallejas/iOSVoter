@@ -13,7 +13,6 @@
 @interface SettingsController : UIViewController <UIActionSheetDelegate> {
 	
 @private
-	NSString *_documentsPath;
 	SupervoteClient *_client;
 	FacebookClient *_facebookClient;
 	

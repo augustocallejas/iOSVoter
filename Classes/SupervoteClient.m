@@ -71,8 +71,13 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	
 	[request startSynchronous];
 	BOOL registered = NO;
-	*error = [request error];
-	if (*error != nil) {
+	if ([request error] != nil) {
+		if (error == nil) {
+			LogError(@"Error while registering device: %@", [[request error] localizedDescription]);
+		}
+		else {
+			*error = [request error];
+		}
 		return registered;
 	}
 	else if ([request responseStatusCode] == 200) {
@@ -114,8 +119,15 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	id profile = nil;
 	
 	[request startSynchronous];
-	*error = [request error];
-	if (*error == nil) {
+	if ([request error] != nil) {
+		if (error == nil) {
+			LogError(@"Error while getting profile: %@", [request error]);
+		}
+		else {
+			*error = [request error];
+		}
+	}
+	else {
 		if ([request responseStatusCode] == 200) {
 			NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
 			LogDebug(@"Server returned %d from request '%@': %@", 200, [url path], json);
@@ -164,21 +176,56 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayOrder > %@", [NSNumber numberWithInt:displayOrder]];
 	[request setPredicate:predicate];
 	
-	NSArray *results = [_context executeFetchRequest:request error:error];
-	if (results != nil) {
+	NSError *fetchError = nil;
+	NSArray *results = [_context executeFetchRequest:request error:&fetchError];
+	[request release];
+	
+	if (results == nil) {
+		if (error == nil) {
+			LogError(@"Error while fetching GovernmentRegistration: %@", [fetchError localizedDescription]);
+		}
+		else {
+			*error = fetchError;
+		}
+	}
+	else {
 		for (GovernmentRegistration *registration in results) {
 			[_context deleteObject:registration];
 		}
+		
+		NSError *saveError = nil;
+		if ([_context save:&saveError]) {
+			return YES;
+		}
+		else {
+			if (error == nil) {
+				LogError(@"Error while deleting GovernmentRegistrations: %@", [saveError localizedDescription]);
+			}
+			else {
+				*error = saveError;
+			}
+		}
 	}
 	
-	return [_context save:error];
+	return NO;
 }
 
-- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int)displayOrder withParent:(Government *)parent withError:(NSError **)error {
+- (BOOL)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int)displayOrder withParent:(Government *)parent withError:(NSError **)error {
 	NSDictionary *governmentObj = [object objectForKey:@"government"];
 	
-	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:error];
-	if (government != nil) {
+	NSError *findError = nil;
+	Government *government = [self findOrInsertGovernment:governmentObj withParent:parent withError:&findError];
+	if (government == nil) {
+		if (error == nil) {
+			LogError(@"Error while finding/inserting Government: %@", [findError localizedDescription]);
+		}
+		else {
+			*error = findError;
+		}
+		
+		return NO;
+	}
+	else {
 		/* query for existing GovernmentRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -189,10 +236,21 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayOrder = %@", [NSNumber numberWithInt:displayOrder]];
 		[request setPredicate:predicate];
 		
-		NSArray *results = [_context executeFetchRequest:request error:error];
+		NSError *fetchError = nil;
+		NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 		[request release];
 
-		if (results != nil) {
+		if (results == nil) {
+			if (error == nil) {
+				LogError(@"Error while fetching GovernmentRegistration: %@", [fetchError localizedDescription]);
+			}
+			else {
+				*error = fetchError;
+			}
+			
+			return NO;
+		}
+		else {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
@@ -211,7 +269,18 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					
 					[_context deleteObject:registration];
 					
-					[self deleteGovernmentRegistrationsAbove:displayOrder withError:error];
+					NSError *deleteError = nil;
+					if (![self deleteGovernmentRegistrationsAbove:displayOrder withError:&deleteError]) {
+						if (error == nil) {
+							LogError(@"Error while deleting GovernmentRegistrations: %@", [deleteError localizedDescription]);
+						}
+						else {
+							*error = deleteError;
+						}
+						
+						[createdTime release];
+						return NO;
+					}
 				}
 				else {
 					LogInfo(@"Current GovernmentRegistration (type=%@, name=%@, displayOrder=%d) with latest timestamp, no update necessary: (current=%@ vs incoming=%@)",
@@ -237,70 +306,117 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 				registration.government = government;
 				registration.createdTime = createdTime;
 				
-				[_context save:error];
+				NSError *contextError = nil;
+				if (![_context save:&contextError]) {
+					if (error == nil) {
+						LogError(@"Error while saving GovernmentRegistration: %@", [contextError localizedDescription]);
+					}
+					else {
+						*error = contextError;
+					}
+					
+					[createdTime release];
+					return NO;
+				}
 			}
 			[createdTime release];
 			
-			if (*error == nil) {
-				NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
-				if (governmentRegistrations != nil) {
-					for (NSDictionary *governmentRegistrationObj in governmentRegistrations) {
-						[self findOrInsertGovernmentRegistration:governmentRegistrationObj withDisplayOrder:(displayOrder+1) withParent:government withError:error];
-						
-						if (*error != nil) {
-							return;
+			NSArray *governmentRegistrations = [object objectForKey:@"governmentRegistrations"];
+			if (governmentRegistrations != nil) {
+				for (NSDictionary *governmentRegistrationObj in governmentRegistrations) {
+					NSError *findError = nil;
+					if (![self findOrInsertGovernmentRegistration:governmentRegistrationObj withDisplayOrder:(displayOrder+1) withParent:government withError:&findError]) {
+						if (error == nil) {
+							LogError(@"Error while finding/inserting GovernmentRegistration: %@", [findError localizedDescription]);
 						}
+						else {
+							*error = findError;
+						}
+						
+						return NO;
 					}
 				}
-				
-				NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
-				if (districtRegistrations != nil) {
-					for (NSDictionary *districtRegistrationObj in districtRegistrations) {
-						[self findOrInsertDistrictRegistration:districtRegistrationObj withParent:registration withError:error];
-						
-						if (*error != nil) {
-							return;
+			}
+			
+			NSArray *districtRegistrations = [object objectForKey:@"districtRegistrations"];
+			if (districtRegistrations != nil) {
+				for (NSDictionary *districtRegistrationObj in districtRegistrations) {
+					NSError *findError = nil;
+					if (![self findOrInsertDistrictRegistration:districtRegistrationObj withParent:registration withError:&findError]) {
+						if (error == nil) {
+							LogError(@"Error while finding/inserting DistrictRegistration: %@", [findError localizedDescription]);
 						}
+						else {
+							*error = findError;
+						}
+						
+						return NO;
 					}
 				}
-				
-				NSArray *potentialDistrictRegistrations = [object objectForKey:@"potentialDistrictRegistrations"];
-				if (potentialDistrictRegistrations != nil) {
-					for (NSDictionary *potentialDistrictRegistrationObj in potentialDistrictRegistrations) {
-						[self findOrInsertPotentialDistrictRegistration:potentialDistrictRegistrationObj
-															 withParent:registration
-															  withError:error];
-						
-						if (*error != nil) {
-							return;
+			}
+			
+			NSArray *potentialDistrictRegistrations = [object objectForKey:@"potentialDistrictRegistrations"];
+			if (potentialDistrictRegistrations != nil) {
+				for (NSDictionary *potentialDistrictRegistrationObj in potentialDistrictRegistrations) {
+					NSError *findError = nil;
+					if (![self findOrInsertPotentialDistrictRegistration:potentialDistrictRegistrationObj
+															  withParent:registration
+															   withError:&findError]) {
+						if (error == nil) {
+							LogError(@"Error while finding/inserting PotentialDistrictRegistration: %@", [findError localizedDescription]);
 						}
+						else {
+							*error = findError;
+						}
+						
+						return NO;
 					}
 				}
+			}
+			
+			NSArray *potentialGovernmentRegistrations = [object objectForKey:@"potentialGovernmentRegistrations"];
+			if (potentialGovernmentRegistrations != nil && [potentialGovernmentRegistrations count] > 0) {
+				if ([potentialGovernmentRegistrations count] > 1) {
+					LogWarn(@"Expected only one PotentialGovernmentRegistration, found many, only processing first element");
+				}
 				
-				NSArray *potentialGovernmentRegistrations = [object objectForKey:@"potentialGovernmentRegistrations"];
-				if (potentialGovernmentRegistrations != nil && [potentialGovernmentRegistrations count] > 0) {
-					if ([potentialGovernmentRegistrations count] > 1) {
-						LogWarn(@"Expected only one PotentialGovernmentRegistration, found many, only processing first element");
+				NSError *findError = nil;
+				if (![self findOrInsertPotentialGovermentRegistration:[potentialGovernmentRegistrations objectAtIndex:0]
+														   withParent:registration
+															withError:&findError]) {
+					if (error == nil) {
+						LogError(@"Error while finding/inserting PotentialGovernmentRegistration: %@", [findError localizedDescription]);
 					}
-
-					if (![self findOrInsertPotentialGovermentRegistration:[potentialGovernmentRegistrations objectAtIndex:0]
-															   withParent:registration
-																withError:error]) {
-						return;
+					else {
+						*error = findError;
 					}
+					
+					return NO;
 				}
 			}
 		}
 	}
+	
+	return YES;
 }
 
-- (void)findOrInsertDistrictRegistration:(NSDictionary *)object
+- (BOOL)findOrInsertDistrictRegistration:(NSDictionary *)object
 							  withParent:(GovernmentRegistration *)parent
 							   withError:(NSError **)error {
 	NSDictionary *districtObj = [object objectForKey:@"district"];
+	BOOL successful = NO;
 	
-	District *district = [self findOrInsertDistrict:districtObj withParent:parent.government withError:error];
-	if (district != nil) {
+	NSError *findError = nil;
+	District *district = [self findOrInsertDistrict:districtObj withParent:parent.government withError:&findError];
+	if (district == nil) {
+		if (error == nil) {
+			LogError(@"Error finding/inserting District: %@", [findError localizedDescription]);
+		}
+		else {
+			*error = findError;
+		}
+	}
+	else {
 		/* query for existing DistrictRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -311,16 +427,29 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"registration = %@ and districtType = %@", parent, district.districtType];
 		[request setPredicate:predicate];
 		
-		NSArray *results = [_context executeFetchRequest:request error:error];
+		NSError *fetchError = nil;
+		NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 		[request release];
 		
-		if (results != nil) {
+		if (results == nil) {
+			if (error == nil) {
+				LogError(@"Error while fetching DistrictRegistration: %@", [fetchError localizedDescription]);
+			}
+			else {
+				*error = fetchError;
+			}
+		}
+		else {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
 			DistrictRegistration *registration = nil;
 			BOOL insertObject = YES;
-			if ([results count] == 1) {
+			if ([results count] >= 1) {
+				if ([results count] > 1) {
+					LogWarn(@"Found multiple DistrictRegistrations for district type '%@', choosing first one", district.districtType.name);
+				}
+				 
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
@@ -339,6 +468,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 							createdTime);
 					
 					insertObject = NO;
+					successful = YES;
 				}
 			}
 			
@@ -364,11 +494,25 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 					}
 				}
 				
-				[_context save:error];
+				NSError *contextError = nil;
+				if (![_context save:&contextError]) {
+					if (error == nil) {
+						LogError(@"Error while saving managed context: %@", [contextError localizedDescription]);
+					}
+					else {
+						*error = contextError;
+					}
+				}
+				else {
+					successful = YES;
+				}
 			}
+			
 			[createdTime release];
 		}
 	}
+	
+	return successful;
 }
 
 - (BOOL)resolveGovernmentRegistration:(PotentialGovernmentRegistration *)potentialRegistration
@@ -436,7 +580,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		}
 	}
 	
-	BOOL status = YES;
 	if (insertObject) {
 		LogInfo(@"Inserting incoming PotentialGovernmentRegistration (parent=%@, createdTime=%@)",
 				parent.government.name,
@@ -449,8 +592,17 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSDictionary *choices = [object objectForKey:@"choices"];
 		if (choices != nil) {
 			for (NSDictionary *choice in choices) {
-				Government *government = [self findOrInsertGovernment:choice withParent:parent.government withError:error];
+				NSError *findError = nil;
+				Government *government = [self findOrInsertGovernment:choice withParent:parent.government withError:&findError];
 				if (government == nil) {
+					if (error == nil) {
+						LogError(@"Error while finding/inserting Government: %@", [findError localizedDescription]);
+					}
+					else {
+						*error = findError;
+					}
+
+					[createdTime release];
 					return NO;
 				}
 				
@@ -458,22 +610,43 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			}
 		}
 		
-		status = [_context save:error];
+		NSError *saveError = nil;
+		if (![_context save:&saveError]) {
+			if (error == nil) {
+				LogError(@"Error while saving PotentialGovernmentRegistration: %@", [saveError localizedDescription]);
+			}
+			else {
+				*error = saveError;
+			}
+			
+			[createdTime release];
+			return NO;
+		}
 	}
 	[createdTime release];
 	
-	return status;
+	return YES;
 }
 
 
 
-- (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
+- (BOOL)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
 									   withParent:(GovernmentRegistration *)parent
 										withError:(NSError **) error {
+	BOOL successful = NO;
 	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
 	
-	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
-	if (*error == nil) {
+	NSError *findError = nil;
+	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:&findError];
+	if (districtType == nil) {
+		if (error == nil) {
+			LogError(@"Error while finding/inserting DistrictType: %@", [findError localizedDescription]);
+		}
+		else {
+			*error = findError;
+		}
+	}
+	else {
 		/* query for existing PotentialDistrictRegistration at displayOrder */
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		[request setFetchLimit:1];
@@ -484,16 +657,29 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"registration = %@ and districtType = %@", parent, districtType];
 		[request setPredicate:predicate];
 		
-		NSArray *results = [_context executeFetchRequest:request error:error];
+		NSError *fetchError = nil;
+		NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 		[request release];
 		
-		if (results != nil) {
+		if (results == nil) {
+			if (error == nil) {
+				LogError(@"Error while fetching PotentialDistrictRegistration: %@", [fetchError localizedDescription]);
+			}
+			else {
+				*error = fetchError;
+			}
+		}
+		else {
 			NSNumber *dateValue = [object objectForKey:@"createdTime"];
 			NSDate *createdTime = [[NSDate alloc] initWithTimeIntervalSince1970:[dateValue doubleValue]/1000.0];
 			
 			PotentialDistrictRegistration *registration = nil;
 			BOOL insertObject = YES;
-			if ([results count] == 1) {
+			if ([results count] >= 1) {
+				if ([results count] > 1) {
+					LogWarn(@"Found multiple PotentialDistrictRegistrations for type '%@', choosing one", districtType.name);
+				}
+				
 				registration = [results objectAtIndex:0];
 				
 				if ([registration.createdTime timeIntervalSinceDate:createdTime] <= -1.0) {
@@ -511,6 +697,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 							createdTime);
 					
 					insertObject = NO;
+					successful = YES;
 				}
 			}
 			
@@ -527,28 +714,60 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 				NSDictionary *choices = [object objectForKey:@"choices"];
 				if (choices != nil) {
 					for (NSDictionary *choice in choices) {
-						District *district = [self findOrInsertDistrict:choice withParent:parent.government withError:error];
+						NSError *findError = nil;
+						District *district = [self findOrInsertDistrict:choice withParent:parent.government withError:&findError];
 						if (district == nil) {
-							return;
+							if (error == nil) {
+								LogError(@"Error while finding/inserting District: %@", [findError localizedDescription]);
+							}
+							else {
+								*error = findError;
+							}
+
+							[createdTime release];
+							return NO;
 						}
 						
 						[registration addChoicesObject:district];
 					}
 				}
 				
-				[_context save:error];
+				NSError *fetchError = nil;
+				if (![_context save:&fetchError]) {
+					if (error == nil) {
+						LogError(@"Error while saving PotentialDistrictRegistration: %@", [fetchError localizedDescription]);
+					}
+					else {
+						*error = fetchError;
+					}
+				}
+				else {
+					successful = YES;
+				}
+
 			}
 			[createdTime release];
 		}
 	}
+	
+	return successful;
 }
 
 
 - (District*)findOrInsertDistrict:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
 	NSDictionary *districtTypeObj = [object objectForKey:@"districtType"];
 
-	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:error];
-	if (*error == nil) {
+	NSError *findError = nil;
+	DistrictType *districtType = [self findOrInsertDistrictType:districtTypeObj withError:&findError];
+	if (districtType == nil) {
+		if (error == nil) {
+			LogError(@"Error while finding/inserting DistrictType: %@", [findError localizedDescription]);
+		}
+		else {
+			*error = findError;
+		}
+	}
+	else {
 		id idValue = [object objectForKey:@"id"];
 		
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -560,10 +779,19 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
-		NSArray *results = [_context executeFetchRequest:request error:error];
+		NSError *fetchError = nil;
+		NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 		[request release];
 		
-		if (results != nil) {
+		if (results == nil) {
+			if (error == nil) {
+				LogError(@"Error while fetching District:%@", [fetchError localizedDescription]);
+			}
+			else {
+				*error = fetchError;
+			}
+		}
+		else {
 			if ([results count] == 1) {
 				return [results objectAtIndex:0];
 			}
@@ -585,7 +813,16 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 			district.districtNum = districtNum;
 			district.inGovernment = parent;
 			
-			if ([_context save:error]) {
+			NSError *contextError = nil;
+			if (![_context save:&contextError]) {
+				if (error == nil) {
+					LogError(@"Error while saving District: %@", [contextError localizedDescription]);
+				}
+				else {
+					*error = contextError;
+				}
+			}
+			else {
 				return district;
 			}
 		}
@@ -606,10 +843,19 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 	[request setPredicate:predicate];
 	
-	NSArray *results = [_context executeFetchRequest:request error:error];
+	NSError *fetchError = nil;
+	NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 	[request release];
 	
-	if (results != nil) {
+	if (results == nil) {
+		if (error == nil) {
+			LogError(@"Error while fetching DistrictType: %@", [fetchError localizedDescription]);
+		}
+		else {
+			*error = fetchError;
+		}
+	}
+	else {
 		if ([results count] == 1) {
 			return [results objectAtIndex:0];
 		}
@@ -623,9 +869,19 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		districtType.name = name;
 		districtType.displayOrder = displayOrder;
 		
-		if ([_context save:error]) {
+		NSError *saveError = nil;
+		if (![_context save:&saveError]) {
+			if (error == nil) {
+				LogError(@"Error while saving DistrictType: %@", [saveError localizedDescription]);
+			}
+			else {
+				*error = saveError;
+			}
+		}
+		else {
 			return districtType;
 		}
+
 	}
 	
 	return nil;
@@ -634,8 +890,17 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 - (Government *)findOrInsertGovernment:(NSDictionary *)object withParent:(Government *)parent withError:(NSError **)error {
 	NSDictionary *governmentTypeObj = [object objectForKey:@"governmentType"];
 	
-	GovernmentType *governmentType = [self findOrInsertGovernmentType:governmentTypeObj withError:error];
-	if (governmentType != nil) {
+	NSError *findError = nil;
+	GovernmentType *governmentType = [self findOrInsertGovernmentType:governmentTypeObj withError:&findError];
+	if (governmentType == nil) {
+		if (error == nil) {
+			LogError(@"Error while finding/inserting GovernmentType: %@", [findError localizedDescription]);
+		}
+		else {
+			*error = findError;
+		}
+	}
+	else {
 		id idValue = [object objectForKey:@"id"];
 		
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -647,11 +912,24 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 		[request setPredicate:predicate];
 		
-		NSArray *results = [_context executeFetchRequest:request error:error];
+		NSError *fetchError = nil;
+		NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 		[request release];
 		
-		if (results != nil) {
-			if ([results count] == 1) {
+		if (results == nil) {
+			if (error == nil) {
+				LogError(@"Error while fetching Government: %@", [fetchError localizedDescription]);
+			}
+			else {
+				*error = fetchError;
+			}
+		}
+		else {
+			if ([results count] >= 1) {
+				if ([results count] > 1) {
+					LogWarn(@"Found multiple Governments for id '%@', choosing one", idValue);
+				}
+				
 				return [results objectAtIndex:0];
 			}
 			
@@ -668,7 +946,16 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 				government.parent = parent;
 			}
 			
-			if ([_context save:error]) {
+			NSError *saveError = nil;
+			if (![_context save:&saveError]) {
+				if (error == nil) {
+					LogError(@"Error while saving Government: %@", [saveError localizedDescription]);
+				}
+				else {
+					*error = saveError;
+				}
+			}
+			else {
 				return government;
 			}
 		}
@@ -689,10 +976,19 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idValue];
 	[request setPredicate:predicate];
 	
-	NSArray *results = [_context executeFetchRequest:request error:error];
+	NSError *fetchError = nil;
+	NSArray *results = [_context executeFetchRequest:request error:&fetchError];
 	[request release];
 
-	if (results != nil) {
+	if (results == nil) {
+		if (error == nil) {
+			LogError(@"Error while fetching GovernmentType: %@", [fetchError localizedDescription]);
+		}
+		else {
+			*error = fetchError;
+		}
+	}
+	else {
 		if ([results count] == 1) {
 			return [results objectAtIndex:0];
 		}
@@ -706,7 +1002,16 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		governmentType.name = name;
 		governmentType.displayOrder = displayOrder;
 		
-		if ([_context save:error]) {
+		NSError *saveError = nil;
+		if (![_context save:&saveError]) {
+			if (error == nil) {
+				LogError(@"Error while saving GovernmentType: %@", [saveError localizedDescription]);
+			}
+			else {
+				*error = saveError;
+			}
+		}
+		else {
 			return governmentType;
 		}
 	}
@@ -1031,6 +1336,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 		df.locale = locale;
 		
 		[request addRequestHeader:@"If-Modified-Since" value:[df stringFromDate:date]];
+		[locale release];
 		[df release];
 	}
 	
@@ -1486,7 +1792,6 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	/* http://blog.zachwaugh.com/post/309924609/how-to-use-json-in-cocoaobjective-c */
 	
 	*newTime = nil;
-	*httpError = nil;
 	
 	NSDateFormatter *df = [[NSDateFormatter alloc] init];
 	df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss zzz";
@@ -1503,12 +1808,13 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	
 	[request startSynchronous];
 	
-//	NSDictionary *election = nil;
-	*httpError = [request error];
-		
-	election_status status;
-	if (*httpError != nil) {
-		LogError(@"Network error during request '%@': %@", [url path], [*httpError localizedDescription]);
+	/* TODO: unexpected response state not handled!!! */
+	election_status status = ES_OK;
+	if ([request error] != nil) {
+		if (httpError != nil) {
+			*httpError = [request error];
+		}
+		LogError(@"Network error during request '%@': %@", [url path], [request error]);
 	}
 	else if ([request responseStatusCode] == 200) {
 		NSString *json = [[NSString alloc] initWithData:[request responseData] encoding:NSUTF8StringEncoding];
@@ -1677,6 +1983,7 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	df.locale = locale;
 	
 	NSDate *date = [df dateFromString:dateValue];	
+	[locale release];
 	[df release];
 	
 	electionObj.title = title;

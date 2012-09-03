@@ -147,6 +147,9 @@
 		14A01B2514789F420029ADFE /* SupervoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A01B2414789F420029ADFE /* SupervoteClient.m */; };
 		14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */; };
 		14A6F44D143D932200EBF65D /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F44C143D932200EBF65D /* advanced.png */; };
+		14A74AA215EDD0360035DDB0 /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A74A9E15EDD0360035DDB0 /* bg-yellow.png */; };
+		14A74AA315EDD0360035DDB0 /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A74A9F15EDD0360035DDB0 /* bg-yellow@2x.png */; };
+		14A74AA415EDD0360035DDB0 /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A74AA115EDD0360035DDB0 /* YRDropdownView.m */; };
 		14A8779813F23DB2006B9D73 /* DisplayElection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A8779713F23DB2006B9D73 /* DisplayElection.xib */; };
 		14AAA6AC1499CA8600D59D0D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA6AB1499CA8600D59D0D /* Reachability.m */; };
 		14AAA6FC1499CAC400D59D0D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AAA6B51499CAC400D59D0D /* ASIAuthenticationDialog.m */; };
@@ -413,6 +416,10 @@
 		14A4D146157896EA00E73B21 /* PotentialGovernmentRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialGovernmentRegistration.h; sourceTree = "<group>"; };
 		14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PotentialGovernmentRegistration.m; sourceTree = "<group>"; };
 		14A6F44C143D932200EBF65D /* advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advanced.png; sourceTree = "<group>"; };
+		14A74A9E15EDD0360035DDB0 /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
+		14A74A9F15EDD0360035DDB0 /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow@2x.png"; sourceTree = "<group>"; };
+		14A74AA015EDD0360035DDB0 /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDropdownView.h; sourceTree = "<group>"; };
+		14A74AA115EDD0360035DDB0 /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDropdownView.m; sourceTree = "<group>"; };
 		14A8779713F23DB2006B9D73 /* DisplayElection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DisplayElection.xib; sourceTree = "<group>"; };
 		14AAA6AA1499CA8600D59D0D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		14AAA6AB1499CA8600D59D0D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -841,6 +848,18 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
+		14A74A9D15EDD0360035DDB0 /* YRDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				14A74A9E15EDD0360035DDB0 /* bg-yellow.png */,
+				14A74A9F15EDD0360035DDB0 /* bg-yellow@2x.png */,
+				14A74AA015EDD0360035DDB0 /* YRDropdownView.h */,
+				14A74AA115EDD0360035DDB0 /* YRDropdownView.m */,
+			);
+			name = YRDropdownView;
+			path = ../../YRDropdownView/YRDropdownView;
+			sourceTree = SOURCE_ROOT;
+		};
 		14AAA6A81499CA8600D59D0D /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -960,6 +979,7 @@
 		14FC45E6157B196700B71B88 /* Third Party Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				14A74A9D15EDD0360035DDB0 /* YRDropdownView */,
 				1456E47F15EAE7D500684659 /* DeprecatedHeaders */,
 				1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */,
 				147190E415CDFBDB00116E49 /* TestFlightSDK */,
@@ -1217,6 +1237,8 @@
 				1477A35A15E1FC3E00A45F6D /* Default.png in Resources */,
 				1477A35B15E1FC3E00A45F6D /* Default@2x.png in Resources */,
 				1406731D15E4AA5E00C07EEB /* FacebookSDKResources.bundle in Resources */,
+				14A74AA215EDD0360035DDB0 /* bg-yellow.png in Resources */,
+				14A74AA315EDD0360035DDB0 /* bg-yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1316,7 @@
 				1444589F15E0BCC200F7CD9A /* MessageInterceptor.m in Sources */,
 				144458A015E0BCC200F7CD9A /* PullTableView.m in Sources */,
 				1477A27115E1CA0A00A45F6D /* PullTableViewController.m in Sources */,
+				14A74AA415EDD0360035DDB0 /* YRDropdownView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,7 @@ static NSString *hintName = @"PostEndorsementHint";
 										detail:NSLocalizedString(hintName, nil)
 										 image:nil
 									  animated:YES
-									 hideAfter:8.0f];
+									 hideAfter:10.0f];
 		}
 	}
 }

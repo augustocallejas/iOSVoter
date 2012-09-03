@@ -91,9 +91,9 @@
 	return nil;
 }
 
-- (NSArray *)allocSortDescriptors{
-	NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"governmentType.displayOrder" ascending:YES];
-	NSSortDescriptor *sort2 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+- (NSArray *)getSortDescriptors{
+	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"governmentType.displayOrder" ascending:YES] autorelease];
+	NSSortDescriptor *sort2 = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
 	return [NSArray arrayWithObjects:sort1, sort2, nil];
 }
 
@@ -217,6 +217,7 @@
 	label.text = [self tableView:tableView titleForHeaderInSection:section];
 	
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

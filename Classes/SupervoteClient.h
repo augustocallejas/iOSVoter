@@ -40,8 +40,8 @@ typedef enum {
 - (void)logout;
 - (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error;
 - (NSDictionary *)getProfileWithError:(NSError **)error;
-- (void)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
-- (void)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error;
+- (BOOL)findOrInsertGovernmentRegistration:(NSDictionary *)object withDisplayOrder:(int) displayOrder withParent:(Government *)parent withError:(NSError **)error;
+- (BOOL)findOrInsertDistrictRegistration:(NSDictionary *)object withParent:(GovernmentRegistration *)parent withError:(NSError **)error;
 - (BOOL)resolveGovernmentRegistration:(PotentialGovernmentRegistration *)potentialRegistration
 					   withGovernment:(Government *)choice
 					  withCreatedTime:(NSDate *)createdTime
@@ -53,7 +53,7 @@ typedef enum {
 - (BOOL)findOrInsertPotentialGovermentRegistration:(NSDictionary *)object
 										withParent:(GovernmentRegistration *)parent
 										 withError:(NSError **) error;
-- (void)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
+- (BOOL)findOrInsertPotentialDistrictRegistration:(NSDictionary *)object
 									   withParent:(GovernmentRegistration *)parent
 										withError:(NSError **) error;
 - (District *)findOrInsertDistrict:(NSDictionary *)object

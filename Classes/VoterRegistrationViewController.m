@@ -54,6 +54,7 @@
 	NSError *error = nil;
 	self.registrations = [self.context executeFetchRequest:fetchRequest error:&error];
 	[sort release];
+	[fetchRequest release];
 	
 	if (sortedDistrictRegistrations == nil) {
 		sortedDistrictRegistrations = [[NSMutableArray alloc] initWithCapacity:[self.registrations count]];
@@ -365,6 +366,7 @@
 	}
 	
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

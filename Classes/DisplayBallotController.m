@@ -900,6 +900,7 @@ static NSString *hintName = @"DisplayBallotHint";
 	}
 
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

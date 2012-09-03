@@ -82,8 +82,8 @@
 	return nil;
 }
 
-- (NSArray *)allocSortDescriptors{
-	NSSortDescriptor *sort1 = [[NSSortDescriptor alloc] initWithKey:@"districtNum" ascending:YES];
+- (NSArray *)getSortDescriptors{
+	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"districtNum" ascending:YES] autorelease];
 	return [NSArray arrayWithObjects:sort1, nil];
 }
 

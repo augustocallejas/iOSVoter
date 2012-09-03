@@ -205,15 +205,6 @@
 	/* disables selection of cells */
 //	self.tableView.allowsSelection = NO;
 	
-	/* query for a measure vote, if any */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setFetchLimit:2];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"MeasureVote" inManagedObjectContext:[self.ballot managedObjectContext]];
-	[request setEntity:entity];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"forBallot == %@ && forMeasure == %@", self.ballot, self.measure];
-	[request setPredicate:predicate];
-	
 	/* get the vote for this measure */
 	NSError *error = nil;
 	NSUInteger count = 0;
@@ -776,6 +767,7 @@
 	label.text = [NSString stringWithFormat:@"%@: %@", _measure.identifier, _measure.title];
 	
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

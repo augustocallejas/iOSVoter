@@ -15,7 +15,7 @@
 }
 
 - (NSString *)getEntityName;
-- (NSArray *)allocSortDescriptors;
+- (NSArray *)getSortDescriptors;
 - (NSString *)getSectionNameKeyPath;
 - (NSString *)getCacheName;
 - (NSPredicate *)getPredicate;

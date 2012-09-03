@@ -253,6 +253,7 @@ static NSString *hintName = @"ListElectionsHint";
 	}
 	
 	[customView addSubview:label];
+	[label release];
 	return customView;
 }
 

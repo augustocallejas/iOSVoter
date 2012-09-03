@@ -41,12 +41,10 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	[self.client saveFacebookPhoto:data forFriend:friendId];
-	[connection release];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	LogError(@"Facebook Photo download failed: %@", [error localizedDescription]);
-	[connection release];
 };
 
 - (void)dealloc {
@@ -152,8 +150,8 @@
 							LogInfo(@"Facebook friend's profile photo downloaded, but not in database: '%@'", friendId);
 							/* insert new facebook friend??? */
 							/* create an object */
-							FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
-																										  inManagedObjectContext:_context] retain];
+							FacebookFriend *newFriend = (FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																										 inManagedObjectContext:_context];
 							newFriend.friendId = friendId;
 							newFriend.name = friendName;
 							newFriend.photoDownloaded = nil;
@@ -195,8 +193,8 @@
 						if (count == 0) {
 							LogDebug(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
 							/* create an object */
-							FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
-																										  inManagedObjectContext:_context] retain];
+							FacebookFriend *newFriend = (FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																										 inManagedObjectContext:_context];
 							newFriend.friendId = friendId;
 							newFriend.name = friendName;
 							newFriend.photoDownloaded = nil;
@@ -280,8 +278,9 @@
 	download.friendId = friendId;
 	
 	/* the delegate will release this connection */
-	[[NSURLConnection alloc] initWithRequest:request delegate:download startImmediately:YES];
+	NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:download];
 	/* The connection retains delegate. It releases delegate when the connection finishes loading, fails, or is canceled. */
+	[connection start];
 	[download release];
 }
 
@@ -303,6 +302,7 @@
 		NSError *error = nil;
 		
 		NSArray *array = [_context executeFetchRequest:request error:&error];
+		[request release];
 		if (array != nil) {
 			NSUInteger count = [array count];
 			if (count == 1) {

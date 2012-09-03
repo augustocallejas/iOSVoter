@@ -38,7 +38,7 @@
 								 userInfo:nil];
 }
 
-- (NSArray *)allocSortDescriptors{
+- (NSArray *)getSortDescriptors{
 	@throw [NSException exceptionWithName:NSInternalInconsistencyException
 								   reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
 								 userInfo:nil];
@@ -91,7 +91,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:[self getEntityName] inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
 	
-	NSArray *sortDescriptors = [self allocSortDescriptors];
+	NSArray *sortDescriptors = [self getSortDescriptors];
 	[fetchRequest setSortDescriptors:sortDescriptors];
 	/* TODO: make this an abstract method so you can specify the batch size */
 //	[fetchRequest setFetchBatchSize:20];
@@ -109,10 +109,6 @@
     self.fetchedResultsController = theFetchedResultsController;
 	self.fetchedResultsController.delegate = self;
 	
-	for (id sortDescriptor in sortDescriptors)
-	{
-		[sortDescriptor release];
-	}
     [fetchRequest release];
     [theFetchedResultsController release];
 	
