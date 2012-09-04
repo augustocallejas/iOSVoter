@@ -329,7 +329,9 @@
 			_vote.forMeasure = _measure;
 		}
 		
+#ifdef USE_TESTFLIGHT
 		[TestFlight passCheckpoint:@"EndorsedMeasure"];
+#endif
 
 		_vote.vote = measureVote;
 		_vote.statement = statement;

@@ -2,6 +2,9 @@
 // Prefix header for all source files of the 'Supervote' target in the 'Supervote' project
 //
 
+/* comment out if excluding TestFlight */
+//#define USE_TESTFLIGHT 1
+
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
@@ -12,7 +15,10 @@
 	#import <FacebookSDK/FacebookSDK.h>
 	#import "ASIFormDataRequest.h"
 	#import "ProgressHUD.h"
+#ifdef TESTFLIGHT
 	#import "TestFlight.h"
+#endif
+	#import <CrashReporter/CrashReporter.h>
 
 typedef enum {
 	STATUS_OK, STATUS_HTTP_ERROR, STATUS_SERVER_ERROR, STATUS_BAD_REQUEST, STATUS_UNEXPECTED_RESPONSE

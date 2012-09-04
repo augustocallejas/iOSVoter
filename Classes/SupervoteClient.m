@@ -51,6 +51,11 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return deviceID != nil;
 }
 
+- (void)sendCrashReport:(NSString *)report {
+	/* TODO: not implemented!!!! */
+	NSLog(@"Sending crash report!");
+}
+
 - (void)logout {
 	[deviceID release];
 	deviceID = nil;

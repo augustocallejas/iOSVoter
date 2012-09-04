@@ -14,7 +14,7 @@ extern NSString *const FBSessionStateChangedNotification;
 
 @class SupervoteViewController;
 
-@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate> {
+@interface SupervoteAppDelegate : NSObject <UIApplicationDelegate, UIAlertViewDelegate> {
     UIWindow *window;
     SupervoteViewController *viewController;
 	UITabBarController *mainAppController;
@@ -26,6 +26,7 @@ extern NSString *const FBSessionStateChangedNotification;
     NSManagedObjectModel *managedObjectModel_;
     NSPersistentStoreCoordinator *persistentStoreCoordinator_;
 	NSDate *_lastRefreshDate;
+	PLCrashReport *_report;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

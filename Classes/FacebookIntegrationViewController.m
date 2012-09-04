@@ -106,7 +106,9 @@
 - (void)fbDidLogin {
 	[self markAsViewed];
 	
+#ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FacebookIntegration"];
+#endif
 	
 	/* TODO: why can't the app delegate update facebook friends when the application becomes active? */
 	vote_status status = [_client sendFacebookAccessToken:[_facebookClient getAccessToken]];
@@ -127,7 +129,9 @@
 - (void)fbDidNotLogin {
 	[self markAsViewed];
 	
+#ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"CanceledFacebookIntegration"];
+#endif
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
 													message:NSLocalizedString(@"LaterFacebookMessage", nil)

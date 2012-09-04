@@ -71,7 +71,9 @@
 - (IBAction)doShowBallots {
 	[self markAsViewed];
 	
+#ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FinishedTutorial"];
+#endif
 	
 	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate switchToMainApp:self.view];

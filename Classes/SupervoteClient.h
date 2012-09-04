@@ -37,6 +37,7 @@ typedef enum {
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 - (BOOL)isRegistered;
+- (void)sendCrashReport:(NSString *)report;
 - (void)logout;
 - (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error;
 - (NSDictionary *)getProfileWithError:(NSError **)error;

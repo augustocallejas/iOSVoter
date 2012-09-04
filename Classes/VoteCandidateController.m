@@ -175,7 +175,9 @@
 	BOOL dismissModalView = YES;
 	vote_status status = OK;
 	if (withVote) {
-//		[TestFlight passCheckpoint:@"EndorsedCandidate"];
+#ifdef USE_TESTFLIGHT
+		[TestFlight passCheckpoint:@"EndorsedCandidate"];
+#endif
 		
 		if (vote == nil) {
 			vote = [(BallotVote *) [NSEntityDescription insertNewObjectForEntityForName:@"BallotVote" inManagedObjectContext:self.managedObjectContext] retain];

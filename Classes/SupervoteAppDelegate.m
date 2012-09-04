@@ -22,7 +22,7 @@
 #import "SupervoteViewController.h"
 #import "VoterRegistrationViewController.h"
 
-#define TESTING 1
+static NSString *kCrashReportKey = @"CrashReporterAlways";
 
 NSString *const FBSessionStateChangedNotification =
 @"com.canaryfalls.supervote.Login:FBSessionStateChangedNotification";
@@ -131,18 +131,89 @@ NSString *const FBSessionStateChangedNotification =
 #pragma mark -
 #pragma mark Application lifecycle
 
+- (void)sendCrashReport:(PLCrashReport *)report {
+	NSString *reportAsString = [PLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
+	[supervoteClient sendCrashReport:reportAsString];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	/* yes=1, always=2, no=3*/
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	switch (buttonIndex) {
+		case 2:
+			/* ALWAYS */
+			[defaults setObject:@"1" forKey:kCrashReportKey];
+			[defaults synchronize];
+		case 1:
+			/* YES */
+			[self sendCrashReport:_report];
+		default:
+			/* NO */
+			[_report release];
+			_report = nil;
+			PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+			[crashReporter purgePendingCrashReport];  
+			break;
+	}
+}
+
+/* http://www.clintharris.net/2009/plcrashreporter-a-handy-api-for-reporting-iphone-app-crashes/ */
+/** 
+ * Called to handle a pending crash report. 
+ */ 
+- (void) handleCrashReport {
+    PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];  
+    NSData *crashData;  
+    NSError *error;
+
+    /* Try loading the crash report */  
+    crashData = [crashReporter loadPendingCrashReportDataAndReturnError: &error];  
+    if (crashData == nil) {  
+        LogError(@"Could not load crash report: %@", [error localizedDescription]);  
+		[crashReporter purgePendingCrashReport];  
+    }
+	else {
+		/* We could send the report from here, but we'll just print out 
+		 * some debugging info instead */  
+		PLCrashReport *report = [[[PLCrashReport alloc] initWithData: crashData error: &error] autorelease];  
+		if (report == nil) {  
+			LogError(@"Could not parse crash report");  
+			[crashReporter purgePendingCrashReport];  
+		}
+		else {
+			NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+			if ([defaults objectForKey:kCrashReportKey] == nil) {
+				_report = [report retain];
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CrashReporter", nil)
+																message:NSLocalizedString(@"CrashReporterMessage", nil)
+															   delegate:self
+													  cancelButtonTitle:NSLocalizedString(@"NO", nil)
+													  otherButtonTitles:NSLocalizedString(@"YES", nil),
+									  NSLocalizedString(@"Always", nil),
+									  nil];
+				[alert show];
+				[alert release];
+			}
+			else {
+				[self sendCrashReport:report];
+				[crashReporter purgePendingCrashReport];  
+			}
+		}
+	}
+} 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
 	runningUpdate = NO;
-	
+
 	/* http://blog.goosoftware.co.uk/2012/04/18/unique-identifier-no-warnings/ */
-#ifdef TESTING
+#ifdef USE_TESTFLIGHT
 	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#endif
+
 	[TestFlight takeOff:@"08e9cf49dda0f6525984558248826e2c_MTE3ODE0MjAxMi0wOC0wNCAyMDo0OTozMy43MDgwMDA"];
 	
 	[TestFlight passCheckpoint:@"FirstCheckpoint"];
-	
+#endif	
     // Override point for customization after application launch.
 	
 	NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
@@ -161,6 +232,25 @@ NSString *const FBSessionStateChangedNotification =
 
 	supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
 	facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
+	
+	PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+	NSError *error;
+	
+    /* Check if we previously crashed */  
+    if ([crashReporter hasPendingCrashReport]) {
+        [self handleCrashReport];
+	}
+	else {
+		LogInfo(@"No pending crash report");
+	}
+	
+    /* Enable the Crash Reporter */  
+    if (![crashReporter enableCrashReporterAndReturnError: &error]) {
+        LogError(@"Warning: Could not enable crash reporter: %@", [error localizedDescription]);
+	}
+	else {
+		LogInfo(@"Enabled crash reporter");
+	}
 	
 	if (![supervoteClient isRegistered]) {
 		[self switchToWelcomePage];

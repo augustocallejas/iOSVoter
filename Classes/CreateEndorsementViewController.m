@@ -35,6 +35,12 @@ static NSString *hintName = @"PostEndorsementHint";
 
 // Done button clicked
 - (IBAction)dismissView:(id)sender {
+	
+//	/* TODO: TESTING CRASH!!!!!!! */
+//	NSLog(@"should crash");
+//	NSArray *array = [[NSArray alloc] init];
+//	[array objectAtIndex:1];
+	
     // Call the delegate to dismiss the modal view
     UIView *theView = [delegate didDismissModalView:(sender==_voteButton) toCandidate:_candidate orMeasureVote:_measureVote withOptionalStatement:_textView.text andViewableByFriends:_viewableByFriendsSwitch.on];
 	if (theView != nil) {

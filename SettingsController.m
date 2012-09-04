@@ -103,7 +103,9 @@
 - (void)fbDidLogin {
 	LogInfo(@"User completed Facebook authentication");
 
+#ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FacebookIntegrationInSettings"];
+#endif
 
 	vote_status status = [_client sendFacebookAccessToken:[_facebookClient getAccessToken]];
 	if (status == OK) {
@@ -119,8 +121,10 @@
  */
 - (void)fbDidNotLogin {
 	LogInfo(@"User cancelled Facebook authentication");
-	
+
+#ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"CanceledFacebookIntegrationInSettings"];
+#endif
 }
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
