@@ -51,18 +51,56 @@ static NSString* kAPIUrl = @"https://api.supervote.org";
 	return deviceID != nil;
 }
 
+- (NSURL *)createURL:(NSString *)service {
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kAPIUrl, service]];
+}
+
 - (void)sendCrashReport:(NSString *)report {
-	/* TODO: not implemented!!!! */
-	NSLog(@"Sending crash report!");
+	/* write report to file */
+	NSFileManager *manager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsPath = [paths objectAtIndex:0];
+	NSString *crashReportPath = [NSString stringWithFormat:@"%@/crashReport.txt", documentsPath];
+	
+	NSError *writeError = nil;
+	if (![report writeToFile:crashReportPath atomically:YES encoding:NSASCIIStringEncoding error:&writeError]) {
+		LogError(@"Unable to write crash report to path '%@': %@", crashReportPath, [writeError localizedDescription]);
+	}
+	else {
+		/* prepare for upload */
+		NSURL *url = [self createURL:@"/voter/v1/crashReport"];
+		ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+		[request setFile:crashReportPath forKey:@"file"];
+		
+		[request startSynchronous];
+		if ([request error] != nil) {
+			LogError(@"Error while sending crash report: %@", [[request error] localizedDescription]);
+		}
+		else if ([request responseStatusCode] == 200) {
+			/* OK */
+			LogInfo(@"Crash report uploaded successfully, deleting local file");
+			NSError *deleteError = nil;
+			if (![manager removeItemAtPath:crashReportPath error:&deleteError]) {
+				LogError(@"Error while deleting crash report file: %@", [deleteError localizedDescription]);
+			}
+		}
+		else if ([request responseStatusCode] == 400) {
+			/* BAD_REQUEST */
+			LogError(@"Server returned %d from request '%@'", 400, [[request url] path]); 
+		}
+		else if ([request responseStatusCode] == 500) {
+			/* INTERNAL_SERVER_ERROR */
+			LogError(@"Server returned %d from request '%@'", 500, [[request url] path]); 
+		}
+		else {
+			LogError(@"Server returned unexpected %d from request '%@'", 400, [[request url] path]); 
+		}
+	}
 }
 
 - (void)logout {
 	[deviceID release];
 	deviceID = nil;
-}
-
-- (NSURL *)createURL:(NSString *)service {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", kAPIUrl, service]];
 }
 
 - (BOOL)registerDevice:(NSString *)zip5or9 withAddress:(NSString *)address withLanguage:(NSString *)language withError:(NSError **)error {
