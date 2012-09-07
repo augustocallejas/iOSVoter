@@ -7,10 +7,11 @@
 //
 
 #import "FacebookClient.h"
+#import "PullTableView.h"
 #import "PullTableViewController.h"
 #import "SupervoteClient.h"
 
-@interface ListElectionsController : PullTableViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ListElectionsController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, PullTableViewDelegate, ADBannerViewDelegate> {
 
 @private
 	BOOL hintDisplayed;
@@ -20,6 +21,9 @@
 	NSFetchedResultsController *_fetchedResultsController2;	
 }
 
+@property (nonatomic, retain) IBOutlet PullTableView *tableView;
+@property (nonatomic, retain) ADBannerView *bannerView;
+@property (nonatomic, retain) NSIndexPath *selectedElection;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController1;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController2;

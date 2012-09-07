@@ -15,16 +15,97 @@
 #import "Election.h"
 #import "Measure.h"
 #import "Position.h"
+#import "SupervoteAppDelegate.h"
 
 static NSString *hintName = @"ListElectionsHint";
 
+/* remove these when we're ready to support 4.2 */
+/* http://useyourloaf.com/blog/2010/11/27/iad-framework-updates-for-ios-42.html */
+NSString *kTabnavADBannerContentSizeIdentifierPortrait;
+NSString *kTabnavADBannerContentSizeIdentifierLandscape;
+
 @implementation ListElectionsController
 
+@synthesize tableView;
+@synthesize bannerView;
+@synthesize selectedElection;
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize fetchedResultsController1 = _fetchedResultsController1;
 @synthesize fetchedResultsController2 = _fetchedResultsController2;
+
+#pragma mark -
+#pragma mark ADBannerViewDelegate methods
+
+- (void)moveBannerViewOffscreen {
+	// Make the table biew take up the void left by the banner
+	CGRect originalTableFrame = self.tableView.frame;
+	CGFloat newTableHeight = self.view.frame.size.height;
+	CGRect newTableFrame = originalTableFrame;
+	newTableFrame.size.height = newTableHeight;
+	
+	// Position the banner below the table view (offscreen).
+	CGRect newBannerFrame = self.bannerView.frame;
+	newBannerFrame.origin.y = newTableHeight;
+	
+	self.tableView.frame = newTableFrame;
+	self.bannerView.frame = newBannerFrame;	
+}
+
+- (void)moveBannerViewOnscreen {
+	CGRect newBannerFrame = self.bannerView.frame;
+	newBannerFrame.origin.y = self.view.frame.size.height - newBannerFrame.size.height;
+	
+	CGRect originalTableFrame = self.tableView.frame;
+	CGFloat newTableHeight = self.view.frame.size.height - newBannerFrame.size.height;
+	CGRect newTableFrame = originalTableFrame;
+	newTableFrame.size.height = newTableHeight;
+	
+	[UIView beginAnimations:@"BannerViewIntro" context:nil];
+	self.tableView.frame = newTableFrame;
+	self.bannerView.frame = newBannerFrame;
+	[UIView commitAnimations];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+	[self moveBannerViewOffscreen];
+}
+
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+	// pause animations
+	return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
+	// start animations
+}
+
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+	[self moveBannerViewOnscreen];
+}
+
+
+# pragma mark -
+# pragma mark PullTableViewDelegate methods
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView
+{
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:0.0f];
+}
+
+- (void) refreshTable
+{
+	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate updateData:YES];
+	
+    self.tableView.pullLastRefreshDate = appDelegate.lastRefreshDate;
+    self.tableView.pullTableIsRefreshing = NO;
+}
+
+#pragma mark -
 
 - (NSFetchedResultsController *)fetchedResultsController1 {
 	/* singleton pattern, lazy instantiation */
@@ -129,9 +210,6 @@ static NSString *hintName = @"ListElectionsHint";
 
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
-	
-    UITableView *tableView = self.tableView;
-	
 	if (_fetchedResultsController2 == controller) {
 		NSInteger count1 = [self.fetchedResultsController1.sections count];
 		if (indexPath != nil) {
@@ -213,7 +291,7 @@ static NSString *hintName = @"ListElectionsHint";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"ListElectionController";
 	    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
@@ -260,6 +338,8 @@ static NSString *hintName = @"ListElectionsHint";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	DisplayBallotController *controller = [[DisplayBallotController alloc] initWithNibName:@"DisplayBallot" bundle:[NSBundle mainBundle]];
 	
+	self.selectedElection = indexPath;
+	
 	Election *election = nil;
 	if (indexPath.section < [self.fetchedResultsController1.sections count]) {
 		election = (Election *) [self.fetchedResultsController1 objectAtIndexPath:indexPath];
@@ -289,6 +369,18 @@ static NSString *hintName = @"ListElectionsHint";
 		dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+		
+		if (&ADBannerContentSizeIdentifierPortrait != nil) {
+			kTabnavADBannerContentSizeIdentifierPortrait = ADBannerContentSizeIdentifierPortrait;
+		} else {
+			kTabnavADBannerContentSizeIdentifierPortrait = ADBannerContentSizeIdentifier320x50;
+		}
+		
+		if (&ADBannerContentSizeIdentifierLandscape != nil) {
+			kTabnavADBannerContentSizeIdentifierLandscape = ADBannerContentSizeIdentifierLandscape;
+		} else {
+			kTabnavADBannerContentSizeIdentifierLandscape = ADBannerContentSizeIdentifier480x32;
+		}
     }
     return self;
 }
@@ -296,6 +388,16 @@ static NSString *hintName = @"ListElectionsHint";
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	bannerView = [[ADBannerView alloc] initWithFrame: CGRectMake(0, 410, 320, 50)];
+	[bannerView setRequiredContentSizeIdentifiers:[NSSet setWithObjects: 
+													kTabnavADBannerContentSizeIdentifierPortrait, nil]];
+    bannerView.currentContentSizeIdentifier = kTabnavADBannerContentSizeIdentifierPortrait;
+    bannerView.delegate = self;
+	
+	[self.view addSubview:bannerView];
+	
+	[self moveBannerViewOffscreen];
 	
 	hintDisplayed = [[NSUserDefaults standardUserDefaults] objectForKey:hintName] != nil;
 	
@@ -331,13 +433,18 @@ static NSString *hintName = @"ListElectionsHint";
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	
+	if (self.selectedElection != nil) {
+		[self.tableView deselectRowAtIndexPath:self.selectedElection animated:NO];
+		self.selectedElection = nil;
+	}
+	
 	if (!hintDisplayed) {
 		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setObject:@"1" forKey:hintName];
 		[defaults synchronize];
 		hintDisplayed = YES;
 		
-		[YRDropdownView showDropdownInView:self.pullTableView
+		[YRDropdownView showDropdownInView:self.tableView
 									 title:NSLocalizedString(@"WelcomeTitle", nil)
 									detail:NSLocalizedString(hintName, nil)
 									 image:nil
@@ -366,6 +473,9 @@ static NSString *hintName = @"ListElectionsHint";
 - (void)viewDidUnload {
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+	[bannerView removeFromSuperview];
+	self.bannerView.delegate = nil;
+	self.bannerView = nil;
 	self.navigationItem.titleView = nil;
 	self.fetchedResultsController1.delegate = nil;
 	self.fetchedResultsController1 = nil;
@@ -376,6 +486,8 @@ static NSString *hintName = @"ListElectionsHint";
 
 
 - (void)dealloc {
+	self.tableView = nil;
+	self.selectedElection = nil;
 	self.client = nil;
 	self.facebookClient = nil;
 	self.managedObjectContext = nil;
