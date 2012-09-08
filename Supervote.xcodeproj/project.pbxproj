@@ -176,6 +176,7 @@
 		14C997D01527A2E30041ACDA /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C997B71527A2E30041ACDA /* LoggerClient.m */; };
 		14C999AF152812B60041ACDA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C999AD152812B60041ACDA /* Localizable.strings */; };
 		14CBC34F14DF208C00618BB0 /* League_Gothic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14CBC34E14DF208C00618BB0 /* League_Gothic.otf */; };
+		14D9DEFF15F872BB00FF379D /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D9DEFE15F872BB00FF379D /* iAd.framework */; };
 		14E748FA14343821002E2F82 /* EndorsementViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14E748F914343821002E2F82 /* EndorsementViewCell.xib */; };
 		14E749031434388B002E2F82 /* EndorsementViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E749021434388B002E2F82 /* EndorsementViewCell.m */; };
 		14E7491814343C99002E2F82 /* ListEndorsementsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7491714343C99002E2F82 /* ListEndorsementsController.m */; };
@@ -469,6 +470,7 @@
 		14C999AE152812B60041ACDA /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14C999B2152812CD0041ACDA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14CBC34E14DF208C00618BB0 /* League_Gothic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = League_Gothic.otf; sourceTree = "<group>"; };
+		14D9DEFE15F872BB00FF379D /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		14E748F914343821002E2F82 /* EndorsementViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndorsementViewCell.xib; sourceTree = "<group>"; };
 		14E749011434388B002E2F82 /* EndorsementViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndorsementViewCell.h; sourceTree = "<group>"; };
 		14E749021434388B002E2F82 /* EndorsementViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndorsementViewCell.m; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				147190E915CDFBDB00116E49 /* libTestFlight.a in Frameworks */,
 				140672F715E4A9AB00C07EEB /* FacebookSDK.framework in Frameworks */,
 				1470B84715F5DDF5008AC8C1 /* CrashReporter.framework in Frameworks */,
+				14D9DEFF15F872BB00FF379D /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1078,7 @@
 				14AAA73A1499CD1200D59D0D /* SystemConfiguration.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1470B84615F5DDF5008AC8C1 /* CrashReporter.framework */,
+				14D9DEFE15F872BB00FF379D /* iAd.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
