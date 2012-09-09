@@ -112,12 +112,8 @@
 	[TestFlight passCheckpoint:@"FacebookIntegration"];
 #endif
 	
-	/* TODO: why can't the app delegate update facebook friends when the application becomes active? */
 	vote_status status = [_client sendFacebookAccessToken:[_facebookClient getAccessToken]];
-	if (status == OK) {
-//		[_facebookClient updateFriends];
-	}
-	else {
+	if (status != OK) {
 		LogWarn(@"Network error sending Facebook access token");
 	}
 
