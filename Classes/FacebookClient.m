@@ -44,11 +44,15 @@ static NSString *kAppId = @"367473609934472";
 			_facebook.expirationDate = [defaults objectForKey:kFBExpirationDateKey];
 			_loggedIn = YES;
 
-			LogDebug(@"Facebook token: %@", _facebook.accessToken);
 			LogInfo(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
 			LogInfo(@"Extending Facebook access token if needed");
-			
 			[_facebook extendAccessTokenIfNeeded];
+			
+			if (![_facebook isSessionValid]) {
+				LogInfo(@"Facebook session not valid, need to reauthorize: %@", [_facebook expirationDate]);
+				/* TODO: this opens up the Facebook app */
+				[_facebook authorize:nil];
+			}
 		}
 		
 		_context = [context retain];
@@ -76,11 +80,6 @@ static NSString *kAppId = @"367473609934472";
 	NSError *error = nil;
 	if (![manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/facebook", _documentsPath] withIntermediateDirectories:YES attributes:nil error:&error]) {
 		LogError(@"Error while creating facebook directory: %@", [error userInfo]);
-	}
-	
-	if (![_facebook isSessionValid]) {
-		LogInfo(@"Facebook session not valid, need to reauthorize: %@", [_facebook expirationDate]);
-		[_facebook authorize:nil];
 	}
 	
 	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
