@@ -2,8 +2,10 @@
 // Prefix header for all source files of the 'Supervote' target in the 'Supervote' project
 //
 
-/* comment out if excluding TestFlight */
-//#define USE_TESTFLIGHT 1
+#ifdef CONFIGURATION_Debug
+	/* comment out if excluding TestFlight */
+	//#define USE_TESTFLIGHT 1
+#endif
 
 #ifdef __OBJC__
 	#import <iAd/iAD.h>
