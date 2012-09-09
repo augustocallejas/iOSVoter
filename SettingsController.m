@@ -21,34 +21,6 @@
 @synthesize client = _client;
 @synthesize facebookClient = _facebookClient;
 
-
-#pragma mark -
-#pragma mark IBAction methods
-
-- (IBAction)doFacebookLogin {
-	if ([_facebookClient isLoggedIn]) {
-		LogInfo(@"User logged out of Facebook in Settings tab");
-		[_facebookClient logout];
-	}
-	else {
-		LogInfo(@"User initiating Facebook authentication in Settings tab");
-		[_facebookClient authorize:self];
-	}
-}
-
-- (IBAction)doResetApplication {
-	LogInfo(@"User initiating reset application request in Settings tab");
-	
-	/* user wants to reset the application */
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ResetApplicationWarning", nil)
-															 delegate:self
-													cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-											   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
-													otherButtonTitles:nil];
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
-}
-
 #pragma mark -
 #pragma mark UIActionSheetDelegate methods
 
@@ -73,25 +45,31 @@
 }
 
 #pragma mark -
-#pragma mark NSNotificationCenter methods
+#pragma mark IBAction methods
 
-- (void)sessionStateChanged:(NSNotification*)notification {
-	//			UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
-	//			UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
-	//			[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-	//			[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-	
-	//	UIImage *icon1 = [UIImage imageNamed:@"LogoutNormal.png"];
-	//	UIImage *icon2 = [UIImage imageNamed:@"LogoutPressed.png"];
-	//	[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
-	//	[[self facebookLoginButton] setImage:icon2 forState:UIControlStateHighlighted];
-	
-	if ([_facebookClient isLoggedIn]) {
-		[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
-
-    } else {
+- (IBAction)doFacebookLogin {
+	if (_facebookClient.loggedIn) {
+		LogInfo(@"User logged out of Facebook in Settings tab");
+		[_facebookClient logout];
 		[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogIntoFacebookButton", nil) forState:UIControlStateNormal];
-    }
+	}
+	else {
+		LogInfo(@"User initiating Facebook authentication in Settings tab");
+		[_facebookClient authorize];
+	}
+}
+
+- (IBAction)doResetApplication {
+	LogInfo(@"User initiating reset application request in Settings tab");
+	
+	/* user wants to reset the application */
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"ResetApplicationWarning", nil)
+															 delegate:self
+													cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+											   destructiveButtonTitle:NSLocalizedString(@"YES", nil)
+													otherButtonTitles:nil];
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
 }
 
 #pragma mark -
@@ -102,6 +80,7 @@
  */
 - (void)fbDidLogin {
 	LogInfo(@"User completed Facebook authentication");
+	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
 
 #ifdef USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FacebookIntegrationInSettings"];
@@ -119,7 +98,7 @@
 /**
  * Called when the user dismissed the dialog without logging in.
  */
-- (void)fbDidNotLogin {
+- (void)fbDidNotLogin:(BOOL)cancelled {
 	LogInfo(@"User cancelled Facebook authentication");
 
 #ifdef USE_TESTFLIGHT
@@ -127,16 +106,29 @@
 #endif
 }
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
+/**
+* Called after the access token was extended. If your application has any
+* references to the previous access token (for example, if your application
+* stores the previous access token in persistent storage), your application
+* should overwrite the old access token with the new one in this method.
+* See extendAccessToken for more details.
 */
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+}
+
+- (void)fbDidLogout {
+	//  [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+/**
+ * Called when the current session has expired. This might happen when:
+ *  - the access token expired
+ *  - the app has been disabled
+ *  - the user revoked the app's permissions
+ *  - the user changed his or her password
+ */
+- (void)fbSessionInvalidated {
+}
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -144,12 +136,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	[[NSNotificationCenter defaultCenter]
-		addObserver:self
-		selector:@selector(sessionStateChanged:)
-		name:FBSessionStateChangedNotification
-		object:nil];
 	
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:22.0];
 	_facebookLabel.textColor = [UIColor darkGrayColor];
@@ -162,14 +148,14 @@
 	[resetAppButton setTitle:NSLocalizedString(@"ResetApplicationButton", nil) forState:UIControlStateNormal];
 	
 	if (_facebookClient != nil) {
-		if ([_facebookClient isLoggedIn]) {
+		if (_facebookClient.loggedIn) {
 			[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
-
 		}
 		else {
 			[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogIntoFacebookButton", nil) forState:UIControlStateNormal];
-
 		}
+		
+		_facebookClient.delegate = self;
 	}
 }
 
@@ -193,7 +179,9 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 	
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	if (_facebookClient != nil) {
+		_facebookClient.delegate = nil;
+	}	
 }
 
 

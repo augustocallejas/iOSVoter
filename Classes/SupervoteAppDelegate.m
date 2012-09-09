@@ -8,8 +8,6 @@
 
 #import "SupervoteAppDelegate.h"
 
-#import <FacebookSDK/FacebookSDK.h>
-
 #import "AboutUsViewController.h"
 #import "FacebookClient.h"
 #import "FacebookIntegrationViewController.h"
@@ -43,7 +41,9 @@ NSString *const FBSessionStateChangedNotification =
 // Pre 4.2 support
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	if ([facebookAppURLScheme isEqualToString:[url scheme]]) {
-		return [FacebookClient handleOpenURL:url];
+		if (facebookClient != nil) {
+			return [facebookClient handleOpenURL:url];
+		}
 	}
 	else {
 		LogWarn(@"Unsupported openURL: %@", url);
@@ -56,76 +56,15 @@ NSString *const FBSessionStateChangedNotification =
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 	if ([facebookAppURLScheme isEqualToString:[url scheme]]) {
-		return [FacebookClient handleOpenURL:url];
+		if (facebookClient != nil) {
+			return [facebookClient handleOpenURL:url];
+		}
 	}
 	else {
 		LogWarn(@"Unsupported openURL: %@", url);
 	}
 	
 	return NO;
-}
-
-#pragma mark -
-#pragma mark Facebook boilerplate
-
-/*
- * Callback for session changes.
- */
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState) state
-                      error:(NSError *)error
-				   delegate:(id)delegate
-{	
-    switch (state) {
-        case FBSessionStateOpen:
-            if (!error) {
-				if (delegate != nil) {
-					if ([delegate respondsToSelector:@selector(fbDidLogin)]) {
-						[delegate performSelector:@selector(fbDidLogin)];
-					}
-				}
-            }
-            break;
-		case FBSessionStateClosedLoginFailed:
-			if (delegate != nil) {
-				if ([delegate respondsToSelector:@selector(fbDidNotLogin)]) {
-					[delegate performSelector:@selector(fbDidNotLogin)];
-				}
-			}
-        case FBSessionStateClosed:
-            [[FBSession activeSession] closeAndClearTokenInformation];
-            break;
-        default:
-            break;
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:FBSessionStateChangedNotification
-														object:session];
-    
-    if (error) {
-		LogError(@"Error with Facebook session change: %@", [error localizedDescription]);
-    }
-}
-
-/*
- * Opens a Facebook session and optionally shows the login UX.
- */
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI withDelegate:(id)delegate {
-    return [FBSession openActiveSessionWithPermissions:nil
-                                          allowLoginUI:allowLoginUI
-                                     completionHandler:^(FBSession *session,
-                                                         FBSessionState state,
-                                                         NSError *error) {
-                                         [self sessionStateChanged:session
-                                                             state:state
-                                                             error:error
-														  delegate:delegate];
-                                     }];
-}
-
-- (void) closeSession {
-	LogInfo(@"Closing and clearing token for Facebook");
-    [[FBSession activeSession] closeAndClearTokenInformation];
 }
 
 #pragma mark -
@@ -298,15 +237,15 @@ NSString *const FBSessionStateChangedNotification =
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-	
-	// this means the user switched back to this app without completing 
-	// a login in Safari/Facebook App
-	if ([[FBSession activeSession] state] == FBSessionStateCreatedOpening) {
-		[[FBSession activeSession] close]; // so we close our session and start over
-	}
+//    /*
+//     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//     */
+//	
+//	// this means the user switched back to this app without completing 
+//	// a login in Safari/Facebook App
+//	if ([[FBSession activeSession] state] == FBSessionStateCreatedOpening) {
+//		[[FBSession activeSession] close]; // so we close our session and start over
+//	}
 	
 	if ([supervoteClient isRegistered]) {
 		[self updateDataAsynchronously:NO withDelegate:nil];
@@ -319,7 +258,7 @@ NSString *const FBSessionStateChangedNotification =
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
-	[[FBSession activeSession] close];
+//	[[FBSession activeSession] close];
 }
 
 #pragma mark -
@@ -341,7 +280,8 @@ NSString *const FBSessionStateChangedNotification =
 	
 	_lastRefreshDate = [[NSDate date] retain];
 	
-	if ([facebookClient isLoggedIn]) {
+	if (facebookClient.loggedIn) {
+		LogInfo(@"Updating friends from app delegate");
 		[facebookClient updateFriends];
 	}
 	

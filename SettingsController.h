@@ -10,7 +10,7 @@
 #import "SupervoteClient.h"
 
 
-@interface SettingsController : UIViewController <UIActionSheetDelegate> {
+@interface SettingsController : UIViewController <FBSessionDelegate, UIActionSheetDelegate> {
 	
 @private
 	SupervoteClient *_client;

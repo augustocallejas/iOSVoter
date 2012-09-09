@@ -44,6 +44,8 @@
 	
 	/* TODO: why would facebookClient be null? */
 	if (_facebookClient != nil) {
+		_facebookClient.delegate = self;
+		
 		UIImage *icon1 = [UIImage imageNamed:@"LoginWithFacebookNormal.png"];
 		UIImage *icon2 = [UIImage imageNamed:@"LoginWithFacebookPressed.png"];
 		[[self facebookLoginButton] setImage:icon1 forState:UIControlStateNormal];
@@ -78,7 +80,7 @@
 
 - (IBAction)doYesFacebookIntegration {
 	LogInfo(@"User selected Facebook integration");
-	[_facebookClient authorize:self];
+	[_facebookClient authorize];
 }
 
 - (IBAction)doNoFacebookIntegration {
@@ -126,7 +128,7 @@
 /**
  * Called when the user dismissed the dialog without logging in.
  */
-- (void)fbDidNotLogin {
+- (void)fbDidNotLogin:(BOOL)canceled {
 	[self markAsViewed];
 	
 #ifdef USE_TESTFLIGHT
@@ -145,6 +147,29 @@
 	[appDelegate switchToMainApp:self.view];
 }
 
+/**
+ * Called after the access token was extended. If your application has any
+ * references to the previous access token (for example, if your application
+ * stores the previous access token in persistent storage), your application
+ * should overwrite the old access token with the new one in this method.
+ * See extendAccessToken for more details.
+ */
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+}
+
+- (void)fbDidLogout {
+}
+
+/**
+ * Called when the current session has expired. This might happen when:
+ *  - the access token expired
+ *  - the app has been disabled
+ *  - the user revoked the app's permissions
+ *  - the user changed his or her password
+ */
+- (void)fbSessionInvalidated {
+}
+
 #pragma mark -
 #pragma mark General methods
 
@@ -161,7 +186,7 @@
     // e.g. self.myOutlet = nil;
 	
 	if (_facebookClient != nil) {
-//		_facebookClient.delegate = nil;
+		_facebookClient.delegate = nil;
 	}
 }
 

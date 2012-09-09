@@ -49,9 +49,6 @@ extern NSString *const FBSessionStateChangedNotification;
 
 @property (nonatomic, retain, readonly) NSDate *lastRefreshDate;
 
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI withDelegate:(id)delegate;
-- (void) closeSession;
-
 - (void)updateData:(BOOL)withAlerts;
 - (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate;
 - (void)deleteFacebookPhotos;

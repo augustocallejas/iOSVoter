@@ -11,85 +11,44 @@
 #import "FacebookFriend.h"
 #import "SupervoteAppDelegate.h"
 
-@interface DownloadFacebookPhoto : NSObject
-{
-@private
-	NSMutableData *data;
-}
+static NSString *kFBAccessTokenKey = @"FBAccessTokenKey";
+static NSString *kFBExpirationDateKey = @"FBExpirationDateKey";
 
-@property (nonatomic, retain) NSString *friendId;
-@property (nonatomic, retain) FacebookClient *client;
-
-@end
-
-@implementation DownloadFacebookPhoto
-
-@synthesize friendId;
-@synthesize client;
-
-- (id)init {
-	self = [super init];
-	if (self) {
-		data = [[NSMutableData data] retain];
-	}
-	return self;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)mdata {
-	[data appendData: mdata];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-	[self.client saveFacebookPhoto:data forFriend:friendId];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	LogError(@"Facebook Photo download failed: %@", [error localizedDescription]);
-};
-
-- (void)dealloc {
-	self.friendId = nil;
-	self.client = nil;
-	[data release];
-	[super dealloc];
-}
-
-@end
-
+// Your Facebook APP Id must be set before running this example
+// See http://www.facebook.com/developers/createapp.php
+// Also, your application must bind to the fb[app_id]:// URL
+// scheme (substitute [app_id] for your real Facebook app id).
+static NSString *kAppId = @"367473609934472";
 
 @implementation FacebookClient
+
+@synthesize facebook = _facebook;
+@synthesize loggedIn = _loggedIn;
+@synthesize delegate = _delegate;
 
 #pragma mark -
 #pragma mark FacebookClient methods
 
-+ (BOOL)handleOpenURL:(NSURL *)url {
-	return [[FBSession activeSession] handleOpenURL:url];
+- (BOOL)handleOpenURL:(NSURL *)url {
+	return [self.facebook handleOpenURL:url];
 }
 
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path {
 	self = [super init];
 	if (self) {
-//		_loggedIn = NO;
-//		_facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
-//		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//		if ([defaults objectForKey:kFBAccessTokenKey] && [defaults objectForKey:kFBExpirationDateKey]) {
-//			_facebook.accessToken = [defaults objectForKey:kFBAccessTokenKey];
-//			_facebook.expirationDate = [defaults objectForKey:kFBExpirationDateKey];
-//			_loggedIn = YES;
-//			
-//			LogInfo(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
-//			LogInfo(@"Extending Facebook access token if needed");
-//			[_facebook extendAccessTokenIfNeeded];
-//		}
-		if (![[FBSession activeSession] isOpen]) {
-			SupervoteAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-			if ([delegate openSessionWithAllowLoginUI:NO withDelegate:nil]) {
-				LogInfo(@"Facebook session was closed but re-opened");
-			}
-			else {
-				LogWarn(@"Facebook session was closed but not able to re-open");
-			}
+		_loggedIn = NO;
+		_facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
+		NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+		if ([defaults objectForKey:kFBAccessTokenKey] && [defaults objectForKey:kFBExpirationDateKey]) {
+			_facebook.accessToken = [defaults objectForKey:kFBAccessTokenKey];
+			_facebook.expirationDate = [defaults objectForKey:kFBExpirationDateKey];
+			_loggedIn = YES;
 
+			LogDebug(@"Facebook token: %@", _facebook.accessToken);
+			LogInfo(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
+			LogInfo(@"Extending Facebook access token if needed");
+			
+			[_facebook extendAccessTokenIfNeeded];
 		}
 		
 		_context = [context retain];
@@ -98,14 +57,150 @@
 	return self;
 }
 
-- (BOOL)isLoggedIn {
-	return [FBSession activeSession].isOpen;
+- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:accessToken forKey:kFBAccessTokenKey];
+	[defaults setObject:expiresAt forKey:kFBExpirationDateKey];
+	[defaults synchronize];
 }
 
 - (NSString *)getAccessToken {
-	return [FBSession activeSession].accessToken;
+	return _facebook.accessToken;
 }
 
+- (void)updateFriends {
+	LogInfo(@"Updating Facebook friend list");
+	
+	NSFileManager *manager = [NSFileManager defaultManager];
+	
+	NSError *error = nil;
+	if (![manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/facebook", _documentsPath] withIntermediateDirectories:YES attributes:nil error:&error]) {
+		LogError(@"Error while creating facebook directory: %@", [error userInfo]);
+	}
+	
+	if (![_facebook isSessionValid]) {
+		LogInfo(@"Facebook session not valid, need to reauthorize: %@", [_facebook expirationDate]);
+		[_facebook authorize:nil];
+	}
+	
+	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
+}
+
+- (void)extendAccessTokenIfNeeded {
+	[_facebook extendAccessTokenIfNeeded];
+}
+
+- (void)authorize {
+	//    _permissions =  [[NSArray arrayWithObjects:
+	//              @"read_stream", @"publish_stream", @"offline_access",nil] retain];
+	[_facebook authorize:nil];
+}
+
+- (void)logout {
+	[_facebook logout];
+}
+
+#pragma mark -
+#pragma mark FBSessionDelegate methods
+
+/**
+ * Called when the user successfully logged in.
+ */
+- (void)fbDidLogin {
+	_loggedIn = YES;
+	
+	LogInfo(@"Facebook login successful, session expiration date %@", [_facebook expirationDate]);
+	/* save access token */
+	[self storeAuthData:[_facebook accessToken] expiresAt:[_facebook expirationDate]];
+	
+	if (_delegate != nil) {
+		[_delegate fbDidLogin];
+	}
+}
+
+/**
+ * Called when the user dismissed the dialog without logging in.
+ */
+- (void)fbDidNotLogin:(BOOL)cancelled {
+	LogInfo(@"Did not log into Facebook");
+	
+	if (_delegate != nil) {
+		[_delegate fbDidNotLogin:cancelled];
+	}
+}
+
+/**
+ * Called after the access token was extended. If your application has any
+ * references to the previous access token (for example, if your application
+ * stores the previous access token in persistent storage), your application
+ * should overwrite the old access token with the new one in this method.
+ * See extendAccessToken for more details.
+ */
+- (void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+	LogDebug(@"Facebook access token extended with expiration date %@", expiresAt);
+	[self storeAuthData:accessToken expiresAt:expiresAt];
+	
+	if (_delegate != nil) {
+		[_delegate fbDidExtendToken:accessToken expiresAt:expiresAt];
+	}
+}
+
+/**
+ * Called when the user logged out.
+ */
+- (void)fbDidLogout {
+	_loggedIn = NO;
+	LogInfo(@"Logged out of Facebook");
+	
+	// Remove saved authorization information if it exists
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"]) {
+        [defaults removeObjectForKey:@"FBAccessTokenKey"];
+        [defaults removeObjectForKey:@"FBExpirationDateKey"];
+        [defaults synchronize];
+    }
+	
+	if (_delegate != nil) {
+		[_delegate fbDidLogout];
+	}
+}
+
+/**
+ * Called when the current session has expired. This might happen when:
+ *  - the access token expired
+ *  - the app has been disabled
+ *  - the user revoked the app's permissions
+ *  - the user changed his or her password
+ */
+- (void)fbSessionInvalidated {
+	if (_delegate !=nil) {
+		[_delegate fbSessionInvalidated];
+	}
+}
+
+#pragma mark -
+#pragma mark FBRequestDelegate methods
+
+/**
+ * Called just before the request is sent to the server.
+ */
+- (void)requestLoading:(FBRequest *)request {
+	//LogInfo(@"FB: request loading");
+}
+
+/**
+ * Called when the server responds and begins to send back data.
+ */
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+	//LogInfo(@"FB: request did receive response");
+}
+
+/**
+ * Called when an error prevents the request from completing successfully.
+ */
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+	LogError(@"Facebook request (%@) failed with error: %@", [request url], [error description]);
+}
 
 /**
  * Called when a request returns and its response has been parsed into
@@ -114,221 +209,189 @@
  * The resulting object may be a dictionary, an array, a string, or a number,
  * depending on thee format of the API response.
  */
-- (void)myFriendsRequest:(id)result {
-	if ([result isKindOfClass:[NSDictionary class]]) {
-		NSDictionary *dict = (NSDictionary *)result;
-		
-		id object = [dict objectForKey:@"data"];
-		if (object != nil && [object isKindOfClass:[NSArray class]]) {
-			NSArray *friendList = (NSArray *)object;
+- (void)request:(FBRequest *)request didLoad:(id)result {
+	//LogInfo(@"requestDidLoad %@", [request url]);
+	
+	if ([[request url] hasSuffix:@"me/friends"]) {
+		if ([result isKindOfClass:[NSDictionary class]]) {
+			NSDictionary *dict = (NSDictionary *)result;
 			
-			/* query for each user */
-			NSFetchRequest *request = [[NSFetchRequest alloc] init];
-			[request setFetchLimit:1];
-			NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
-			[request setEntity:entity];			
-			NSError *error = nil;
-			
-			for (id friend in friendList) {
-				NSDictionary *friendInfo = (NSDictionary *)friend;
-				NSString *friendId = (NSString *)[friendInfo objectForKey:@"id"];
-				NSString *friendName = (NSString *)[friendInfo objectForKey:@"name"];
+			id object = [dict objectForKey:@"data"];
+			if (object != nil && [object isKindOfClass:[NSArray class]]) {
+				NSArray *friendList = (NSArray *)object;
 				
-				/* check if the friend's profile photo has already been downloaded */
-				NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];					
-				if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-					/* the file exists, but perhaps it was partially downloaded?
-					 query for the FacebookFriend instance */
+				/* query for each user */
+				NSFetchRequest *request = [[NSFetchRequest alloc] init];
+				[request setFetchLimit:1];
+				NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
+				[request setEntity:entity];
+				NSError *error = nil;
+				
+				for (id friend in friendList) {
+					NSDictionary *friendInfo = (NSDictionary *)friend;
+					NSString *friendId = (NSString *)[friendInfo objectForKey:@"id"];
+					NSString *friendName = (NSString *)[friendInfo objectForKey:@"name"];
 					
-					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
-					[request setPredicate:predicate];
+					/* TODO: check if any friends have been deleted? */
 					
-					NSArray *array = [_context executeFetchRequest:request error:&error];
-					if (array != nil) {
-						NSUInteger count = [array count];
-						if (count == 0) {
-							LogInfo(@"Facebook friend's profile photo downloaded, but not in database: '%@'", friendId);
-							/* insert new facebook friend??? */
-							/* create an object */
-							FacebookFriend *newFriend = (FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
-																										 inManagedObjectContext:_context];
-							newFriend.friendId = friendId;
-							newFriend.name = friendName;
-							newFriend.photoDownloaded = nil;
-							
-							if (![_context save:&error]) {
-								LogError(@"Error while saving FacebookFriend instance: %@", [error localizedDescription]);
-							}
-							else {
-								//[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
-							}
-							
-						}
-						else if (count == 1) {
-							FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
-							if (friend.photoDownloaded == nil) {
-								/* profile photo downloaded, but not marked complete, redownload */
-								LogDebug(@"Redownloading photo for '%@' since no photoDownloaded date exists", friend.name);
-								[self downloadFacebookPhoto:friendId];							
-							}
-							else {
-								/* TODO: how do i check if the photo is out of date? */
-								/* TODO: how can we check if the profile photo has changed? */
-								LogDebug(@"Profile photo for '%@' already exists, not re-downloading", friendName);
-							}
-						}
-					}
-					else {
-						LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
-					}
-				}
-				else {
-					/* the facebook friend's profile photo is not downloaded */
-					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
-					[request setPredicate:predicate];
-					
-					NSArray *array = [_context executeFetchRequest:request error:&error];
-					if (array != nil) {
-						NSUInteger count = [array count];
-						if (count == 0) {
-							LogDebug(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
-							/* create an object */
-							FacebookFriend *newFriend = (FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
-																										 inManagedObjectContext:_context];
-							newFriend.friendId = friendId;
-							newFriend.name = friendName;
-							newFriend.photoDownloaded = nil;
-							
-							if (![_context save:&error]) {
-								LogError(@"Error while saving FacebookFriend instance: %@", [error localizedDescription]);
-							}
-						}
-						else if (count == 1) {
-							FacebookFriend *friend = [array objectAtIndex:0];
-							LogDebug(@"Profile photo for '%@' is missing, will redownload", friend.name);
-						}
+					/* check if the friend's profile photo has already been downloaded */
+					NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
+					if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+						/* the file exists, but perhaps it was partially downloaded?
+						 query for the FacebookFriend instance */
 						
-						[self downloadFacebookPhoto:friendId];
+						NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+						[request setPredicate:predicate];
+						
+						NSArray *array = [_context executeFetchRequest:request error:&error];
+						if (array != nil) {
+							NSUInteger count = [array count];
+							if (count == 0) {
+								LogDebug(@"Facebook friend's profile photo downloaded, but not in database: '%@'", friendId);
+								/* insert new facebook friend??? */
+								/* create an object */
+								FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																											  inManagedObjectContext:_context] retain];
+								newFriend.friendId = friendId;
+								newFriend.name = friendName;
+								newFriend.photoDownloaded = nil;
+								
+								if (![_context save:&error]) {
+									LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
+								}
+								else {
+									//[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];
+								}
+								
+							}
+							else if (count == 1) {
+								FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+								if (friend.photoDownloaded == nil) {
+									/* profile photo downloaded, but not marked complete, redownload */
+									LogDebug(@"Redownloading photo for '%@' since no photoDownloaded date exists", friend.name);
+									[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", friendId] andDelegate:self];       
+								}
+								else {
+									/* TODO: how do i check if the photo is out of date? */
+									/* TODO: how can we check if the profile photo has changed? */
+									LogDebug(@"Profile photo for '%@' already exists, not re-downloading", friendName);
+								}
+							}
+						}
+						else {
+							LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
+						}
 					}
 					else {
-						LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
+						/* the facebook friend's profile photo is not downloaded */
+						NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+						[request setPredicate:predicate];
+						
+						NSArray *array = [_context executeFetchRequest:request error:&error];
+						if (array != nil) {
+							NSUInteger count = [array count];
+							if (count == 0) {
+								LogInfo(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
+								/* create an object */
+								FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
+																											  inManagedObjectContext:_context] retain];
+								newFriend.friendId = friendId;
+								newFriend.name = friendName;
+								newFriend.photoDownloaded = nil;
+								
+								if (![_context save:&error]) {
+									LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
+								}
+							}
+							else if (count == 1) {
+								FacebookFriend *friend = [array objectAtIndex:0];
+								LogInfo(@"Profile photo for '%@' is missing, will redownload", friend.name);
+							}
+							
+							[self downloadFacebookPhoto:friendId];
+						}
+						else {
+							LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
+						}
 					}
 				}
-			}
-			
-			[request release];
-		}
-	}
-}
-
-- (void)updateFriends {	
-	NSFileManager *manager = [NSFileManager defaultManager];
-	
-	NSError *error = nil;
-	if (![manager createDirectoryAtPath:[NSString stringWithFormat:@"%@/facebook", _documentsPath] withIntermediateDirectories:YES attributes:nil error:&error]) {
-		LogError(@"Error while creating facebook directory: %@", [error localizedDescription]);
-	}
-	
-	/* TODO: is this necessary? */
-	if (![FBSession activeSession].isOpen) {
-		LogInfo(@"Facebook session not valid, need to reauthorize");
-		[self authorize:nil];
-	}
-		
-	if ([FBSession activeSession].isOpen) {
-		[FBRequestConnection
-		 startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection,
-												  id request,
-												  NSError *error) {			 
-			 if (error) {
-				 LogError(@"Error while retrieving Facebook friend data: %@", [error localizedDescription]);
-			 }
-			 else {
-				 [self myFriendsRequest:request];
-			 }
-		 }];
-	}
-}
-
-- (void)authorize:(id)delegate {
-	//		_permissions =  [[NSArray arrayWithObjects:
-	//						  @"read_stream", @"publish_stream", @"offline_access",nil] retain];
-	
-	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	[appDelegate openSessionWithAllowLoginUI:YES withDelegate:delegate];
-}
-
-- (void)logout {
-	SupervoteAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-
-	// If the user is authenticated, log out when the button is clicked.
-    if ([FBSession activeSession].isOpen) {
-        [delegate closeSession];
-	}
-}
-
-- (void)downloadFacebookPhoto:(NSString *)friendId {
-	LogDebug(@"Downloading profile photo to file '%@.gif'", friendId);
-	
-	NSString *url = [NSString stringWithFormat:@"%@/%@/picture", FBGraphBasePath, friendId];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-	
-	DownloadFacebookPhoto *download = [[DownloadFacebookPhoto alloc] init];
-	download.client = self;
-	download.friendId = friendId;
-	
-	/* the delegate will release this connection */
-	NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:download];
-	/* The connection retains delegate. It releases delegate when the connection finishes loading, fails, or is canceled. */
-	[connection start];
-	[download release];
-}
-
-- (void)saveFacebookPhoto:(NSData *)data forFriend:(NSString *)friendId {
-	NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
-	
-	if ([data writeToFile:filePath atomically:YES]) {
-		LogDebug(@"Successfully downloaded Facebook friend's profile photo: '%@'", friendId);
-		
-		/* update the photoDownloaded attribute in FacebookFriend object */
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setFetchLimit:1];
-		
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
-		[request setEntity:entity];		
-		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
-		[request setPredicate:predicate];
-		NSError *error = nil;
-		
-		NSArray *array = [_context executeFetchRequest:request error:&error];
-		[request release];
-		if (array != nil) {
-			NSUInteger count = [array count];
-			if (count == 1) {
-				FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
-				friend.photoDownloaded = [NSDate date];
 				
-				if (![_context save:&error]) {
-					LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
-				}
+				[request release];
 			}
-			else if (count == 0) {
-				LogWarn(@"Missing FacebookFriend instance (friendId=%@) despite downloading photo", friendId);
-			}
-		}
-		else {
-			LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
 		}
 	}
 	else {
-		/* TODO: does writeToFile set an error flag? */
-		LogWarn(@"Failed to save Facebook friend's profile photo: %@", friendId);
+		//LogWarn(@"Unexpected request: %@", [request url]);
 	}
 }
 
+- (void)downloadFacebookPhoto:(NSString *)facebookId {
+	LogInfo(@"Downloading profile photo to file '%@.gif'", facebookId);
+	[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", facebookId] andDelegate:self];
+}
+
+/**
+ * Called when a request returns a response.
+ *
+ * The result object is the raw response from the server of type NSData
+ */
+- (void)request:(FBRequest *)request didLoadRawResponse:(NSData *)data {
+	if ([[request url] hasSuffix:@"/picture"]) {
+		NSUInteger lastForwardSlash = [[request url] length] - 8;
+		NSRange range = [[request url] rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]
+													   options:NSBackwardsSearch
+														 range:NSMakeRange(0, lastForwardSlash)];
+		NSString *friendId = [[request url] substringWithRange:NSMakeRange(range.location+1, lastForwardSlash-range.location-1)];
+		
+		/* TODO: create facebook directory beforehand */
+		NSString *filePath = [NSString stringWithFormat:@"%@/facebook/%@.gif", _documentsPath, friendId];
+		
+		if ([data writeToFile:filePath atomically:YES]) {
+			LogDebug(@"Successfully downloaded Facebook friend's profile photo: '%@'", friendId);
+			
+			/* update the photoDownloaded attribute in FacebookFriend object */
+			NSFetchRequest *request = [[NSFetchRequest alloc] init];
+			[request setFetchLimit:1];
+			
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"FacebookFriend" inManagedObjectContext:_context];
+			[request setEntity:entity];
+			
+			NSPredicate *predicate = [NSPredicate predicateWithFormat:@"friendId == %@", friendId];
+			[request setPredicate:predicate];
+			NSError *error = nil;
+			
+			NSArray *array = [_context executeFetchRequest:request error:&error];
+			if (array != nil) {
+				NSUInteger count = [array count];
+				if (count == 1) {
+					FacebookFriend *friend = (FacebookFriend *)[array objectAtIndex:0];
+					friend.photoDownloaded = [NSDate date];
+					
+					if (![_context save:&error]) {
+						LogError(@"Failed to save managed object context: %@", [error localizedDescription]);
+					}
+					else {
+						LogDebug(@"Saved with date: %@", friend.photoDownloaded);
+					}
+				}
+				else if (count == 0) {
+					LogWarn(@"Missing FacebookFriend instance (friendId=%@) despite downloading photo", friendId);
+				}
+			}
+			else {
+				LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
+			}
+		}
+		else {
+			/* TODO: does writeToFile set an error flag? */
+			LogWarn(@"Failed to save Facebook friend's profile photo: %@", friendId);
+		}
+	}
+}
 
 - (void)dealloc {
+	self.delegate = nil;
+	[_facebook release];
 	[_context release];
 	[_documentsPath release];
     [super dealloc];

@@ -8,8 +8,6 @@
 
 #import "SupervoteClient.h"
 
-#import "SBJSON.h"
-
 #import "Candidate.h"
 #import "District.h"
 #import "DistrictRegistration.h"
