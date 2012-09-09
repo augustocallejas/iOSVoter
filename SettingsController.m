@@ -147,6 +147,11 @@
 	[advancedLabel setText:NSLocalizedString(@"Advanced", nil)];
 	[resetAppButton setTitle:NSLocalizedString(@"ResetApplicationButton", nil) forState:UIControlStateNormal];
 	
+#ifdef CONFIGURATION_Release
+	advancedLabel.hidden = YES;
+	resetAppButton.hidden = YES;
+#endif
+	
 	if (_facebookClient != nil) {
 		if (_facebookClient.loggedIn) {
 			[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
