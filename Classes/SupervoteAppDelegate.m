@@ -281,7 +281,6 @@ NSString *const FBSessionStateChangedNotification =
 	_lastRefreshDate = [[NSDate date] retain];
 	
 	if (facebookClient.loggedIn) {
-		LogInfo(@"Updating friends from app delegate");
 		[facebookClient updateFriends];
 	}
 	
