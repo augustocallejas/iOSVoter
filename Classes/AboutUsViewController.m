@@ -33,7 +33,7 @@
 #pragma mark IBAction methods
 
 - (IBAction)doEmailUs {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:support@supervote.org"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto:feedback@supervote.org"]];
 }
 
 - (IBAction)doFacebook {
