@@ -2,10 +2,8 @@
 // Prefix header for all source files of the 'Supervote' target in the 'Supervote' project
 //
 
-#ifdef CONFIGURATION_Debug
-	/* comment out if excluding TestFlight */
-	//#define USE_TESTFLIGHT 1
-#endif
+#define USE_PRODUCTION_SERVER 1
+#define USE_TESTFLIGHT CONFIGURATION_Debug && USE_PRODUCTION_SERVER
 
 #ifdef __OBJC__
 	#import <iAd/iAD.h>
@@ -18,7 +16,7 @@
 	#import "../facebook-ios-sdk/src/FBConnect.h"
 	#import "ASIFormDataRequest.h"
 	#import "ProgressHUD.h"
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	#import "TestFlight.h"
 #endif
 	#import <CrashReporter/CrashReporter.h>

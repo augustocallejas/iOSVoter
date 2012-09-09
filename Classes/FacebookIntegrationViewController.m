@@ -108,7 +108,7 @@
 - (void)fbDidLogin {
 	[self markAsViewed];
 	
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FacebookIntegration"];
 #endif
 	
@@ -131,7 +131,7 @@
 - (void)fbDidNotLogin:(BOOL)canceled {
 	[self markAsViewed];
 	
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"CanceledFacebookIntegration"];
 #endif
 	

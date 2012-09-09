@@ -304,7 +304,7 @@
 		NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
 		if ([_client registerDevice:ZIP withAddress:AddressField.text withLanguage:language withError:&error]) {
 			
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 			[TestFlight passCheckpoint:@"RegisteredSuccessfully"];
 #endif
 			

@@ -146,7 +146,7 @@ NSString *const FBSessionStateChangedNotification =
 	runningUpdate = NO;
 
 	/* http://blog.goosoftware.co.uk/2012/04/18/unique-identifier-no-warnings/ */
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 
 	[TestFlight takeOff:@"08e9cf49dda0f6525984558248826e2c_MTE3ODE0MjAxMi0wOC0wNCAyMDo0OTozMy43MDgwMDA"];

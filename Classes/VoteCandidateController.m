@@ -175,7 +175,7 @@
 	BOOL dismissModalView = YES;
 	vote_status status = OK;
 	if (withVote) {
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 		[TestFlight passCheckpoint:@"EndorsedCandidate"];
 #endif
 		

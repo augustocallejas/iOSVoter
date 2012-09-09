@@ -82,7 +82,7 @@
 	LogInfo(@"User completed Facebook authentication");
 	[[self facebookLoginButton] setTitle:NSLocalizedString(@"LogOutOfFacebookButton", nil) forState:UIControlStateNormal];
 
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FacebookIntegrationInSettings"];
 #endif
 
@@ -101,7 +101,7 @@
 - (void)fbDidNotLogin:(BOOL)cancelled {
 	LogInfo(@"User cancelled Facebook authentication");
 
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"CanceledFacebookIntegrationInSettings"];
 #endif
 }

@@ -71,7 +71,7 @@
 - (IBAction)doShowBallots {
 	[self markAsViewed];
 	
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 	[TestFlight passCheckpoint:@"FinishedTutorial"];
 #endif
 	

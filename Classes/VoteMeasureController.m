@@ -329,7 +329,7 @@
 			_vote.forMeasure = _measure;
 		}
 		
-#ifdef USE_TESTFLIGHT
+#if USE_TESTFLIGHT
 		[TestFlight passCheckpoint:@"EndorsedMeasure"];
 #endif
 
