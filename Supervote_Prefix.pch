@@ -16,7 +16,7 @@
 	#import "../facebook-ios-sdk/src/FBConnect.h"
 	#import "ASIFormDataRequest.h"
 	#import "ProgressHUD.h"
-#ifdef TESTFLIGHT
+#ifdef USE_TESTFLIGHT
 	#import "TestFlight.h"
 #endif
 	#import <CrashReporter/CrashReporter.h>

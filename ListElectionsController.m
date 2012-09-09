@@ -39,6 +39,7 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 #pragma mark ADBannerViewDelegate methods
 
 - (void)moveBannerViewOffscreen {
+	LogDebug(@"Moving Ad Banner offscreen");
 	// Make the table biew take up the void left by the banner
 	CGRect originalTableFrame = self.tableView.frame;
 	CGFloat newTableHeight = self.view.frame.size.height;
@@ -54,6 +55,7 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 }
 
 - (void)moveBannerViewOnscreen {
+	LogDebug(@"Moving Ad Banner onscreen");
 	CGRect newBannerFrame = self.bannerView.frame;
 	newBannerFrame.origin.y = self.view.frame.size.height - newBannerFrame.size.height;
 	
@@ -69,21 +71,25 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+	LogDebug(@"Ad Banner failed to receive Ad: %@", [error localizedDescription]);
 	[self moveBannerViewOffscreen];
 }
 
 
 - (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
 	// pause animations
+	LogDebug(@"bannerViewActionShouldBegin");
 	return YES;
 }
 
 - (void)bannerViewActionDidFinish:(ADBannerView *)banner {
 	// start animations
+	LogDebug(@"bannerViewActionDidFinish");
 }
 
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+	LogDebug(@"bannerViewDidLoadAd");
 	[self moveBannerViewOnscreen];
 }
 
@@ -452,6 +458,11 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 								 hideAfter:8.0f];
 	}
 }
+
+//- (void)viewWillDisappear:(BOOL)animated {
+//	NSLog(@"viewWillDisappear");
+//	[self moveBannerViewOffscreen];
+//}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
