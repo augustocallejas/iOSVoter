@@ -30,7 +30,7 @@ static NSString *kDeviceIDHeaderKey = @"DeviceID";
 #if USE_PRODUCTION_SERVER
 static NSString* kAPIUrl = @"https://api.supervote.org";
 #else
-static NSString* kAPIUrl = @"http://localhost:9000";
+static NSString* kAPIUrl = @"http://localhost:8888";
 #endif
 
 @implementation SupervoteClient
