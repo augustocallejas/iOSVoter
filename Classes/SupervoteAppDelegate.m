@@ -171,6 +171,30 @@ NSString *const FBSessionStateChangedNotification =
 
 	supervoteClient = [[SupervoteClient alloc] initWithContext:self.managedObjectContext];
 	facebookClient = [[FacebookClient alloc] initWithContext:self.managedObjectContext andDocumentsPath:documentsPath];
+
+	if (facebookClient.loggedIn) {
+		if (![facebookClient isSessionValid]) {
+			/* send back to server */
+			[facebookClient extendAccessToken];
+			vote_status status = [supervoteClient sendFacebookAccessToken:[facebookClient getAccessToken]];
+			if (status != OK) {
+				LogError(@"Unable to send the extended Facebook access token back to the server");
+			}
+			
+			if (![facebookClient isSessionValid]) {
+				LogInfo(@"Facebook session not valid, need to reauthorize");
+				/* TODO: this opens up the Facebook app */
+				[facebookClient authorize];
+			}
+		}
+		else {
+			LogInfo(@"Facebook session valid, no need to extend access token");
+		}
+	}
+	else {
+		LogInfo(@"Facebook integration not set up");
+	}
+
 	
 	PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
 	NSError *error;

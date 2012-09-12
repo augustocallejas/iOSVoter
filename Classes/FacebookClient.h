@@ -22,10 +22,11 @@
 
 - (BOOL)handleOpenURL:(NSURL *)url;
 - (id)initWithContext:(NSManagedObjectContext *)context andDocumentsPath:(NSString *)path;
+- (BOOL)isSessionValid;
+- (void)extendAccessToken;
 - (NSString *)getAccessToken;
 - (void)updateFriends;
 - (void)downloadFacebookPhoto:(NSString *)facebookId;
-- (void)extendAccessTokenIfNeeded;
 - (void)authorize;
 - (void)logout;
 

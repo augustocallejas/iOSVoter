@@ -45,14 +45,6 @@ static NSString *kAppId = @"367473609934472";
 			_loggedIn = YES;
 
 			LogInfo(@"Loaded Facebook access token with expiration date %@", _facebook.expirationDate);
-			LogInfo(@"Extending Facebook access token if needed");
-			[_facebook extendAccessTokenIfNeeded];
-			
-			if (![_facebook isSessionValid]) {
-				LogInfo(@"Facebook session not valid, need to reauthorize: %@", [_facebook expirationDate]);
-				/* TODO: this opens up the Facebook app */
-				[_facebook authorize:nil];
-			}
 		}
 		
 		_context = [context retain];
@@ -66,6 +58,14 @@ static NSString *kAppId = @"367473609934472";
 	[defaults setObject:accessToken forKey:kFBAccessTokenKey];
 	[defaults setObject:expiresAt forKey:kFBExpirationDateKey];
 	[defaults synchronize];
+}
+
+- (BOOL) isSessionValid {
+	return [_facebook isSessionValid];
+}
+
+- (void)extendAccessToken {
+	[_facebook extendAccessToken];
 }
 
 - (NSString *)getAccessToken {
@@ -85,14 +85,11 @@ static NSString *kAppId = @"367473609934472";
 	[_facebook requestWithGraphPath:@"me/friends" andDelegate:self];
 }
 
-- (void)extendAccessTokenIfNeeded {
-	[_facebook extendAccessTokenIfNeeded];
-}
-
 - (void)authorize {
 	//    _permissions =  [[NSArray arrayWithObjects:
 	//              @"read_stream", @"publish_stream", @"offline_access",nil] retain];
 	[_facebook authorize:nil];
+	//[_facebook authorize:[NSArray arrayWithObjects:@"publish_actions", nil]];
 }
 
 - (void)logout {
@@ -290,7 +287,7 @@ static NSString *kAppId = @"367473609934472";
 						if (array != nil) {
 							NSUInteger count = [array count];
 							if (count == 0) {
-								LogInfo(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
+								LogDebug(@"Creating new FacebookFriend instance for '%@', will require downloading profile photo", friendName);
 								/* create an object */
 								FacebookFriend *newFriend = [(FacebookFriend *) [NSEntityDescription insertNewObjectForEntityForName:@"FacebookFriend"
 																											  inManagedObjectContext:_context] retain];
@@ -325,7 +322,7 @@ static NSString *kAppId = @"367473609934472";
 }
 
 - (void)downloadFacebookPhoto:(NSString *)facebookId {
-	LogInfo(@"Downloading profile photo to file '%@.gif'", facebookId);
+	LogDebug(@"Downloading profile photo to file '%@.gif'", facebookId);
 	[_facebook requestWithGraphPath:[NSString stringWithFormat:@"%@/picture", facebookId] andDelegate:self];
 }
 
