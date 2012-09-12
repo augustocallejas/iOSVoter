@@ -3,7 +3,7 @@
 //
 
 #define USE_PRODUCTION_SERVER 1
-#define USE_TESTFLIGHT CONFIGURATION_Debug && USE_PRODUCTION_SERVER
+#define USE_TESTFLIGHT 0
 
 #ifdef __OBJC__
 	#import <iAd/iAD.h>
