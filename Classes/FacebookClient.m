@@ -86,10 +86,7 @@ static NSString *kAppId = @"367473609934472";
 }
 
 - (void)authorize {
-	//    _permissions =  [[NSArray arrayWithObjects:
-	//              @"read_stream", @"publish_stream", @"offline_access",nil] retain];
-	[_facebook authorize:nil];
-	//[_facebook authorize:[NSArray arrayWithObjects:@"publish_actions", nil]];
+	[_facebook authorize:[NSArray arrayWithObjects:@"publish_actions", nil]];
 }
 
 - (void)logout {
