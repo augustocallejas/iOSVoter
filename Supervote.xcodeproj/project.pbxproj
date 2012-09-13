@@ -154,6 +154,7 @@
 		148EF0BE15C878E0009D78CB /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 148EF0BD15C878E0009D78CB /* Position.m */; };
 		148EF0FF15C883FF009D78CB /* Candidate.m in Sources */ = {isa = PBXBuildFile; fileRef = 148EF0FE15C883FF009D78CB /* Candidate.m */; };
 		1490F81D14849DF100352E23 /* FacebookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490F81C14849DF100352E23 /* FacebookClient.m */; };
+		1493B9721601DD490043BB88 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1493B9711601DD490043BB88 /* Icon.png */; };
 		14A01B2514789F420029ADFE /* SupervoteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A01B2414789F420029ADFE /* SupervoteClient.m */; };
 		14A4D14A157896EA00E73B21 /* PotentialGovernmentRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A4D147157896EA00E73B21 /* PotentialGovernmentRegistration.m */; };
 		14A6F44D143D932200EBF65D /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A6F44C143D932200EBF65D /* advanced.png */; };
@@ -411,6 +412,7 @@
 		148EF0FE15C883FF009D78CB /* Candidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Candidate.m; path = ../Candidate.m; sourceTree = "<group>"; };
 		1490F81B14849DF100352E23 /* FacebookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookClient.h; sourceTree = "<group>"; };
 		1490F81C14849DF100352E23 /* FacebookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookClient.m; sourceTree = "<group>"; };
+		1493B9711601DD490043BB88 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		14A01B2314789F420029ADFE /* SupervoteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervoteClient.h; sourceTree = "<group>"; };
 		14A01B2414789F420029ADFE /* SupervoteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervoteClient.m; sourceTree = "<group>"; };
 		14A4D146157896EA00E73B21 /* PotentialGovernmentRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PotentialGovernmentRegistration.h; sourceTree = "<group>"; };
@@ -623,6 +625,7 @@
 			children = (
 				1477A35815E1FC3E00A45F6D /* Default.png */,
 				1477A35915E1FC3E00A45F6D /* Default@2x.png */,
+				1493B9711601DD490043BB88 /* Icon.png */,
 				140F4325150DA4AC004E61B5 /* Icon@2x.png */,
 			);
 			name = "App Artwork";
@@ -1239,6 +1242,7 @@
 				14A74AA215EDD0360035DDB0 /* bg-yellow.png in Resources */,
 				14A74AA315EDD0360035DDB0 /* bg-yellow@2x.png in Resources */,
 				148DCE3815FBCC5300EC33EE /* FBDialog.bundle in Resources */,
+				1493B9721601DD490043BB88 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1404,7 +1408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Canary Falls Software LLC";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "CONFIGURATION_$(CONFIGURATION)";
@@ -1414,6 +1418,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B0D06E77-2DA5-4233-A56D-EDF799EC5BE6";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 			};
