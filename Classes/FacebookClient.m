@@ -301,7 +301,8 @@ static NSString *kAppId = @"367473609934472";
 								LogInfo(@"Profile photo for '%@' is missing, will redownload", friend.name);
 							}
 							
-							[self downloadFacebookPhoto:friendId];
+							/* http://stackoverflow.com/a/6542717/887030 */
+							//[self downloadFacebookPhoto:friendId];
 						}
 						else {
 							LogError(@"Query failed for FacebookFriend instance (friendId=%@): %@", friendId, [error localizedDescription]);
