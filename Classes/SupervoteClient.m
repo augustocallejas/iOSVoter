@@ -1959,14 +1959,14 @@ static NSString* kAPIUrl = @"http://localhost:8888";
 					NSString *name = [candidate objectForKey:@"name"];
 					id subtitle = [candidate objectForKey:@"subtitle"];
 					NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
-					NSDictionary *politicalParty = [candidate objectForKey:@"party"];
+					id politicalParty = [candidate objectForKey:@"party"];
 										
 					Candidate *candidateObj = [NSEntityDescription insertNewObjectForEntityForName:@"Candidate" inManagedObjectContext:_context];
 					candidateObj.guid = candidateGuid;
 					candidateObj.name = name;
 					candidateObj.subtitle = subtitle == [NSNull null] ? nil : subtitle;
 					
-					if (politicalParty != nil) {
+					if (politicalParty != [NSNull null]) {
 						NSString *partyGuid = [politicalParty objectForKey:@"guid"];
 						NSString *partyName = [politicalParty objectForKey:@"name"];
 						
@@ -2074,7 +2074,7 @@ static NSString* kAPIUrl = @"http://localhost:8888";
 						NSString *name = [candidate objectForKey:@"name"];
 						id subtitle = [candidate objectForKey:@"subtitle"];
 						NSNumber *displayOrder = [candidate objectForKey:@"displayOrder"];
-						NSDictionary *politicalParty = [candidate objectForKey:@"party"];
+						id politicalParty = [candidate objectForKey:@"party"];
 												
 						Candidate *candidateObj = [self getObject:@"Candidate" byGuid:candidateGuid];
 						if (candidateObj == nil) {
@@ -2084,7 +2084,7 @@ static NSString* kAPIUrl = @"http://localhost:8888";
 							candidateObj.guid = candidateGuid;
 						}
 						
-						if (politicalParty != nil) {
+						if (politicalParty != [NSNull null]) {
 							NSString *partyGuid = [politicalParty objectForKey:@"guid"];
 							NSString *partyName = [politicalParty objectForKey:@"name"];
 							
