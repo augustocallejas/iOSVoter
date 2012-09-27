@@ -353,6 +353,10 @@
 	else if (candidate.subtitle != nil) {
 		cell.partyName.text = candidate.subtitle;
 	}
+	else {
+		cell.partyName.text = @"";
+	}
+
 	
 	[cell.voteCandidate setTitle:NSLocalizedString(@"Vote", nil) forState:UIControlStateNormal];
 	
