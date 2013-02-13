@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1401CB9315CF1C98007CFE6A /* Supervote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1401CB9215CF1C98007CFE6A /* Supervote.xcdatamodeld */; };
 		1401CBFD15CF384B007CFE6A /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 1401CBFC15CF384B007CFE6A /* user.png */; };
+		14068CCC16CB64C400D99B5B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14068CCB16CB64C400D99B5B /* Default-568h@2x.png */; };
 		1409050014660B5200B7B693 /* ViewEndorsementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140904FE14660B5200B7B693 /* ViewEndorsementController.m */; };
 		1409050114660B5200B7B693 /* ViewEndorsementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140904FF14660B5200B7B693 /* ViewEndorsementController.xib */; };
 		1409052E1466FDF600B7B693 /* EndorsementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1409052D1466FDF600B7B693 /* EndorsementButton.m */; };
@@ -212,6 +213,7 @@
 
 /* Begin PBXFileReference section */
 		1401CBFC15CF384B007CFE6A /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		14068CCB16CB64C400D99B5B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		140904FD14660B5200B7B693 /* ViewEndorsementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEndorsementController.h; sourceTree = "<group>"; };
 		140904FE14660B5200B7B693 /* ViewEndorsementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEndorsementController.m; sourceTree = "<group>"; };
 		140904FF14660B5200B7B693 /* ViewEndorsementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ViewEndorsementController.xib; path = Classes/ViewEndorsementController.xib; sourceTree = "<group>"; };
@@ -623,6 +625,7 @@
 		140F431A150DA382004E61B5 /* App Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				14068CCB16CB64C400D99B5B /* Default-568h@2x.png */,
 				1477A35815E1FC3E00A45F6D /* Default.png */,
 				1477A35915E1FC3E00A45F6D /* Default@2x.png */,
 				1493B9711601DD490043BB88 /* Icon.png */,
@@ -1243,6 +1246,7 @@
 				14A74AA315EDD0360035DDB0 /* bg-yellow@2x.png in Resources */,
 				148DCE3815FBCC5300EC33EE /* FBDialog.bundle in Resources */,
 				1493B9721601DD490043BB88 /* Icon.png in Resources */,
+				14068CCC16CB64C400D99B5B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
