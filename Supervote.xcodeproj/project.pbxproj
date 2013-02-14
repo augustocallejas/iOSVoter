@@ -1379,7 +1379,6 @@
 				INFOPLIST_FILE = "Supervote-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK\"",
 					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
@@ -1402,7 +1401,6 @@
 				INFOPLIST_FILE = "Supervote-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK\"",
 					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
