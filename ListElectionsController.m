@@ -104,7 +104,7 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 
 - (void) refreshTable
 {
-	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *) [[UIApplication sharedApplication] delegate];
 	[appDelegate updateData:YES];
 	
     self.tableView.pullLastRefreshDate = appDelegate.lastRefreshDate;

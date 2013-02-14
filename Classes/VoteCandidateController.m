@@ -42,7 +42,7 @@
 
 - (void) refreshTable
 {
-	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *) [[UIApplication sharedApplication] delegate];
 	[appDelegate updateData:YES];
 	
     self.pullTableView.pullLastRefreshDate = appDelegate.lastRefreshDate;
@@ -627,7 +627,7 @@
     self.pullTableView.pullBackgroundColor = [UIColor lightTextColor];
     self.pullTableView.pullTextColor = [UIColor blackColor];
 	
-	SupervoteAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	SupervoteAppDelegate *appDelegate = (SupervoteAppDelegate *) [[UIApplication sharedApplication] delegate];
 	self.pullTableView.pullLastRefreshDate = appDelegate.lastRefreshDate;
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self.tableView

@@ -87,7 +87,7 @@
 	LogInfo(@"User opted out of Facebook integration");
 	[self markAsViewed];
 	
-	SupervoteAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	SupervoteAppDelegate *delegate = (SupervoteAppDelegate *) [[UIApplication sharedApplication] delegate];
 	[delegate updateDataAsynchronously:NO withDelegate:nil];
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"LaterFacebookTitle", nil)
