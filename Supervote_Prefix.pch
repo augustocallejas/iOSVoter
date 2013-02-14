@@ -13,7 +13,7 @@
 	#import "Macros.h"
 	#import "LoggerCommon.h"
 	#import "LoggerClient.h"
-	#import "../facebook-ios-sdk/src/FBConnect.h"
+	#import "FBConnect.h"
 	#import "ASIFormDataRequest.h"
 	#import "ProgressHUD.h"
 #if USE_TESTFLIGHT
