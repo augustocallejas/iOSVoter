@@ -137,9 +137,9 @@
 		14789F2813EBBB9E0016044C /* ListElections.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F2613EBBB9E0016044C /* ListElections.xib */; };
 		14789F3113EBBBF20016044C /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2F13EBBBF20016044C /* SettingsController.m */; };
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
-		147C318C16CC9A990098D11D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 147C318816CC9A990098D11D /* libTestFlight.a */; };
-		147C318D16CC9A990098D11D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C318916CC9A990098D11D /* README.md */; };
-		147C318E16CC9A990098D11D /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C318A16CC9A990098D11D /* release_notes.md */; };
+		147C319416CCB6A40098D11D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 147C319016CCB6A40098D11D /* libTestFlight.a */; };
+		147C319516CCB6A40098D11D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C319116CCB6A40098D11D /* README.md */; };
+		147C319616CCB6A40098D11D /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C319216CCB6A40098D11D /* release_notes.md */; };
 		148DCE3715FBCC5300EC33EE /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DCE2115FBCC5300EC33EE /* Facebook.m */; };
 		148DCE3815FBCC5300EC33EE /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 148DCE2215FBCC5300EC33EE /* FBDialog.bundle */; };
 		148DCE3915FBCC5300EC33EE /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DCE2415FBCC5300EC33EE /* FBDialog.m */; };
@@ -379,10 +379,10 @@
 		14789F2E13EBBBF20016044C /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = ../SettingsController.h; sourceTree = "<group>"; };
 		14789F2F13EBBBF20016044C /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = ../SettingsController.m; sourceTree = "<group>"; };
 		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
-		147C318816CC9A990098D11D /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		147C318916CC9A990098D11D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		147C318A16CC9A990098D11D /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		147C318B16CC9A990098D11D /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		147C319016CCB6A40098D11D /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		147C319116CCB6A40098D11D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		147C319216CCB6A40098D11D /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		147C319316CCB6A40098D11D /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		148DCE2015FBCC5300EC33EE /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "../facebook-ios-sdk/src/Facebook.h"; sourceTree = SOURCE_ROOT; };
 		148DCE2115FBCC5300EC33EE /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = "../facebook-ios-sdk/src/Facebook.m"; sourceTree = SOURCE_ROOT; };
 		148DCE2215FBCC5300EC33EE /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBDialog.bundle; path = "../facebook-ios-sdk/src/FBDialog.bundle"; sourceTree = SOURCE_ROOT; };
@@ -522,7 +522,7 @@
 				14FC45FD157B1B5500B71B88 /* QuartzCore.framework in Frameworks */,
 				1470B84715F5DDF5008AC8C1 /* CrashReporter.framework in Frameworks */,
 				14D9DEFF15F872BB00FF379D /* iAd.framework in Frameworks */,
-				147C318C16CC9A990098D11D /* libTestFlight.a in Frameworks */,
+				147C319416CCB6A40098D11D /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,15 +793,16 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		147C318716CC9A990098D11D /* TestFlightSDK-1.1 */ = {
+		147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				147C318816CC9A990098D11D /* libTestFlight.a */,
-				147C318916CC9A990098D11D /* README.md */,
-				147C318A16CC9A990098D11D /* release_notes.md */,
-				147C318B16CC9A990098D11D /* TestFlight.h */,
+				147C319016CCB6A40098D11D /* libTestFlight.a */,
+				147C319116CCB6A40098D11D /* README.md */,
+				147C319216CCB6A40098D11D /* release_notes.md */,
+				147C319316CCB6A40098D11D /* TestFlight.h */,
 			);
-			path = "TestFlightSDK-1.1";
+			name = "TestFlightSDK-1.1";
+			path = "../TestFlightSDK-1.1";
 			sourceTree = "<group>";
 		};
 		148DCE2915FBCC5300EC33EE /* JSON */ = {
@@ -986,7 +987,7 @@
 			isa = PBXGroup;
 			children = (
 				148DCE4415FBCC5900EC33EE /* FBConnect */,
-				147C318716CC9A990098D11D /* TestFlightSDK-1.1 */,
+				147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */,
 				14AAA6AD1499CA9200D59D0D /* ASIHTTPRequest */,
 				1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */,
 				14C997991527A2E30041ACDA /* NSLogger */,
@@ -1248,6 +1249,8 @@
 				14068CCC16CB64C400D99B5B /* Default-568h@2x.png in Resources */,
 				147C318D16CC9A990098D11D /* README.md in Resources */,
 				147C318E16CC9A990098D11D /* release_notes.md in Resources */,
+				147C319516CCB6A40098D11D /* README.md in Resources */,
+				147C319616CCB6A40098D11D /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1380,6 +1383,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
+					"\"$(SRCROOT)/../TestFlightSDK-1.1\"",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = Supervote;
@@ -1402,6 +1406,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
+					"\"$(SRCROOT)/../TestFlightSDK-1.1\"",
 				);
 				OTHER_LDFLAGS = "-lsqlite3.0";
 				PRODUCT_NAME = Supervote;
