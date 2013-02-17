@@ -15,7 +15,7 @@
 	#import "LoggerClient.h"
 	#import "FBConnect.h"
     #import <ASIHTTPRequest/ASIFormDataRequest.h>
-	#import "ProgressHUD.h"
+	#import <SimpleProgressHUD/ProgressHUD.h>
 #if USE_TESTFLIGHT
 	#import "TestFlight.h"
 #endif
