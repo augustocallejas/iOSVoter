@@ -114,6 +114,7 @@
 		1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */; };
 		147039AF16D0644C00ECA6AB /* libEGOTableViewPullRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 147039A716D0612600ECA6AB /* libEGOTableViewPullRefresh.a */; };
 		14703A1116D0744D00ECA6AB /* libSimpleProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14703A0B16D0743800ECA6AB /* libSimpleProgressHUD.a */; };
+		14703A1D16D077B500ECA6AB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14703A1B16D077B500ECA6AB /* libTestFlight.a */; };
 		1470B84715F5DDF5008AC8C1 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1470B84615F5DDF5008AC8C1 /* CrashReporter.framework */; };
 		1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474EF57142FC8CB004D35AD /* FacebookFriend.m */; };
 		1474F05B1432C48C004D35AD /* CandidateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474F05A1432C48C004D35AD /* CandidateViewCell.xib */; };
@@ -128,9 +129,6 @@
 		14789F2813EBBB9E0016044C /* ListElections.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F2613EBBB9E0016044C /* ListElections.xib */; };
 		14789F3113EBBBF20016044C /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14789F2F13EBBBF20016044C /* SettingsController.m */; };
 		14789F3213EBBBF20016044C /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14789F3013EBBBF20016044C /* SettingsController.xib */; };
-		147C319416CCB6A40098D11D /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 147C319016CCB6A40098D11D /* libTestFlight.a */; };
-		147C319516CCB6A40098D11D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C319116CCB6A40098D11D /* README.md */; };
-		147C319616CCB6A40098D11D /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 147C319216CCB6A40098D11D /* release_notes.md */; };
 		148DCE3715FBCC5300EC33EE /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DCE2115FBCC5300EC33EE /* Facebook.m */; };
 		148DCE3815FBCC5300EC33EE /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 148DCE2215FBCC5300EC33EE /* FBDialog.bundle */; };
 		148DCE3915FBCC5300EC33EE /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 148DCE2415FBCC5300EC33EE /* FBDialog.m */; };
@@ -372,6 +370,8 @@
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
 		147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EGOTableViewPullRefresh.xcodeproj; path = ../../EGOTableViewPullRefresh/EGOTableViewPullRefresh/EGOTableViewPullRefresh.xcodeproj; sourceTree = "<group>"; };
 		14703A0616D0743800ECA6AB /* SimpleProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SimpleProgressHUD.xcodeproj; path = ../../SimpleProgressHUD/SimpleProgressHUD/SimpleProgressHUD.xcodeproj; sourceTree = "<group>"; };
+		14703A1B16D077B500ECA6AB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = "../../TestFlightSDK-1.1/libTestFlight.a"; sourceTree = "<group>"; };
+		14703A1C16D077B500ECA6AB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = "../../TestFlightSDK-1.1/TestFlight.h"; sourceTree = "<group>"; };
 		1470B84615F5DDF5008AC8C1 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "/Users/augusto/projects/PLCrashReporter-1.1-beta1/iPhone Framework/CrashReporter.framework"; sourceTree = "<absolute>"; };
 		1474EF56142FC8CB004D35AD /* FacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriend.h; sourceTree = "<group>"; };
 		1474EF57142FC8CB004D35AD /* FacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriend.m; sourceTree = "<group>"; };
@@ -392,10 +392,6 @@
 		14789F2E13EBBBF20016044C /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = ../SettingsController.h; sourceTree = "<group>"; };
 		14789F2F13EBBBF20016044C /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = ../SettingsController.m; sourceTree = "<group>"; };
 		14789F3013EBBBF20016044C /* SettingsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
-		147C319016CCB6A40098D11D /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		147C319116CCB6A40098D11D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		147C319216CCB6A40098D11D /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		147C319316CCB6A40098D11D /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		148DCE2015FBCC5300EC33EE /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "../facebook-ios-sdk/src/Facebook.h"; sourceTree = SOURCE_ROOT; };
 		148DCE2115FBCC5300EC33EE /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = "../facebook-ios-sdk/src/Facebook.m"; sourceTree = SOURCE_ROOT; };
 		148DCE2215FBCC5300EC33EE /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBDialog.bundle; path = "../facebook-ios-sdk/src/FBDialog.bundle"; sourceTree = SOURCE_ROOT; };
@@ -514,7 +510,7 @@
 				14FC45FD157B1B5500B71B88 /* QuartzCore.framework in Frameworks */,
 				1470B84715F5DDF5008AC8C1 /* CrashReporter.framework in Frameworks */,
 				14D9DEFF15F872BB00FF379D /* iAd.framework in Frameworks */,
-				147C319416CCB6A40098D11D /* libTestFlight.a in Frameworks */,
+				14703A1D16D077B500ECA6AB /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,16 +765,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */ = {
+		14703A1E16D077BB00ECA6AB /* TestFlightSDK-1.1 */ = {
 			isa = PBXGroup;
 			children = (
-				147C319016CCB6A40098D11D /* libTestFlight.a */,
-				147C319116CCB6A40098D11D /* README.md */,
-				147C319216CCB6A40098D11D /* release_notes.md */,
-				147C319316CCB6A40098D11D /* TestFlight.h */,
+				14703A1B16D077B500ECA6AB /* libTestFlight.a */,
+				14703A1C16D077B500ECA6AB /* TestFlight.h */,
 			);
 			name = "TestFlightSDK-1.1";
-			path = "../TestFlightSDK-1.1";
 			sourceTree = "<group>";
 		};
 		148DCE2915FBCC5300EC33EE /* JSON */ = {
@@ -908,7 +901,7 @@
 			isa = PBXGroup;
 			children = (
 				148DCE4415FBCC5900EC33EE /* FBConnect */,
-				147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */,
+				14703A1E16D077BB00ECA6AB /* TestFlightSDK-1.1 */,
 				14C997991527A2E30041ACDA /* NSLogger */,
 				14A74A9D15EDD0360035DDB0 /* YRDropdownView */,
 			);
@@ -1191,10 +1184,6 @@
 				148DCE3815FBCC5300EC33EE /* FBDialog.bundle in Resources */,
 				1493B9721601DD490043BB88 /* Icon.png in Resources */,
 				14068CCC16CB64C400D99B5B /* Default-568h@2x.png in Resources */,
-				147C318D16CC9A990098D11D /* README.md in Resources */,
-				147C318E16CC9A990098D11D /* release_notes.md in Resources */,
-				147C319516CCB6A40098D11D /* README.md in Resources */,
-				147C319616CCB6A40098D11D /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,8 +1323,7 @@
 				INFOPLIST_FILE = "Supervote-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
-					"\"$(SRCROOT)/../TestFlightSDK-1.1\"",
+					"$(SRCROOT)/../../TestFlightSDK-1.1",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -1365,8 +1353,7 @@
 				INFOPLIST_FILE = "Supervote-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/TestFlightSDK-1.1\"",
-					"\"$(SRCROOT)/../TestFlightSDK-1.1\"",
+					"$(SRCROOT)/../../TestFlightSDK-1.1",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
