@@ -6,7 +6,7 @@
 //  Copyright 2012 Canary Falls Software LLC. All rights reserved.
 //
 
-#import "PullTableView.h"
+#import <EGOTableViewPullRefresh/PullTableView.h>
 
 @interface PullTableViewController : UITableViewController <PullTableViewDelegate> {
 

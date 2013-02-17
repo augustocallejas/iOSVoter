@@ -7,7 +7,7 @@
 //
 
 #import "FacebookClient.h"
-#import "PullTableView.h"
+#import <EGOTableViewPullRefresh/PullTableView.h>
 #import "PullTableViewController.h"
 #import "SupervoteClient.h"
 

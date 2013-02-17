@@ -13,7 +13,7 @@
 #import "CreateEndorsementViewController.h"
 #import "FetchedResultsBasedTableViewController.h"
 #import "Position.h"
-#import "PullTableView.h"
+#import <EGOTableViewPullRefresh/PullTableView.h>
 #import "SupervoteClient.h"
 
 @interface VoteCandidateController : FetchedResultsBasedTableViewController <ModalViewControllerDelegate, UIActionSheetDelegate, PullTableViewDelegate> {

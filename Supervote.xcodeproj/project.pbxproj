@@ -108,22 +108,11 @@
 		14399EF2141073FD007269A3 /* VoteMeasureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14399EF1141073FD007269A3 /* VoteMeasureController.m */; };
 		14399F1214107E8F007269A3 /* VoteMeasure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14399F1114107E8F007269A3 /* VoteMeasure.xib */; };
 		144215CD15AA2B1000972EB8 /* PoliticalParty.m in Sources */ = {isa = PBXBuildFile; fileRef = 144215CA15AA2B1000972EB8 /* PoliticalParty.m */; };
-		1444589D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */; };
-		1444589E15E0BCC200F7CD9A /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */; };
-		1444589F15E0BCC200F7CD9A /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444589115E0BCC200F7CD9A /* MessageInterceptor.m */; };
-		144458A015E0BCC200F7CD9A /* PullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1444589315E0BCC200F7CD9A /* PullTableView.m */; };
-		144458A115E0BCC200F7CD9A /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589515E0BCC200F7CD9A /* blackArrow.png */; };
-		144458A215E0BCC200F7CD9A /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589615E0BCC200F7CD9A /* blackArrow@2x.png */; };
-		144458A315E0BCC200F7CD9A /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589715E0BCC200F7CD9A /* blueArrow.png */; };
-		144458A415E0BCC200F7CD9A /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589815E0BCC200F7CD9A /* blueArrow@2x.png */; };
-		144458A515E0BCC200F7CD9A /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589915E0BCC200F7CD9A /* grayArrow.png */; };
-		144458A615E0BCC200F7CD9A /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */; };
-		144458A715E0BCC200F7CD9A /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589B15E0BCC200F7CD9A /* whiteArrow.png */; };
-		144458A815E0BCC200F7CD9A /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */; };
 		14466C52157A92D900EA6E2E /* SelectGovernmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */; };
 		14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */; };
 		1462F3DC141DA394007E31C1 /* BallotItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */; };
 		1462F3F8141DA5D5007E31C1 /* BallotItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */; };
+		147039AF16D0644C00ECA6AB /* libEGOTableViewPullRefresh.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 147039A716D0612600ECA6AB /* libEGOTableViewPullRefresh.a */; };
 		1470B84715F5DDF5008AC8C1 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1470B84615F5DDF5008AC8C1 /* CrashReporter.framework */; };
 		1474EF58142FC8CB004D35AD /* FacebookFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1474EF57142FC8CB004D35AD /* FacebookFriend.m */; };
 		1474F05B1432C48C004D35AD /* CandidateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1474F05A1432C48C004D35AD /* CandidateViewCell.xib */; };
@@ -217,6 +206,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1420A01E16CCCC4C00236737;
 			remoteInfo = ASIHTTPRequest;
+		};
+		147039A616D0612600ECA6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1470395416D054D400ECA6AB;
+			remoteInfo = EGOTableViewPullRefresh;
+		};
+		147039AD16D0643E00ECA6AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1470395316D054D400ECA6AB;
+			remoteInfo = EGOTableViewPullRefresh;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -346,22 +349,6 @@
 		144215C915AA2B1000972EB8 /* PoliticalParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoliticalParty.h; path = ../PoliticalParty.h; sourceTree = "<group>"; };
 		144215CA15AA2B1000972EB8 /* PoliticalParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoliticalParty.m; path = ../PoliticalParty.m; sourceTree = "<group>"; };
 		1444566815E057D300F7CD9A /* Supervote 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Supervote 4.xcdatamodel"; sourceTree = "<group>"; };
-		1444588C15E0BCC200F7CD9A /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		1444588E15E0BCC200F7CD9A /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
-		1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreTableFooterView.m; sourceTree = "<group>"; };
-		1444589015E0BCC200F7CD9A /* MessageInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInterceptor.h; sourceTree = "<group>"; };
-		1444589115E0BCC200F7CD9A /* MessageInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageInterceptor.m; sourceTree = "<group>"; };
-		1444589215E0BCC200F7CD9A /* PullTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullTableView.h; sourceTree = "<group>"; };
-		1444589315E0BCC200F7CD9A /* PullTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullTableView.m; sourceTree = "<group>"; };
-		1444589515E0BCC200F7CD9A /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
-		1444589615E0BCC200F7CD9A /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
-		1444589715E0BCC200F7CD9A /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		1444589815E0BCC200F7CD9A /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
-		1444589915E0BCC200F7CD9A /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
-		1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
-		1444589B15E0BCC200F7CD9A /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
-		1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		14466C4F157A92D900EA6E2E /* SelectGovernmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGovernmentViewController.h; sourceTree = "<group>"; };
 		14466C50157A92D900EA6E2E /* SelectGovernmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGovernmentViewController.m; sourceTree = "<group>"; };
 		14466C51157A92D900EA6E2E /* SelectGovernmentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SelectGovernmentViewController.xib; path = Classes/SelectGovernmentViewController.xib; sourceTree = "<group>"; };
@@ -369,6 +356,7 @@
 		1462F3DA141DA394007E31C1 /* BallotItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallotItemViewCell.h; sourceTree = "<group>"; };
 		1462F3DB141DA394007E31C1 /* BallotItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BallotItemViewCell.m; sourceTree = "<group>"; };
 		1462F3F7141DA5D5007E31C1 /* BallotItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BallotItemViewCell.xib; sourceTree = "<group>"; };
+		147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EGOTableViewPullRefresh.xcodeproj; path = ../../EGOTableViewPullRefresh/EGOTableViewPullRefresh/EGOTableViewPullRefresh.xcodeproj; sourceTree = "<group>"; };
 		1470B84615F5DDF5008AC8C1 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "/Users/augusto/projects/PLCrashReporter-1.1-beta1/iPhone Framework/CrashReporter.framework"; sourceTree = "<absolute>"; };
 		1474EF56142FC8CB004D35AD /* FacebookFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriend.h; sourceTree = "<group>"; };
 		1474EF57142FC8CB004D35AD /* FacebookFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriend.m; sourceTree = "<group>"; };
@@ -499,6 +487,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147039AF16D0644C00ECA6AB /* libEGOTableViewPullRefresh.a in Frameworks */,
 				1420A14016CCD37E00236737 /* libASIHTTPRequest.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -733,46 +722,6 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				1444588B15E0BCC200F7CD9A /* Classes */,
-				1444589415E0BCC200F7CD9A /* Resources */,
-			);
-			name = EGOTableViewPullRefresh;
-			path = ../../EGOTableViewPullRefresh/EGOTableViewPullRefresh;
-			sourceTree = SOURCE_ROOT;
-		};
-		1444588B15E0BCC200F7CD9A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1444588C15E0BCC200F7CD9A /* EGORefreshTableHeaderView.h */,
-				1444588D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m */,
-				1444588E15E0BCC200F7CD9A /* LoadMoreTableFooterView.h */,
-				1444588F15E0BCC200F7CD9A /* LoadMoreTableFooterView.m */,
-				1444589015E0BCC200F7CD9A /* MessageInterceptor.h */,
-				1444589115E0BCC200F7CD9A /* MessageInterceptor.m */,
-				1444589215E0BCC200F7CD9A /* PullTableView.h */,
-				1444589315E0BCC200F7CD9A /* PullTableView.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		1444589415E0BCC200F7CD9A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1444589515E0BCC200F7CD9A /* blackArrow.png */,
-				1444589615E0BCC200F7CD9A /* blackArrow@2x.png */,
-				1444589715E0BCC200F7CD9A /* blueArrow.png */,
-				1444589815E0BCC200F7CD9A /* blueArrow@2x.png */,
-				1444589915E0BCC200F7CD9A /* grayArrow.png */,
-				1444589A15E0BCC200F7CD9A /* grayArrow@2x.png */,
-				1444589B15E0BCC200F7CD9A /* whiteArrow.png */,
-				1444589C15E0BCC200F7CD9A /* whiteArrow@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		1462F3DD141DA475007E31C1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +737,14 @@
 				14EF327D1442318800557A80 /* MeasureViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		147039A316D0612600ECA6AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				147039A716D0612600ECA6AB /* libEGOTableViewPullRefresh.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */ = {
@@ -930,7 +887,6 @@
 			children = (
 				148DCE4415FBCC5900EC33EE /* FBConnect */,
 				147C318F16CCB6A30098D11D /* TestFlightSDK-1.1 */,
-				1444588A15E0BCC200F7CD9A /* EGOTableViewPullRefresh */,
 				14C997991527A2E30041ACDA /* NSLogger */,
 				14FC46E0157C1AA000B71B88 /* ProgressHUD */,
 				14A74A9D15EDD0360035DDB0 /* YRDropdownView */,
@@ -960,6 +916,7 @@
 			isa = PBXGroup;
 			children = (
 				1420A13816CCD33C00236737 /* ASIHTTPRequest.xcodeproj */,
+				147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */,
 				14FC45E6157B196700B71B88 /* Third Party Libraries */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1038,6 +995,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				147039AE16D0643E00ECA6AB /* PBXTargetDependency */,
 				1420A13F16CCD36700236737 /* PBXTargetDependency */,
 			);
 			name = SuperVote;
@@ -1073,6 +1031,10 @@
 					ProductGroup = 1420A13916CCD33C00236737 /* Products */;
 					ProjectRef = 1420A13816CCD33C00236737 /* ASIHTTPRequest.xcodeproj */;
 				},
+				{
+					ProductGroup = 147039A316D0612600ECA6AB /* Products */;
+					ProjectRef = 147039A216D0612600ECA6AB /* EGOTableViewPullRefresh.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1087,6 +1049,13 @@
 			fileType = archive.ar;
 			path = libASIHTTPRequest.a;
 			remoteRef = 1420A13C16CCD33C00236737 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		147039A716D0612600ECA6AB /* libEGOTableViewPullRefresh.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEGOTableViewPullRefresh.a;
+			remoteRef = 147039A616D0612600ECA6AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1190,14 +1159,6 @@
 				142E665B1575D77000C92477 /* SelectDistrictViewController.xib in Resources */,
 				14466C53157A92D900EA6E2E /* SelectGovernmentViewController.xib in Resources */,
 				1401CBFD15CF384B007CFE6A /* user.png in Resources */,
-				144458A115E0BCC200F7CD9A /* blackArrow.png in Resources */,
-				144458A215E0BCC200F7CD9A /* blackArrow@2x.png in Resources */,
-				144458A315E0BCC200F7CD9A /* blueArrow.png in Resources */,
-				144458A415E0BCC200F7CD9A /* blueArrow@2x.png in Resources */,
-				144458A515E0BCC200F7CD9A /* grayArrow.png in Resources */,
-				144458A615E0BCC200F7CD9A /* grayArrow@2x.png in Resources */,
-				144458A715E0BCC200F7CD9A /* whiteArrow.png in Resources */,
-				144458A815E0BCC200F7CD9A /* whiteArrow@2x.png in Resources */,
 				1477A32215E1E1B000A45F6D /* PullTableViewLan.strings in Resources */,
 				1477A35A15E1FC3E00A45F6D /* Default.png in Resources */,
 				1477A35B15E1FC3E00A45F6D /* Default@2x.png in Resources */,
@@ -1273,10 +1234,6 @@
 				148EF0A615C87600009D78CB /* PositionToCandidate.m in Sources */,
 				148EF0BE15C878E0009D78CB /* Position.m in Sources */,
 				148EF0FF15C883FF009D78CB /* Candidate.m in Sources */,
-				1444589D15E0BCC200F7CD9A /* EGORefreshTableHeaderView.m in Sources */,
-				1444589E15E0BCC200F7CD9A /* LoadMoreTableFooterView.m in Sources */,
-				1444589F15E0BCC200F7CD9A /* MessageInterceptor.m in Sources */,
-				144458A015E0BCC200F7CD9A /* PullTableView.m in Sources */,
 				1477A27115E1CA0A00A45F6D /* PullTableViewController.m in Sources */,
 				14A74AA415EDD0360035DDB0 /* YRDropdownView.m in Sources */,
 				148DCE3715FBCC5300EC33EE /* Facebook.m in Sources */,
@@ -1299,6 +1256,11 @@
 			isa = PBXTargetDependency;
 			name = ASIHTTPRequest;
 			targetProxy = 1420A13E16CCD36700236737 /* PBXContainerItemProxy */;
+		};
+		147039AE16D0643E00ECA6AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EGOTableViewPullRefresh;
+			targetProxy = 147039AD16D0643E00ECA6AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
