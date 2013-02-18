@@ -139,7 +139,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
+    /* http://stackoverflow.com/a/12411038 */
+    UIView *empty = [[UIView alloc] init];
+    [empty setBackgroundColor:[UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f]];
+    [self.tableView setBackgroundView:empty];
+    [empty release];
 	
 	/* http://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color */
 	UIFont *font = [UIFont fontWithName:@"LeagueGothic" size:30.0];
