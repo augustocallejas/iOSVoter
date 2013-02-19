@@ -376,17 +376,8 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 		[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
 		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 		
-		if (&ADBannerContentSizeIdentifierPortrait != nil) {
-			kTabnavADBannerContentSizeIdentifierPortrait = ADBannerContentSizeIdentifierPortrait;
-		} else {
-			kTabnavADBannerContentSizeIdentifierPortrait = ADBannerContentSizeIdentifier320x50;
-		}
-		
-		if (&ADBannerContentSizeIdentifierLandscape != nil) {
-			kTabnavADBannerContentSizeIdentifierLandscape = ADBannerContentSizeIdentifierLandscape;
-		} else {
-			kTabnavADBannerContentSizeIdentifierLandscape = ADBannerContentSizeIdentifier480x32;
-		}
+        kTabnavADBannerContentSizeIdentifierPortrait = ADBannerContentSizeIdentifierPortrait;
+        kTabnavADBannerContentSizeIdentifierLandscape = ADBannerContentSizeIdentifierLandscape;
     }
     return self;
 }
