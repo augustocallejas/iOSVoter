@@ -785,7 +785,7 @@ static NSString *hintName = @"DisplayBallotHint";
 	NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
 	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@ AND forElection == %@", [numberFormatter numberFromString:levelOrder], self.election];
 	[fetchRequest setPredicate:predicate];
 	
 	NSString *headerTitle = NSLocalizedString(@"Unknown", nil);
@@ -817,7 +817,7 @@ static NSString *hintName = @"DisplayBallotHint";
 	NSNumberFormatter * numberFormatter = [[NSNumberFormatter alloc] init];
 	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@", [numberFormatter numberFromString:levelOrder]];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"levelOrder == %@ AND forElection == %@", [numberFormatter numberFromString:levelOrder], self.election];
 	[fetchRequest setPredicate:predicate];
 	
 	NSString *headerTitle = NSLocalizedString(@"Unknown", nil);
