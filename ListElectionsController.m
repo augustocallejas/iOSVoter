@@ -8,8 +8,6 @@
 
 #import "ListElectionsController.h"
 
-#import "YRDropdownView.h"
-
 #import "Candidate.h"
 #import "DisplayBallotController.h"
 #import "Election.h"
@@ -441,12 +439,13 @@ NSString *kTabnavADBannerContentSizeIdentifierLandscape;
 		[defaults synchronize];
 		hintDisplayed = YES;
 		
-		[YRDropdownView showDropdownInView:self.tableView
-									 title:NSLocalizedString(@"WelcomeTitle", nil)
-									detail:NSLocalizedString(hintName, nil)
-									 image:nil
-								  animated:YES
-								 hideAfter:8.0f];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"WelcomeTitle", nil)
+														message:NSLocalizedString(hintName, nil)
+													   delegate:nil 
+											  cancelButtonTitle:NSLocalizedString(@"OK", nil)
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
 	}
 }
 

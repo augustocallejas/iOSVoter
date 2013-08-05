@@ -318,8 +318,8 @@
 	[controller release];
 }
 
-- (UIView *)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
-	UIView *myView = nil;
+- (BOOL)didDismissModalView:(BOOL)withVote toCandidate:(Candidate *)candidate orMeasureVote:(NSNumber *)measureVote withOptionalStatement:(NSString *)statement andViewableByFriends:(BOOL)viewable {
+	BOOL voted = NO;
 	BOOL dismissModalView = YES;
 	vote_status status = OK;
 	if (withVote) {
@@ -348,7 +348,7 @@
 				LogInfo(@"Endorsement created for measure '%@'", _measure.guid);
 			}
 			
-			myView = self.view;
+			voted = YES;
 			[self.tableView reloadData];
 		}
 		else {
@@ -403,7 +403,7 @@
 		[alert release];
 	}
 	
-	return myView;
+	return voted;
 }
 
 - (IBAction)viewAllEndorsements:(id)sender{	
