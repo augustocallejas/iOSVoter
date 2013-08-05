@@ -469,21 +469,22 @@ NSString *const FBSessionStateChangedNotification =
 /* http://stackoverflow.com/questions/3869217/iphone-ios-running-in-separate-thread */
 /* http://stackoverflow.com/questions/5267411/in-which-thread-are-ios-completion-handler-blocks-called */
 - (void)updateDataAsynchronously:(BOOL)withAlerts withDelegate:(id)delegate {
+    /* UPDATE: moved back to running in non-main thread since we're not using Facebook completion handlers */
 	/* running in a non-main thread breaks Facebook completion handlers */
-	//dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-	dispatch_async(dispatch_get_main_queue(), ^{
+	dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+	//dispatch_async(dispatch_get_main_queue(), ^{
 		// Add code here to do background processing
 		//
 		//
 		[self updateData:withAlerts];
 
-		//dispatch_async( dispatch_get_main_queue(), ^{
+		dispatch_async( dispatch_get_main_queue(), ^{
 			// Add code here to update the UI/send notifications based on the
 			// results of the background processing
 			if (delegate != nil && [delegate respondsToSelector:@selector(doneWithUpdateData)]) {
 				[delegate performSelector:@selector(doneWithUpdateData)];
 			}
-		//});
+		});
 	});
 }
 
