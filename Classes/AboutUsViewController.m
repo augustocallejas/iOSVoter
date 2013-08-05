@@ -37,7 +37,7 @@
 }
 
 - (IBAction)doFacebook {
-	LogInfo(@"TODO: fill with facebook url");
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://facebook.com/supervote"]];
 }
 
 - (IBAction)doTermsOfService {
