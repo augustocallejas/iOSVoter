@@ -884,6 +884,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.pullTableView = nil;
 	self.client = nil;
 	self.ballot = nil;

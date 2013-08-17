@@ -69,6 +69,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.tableView];
 	self.pullTableView = nil;
     [super dealloc];
 }
